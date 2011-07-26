@@ -1,10 +1,12 @@
 Plaza Vea Móvil iOS app
 =======================
 Para clonar e inicializar los submodulos:
+
     git clone --recursive git@github.com:bitzeppelin/plazavea-ios.git \
         plazavea-ios@git
 
 En dos comandos:
+
     git clone git@github.com:bitzeppelin/plazavea-ios.git plazavea-ios@git
     cd plazavea-ios@git
     git submodule init
