@@ -3,7 +3,15 @@
 @class NSManagedObjectContext;
 @class NSManagedObjectModel;
 @class NSPersistentStoreCoordinator;
+@protocol NSObject;
 @protocol UIApplicationDelegate;
+
+@protocol EntityDefinition <NSObject>
+
+@required
++ (void)    createEntities:(NSSet **)entities
+    localizationDictionary:(NSDictionary **)localizationDictionary;
+@end
 
 @interface AppDelegate: NSObject <UIApplicationDelegate>
 {
@@ -22,4 +30,5 @@
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *coordinator;
 
 - (void)saveContext;
+- (void)initializeModel;
 @end

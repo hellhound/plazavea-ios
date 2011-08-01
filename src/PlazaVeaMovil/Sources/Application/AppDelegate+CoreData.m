@@ -3,6 +3,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Additions/NSObject+Additions.h"
 #import "Common/Additions/NSFileManager+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Constants.h"
@@ -29,6 +30,7 @@
     _model = [[NSManagedObjectModel alloc] init];
     // TODO should add entities to the model before returning
     // TODO should support manual migration in the non-so-distant future
+    [self initializeModel];
     return _model;
 }
 
@@ -75,5 +77,28 @@
         // TODO should present a nice UIViewAlert informing the error
         abort();
     }
+}
+
+- (void)initializeModel
+{
+    NSSet *classes = [NSObject setWithClassesConformingToProtocol:
+            @protocol(EntityDefinition)];
+    NSMutableSet *allEntities = [NSMutableArray array];
+    NSMutableDictionary *allLocalizations = [NSMutableDictionary dictionary];
+
+    for (Class<EntityDefinition> class in classes) {
+        NSSet *entities = nil;
+        NSDictionary *localizationDictionary = nil;
+
+        [class createEntities:&entities
+                localizationDictionary:&localizationDictionary];
+        [allEntities unionSet:entities];
+        [allLocalizations addEntriesFromDictionary:localizationDictionary];
+    }
+
+    NSManagedObjectModel *model = [self model];
+
+    [model setEntities:[allEntities allObjects]];
+    [model setLocalizationDictionary:allLocalizations];
 }
 @end
