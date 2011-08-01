@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "AppDelegate.h"
+#import "Application/AppDelegate.h"
 
 int main(int argc, char **argv)
 {

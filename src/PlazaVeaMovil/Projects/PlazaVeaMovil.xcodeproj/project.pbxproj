@@ -11,6 +11,9 @@
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
+		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
+		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
+		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CE7045D13DE6B4500BB2279 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045B13DE6B4500BB2279 /* AppDelegate.m */; };
 		2CE7045E13DE6B4500BB2279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045C13DE6B4500BB2279 /* main.m */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
@@ -226,6 +229,9 @@
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
+		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
+		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CE7045B13DE6B4500BB2279 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2CE7045C13DE6B4500BB2279 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../../Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -317,15 +323,34 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2CD9933813E65DA400879980 /* Common */,
 				2CE7045913DE6B4500BB2279 /* Application */,
 			);
 			name = Sources;
 			path = ../Sources;
 			sourceTree = "<group>";
 		};
+		2CD9933813E65DA400879980 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2CD9933913E65DA400879980 /* Additions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2CD9933913E65DA400879980 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				2CD9933A13E65DA400879980 /* NSError+Additions.m */,
+				2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */,
 				2CE7045B13DE6B4500BB2279 /* AppDelegate.m */,
 				2CE7045C13DE6B4500BB2279 /* main.m */,
 			);
@@ -648,6 +673,9 @@
 			files = (
 				2CE7045D13DE6B4500BB2279 /* AppDelegate.m in Sources */,
 				2CE7045E13DE6B4500BB2279 /* main.m in Sources */,
+				2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */,
+				2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */,
+				2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,7 +776,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "2E96F3D1-FCD4-4E0E-992C-BA0D77F65051";
 				SYMROOT = ../build;
-				USER_HEADER_SEARCH_PATHS = ../Sources;
+				USER_HEADER_SEARCH_PATHS = ../Headers;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -773,7 +801,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SYMROOT = ../build;
-				USER_HEADER_SEARCH_PATHS = ../Sources;
+				USER_HEADER_SEARCH_PATHS = ../Headers;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
