@@ -12,7 +12,9 @@
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
+		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
+		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CE7045D13DE6B4500BB2279 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045B13DE6B4500BB2279 /* AppDelegate.m */; };
@@ -228,10 +230,12 @@
 		2C2F07E213DE61B3009F60DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2C33D33413E73858003EDEAB /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
+		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CE7045B13DE6B4500BB2279 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -325,11 +329,21 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2C864B1E13E729BF00D46066 /* ShoppingList */,
 				2CD9933813E65DA400879980 /* Common */,
 				2CE7045913DE6B4500BB2279 /* Application */,
 			);
 			name = Sources;
 			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				2C33D33413E73858003EDEAB /* ShoppingList.m */,
+				2C864B1F13E729BF00D46066 /* EntityDescription.m */,
+			);
+			path = ShoppingList;
 			sourceTree = "<group>";
 		};
 		2CD9933813E65DA400879980 /* Common */ = {
@@ -680,6 +694,8 @@
 				2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */,
 				2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */,
 				2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */,
+				2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */,
+				2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 #import "Common/Additions/NSFileManager+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Constants.h"
+#import "Application/EntityDescription.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate (CoreData)
@@ -82,11 +83,11 @@
 - (void)initializeModel
 {
     NSSet *classes = [NSObject setWithClassesConformingToProtocol:
-            @protocol(EntityDefinition)];
-    NSMutableSet *allEntities = [NSMutableArray array];
+            @protocol(EntityDescription)];
+    NSMutableSet *allEntities = [NSMutableSet set];
     NSMutableDictionary *allLocalizations = [NSMutableDictionary dictionary];
 
-    for (Class<EntityDefinition> class in classes) {
+    for (Class<EntityDescription> class in classes) {
         NSSet *entities = nil;
         NSDictionary *localizationDictionary = nil;
 
