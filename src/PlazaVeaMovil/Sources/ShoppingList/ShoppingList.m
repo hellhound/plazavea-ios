@@ -27,5 +27,13 @@
 // primitives
 @dynamic primitiveLastModificationDate;
 // KVO properties
-@dynamic name, lastModificationDate, order;
+@dynamic name, lastModificationDate, order, items;
+@end
+
+@implementation ShoppingItem
+
+#pragma mark -
+#pragma mark ShoppingItem
+
+@dynamic name, quantity, order, list;
 @end

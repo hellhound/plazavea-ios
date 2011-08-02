@@ -86,13 +86,14 @@
             @protocol(EntityDescription)];
     NSMutableSet *allEntities = [NSMutableSet set];
     NSMutableDictionary *allLocalizations = [NSMutableDictionary dictionary];
+    NSManagedObjectContext *context = [self context];
 
     for (Class<EntityDescription> class in classes) {
         NSSet *entities = nil;
         NSDictionary *localizationDictionary = nil;
 
         [class createEntities:&entities
-                localizationDictionary:&localizationDictionary];
+                localizationDictionary:&localizationDictionary context:context];
         [allEntities unionSet:entities];
         [allLocalizations addEntriesFromDictionary:localizationDictionary];
     }
@@ -100,6 +101,7 @@
     NSManagedObjectModel *model = [self model];
 
     [model setEntities:[allEntities allObjects]];
-    [model setLocalizationDictionary:allLocalizations];
+    if ([allLocalizations count] > 0)
+        [model setLocalizationDictionary:allLocalizations];
 }
 @end
