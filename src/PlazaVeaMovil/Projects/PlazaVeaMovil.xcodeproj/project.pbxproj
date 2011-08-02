@@ -13,6 +13,7 @@
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
+		2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
@@ -234,6 +235,7 @@
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */,
 				2C33D33413E73858003EDEAB /* ShoppingList.m */,
 				2C864B1F13E729BF00D46066 /* EntityDescription.m */,
 			);
@@ -696,6 +699,7 @@
 				2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */,
 				2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */,
 				2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */,
+				2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

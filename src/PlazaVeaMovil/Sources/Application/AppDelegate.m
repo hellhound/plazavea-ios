@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "ShoppingList/ShoppingListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -24,6 +25,16 @@
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    // TODO The root view controller should be the one of the launcher
+    ShoppingListController *shoppingController =
+            [[[ShoppingListController alloc]
+                initWithNibName:nil bundle:nil] autorelease];
+    UINavigationController *navController =
+            [[[UINavigationController alloc]
+                initWithRootViewController:shoppingController] autorelease];
+
+    [_window setRootViewController:navController];
     [_window makeKeyAndVisible];
     return YES;
 }
