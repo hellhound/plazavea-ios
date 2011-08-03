@@ -19,8 +19,14 @@
 {
     if (_context != nil)
         return _context;
+
     _context = [[NSManagedObjectContext alloc] init];
     [_context setPersistentStoreCoordinator:[self coordinator]];
+
+    NSUndoManager *undoManager = [[[NSUndoManager alloc] init] autorelease];
+
+    [undoManager setLevelsOfUndo:UNDO_LEVEL];
+    [_context setUndoManager:undoManager];
     return _context;
 }
 

@@ -89,14 +89,6 @@
     return navItem;
 }
 
-- (void)loadView
-{
-    [super loadView];
-    if ([self navigationController] != nil)
-        // Show the toolbar
-        [[self navigationController] setToolbarHidden:NO animated:NO];
-}
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -116,11 +108,11 @@
                     initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                     target:self action:@selector(cancelEditing:)] autorelease]];
         // Hide the toolbar
-        [navController setToolbarHidden:YES animated:animated];
+        [navController setToolbarHidden:NO animated:animated];
     } else {
         [navItem setLeftBarButtonItem:nil];
         // Show the toolbar
-        [navController setToolbarHidden:NO animated:animated];
+        [navController setToolbarHidden:YES animated:animated];
     }
 }
 
@@ -150,6 +142,7 @@
                 context];
 
     [context rollback];
+    [[self tableView] reloadData];
     [self setEditing:NO animated:YES];
 }
 
@@ -221,7 +214,7 @@
 
         NSError *error = nil;
 
-        if (![context save:&error])
+        if (![_resultsController performFetch:&error])
             [error log];
         [[self tableView] reloadData];
     }
