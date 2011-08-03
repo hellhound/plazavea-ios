@@ -14,6 +14,9 @@
 
 - (void)addShoppingList:(UIControl *)control;
 - (void)cancelEditing:(UIControl *)control;
+- (void)performUndo:(UIControl *)control;
+- (void)performRedo:(UIControl *)control;
+- (void)updateUndoRedo;
 @end
 
 @implementation ShoppingListController
@@ -25,6 +28,8 @@
 {
     [_fetchRequest release];
     [_resultsController release];
+    [_undoItem release];
+    [_redoItem release];
     [super dealloc];
 }
 
@@ -52,7 +57,8 @@
                 initWithFetchRequest:_fetchRequest
                 managedObjectContext:context
                 sectionNameKeyPath:nil
-                cacheName:kShoppingListCacheName];
+                //cacheName:kShoppingListCacheName];
+                cacheName:nil];
         // Set this controller as the delegate of the fetch-request controller.
         // When this is set, the fetch-reqeust controller begin tracking changes
         // to managed objects associated with its managed context.
@@ -76,16 +82,28 @@
     // Conf the edit button
     [navItem setRightBarButtonItem:[self editButtonItem]];
 
+    if (_undoItem == nil)
+        // Conf the undo item
+        _undoItem = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
+                target:self action:@selector(performUndo:)];
+    if (_redoItem == nil)
+        // Conf the redo item
+        _redoItem = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
+                target:self action:@selector(performRedo:)];
+    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+            target:nil action:NULL] autorelease];
     // Conf the add-item button
     UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
             target:self action:@selector(addShoppingList:)] autorelease];
-    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-            target:nil action:NULL] autorelease];
 
     // Conf the toolbar
-    [self setToolbarItems:[NSArray arrayWithObjects:spacerItem, addItem, nil]];
+    [self setToolbarItems:[NSArray arrayWithObjects:_undoItem, _redoItem,
+            spacerItem, addItem, nil]];
+    [self updateUndoRedo];
     return navItem;
 }
 
@@ -113,6 +131,19 @@
         [navItem setLeftBarButtonItem:nil];
         // Show the toolbar
         [navController setToolbarHidden:YES animated:animated];
+
+        NSManagedObjectContext *context =
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                    context];
+
+        if ([context hasChanges]) {
+            NSError *error = nil;
+
+            if ([context save:&error])
+                [error log];
+            [[context undoManager] removeAllActions];
+            [[self tableView] reloadData];
+        }
     }
 }
 
@@ -144,6 +175,42 @@
     [context rollback];
     [[self tableView] reloadData];
     [self setEditing:NO animated:YES];
+}
+
+- (void)performUndo:(UIControl *)control
+{
+    NSManagedObjectContext *context =
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                context];
+
+    if ([_undoItem isEnabled]) {
+        [context undo];
+        [self updateUndoRedo];
+        [[self tableView] reloadData];
+    }
+}
+
+- (void)performRedo:(UIControl *)control
+{
+    NSManagedObjectContext *context =
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                context];
+
+    if ([_redoItem isEnabled]) {
+        [context redo];
+        [self updateUndoRedo];
+        [[self tableView] reloadData];
+    }
+}
+
+- (void)updateUndoRedo
+{
+    NSUndoManager *undoManager =
+            [[(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                context] undoManager];
+
+    [_undoItem setEnabled:[undoManager canUndo]];
+    [_redoItem setEnabled:[undoManager canRedo]];
 }
 
 #pragma mark -
@@ -183,6 +250,15 @@
 }
 
 #pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark -
 #pragma mark <NSFetchedResultsControllerDelegate>
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
@@ -217,6 +293,7 @@
         if (![_resultsController performFetch:&error])
             [error log];
         [[self tableView] reloadData];
+        [self updateUndoRedo];
     }
 }
 @end
