@@ -25,7 +25,6 @@
 {
     [_fetchRequest release];
     [_resultsController release];
-    [_inputView release];
     [super dealloc];
 }
 
@@ -58,10 +57,6 @@
         // When this is set, the fetch-reqeust controller begin tracking changes
         // to managed objects associated with its managed context.
         [_resultsController setDelegate:self];
-        // Create and retain an input view
-        _inputView = [[InputView alloc] initWithTitle:@"Title" message:@"Body"
-                delegate:nil cancelButtonTitle:@"Cancel"
-                otherButtonTitles:nil];
 
         NSError *error = nil;
 
@@ -134,7 +129,13 @@
 
 - (void)addShoppingList:(UIControl *)control
 {
-    [_inputView show];
+    // Create and retain an input view
+    InputView *inputView =
+            [[[InputView alloc] initWithTitle:@"Title" message:@"Body"
+                delegate:nil cancelButtonTitle:@"Cancel"
+                otherButtonTitles:nil] autorelease];
+
+    [inputView show];
 }
 
 - (void)cancelEditing:(UIControl *)control

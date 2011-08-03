@@ -10,6 +10,5 @@
 {
     NSFetchRequest *_fetchRequest;
     NSFetchedResultsController *_resultsController;
-    InputView *_inputView;
 }
 @end

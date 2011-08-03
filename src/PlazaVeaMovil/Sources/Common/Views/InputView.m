@@ -70,6 +70,9 @@ static NSCharacterSet *kWhitespaceCharSet;
     [textField setKeyboardAppearance:UIKeyboardAppearanceAlert];
     [textField setReturnKeyType:UIReturnKeyDone];
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [textField setAutoresizingMask:
+            UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleTopMargin];
     [textField setDelegate:self];
     // call the setter from the superclass becaused we overrode it to do
     // nothing

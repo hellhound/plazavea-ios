@@ -10,7 +10,7 @@ static NSString *kTransformKeyPath = @"transform";
 
 @interface CustomizableAlertView (Private)
 
-- (void)centerViewOnKeyboardDismissal:(UIControl *)control;
+- (void)centerView:(id)sender;
 @end
 
 @implementation CustomizableAlertView
@@ -20,7 +20,6 @@ static NSString *kTransformKeyPath = @"transform";
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_customSubview release];
     [super dealloc];
 }
@@ -70,17 +69,37 @@ static NSString *kTransformKeyPath = @"transform";
     [super layoutSubviews];
 
     NSArray *subviews = [self subviews];
-    UIView *messageView = nil;
-    UIView *backgroundView = nil;
+    CGRect customFrame = [_customSubview frame];
+    CGFloat displacement = customFrame.size.height  + kVerticalPadding * 2.;
 
-    // Perform a pattern search instead of depending on UIAlertView internal
-    // structure.
-    // This fetches the background view.
-    for (UIView *view in subviews) 
-        if ([view isKindOfClass:[UIImageView class]]) {
-            backgroundView = view;
-            break;
-        }
+    if ([_customSubview superview] == nil) {
+        // Calculate the background size and elnarge it accordingly
+        UIView *backgroundView = nil;
+
+        // Perform a pattern search instead of depending on UIAlertView internal
+        // structure.
+        // This fetches the background view.
+        for (UIView *view in subviews) 
+            if ([view isKindOfClass:[UIImageView class]]) {
+                backgroundView = view;
+                break;
+            }
+        if (backgroundView == nil)
+            // Abort if there is no match
+            return;
+
+        CGRect backgroundFrame = [backgroundView frame];
+
+        // increment background image-view height by "displacement"
+        backgroundFrame.size.height += displacement;
+        [backgroundView setFrame:backgroundFrame];
+    } else {
+        // The custom subview is already inside the hierarchy
+        [_customSubview removeFromSuperview];
+    }
+
+    UIView *messageView = nil;
+
     // Perform a pattern search instead of depending on UIAlertView internal
     // structure
     // This fetches the view that we'll use as an anchor.
@@ -90,20 +109,14 @@ static NSString *kTransformKeyPath = @"transform";
             messageView = view;
             break;
         }
-    if (backgroundView == nil || messageView == nil)
-        // Abort if there were no matches
+    if (messageView == nil)
+        // Abort if there is no match
         return;
 
     CGRect bounds = [self bounds];
     CGRect messageFrame = [messageView frame];
-    CGRect backgroundFrame = [backgroundView frame];
-    CGRect customFrame = [_customSubview frame];
-    CGFloat displacement = customFrame.size.height  + kVerticalPadding * 2.;
     CGFloat pivot = messageFrame.origin.y + messageFrame.size.height;
 
-    // increment background image-view height by "displacement"
-    backgroundFrame.size.height += displacement;
-    [backgroundView setFrame:backgroundFrame];
     // displace by "diplacement" every subview positioned after "pivot"
     for (UIView *view in subviews) {
         CGRect viewRect = [view frame];
@@ -116,11 +129,11 @@ static NSString *kTransformKeyPath = @"transform";
 
     if (customFrame.size.width > maxWidth)
         customFrame.size.width = maxWidth;
-    [_customSubview setFrame:CGRectOffset(customFrame,
+    [_customSubview setFrame:CGRectMake(
             (bounds.size.width - customFrame.size.width) / 2.,
-            pivot + kVerticalPadding)];
-    if ([_customSubview superview] == nil)
-        [self addSubview:_customSubview];
+            pivot + kVerticalPadding,
+            customFrame.size.width, customFrame.size.height)];
+    [self addSubview:_customSubview];
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
@@ -138,13 +151,13 @@ static NSString *kTransformKeyPath = @"transform";
 
 - (void)show
 {
+    // TODO has a major bug when displaying for second time. Apparently this
+    // view translates upwards form some reason. 
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
 
-    [defaultCenter addObserver:self
-        selector:@selector(centerViewOnKeyboardDismissal:)
+    [defaultCenter addObserver:self selector:@selector(centerView:)
         name:UITextFieldTextDidEndEditingNotification object:nil];
-    [defaultCenter addObserver:self
-            selector:@selector(centerViewOnKeyboardDismissal:) 
+    [defaultCenter addObserver:self selector:@selector(centerView:)
             name:UITextViewTextDidEndEditingNotification object:nil];
     // Dammit! we need to observe value-changes for the property "transform" to
     // handle properly the UIAlertView relocation.
@@ -157,6 +170,7 @@ static NSString *kTransformKeyPath = @"transform";
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex
                              animated:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Cease to observe kTransformKeyPath upon dismissal
     [self removeObserver:self forKeyPath:kTransformKeyPath];
     [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
@@ -167,7 +181,7 @@ static NSString *kTransformKeyPath = @"transform";
 
 @synthesize customSubview = _customSubview;
 
-- (void)centerViewOnKeyboardDismissal:(UIControl *)control
+- (void)centerView:(id)sender
 {
     CGRect bounds = [[self superview] bounds];
 
