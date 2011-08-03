@@ -249,6 +249,22 @@
     return cell;
 }
 
+- (void)    tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context =
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                    context];
+        ShoppingList *list = [_resultsController objectAtIndexPath:indexPath];
+
+        [context deleteObject:list];
+        [self updateUndoRedo];
+        [tableView reloadData];
+    }
+}
+
 #pragma mark -
 #pragma mark <UITableViewDelegate>
 
