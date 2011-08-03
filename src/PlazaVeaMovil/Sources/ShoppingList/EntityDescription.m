@@ -51,9 +51,9 @@
             [[[NSAttributeDescription alloc] init] autorelease];
 
     [quantity setName:kShoppingItemQuantity];
-    [quantity setAttributeType:NSInteger32AttributeType];
-    [quantity setOptional:NO];
-    [quantity setDefaultValue:[NSNumber numberWithInteger:0]];
+    [quantity setAttributeType:NSStringAttributeType];
+    [quantity setOptional:YES];
+    [quantity setDefaultValue:@""];
 
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
