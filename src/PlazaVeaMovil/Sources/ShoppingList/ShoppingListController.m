@@ -145,6 +145,11 @@
 
 - (void)cancelEditing:(UIControl *)control
 {
+    NSManagedObjectContext *context =
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                context];
+
+    [context rollback];
     [self setEditing:NO animated:YES];
 }
 
