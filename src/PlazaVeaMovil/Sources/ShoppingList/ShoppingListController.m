@@ -4,6 +4,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSError+Additions.h"
+#import "Common/Views/InputView.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"

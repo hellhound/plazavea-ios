@@ -10,11 +10,13 @@
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
+		2C25BD3513E8F89000A4311B /* CustomizableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */; };
 		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; };
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
+		2C362A9513E909C700F72502 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C362A9413E909C700F72502 /* InputView.m */; };
 		2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
@@ -230,12 +232,14 @@
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizableAlertView.m; sourceTree = "<group>"; };
 		2C2F07DC13DE61B3009F60DB /* PlazaVeaMovil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaVeaMovil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2F07E013DE61B3009F60DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2C2F07E213DE61B3009F60DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C33D33413E73858003EDEAB /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
+		2C362A9413E909C700F72502 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -282,6 +286,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C25BD3313E8F88F00A4311B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C362A9413E909C700F72502 /* InputView.m */,
+				2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2C2F07D113DE61B3009F60DB = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +370,7 @@
 		2CD9933813E65DA400879980 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2C25BD3313E8F88F00A4311B /* Views */,
 				2CD9933913E65DA400879980 /* Additions */,
 			);
 			path = Common;
@@ -708,6 +722,8 @@
 				2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */,
 				2C1D792913E87C58000FD96C /* Constants.m in Sources */,
 				2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */,
+				2C25BD3513E8F89000A4311B /* CustomizableAlertView.m in Sources */,
+				2C362A9513E909C700F72502 /* InputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
