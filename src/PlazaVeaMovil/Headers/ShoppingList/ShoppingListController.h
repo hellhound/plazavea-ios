@@ -1,3 +1,5 @@
+#import "Common/Views/InputView.h"
+
 @class UITableViewController;
 @class NSFetchRequest;
 @class NSFetchedResultsController;
@@ -8,5 +10,6 @@
 {
     NSFetchRequest *_fetchRequest;
     NSFetchedResultsController *_resultsController;
+    InputView *_inputView;
 }
 @end

@@ -10,6 +10,12 @@
 #import "ShoppingList/ShoppingList.h"
 #import "ShoppingList/ShoppingListController.h"
 
+@interface ShoppingListController (Private)
+
+- (void)addShoppingList:(UIControl *)control;
+- (void)cancelEditing:(UIControl *)control;
+@end
+
 @implementation ShoppingListController
 
 #pragma mark -
@@ -19,6 +25,7 @@
 {
     [_fetchRequest release];
     [_resultsController release];
+    [_inputView release];
     [super dealloc];
 }
 
@@ -51,6 +58,10 @@
         // When this is set, the fetch-reqeust controller begin tracking changes
         // to managed objects associated with its managed context.
         [_resultsController setDelegate:self];
+        // Create and retain an input view
+        _inputView = [[InputView alloc] initWithTitle:@"Title" message:@"Body"
+                delegate:nil cancelButtonTitle:@"Cancel"
+                otherButtonTitles:nil];
 
         NSError *error = nil;
 
@@ -73,15 +84,62 @@
     // Conf the add-item button
     UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-            target:nil action:nil] autorelease];
+            target:self action:@selector(addShoppingList:)] autorelease];
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-            target:nil action:nil] autorelease];
+            target:nil action:NULL] autorelease];
 
+    // Conf the toolbar
     [self setToolbarItems:[NSArray arrayWithObjects:spacerItem, addItem, nil]];
-    // show the toolbar
-    [[self navigationController] setToolbarHidden:NO];
     return navItem;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    if ([self navigationController] != nil)
+        // Show the toolbar
+        [[self navigationController] setToolbarHidden:NO animated:NO];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+
+    UINavigationController *navController = [self navigationController];
+
+    if (navController == nil)
+        // Abort, we don't need fancy toggling
+        return;
+
+    UINavigationItem *navItem = [super navigationItem];
+
+    if (editing) {
+        // Conf the cancel-item button
+        [navItem setLeftBarButtonItem:
+                [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                    target:self action:@selector(cancelEditing:)] autorelease]];
+        // Hide the toolbar
+        [navController setToolbarHidden:YES animated:animated];
+    } else {
+        [navItem setLeftBarButtonItem:nil];
+        // Show the toolbar
+        [navController setToolbarHidden:NO animated:animated];
+    }
+}
+
+#pragma mark -
+#pragma mark ShoppingListController
+
+- (void)addShoppingList:(UIControl *)control
+{
+    [_inputView show];
+}
+
+- (void)cancelEditing:(UIControl *)control
+{
+    [self setEditing:NO animated:YES];
 }
 
 #pragma mark -
