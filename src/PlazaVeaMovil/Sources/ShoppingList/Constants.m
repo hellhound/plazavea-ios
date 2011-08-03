@@ -22,8 +22,21 @@ NSString *kShoppingItemOrder = @"order";
 NSString *kShoppingItemList = @"list";
 
 // ShoppingListController's constants
+
 // Administration of shopping lists
-// NSLocalizedString(@"Mis listas", nil)
 NSString *kShoppingListTitle = @"Mis listas";
+// NSLocalizedString(@"Mis listas", nil)
 // Fetch-request controller cache's file name
 NSString *kShoppingListCacheName = @"ShoppingListController.cache";
+
+// InputView's constants for shopping list creation
+NSString *kShoppingListNewTitle = @"Nueva lista";
+// NSLocalizedString(@"Nueva lista", nil)
+NSString *kShoppingListNewMessage = @"Ingrese el nombre de la nueva lista de " 
+        @"compras";
+// NSLocalizedString(@"Ingrese el nombre de la nueva lista de "
+//      @"compras", nil)
+NSString *kShoppingListNewOkButtonTitle = @"Ok";
+// NSLocalizedString(@"Ok", nil)
+NSString *kShoppingListNewCancelButtonTitle = @"Cancelar";
+// NSLocalizedString(@"Cancelar", nil)

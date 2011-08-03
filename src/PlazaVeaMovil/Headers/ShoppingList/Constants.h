@@ -25,3 +25,9 @@ extern NSString *kShoppingItemList;
 extern NSString *kShoppingListTitle;
 // Fetch-request controller cache's file name
 extern NSString *kShoppingListCacheName;
+
+// InputView's constants for shopping list creation
+extern NSString *kShoppingListNewTitle;
+extern NSString *kShoppingListNewMessage;
+extern NSString *kShoppingListNewOkButtonTitle;
+extern NSString *kShoppingListNewCancelButtonTitle;

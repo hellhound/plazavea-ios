@@ -38,7 +38,7 @@
                 [(AppDelegate *)[[UIApplication sharedApplication] delegate]
                     context];
         NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
-                initWithKey:kShoppingListOrder ascending:YES] autorelease];
+                initWithKey:kShoppingListOrder ascending:NO] autorelease];
 
         // Conf the fetch request
         _fetchRequest = [[NSFetchRequest alloc] init];
@@ -131,9 +131,14 @@
 {
     // Create and retain an input view
     InputView *inputView =
-            [[[InputView alloc] initWithTitle:@"Title" message:@"Body"
-                delegate:nil cancelButtonTitle:@"Cancel"
-                otherButtonTitles:nil] autorelease];
+            [[[InputView alloc] initWithTitle:
+                    NSLocalizedString(kShoppingListNewTitle, nil)
+                message:NSLocalizedString(kShoppingListNewMessage, nil)
+                delegate:self cancelButtonTitle:
+                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil)
+                otherButtonTitles:
+                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil),
+                     nil] autorelease];
 
     [inputView show];
 }
@@ -187,5 +192,33 @@
     // NO-OP. This empty method is intentional. Implementing any delegate method
     // triggers the change-tracking functionality of the fetch-request
     // controller;
+}
+
+#pragma mark -
+#pragma mark <UIAlertViewDelegate>
+
+- (void)            alertView:(InputView *)inputView
+    didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSManagedObjectContext *context =
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                    context];
+        ShoppingList *newList =
+                [NSEntityDescription insertNewObjectForEntityForName:
+                    kShoppingListEntity
+                inManagedObjectContext:context];
+        NSInteger order = [(NSNumber *)[[_resultsController fetchedObjects]
+                valueForKeyPath:@"@max.order"] integerValue] + 1;
+
+        [newList setName:[[inputView textField] text]];
+        [newList setOrder:[NSNumber numberWithInteger:order]];
+
+        NSError *error = nil;
+
+        if (![context save:&error])
+            [error log];
+        [[self tableView] reloadData];
+    }
 }
 @end
