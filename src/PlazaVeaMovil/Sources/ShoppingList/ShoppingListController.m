@@ -265,6 +265,32 @@
     }
 }
 
+- (BOOL)        tableView:(UITableView *)tableView
+    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Any value (or cell) can change order
+    return YES;
+}
+
+- (void)    tableView:(UITableView *)tableView
+   moveRowAtIndexPath:(NSIndexPath *)fromIndex
+          toIndexPath:(NSIndexPath *)toIndex
+{
+    ShoppingList *from = [_resultsController objectAtIndexPath:fromIndex];
+    ShoppingList *to = [_resultsController objectAtIndexPath:toIndex];
+    NSNumber *fromOrder = [from order];
+    NSNumber *toOrder = [to order];
+
+    [from setOrder:toOrder];
+    [to setOrder:fromOrder];
+    
+    NSError *error = nil;
+
+    if (![_resultsController performFetch:&error])
+        [error log];
+    [self updateUndoRedo];
+}
+
 #pragma mark -
 #pragma mark <UITableViewDelegate>
 
@@ -274,14 +300,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark -
-#pragma mark <NSFetchedResultsControllerDelegate>
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+- (NSIndexPath *)               tableView:(UITableView *)tableView
+ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndex
+                      toProposedIndexPath:(NSIndexPath *)proposedIndex
 {
-    // NO-OP. This empty method is intentional. Implementing any delegate method
-    // triggers the change-tracking functionality of the fetch-request
-    // controller;
+    // Allows moving cells
+    return proposedIndex;
 }
 
 #pragma mark -
@@ -311,5 +335,15 @@
         [[self tableView] reloadData];
         [self updateUndoRedo];
     }
+}
+
+#pragma mark -
+#pragma mark <NSFetchedResultsControllerDelegate>
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    // NO-OP. This empty method is intentional. Implementing any delegate method
+    // triggers the change-tracking functionality of the fetch-request
+    // controller;
 }
 @end
