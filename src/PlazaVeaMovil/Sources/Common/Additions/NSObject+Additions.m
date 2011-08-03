@@ -31,7 +31,7 @@
 {
     NSData *packagedClasses = [self dataWithClassesCArray];
     Class *classes = (Class *)[packagedClasses bytes];
-    NSUInteger length = [packagedClasses length];
+    NSUInteger length = [packagedClasses length] / sizeof(Class);
     NSMutableSet *classesThatCormform = [NSMutableSet setWithCapacity:length];
     NSUInteger i;
 
