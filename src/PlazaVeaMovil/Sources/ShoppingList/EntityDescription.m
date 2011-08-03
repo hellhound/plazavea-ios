@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "ShoppingList/Constants.h"
 #import "ShoppingList/EntityDescription.h"
 
 @implementation EntityDescription
@@ -13,14 +14,14 @@
     NSAttributeDescription *name =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [name setName:@"name"];
+    [name setName:kShoppingListName];
     [name setAttributeType:NSStringAttributeType];
     [name setOptional:NO];
 
     NSAttributeDescription *lastModificationDate =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [lastModificationDate setName:@"lastModificationDate"];
+    [lastModificationDate setName:kShoppingListLastModificationDate];
     [lastModificationDate setAttributeType:NSDateAttributeType];
     [lastModificationDate setOptional:NO];
     [lastModificationDate setDefaultValue:[NSNull null]];
@@ -28,7 +29,7 @@
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [order setName:@"order"];
+    [order setName:kShoppingListOrder];
     [order setAttributeType:NSInteger32AttributeType];
     [order setOptional:NO];
     [order setIndexed:YES];
@@ -42,14 +43,14 @@
     NSAttributeDescription *name =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [name setName:@"name"];
+    [name setName:kShoppingItemName];
     [name setAttributeType:NSStringAttributeType];
     [name setOptional:NO];
 
     NSAttributeDescription *quantity =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [quantity setName:@"quantity"];
+    [quantity setName:kShoppingItemQuantity];
     [quantity setAttributeType:NSInteger32AttributeType];
     [quantity setOptional:NO];
     [quantity setDefaultValue:[NSNumber numberWithInteger:0]];
@@ -57,7 +58,7 @@
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [order setName:@"order"];
+    [order setName:kShoppingItemOrder];
     [order setAttributeType:NSInteger32AttributeType];
     [order setOptional:NO];
     [order setIndexed:YES];
@@ -76,10 +77,10 @@
     *itemEntity =
             [[[NSEntityDescription alloc] init] autorelease];
 
-    [*listEntity setName:@"ShoppingList"];
-    [*listEntity setManagedObjectClassName:@"ShoppingList"];
-    [*itemEntity setName:@"ShoppingItem"];
-    [*itemEntity setManagedObjectClassName:@"ShoppingItem"];
+    [*listEntity setName:kShoppingListEntity];
+    [*listEntity setManagedObjectClassName:kShoppingListClass];
+    [*itemEntity setName:kShoppingItemEntity];
+    [*itemEntity setManagedObjectClassName:kShoppingItemClass];
 
     NSRelationshipDescription *items =
             [[[NSRelationshipDescription alloc] init] autorelease];
@@ -87,7 +88,7 @@
             [[[NSRelationshipDescription alloc] init] autorelease];
 
     // To-many relationship to ShoppingItem from ShoppingList
-    [items setName:@"items"];
+    [items setName:kShoppingListItems];
     [items setDestinationEntity:*itemEntity];
     [items setInverseRelationship:list];
     [items setOptional:NO];
@@ -95,7 +96,7 @@
     [items setMinCount:0];
     [items setDeleteRule:NSCascadeDeleteRule];
     // Foreign key to ShoppingList from ShoppingItem
-    [list setName:@"list"];
+    [list setName:kShoppingItemList];
     [list setDestinationEntity:*listEntity];
     [list setInverseRelationship:items];
     [list setOptional:NO];

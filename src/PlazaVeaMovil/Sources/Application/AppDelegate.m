@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 #import "ShoppingList/ShoppingListController.h"
 #import "Application/AppDelegate.h"
@@ -15,6 +16,7 @@
     [_context release];
     [_model release];
     [_coordinator release];
+    [_dateFormatter release];
     [super dealloc];
 }
 

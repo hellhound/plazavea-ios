@@ -3,6 +3,7 @@
 @class NSManagedObjectContext;
 @class NSManagedObjectModel;
 @class NSPersistentStoreCoordinator;
+@class NSDateFormatter;
 @protocol UIApplicationDelegate;
 
 @interface AppDelegate: NSObject <UIApplicationDelegate>
@@ -12,6 +13,8 @@
     NSManagedObjectContext *_context;
     NSManagedObjectModel *_model;
     NSPersistentStoreCoordinator *_coordinator;
+    // Defaults
+    NSDateFormatter *_dateFormatter;
 }
 @end
 
@@ -23,4 +26,9 @@
 
 - (void)saveContext;
 - (void)initializeModel;
+@end
+
+@interface AppDelegate (Defaults)
+
+@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
 @end

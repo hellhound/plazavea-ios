@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
+		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; };
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
@@ -227,6 +228,7 @@
 
 /* Begin PBXFileReference section */
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
+		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2F07DC13DE61B3009F60DB /* PlazaVeaMovil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaVeaMovil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2F07E013DE61B3009F60DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -373,6 +375,7 @@
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */,
 				2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */,
 				2CE7045B13DE6B4500BB2279 /* AppDelegate.m */,
 				2CE7045C13DE6B4500BB2279 /* main.m */,
@@ -704,6 +707,7 @@
 				2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */,
 				2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */,
 				2C1D792913E87C58000FD96C /* Constants.m in Sources */,
+				2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
