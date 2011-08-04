@@ -29,8 +29,10 @@ NSString *kShoppingListTitle = @"Mis listas";
 // Fetch-request controller cache's file name
 NSString *kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text
-extern NSString *kDefaultDetailText = @"Nuevo";
+NSString *kShoppingListDefaultDetailText = @"Nuevo";
 // NSLocalizedString(@"Nuevo", nil)
+// InputView's tag for creating new shopping lists
+NSInteger kShoppingListCreationTag = 1000;
 
 // InputView's constants for shopping list creation
 NSString *kShoppingListNewTitle = @"Nueva lista";

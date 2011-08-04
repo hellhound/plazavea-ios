@@ -10,6 +10,11 @@
 #import "Application/EntityDescription.h"
 #import "Application/AppDelegate.h"
 
+@interface AppDelegate (CoreDataPrivate)
+
+- (void)initializeModel;
+@end
+
 @implementation AppDelegate (CoreData)
 
 #pragma mark -
@@ -73,19 +78,6 @@
     return _coordinator;
 }
 
-- (void)saveContext
-{
-    NSManagedObjectContext *context = [self context];
-    NSError *error = nil;
-
-    if (context != nil && [context hasChanges] && ![context save:&error]) {
-        // Something shitty just happened, abort, abort, abort!
-        [error log];
-        // TODO should present a nice UIViewAlert informing the error
-        abort();
-    }
-}
-
 - (void)initializeModel
 {
     NSSet *classes = [NSObject setWithClassesConformingToProtocol:
@@ -109,5 +101,18 @@
     [model setEntities:[allEntities allObjects]];
     if ([allLocalizations count] > 0)
         [model setLocalizationDictionary:allLocalizations];
+}
+
+- (void)saveContext
+{
+    NSManagedObjectContext *context = [self context];
+    NSError *error = nil;
+
+    if (context != nil && [context hasChanges] && ![context save:&error]) {
+        // Something shitty just happened, abort, abort, abort!
+        [error log];
+        // TODO should present a nice UIViewAlert informing the error
+        abort();
+    }
 }
 @end

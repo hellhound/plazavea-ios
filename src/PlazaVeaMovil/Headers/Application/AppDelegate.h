@@ -25,7 +25,6 @@
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *coordinator;
 
 - (void)saveContext;
-- (void)initializeModel;
 @end
 
 @interface AppDelegate (Defaults)

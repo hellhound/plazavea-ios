@@ -5,18 +5,19 @@
 #import "Common/Constants.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Views/InputView.h"
-#import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
 #import "ShoppingList/ShoppingListController.h"
 
 @interface ShoppingListController (Private)
 
+- (void)initializeResultsController;
+// Event handlers
 - (void)addShoppingList:(UIControl *)control;
+- (void)changeShoppingListName:(UIControl *) control;
 - (void)cancelEditing:(UIControl *)control;
 - (void)performUndo:(UIControl *)control;
 - (void)performRedo:(UIControl *)control;
-- (void)updateUndoRedo;
 @end
 
 @implementation ShoppingListController
@@ -39,35 +40,12 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
-        NSManagedObjectContext *context =
-                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                    context];
-        NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
-                initWithKey:kShoppingListOrder ascending:NO] autorelease];
-
-        // Conf the fetch request
-        _fetchRequest = [[NSFetchRequest alloc] init];
-        [_fetchRequest setSortDescriptors:
-                [NSArray arrayWithObjects:sortDescriptor, nil]];
-        [_fetchRequest setEntity:
-                [NSEntityDescription entityForName:kShoppingListEntity
-                    inManagedObjectContext:context]];
-        // Conf fetch-request controller
-        _resultsController = [[NSFetchedResultsController alloc]
-                initWithFetchRequest:_fetchRequest
-                managedObjectContext:context
-                sectionNameKeyPath:nil
-                //cacheName:kShoppingListCacheName];
-                cacheName:nil];
-        // Set this controller as the delegate of the fetch-request controller.
-        // When this is set, the fetch-reqeust controller begin tracking changes
-        // to managed objects associated with its managed context.
-        [_resultsController setDelegate:self];
-
-        NSError *error = nil;
-
-        if (![_resultsController performFetch:&error])
-            [error log];
+        // UIApplication delegate; weak assigment due to the delegate being a
+        // singleton
+        _appDelegate = [[UIApplication sharedApplication] delegate];
+        [self initializeResultsController];
+        // Allow selection of rows during editing
+        [[self tableView] setAllowsSelectionDuringEditing:YES];
     }
     return self;
 }
@@ -132,15 +110,10 @@
         // Show the toolbar
         [navController setToolbarHidden:YES animated:animated];
 
-        NSManagedObjectContext *context =
-                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                    context];
+        NSManagedObjectContext *context = [_appDelegate context];
 
         if ([context hasChanges]) {
-            NSError *error = nil;
-
-            if ([context save:&error])
-                [error log];
+            [_appDelegate saveContext];
             [[context undoManager] removeAllActions];
             [[self tableView] reloadData];
         }
@@ -150,9 +123,35 @@
 #pragma mark -
 #pragma mark ShoppingListController
 
+- (void)initializeResultsController
+{
+    NSManagedObjectContext *context = [_appDelegate context];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
+            initWithKey:kShoppingListOrder ascending:NO] autorelease];
+
+    // Conf the fetch request
+    _fetchRequest = [[NSFetchRequest alloc] init];
+    [_fetchRequest setSortDescriptors:
+            [NSArray arrayWithObjects:sortDescriptor, nil]];
+    [_fetchRequest setEntity:
+            [NSEntityDescription entityForName:kShoppingListEntity
+                inManagedObjectContext:context]];
+    // Conf fetch-request controller
+    _resultsController = [[NSFetchedResultsController alloc]
+            initWithFetchRequest:_fetchRequest
+            managedObjectContext:context
+            sectionNameKeyPath:nil
+            //cacheName:kShoppingListCacheName];
+            cacheName:nil];
+    // Set this controller as the delegate of the fetch-request controller.
+    // When this is set, the fetch-reqeust controller begin tracking changes
+    // to managed objects associated with its managed context.
+    [_resultsController setDelegate:self];
+    [self performFetch];
+}
+
 - (void)addShoppingList:(UIControl *)control
 {
-    // Create and retain an input view
     InputView *inputView =
             [[[InputView alloc] initWithTitle:
                     NSLocalizedString(kShoppingListNewTitle, nil)
@@ -163,14 +162,29 @@
                     NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
                      nil] autorelease];
 
+    [inputView setTag:kShoppingListCreationTag];
+    [inputView show];
+}
+
+- (void)changeShoppingListName:(UIControl *)control
+{
+    InputView *inputView =
+            [[[InputView alloc] initWithTitle:
+                    NSLocalizedString(kShoppingListNewTitle, nil)
+                message:NSLocalizedString(kShoppingListNewMessage, nil)
+                delegate:self cancelButtonTitle:
+                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
+                otherButtonTitles:
+                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
+                     nil] autorelease];
+
+    [inputView setTag:kShoppingListCreationTag];
     [inputView show];
 }
 
 - (void)cancelEditing:(UIControl *)control
 {
-    NSManagedObjectContext *context =
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                context];
+    NSManagedObjectContext *context = [_appDelegate context];
 
     [context rollback];
     [[self tableView] reloadData];
@@ -179,9 +193,7 @@
 
 - (void)performUndo:(UIControl *)control
 {
-    NSManagedObjectContext *context =
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                context];
+    NSManagedObjectContext *context = [_appDelegate context];
 
     if ([_undoItem isEnabled]) {
         [context undo];
@@ -192,9 +204,7 @@
 
 - (void)performRedo:(UIControl *)control
 {
-    NSManagedObjectContext *context =
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                context];
+    NSManagedObjectContext *context = [_appDelegate context];
 
     if ([_redoItem isEnabled]) {
         [context redo];
@@ -203,151 +213,22 @@
     }
 }
 
-- (void)updateUndoRedo
-{
-    NSUndoManager *undoManager =
-            [[(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                context] undoManager];
-
-    [_undoItem setEnabled:[undoManager canUndo]];
-    [_redoItem setEnabled:[undoManager canRedo]];
-}
-
 #pragma mark -
-#pragma mark <UITableViewDataSource>
+#pragma mark ShoppingListController (Public)
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
+- (void)performFetch
 {
-    id<NSFetchedResultsSectionInfo> sectionInfo =
-            [[_resultsController sections] objectAtIndex:section];
-    
-    return [sectionInfo numberOfObjects];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO we need to optimize the reuseIdentifier, it should be defined
-    // once
-    NSString *reuseIdentifier = NSStringFromClass([UITableViewCell class]);
-    UITableViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-
-    if (cell == nil)
-        cell = [[[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleSubtitle
-                reuseIdentifier:reuseIdentifier] autorelease];
-
-    ShoppingList *list = [_resultsController objectAtIndexPath:indexPath];
-    NSDateFormatter *dateFormatter = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] dateFormatter];
-
-    [[cell textLabel] setText:[list name]];
-
-    NSDate *date = [list lastModificationDate];
-
-    [[cell detailTextLabel] setText:date == nil ||
-            [date isEqual:[NSNull null]] ?
-            kDefaultDetailText : [dateFormatter stringFromDate:date]];
-    return cell;
-}
-
-- (void)    tableView:(UITableView *)tableView
-   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-    forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context =
-                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                    context];
-        ShoppingList *list = [_resultsController objectAtIndexPath:indexPath];
-
-        [context deleteObject:list];
-        [self updateUndoRedo];
-        [tableView reloadData];
-    }
-}
-
-- (BOOL)        tableView:(UITableView *)tableView
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Any value (or cell) can change order
-    return YES;
-}
-
-- (void)    tableView:(UITableView *)tableView
-   moveRowAtIndexPath:(NSIndexPath *)fromIndex
-          toIndexPath:(NSIndexPath *)toIndex
-{
-    ShoppingList *from = [_resultsController objectAtIndexPath:fromIndex];
-    ShoppingList *to = [_resultsController objectAtIndexPath:toIndex];
-    NSNumber *fromOrder = [from order];
-    NSNumber *toOrder = [to order];
-
-    [from setOrder:toOrder];
-    [to setOrder:fromOrder];
-    
     NSError *error = nil;
 
     if (![_resultsController performFetch:&error])
         [error log];
-    [self updateUndoRedo];
 }
 
-#pragma mark -
-#pragma mark <UITableViewDelegate>
-
-- (void)        tableView:(UITableView *)tableView
-  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)updateUndoRedo
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
+    NSUndoManager *undoManager = [[_appDelegate context] undoManager];
 
-- (NSIndexPath *)               tableView:(UITableView *)tableView
- targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndex
-                      toProposedIndexPath:(NSIndexPath *)proposedIndex
-{
-    // Allows moving cells
-    return proposedIndex;
-}
-
-#pragma mark -
-#pragma mark <UIAlertViewDelegate>
-
-- (void)            alertView:(InputView *)inputView
-    didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != [inputView cancelButtonIndex]) {
-        NSManagedObjectContext *context =
-                [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-                    context];
-        ShoppingList *newList =
-                [NSEntityDescription insertNewObjectForEntityForName:
-                    kShoppingListEntity
-                inManagedObjectContext:context];
-        NSInteger order = [(NSNumber *)[[_resultsController fetchedObjects]
-                valueForKeyPath:@"@max.order"] integerValue] + 1;
-
-        [newList setName:[[inputView textField] text]];
-        [newList setOrder:[NSNumber numberWithInteger:order]];
-
-        NSError *error = nil;
-
-        if (![_resultsController performFetch:&error])
-            [error log];
-        [[self tableView] reloadData];
-        [self updateUndoRedo];
-    }
-}
-
-#pragma mark -
-#pragma mark <NSFetchedResultsControllerDelegate>
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // NO-OP. This empty method is intentional. Implementing any delegate method
-    // triggers the change-tracking functionality of the fetch-request
-    // controller;
+    [_undoItem setEnabled:[undoManager canUndo]];
+    [_redoItem setEnabled:[undoManager canRedo]];
 }
 @end
