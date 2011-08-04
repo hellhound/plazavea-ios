@@ -158,9 +158,9 @@
                     NSLocalizedString(kShoppingListNewTitle, nil)
                 message:NSLocalizedString(kShoppingListNewMessage, nil)
                 delegate:self cancelButtonTitle:
-                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil)
+                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
                 otherButtonTitles:
-                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil),
+                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
                      nil] autorelease];
 
     [inputView show];
@@ -244,8 +244,12 @@
             [[UIApplication sharedApplication] delegate] dateFormatter];
 
     [[cell textLabel] setText:[list name]];
-    [[cell detailTextLabel] setText:[dateFormatter stringFromDate:
-            [list lastModificationDate]]];
+
+    NSDate *date = [list lastModificationDate];
+
+    [[cell detailTextLabel] setText:date == nil ||
+            [date isEqual:[NSNull null]] ?
+            kDefaultDetailText : [dateFormatter stringFromDate:date]];
     return cell;
 }
 
@@ -314,7 +318,7 @@
 - (void)            alertView:(InputView *)inputView
     didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    if (buttonIndex != [inputView cancelButtonIndex]) {
         NSManagedObjectContext *context =
                 [(AppDelegate *)[[UIApplication sharedApplication] delegate]
                     context];

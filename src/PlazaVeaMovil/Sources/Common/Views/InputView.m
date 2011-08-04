@@ -13,6 +13,7 @@ static NSCharacterSet *kWhitespaceCharSet;
 @interface InputView (Private)
 
 - (void)initializeTextField;
+- (BOOL)testValue:(NSString *)value;
 @end
 
 @implementation InputView
@@ -37,6 +38,20 @@ static NSCharacterSet *kWhitespaceCharSet;
     if ([self customSubview] == nil)
         [self initializeTextField];
     [super layoutSubviews];
+}
+
+#pragma mark -
+#pragma mark UIAlertView
+
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex
+                             animated:(BOOL)animated
+{
+    UITextField *textField = [self textField];
+
+    if ([self testValue:[textField text]] ||
+            buttonIndex == [self cancelButtonIndex])
+        // passed the test, dismiss
+        [super dismissWithClickedButtonIndex:buttonIndex animated:YES];
 }
 
 #pragma mark -
@@ -79,13 +94,20 @@ static NSCharacterSet *kWhitespaceCharSet;
     [super setCustomSubview:textField];
 }
 
+- (BOOL)testValue:(NSString *)value
+{
+    if([@"" isEqualToString:[value stringByTrimmingCharactersInSet:
+            kWhitespaceCharSet]] || value == nil)
+        return NO;
+    return YES;
+}
+
 #pragma mark -
 #pragma mark  <UITextFieldDelegate>
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if([@"" isEqualToString:[[textField text]
-            stringByTrimmingCharactersInSet:kWhitespaceCharSet]])
+    if (![self testValue:[textField text]])
         return NO;
     // The user pressed "Done" button, so dismiss the keyboard and return
     [textField resignFirstResponder];

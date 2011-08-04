@@ -22,6 +22,7 @@
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
+		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
 		2CE7045D13DE6B4500BB2279 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045B13DE6B4500BB2279 /* AppDelegate.m */; };
 		2CE7045E13DE6B4500BB2279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045C13DE6B4500BB2279 /* main.m */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
@@ -248,6 +249,7 @@
 		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
+		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		2CE7045B13DE6B4500BB2279 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2CE7045C13DE6B4500BB2279 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../../Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -336,6 +338,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CDCBD0813EA585100E4E310 /* es.lproj */,
 				2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */,
 				2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */,
 				2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */,
@@ -384,6 +387,14 @@
 				2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */,
 			);
 			path = Additions;
+			sourceTree = "<group>";
+		};
+		2CDCBD0813EA585100E4E310 /* es.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				2CDCBD0913EA585100E4E310 /* Localizable.strings */,
+			);
+			path = es.lproj;
 			sourceTree = "<group>";
 		};
 		2CE7045913DE6B4500BB2279 /* Application */ = {
@@ -514,6 +525,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 2C2F07D113DE61B3009F60DB;
 			productRefGroup = 2C2F07DD13DE61B3009F60DB /* Products */;
@@ -701,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
+				2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +784,17 @@
 			targetProxy = 320F2C48872C2E2C4DF86202 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2CDCBD0913EA585100E4E310 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CDCBD0A13EA585100E4E310 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2C2F07F513DE61B4009F60DB /* Debug */ = {

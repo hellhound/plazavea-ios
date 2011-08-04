@@ -23,8 +23,7 @@
 
     [lastModificationDate setName:kShoppingListLastModificationDate];
     [lastModificationDate setAttributeType:NSDateAttributeType];
-    [lastModificationDate setOptional:NO];
-    [lastModificationDate setDefaultValue:[NSNull null]];
+    [lastModificationDate setOptional:YES];
 
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
