@@ -8,7 +8,6 @@
     <UIAlertViewDelegate>
 
 - (void)addShoppingList:(NSString *)name;
-- (void)changeName:(NSString *)name toShoppingList:(ShoppingList *)shoppingList;
 @end
 
 @interface ShoppingListController (EventHandler)

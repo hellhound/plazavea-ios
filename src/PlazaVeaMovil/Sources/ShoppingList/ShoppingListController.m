@@ -3,6 +3,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Common/Constants.h"
+#import "Common/Views/EditableTableViewCell.h"
 #import "Common/Views/InputView.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
@@ -86,7 +87,7 @@
     NSDate *date = [list lastModificationDate];
 
     if (cell == nil)
-        cell = [[[UITableViewCell alloc]
+        cell = [[[EditableTableViewCell alloc]
                 initWithStyle:UITableViewCellStyleSubtitle
                 reuseIdentifier:reuseIdentifier] autorelease];
     [[cell textLabel] setText:[list name]];
@@ -95,13 +96,6 @@
             kShoppingListDefaultDetailText :
             [dateFormatter stringFromDate:date]];
     return cell;
-}
-
-- (void)didSelectRowForObject:(NSManagedObject *)object
-                  atIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self isEditing])
-        [self changeShoppingListNameHandler:object];
 }
 
 #pragma mark -
@@ -120,24 +114,6 @@
                      nil] autorelease];
 
     [inputView setTag:kShoppingListCreationTag];
-    [inputView show];
-}
-
-- (void)changeShoppingListNameHandler:(ShoppingList *)shoppingList
-{
-    InputView *inputView =
-            [[[InputView alloc] initWithTitle:
-                    NSLocalizedString(kShoppingListNewTitle, nil)
-                message:NSLocalizedString(kShoppingListNewMessage, nil)
-                delegate:self cancelButtonTitle:
-                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
-                otherButtonTitles:
-                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
-                     nil] autorelease];
-
-    [inputView setInitialText:[shoppingList name]];
-    [inputView setTag:kShoppingListModificationTag];
-    [[inputView userInfo] setObject:shoppingList forKey:kShoppingListKey];
     [inputView show];
 }
 @end
