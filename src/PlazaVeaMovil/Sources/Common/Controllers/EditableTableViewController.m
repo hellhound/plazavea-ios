@@ -119,6 +119,7 @@
 @synthesize resultsController = _resultsController, context = _context,
         undoItem = _undoItem, redoItem = _redoItem,
         allowsRowDeselection = _allowsRowDeselection,
+        allowsRowDeselectionOnEditing = _allowsRowDeselectionOnEditing,
         performsSelectionAction = _performsSelectionAction;
 
 - (id)initWithStyle:(UITableViewStyle)style
