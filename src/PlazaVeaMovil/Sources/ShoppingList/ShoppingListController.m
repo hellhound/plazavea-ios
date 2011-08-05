@@ -73,29 +73,22 @@
 }
 
 #pragma mark -
-#pragma mark EditableTableViewController (Overridable)
+#pragma mark EditableCellTableViewController (Overridable)
 
-- (UITableViewCell *)cellForObject:(NSManagedObject *)object
-                     withCellClass:(Class)cellClass
-                         reuseCell:(UITableViewCell *)cell
-                   reuseIdentifier:(NSString *)reuseIdentifier
-                       atIndexPath:(NSIndexPath *)indexPath
+- (void)didCreateCell:(EditableTableViewCell *)cell
+            forObject:(NSManagedObject *)object
+          atIndexPath:(NSIndexPath *)indexPath
 {
     ShoppingList *list = (ShoppingList *)object;
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
     NSDate *date = [list lastModificationDate];
 
-    if (cell == nil)
-        cell = [[[EditableTableViewCell alloc]
-                initWithStyle:UITableViewCellStyleSubtitle
-                reuseIdentifier:reuseIdentifier] autorelease];
     [[cell textLabel] setText:[list name]];
     [[cell detailTextLabel] setText:date == nil ||
             [date isEqual:[NSNull null]] ?
             kShoppingListDefaultDetailText :
             [dateFormatter stringFromDate:date]];
-    return cell;
 }
 
 #pragma mark -

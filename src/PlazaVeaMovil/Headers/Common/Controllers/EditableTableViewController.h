@@ -1,11 +1,13 @@
 @class UITableViewController;
 @class UITableViewCell;
 @class UIBarButtonItem;
+@class UIControl;
+@class NSIndexPath;
 @class NSManagedObjectContext;
 @class NSManagedObject;
+@class NSPredicate;
 @class NSFetchedResultsController;
 @class NSString;
-@class NSPredicate;
 @class NSArray;
 @protocol NSFetchedResultsControllerDelegate;
 
