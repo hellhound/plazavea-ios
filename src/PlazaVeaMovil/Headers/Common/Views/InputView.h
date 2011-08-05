@@ -7,12 +7,10 @@
 
 @interface InputView: CustomizableAlertView <UITextFieldDelegate>
 {
-    NSString *_placeholder;
     NSString *_initialText;
     NSMutableDictionary *_userInfo;
 }
 @property (nonatomic, readonly) UITextField *textField;
-@property (nonatomic, copy) NSString *placeholder;
 @property (nonatomic, copy) NSString *initialText;
 @property (nonatomic, readonly) NSMutableDictionary *userInfo;
 @end
