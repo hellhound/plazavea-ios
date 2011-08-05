@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */; };
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
@@ -236,6 +237,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCellTableViewController.m; sourceTree = "<group>"; };
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 		2CE52FB713EBC19A00A5D7FE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */,
 				2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */,
 				2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */,
 				2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */,
@@ -769,6 +772,7 @@
 				2CE52FBE13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m in Sources */,
 				2CE52FBF13EBC19A00A5D7FE /* EditableTableViewController.m in Sources */,
 				2CE72FB813EC0BD600DDF9C6 /* EditableTableViewCell.m in Sources */,
+				2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

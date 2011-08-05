@@ -1,10 +1,9 @@
-#import "Common/Controllers/EditableTableViewController.h"
-#import "Application/AppDelegate.h"
+#import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/ShoppingList.h"
 
 @protocol UIAlertViewDelegate;
 
-@interface ShoppingListController: EditableTableViewController
+@interface ShoppingListController: EditableCellTableViewController
     <UIAlertViewDelegate>
 
 - (void)addShoppingList:(NSString *)name;
