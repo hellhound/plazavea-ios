@@ -161,13 +161,13 @@ static NSSet *kKeyPathes;
     // right bound.
     frame.size.height = (detailTextLabel == nil ? bounds.size.height :
             fabsf([detailTextLabel frame].origin.y - frame.origin.y)) -
-            kVerticalMargin;
+            kVerticalMargin + 1;
     frame.size.width = (accessoryView == nil ?
             (editingAccessoryView == nil ?
             bounds.size.width :
             fabsf([editingAccessoryView frame].origin.x - frame.origin.x)) :
             fabsf([accessoryView frame].origin.x - frame.origin.x)) -
-            kHorizontalMargin;
+            kHorizontalMargin + 1;
     return frame;
 }
 
