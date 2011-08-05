@@ -156,6 +156,12 @@
     return reuseCell;
 }
 
+- (void)didSelectRowForObject:(NSManagedObject *)object
+                  atIndexPath:(NSIndexPath *)indexPath
+{
+    // NO-OP
+}
+
 #pragma mark -
 #pragma mark EditableTableViewController (EnventHandler)
 
