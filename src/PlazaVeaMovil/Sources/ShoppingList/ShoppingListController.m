@@ -22,9 +22,11 @@
             [[[NSSortDescriptor alloc] initWithKey:kShoppingListOrder
                 ascending:NO] autorelease]];
 
-    return [super initWithStyle:UITableViewStylePlain
+    if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil
-            sortDescriptors:sortDescriptors inContext:context];
+            sortDescriptors:sortDescriptors inContext:context]) != nil)
+        [self setCellStyle:UITableViewCellStyleSubtitle];
+    return self;
 }
 
 - (UINavigationItem *)navigationItem

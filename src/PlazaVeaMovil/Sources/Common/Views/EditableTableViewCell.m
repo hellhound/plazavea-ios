@@ -9,11 +9,18 @@ static NSString *kDefaultPlaceholder = @"Enter text here";
 static NSString *kPlaceholder;
 static CGFloat kHorizontalMargin = 10.;
 static CGFloat kVerticalMargin = 2.;
+// Observable key-pathes 
+static NSString *kTextKeyPath = @"text";
+static NSString *kFontKeyPath = @"font";
+static NSString *kFrameKeyPath = @"frame";
+static NSString *kBoundsKeyPath = @"bounds";
+static NSSet *kKeyPathes;
 
 @interface EditableTableViewCell (Private)
 
 - (void)initializeTextField;
 - (CGRect)textFieldFrame;
+- (void)copyProperties;
 @end
 
 @implementation EditableTableViewCell
@@ -23,28 +30,68 @@ static CGFloat kVerticalMargin = 2.;
 
 + (void)initialize
 {
-    if (self == [EditableTableViewCell class])
+    if (self == [EditableTableViewCell class]) {
         kPlaceholder = NSLocalizedString(kDefaultPlaceholder, nil);
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style
-    reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if ((self = [super initWithStyle:style
-            reuseIdentifier:reuseIdentifier]) != nil)
-        [self initializeTextField];
-    return self;
+        kKeyPathes = [[NSSet alloc] initWithObjects:
+                kTextKeyPath, kFrameKeyPath, kBoundsKeyPath, nil];
+    }
 }
 
 - (void)dealloc
 {
+    UILabel *textLabel = [self textLabel];
+
+    // Remove observation
+    [textLabel removeObserver:self forKeyPath:kTextKeyPath];
+    [textLabel removeObserver:self forKeyPath:kFontKeyPath];
+    [textLabel removeObserver:self forKeyPath:kFrameKeyPath];
+    [textLabel removeObserver:self forKeyPath:kBoundsKeyPath];
     [_textField setDelegate:nil];
     [_textField release];
     [super dealloc];
 }
 
 #pragma mark -
+#pragma mark NSObject (NSKeyValueObserving)
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    // Make sure we are observing only solicited key-pathes
+    if (![kKeyPathes containsObject:keyPath] &&
+            [[change objectForKey:NSKeyValueChangeKindKey] integerValue] !=
+            NSKeyValueChangeSetting)
+        return;
+    [self copyProperties];
+}
+
+#pragma mark -
 #pragma mark UITableViewCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if ((self = [super initWithStyle:style
+            reuseIdentifier:reuseIdentifier]) != nil) {
+        [self initializeTextField];
+        [[self contentView] addSubview:_textField];
+
+        UILabel *textLabel = [self textLabel];
+
+        // Observe textLabel's properties
+        [textLabel addObserver:self forKeyPath:kTextKeyPath
+                options:NSKeyValueObservingOptionNew context:NULL];
+        [textLabel addObserver:self forKeyPath:kFontKeyPath
+                options:NSKeyValueObservingOptionNew context:NULL];
+        [textLabel addObserver:self forKeyPath:kFrameKeyPath
+                options:NSKeyValueObservingOptionNew context:NULL];
+        [textLabel addObserver:self forKeyPath:kBoundsKeyPath
+                options:NSKeyValueObservingOptionNew context:NULL];
+    }
+    return self;
+}
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -55,9 +102,7 @@ static CGFloat kVerticalMargin = 2.;
         [textLabel setHidden:YES];
         [self bringSubviewToFront:_textField];
         [self sendSubviewToBack:textLabel];
-        [_textField setText:[textLabel text]];
-        [_textField setFont:[textLabel font]];
-        [_textField setFrame:[self textFieldFrame]];
+        [self copyProperties];
     } else {
         [_textField setHidden:YES];
         [textLabel setHidden:NO];
@@ -78,10 +123,6 @@ static CGFloat kVerticalMargin = 2.;
 
 - (void)initializeTextField
 {
-    //CGRect bounds = [[self contentView] bounds];
-
-    //_textField = [[UITextField alloc] initWithFrame:
-    //        CGRectInset(bounds, 10., 2.)];
     _textField = [[UITextField alloc] initWithFrame:CGRectZero];
     [_textField setBorderStyle:UITextBorderStyleNone];
     [_textField setPlaceholder:kPlaceholder];
@@ -91,7 +132,6 @@ static CGFloat kVerticalMargin = 2.;
             UIViewAutoresizingFlexibleWidth |
             UIViewAutoresizingFlexibleHeight];
     [_textField setHidden:YES];
-    [[self contentView] addSubview:_textField];
 }
 
 - (CGRect)textFieldFrame
@@ -129,6 +169,15 @@ static CGFloat kVerticalMargin = 2.;
             fabsf([accessoryView frame].origin.x - frame.origin.x)) -
             kHorizontalMargin;
     return frame;
+}
+
+- (void)copyProperties
+{
+    UILabel *textLabel = [self textLabel];
+
+    [_textField setText:[textLabel text]];
+    [_textField setFont:[textLabel font]];
+    [_textField setFrame:[self textFieldFrame]];
 }
 
 #pragma mark -
