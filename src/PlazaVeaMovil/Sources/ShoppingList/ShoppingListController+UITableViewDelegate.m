@@ -16,6 +16,8 @@
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self changeShoppingListNameHandler:
+            [_resultsController objectAtIndexPath:indexPath]];
 }
 
 - (NSIndexPath *)               tableView:(UITableView *)tableView

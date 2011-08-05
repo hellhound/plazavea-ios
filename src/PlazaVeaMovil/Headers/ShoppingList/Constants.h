@@ -27,8 +27,13 @@ extern NSString *kShoppingListTitle;
 extern NSString *kShoppingListCacheName;
 // Default detail text
 extern NSString *kShoppingListDefaultDetailText;
-// InputView's tag for creating new shopping lists
-extern NSInteger kShoppingListCreationTag;
+// ShoppingList's key for InputView's userInfo dictionary
+extern NSString *kShoppingListKey;
+
+typedef enum {
+    kShoppingListCreationTag = 1000,
+    kShoppingListModificationTag
+} ShoppingListInputViewTags;
 
 // InputView's constants for shopping list creation
 extern NSString *kShoppingListNewTitle;

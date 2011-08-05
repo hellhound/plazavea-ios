@@ -6,18 +6,11 @@
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Views/InputView.h"
 #import "ShoppingList/Constants.h"
-#import "ShoppingList/ShoppingList.h"
 #import "ShoppingList/ShoppingListController.h"
 
 @interface ShoppingListController (Private)
 
 - (void)initializeResultsController;
-// Event handlers
-- (void)addShoppingList:(UIControl *)control;
-- (void)changeShoppingListName:(UIControl *) control;
-- (void)cancelEditing:(UIControl *)control;
-- (void)performUndo:(UIControl *)control;
-- (void)performRedo:(UIControl *)control;
 @end
 
 @implementation ShoppingListController
@@ -64,19 +57,19 @@
         // Conf the undo item
         _undoItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
-                target:self action:@selector(performUndo:)];
+                target:self action:@selector(performUndoHandler:)];
     if (_redoItem == nil)
         // Conf the redo item
         _redoItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
-                target:self action:@selector(performRedo:)];
+                target:self action:@selector(performRedoHandler:)];
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
             target:nil action:NULL] autorelease];
     // Conf the add-item button
     UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-            target:self action:@selector(addShoppingList:)] autorelease];
+            target:self action:@selector(addShoppingListHandler:)] autorelease];
 
     // Conf the toolbar
     [self setToolbarItems:[NSArray arrayWithObjects:_undoItem, _redoItem,
@@ -121,7 +114,7 @@
 }
 
 #pragma mark -
-#pragma mark ShoppingListController
+#pragma mark ShoppingListController (Private)
 
 - (void)initializeResultsController
 {
@@ -150,7 +143,38 @@
     [self performFetch];
 }
 
-- (void)addShoppingList:(UIControl *)control
+#pragma mark -
+#pragma mark ShoppingListController (Public)
+
+- (void)addShoppingList:(NSString *)name
+{
+    NSManagedObjectContext *context = [_appDelegate context];
+    ShoppingList *newList =
+            [NSEntityDescription insertNewObjectForEntityForName:
+                kShoppingListEntity
+            inManagedObjectContext:context];
+    NSInteger order = [(NSNumber *)[[_resultsController fetchedObjects]
+            valueForKeyPath:@"@max.order"] integerValue] + 1;
+
+    [newList setName:name];
+    [newList setOrder:[NSNumber numberWithInteger:order]];
+    [self performFetch];
+    [[self tableView] reloadData];
+    [self updateUndoRedo];
+}
+
+- (void)changeName:(NSString *)name toShoppingList:(ShoppingList *)shoppingList
+{
+    [shoppingList setName:name];
+    [self performFetch];
+    [[self tableView] reloadData];
+    [self updateUndoRedo];
+}
+
+#pragma mark -
+#pragma mark ShoppingListController (EnventHandler)
+
+- (void)addShoppingListHandler:(UIControl *)control
 {
     InputView *inputView =
             [[[InputView alloc] initWithTitle:
@@ -166,7 +190,7 @@
     [inputView show];
 }
 
-- (void)changeShoppingListName:(UIControl *)control
+- (void)changeShoppingListNameHandler:(ShoppingList *)shoppingList
 {
     InputView *inputView =
             [[[InputView alloc] initWithTitle:
@@ -178,11 +202,13 @@
                     NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
                      nil] autorelease];
 
-    [inputView setTag:kShoppingListCreationTag];
+    [inputView setInitialText:[shoppingList name]];
+    [inputView setTag:kShoppingListModificationTag];
+    [[inputView userInfo] setObject:shoppingList forKey:kShoppingListKey];
     [inputView show];
 }
 
-- (void)cancelEditing:(UIControl *)control
+- (void)cancelEditingHandler:(UIControl *)control
 {
     NSManagedObjectContext *context = [_appDelegate context];
 
@@ -191,7 +217,7 @@
     [self setEditing:NO animated:YES];
 }
 
-- (void)performUndo:(UIControl *)control
+- (void)performUndoHandler:(UIControl *)control
 {
     NSManagedObjectContext *context = [_appDelegate context];
 
@@ -202,7 +228,7 @@
     }
 }
 
-- (void)performRedo:(UIControl *)control
+- (void)performRedoHandler:(UIControl *)control
 {
     NSManagedObjectContext *context = [_appDelegate context];
 
@@ -214,7 +240,7 @@
 }
 
 #pragma mark -
-#pragma mark ShoppingListController (Public)
+#pragma mark ShoppingListController (CoreData)
 
 - (void)performFetch
 {

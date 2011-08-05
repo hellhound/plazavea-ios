@@ -30,6 +30,14 @@ static NSCharacterSet *kWhitespaceCharSet;
     }
 }
 
+- (void)dealloc
+{
+    [_placeholder release];
+    [_initialText release];
+    [_userInfo release];
+    [super dealloc];
+}
+
 #pragma mark -
 #pragma mark UIView
 
@@ -70,7 +78,15 @@ static NSCharacterSet *kWhitespaceCharSet;
 #pragma mark -
 #pragma mark InputView
 
-@synthesize placeholder = _placeholder;
+@synthesize placeholder = _placeholder, initialText = _initialText,
+        userInfo = _userInfo;
+
+- (NSMutableDictionary *)userInfo
+{
+    if (_userInfo == nil)
+        _userInfo = [[NSMutableDictionary alloc] init];
+    return _userInfo;
+}
 
 - (void)initializeTextField
 {
@@ -79,6 +95,7 @@ static NSCharacterSet *kWhitespaceCharSet;
                     [self bounds].size.width - kHorizontalPadding * 2,
                     kTextFieldHeight)] autorelease];
 
+    [textField setText:_initialText];
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     [textField setPlaceholder:
             _placeholder == nil ? kPlaceholder : _placeholder];

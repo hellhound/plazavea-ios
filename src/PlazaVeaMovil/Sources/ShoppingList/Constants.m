@@ -31,8 +31,8 @@ NSString *kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text
 NSString *kShoppingListDefaultDetailText = @"Nuevo";
 // NSLocalizedString(@"Nuevo", nil)
-// InputView's tag for creating new shopping lists
-NSInteger kShoppingListCreationTag = 1000;
+// ShoppingList's key for InputView's userInfo dictionary
+NSString *kShoppingListKey = @"shoppingList";
 
 // InputView's constants for shopping list creation
 NSString *kShoppingListNewTitle = @"Nueva lista";
