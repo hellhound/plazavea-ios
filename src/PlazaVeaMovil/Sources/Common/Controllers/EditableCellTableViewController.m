@@ -17,7 +17,7 @@
 
 - (UITableViewCell *)cellForObject:(NSManagedObject *)object
                      withCellClass:(Class)cellClass
-                         reuseCell:(UITableViewCell *)cell
+                         reuseCell:(EditableTableViewCell *)cell
                    reuseIdentifier:(NSString *)reuseIdentifier
                        atIndexPath:(NSIndexPath *)indexPath
 {
@@ -25,6 +25,7 @@
         cell = [[[EditableTableViewCell alloc]
                 initWithStyle:_cellStyle
                 reuseIdentifier:reuseIdentifier] autorelease];
+    [[cell textField] setDelegate:self];
     [self didCreateCell:(EditableTableViewCell *)cell forObject:object
             atIndexPath:indexPath];
     return cell;

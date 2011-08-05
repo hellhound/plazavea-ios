@@ -109,7 +109,7 @@ static NSString *kPlaceholder;
 
 - (BOOL)testValue:(NSString *)value
 {
-    if([value isEmptyByTrimming] || value == nil)
+    if (value == nil || [value isEmptyByTrimming])
         return NO;
     return YES;
 }
