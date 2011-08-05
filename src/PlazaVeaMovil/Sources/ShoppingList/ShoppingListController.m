@@ -93,6 +93,13 @@
             [dateFormatter stringFromDate:date]];
 }
 
+- (void)didChangeObject:(ShoppingList *)object value:(NSString *)value
+{
+    ShoppingList *list = object;
+
+    [list setName:value];
+}
+
 #pragma mark -
 #pragma mark ShoppingListController (EnventHandler)
 

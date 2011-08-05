@@ -33,4 +33,19 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"order == %@",
+            [NSNumber numberWithInteger:[textField tag]]];
+    NSArray *objects = [[[self resultsController] fetchedObjects]
+            filteredArrayUsingPredicate:predicate];
+
+    if ([objects count] > 0) {
+        NSManagedObject *object = [objects objectAtIndex:0];
+        
+        [self didChangeObject:object value:[textField text]];
+        [self fetchAndUpdate];
+    }
+}
 @end

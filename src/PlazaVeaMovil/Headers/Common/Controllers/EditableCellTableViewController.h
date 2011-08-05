@@ -18,7 +18,5 @@
 - (void)didCreateCell:(EditableTableViewCell *)cell
             forObject:(NSManagedObject *)object
           atIndexPath:(NSIndexPath *)indexPath;
-@end
-
-@interface EditableCellTableViewController (EventHandler)
+- (void)didChangeObject:(NSManagedObject *)object value:(NSString *)value;
 @end
