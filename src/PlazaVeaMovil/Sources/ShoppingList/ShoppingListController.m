@@ -95,7 +95,8 @@
         [navItem setLeftBarButtonItem:
                 [[[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                    target:self action:@selector(cancelEditing:)] autorelease]];
+                    target:self
+                    action:@selector(cancelEditingHandler:)] autorelease]];
         // Hide the toolbar
         [navController setToolbarHidden:NO animated:animated];
     } else {
