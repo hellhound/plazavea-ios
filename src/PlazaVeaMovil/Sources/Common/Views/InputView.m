@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Common/Additions/NSString+Additions.h"
 #import "Common/Views/InputView.h"
 
 static CGFloat kTextFieldHeight = 25.;
@@ -8,7 +9,6 @@ static CGFloat kHorizontalPadding = 12.;
 static NSString *kDefaultPlaceholder = @"Enter text here";
 // NSLocalizedString(@"Enter text here", nil)
 static NSString *kPlaceholder;
-static NSCharacterSet *kWhitespaceCharSet;
 
 @interface InputView (Private)
 
@@ -23,11 +23,8 @@ static NSCharacterSet *kWhitespaceCharSet;
 
 + (void)initialize
 {
-    if (self == [InputView class]) {
+    if (self == [InputView class])
         kPlaceholder = NSLocalizedString(kDefaultPlaceholder, nil);
-        kWhitespaceCharSet =
-                [[NSCharacterSet whitespaceAndNewlineCharacterSet] retain];
-    }
 }
 
 - (void)dealloc
@@ -112,8 +109,7 @@ static NSCharacterSet *kWhitespaceCharSet;
 
 - (BOOL)testValue:(NSString *)value
 {
-    if([@"" isEqualToString:[value stringByTrimmingCharactersInSet:
-            kWhitespaceCharSet]] || value == nil)
+    if([value isEmptyByTrimming] || value == nil)
         return NO;
     return YES;
 }
