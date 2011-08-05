@@ -117,7 +117,9 @@
 #pragma mark EditableTableViewController (Public)
 
 @synthesize resultsController = _resultsController, context = _context,
-        undoItem = _undoItem, redoItem = _redoItem;
+        undoItem = _undoItem, redoItem = _redoItem,
+        allowsRowDeselection = _allowsRowDeselection,
+        performsSelectionAction = _performsSelectionAction;
 
 - (id)initWithStyle:(UITableViewStyle)style
          entityName:(NSString *)entityName
@@ -129,10 +131,24 @@
         _context = [context retain];
         [self initializeResultsControllerWithEntityName:entityName
                 predicate:predicate sortDescriptors:sortDescriptors];
-        // Allow selection of rows during editing
-        [[self tableView] setAllowsSelectionDuringEditing:YES];
+        // Allow row deselection
+        _allowsRowDeselection = YES;
     }
     return self;
+}
+
+- (void)setAllowsRowDeselection:(BOOL)allowsRowDeselection
+{
+    // Allow selection of rows
+    _allowsRowDeselection = allowsRowDeselection;
+    [[self tableView] setAllowsSelection:allowsRowDeselection];
+}
+
+- (void)setAllowsRowDeselectionOnEditing:(BOOL)allowsRowDeselection
+{
+    // Allow selection of rows during editing
+    _allowsRowDeselectionOnEditing = allowsRowDeselection;
+    [[self tableView] setAllowsSelectionDuringEditing:allowsRowDeselection];
 }
 
 #pragma mark -

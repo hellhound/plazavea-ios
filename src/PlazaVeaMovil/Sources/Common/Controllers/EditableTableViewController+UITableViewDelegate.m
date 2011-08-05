@@ -15,9 +15,13 @@
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self didSelectRowForObject:[_resultsController objectAtIndexPath:indexPath]
-            atIndexPath:indexPath];
+    if ((_allowsRowDeselection && ![self isEditing]) ||
+            (_allowsRowDeselectionOnEditing && [self isEditing]))
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_performsSelectionAction)
+        [self didSelectRowForObject:
+                [_resultsController objectAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
 }
 
 - (NSIndexPath *)               tableView:(UITableView *)tableView
