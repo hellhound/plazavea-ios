@@ -72,6 +72,8 @@ static NSCharacterSet *kWhitespaceCharSet;
 
 - (UITextField *)textField
 {
+    if ([self _customSubview] == nil)
+        [self initializeTextField];
     return (UITextField *)[self customSubview];
 }
 
