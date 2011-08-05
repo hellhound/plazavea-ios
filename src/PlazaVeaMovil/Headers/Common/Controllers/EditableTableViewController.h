@@ -37,8 +37,10 @@
 - (UITableViewCell *)cellForObject:(NSManagedObject *)object
                      withCellClass:(Class)cellClass
                          reuseCell:(UITableViewCell *)reuseCell
-                   reuseIdentifier:(NSString *)reuseIdentifer
+                   reuseIdentifier:(NSString *)reuseIdentifier
                        atIndexPath:(NSIndexPath *)indexPath;
+- (void)didSelectRowForObject:(NSManagedObject *)object
+                  atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface EditableTableViewController (EventHandler)

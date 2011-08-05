@@ -30,8 +30,7 @@
 
     // TODO The root view controller should be the one of the launcher
     ShoppingListController *shoppingController =
-            [[[ShoppingListController alloc]
-                initWithNibName:nil bundle:nil] autorelease];
+            [[[ShoppingListController alloc] init] autorelease];
     UINavigationController *navController =
             [[[UINavigationController alloc]
                 initWithRootViewController:shoppingController] autorelease];

@@ -49,7 +49,7 @@
                 [_resultsController objectAtIndexPath:indexPath];
 
         [_context deleteObject:object];
-        [self fetchAndUpdate];
+        [self fetchUpdateAndReload];
     }
 }
 

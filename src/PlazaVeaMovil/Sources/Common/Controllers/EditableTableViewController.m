@@ -34,10 +34,8 @@
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    // TODO We should use titleView instead of title in the navigationItem
     // Conf the edit button
     [navItem setRightBarButtonItem:[self editButtonItem]];
-
     if (_undoItem == nil)
         // Conf the undo item
         _undoItem = [[UIBarButtonItem alloc]
@@ -48,7 +46,6 @@
         _redoItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
                 target:self action:@selector(performRedoHandler:)];
-
     // Conf the toolbar
     [self setToolbarItems:[NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
     [self updateUndoRedo];
@@ -92,15 +89,16 @@
 #pragma mark EditableTableViewController (Private)
 
 
-- (void)initializeResultsControllerWihentityName:(NSString *)entityName
+- (void)initializeResultsControllerWithEntityName:(NSString *)entityName
                                        predicate:(NSPredicate *)predicate
                                  sortDescriptors:(NSArray *)sortDescriptors
 {
     // Conf the fetch request
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    [fetchRequest setSortDescriptors:sortDescriptors];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entityName
             inManagedObjectContext:_context]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:sortDescriptors];
     // Conf fetch-request controller
     _resultsController = [[NSFetchedResultsController alloc]
             initWithFetchRequest:fetchRequest
@@ -136,6 +134,9 @@
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark EditableTableViewController (Overridable)
 
 - (Class)cellClassForObject:(NSManagedObject *)object
                 atIndexPath:(NSIndexPath *)indexPath;
