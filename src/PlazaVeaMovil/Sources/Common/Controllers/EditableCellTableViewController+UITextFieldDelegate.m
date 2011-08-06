@@ -25,13 +25,9 @@
 #pragma mark -
 #pragma mark <UITextFieldDelegate>
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (![self testValue:[textField text]])
-        return NO;
-    // The user pressed "Done" button, so dismiss the keyboard and return
-    [textField resignFirstResponder];
-    return YES;
+    _activeTextField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -47,5 +43,15 @@
         [self didChangeObject:object value:[textField text]];
         [self fetchAndUpdate];
     }
+    _activeTextField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (![self testValue:[textField text]])
+        return NO;
+    // The user pressed "Done" button, so dismiss the keyboard and return
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

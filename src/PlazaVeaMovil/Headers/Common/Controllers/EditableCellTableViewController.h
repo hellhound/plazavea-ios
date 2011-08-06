@@ -3,12 +3,14 @@
 
 @class NSIndexPath;
 @class NSManagedObject;
+@class UITextField;
 @protocol UITextFieldDelegate;
 
 @interface EditableCellTableViewController: EditableTableViewController
     <UITextFieldDelegate>
 {
     UITableViewCellStyle _cellStyle;
+    UITextField *_activeTextField;
 }
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
 @end

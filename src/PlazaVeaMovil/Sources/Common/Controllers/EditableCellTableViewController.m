@@ -8,6 +8,25 @@
 @implementation EditableCellTableViewController
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    _activeTextField = nil;
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UITableView
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [_activeTextField resignFirstResponder]; // could be nil but meh
+    [self resignFirstResponder];
+}
+
+#pragma mark -
 #pragma mark EditableTableViewController (Overridable)
 
 - (Class)cellClassForObject:(NSManagedObject *)object
