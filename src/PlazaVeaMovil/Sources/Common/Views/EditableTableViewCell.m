@@ -68,6 +68,23 @@ static NSSet *kKeyPathes;
 }
 
 #pragma mark -
+#pragma mark UIView
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *view = [super hitTest:point withEvent:event];
+
+    if ([self isEditing]) {
+        UIView *contentView = [self contentView];
+
+        if (view != nil && ![_textField isFirstResponder] &&
+                (contentView == view || ![[self subviews] containsObject:view]))
+            return _textField;
+    }
+    return view;
+}
+
+#pragma mark -
 #pragma mark UITableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style
@@ -77,6 +94,7 @@ static NSSet *kKeyPathes;
             reuseIdentifier:reuseIdentifier]) != nil) {
         [self initializeTextField];
         [[self contentView] addSubview:_textField];
+        [self setUserInteractionEnabled:YES];
 
         UILabel *textLabel = [self textLabel];
 
@@ -175,8 +193,11 @@ static NSSet *kKeyPathes;
 {
     UILabel *textLabel = [self textLabel];
 
-    [_textField setText:[textLabel text]];
     [_textField setFont:[textLabel font]];
+    [_textField setText:[textLabel text]];
+    [_textField setTextAlignment:[textLabel textAlignment]];
+    [_textField setTextColor:[textLabel textColor]];
+    [_textField setBackgroundColor:[textLabel backgroundColor]];
     [_textField setFrame:[self textFieldFrame]];
 }
 
