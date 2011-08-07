@@ -54,7 +54,7 @@ static NSString *kTransformKeyPath = @"transform";
 
 - (BOOL)becomeFirstResponder
 {
-    // For some unkown reason UIAlertView can be first responder. Disabling
+    // For some unknown reason UIAlertView can be first responder. Disabling
     // this completely fixes this bug http://stackoverflow.com/q/6866932/434423
     // BTW, overriding "canBecomeFirstResponder" to return "NO" doesn't work,
     // this is why we override this instead of "canBecomeFirstResponder".
@@ -67,36 +67,12 @@ static NSString *kTransformKeyPath = @"transform";
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    if ([_customSubview superview] != nil)
+        return;
 
     NSArray *subviews = [self subviews];
     CGRect customFrame = [_customSubview frame];
     CGFloat displacement = customFrame.size.height  + kVerticalPadding * 2.;
-
-    if ([_customSubview superview] == nil) {
-        // Calculate the background size and elnarge it accordingly
-        UIView *backgroundView = nil;
-
-        // Perform a pattern search instead of depending on UIAlertView internal
-        // structure.
-        // This fetches the background view.
-        for (UIView *view in subviews) 
-            if ([view isKindOfClass:[UIImageView class]]) {
-                backgroundView = view;
-                break;
-            }
-        if (backgroundView == nil)
-            // Abort if there is no match
-            return;
-
-        CGRect backgroundFrame = [backgroundView frame];
-
-        // increment background image-view height by "displacement"
-        backgroundFrame.size.height += displacement;
-        [backgroundView setFrame:backgroundFrame];
-    } else {
-        // The custom subview is already inside the hierarchy
-        [_customSubview removeFromSuperview];
-    }
 
     UIView *messageView = nil;
 
