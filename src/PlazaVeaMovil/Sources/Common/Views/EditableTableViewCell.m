@@ -9,6 +9,7 @@ static NSString *kDefaultPlaceholder = @"Enter text here";
 static NSString *kPlaceholder;
 static CGFloat kHorizontalMargin = 10.;
 static CGFloat kVerticalMargin = 2.;
+static NSString *kTextKeyPath = @"text";
 
 @interface EditableTableViewCell (Private)
 
@@ -30,9 +31,28 @@ static CGFloat kVerticalMargin = 2.;
 
 - (void)dealloc
 {
+    [_textField removeObserver:self forKeyPath:kTextKeyPath];
     [_textField setDelegate:nil];
     [_textField release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueObserving)
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    // Make sure we are observing kTextKeyPath from _textField
+    if (_textField == object && [keyPath isEqualToString:kTextKeyPath] &&
+            [[change objectForKey:NSKeyValueChangeKindKey] integerValue] ==
+            NSKeyValueChangeSetting)
+        // We can't be _textField's delegate, that's why we should observe its
+        // value with KVO
+        [[self textLabel] setText:
+                [change objectForKey:NSKeyValueChangeNewKey]];
 }
 
 #pragma mark -
@@ -67,7 +87,6 @@ static CGFloat kVerticalMargin = 2.;
     if ((self = [super initWithStyle:style
             reuseIdentifier:reuseIdentifier]) != nil) {
         [self initializeTextField];
-        [[self contentView] addSubview:_textField];
         [self setUserInteractionEnabled:YES];
     }
     return self;
@@ -111,6 +130,10 @@ static CGFloat kVerticalMargin = 2.;
             UIViewAutoresizingFlexibleWidth |
             UIViewAutoresizingFlexibleHeight];
     [_textField setHidden:YES];
+    // We can't be _textField's delegate
+    [_textField addObserver:self forKeyPath:kTextKeyPath
+            options:NSKeyValueObservingOptionNew context:NULL];
+    [[self contentView] addSubview:_textField];
 }
 
 - (CGRect)textFieldFrame
