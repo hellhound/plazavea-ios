@@ -27,6 +27,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    // Set the active text field for the table
     _activeTextField = textField;
 }
 
@@ -43,6 +44,7 @@
         [self didChangeObject:object value:[textField text]];
         [self fetchAndUpdate];
     }
+    // Erase the active text field
     _activeTextField = nil;
 }
 

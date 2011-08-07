@@ -22,8 +22,10 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
+    // The following lines fix a horrible bug that makes the keyboard persistent
+    // between editing and read-only sessions of the table view
     [_activeTextField resignFirstResponder]; // could be nil but meh
-    [self resignFirstResponder];
+    [self resignFirstResponder]; // just in case :P
 }
 
 #pragma mark -
