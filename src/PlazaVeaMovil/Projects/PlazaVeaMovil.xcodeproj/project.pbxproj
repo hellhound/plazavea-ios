@@ -13,7 +13,7 @@
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
 		2C25BD3513E8F89000A4311B /* CustomizableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */; };
-		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; };
+		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
@@ -32,6 +32,7 @@
 		2CE52FBD13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */; };
 		2CE52FBE13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */; };
 		2CE52FBF13EBC19A00A5D7FE /* EditableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FBB13EBC19A00A5D7FE /* EditableTableViewController.m */; };
+		2CE6077113EE420600431A7A /* NSURL+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6077013EE420600431A7A /* NSURL+Additions.m */; };
 		2CE7045D13DE6B4500BB2279 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045B13DE6B4500BB2279 /* AppDelegate.m */; };
 		2CE7045E13DE6B4500BB2279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045C13DE6B4500BB2279 /* main.m */; };
 		2CE72FB813EC0BD600DDF9C6 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */; };
@@ -269,6 +270,7 @@
 		2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDataSource.m"; sourceTree = "<group>"; };
 		2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDelegate.m"; sourceTree = "<group>"; };
 		2CE52FBB13EBC19A00A5D7FE /* EditableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewController.m; sourceTree = "<group>"; };
+		2CE6077013EE420600431A7A /* NSURL+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Additions.m"; sourceTree = "<group>"; };
 		2CE7045B13DE6B4500BB2279 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2CE7045C13DE6B4500BB2279 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
 				2C66A4A013EC735500D967A5 /* UITextField+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
 				2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */,
@@ -785,6 +788,7 @@
 				2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */,
 				2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */,
 				2C66A4A113EC735500D967A5 /* UITextField+Additions.m in Sources */,
+				2CE6077113EE420600431A7A /* NSURL+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

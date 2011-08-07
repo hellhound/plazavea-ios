@@ -11,6 +11,9 @@
 
 - (NSURL *)appSupportDirectory
 {
+    /*
+     * Not working on pre iOS 4
+     *
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *appSupportPath = nil;
     NSArray *paths = [fm URLsForDirectory:NSApplicationSupportDirectory
@@ -26,6 +29,23 @@
             return nil;
         }
     }
-    return appSupportPath;
+    */
+    NSString *appSupportPath = @"";
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(
+            NSApplicationSupportDirectory, NSUserDomainMask, YES);
+
+    if ([paths count] > 0) {
+        NSError *error = nil;
+
+        appSupportPath = [paths objectAtIndex:0];
+        if (![[NSFileManager defaultManager]
+                createDirectoryAtPath:appSupportPath
+                withIntermediateDirectories:YES attributes:nil error:&error]) {
+            [error log];
+            return nil;
+        }
+    }
+    return [NSURL fileURLWithPath:appSupportPath];
+
 }
 @end

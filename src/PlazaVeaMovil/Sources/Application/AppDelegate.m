@@ -13,12 +13,18 @@
 - (void)dealloc
 {
     [_window release];
+    [_rootViewController release];
     [_context release];
     [_model release];
     [_coordinator release];
     [_dateFormatter release];
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark AppDelegate (Public)
+
+@synthesize rootViewController = _rootViewController;
 
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
@@ -31,11 +37,10 @@
     // TODO The root view controller should be the one of the launcher
     ShoppingListController *shoppingController =
             [[[ShoppingListController alloc] init] autorelease];
-    UINavigationController *navController =
-            [[[UINavigationController alloc]
-                initWithRootViewController:shoppingController] autorelease];
+    _rootViewController = [[UINavigationController alloc]
+            initWithRootViewController:shoppingController];
 
-    [_window setRootViewController:navController];
+    [_window addSubview:[_rootViewController view]];
     [_window makeKeyAndVisible];
     return YES;
 }

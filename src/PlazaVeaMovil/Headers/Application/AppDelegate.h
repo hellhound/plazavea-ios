@@ -1,5 +1,6 @@
 @class NSObject;
 @class UIWindow;
+@class UIViewController;
 @class NSManagedObjectContext;
 @class NSManagedObjectModel;
 @class NSPersistentStoreCoordinator;
@@ -9,6 +10,7 @@
 @interface AppDelegate: NSObject <UIApplicationDelegate>
 {
     UIWindow *_window;
+    UIViewController *_rootViewController;
     // CoreData
     NSManagedObjectContext *_context;
     NSManagedObjectModel *_model;
@@ -16,6 +18,7 @@
     // Defaults
     NSDateFormatter *_dateFormatter;
 }
+@property (nonatomic, retain) UIViewController *rootViewController;
 @end
 
 @interface AppDelegate (CoreData)
