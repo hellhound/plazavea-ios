@@ -21,7 +21,6 @@
 		2C362A9513E909C700F72502 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C362A9413E909C700F72502 /* InputView.m */; };
 		2C4A57EA13EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A57E613EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m */; };
 		2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */; };
-		2C66A4A113EC735500D967A5 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C66A4A013EC735500D967A5 /* UITextField+Additions.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
@@ -258,7 +257,6 @@
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2C4A57E613EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
-		2C66A4A013EC735500D967A5 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Additions.m"; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				2C66A4A013EC735500D967A5 /* UITextField+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
 				2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */,
 				2CD9933A13E65DA400879980 /* NSError+Additions.m */,
@@ -784,7 +781,6 @@
 				2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */,
 				2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */,
 				2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */,
-				2C66A4A113EC735500D967A5 /* UITextField+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
