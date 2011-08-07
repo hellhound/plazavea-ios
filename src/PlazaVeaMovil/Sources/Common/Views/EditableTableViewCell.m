@@ -9,12 +9,6 @@ static NSString *kDefaultPlaceholder = @"Enter text here";
 static NSString *kPlaceholder;
 static CGFloat kHorizontalMargin = 10.;
 static CGFloat kVerticalMargin = 2.;
-// Observable key-pathes 
-static NSString *kTextKeyPath = @"text";
-static NSString *kFontKeyPath = @"font";
-static NSString *kFrameKeyPath = @"frame";
-static NSString *kBoundsKeyPath = @"bounds";
-static NSSet *kKeyPathes;
 
 @interface EditableTableViewCell (Private)
 
@@ -30,45 +24,25 @@ static NSSet *kKeyPathes;
 
 + (void)initialize
 {
-    if (self == [EditableTableViewCell class]) {
+    if (self == [EditableTableViewCell class])
         kPlaceholder = NSLocalizedString(kDefaultPlaceholder, nil);
-        kKeyPathes = [[NSSet alloc] initWithObjects:
-                kTextKeyPath, kFrameKeyPath, kBoundsKeyPath, nil];
-    }
 }
 
 - (void)dealloc
 {
-    UILabel *textLabel = [self textLabel];
-
-    // Remove observation
-    [textLabel removeObserver:self forKeyPath:kTextKeyPath];
-    [textLabel removeObserver:self forKeyPath:kFontKeyPath];
-    [textLabel removeObserver:self forKeyPath:kFrameKeyPath];
-    [textLabel removeObserver:self forKeyPath:kBoundsKeyPath];
     [_textField setDelegate:nil];
     [_textField release];
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark NSObject (NSKeyValueObserving)
+#pragma mark UIView
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
+- (void)layoutSubviews
 {
-    // Make sure we are observing only solicited key-pathes
-    if (![kKeyPathes containsObject:keyPath] &&
-            [[change objectForKey:NSKeyValueChangeKindKey] integerValue] !=
-            NSKeyValueChangeSetting)
-        return;
+    [super layoutSubviews];
     [self copyProperties];
 }
-
-#pragma mark -
-#pragma mark UIView
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
@@ -95,18 +69,6 @@ static NSSet *kKeyPathes;
         [self initializeTextField];
         [[self contentView] addSubview:_textField];
         [self setUserInteractionEnabled:YES];
-
-        UILabel *textLabel = [self textLabel];
-
-        // Observe textLabel's properties
-        [textLabel addObserver:self forKeyPath:kTextKeyPath
-                options:NSKeyValueObservingOptionNew context:NULL];
-        [textLabel addObserver:self forKeyPath:kFontKeyPath
-                options:NSKeyValueObservingOptionNew context:NULL];
-        [textLabel addObserver:self forKeyPath:kFrameKeyPath
-                options:NSKeyValueObservingOptionNew context:NULL];
-        [textLabel addObserver:self forKeyPath:kBoundsKeyPath
-                options:NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
@@ -120,7 +82,6 @@ static NSSet *kKeyPathes;
         [textLabel setHidden:YES];
         [self bringSubviewToFront:_textField];
         [self sendSubviewToBack:textLabel];
-        [self copyProperties];
     } else {
         [_textField setHidden:YES];
         [textLabel setHidden:NO];
