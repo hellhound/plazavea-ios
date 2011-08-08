@@ -3,4 +3,4 @@
 	url = https://github.com/facebook/three20.git
 [submodule "src/TSAlertView"]
 	path = src/TSAlertView
-	url = https://github.com/TomSwift/TSAlertView.git
+	url = git@github.com:bitzeppelin/TSAlertView.git
