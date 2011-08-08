@@ -1,4 +1,4 @@
-@class NSError;
+#import <Foundation/Foundation.h>
 
 @interface NSError (Additions)
 

@@ -1,3 +1,6 @@
 [submodule "src/Three20"]
 	path = src/Three20
 	url = https://github.com/facebook/three20.git
+[submodule "src/TSAlertView"]
+	path = src/TSAlertView
+	url = https://github.com/TomSwift/TSAlertView.git

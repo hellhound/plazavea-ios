@@ -1,9 +1,7 @@
-#import "Common/Models/ReorderingManagedModel.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@class NSManagedObject;
-@class NSString;
-@class NSDate;
-@class NSNumber;
+#import "Common/Models/ReorderingManagedModel.h"
 
 @interface ShoppingList: NSManagedObject <ReorderingManagedModel>
 

@@ -1,4 +1,4 @@
-@class NSObject;
+#import <Foundation/Foundation.h>
 
 @interface NSObject (Additions)
 

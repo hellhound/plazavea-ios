@@ -1,10 +1,13 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import <TSAlertView/TSAlertView.h>
+
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/ShoppingList.h"
 
-@protocol UIAlertViewDelegate;
-
 @interface ShoppingListController: EditableCellTableViewController
-    <UIAlertViewDelegate>
+    <TSAlertViewDelegate>
 
 - (void)addShoppingList:(NSString *)name;
 @end

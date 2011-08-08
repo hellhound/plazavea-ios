@@ -1,6 +1,4 @@
-@class NSSet;
-@class NSDictionary;
-@protocol NSObject;
+#import <Foundation/Foundation.h>
 
 @protocol EntityDescription <NSObject>
 
@@ -11,4 +9,3 @@
     localizationDictionary:(NSDictionary **)localizationDictionary 
                    context:(NSManagedObjectContext *)context;
 @end
-

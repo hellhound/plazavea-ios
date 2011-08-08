@@ -2,9 +2,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import <TSAlertView/TSAlertView.h>
+
 #import "Common/Constants.h"
 #import "Common/Views/EditableTableViewCell.h"
-#import "Common/Views/InputView.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListController.h"
@@ -105,8 +106,8 @@
 
 - (void)addShoppingListHandler:(UIControl *)control
 {
-    InputView *inputView =
-            [[[InputView alloc] initWithTitle:
+    TSAlertView *inputView =
+            [[[TSAlertView alloc] initWithTitle:
                     NSLocalizedString(kShoppingListNewTitle, nil)
                 message:NSLocalizedString(kShoppingListNewMessage, nil)
                 delegate:self cancelButtonTitle:
@@ -115,7 +116,7 @@
                     NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
                      nil] autorelease];
 
-    [inputView setTag:kShoppingListCreationTag];
+    [inputView setStyle:TSAlertViewStyleInput];
     [inputView show];
 }
 @end

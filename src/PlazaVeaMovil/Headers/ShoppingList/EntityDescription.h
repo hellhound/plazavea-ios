@@ -1,8 +1,7 @@
-#import "Application/EntityDescription.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@class NSObject;
-@class NSEntityDescription;
-@class NSManagedObjectContext;
+#import "Application/EntityDescription.h"
 
 @interface EntityDescription: NSObject <EntityDescription>
 

@@ -1,4 +1,4 @@
-@class NSString;
+#import <Foundation/Foundation.h>
 
 @interface NSString (Additions)
 

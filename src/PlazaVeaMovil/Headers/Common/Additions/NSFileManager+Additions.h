@@ -1,4 +1,4 @@
-@class NSFileManager;
+#import <Foundation/Foundation.h>
 
 @interface NSFileManager (Additions)
 

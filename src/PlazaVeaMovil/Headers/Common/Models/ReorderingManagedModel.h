@@ -1,4 +1,4 @@
-@protocol NSObject;
+#import <Foundation/Foundation.h>
 
 @protocol ReorderingManagedModel <NSObject>
 

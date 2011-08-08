@@ -1,11 +1,6 @@
-@class NSObject;
-@class UIWindow;
-@class UIViewController;
-@class NSManagedObjectContext;
-@class NSManagedObjectModel;
-@class NSPersistentStoreCoordinator;
-@class NSDateFormatter;
-@protocol UIApplicationDelegate;
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface AppDelegate: NSObject <UIApplicationDelegate>
 {

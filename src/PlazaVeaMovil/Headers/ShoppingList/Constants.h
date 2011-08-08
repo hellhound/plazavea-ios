@@ -1,5 +1,5 @@
 // Shopping-list module's constants
-@class NSString;
+#import <Foundation/Foundation.h>
 
 // ShoppingList model's constants
 
@@ -29,11 +29,6 @@ extern NSString *kShoppingListCacheName;
 extern NSString *kShoppingListDefaultDetailText;
 // ShoppingList's key for InputView's userInfo dictionary
 extern NSString *kShoppingListKey;
-
-typedef enum {
-    kShoppingListCreationTag = 1000,
-    kShoppingListModificationTag
-} ShoppingListInputViewTags;
 
 // InputView's constants for shopping list creation
 extern NSString *kShoppingListNewTitle;

@@ -12,15 +12,20 @@
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
-		2C25BD3513E8F89000A4311B /* CustomizableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */; };
 		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
-		2C362A9513E909C700F72502 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C362A9413E909C700F72502 /* InputView.m */; };
-		2C4A57EA13EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A57E613EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m */; };
+		2C4AB3C813F04D380078A100 /* ShoppingListController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AB3C713F04D380078A100 /* ShoppingListController+TSAlertViewDelegate.m */; };
 		2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */; };
+		2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */; };
+		2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */; };
+		2C691ED213F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */; };
+		2C691ED313F04BB900E1EFA5 /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECD13F04BB900E1EFA5 /* TSAlertViewButtonBackground.png */; };
+		2C691ED413F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECE13F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png */; };
+		2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECF13F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png */; };
+		2C691EE013F04C4E00E1EFA5 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
@@ -245,19 +250,24 @@
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
-		2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizableAlertView.m; sourceTree = "<group>"; };
 		2C2F07DC13DE61B3009F60DB /* PlazaVeaMovil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaVeaMovil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2F07E013DE61B3009F60DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2C2F07E213DE61B3009F60DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C33D33413E73858003EDEAB /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
-		2C362A9413E909C700F72502 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		2C4A57E613EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIAlertViewDelegate.m"; sourceTree = "<group>"; };
+		2C4AB3C713F04D380078A100 /* ShoppingListController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
+		2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
+		2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
+		2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = ../../TSAlertView/TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
+		2C691ECD13F04BB900E1EFA5 /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
+		2C691ECE13F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
+		2C691ECF13F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = ../../TSAlertView/TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
@@ -312,8 +322,6 @@
 			isa = PBXGroup;
 			children = (
 				2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */,
-				2C362A9413E909C700F72502 /* InputView.m */,
-				2C25BD3413E8F88F00A4311B /* CustomizableAlertView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -322,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				2C2F07FD13DE6692009F60DB /* Sources */,
+				2C691ED613F04BEC00E1EFA5 /* Dependencies */,
 				2C2F07FC13DE6692009F60DB /* Resources */,
 				2C2F07DF13DE61B3009F60DB /* Frameworks */,
 				2C2F07DD13DE61B3009F60DB /* Products */,
@@ -359,6 +368,12 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */,
+				2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */,
+				2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */,
+				2C691ECD13F04BB900E1EFA5 /* TSAlertViewButtonBackground.png */,
+				2C691ECE13F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png */,
+				2C691ECF13F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png */,
 				2CDCBD0813EA585100E4E310 /* es.lproj */,
 				2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */,
 				2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */,
@@ -380,11 +395,29 @@
 			path = ../Sources;
 			sourceTree = "<group>";
 		};
+		2C691ED613F04BEC00E1EFA5 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				2C691ED713F04C4E00E1EFA5 /* TSAlertView */,
+			);
+			name = Dependencies;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		2C691ED713F04C4E00E1EFA5 /* TSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */,
+			);
+			name = TSAlertView;
+			path = TSAlertView/TSAlertView;
+			sourceTree = "<group>";
+		};
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2C4AB3C713F04D380078A100 /* ShoppingListController+TSAlertViewDelegate.m */,
 				2C64EEA013E85ACD009D8E7E /* ShoppingListController.m */,
-				2C4A57E613EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m */,
 				2C1D792813E87C58000FD96C /* Constants.m */,
 				2C33D33413E73858003EDEAB /* ShoppingList.m */,
 				2C864B1F13E729BF00D46066 /* EntityDescription.m */,
@@ -406,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
-				2C66A4A013EC735500D967A5 /* UITextField+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
 				2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */,
 				2CD9933A13E65DA400879980 /* NSError+Additions.m */,
@@ -753,6 +785,12 @@
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
 				2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */,
+				2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */,
+				2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */,
+				2C691ED213F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				2C691ED313F04BB900E1EFA5 /* TSAlertViewButtonBackground.png in Resources */,
+				2C691ED413F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,9 +812,6 @@
 				2C64EEA113E85ACD009D8E7E /* ShoppingListController.m in Sources */,
 				2C1D792913E87C58000FD96C /* Constants.m in Sources */,
 				2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */,
-				2C25BD3513E8F89000A4311B /* CustomizableAlertView.m in Sources */,
-				2C362A9513E909C700F72502 /* InputView.m in Sources */,
-				2C4A57EA13EB56DC008B609D /* ShoppingListController+UIAlertViewDelegate.m in Sources */,
 				2CE52FBC13EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m in Sources */,
 				2CE52FBD13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m in Sources */,
 				2CE52FBE13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m in Sources */,
@@ -785,8 +820,9 @@
 				2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */,
 				2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */,
 				2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */,
-				2C66A4A113EC735500D967A5 /* UITextField+Additions.m in Sources */,
 				2CE6077113EE420600431A7A /* NSURL+Additions.m in Sources */,
+				2C691EE013F04C4E00E1EFA5 /* TSAlertView.m in Sources */,
+				2C4AB3C813F04D380078A100 /* ShoppingListController+TSAlertViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +888,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				HEADER_SEARCH_PATHS = (
+					../../TSAlertView,
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					../../Three20/Build/Products/three20,
@@ -866,6 +903,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				HEADER_SEARCH_PATHS = (
+					../../TSAlertView,
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					../../Three20/Build/Products/three20,

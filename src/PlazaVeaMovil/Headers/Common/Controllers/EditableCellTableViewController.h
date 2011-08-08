@@ -1,10 +1,9 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+
 #import "Common/Views/EditableTableViewCell.h"
 #import "Common/Controllers/EditableTableViewController.h"
-
-@class NSIndexPath;
-@class NSManagedObject;
-@class UITextField;
-@protocol UITextFieldDelegate;
 
 @interface EditableCellTableViewController: EditableTableViewController
     <UITextFieldDelegate>

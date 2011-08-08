@@ -1,5 +1,4 @@
-@class UITableViewCell;
-@class UITextField;
+#import <UIKit/UIKit.h>
 
 @interface EditableTableViewCell: UITableViewCell
 {
