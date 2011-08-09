@@ -9,6 +9,7 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
@@ -70,7 +71,8 @@
 {
     if (![self isEditing])
         [[self navigationController] pushViewController:
-                    [[[ShoppingListController alloc] init] autorelease]
+                    [[[ShoppingListController alloc] initWithShoppingList:
+                            (ShoppingList *)object] autorelease]
                 animated:YES];
 }
 
@@ -130,17 +132,14 @@
 
 - (void)addShoppingListHandler:(UIControl *)control
 {
-    TSAlertView *inputView =
-            [[[TSAlertView alloc] initWithTitle:
-                    NSLocalizedString(kShoppingListNewTitle, nil)
-                message:NSLocalizedString(kShoppingListNewMessage, nil)
-                delegate:self cancelButtonTitle:
-                    NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
-                otherButtonTitles:
-                    NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
-                     nil] autorelease];
+    if ([self isEditing]) {
+        TSAlertView *alertView = [self alertViewForNewShoppingList];
 
-    [inputView setStyle:TSAlertViewStyleInput];
-    [inputView show];
+        [alertView show];
+    } else {
+        [[self navigationController] pushViewController:
+                    [[[ShoppingListController alloc] init] autorelease]
+                animated:YES];
+    }
 }
 @end

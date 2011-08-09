@@ -30,6 +30,7 @@
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
+		2CC9662213F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9662113F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
@@ -273,6 +274,7 @@
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
+		2CC9662113F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+NewShoppingListAlertView.m"; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2CC9662113F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m */,
 				2C317F5913F0C07700BDC645 /* ShoppingListController.m */,
 				2C2DA9C913F0BB9E00D80BB0 /* ShoppingListsController+TSAlertViewDelegate.m */,
 				2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */,
@@ -827,6 +830,7 @@
 				2C2DA9CB13F0BB9E00D80BB0 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */,
 				2C2DA9CC13F0BB9E00D80BB0 /* ShoppingListsController.m in Sources */,
 				2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */,
+				2CC9662213F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

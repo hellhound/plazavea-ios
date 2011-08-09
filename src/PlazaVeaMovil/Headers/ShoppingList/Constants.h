@@ -20,7 +20,7 @@ extern NSString *const kShoppingItemChecked;
 extern NSString *const kShoppingItemOrder;
 extern NSString *const kShoppingItemList;
 
-// ShoppingListController's constants
+// ShoppingListsController's constants
 
 // Administration of shopping lists
 extern NSString *const kShoppingListTitle;
@@ -28,11 +28,13 @@ extern NSString *const kShoppingListTitle;
 extern NSString *const kShoppingListCacheName;
 // Default detail text
 extern NSString *const kShoppingListDefaultDetailText;
-// ShoppingList's key for InputView's userInfo dictionary
-extern NSString *const kShoppingListKey;
 
-// InputView's constants for shopping list creation
+// TSAlertView's constants for shopping list creation
 extern NSString *const kShoppingListNewTitle;
-extern NSString *const kShoppingListNewMessage;
+extern NSString *const kShoppingListNewPlaceholder;
 extern NSString *const kShoppingListNewOkButtonTitle;
 extern NSString *const kShoppingListNewCancelButtonTitle;
+
+// ShoppingListController's constants
+
+extern const NSTimeInterval kNewShoppingListAlertViewDelay;

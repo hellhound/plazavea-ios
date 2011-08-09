@@ -14,3 +14,9 @@
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList;
 @end
+
+@interface ShoppingListController (EventHandler)
+
+- (void)addShoppingListHandler:(UIControl *)control;
+- (void)addShoppingItemHandler:(UIControl *)control;
+@end

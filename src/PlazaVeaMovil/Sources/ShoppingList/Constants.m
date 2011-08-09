@@ -32,17 +32,17 @@ NSString *const kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text
 NSString *const kShoppingListDefaultDetailText = @"Nuevo";
 // NSLocalizedString(@"Nuevo", nil)
-// ShoppingList's key for InputView's userInfo dictionary
-NSString *const kShoppingListKey = @"shoppingList";
 
-// InputView's constants for shopping list creation
+// TSAlertView's constants for shopping list creation
 NSString *const kShoppingListNewTitle = @"Nueva lista";
 // NSLocalizedString(@"Nueva lista", nil)
-NSString *const kShoppingListNewMessage = @"Ingrese el nombre de la nueva "
-        @"lista de compras";
-// NSLocalizedString(@"Ingrese el nombre de la nueva lista de "
-//      @"compras", nil)
+NSString *const kShoppingListNewPlaceholder = @"Nombre de la nueva lista";
+// NSLocalizedString(@"Nombre de la nueva lista", nil)
 NSString *const kShoppingListNewOkButtonTitle = @"Ok";
 // NSLocalizedString(@"Ok", nil)
 NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
+
+// ShoppingListController's constants
+
+const NSTimeInterval kNewShoppingListAlertViewDelay = .1;

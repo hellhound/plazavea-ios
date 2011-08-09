@@ -7,12 +7,27 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
 #import "ShoppingList/ShoppingListController.h"
 
 @implementation ShoppingListController
 
 #pragma mark -
 #pragma mark NSObject
+
+- (id)init
+{
+    // It is used only when necessary to show an alert view the user for a name
+    // for the new shopping list
+    if ((self = [super init]) != nil) {
+        TSAlertView *alertView = [self alertViewForNewShoppingList];
+
+        // delay for 0.1 seconds
+        [alertView performSelector:@selector(show) withObject:nil
+                afterDelay:kNewShoppingListAlertViewDelay];
+    }
+    return self;
+}
 
 - (void)dealloc
 {
@@ -39,5 +54,16 @@
         [self setAllowsMovableCells:YES];
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark ShoppingListController (EventHandler)
+
+- (void)addShoppingListHandler:(UIControl *)control
+{
+}
+
+- (void)addShoppingItemHandler:(UIControl *)control
+{
 }
 @end
