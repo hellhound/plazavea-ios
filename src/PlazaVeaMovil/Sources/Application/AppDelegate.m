@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "ShoppingList/ShoppingListController.h"
+#import "ShoppingList/ShoppingListsController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -35,8 +35,8 @@
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     // TODO The root view controller should be the one of the launcher
-    ShoppingListController *shoppingController =
-            [[[ShoppingListController alloc] init] autorelease];
+    ShoppingListsController *shoppingController =
+            [[[ShoppingListsController alloc] init] autorelease];
     _rootViewController = [[UINavigationController alloc]
             initWithRootViewController:shoppingController];
 

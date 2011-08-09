@@ -2,12 +2,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "ShoppingList/ShoppingListController.h"
+#import "Common/Controllers/EditableTableViewController.h"
 
-@interface ShoppingListController (UITableViewDelegate)
+@interface EditableTableViewController (UITableViewDelegate)
 @end
 
-@implementation ShoppingListController (UITableViewDelegate)
+@implementation EditableTableViewController (UITableViewDelegate)
 
 #pragma mark -
 #pragma mark <UITableViewDelegate>
