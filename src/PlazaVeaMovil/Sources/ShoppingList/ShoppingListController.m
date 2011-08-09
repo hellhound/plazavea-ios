@@ -46,11 +46,16 @@
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
             target:self action:@selector(addShoppingListHandler:)] autorelease];
 
-    // Conf the toolbar
-    /*
-    [self setToolbarItems:[NSArray arrayWithObjects:
-            [self undoItem], [self redoItem], spacerItem, addItem, nil]];
-    */
+    // Conf the toolbars
+    if ([self toolbarItems] == nil) {
+        NSArray *toolbarItems =
+                [NSArray arrayWithObjects:spacerItem, addItem, nil];
+
+        [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
+        [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
+        [self setToolbarItems:[self readonlyToolbarItems]];
+        [[self navigationController] setToolbarHidden:NO];
+    }
     return navItem;
 }
 
@@ -68,6 +73,7 @@
 
     [newList setName:name];
     [newList setOrder:[NSNumber numberWithInteger:order]];
+    [self saveContext];
     [self fetchUpdateAndReload];
 }
 
