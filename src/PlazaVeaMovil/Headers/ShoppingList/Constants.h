@@ -16,6 +16,7 @@ extern NSString *kShoppingItemEntity;
 extern NSString *kShoppingItemClass;
 extern NSString *kShoppingItemName;
 extern NSString *kShoppingItemQuantity;
+extern NSString *kShoppingItemChecked;
 extern NSString *kShoppingItemOrder;
 extern NSString *kShoppingItemList;
 

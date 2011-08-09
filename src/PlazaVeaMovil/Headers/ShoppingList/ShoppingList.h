@@ -13,6 +13,7 @@
 @interface ShoppingItem: NSManagedObject <ReorderingManagedModel>
 
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSNumber *quantity;
+@property (nonatomic, retain) NSString *quantity;
+@property (nonatomic, retain) NSNumber *checked;
 @property (nonatomic, retain) ShoppingList *list;
 @end

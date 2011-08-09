@@ -18,6 +18,7 @@ NSString *kShoppingItemEntity = @"ShoppingItem";
 NSString *kShoppingItemClass = @"ShoppingItem";
 NSString *kShoppingItemName = @"name";
 NSString *kShoppingItemQuantity = @"quantity";
+NSString *kShoppingItemChecked = @"checked";
 NSString *kShoppingItemOrder = @"order";
 NSString *kShoppingItemList = @"list";
 

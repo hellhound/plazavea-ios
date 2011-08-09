@@ -54,6 +54,14 @@
     [quantity setOptional:YES];
     [quantity setDefaultValue:@""];
 
+    NSAttributeDescription *checked =
+            [[[NSAttributeDescription alloc] init] autorelease];
+
+    [checked setName:kShoppingItemChecked];
+    [checked setAttributeType:NSInteger32AttributeType];
+    [checked setOptional:NO];
+    [checked setDefaultValue:[NSNumber numberWithInteger:0]];
+
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
 
