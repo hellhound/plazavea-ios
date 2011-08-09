@@ -29,6 +29,7 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        [self setAllowsMovableCells:YES];
         [self setCellStyle:UITableViewCellStyleSubtitle];
     }
     return self;
@@ -96,10 +97,8 @@
             [dateFormatter stringFromDate:date]];
 }
 
-- (void)didChangeObject:(ShoppingList *)object value:(NSString *)value
+- (void)didChangeObject:(ShoppingList *)list value:(NSString *)value
 {
-    ShoppingList *list = object;
-
     [list setName:value];
 }
 
@@ -108,15 +107,8 @@
 
 - (void)addShoppingList:(NSString *)name
 {
-    ShoppingList *newList =
-            [NSEntityDescription insertNewObjectForEntityForName:
-                kShoppingListEntity
-            inManagedObjectContext:[self context]];
-    NSInteger order = [(NSNumber *)[[_resultsController fetchedObjects]
-            valueForKeyPath:@"@max.order"] integerValue] + 1;
-
-    [newList setName:name];
-    [newList setOrder:[NSNumber numberWithInteger:order]];
+    [ShoppingList shoppingListWithName:name
+            resultsController:[self resultsController]];
     [self saveContext];
     [self fetchUpdateAndReload];
 }

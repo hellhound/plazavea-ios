@@ -8,6 +8,9 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDate *lastModificationDate;
 @property (nonatomic, retain) NSSet *items;
+
++ (id)shoppingListWithName:(NSString *)name
+  resultsController:(NSFetchedResultsController *)resultsController;
 @end
 
 @interface ShoppingItem: NSManagedObject <ReorderingManagedModel>

@@ -14,14 +14,14 @@
 
 - (TSAlertView *)alertViewForNewShoppingList
 {
-    TSAlertView *alertView = [[TSAlertView alloc] initWithTitle:
+    TSAlertView *alertView = [[[TSAlertView alloc] initWithTitle:
                 NSLocalizedString(kShoppingListNewTitle, nil)
             message:nil
             delegate:self cancelButtonTitle:
                 NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
             otherButtonTitles:
                 NSLocalizedString(kShoppingListNewOkButtonTitle, nil),
-                 nil];
+                 nil] autorelease];
     UITextField *textField = [alertView inputTextField];
 
     [alertView setStyle:TSAlertViewStyleInput];
