@@ -1,13 +1,14 @@
 // Shopping-list module's constants
 #import <Foundation/Foundation.h>
 
+extern NSString *const kOrderField;
+
 // ShoppingList model's constants
 
 extern NSString *const kShoppingListEntity;
 extern NSString *const kShoppingListClass;
 extern NSString *const kShoppingListName;
 extern NSString *const kShoppingListLastModificationDate;
-extern NSString *const kShoppingListOrder;
 extern NSString *const kShoppingListItems;
 
 // ShoppingItem model's constants
@@ -17,7 +18,6 @@ extern NSString *const kShoppingItemClass;
 extern NSString *const kShoppingItemName;
 extern NSString *const kShoppingItemQuantity;
 extern NSString *const kShoppingItemChecked;
-extern NSString *const kShoppingItemOrder;
 extern NSString *const kShoppingItemList;
 
 // ShoppingListsController's constants

@@ -4,60 +4,140 @@
 
 #import <TSAlertView/TSAlertView.h>
 
+#import "Common/Controllers/EditableCellTableViewController.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
 #import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
+#import "ShoppingList/ShoppingListsController.h"
 #import "ShoppingList/ShoppingListController.h"
+
+static NSPredicate *kShoppingItemsPredicateTemplate;
+static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
+
+@interface ShoppingListController (Private)
+
+- (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
+@end
 
 @implementation ShoppingListController
 
 #pragma mark -
 #pragma mark NSObject
 
-- (id)init
++ (void)initialize
 {
-    // It is used only when necessary to show an alert view the user for a name
-    // for the new shopping list
-    if ((self = [super init]) != nil) {
-        TSAlertView *alertView = [self alertViewForNewShoppingList];
+    if (self == [ShoppingListController class]) {
+        NSExpression *lhs =
+                [NSExpression expressionForKeyPath:kShoppingItemList];
+        NSExpression *rhs =
+                [NSExpression expressionForVariable:kShoppingListVariableKey];
 
-        // delay for 0.1 seconds
-        [alertView performSelector:@selector(show) withObject:nil
-                afterDelay:kNewShoppingListAlertViewDelay];
+        kShoppingItemsPredicateTemplate = [[NSComparisonPredicate
+                predicateWithLeftExpression:lhs
+                rightExpression:rhs
+                modifier:NSDirectPredicateModifier
+                type:NSEqualToPredicateOperatorType
+                options:0] retain];
     }
-    return self;
 }
 
 - (void)dealloc
 {
+    _parentController = nil;
     [_shoppingList release];
     [super dealloc];
 }
 
 #pragma mark -
+#pragma mark EditableCellTableViewController (Overridable)
+
+- (void)didCreateCell:(EditableTableViewCell *)cell
+            forObject:(NSManagedObject *)object
+          atIndexPath:(NSIndexPath *)indexPath
+{
+    [[cell textLabel] setText:[(ShoppingItem *)object name]];
+}
+
+- (void)didChangeObject:(ShoppingItem *)item value:(NSString *)value
+{
+    [item setName:value];
+}
+
+#pragma mark -
+#pragma mark ShoppingListController (Private)
+
+- (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView
+{
+    [alertView show];
+    [alertView autorelease];
+}
+
+#pragma mark -
 #pragma mark ShoppingListController (Public)
 
+@synthesize parentController = _parentController;
+
++ (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList
+{
+    return [kShoppingItemsPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:shoppingList == nil ?
+                    (id)[NSNull null] : (id)shoppingList
+                forKey:kShoppingListVariableKey]];
+}
+
 - (id)initWithShoppingList:(ShoppingList *)shoppingList
+          parentController:(ShoppingListsController *)parentController
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
     NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kShoppingListOrder
+            [[[NSSortDescriptor alloc] initWithKey:kOrderField
                 ascending:NO] autorelease]];
     NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"list == %@", shoppingList];
+            [ShoppingListController predicateForItemsWithShoppingList:
+                shoppingList];
 
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingItemEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setAllowsMovableCells:YES];
+        [self setParentController:parentController];
+
+        if (shoppingList == nil) {
+            // We need to create a brand-new shopping list!
+            TSAlertView *alertView =
+                    [[self alertViewForNewShoppingList] retain];
+
+            // delay for 0.1 seconds
+            [self performSelector:@selector(showAlertViewForNewShoppingList:)
+                    withObject:alertView
+                    afterDelay:kNewShoppingListAlertViewDelay];
+        }
     }
     return self;
 }
 
 - (void)addShoppingList:(NSString *)name
 {
+    ShoppingListsController *parent = [self parentController];
+    NSFetchedResultsController *resultsController = [parent resultsController];
+    ShoppingList *shoppingList = [ShoppingList shoppingListWithName:name
+            resultsController:resultsController];
+
+    // First, save the context
+    [self saveContext];
+
+    // Now, create a new predicate for the new shopping list
+    NSPredicate *predicate =
+            [ShoppingListController predicateForItemsWithShoppingList:
+                shoppingList];
+
+    // And lastly, set the predicate to the fetch request of the results
+    // controller 
+    [[[self resultsController] fetchRequest] setPredicate:predicate];
+    [self fetchUpdateAndReload];
+    [parent fetchUpdateAndReload];
 }
 
 #pragma mark -

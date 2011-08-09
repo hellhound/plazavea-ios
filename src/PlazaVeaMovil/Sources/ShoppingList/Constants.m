@@ -3,13 +3,14 @@
 
 #import "ShoppingList/Constants.h"
 
+NSString *const kOrderField = @"order";
+
 // ShoppingList model's constants
 
 NSString *const kShoppingListEntity = @"ShoppingList";
 NSString *const kShoppingListClass = @"ShoppingList";
 NSString *const kShoppingListName = @"name";
 NSString *const kShoppingListLastModificationDate = @"lastModificationDate";
-NSString *const kShoppingListOrder = @"order";
 NSString *const kShoppingListItems = @"items";
 
 // ShoppingItem model's constants
@@ -19,7 +20,6 @@ NSString *const kShoppingItemClass = @"ShoppingItem";
 NSString *const kShoppingItemName = @"name";
 NSString *const kShoppingItemQuantity = @"quantity";
 NSString *const kShoppingItemChecked = @"checked";
-NSString *const kShoppingItemOrder = @"order";
 NSString *const kShoppingItemList = @"list";
 
 // ShoppingListController's constants

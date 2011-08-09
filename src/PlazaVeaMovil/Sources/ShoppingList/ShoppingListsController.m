@@ -23,7 +23,7 @@
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
     NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kShoppingListOrder
+            [[[NSSortDescriptor alloc] initWithKey:kOrderField
                 ascending:NO] autorelease]];
 
     if ((self = [super initWithStyle:UITableViewStylePlain
@@ -67,13 +67,15 @@
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
 
-- (void)didSelectRowForObject:(NSManagedObject *)object
+- (void)didSelectRowForObject:(ShoppingList *)shoppingList
                   atIndexPath:(NSIndexPath *)indexPath
 {
     if (![self isEditing])
-        [[self navigationController] pushViewController:
-                    [[[ShoppingListController alloc] initWithShoppingList:
-                            (ShoppingList *)object] autorelease]
+        [[self navigationController]
+                pushViewController:
+                    [[[ShoppingListController alloc]
+                        initWithShoppingList:shoppingList
+                        parentController:self] autorelease]
                 animated:YES];
 }
 
@@ -129,8 +131,9 @@
 
         [alertView show];
     } else {
-        [[self navigationController] pushViewController:
-                    [[[ShoppingListController alloc] init] autorelease]
+        [[self navigationController]
+                pushViewController:[[[ShoppingListController alloc]
+                    initWithShoppingList:nil parentController:self] autorelease]
                 animated:YES];
     }
 }

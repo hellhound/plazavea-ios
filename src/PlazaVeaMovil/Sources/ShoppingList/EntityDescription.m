@@ -28,7 +28,7 @@
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [order setName:kShoppingListOrder];
+    [order setName:kOrderField];
     [order setAttributeType:NSInteger32AttributeType];
     [order setOptional:NO];
     [order setIndexed:YES];
@@ -65,7 +65,7 @@
     NSAttributeDescription *order =
             [[[NSAttributeDescription alloc] init] autorelease];
 
-    [order setName:kShoppingItemOrder];
+    [order setName:kOrderField];
     [order setAttributeType:NSInteger32AttributeType];
     [order setOptional:NO];
     [order setIndexed:YES];
