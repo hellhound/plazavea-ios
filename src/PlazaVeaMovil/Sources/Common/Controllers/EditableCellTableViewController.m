@@ -72,7 +72,7 @@
     if ((self = [super initWithStyle:style entityName:entityName
             predicate:predicate sortDescriptors:sortDescriptors
             inContext:context]) != nil)
-        _cellStyle = UITableViewCellStyleDefault;
+        [self setCellStyle:UITableViewCellStyleDefault];
     return self;
 }
 

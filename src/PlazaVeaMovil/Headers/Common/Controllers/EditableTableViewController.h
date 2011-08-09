@@ -17,16 +17,18 @@
     BOOL _allowsRowDeselection;
     BOOL _allowsRowDeselectionOnEditing;
     BOOL _performsSelectionAction;
+    BOOL _allowsMovableCells;
 }
 @property (nonatomic, readonly) NSFetchedResultsController *resultsController;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) UIBarButtonItem *undoItem;
 @property (nonatomic, retain) UIBarButtonItem *redoItem;
+@property (nonatomic, readonly) NSMutableArray *readonlyToolbarItems;
+@property (nonatomic, readonly) NSMutableArray *editingToolbarItems;
 @property (nonatomic, assign) BOOL allowsRowDeselection;
 @property (nonatomic, assign) BOOL allowsRowDeselectionOnEditing;
 @property (nonatomic, assign) BOOL performsSelectionAction;
-@property (nonatomic, readonly) NSMutableArray *readonlyToolbarItems;
-@property (nonatomic, readonly) NSMutableArray *editingToolbarItems;
+@property (nonatomic, assign) BOOL allowsMovableCells;
 
 - (id)initWithStyle:(UITableViewStyle)style
          entityName:(NSString *)entityName

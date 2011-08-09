@@ -8,6 +8,8 @@
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
+#import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
 @implementation ShoppingListsController
@@ -25,8 +27,9 @@
 
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil
-            sortDescriptors:sortDescriptors inContext:context]) != nil)
+            sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setCellStyle:UITableViewCellStyleSubtitle];
+    }
     return self;
 }
 
@@ -60,6 +63,45 @@
 }
 
 #pragma mark -
+#pragma mark EditableTableViewController (Overridable)
+
+- (void)didSelectRowForObject:(NSManagedObject *)object
+                  atIndexPath:(NSIndexPath *)indexPath
+{
+    if (![self isEditing])
+        [[self navigationController] pushViewController:
+                    [[[ShoppingListController alloc] init] autorelease]
+                animated:YES];
+}
+
+#pragma mark -
+#pragma mark EditableCellTableViewController (Overridable)
+
+- (void)didCreateCell:(EditableTableViewCell *)cell
+            forObject:(NSManagedObject *)object
+          atIndexPath:(NSIndexPath *)indexPath
+{
+    ShoppingList *list = (ShoppingList *)object;
+    NSDateFormatter *dateFormatter = [(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] dateFormatter];
+    NSDate *date = [list lastModificationDate];
+
+    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    [[cell textLabel] setText:[list name]];
+    [[cell detailTextLabel] setText:date == nil ||
+            [date isEqual:[NSNull null]] ?
+            kShoppingListDefaultDetailText :
+            [dateFormatter stringFromDate:date]];
+}
+
+- (void)didChangeObject:(ShoppingList *)object value:(NSString *)value
+{
+    ShoppingList *list = object;
+
+    [list setName:value];
+}
+
+#pragma mark -
 #pragma mark ShoppingListsController (Public)
 
 - (void)addShoppingList:(NSString *)name
@@ -81,32 +123,6 @@
 {
     [shoppingList setName:name];
     [self fetchUpdateAndReload];
-}
-
-#pragma mark -
-#pragma mark EditableCellTableViewController (Overridable)
-
-- (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
-          atIndexPath:(NSIndexPath *)indexPath
-{
-    ShoppingList *list = (ShoppingList *)object;
-    NSDateFormatter *dateFormatter = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] dateFormatter];
-    NSDate *date = [list lastModificationDate];
-
-    [[cell textLabel] setText:[list name]];
-    [[cell detailTextLabel] setText:date == nil ||
-            [date isEqual:[NSNull null]] ?
-            kShoppingListDefaultDetailText :
-            [dateFormatter stringFromDate:date]];
-}
-
-- (void)didChangeObject:(ShoppingList *)object value:(NSString *)value
-{
-    ShoppingList *list = object;
-
-    [list setName:value];
 }
 
 #pragma mark -

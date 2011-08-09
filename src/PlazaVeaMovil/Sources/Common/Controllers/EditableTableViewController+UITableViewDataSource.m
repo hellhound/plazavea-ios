@@ -57,7 +57,7 @@
     canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Any value (or cell) can change order
-    return YES;
+    return [self allowsMovableCells];
 }
 
 - (void)    tableView:(UITableView *)tableView

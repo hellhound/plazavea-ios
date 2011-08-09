@@ -169,7 +169,8 @@
         editingToolbarItems = _editingToolbarItems,
         allowsRowDeselection = _allowsRowDeselection,
         allowsRowDeselectionOnEditing = _allowsRowDeselectionOnEditing,
-        performsSelectionAction = _performsSelectionAction;
+        performsSelectionAction = _performsSelectionAction,
+        allowsMovableCells = _allowsMovableCells;
 
 - (id)initWithStyle:(UITableViewStyle)style
          entityName:(NSString *)entityName
@@ -183,6 +184,7 @@
                 predicate:predicate sortDescriptors:sortDescriptors];
         // Allow row deselection
         [self setAllowsRowDeselection:YES];
+        [self setPerformsSelectionAction:YES];
     }
     return self;
 }
