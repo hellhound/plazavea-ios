@@ -110,11 +110,13 @@ static NSString *kTextKeyPath = @"text";
     [super setEditing:editing animated:animated];
 }
 
+/*
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated 
 {
     [super setSelected:selected animated:NO];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
+*/
 
 #pragma mark -
 #pragma mark EditableTableViewCell (Private)

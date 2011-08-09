@@ -1,19 +1,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 
 #import "Common/Controllers/EditableTableViewController.h"
 
 @interface EditableTableViewController (UITableViewDelegate)
+
+- (void)tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation EditableTableViewController (UITableViewDelegate)
 
 #pragma mark -
-#pragma mark <UITableViewDelegate>
+#pragma mark EditableTableViewController (UITableViewDelegate)
 
-- (void)        tableView:(UITableView *)tableView
-  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
 {
     if ((_allowsRowDeselection && ![self isEditing]) ||
             (_allowsRowDeselectionOnEditing && [self isEditing]))
@@ -22,6 +22,21 @@
         [self didSelectRowForObject:
                 [_resultsController objectAtIndexPath:indexPath]
                     atIndexPath:indexPath];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self tableView:tableView indexPath:indexPath];
+}
+
+- (void)                        tableView:(UITableView *)tableView
+ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self tableView:tableView indexPath:indexPath];
 }
 
 - (NSIndexPath *)               tableView:(UITableView *)tableView

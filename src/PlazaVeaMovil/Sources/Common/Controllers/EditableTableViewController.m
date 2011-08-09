@@ -182,7 +182,7 @@
         [self initializeResultsControllerWithEntityName:entityName
                 predicate:predicate sortDescriptors:sortDescriptors];
         // Allow row deselection
-        _allowsRowDeselection = YES;
+        [self setAllowsRowDeselection:YES];
     }
     return self;
 }
