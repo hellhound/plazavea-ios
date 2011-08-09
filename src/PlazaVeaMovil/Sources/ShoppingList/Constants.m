@@ -5,44 +5,44 @@
 
 // ShoppingList model's constants
 
-NSString *kShoppingListEntity = @"ShoppingList";
-NSString *kShoppingListClass = @"ShoppingList";
-NSString *kShoppingListName = @"name";
-NSString *kShoppingListLastModificationDate = @"lastModificationDate";
-NSString *kShoppingListOrder = @"order";
-NSString *kShoppingListItems = @"items";
+NSString *const kShoppingListEntity = @"ShoppingList";
+NSString *const kShoppingListClass = @"ShoppingList";
+NSString *const kShoppingListName = @"name";
+NSString *const kShoppingListLastModificationDate = @"lastModificationDate";
+NSString *const kShoppingListOrder = @"order";
+NSString *const kShoppingListItems = @"items";
 
 // ShoppingItem model's constants
 
-NSString *kShoppingItemEntity = @"ShoppingItem";
-NSString *kShoppingItemClass = @"ShoppingItem";
-NSString *kShoppingItemName = @"name";
-NSString *kShoppingItemQuantity = @"quantity";
-NSString *kShoppingItemChecked = @"checked";
-NSString *kShoppingItemOrder = @"order";
-NSString *kShoppingItemList = @"list";
+NSString *const kShoppingItemEntity = @"ShoppingItem";
+NSString *const kShoppingItemClass = @"ShoppingItem";
+NSString *const kShoppingItemName = @"name";
+NSString *const kShoppingItemQuantity = @"quantity";
+NSString *const kShoppingItemChecked = @"checked";
+NSString *const kShoppingItemOrder = @"order";
+NSString *const kShoppingItemList = @"list";
 
 // ShoppingListController's constants
 
 // Administration of shopping lists
-NSString *kShoppingListTitle = @"Mis listas";
+NSString *const kShoppingListTitle = @"Mis listas";
 // NSLocalizedString(@"Mis listas", nil)
 // Fetch-request controller cache's file name
-NSString *kShoppingListCacheName = @"ShoppingListController.cache";
+NSString *const kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text
-NSString *kShoppingListDefaultDetailText = @"Nuevo";
+NSString *const kShoppingListDefaultDetailText = @"Nuevo";
 // NSLocalizedString(@"Nuevo", nil)
 // ShoppingList's key for InputView's userInfo dictionary
-NSString *kShoppingListKey = @"shoppingList";
+NSString *const kShoppingListKey = @"shoppingList";
 
 // InputView's constants for shopping list creation
-NSString *kShoppingListNewTitle = @"Nueva lista";
+NSString *const kShoppingListNewTitle = @"Nueva lista";
 // NSLocalizedString(@"Nueva lista", nil)
-NSString *kShoppingListNewMessage = @"Ingrese el nombre de la nueva lista de " 
-        @"compras";
+NSString *const kShoppingListNewMessage = @"Ingrese el nombre de la nueva "
+        @"lista de compras";
 // NSLocalizedString(@"Ingrese el nombre de la nueva lista de "
 //      @"compras", nil)
-NSString *kShoppingListNewOkButtonTitle = @"Ok";
+NSString *const kShoppingListNewOkButtonTitle = @"Ok";
 // NSLocalizedString(@"Ok", nil)
-NSString *kShoppingListNewCancelButtonTitle = @"Cancelar";
+NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
