@@ -111,8 +111,8 @@
 {
     [ShoppingList shoppingListWithName:name
             resultsController:[self resultsController]];
-    [self saveContext];
     [self fetchUpdateAndReload];
+    [self scrollToTop];
 }
 
 - (void)changeName:(NSString *)name toShoppingList:(ShoppingList *)shoppingList

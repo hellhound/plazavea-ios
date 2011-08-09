@@ -35,6 +35,7 @@
           predicate:(NSPredicate *)predicate
     sortDescriptors:(NSArray *)sortDescriptors
           inContext:(NSManagedObjectContext *)context;
+- (void)scrollToTop;
 @end
 
 @interface EditableTableViewController (Overridable)

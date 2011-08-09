@@ -6,6 +6,8 @@
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Controllers/EditableTableViewController.h"
 
+static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
+
 @interface EditableTableViewController (Private)
 
 - (void)initializeResultsControllerWithEntityName:(NSString *)entityName
@@ -187,6 +189,17 @@
         [self setPerformsSelectionAction:YES];
     }
     return self;
+}
+
+- (void)scrollToTop
+{
+    UITableView *tableView = [self tableView];
+
+    [tableView scrollToRowAtIndexPath:
+                [NSIndexPath indexPathForRow:0 inSection:0]
+            atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [tableView performSelector:@selector(flashScrollIndicators) withObject:nil
+            afterDelay:kshowFlashScrollIndicatorsDelay];
 }
 
 - (NSMutableArray *)readonlyToolbarItems
