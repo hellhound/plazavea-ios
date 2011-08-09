@@ -8,9 +8,9 @@
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
-#import "ShoppingList/ShoppingListController.h"
+#import "ShoppingList/ShoppingListsController.h"
 
-@implementation ShoppingListController
+@implementation ShoppingListsController
 
 #pragma mark -
 #pragma mark NSObject
@@ -60,7 +60,7 @@
 }
 
 #pragma mark -
-#pragma mark ShoppingListController (Public)
+#pragma mark ShoppingListsController (Public)
 
 - (void)addShoppingList:(NSString *)name
 {
@@ -110,7 +110,7 @@
 }
 
 #pragma mark -
-#pragma mark ShoppingListController (EnventHandler)
+#pragma mark ShoppingListsController (EnventHandler)
 
 - (void)addShoppingListHandler:(UIControl *)control
 {

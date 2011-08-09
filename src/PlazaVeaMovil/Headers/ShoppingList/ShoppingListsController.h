@@ -6,13 +6,13 @@
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/ShoppingList.h"
 
-@interface ShoppingListController: EditableCellTableViewController
+@interface ShoppingListsController: EditableCellTableViewController
     <TSAlertViewDelegate>
 
 - (void)addShoppingList:(NSString *)name;
 @end
 
-@interface ShoppingListController (EventHandler)
+@interface ShoppingListsController (EventHandler)
 
 - (void)addShoppingListHandler:(UIControl *)control;
 - (void)changeShoppingListNameHandler:(ShoppingList *)shoppingList;

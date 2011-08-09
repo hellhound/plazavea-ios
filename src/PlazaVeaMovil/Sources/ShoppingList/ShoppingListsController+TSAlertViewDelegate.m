@@ -4,12 +4,12 @@
 
 #import <TSAlertView/TSAlertView.h>
 
-#import "ShoppingList/ShoppingListController.h"
+#import "ShoppingList/ShoppingListsController.h"
 
-@interface ShoppingListController (TSAlertViewDelegate)
+@interface ShoppingListsController (TSAlertViewDelegate)
 @end
 
-@implementation ShoppingListController (TSAlertViewDelegate)
+@implementation ShoppingListsController (TSAlertViewDelegate)
 
 #pragma mark -
 #pragma mark <TSAlertViewDelegate>
