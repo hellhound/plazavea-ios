@@ -47,8 +47,10 @@
             target:self action:@selector(addShoppingListHandler:)] autorelease];
 
     // Conf the toolbar
+    /*
     [self setToolbarItems:[NSArray arrayWithObjects:
             [self undoItem], [self redoItem], spacerItem, addItem, nil]];
+    */
     return navItem;
 }
 

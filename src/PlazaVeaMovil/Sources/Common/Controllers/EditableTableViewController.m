@@ -11,6 +11,11 @@
 - (void)initializeResultsControllerWithEntityName:(NSString *)entityName
                                        predicate:(NSPredicate *)predicate
                                  sortDescriptors:(NSArray *)sortDescriptors;
+- (BOOL)shouldHideReadonlyToolbar;
+- (BOOL)shouldHideEditingToolbar;
+- (BOOL)shouldShowReadonlyToolbar;
+- (BOOL)shouldShowEditingToolbar;
+- (BOOL)shouldAnimateToolbarToggling:(BOOL)animated;
 @end
 
 @implementation EditableTableViewController
@@ -22,8 +27,11 @@
 {
     [_resultsController release];
     [_context release];
+    [_cancelItem release];
     [_undoItem release];
     [_redoItem release];
+    [_readonlyToolbarItems release];
+    [_editingToolbarItems release];
     [super dealloc];
 }
 
@@ -36,6 +44,12 @@
 
     // Conf the edit button
     [navItem setRightBarButtonItem:[self editButtonItem]];
+    if (_cancelItem == nil)
+        // Conf the cancel item
+        _cancelItem = [[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+            target:self
+            action:@selector(cancelEditingHandler:)];
     if (_undoItem == nil)
         // Conf the undo item
         _undoItem = [[UIBarButtonItem alloc]
@@ -46,8 +60,10 @@
         _redoItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
                 target:self action:@selector(performRedoHandler:)];
-    // Conf the toolbar
-    [self setToolbarItems:[NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
+    if (_editingToolbarItems == nil)
+        // Conf the toolbar
+        [[self editingToolbarItems] addObjectsFromArray:
+                [NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
     [self updateUndoRedo];
     return navItem;
 }
@@ -58,30 +74,36 @@
 
     UINavigationController *navController = [self navigationController];
 
-    if (navController == nil)
-        // Abort, we don't need fancy toggling
-        return;
+    if (navController != nil) {
+        UINavigationItem *navItem = [super navigationItem];
 
-    UINavigationItem *navItem = [super navigationItem];
-
-    if (editing) {
-        // Conf the cancel-item button
-        [navItem setLeftBarButtonItem:
-                [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                    target:self
-                    action:@selector(cancelEditingHandler:)] autorelease]];
-        // Hide the toolbar
-        [navController setToolbarHidden:NO animated:animated];
-    } else {
-        [navItem setLeftBarButtonItem:nil];
-        // Show the toolbar
-        [navController setToolbarHidden:YES animated:animated];
-        if ([_context hasChanges]) {
-            [self saveContext];
-            [[_context undoManager] removeAllActions];
-            [self reload];
+        if (editing) {
+            // Conf the cancel-item button
+            [navItem setLeftBarButtonItem:_cancelItem];
+            // Hide the toolbar
+            if ([self shouldHideReadonlyToolbar])
+                [navController setToolbarHidden:YES
+                        animated:[self shouldAnimateToolbarToggling:animated]];
+            [self setToolbarItems:_editingToolbarItems];
+            if ([self shouldShowEditingToolbar])
+                [navController setToolbarHidden:NO
+                        animated:[self shouldAnimateToolbarToggling:animated]];
+        } else {
+            [navItem setLeftBarButtonItem:nil];
+            // Show the toolbar
+            if ([self shouldHideEditingToolbar])
+                [navController setToolbarHidden:YES
+                        animated:[self shouldAnimateToolbarToggling:animated]];
+            [self setToolbarItems:_readonlyToolbarItems];
+            if ([self shouldShowReadonlyToolbar])
+                [navController setToolbarHidden:NO
+                        animated:[self shouldAnimateToolbarToggling:animated]];
         }
+    }
+    if (!editing && [_context hasChanges]) {
+        [self saveContext];
+        [[_context undoManager] removeAllActions];
+        [self reload];
     }
 }
 
@@ -113,11 +135,38 @@
     [self performFetch];
 }
 
+- (BOOL)shouldHideReadonlyToolbar
+{
+    return _editingToolbarItems != nil || [_editingToolbarItems count] > 0;
+}
+
+- (BOOL)shouldHideEditingToolbar
+{
+    return _editingToolbarItems != nil || [_editingToolbarItems count] > 0;
+}
+
+- (BOOL)shouldShowReadonlyToolbar
+{
+    return _readonlyToolbarItems != nil || [_readonlyToolbarItems count] > 0;
+}
+
+- (BOOL)shouldShowEditingToolbar
+{
+    return _editingToolbarItems != nil || [_editingToolbarItems count] > 0;
+}
+
+- (BOOL)shouldAnimateToolbarToggling:(BOOL)animated
+{
+    return animated && !(_readonlyToolbarItems == _editingToolbarItems);
+}
+
 #pragma mark -
 #pragma mark EditableTableViewController (Public)
 
 @synthesize resultsController = _resultsController, context = _context,
         undoItem = _undoItem, redoItem = _redoItem,
+        readonlyToolbarItems = _readonlyToolbarItems,
+        editingToolbarItems = _editingToolbarItems,
         allowsRowDeselection = _allowsRowDeselection,
         allowsRowDeselectionOnEditing = _allowsRowDeselectionOnEditing,
         performsSelectionAction = _performsSelectionAction;
@@ -136,6 +185,20 @@
         _allowsRowDeselection = YES;
     }
     return self;
+}
+
+- (NSMutableArray *)readonlyToolbarItems
+{
+    if (_readonlyToolbarItems == nil)
+        _readonlyToolbarItems = [[NSMutableArray alloc] init];
+    return _readonlyToolbarItems;
+}
+
+- (NSMutableArray *)editingToolbarItems
+{
+    if (_editingToolbarItems == nil)
+        _editingToolbarItems = [[NSMutableArray alloc] init];
+    return _editingToolbarItems;
 }
 
 - (void)setAllowsRowDeselection:(BOOL)allowsRowDeselection

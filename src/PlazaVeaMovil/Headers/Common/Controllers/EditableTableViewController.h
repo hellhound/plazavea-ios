@@ -7,9 +7,13 @@
 {
     NSFetchedResultsController *_resultsController;
     NSManagedObjectContext *_context;
+    UIBarButtonItem *_cancelItem;
     // Undo management items
     UIBarButtonItem *_undoItem;
     UIBarButtonItem *_redoItem;
+    // Toolbar items
+    NSMutableArray *_readonlyToolbarItems;
+    NSMutableArray *_editingToolbarItems;
     BOOL _allowsRowDeselection;
     BOOL _allowsRowDeselectionOnEditing;
     BOOL _performsSelectionAction;
@@ -21,6 +25,8 @@
 @property (nonatomic, assign) BOOL allowsRowDeselection;
 @property (nonatomic, assign) BOOL allowsRowDeselectionOnEditing;
 @property (nonatomic, assign) BOOL performsSelectionAction;
+@property (nonatomic, readonly) NSMutableArray *readonlyToolbarItems;
+@property (nonatomic, readonly) NSMutableArray *editingToolbarItems;
 
 - (id)initWithStyle:(UITableViewStyle)style
          entityName:(NSString *)entityName
