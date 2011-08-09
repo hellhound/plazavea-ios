@@ -56,6 +56,10 @@
     return self;
 }
 
+- (void)addShoppingList:(NSString *)name
+{
+}
+
 #pragma mark -
 #pragma mark ShoppingListController (EventHandler)
 

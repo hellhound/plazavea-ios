@@ -13,6 +13,7 @@
 }
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList;
+- (void)addShoppingList:(NSString *)name;
 @end
 
 @interface ShoppingListController (EventHandler)

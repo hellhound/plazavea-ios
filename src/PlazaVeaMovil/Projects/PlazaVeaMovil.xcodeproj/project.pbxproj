@@ -19,6 +19,7 @@
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
+		2C334A9413F199EC002C4DBD /* ShoppingListController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C334A9313F199EC002C4DBD /* ShoppingListController+TSAlertViewDelegate.m */; };
 		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
 		2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */; };
 		2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */; };
@@ -260,6 +261,7 @@
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
+		2C334A9313F199EC002C4DBD /* ShoppingListController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C33D33413E73858003EDEAB /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
@@ -420,10 +422,11 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
-				2CC9662113F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m */,
+				2C334A9313F199EC002C4DBD /* ShoppingListController+TSAlertViewDelegate.m */,
 				2C317F5913F0C07700BDC645 /* ShoppingListController.m */,
 				2C2DA9C913F0BB9E00D80BB0 /* ShoppingListsController+TSAlertViewDelegate.m */,
 				2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */,
+				2CC9662113F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m */,
 				2C1D792813E87C58000FD96C /* Constants.m */,
 				2C33D33413E73858003EDEAB /* ShoppingList.m */,
 				2C864B1F13E729BF00D46066 /* EntityDescription.m */,
@@ -831,6 +834,7 @@
 				2C2DA9CC13F0BB9E00D80BB0 /* ShoppingListsController.m in Sources */,
 				2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */,
 				2CC9662213F18FFF00CEC712 /* EditableTableViewController+NewShoppingListAlertView.m in Sources */,
+				2C334A9413F199EC002C4DBD /* ShoppingListController+TSAlertViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,12 +5,12 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "ShoppingList/ShoppingList.h"
-#import "ShoppingList/ShoppingListsController.h"
+#import "ShoppingList/ShoppingListController.h"
 
-@interface ShoppingListsController (TSAlertViewDelegate)
+@interface ShoppingListController (TSAlertViewDelegate)
 @end
 
-@implementation ShoppingListsController (TSAlertViewDelegate)
+@implementation ShoppingListController (TSAlertViewDelegate)
 
 #pragma mark -
 #pragma mark <TSAlertViewDelegate>
@@ -18,7 +18,12 @@
 - (void)            alertView:(TSAlertView *)alertView
     didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != [alertView cancelButtonIndex])
+    NSInteger cancelButtonIndex = [alertView cancelButtonIndex];
+
+    if (buttonIndex == cancelButtonIndex) {
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+    } else {
         [self addShoppingList:[[alertView inputTextField] text]];
+    }
 }
 @end
