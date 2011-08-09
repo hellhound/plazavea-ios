@@ -22,6 +22,12 @@ NSString *const kShoppingItemQuantity = @"quantity";
 NSString *const kShoppingItemChecked = @"checked";
 NSString *const kShoppingItemList = @"list";
 
+// ShoppingHistoryEntry model's constants
+
+NSString *const kShoppingHistoryEntryEntity = @"ShoppingHistoryEntry";
+NSString *const kShoppingHistoryEntryClass = @"ShoppingHistoryEntry";
+NSString *const kShoppingHistoryEntryName = @"name";
+
 // ShoppingListController's constants
 
 // Administration of shopping lists

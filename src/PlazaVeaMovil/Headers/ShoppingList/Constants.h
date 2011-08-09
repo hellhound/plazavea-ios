@@ -20,6 +20,12 @@ extern NSString *const kShoppingItemQuantity;
 extern NSString *const kShoppingItemChecked;
 extern NSString *const kShoppingItemList;
 
+// ShoppingHistoryEntry model's constants
+
+extern NSString *const kShoppingHistoryEntryEntity;
+extern NSString *const kShoppingHistoryEntryClass;
+extern NSString *const kShoppingHistoryEntryName;
+
 // ShoppingListsController's constants
 
 // Administration of shopping lists

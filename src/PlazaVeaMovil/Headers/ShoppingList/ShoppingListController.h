@@ -14,6 +14,7 @@
     ShoppingList *_shoppingList;
 }
 @property (nonatomic, assign) ShoppingListsController *parentController;
+@property (nonatomic, retain) ShoppingList *shoppingList;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 

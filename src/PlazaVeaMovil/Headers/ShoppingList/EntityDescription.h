@@ -7,8 +7,11 @@
 
 + (NSArray *)attributeDescriptionsForShoppingList;
 + (NSArray *)attributeDescriptionsForShoppingItem;
++ (NSArray *)attributeDescriptionsForHistoryEntry;
 + (void)createShoppingListEntity:(NSEntityDescription **)listEntity
-                  withAttributes:(NSArray *)attributes
+                  withAttributes:(NSArray *)listEntityAttributes
                    andItemEntity:(NSEntityDescription **)itemEntity
-                  withAttributes:(NSArray *)attributes;
+                  withAttributes:(NSArray *)itemEntityAttributes;
++ (void)createShoppingHistoryEntry:(NSEntityDescription **)entity
+                    withAttributes:(NSArray *)attributes;
 @end

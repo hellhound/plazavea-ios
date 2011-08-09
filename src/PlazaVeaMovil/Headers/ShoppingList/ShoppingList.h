@@ -20,3 +20,8 @@
 @property (nonatomic, retain) NSNumber *checked;
 @property (nonatomic, retain) ShoppingList *list;
 @end
+
+@interface ShoppingHistoryEntry: NSManagedObject
+
+@property (nonatomic, retain) NSString *name;
+@end

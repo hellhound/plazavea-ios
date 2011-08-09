@@ -74,6 +74,19 @@
     return [NSArray arrayWithObjects:name, quantity, order, nil];
 }
 
++ (NSArray *)attributeDescriptionsForHistoryEntry
+{
+    NSAttributeDescription *name =
+            [[[NSAttributeDescription alloc] init] autorelease];
+
+    [name setName:kShoppingHistoryEntryName];
+    [name setAttributeType:NSStringAttributeType];
+    [name setOptional:NO];
+    [name setIndexed:YES];
+    // setting properties into the entity
+    return [NSArray arrayWithObjects:name, nil];
+}
+
 + (void)createShoppingListEntity:(NSEntityDescription **)listEntity
                   withAttributes:(NSArray *)listEntityAttributes
                    andItemEntity:(NSEntityDescription **)itemEntity
@@ -116,6 +129,17 @@
     [*itemEntity setProperties:[itemEntityAttributes arrayByAddingObject:list]];
 }
 
++ (void)createShoppingHistoryEntry:(NSEntityDescription **)entity
+                    withAttributes:(NSArray *)attributes
+{
+    *entity =
+            [[[NSEntityDescription alloc] init] autorelease];
+
+    [*entity setName:kShoppingHistoryEntryEntity];
+    [*entity setManagedObjectClassName:kShoppingHistoryEntryClass];
+    [*entity setProperties:attributes];
+}
+
 #pragma mark -
 #pragma mark <EntityDescription>
 
@@ -125,11 +149,14 @@
 {
     NSEntityDescription *shoppingList = nil;
     NSEntityDescription *shoppingItem = nil;
+    NSEntityDescription *shoppingHistoryEntry = nil;
 
     [self createShoppingListEntity:&shoppingList
             withAttributes:[self attributeDescriptionsForShoppingList]
             andItemEntity:&shoppingItem
             withAttributes:[self attributeDescriptionsForShoppingItem]];
+    [self createShoppingHistoryEntry:&shoppingHistoryEntry
+            withAttributes:[self attributeDescriptionsForHistoryEntry]];
     // return configured entities
     *entities = [NSSet setWithObjects:shoppingList, shoppingItem, nil];
     // return configured localizationDictionary

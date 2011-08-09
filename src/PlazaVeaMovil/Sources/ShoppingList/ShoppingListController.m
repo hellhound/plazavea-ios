@@ -50,6 +50,57 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 }
 
 #pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    UINavigationItem *navItem = [super navigationItem];
+
+    // TODO We should use titleView instead of title in the navigationItem
+    // Conf the title
+    [navItem setTitle:[_shoppingList name]];
+
+    // Conf a spacer
+    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+            target:nil action:NULL] autorelease];
+    // Conf the back button
+    UIBarButtonItem *backItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+            target:nil action:NULL] autorelease];
+    // Conf the add button
+    UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+            target:nil action:NULL] autorelease];
+    // Conf the action button
+    UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+            target:nil action:NULL] autorelease];
+    // Conf the rewind trash button
+    UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+            target:nil action:NULL] autorelease];
+    // Conf the rewind button
+    UIBarButtonItem *forwardItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+            target:nil action:NULL] autorelease];
+
+    // Conf the toolbars
+    if ([self toolbarItems] == nil) {
+        [[self readonlyToolbarItems] addObjectsFromArray:
+                [NSArray arrayWithObjects:backItem, spacerItem, addItem,
+                    spacerItem, actionItem, spacerItem, trashItem, spacerItem,
+                    forwardItem, nil]];
+        [[self editingToolbarItems] addObjectsFromArray:
+                [NSArray arrayWithObjects:spacerItem, addItem, spacerItem,
+                    spacerItem, trashItem, nil]];
+        [self setToolbarItems:[self readonlyToolbarItems]];
+        [[self navigationController] setToolbarHidden:NO];
+    }
+    return navItem;
+}
+
+#pragma mark -
 #pragma mark EditableCellTableViewController (Overridable)
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
@@ -76,7 +127,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (Public)
 
-@synthesize parentController = _parentController;
+@synthesize parentController = _parentController, shoppingList = _shoppingList;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList
 {
@@ -103,7 +154,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setAllowsMovableCells:YES];
         [self setParentController:parentController];
-
+        [self setShoppingList:shoppingList];
         if (shoppingList == nil) {
             // We need to create a brand-new shopping list!
             TSAlertView *alertView =
@@ -138,6 +189,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [[[self resultsController] fetchRequest] setPredicate:predicate];
     [self fetchUpdateAndReload];
     [parent fetchUpdateAndReload];
+    [self navigationItem];
 }
 
 #pragma mark -
