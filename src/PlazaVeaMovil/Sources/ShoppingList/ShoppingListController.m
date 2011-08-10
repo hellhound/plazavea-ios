@@ -5,10 +5,11 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Controllers/EditableCellTableViewController.h"
+#import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
-#import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
+#import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/ShoppingListsController.h"
 #import "ShoppingList/ShoppingListController.h"
 
@@ -158,7 +159,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         if (shoppingList == nil) {
             // We need to create a brand-new shopping list!
             TSAlertView *alertView =
-                    [[self alertViewForNewShoppingList] retain];
+                [[TSAlertView alertViewForNewShoppingList:self] retain];
 
             // delay for 0.1 seconds
             [self performSelector:@selector(showAlertViewForNewShoppingList:)
@@ -187,7 +188,6 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // And lastly, set the predicate to the fetch request of the results
     // controller 
     [[[self resultsController] fetchRequest] setPredicate:predicate];
-    [self fetchUpdateAndReload];
     [parent fetchUpdateAndReload];
     [self navigationItem];
 }

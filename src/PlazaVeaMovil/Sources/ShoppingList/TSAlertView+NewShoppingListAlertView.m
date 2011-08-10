@@ -3,21 +3,19 @@
 
 #import <TSAlertView/TSAlertView.h>
 
-#import "Common/Controllers/EditableTableViewController.h"
 #import "ShoppingList/Constants.h"
-#import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
 
-@implementation EditableTableViewController (NewShoppingListAlertView)
+@implementation TSAlertView (NewShoppingListAlertView)
 
 #pragma mark -
-#pragma mark EditableTableViewController (NewShoppingListAlertView)
+#pragma mark TSAlertView (NewShoppingListAlertView)
 
-- (TSAlertView *)alertViewForNewShoppingList
++ (TSAlertView *)alertViewForNewShoppingList:(id<TSAlertViewDelegate>)delegate
 {
     TSAlertView *alertView = [[[TSAlertView alloc] initWithTitle:
                 NSLocalizedString(kShoppingListNewTitle, nil)
             message:nil
-            delegate:self cancelButtonTitle:
+            delegate:delegate cancelButtonTitle:
                 NSLocalizedString(kShoppingListNewCancelButtonTitle, nil)
             otherButtonTitles:
                 NSLocalizedString(kShoppingListNewOkButtonTitle, nil),

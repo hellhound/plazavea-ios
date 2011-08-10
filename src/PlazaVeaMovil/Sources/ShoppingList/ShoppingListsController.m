@@ -5,11 +5,12 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Constants.h"
+#import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
-#import "ShoppingList/EditableTableViewController+NewShoppingListAlertView.h"
+#import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
@@ -127,7 +128,7 @@
 - (void)addShoppingListHandler:(UIControl *)control
 {
     if ([self isEditing]) {
-        TSAlertView *alertView = [self alertViewForNewShoppingList];
+        TSAlertView *alertView = [TSAlertView alertViewForNewShoppingList:self];
 
         [alertView show];
     } else {

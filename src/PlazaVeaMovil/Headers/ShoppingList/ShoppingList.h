@@ -11,6 +11,8 @@
 
 + (id)shoppingListWithName:(NSString *)name
   resultsController:(NSFetchedResultsController *)resultsController;
+
+- (NSString *)formattedLastModiciationDate;
 @end
 
 @interface ShoppingItem: NSManagedObject <ReorderingManagedModel>

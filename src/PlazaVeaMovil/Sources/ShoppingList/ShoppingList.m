@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingList.h"
 
@@ -43,6 +45,13 @@
     [newList setName:name];
     [newList setOrder:[NSNumber numberWithInteger:order]];
     return newList;
+}
+
+- (NSString *)formattedLastModiciationDate
+{
+    return [[(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] dateFormatter]
+                stringFromDate:[self lastModificationDate]];
 }
 @end
 
