@@ -30,6 +30,7 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        [self setTitle:NSLocalizedString(kShoppingListTitle, nil)];
         [self setAllowsMovableCells:YES];
         [self setCellStyle:UITableViewCellStyleSubtitle];
     }
@@ -41,19 +42,16 @@
     UINavigationItem *navItem = [super navigationItem];
 
     // TODO We should use titleView instead of title in the navigationItem
-    // Conf the title
-    [navItem setTitle:NSLocalizedString(kShoppingListTitle, nil)];
-
-    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-            target:nil action:NULL] autorelease];
-    // Conf the add-item button
-    UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-            target:self action:@selector(addShoppingListHandler:)] autorelease];
-
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
+        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                target:nil action:NULL] autorelease];
+        // Conf the add-item button
+        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                target:self action:
+                    @selector(addShoppingListHandler:)] autorelease];
         NSArray *toolbarItems =
                 [NSArray arrayWithObjects:spacerItem, addItem, nil];
 

@@ -58,36 +58,33 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     UINavigationItem *navItem = [super navigationItem];
 
     // TODO We should use titleView instead of title in the navigationItem
-    // Conf the title
-    [navItem setTitle:[_shoppingList name]];
-
-    // Conf a spacer
-    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-            target:nil action:NULL] autorelease];
-    // Conf the back button
-    UIBarButtonItem *backItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
-            target:nil action:NULL] autorelease];
-    // Conf the add button
-    UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-            target:nil action:NULL] autorelease];
-    // Conf the action button
-    UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-            target:nil action:NULL] autorelease];
-    // Conf the rewind trash button
-    UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-            target:nil action:NULL] autorelease];
-    // Conf the rewind button
-    UIBarButtonItem *forwardItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-            target:nil action:NULL] autorelease];
-
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
+        // Conf a spacer
+        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                target:nil action:NULL] autorelease];
+        // Conf the back button
+        UIBarButtonItem *backItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                target:nil action:NULL] autorelease];
+        // Conf the add button
+        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                target:nil action:NULL] autorelease];
+        // Conf the action button
+        UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                target:nil action:NULL] autorelease];
+        // Conf the rewind trash button
+        UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                target:nil action:NULL] autorelease];
+        // Conf the rewind button
+        UIBarButtonItem *forwardItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                target:nil action:NULL] autorelease];
+
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:backItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,
@@ -170,12 +167,21 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     return self;
 }
 
+- (void)setShoppingList:(ShoppingList *)shoppingList
+{
+    if (_shoppingList != shoppingList) {
+        [_shoppingList autorelease];
+        _shoppingList = [shoppingList retain];
+        [self setTitle:[shoppingList name]];
+    }
+}
+
 - (void)addShoppingList:(NSString *)name
 {
     ShoppingListsController *parent = [self parentController];
     NSFetchedResultsController *resultsController = [parent resultsController];
-    ShoppingList *shoppingList = [ShoppingList shoppingListWithName:name
-            resultsController:resultsController];
+    [self setShoppingList:[ShoppingList shoppingListWithName:name
+            resultsController:resultsController]];
 
     // First, save the context
     [self saveContext];
@@ -183,13 +189,12 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // Now, create a new predicate for the new shopping list
     NSPredicate *predicate =
             [ShoppingListController predicateForItemsWithShoppingList:
-                shoppingList];
+                _shoppingList];
 
     // And lastly, set the predicate to the fetch request of the results
     // controller 
     [[[self resultsController] fetchRequest] setPredicate:predicate];
     [parent fetchUpdateAndReload];
-    [self navigationItem];
 }
 
 #pragma mark -
