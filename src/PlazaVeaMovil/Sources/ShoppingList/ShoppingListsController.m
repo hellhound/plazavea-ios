@@ -9,7 +9,7 @@
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
-#import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/Models.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"

@@ -4,7 +4,7 @@
 
 #import <TSAlertView/TSAlertView.h>
 
-#import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/Models.h"
 #import "ShoppingList/ShoppingListController.h"
 
 @interface ShoppingListController (TSAlertViewDelegate)

@@ -141,7 +141,7 @@
 }
 
 #pragma mark -
-#pragma mark <EntityDescription>
+#pragma mark <ManagedObject>
 
 + (void)    createEntities:(NSSet **)entities
     localizationDictionary:(NSDictionary **)localizationDictionary

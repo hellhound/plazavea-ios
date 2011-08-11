@@ -1,7 +1,7 @@
 // Shopping-list module's constants
 #import <Foundation/Foundation.h>
 
-extern NSString *const kOrderField;
+#import "Common/Models/Constants.h"
 
 // ShoppingList model's constants
 

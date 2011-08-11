@@ -19,7 +19,8 @@
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
-		2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C33D33413E73858003EDEAB /* ShoppingList.m */; };
+		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
+		2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */; };
 		2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */; };
 		2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */; };
 		2C691ED213F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */; };
@@ -31,7 +32,7 @@
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */; };
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
-		2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C864B1F13E729BF00D46066 /* EntityDescription.m */; };
+		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
@@ -44,6 +45,8 @@
 		2CE7045E13DE6B4500BB2279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045C13DE6B4500BB2279 /* main.m */; };
 		2CE72FB813EC0BD600DDF9C6 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */; };
 		2CE9779013F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */; };
+		2CF302C013F33BE500D9A95F /* NSManagedObjectContext+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */; };
+		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
 		3206A0F794A6D7A3F259DBF5 /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3206A0F794A6D7A3F259DBF4 /* libextThree20JSON+SBJSON.a */; };
 		320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
@@ -262,10 +265,11 @@
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
-		2C33D33413E73858003EDEAB /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		2C4F5BE013F2E616007B3ADE /* ManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObject.m; sourceTree = "<group>"; };
+		2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReorderingManagedObject.m; sourceTree = "<group>"; };
 		2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
 		2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = ../../TSAlertView/TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
@@ -277,7 +281,7 @@
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListsController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
-		2C864B1F13E729BF00D46066 /* EntityDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDescription.m; sourceTree = "<group>"; };
+		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
@@ -290,6 +294,8 @@
 		2CE7045C13DE6B4500BB2279 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
 		2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingListAlertView.m"; sourceTree = "<group>"; };
+		2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Additions.m"; sourceTree = "<group>"; };
+		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../../Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = ../../Three20/src/extThree20JSON/extThree20JSON.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../../Three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -403,6 +409,16 @@
 			path = ../Sources;
 			sourceTree = "<group>";
 		};
+		2C4F5BDF13F2E616007B3ADE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CFE570913F3691F003F9601 /* Constants.m */,
+				2C4F5BE013F2E616007B3ADE /* ManagedObject.m */,
+				2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2C691ED613F04BEC00E1EFA5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,9 +446,8 @@
 				2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */,
 				2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */,
 				2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */,
+				2CC21AB513F3468F008BE6DB /* Models.m */,
 				2C1D792813E87C58000FD96C /* Constants.m */,
-				2C33D33413E73858003EDEAB /* ShoppingList.m */,
-				2C864B1F13E729BF00D46066 /* EntityDescription.m */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -440,9 +455,10 @@
 		2CD9933813E65DA400879980 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2CE52FB713EBC19A00A5D7FE /* Controllers */,
-				2C25BD3313E8F88F00A4311B /* Views */,
 				2CD9933913E65DA400879980 /* Additions */,
+				2CE52FB713EBC19A00A5D7FE /* Controllers */,
+				2C4F5BDF13F2E616007B3ADE /* Models */,
+				2C25BD3313E8F88F00A4311B /* Views */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -450,6 +466,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */,
 				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
 				2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */,
@@ -819,8 +836,6 @@
 				2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */,
 				2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */,
 				2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */,
-				2C864B2013E729BF00D46066 /* EntityDescription.m in Sources */,
-				2C33D33513E73858003EDEAB /* ShoppingList.m in Sources */,
 				2C1D792913E87C58000FD96C /* Constants.m in Sources */,
 				2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */,
 				2CE52FBC13EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m in Sources */,
@@ -839,6 +854,11 @@
 				2CE9779013F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m in Sources */,
 				2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */,
 				2C279D5E13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m in Sources */,
+				2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */,
+				2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */,
+				2CF302C013F33BE500D9A95F /* NSManagedObjectContext+Additions.m in Sources */,
+				2CC21AB613F3468F008BE6DB /* Models.m in Sources */,
+				2CFE570A13F3691F003F9601 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

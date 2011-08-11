@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "Common/Models/ReorderingManagedModel.h"
+#import "Common/Models/ReorderingManagedObject.h"
 #import "Common/Controllers/EditableTableViewController.h"
 
 @interface EditableTableViewController (UITableViewDataSource)
@@ -64,9 +64,9 @@
    moveRowAtIndexPath:(NSIndexPath *)fromIndex
           toIndexPath:(NSIndexPath *)toIndex
 {
-    NSManagedObject<ReorderingManagedModel> *from =
+    NSManagedObject<ReorderingManagedObject> *from =
             [_resultsController objectAtIndexPath:fromIndex];
-    NSManagedObject<ReorderingManagedModel> *to =
+    NSManagedObject<ReorderingManagedObject> *to =
             [_resultsController objectAtIndexPath:toIndex];
     NSNumber *fromOrder = [from order];
     NSNumber *toOrder = [to order];

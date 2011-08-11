@@ -1,21 +1,22 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "Common/Models/ReorderingManagedModel.h"
+#import "Common/Models/ManagedObject.h"
+#import "Common/Models/ReorderingManagedObject.h"
 
-@interface ShoppingList: NSManagedObject <ReorderingManagedModel>
+@interface ShoppingList: ReorderingManagedObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDate *lastModificationDate;
 @property (nonatomic, retain) NSSet *items;
 
 + (id)shoppingListWithName:(NSString *)name
-  resultsController:(NSFetchedResultsController *)resultsController;
+         resultsController:(NSFetchedResultsController *)resultsController;
 
 - (NSString *)formattedLastModiciationDate;
 @end
 
-@interface ShoppingItem: NSManagedObject <ReorderingManagedModel>
+@interface ShoppingItem: ReorderingManagedObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *quantity;
@@ -23,7 +24,7 @@
 @property (nonatomic, retain) ShoppingList *list;
 @end
 
-@interface ShoppingHistoryEntry: NSManagedObject
+@interface ShoppingHistoryEntry: ManagedObject
 
 @property (nonatomic, retain) NSString *name;
 @end

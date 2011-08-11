@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 
 #import "Application/AppDelegate.h"
+#import "ShoppingList/Models.h"
 #import "ShoppingList/ShoppingListHeaderView.h"
 
 static CGFloat const kStandardWidth = 320.;

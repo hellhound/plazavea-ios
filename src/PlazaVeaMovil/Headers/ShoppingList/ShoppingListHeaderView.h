@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/Models.h"
 
 @interface ShoppingListHeaderView: UIView
 {

@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "Common/Models/ReorderingManagedModel.h"
+#import "Common/Models/ReorderingManagedObject.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 
 @implementation EditableCellTableViewController
@@ -38,7 +38,7 @@
 }
 
 - (UITableViewCell *)cellForObject:
-        (NSManagedObject<ReorderingManagedModel> *)object
+        (NSManagedObject<ReorderingManagedObject> *)object
                      withCellClass:(Class)cellClass
                          reuseCell:(EditableTableViewCell *)cell
                    reuseIdentifier:(NSString *)reuseIdentifier

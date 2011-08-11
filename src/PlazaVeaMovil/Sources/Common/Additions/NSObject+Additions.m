@@ -32,18 +32,18 @@
     NSData *packagedClasses = [self dataWithClassesCArray];
     Class *classes = (Class *)[packagedClasses bytes];
     NSUInteger length = [packagedClasses length] / sizeof(Class);
-    NSMutableSet *classesThatCormform = [NSMutableSet setWithCapacity:length];
+    NSMutableSet *classesThatConform = [NSMutableSet setWithCapacity:length];
     NSUInteger i;
 
     for (i = 0; i < length; i++) {
         Class class = classes[i];
         
-        // Doesn't always work! objc_getClassList() includes Class objects
+        // Doesn't always work! class_respondsToSelector includes Class objects
         // that aren't NSObject subclasses
-        //if ([class conformsToProtocol:protocol])
-        if (class_conformsToProtocol(class, protocol))
-            [classesThatCormform addObject:class];
+        if (class_respondsToSelector(class, @selector(conformsToProtocol:)) &&
+                [class conformsToProtocol:protocol])
+            [classesThatConform addObject:class];
     }
-    return classesThatCormform;
+    return classesThatConform;
 }
 @end

@@ -4,7 +4,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Controllers/EditableCellTableViewController.h"
-#import "ShoppingList/ShoppingList.h"
+#import "ShoppingList/Models.h"
 
 @interface ShoppingListsController: EditableCellTableViewController
     <TSAlertViewDelegate>

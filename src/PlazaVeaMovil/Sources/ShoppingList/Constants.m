@@ -3,8 +3,6 @@
 
 #import "ShoppingList/Constants.h"
 
-NSString *const kOrderField = @"order";
-
 // ShoppingList model's constants
 
 NSString *const kShoppingListEntity = @"ShoppingList";
