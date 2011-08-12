@@ -16,7 +16,9 @@
 static NSPredicate *kShoppingItemsPredicateTemplate;
 static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
-@interface ShoppingListController (Private)
+@interface ShoppingListController ()
+
+@property (nonatomic, retain) id delegate;
 
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
 @end
@@ -45,7 +47,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)dealloc
 {
-    _parentController = nil;
+    _delegate = nil;
     [_shoppingList release];
     [super dealloc];
 }
@@ -116,6 +118,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (Private)
 
+@synthesize delegate = _delegate;
+
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView
 {
     [alertView show];
@@ -125,7 +129,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (Public)
 
-@synthesize parentController = _parentController, shoppingList = _shoppingList;
+@synthesize shoppingList = _shoppingList;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList
 {
@@ -135,8 +139,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                 forKey:kShoppingListVariableKey]];
 }
 
-- (id)initWithShoppingList:(ShoppingList *)shoppingList
-          parentController:(ShoppingListsController *)parentController
+- (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
@@ -150,8 +153,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingItemEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        [self setDelegate:delegate];
         [self setAllowsMovableCells:YES];
-        [self setParentController:parentController];
         [self setShoppingList:shoppingList];
         if (shoppingList == nil) {
             // We need to create a brand-new shopping list!
@@ -178,13 +181,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)addShoppingList:(NSString *)name
 {
-    ShoppingListsController *parent = [self parentController];
-    NSFetchedResultsController *resultsController = [parent resultsController];
-    [self setShoppingList:[ShoppingList shoppingListWithName:name
-            resultsController:resultsController]];
-
-    // First, save the context
-    [self saveContext];
+    ShoppingList *list = [_delegate shoppingListController:self
+            didAddShoppingListWithName:name];
+    // This should take care of the title refreshing
+    [self setShoppingList:list];
 
     // Now, create a new predicate for the new shopping list
     NSPredicate *predicate =
@@ -194,7 +194,6 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // And lastly, set the predicate to the fetch request of the results
     // controller 
     [[[self resultsController] fetchRequest] setPredicate:predicate];
-    [parent fetchUpdateAndReload];
 }
 
 #pragma mark -

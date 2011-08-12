@@ -5,21 +5,18 @@
 
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/Models.h"
-#import "ShoppingList/ShoppingListsController.h"
 
 @interface ShoppingListController: EditableCellTableViewController
     <TSAlertViewDelegate>
 {
-    ShoppingListsController *_parentController;
+    id _delegate;
     ShoppingList *_shoppingList;
 }
-@property (nonatomic, assign) ShoppingListsController *parentController;
 @property (nonatomic, retain) ShoppingList *shoppingList;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 
-- (id)initWithShoppingList:(ShoppingList *)shoppingList
-          parentController:(ShoppingListsController *)parentController;
+- (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
 - (void)addShoppingList:(NSString *)name;
 @end
 
@@ -27,4 +24,11 @@
 
 - (void)addShoppingListHandler:(UIControl *)control;
 - (void)addShoppingItemHandler:(UIControl *)control;
+@end
+
+@protocol ShoppingListControllerDelegate
+
+- (ShoppingList *)shoppingListController:
+    (ShoppingListController *)shoppingListController
+              didAddShoppingListWithName:(NSString *)name;
 @end

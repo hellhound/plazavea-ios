@@ -5,9 +5,10 @@
 
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/ShoppingListController.h"
 
 @interface ShoppingListsController: EditableCellTableViewController
-    <TSAlertViewDelegate>
+    <TSAlertViewDelegate, ShoppingListControllerDelegate>
 
 - (void)addShoppingList:(NSString *)name;
 @end
