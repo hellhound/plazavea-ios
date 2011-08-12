@@ -136,4 +136,20 @@
                 animated:YES];
     }
 }
+
+#pragma mark -
+#pragma mark <ShoppingListControllerDelegate>
+
+- (ShoppingList *)shoppingListController:
+    (ShoppingListController *)shoppingListController
+              didAddShoppingListWithName:(NSString *)name
+{
+    ShoppingList *list = [ShoppingList shoppingListWithName:name
+        resultsController:[self resultsController]];
+
+    // First, save the context
+    [self saveContext];
+    [self fetchUpdateAndReload];
+    return list;
+}
 @end

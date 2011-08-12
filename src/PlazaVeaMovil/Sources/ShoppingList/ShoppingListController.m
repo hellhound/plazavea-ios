@@ -10,7 +10,6 @@
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
-#import "ShoppingList/ShoppingListsController.h"
 #import "ShoppingList/ShoppingListController.h"
 
 static NSPredicate *kShoppingItemsPredicateTemplate;
