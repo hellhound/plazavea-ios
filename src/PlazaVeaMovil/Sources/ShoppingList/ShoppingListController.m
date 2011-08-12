@@ -20,6 +20,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 @property (nonatomic, retain) id delegate;
 
++ (void)initializePredicateTemplates;
+
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
 @end
 
@@ -30,19 +32,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 + (void)initialize
 {
-    if (self == [ShoppingListController class]) {
-        NSExpression *lhs =
-                [NSExpression expressionForKeyPath:kShoppingItemList];
-        NSExpression *rhs =
-                [NSExpression expressionForVariable:kShoppingListVariableKey];
-
-        kShoppingItemsPredicateTemplate = [[NSComparisonPredicate
-                predicateWithLeftExpression:lhs
-                rightExpression:rhs
-                modifier:NSDirectPredicateModifier
-                type:NSEqualToPredicateOperatorType
-                options:0] retain];
-    }
+    if (self == [ShoppingListController class])
+        [self initializePredicateTemplates];
 }
 
 - (void)dealloc
@@ -119,6 +110,19 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark ShoppingListController (Private)
 
 @synthesize delegate = _delegate;
+
++ (void)initializePredicateTemplates
+{
+    NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingItemList];
+    NSExpression *rhs = [NSExpression expressionForVariable:kShoppingListVariableKey];
+
+    kShoppingItemsPredicateTemplate = [[NSComparisonPredicate
+            predicateWithLeftExpression:lhs
+            rightExpression:rhs
+            modifier:NSDirectPredicateModifier
+            type:NSEqualToPredicateOperatorType
+            options:0] retain];
+}
 
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView
 {
