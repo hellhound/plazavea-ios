@@ -37,6 +37,9 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark UIView
+
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
