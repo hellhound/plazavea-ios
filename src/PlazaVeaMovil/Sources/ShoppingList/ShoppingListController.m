@@ -15,9 +15,7 @@
 static NSPredicate *kShoppingItemsPredicateTemplate;
 static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
-@interface ShoppingListController ()
-
-@property (nonatomic, retain) id delegate;
+@interface ShoppingListController (Private)
 
 + (void)initializePredicateTemplates;
 
@@ -37,7 +35,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)dealloc
 {
-    _delegate = nil;
+    _delegateForAdding = nil;
+    _delegateForInsertingItem = nil;
     [_shoppingList release];
     [super dealloc];
 }
@@ -108,12 +107,14 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (Private)
 
-@synthesize delegate = _delegate;
+@synthesize delegateForAdding = _delegateForAdding,
+    delegateForInsertingItem = _delegateForInsertingItem;
 
 + (void)initializePredicateTemplates
 {
     NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingItemList];
-    NSExpression *rhs = [NSExpression expressionForVariable:kShoppingListVariableKey];
+    NSExpression *rhs =
+            [NSExpression expressionForVariable:kShoppingListVariableKey];
 
     kShoppingItemsPredicateTemplate = [[NSComparisonPredicate
             predicateWithLeftExpression:lhs
@@ -142,7 +143,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                 forKey:kShoppingListVariableKey]];
 }
 
-- (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate
+- (id)initWithShoppingList:(ShoppingList *)shoppingList
+         delegateForAdding:(id)delegate
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
@@ -156,7 +158,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingItemEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [self setDelegate:delegate];
+        [self setDelegateForAdding:delegate];
         [self setAllowsMovableCells:YES];
         [self setShoppingList:shoppingList];
         if (shoppingList == nil) {
@@ -184,19 +186,22 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)addShoppingList:(NSString *)name
 {
-    ShoppingList *list = [_delegate shoppingListController:self
-            didAddShoppingListWithName:name];
-    // This should take care of the title refreshing
-    [self setShoppingList:list];
+    if ([_delegateForAdding respondsToSelector:
+            @selector(shoppingListController:didAddShoppingListWithName:)]) {
+        ShoppingList *list = [_delegateForAdding shoppingListController:self
+                didAddShoppingListWithName:name];
+        // This should take care of the title refreshing
+        [self setShoppingList:list];
 
-    // Now, create a new predicate for the new shopping list
-    NSPredicate *predicate =
-            [ShoppingListController predicateForItemsWithShoppingList:
-                _shoppingList];
+        // Now, create a new predicate for the new shopping list
+        NSPredicate *predicate =
+                [ShoppingListController predicateForItemsWithShoppingList:
+                    _shoppingList];
 
-    // And lastly, set the predicate to the fetch request of the results
-    // controller 
-    [[[self resultsController] fetchRequest] setPredicate:predicate];
+        // And lastly, set the predicate to the fetch request of the results
+        // controller 
+        [[[self resultsController] fetchRequest] setPredicate:predicate];
+    }
 }
 
 #pragma mark -
