@@ -47,9 +47,19 @@ NSString *const kShoppingListNewOkButtonTitle = @"Ok";
 NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
 
+// TSAlertView's constants for shopping item creation
+NSString *const kShoppingItemNewTitle = @"Nuevo ítem";
+// NSLocalizedString(@"Nuevo ítem", nil)
+NSString *const kShoppingItemNewPlaceholder = @"Nombre del nuevo ítem";
+// NSLocalizedString(@"Nombre del nuevo ítem", nil)
+NSString *const kShoppingItemNewOkButtonTitle = @"Ok";
+// NSLocalizedString(@"Ok", nil)
+NSString *const kShoppingItemNewCancelButtonTitle = @"Cancelar";
+// NSLocalizedString(@"Cancelar", nil)
+
 // ShoppingListController's constants
 
-const NSTimeInterval kNewShoppingListAlertViewDelay = .1;
+const NSTimeInterval kShoppingListAlertViewDelay = .25;
 
 // HistoryEntryControlller's contstants
 

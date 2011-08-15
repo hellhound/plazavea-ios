@@ -35,15 +35,26 @@ extern NSString *const kShoppingListCacheName;
 // Default detail text
 extern NSString *const kShoppingListDefaultDetailText;
 
+typedef enum {
+    kShoppingListAlertViewNewList,
+    kShoppingListAlertViewNewItem
+} ShoppingListAlertViewType;
+
 // TSAlertView's constants for shopping list creation
 extern NSString *const kShoppingListNewTitle;
 extern NSString *const kShoppingListNewPlaceholder;
 extern NSString *const kShoppingListNewOkButtonTitle;
 extern NSString *const kShoppingListNewCancelButtonTitle;
 
+// TSAlertView's constants for shopping item creation
+extern NSString *const kShoppingItemNewTitle;
+extern NSString *const kShoppingItemNewPlaceholder;
+extern NSString *const kShoppingItemNewOkButtonTitle;
+extern NSString *const kShoppingItemNewCancelButtonTitle;
+
 // ShoppingListController's constants
 
-extern const NSTimeInterval kNewShoppingListAlertViewDelay;
+extern const NSTimeInterval kShoppingListAlertViewDelay;
 
 // HistoryEntryControlller's contstants
 

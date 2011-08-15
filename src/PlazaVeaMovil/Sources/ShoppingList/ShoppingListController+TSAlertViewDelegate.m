@@ -4,6 +4,7 @@
 
 #import <TSAlertView/TSAlertView.h>
 
+#import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/ShoppingListController.h"
 
@@ -20,10 +21,17 @@
 {
     NSInteger cancelButtonIndex = [alertView cancelButtonIndex];
 
-    if (buttonIndex == cancelButtonIndex) {
-        [[self navigationController] popToRootViewControllerAnimated:YES];
-    } else {
-        [self addShoppingList:[[alertView inputTextField] text]];
+    switch ([alertView tag]) {
+        case kShoppingListAlertViewNewList:
+            if (buttonIndex == cancelButtonIndex) {
+                [[self navigationController]
+                        popToRootViewControllerAnimated:YES];
+            } else {
+                [self addShoppingList:[[alertView inputTextField] text]];
+            }
+            break;
+        case kShoppingListAlertViewNewItem:
+            break;
     }
 }
 @end

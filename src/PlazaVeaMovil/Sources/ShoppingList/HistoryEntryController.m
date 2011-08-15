@@ -17,6 +17,8 @@ static NSString *kNameVariableKey = @"NAME";
 @interface HistoryEntryController ()
 
 // @private
+@property (nonatomic, readonly)
+    NSFetchedResultsController *filteredResultsController;
 @property (nonatomic, retain) UISearchDisplayController *searchController;
 
 + (void)initializePredicateTemplates;
@@ -33,25 +35,9 @@ static NSString *kNameVariableKey = @"NAME";
         [self initializePredicateTemplates];
 }
 
-- (id)init
-{
-    NSManagedObjectContext *context = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] context];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:
-            [NSSortDescriptor sortDescriptorWithKey:kShoppingHistoryEntryName
-                ascending:YES],
-            nil];
-
-    if ((self = [super initWithStyle:UITableViewStylePlain
-            entityName:kShoppingHistoryEntryEntity predicate:nil
-            sortDescriptors:sortDescriptors inContext:context]) != nil) {
-             [self setTitle:NSLocalizedString(kHistoryEntryTitle, nil)];
-    }
-    return self;
-}
-
 - (void)dealloc
 {
+    _delegate = nil;
     [_filteredResultsController release];
     [_searchController release];
     [super dealloc];
@@ -74,7 +60,7 @@ static NSString *kNameVariableKey = @"NAME";
         // Conf the add button
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:nil action:NULL] autorelease];
+                target:self action:@selector(addHistoryEntry:)] autorelease];
 
         NSArray *toolbarItems =
                 [NSArray arrayWithObjects:spacerItem, addItem, nil];
@@ -118,6 +104,18 @@ static NSString *kNameVariableKey = @"NAME";
 }
 
 #pragma mark -
+#pragma mark EditableTableViewController (Overridable)
+
+- (void)didSelectRowForObject:(ShoppingHistoryEntry *)historyEntry
+                  atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_delegate respondsToSelector:
+            @selector(historyEntryController:historyEntry:)])
+        [_delegate historyEntryController:self historyEntry:historyEntry];
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+#pragma mark -
 #pragma mark EditableCellTableViewController (Overridable)
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
@@ -135,7 +133,8 @@ static NSString *kNameVariableKey = @"NAME";
 #pragma mark -
 #pragma mark HistoryEntryController (Private)
 
-@synthesize searchController = _searchController;
+@synthesize searchController = _searchController,
+    filteredResultsController = _filteredResultsController;
 
 + (void)initializePredicateTemplates
 {
@@ -156,7 +155,7 @@ static NSString *kNameVariableKey = @"NAME";
 #pragma mark -
 #pragma mark HistoryEntryController (Public)
 
-@synthesize filteredResultsController = _filteredResultsController;
+@synthesize delegate = _delegate;
 
 + (NSPredicate *)predicateForEntriesLikeName:(NSString *)name
 {
@@ -165,20 +164,39 @@ static NSString *kNameVariableKey = @"NAME";
                 forKey:kNameVariableKey]];
 }
 
+- (id)initWithDelegate:(id)delegate
+{
+    NSManagedObjectContext *context = [(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] context];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:
+            [NSSortDescriptor sortDescriptorWithKey:kShoppingHistoryEntryName
+                ascending:YES],
+            nil];
+
+    if ((self = [super initWithStyle:UITableViewStylePlain
+            entityName:kShoppingHistoryEntryEntity predicate:nil
+            sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        [self setDelegate:delegate];
+        [self setTitle:NSLocalizedString(kHistoryEntryTitle, nil)];
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark HistoryEntryController (EventHandler)
+
+- (void)addHistoryEntry:(UIControl *)control
+{
+    if ([_delegate respondsToSelector:
+            @selector(historyEntryController:historyEntry:)])
+        // we need to insert a new history entry so historyEntry should be nil
+        [_delegate historyEntryController:self historyEntry:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
+}
 
 #pragma mark -
 #pragma mark HistoryEntryController <UISearchBarDelegate>
 
 #pragma mark -
 #pragma mark HistoryEntryController <UISearchDisplayDelegate>
-
-#pragma mark -
-#pragma mark HistoryEntryController <ShoppingListControllerDelegate>
-
-- (void)shoppingListController:(ShoppingListController *)shoppingListController
-    didAddShoppingItemWithName:(NSString *)name
-{
-}
 @end

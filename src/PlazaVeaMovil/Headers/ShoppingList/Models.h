@@ -22,9 +22,15 @@
 @property (nonatomic, retain) NSString *quantity;
 @property (nonatomic, retain) NSNumber *checked;
 @property (nonatomic, retain) ShoppingList *list;
+
++ (id)shoppingItemWithName:(NSString *)name
+         resultsController:(NSFetchedResultsController *)resultsController;
 @end
 
 @interface ShoppingHistoryEntry: ManagedObject
 
 @property (nonatomic, retain) NSString *name;
+
++ (id)historyEntryWithName:(NSString *)name
+         resultsController:(NSFetchedResultsController *)resultsController;
 @end

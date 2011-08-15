@@ -77,7 +77,7 @@
                 pushViewController:
                     [[[ShoppingListController alloc]
                         initWithShoppingList:shoppingList
-                        delegateForAdding:self] autorelease]
+                        delegate:self] autorelease]
                 animated:YES];
 }
 
@@ -136,7 +136,7 @@
         [[self navigationController]
                 pushViewController:[[[ShoppingListController alloc]
                     initWithShoppingList:nil
-                    delegateForAdding:self] autorelease] animated:YES];
+                    delegate:self] autorelease] animated:YES];
     }
 }
 

@@ -10,6 +10,7 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/HistoryEntryController.h"
 #import "ShoppingList/ShoppingListController.h"
@@ -22,6 +23,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 + (void)initializePredicateTemplates;
 
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
+- (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView;
 @end
 
 @implementation ShoppingListController
@@ -37,8 +39,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)dealloc
 {
-    _delegateForAdding = nil;
-    _delegateForInsertingItem = nil;
+    [[self navigationController] setDelegate:nil];
+    _delegate = nil;
     [_shoppingList release];
     [super dealloc];
 }
@@ -53,6 +55,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
+        // Set self as the navigation controller delegate
+        [[self navigationController] setDelegate:self];
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -109,9 +113,6 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (Private)
 
-@synthesize delegateForAdding = _delegateForAdding,
-    delegateForInsertingItem = _delegateForInsertingItem;
-
 + (void)initializePredicateTemplates
 {
     NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingItemList];
@@ -132,10 +133,16 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [alertView autorelease];
 }
 
+- (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView
+{
+    [alertView show];
+    [alertView autorelease];
+}
+
 #pragma mark -
 #pragma mark ShoppingListController (Public)
 
-@synthesize shoppingList = _shoppingList;
+@synthesize delegate = _delegate, shoppingList = _shoppingList;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList
 {
@@ -145,7 +152,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 }
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList
-         delegateForAdding:(id)delegate
+                  delegate:(id)delegate
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
@@ -159,7 +166,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingItemEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [self setDelegateForAdding:delegate];
+        [self setDelegate:delegate];
         [self setAllowsMovableCells:YES];
         [self setShoppingList:shoppingList];
         if (shoppingList == nil) {
@@ -170,7 +177,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             // delay for 0.1 seconds
             [self performSelector:@selector(showAlertViewForNewShoppingList:)
                     withObject:alertView
-                    afterDelay:kNewShoppingListAlertViewDelay];
+                    afterDelay:kShoppingListAlertViewDelay];
         }
     }
     return self;
@@ -187,9 +194,9 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)addShoppingList:(NSString *)name
 {
-    if ([_delegateForAdding respondsToSelector:
+    if ([_delegate respondsToSelector:
             @selector(shoppingListController:didAddShoppingListWithName:)]) {
-        ShoppingList *list = [_delegateForAdding shoppingListController:self
+        ShoppingList *list = [_delegate shoppingListController:self
                 didAddShoppingListWithName:name];
         // This should take care of the title refreshing
         [self setShoppingList:list];
@@ -215,6 +222,22 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 - (void)addItemHandler:(UIControl *)control
 {
     [[self navigationController] pushViewController:
-            [[[HistoryEntryController alloc] init] autorelease] animated:YES];
+            [[[HistoryEntryController alloc]
+                initWithDelegate:self] autorelease] animated:YES];
+}
+
+#pragma mark -
+#pragma mark <HistoryEntryControllerDelegate>
+
+- (void)historyEntryController:(HistoryEntryController *)historyEntryController
+                  historyEntry:(ShoppingHistoryEntry *)historyEntry
+{
+    // We need to create a brand-new item for this list!
+    TSAlertView *alertView =
+            [[TSAlertView alertViewForNewShoppingItem:self] retain];
+
+    // delay for 0.1 seconds
+    [self performSelector:@selector(showAlertViewForNewShoppingItem:)
+            withObject:alertView afterDelay:kShoppingListAlertViewDelay];
 }
 @end

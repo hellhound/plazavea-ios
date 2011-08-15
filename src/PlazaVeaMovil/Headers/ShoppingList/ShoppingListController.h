@@ -5,6 +5,7 @@
 
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/HistoryEntryController.h"
 
 @class ShoppingListController;
 
@@ -14,27 +15,21 @@
 - (ShoppingList *)shoppingListController:
     (ShoppingListController *)shoppingListController
               didAddShoppingListWithName:(NSString *)name;
-- (void)shoppingListController:(ShoppingListController *)shoppingListController
-    didAddShoppingItemWithName:(NSString *)name;
 @end
 
 @interface ShoppingListController: EditableCellTableViewController
-    <TSAlertViewDelegate>
+    <UINavigationControllerDelegate, TSAlertViewDelegate,
+    HistoryEntryControllerDelegate>
 {
-    id<ShoppingListControllerDelegate> _delegateForAdding;
-    id<ShoppingListControllerDelegate> _delegateForInsertingItem;
+    id<ShoppingListControllerDelegate> _delegate;
     ShoppingList *_shoppingList;
 }
 @property (nonatomic, retain) ShoppingList *shoppingList;
-@property (nonatomic,
-        assign) id<ShoppingListControllerDelegate> delegateForAdding;
-@property (nonatomic,
-        assign) id<ShoppingListControllerDelegate> delegateForInsertingItem;
+@property (nonatomic, assign) id<ShoppingListControllerDelegate> delegate;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 
-- (id)initWithShoppingList:(ShoppingList *)shoppingList
-         delegateForAdding:(id)delegate;
+- (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
 - (void)addShoppingList:(NSString *)name;
 @end
 

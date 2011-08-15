@@ -85,7 +85,7 @@ static NSRelationshipDescription *kListRelationship;
 }
 
 #pragma mark -
-#pragma mark ShoppingList
+#pragma mark ShoppingList (Public)
 
 // primitives
 @dynamic primitiveLastModificationDate;
@@ -176,9 +176,19 @@ static NSRelationshipDescription *kListRelationship;
 }
 
 #pragma mark -
-#pragma mark ShoppingItem
+#pragma mark ShoppingItem (Public)
 
 @dynamic name, quantity, order, checked, list;
+
++ (id)shoppingItemWithName:(NSString *)name
+         resultsController:(NSFetchedResultsController *)resultsController
+{
+    ShoppingItem *newItem =
+            [self orderedObjectWithResultsController:resultsController];
+
+    [newItem setName:name];
+    return newItem;
+}
 @end
 
 @implementation ShoppingHistoryEntry
@@ -205,4 +215,25 @@ static NSRelationshipDescription *kListRelationship;
 #pragma mark ShoppingHistoryEntry (Public)
 
 @dynamic name;
+
++ (id)historyEntryWithName:(NSString *)name
+         resultsController:(NSFetchedResultsController *)resultsController
+{
+    NSPredicate *predicate =
+            [NSPredicate predicateWithFormat:@"name == %@", name];
+    NSArray *entries = [[resultsController fetchedObjects]
+            filteredArrayUsingPredicate:predicate];
+    
+    if ([entries count] > 0)
+        // We already have it 
+        return [entries objectAtIndex:0];
+
+    ShoppingHistoryEntry *newHistoryEntry =
+            [[[ShoppingHistoryEntry alloc] initWithEntity:[self entity]
+                insertIntoManagedObjectContext:
+                    [resultsController managedObjectContext]] autorelease];
+
+    [newHistoryEntry setName:name];
+    return newHistoryEntry;
+}
 @end

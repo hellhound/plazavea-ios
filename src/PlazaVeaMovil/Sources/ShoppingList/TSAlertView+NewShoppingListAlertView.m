@@ -4,6 +4,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "ShoppingList/Constants.h"
+#import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 
 @implementation TSAlertView (NewShoppingListAlertView)
 
@@ -22,6 +23,7 @@
                  nil] autorelease];
     UITextField *textField = [alertView inputTextField];
 
+    [alertView setTag:kShoppingListAlertViewNewList];
     [alertView setStyle:TSAlertViewStyleInput];
     [textField setPlaceholder:kShoppingListNewPlaceholder];
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
