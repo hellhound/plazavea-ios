@@ -14,6 +14,8 @@
 - (ShoppingList *)shoppingListController:
     (ShoppingListController *)shoppingListController
               didAddShoppingListWithName:(NSString *)name;
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+    didAddShoppingItemWithName:(NSString *)name;
 @end
 
 @interface ShoppingListController: EditableCellTableViewController

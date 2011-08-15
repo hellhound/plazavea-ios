@@ -2,23 +2,36 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Additions/NSNull+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/HistoryEntryController.h"
+
+static NSPredicate *kEntriesPredicateTemplate;
+static NSString *kNameVariableKey = @"NAME";
 
 @interface HistoryEntryController ()
 
 // @private
 @property (nonatomic, retain) UISearchDisplayController *searchController;
+
++ (void)initializePredicateTemplates;
 @end
 
 @implementation HistoryEntryController
 
 #pragma mark -
 #pragma mark NSObject
+
++ (void)initialize
+{
+    if (self == [HistoryEntryController class])
+        [self initializePredicateTemplates];
+}
 
 - (id)init
 {
@@ -122,15 +135,34 @@
 #pragma mark -
 #pragma mark HistoryEntryController (Private)
 
+@synthesize searchController = _searchController;
+
++ (void)initializePredicateTemplates
+{
+    NSExpression *lhs =
+            [NSExpression expressionForKeyPath:kShoppingHistoryEntryName];
+    NSExpression *rhs =
+            [NSExpression expressionForVariable:kNameVariableKey];
+
+    kEntriesPredicateTemplate = [[NSComparisonPredicate
+        predicateWithLeftExpression:lhs
+        rightExpression:rhs
+        modifier:NSDirectPredicateModifier
+        type:NSLikePredicateOperatorType
+        options:NSCaseInsensitivePredicateOption |
+            NSDiacriticInsensitivePredicateOption] retain];
+}
+
 #pragma mark -
 #pragma mark HistoryEntryController (Public)
 
-@synthesize filteredResultsController = _filteredResultsController,
-    searchController = _searchController;
+@synthesize filteredResultsController = _filteredResultsController;
 
-+ (NSPredicate *)predicateForItemsLikeName:(NSString *)name
++ (NSPredicate *)predicateForEntriesLikeName:(NSString *)name
 {
-    return nil;
+    return [kEntriesPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:[NSNull nullOrObject:name]
+                forKey:kNameVariableKey]];
 }
 
 #pragma mark -
@@ -142,4 +174,11 @@
 #pragma mark -
 #pragma mark HistoryEntryController <UISearchDisplayDelegate>
 
+#pragma mark -
+#pragma mark HistoryEntryController <ShoppingListControllerDelegate>
+
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+    didAddShoppingItemWithName:(NSString *)name
+{
+}
 @end

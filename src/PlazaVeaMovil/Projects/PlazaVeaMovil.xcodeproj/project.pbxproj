@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */; };
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
+		2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D9D013F999190039E37C /* NSNull+Additions.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
@@ -256,6 +257,7 @@
 /* Begin PBXFileReference section */
 		2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCellTableViewController.m; sourceTree = "<group>"; };
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
+		2C02D9D013F999190039E37C /* NSNull+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Additions.m"; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2C02D9D013F999190039E37C /* NSNull+Additions.m */,
 				2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */,
 				2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */,
 				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
@@ -867,6 +870,7 @@
 				2CFE570A13F3691F003F9601 /* Constants.m in Sources */,
 				2C2DF1F913F7A24300D4E70B /* NSMutableArray+Additions.m in Sources */,
 				2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */,
+				2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

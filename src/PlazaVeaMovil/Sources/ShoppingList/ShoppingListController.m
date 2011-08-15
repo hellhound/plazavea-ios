@@ -4,6 +4,7 @@
 
 #import <TSAlertView/TSAlertView.h>
 
+#import "Common/Additions/NSNull+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
@@ -139,9 +140,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList
 {
     return [kShoppingItemsPredicateTemplate predicateWithSubstitutionVariables:
-            [NSDictionary dictionaryWithObject:shoppingList == nil ?
-                    (id)[NSNull null] : (id)shoppingList
-                forKey:kShoppingListVariableKey]];
+        [NSDictionary dictionaryWithObject:[NSNull nullOrObject:shoppingList]
+            forKey:kShoppingListVariableKey]];
 }
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList
