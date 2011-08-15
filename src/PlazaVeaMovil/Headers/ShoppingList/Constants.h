@@ -44,3 +44,8 @@ extern NSString *const kShoppingListNewCancelButtonTitle;
 // ShoppingListController's constants
 
 extern const NSTimeInterval kNewShoppingListAlertViewDelay;
+
+// HistoryEntryControlller's contstants
+
+// Administration of history entries
+extern NSString *const kHistoryEntryTitle;

@@ -50,3 +50,9 @@ NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // ShoppingListController's constants
 
 const NSTimeInterval kNewShoppingListAlertViewDelay = .1;
+
+// HistoryEntryControlller's contstants
+
+// Administration of history entries
+NSString *const kHistoryEntryTitle = @"Historial de ítems";
+// NSLocalizedString(@"Historial de ítems", nil)

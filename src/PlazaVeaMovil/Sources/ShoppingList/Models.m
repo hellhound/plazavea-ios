@@ -180,3 +180,29 @@ static NSRelationshipDescription *kListRelationship;
 
 @dynamic name, quantity, order, checked, list;
 @end
+
+@implementation ShoppingHistoryEntry
+
+#pragma mark -
+#pragma mark ManagedObject (Overridable)
+
++ (NSSet *)attributes
+{
+    NSSet *attributes = [super attributes];
+    NSAttributeDescription *name =
+            [[[NSAttributeDescription alloc] init] autorelease];
+
+    [name setName:kShoppingHistoryEntryName];
+    [name setAttributeType:NSStringAttributeType];
+    [name setOptional:NO];
+    [name setIndexed:YES];
+    // Setting the properties into the entity
+    return [attributes setByAddingObjectsFromSet:
+            [NSSet setWithObject:name]];
+}
+
+#pragma mark -
+#pragma mark ShoppingHistoryEntry (Public)
+
+@dynamic name;
+@end

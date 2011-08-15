@@ -215,7 +215,6 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 - (void)addItemHandler:(UIControl *)control
 {
     [[self navigationController] pushViewController:
-            [[[HistoryEntryController alloc]
-                initWithNibName:nil bundle:nil] autorelease] animated:YES];
+            [[[HistoryEntryController alloc] init] autorelease] animated:YES];
 }
 @end
