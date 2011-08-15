@@ -14,6 +14,7 @@
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
 		2C279D5E13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */; };
 		2C2DA9CC13F0BB9E00D80BB0 /* ShoppingListsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */; };
+		2C2DF1F913F7A24300D4E70B /* NSMutableArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */; };
 		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
@@ -32,6 +33,7 @@
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */; };
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
+		2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C844C0013F95F2F000BE222 /* HistoryEntryController.m */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
@@ -259,6 +261,7 @@
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListsController.m; sourceTree = "<group>"; };
+		2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Additions.m"; sourceTree = "<group>"; };
 		2C2F07DC13DE61B3009F60DB /* PlazaVeaMovil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaVeaMovil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2F07E013DE61B3009F60DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2C2F07E213DE61B3009F60DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -281,6 +284,7 @@
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListsController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
+		2C844C0013F95F2F000BE222 /* HistoryEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntryController.m; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2C844C0013F95F2F000BE222 /* HistoryEntryController.m */,
 				2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */,
 				2C317F5913F0C07700BDC645 /* ShoppingListController.m */,
 				2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */,
@@ -466,6 +471,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */,
 				2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */,
 				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
@@ -859,6 +865,8 @@
 				2CF302C013F33BE500D9A95F /* NSManagedObjectContext+Additions.m in Sources */,
 				2CC21AB613F3468F008BE6DB /* Models.m in Sources */,
 				2CFE570A13F3691F003F9601 /* Constants.m in Sources */,
+				2C2DF1F913F7A24300D4E70B /* NSMutableArray+Additions.m in Sources */,
+				2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

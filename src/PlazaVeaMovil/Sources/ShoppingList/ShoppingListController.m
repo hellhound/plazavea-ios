@@ -10,6 +10,7 @@
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
+#import "ShoppingList/HistoryEntryController.h"
 #import "ShoppingList/ShoppingListController.h"
 
 static NSPredicate *kShoppingItemsPredicateTemplate;
@@ -62,7 +63,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // Conf the add button
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:nil action:NULL] autorelease];
+                target:self action:@selector(addItemHandler:)] autorelease];
         // Conf the action button
         UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -211,7 +212,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 {
 }
 
-- (void)addShoppingItemHandler:(UIControl *)control
+- (void)addItemHandler:(UIControl *)control
 {
+    [[self navigationController] pushViewController:
+            [[[HistoryEntryController alloc]
+                initWithNibName:nil bundle:nil] autorelease] animated:YES];
 }
 @end

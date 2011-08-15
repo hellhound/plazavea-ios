@@ -6,9 +6,9 @@
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "ShoppingList/Models.h"
 
-@class shoppingListController;
+@class ShoppingListController;
 
-@protocol ShoppingListControllerDelegate
+@protocol ShoppingListControllerDelegate <NSObject>
 
 @optional
 - (ShoppingList *)shoppingListController:
@@ -39,5 +39,5 @@
 @interface ShoppingListController (EventHandler)
 
 - (void)addShoppingListHandler:(UIControl *)control;
-- (void)addShoppingItemHandler:(UIControl *)control;
+- (void)addItemHandler:(UIControl *)control;
 @end
