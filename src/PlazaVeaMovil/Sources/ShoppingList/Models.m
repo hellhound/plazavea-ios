@@ -232,6 +232,11 @@ static NSRelationshipDescription *kListRelationship;
 
     if (entries == nil)
         return nil;
+
+    NSPredicate *predicate =
+            [NSPredicate predicateWithFormat:@"name == %@", name];
+
+    entries = [entries filteredArrayUsingPredicate:predicate];
     if ([entries count] > 0)
         // We already have it
         return [entries objectAtIndex:0];
