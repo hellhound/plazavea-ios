@@ -48,7 +48,8 @@ extern NSString *const kShoppingListNewCancelButtonTitle;
 
 // TSAlertView's constants for shopping item creation
 extern NSString *const kShoppingItemNewTitle;
-extern NSString *const kShoppingItemNewPlaceholder;
+extern NSString *const kShoppingItemNewNamePlaceholder;
+extern NSString *const kShoppingItemNewQuantityPlaceholder;
 extern NSString *const kShoppingItemNewOkButtonTitle;
 extern NSString *const kShoppingItemNewCancelButtonTitle;
 

@@ -50,8 +50,10 @@ NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // TSAlertView's constants for shopping item creation
 NSString *const kShoppingItemNewTitle = @"Nuevo ítem";
 // NSLocalizedString(@"Nuevo ítem", nil)
-NSString *const kShoppingItemNewPlaceholder = @"Nombre del nuevo ítem";
-// NSLocalizedString(@"Nombre del nuevo ítem", nil)
+NSString *const kShoppingItemNewNamePlaceholder = @"Descripción del ítem";
+// NSLocalizedString(@"Descripción del ítem", nil)
+NSString *const kShoppingItemNewQuantityPlaceholder = @"Cantidad";
+// NSLocalizedString(@"Cantidad", nil)
 NSString *const kShoppingItemNewOkButtonTitle = @"Ok";
 // NSLocalizedString(@"Ok", nil)
 NSString *const kShoppingItemNewCancelButtonTitle = @"Cancelar";

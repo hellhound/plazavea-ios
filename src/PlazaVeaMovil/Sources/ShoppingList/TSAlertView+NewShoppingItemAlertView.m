@@ -21,12 +21,17 @@
             otherButtonTitles:
                 NSLocalizedString(kShoppingItemNewOkButtonTitle, nil),
                  nil] autorelease];
-    UITextField *textField = [alertView inputTextField];
 
     [alertView setTag:kShoppingListAlertViewNewItem];
     [alertView setStyle:TSAlertViewStyleInput];
-    [textField setPlaceholder:kShoppingItemNewPlaceholder];
-    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [alertView addTextFieldWithLabel:kShoppingItemNewQuantityPlaceholder];
+
+    UITextField *nameTextField = [alertView textFieldAtIndex:0];
+    UITextField *quantityTextField = [alertView textFieldAtIndex:1];
+
+    [nameTextField setPlaceholder:kShoppingItemNewNamePlaceholder];
+    [nameTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [quantityTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     return alertView;
 }
 @end
