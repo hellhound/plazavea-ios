@@ -37,6 +37,7 @@
     cell = [self cellForObject:object withCellClass:cellClass
             reuseCell:cell reuseIdentifier:reuseIdentifier
             atIndexPath:indexPath];
+    [self didCreateCell:cell forObject:object atIndexPath:indexPath];
     return cell;
 }
 

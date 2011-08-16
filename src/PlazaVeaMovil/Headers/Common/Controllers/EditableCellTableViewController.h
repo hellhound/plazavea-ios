@@ -16,8 +16,5 @@
 
 @interface EditableCellTableViewController (Overridable)
 
-- (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
-          atIndexPath:(NSIndexPath *)indexPath;
 - (void)didChangeObject:(NSManagedObject *)object value:(NSString *)value;
 @end

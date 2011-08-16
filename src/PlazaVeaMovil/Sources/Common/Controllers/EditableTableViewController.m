@@ -257,6 +257,13 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
     // NO-OP
 }
 
+- (void)didCreateCell:(UITableViewCell *)cell
+            forObject:(NSManagedObject *)object
+          atIndexPath:(NSIndexPath *)indexPath
+{
+    // NO-OP
+}
+
 #pragma mark -
 #pragma mark EditableTableViewController (EnventHandler)
 

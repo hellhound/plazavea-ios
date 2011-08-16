@@ -53,8 +53,6 @@
 
     [textField setTag:[[object order] integerValue]];
     [textField setDelegate:self];
-    [self didCreateCell:(EditableTableViewCell *)cell forObject:object
-            atIndexPath:indexPath];
     return cell;
 }
 
@@ -78,13 +76,6 @@
 
 #pragma mark -
 #pragma mark EditableCellTableViewController (Overridable)
-
-- (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
-          atIndexPath:(NSIndexPath *)indexPath
-{
-    // NO-OP
-}
 
 - (void)didChangeObject:(NSManagedObject *)object value:(NSString *)value
 {

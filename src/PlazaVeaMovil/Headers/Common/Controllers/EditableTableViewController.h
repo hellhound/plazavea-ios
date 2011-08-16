@@ -49,6 +49,9 @@
                        atIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectRowForObject:(NSManagedObject *)object
                   atIndexPath:(NSIndexPath *)indexPath;
+- (void)didCreateCell:(UITableViewCell *)cell
+            forObject:(NSManagedObject *)object
+          atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface EditableTableViewController (EventHandler)
