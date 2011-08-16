@@ -31,7 +31,9 @@
     _activeTextField = textField;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (BOOL)                textField:(UITextField *)textField
+    shouldChangeCharactersInRange:(NSRange)range
+                replacementString:(NSString *)string
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"order == %@",
             [NSNumber numberWithInteger:[textField tag]]];
@@ -41,11 +43,14 @@
     if ([objects count] > 0) {
         NSManagedObject *object = [objects objectAtIndex:0];
         
-        [self didChangeObject:object value:[textField text]];
+        [self didChangeObject:object value:
+                [[textField text] stringByReplacingCharactersInRange:range
+                    withString:string]];
         [self fetchAndUpdate];
     }
     // Erase the active text field
     _activeTextField = nil;
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
