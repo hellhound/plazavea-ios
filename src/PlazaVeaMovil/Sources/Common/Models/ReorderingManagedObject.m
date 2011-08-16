@@ -33,7 +33,7 @@
 {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 
-    [request setEntity:self];
+    [request setEntity:[self entity]];
     
     NSArray *objects = [context executeFetchRequest:request];
 

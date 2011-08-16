@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Common/Models/ManagedObject.h"
 #import "Common/Models/ReorderingManagedObject.h"
 #import "Application/AppDelegate.h"
@@ -215,6 +216,29 @@ static NSRelationshipDescription *kListRelationship;
 #pragma mark ShoppingHistoryEntry (Public)
 
 @dynamic name;
+
++ (id)historyEntryWithName:(NSString *)name
+                   context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+    [request setEntity:[self entity]];
+
+    NSArray *entries = [context executeFetchRequest:request];
+
+    if (entries == nil)
+        return nil;
+    if ([entries count] > 0)
+        // We already have it
+        return [entries objectAtIndex:0];
+
+    ShoppingHistoryEntry *newHistoryEntry =
+            [[[ShoppingHistoryEntry alloc] initWithEntity:[self entity]
+                insertIntoManagedObjectContext:context] autorelease];
+
+    [newHistoryEntry setName:name];
+    return newHistoryEntry;
+}
 
 + (id)historyEntryWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController

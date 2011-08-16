@@ -32,5 +32,7 @@
 @property (nonatomic, retain) NSString *name;
 
 + (id)historyEntryWithName:(NSString *)name
+                   context:(NSManagedObjectContext *)context;
++ (id)historyEntryWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController;
 @end
