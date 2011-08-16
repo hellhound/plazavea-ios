@@ -81,9 +81,6 @@
                 animated:YES];
 }
 
-#pragma mark -
-#pragma mark EditableCellTableViewController (Overridable)
-
 - (void)didCreateCell:(EditableTableViewCell *)cell
             forObject:(NSManagedObject *)object
           atIndexPath:(NSIndexPath *)indexPath
@@ -100,6 +97,9 @@
             kShoppingListDefaultDetailText :
             [dateFormatter stringFromDate:date]];
 }
+
+#pragma mark -
+#pragma mark EditableCellTableViewController (Overridable)
 
 - (void)didChangeObject:(ShoppingList *)list value:(NSString *)value
 {

@@ -96,7 +96,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 }
 
 #pragma mark -
-#pragma mark EditableCellTableViewController (Overridable)
+#pragma mark EditableTableViewController (Overridable)
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
             forObject:(NSManagedObject *)object
@@ -104,6 +104,9 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 {
     [[cell textLabel] setText:[(ShoppingItem *)object name]];
 }
+
+#pragma mark -
+#pragma mark EditableCellTableViewController (Overridable)
 
 - (void)didChangeObject:(ShoppingItem *)item value:(NSString *)value
 {
@@ -210,6 +213,18 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // controller 
         [[[self resultsController] fetchRequest] setPredicate:predicate];
     }
+}
+
+- (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity
+{
+    [ShoppingHistoryEntry historyEntryWithName:name context:[self context]];
+    [ShoppingItem shoppingItemWithName:name quantity:quantity
+            list:[self shoppingList]
+            resultsController:[self resultsController]];
+
+    // First, save the context
+    [self saveContext];
+    [self fetchUpdateAndReload];
 }
 
 #pragma mark -

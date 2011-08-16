@@ -182,12 +182,16 @@ static NSRelationshipDescription *kListRelationship;
 @dynamic name, quantity, order, checked, list;
 
 + (id)shoppingItemWithName:(NSString *)name
+                  quantity:(NSString *)quantity
+                      list:(ShoppingList *)shoppingList
          resultsController:(NSFetchedResultsController *)resultsController
 {
     ShoppingItem *newItem =
             [self orderedObjectWithResultsController:resultsController];
 
     [newItem setName:name];
+    [newItem setQuantity:quantity];
+    [newItem setList:shoppingList];
     return newItem;
 }
 @end

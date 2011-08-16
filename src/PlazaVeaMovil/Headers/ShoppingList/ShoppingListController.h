@@ -31,6 +31,7 @@
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
 - (void)addShoppingList:(NSString *)name;
+- (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity;
 @end
 
 @interface ShoppingListController (EventHandler)

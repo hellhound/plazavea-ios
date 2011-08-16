@@ -27,10 +27,17 @@
                 [[self navigationController]
                         popToRootViewControllerAnimated:YES];
             } else {
-                [self addShoppingList:[[alertView inputTextField] text]];
+                [self addShoppingList:[[alertView firstTextField] text]];
             }
             break;
         case kShoppingListAlertViewNewItem:
+            if (buttonIndex != cancelButtonIndex) {
+                UITextField *nameTextField = [alertView textFieldAtIndex:0];
+                UITextField *quantityTextField = [alertView textFieldAtIndex:1];
+
+                [self addShoppingItem:[nameTextField text]
+                        quantity:[quantityTextField text]];
+            }
             break;
     }
 }

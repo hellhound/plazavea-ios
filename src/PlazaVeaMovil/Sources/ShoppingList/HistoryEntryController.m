@@ -4,7 +4,6 @@
 
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
-#import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
@@ -115,15 +114,15 @@ static NSString *kNameVariableKey = @"NAME";
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
-#pragma mark -
-#pragma mark EditableCellTableViewController (Overridable)
-
-- (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
+- (void)didCreateCell:(UITableViewCell *)cell
+            forObject:(ShoppingHistoryEntry *)historyEntry
           atIndexPath:(NSIndexPath *)indexPath
 {
-    [[cell textLabel] setText:[(ShoppingHistoryEntry *)object name]];
+    [[cell textLabel] setText:[historyEntry name]];
 }
+
+#pragma mark -
+#pragma mark EditableCellTableViewController (Overridable)
 
 - (void)didChangeObject:(ShoppingHistoryEntry *)item value:(NSString *)value
 {
@@ -176,6 +175,7 @@ static NSString *kNameVariableKey = @"NAME";
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingHistoryEntryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        [self setAllowsMovableCells:NO];
         [self setDelegate:delegate];
         [self setTitle:NSLocalizedString(kHistoryEntryTitle, nil)];
     }

@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "Common/Controllers/EditableCellTableViewController.h"
+#import "Common/Controllers/EditableTableViewController.h"
 #import "ShoppingList/Models.h"
 
 @class HistoryEntryController;
@@ -16,7 +16,7 @@
                   historyEntry:(ShoppingHistoryEntry *)historyEntry;
 @end
 
-@interface HistoryEntryController: EditableCellTableViewController
+@interface HistoryEntryController: EditableTableViewController
     <UISearchBarDelegate, UISearchDisplayDelegate>
 {
     id<HistoryEntryControllerDelegate> _delegate;

@@ -24,6 +24,8 @@
 @property (nonatomic, retain) ShoppingList *list;
 
 + (id)shoppingItemWithName:(NSString *)name
+                  quantity:(NSString *)quantity
+                      list:(ShoppingList *)shoppingList
          resultsController:(NSFetchedResultsController *)resultsController;
 @end
 
