@@ -117,12 +117,6 @@
     [self scrollToTop];
 }
 
-- (void)changeName:(NSString *)name toShoppingList:(ShoppingList *)shoppingList
-{
-    [shoppingList setName:name];
-    [self fetchUpdateAndReload];
-}
-
 #pragma mark -
 #pragma mark ShoppingListsController (EnventHandler)
 
