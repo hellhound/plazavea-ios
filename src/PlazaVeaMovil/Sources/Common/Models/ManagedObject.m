@@ -42,6 +42,7 @@ static NSEntityDescription *kRootEntity;
             [entity autorelease];
             [kRootEntity setSubentities:
                     [[kRootEntity subentities] arrayByAddingObject:entity]];
+            [self classDidInitialize];
         }
     }
 }
@@ -53,6 +54,13 @@ static NSEntityDescription *kRootEntity;
 
 #pragma mark -
 #pragma mark ManagedObject (Overridable)
+
++ (void)classDidInitialize
+{
+    // Allows post-initialization for subclasses and avoids an ugly bug when a
+    // sub overwrites initialize
+    // NO-OP
+}
 
 + (NSSet *)attributes
 {

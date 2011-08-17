@@ -16,6 +16,7 @@
 
 @interface ManagedObject (Overridable)
 
++ (void)classDidInitialize;
 + (NSSet *)attributes;
 + (NSSet *)relationships;
 + (NSDictionary *)localizations;

@@ -3,6 +3,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Common/Models/Constants.h"
 #import "Common/Models/ManagedObject.h"
 #import "Common/Models/ReorderingManagedObject.h"
 #import "Application/AppDelegate.h"
@@ -11,11 +12,26 @@
 
 static NSRelationshipDescription *kItemsRelationship;
 static NSRelationshipDescription *kListRelationship;
+// Predicate templates
+static NSPredicate *kPreviousListPredicateTemplate;
+static NSPredicate *kNextListPredicateTemplate;
+static NSPredicate *kHistoryEntryNamePredicateTemplate;
 
 @interface ShoppingList ()
 
 //@private
 @property (nonatomic, retain) NSDate *primitiveLastModificationDate;
+
++ (void)initializePredicateTemplates;
+
+- (NSPredicate *)predicateForPreviousList;
+- (NSPredicate *)predicateForNextList;
+@end
+
+@interface ShoppingHistoryEntry (Private)
+
++ (void)initializePredicateTemplates;
++ (NSPredicate *)predicateForHistoryEntryName:(NSString *)name;
 @end
 
 @implementation ShoppingList
@@ -32,6 +48,11 @@ static NSRelationshipDescription *kListRelationship;
 
 #pragma mark -
 #pragma mark ManagedObject (Overridable)
+
++ (void)classDidInitialize
+{
+    [self initializePredicateTemplates];
+}
 
 + (NSSet *)attributes
 {
@@ -86,6 +107,42 @@ static NSRelationshipDescription *kListRelationship;
 }
 
 #pragma mark -
+#pragma mark ShoppingList (Private)
+
++ (void)initializePredicateTemplates
+{
+    NSExpression *lhs = [NSExpression expressionForKeyPath:kOrderField];
+    NSExpression *rhs = [NSExpression expressionForVariable:kOrderField];
+
+    kPreviousListPredicateTemplate = [[NSComparisonPredicate
+            predicateWithLeftExpression:lhs
+            rightExpression:rhs
+            modifier:NSDirectPredicateModifier
+            type:NSLessThanPredicateOperatorType
+            options:0] retain];
+    kNextListPredicateTemplate = [[NSComparisonPredicate
+            predicateWithLeftExpression:lhs
+            rightExpression:rhs
+            modifier:NSDirectPredicateModifier
+            type:NSGreaterThanPredicateOperatorType
+            options:0] retain];
+}
+
+- (NSPredicate *)predicateForPreviousList
+{
+    return [kPreviousListPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:[self order]
+                forKey:kOrderField]];
+}
+
+- (NSPredicate *)predicateForNextList
+{
+    return [kNextListPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:[self order]
+                forKey:kOrderField]];
+}
+
+#pragma mark -
 #pragma mark ShoppingList (Public)
 
 // primitives
@@ -108,6 +165,56 @@ static NSRelationshipDescription *kListRelationship;
     return [[(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter]
                 stringFromDate:[self lastModificationDate]];
+}
+
+- (ShoppingList *)previous
+{
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+    [request setEntity:[self entity]];
+    [request setPredicate:[self predicateForPreviousList]];
+    [request setFetchLimit:1];
+
+    NSArray *lists = [[self managedObjectContext] executeFetchRequest:request];
+
+    if ([lists count] > 0)
+        return [lists objectAtIndex:0];
+
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kOrderField
+                ascending:YES]];
+
+    [request setPredicate:nil];
+    [request setSortDescriptors:sortDescriptors];
+    lists = [[self managedObjectContext] executeFetchRequest:request];
+    if ([lists count] > 0)
+        return [lists objectAtIndex:0];
+    return nil;
+}
+
+- (ShoppingList *)next
+{
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+    [request setEntity:[self entity]];
+    [request setPredicate:[self predicateForPreviousList]];
+    [request setFetchLimit:1];
+
+    NSArray *lists = [[self managedObjectContext] executeFetchRequest:request];
+
+    if ([lists count] > 0)
+        return [lists objectAtIndex:0];
+
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kOrderField
+                ascending:NO]];
+
+    [request setPredicate:nil];
+    [request setSortDescriptors:sortDescriptors];
+    lists = [[self managedObjectContext] executeFetchRequest:request];
+    if ([lists count] > 0)
+        return [lists objectAtIndex:0];
+    return nil;
 }
 @end
 
@@ -201,6 +308,11 @@ static NSRelationshipDescription *kListRelationship;
 #pragma mark -
 #pragma mark ManagedObject (Overridable)
 
++ (void)classDidInitialize
+{
+    [self initializePredicateTemplates];
+}
+
 + (NSSet *)attributes
 {
     NSSet *attributes = [super attributes];
@@ -217,6 +329,32 @@ static NSRelationshipDescription *kListRelationship;
 }
 
 #pragma mark -
+#pragma mark ShoppingHistoryEntry (Private)
+
++ (void)initializePredicateTemplates
+{
+    NSExpression *lhs =
+            [NSExpression expressionForKeyPath:kShoppingHistoryEntryName];
+    NSExpression *rhs =
+            [NSExpression expressionForVariable:kShoppingHistoryEntryName];
+
+    kHistoryEntryNamePredicateTemplate = [[NSComparisonPredicate
+            predicateWithLeftExpression:lhs
+            rightExpression:rhs
+            modifier:NSDirectPredicateModifier
+            type:NSEqualToPredicateOperatorType
+            options:0] retain];
+}
+
++ (NSPredicate *)predicateForHistoryEntryName:(NSString *)name
+{
+    return [kHistoryEntryNamePredicateTemplate
+            predicateWithSubstitutionVariables:
+                [NSDictionary dictionaryWithObject:name
+                    forKey:kShoppingHistoryEntryName]];
+}
+
+#pragma mark -
 #pragma mark ShoppingHistoryEntry (Public)
 
 @dynamic name;
@@ -228,15 +366,9 @@ static NSRelationshipDescription *kListRelationship;
 
     [request setEntity:[self entity]];
 
-    NSArray *entries = [context executeFetchRequest:request];
-
-    if (entries == nil)
-        return nil;
-
-    NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"name == %@", name];
-
-    entries = [entries filteredArrayUsingPredicate:predicate];
+    NSArray *entries = [[context executeFetchRequest:request]
+            filteredArrayUsingPredicate:
+                [ShoppingHistoryEntry predicateForHistoryEntryName:name]];
     if ([entries count] > 0)
         // We already have it
         return [entries objectAtIndex:0];
@@ -252,10 +384,9 @@ static NSRelationshipDescription *kListRelationship;
 + (id)historyEntryWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController
 {
-    NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"name == %@", name];
     NSArray *entries = [[resultsController fetchedObjects]
-            filteredArrayUsingPredicate:predicate];
+            filteredArrayUsingPredicate:
+                [ShoppingHistoryEntry predicateForHistoryEntryName:name]];
     
     if ([entries count] > 0)
         // We already have it 

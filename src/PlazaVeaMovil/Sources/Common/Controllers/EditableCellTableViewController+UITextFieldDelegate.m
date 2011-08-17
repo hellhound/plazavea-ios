@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Models/Constants.h"
 #import "Common/Additions/NSString+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 
@@ -35,8 +36,15 @@
     shouldChangeCharactersInRange:(NSRange)range
                 replacementString:(NSString *)string
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"order == %@",
+    NSExpression *lhs = [NSExpression expressionForKeyPath:kOrderField];
+    NSExpression *rhs = [NSExpression expressionForConstantValue:
             [NSNumber numberWithInteger:[textField tag]]];
+    NSPredicate *predicate = [NSComparisonPredicate
+            predicateWithLeftExpression:lhs
+            rightExpression:rhs
+            modifier:NSDirectPredicateModifier
+            type:NSEqualToPredicateOperatorType
+            options:0];
     NSArray *objects = [[[self resultsController] fetchedObjects]
             filteredArrayUsingPredicate:predicate];
 

@@ -14,6 +14,8 @@
          resultsController:(NSFetchedResultsController *)resultsController;
 
 - (NSString *)formattedLastModiciationDate;
+- (ShoppingList *)previous; // If there's no previous list, return the last one
+- (ShoppingList *)next; // If there's no next list, return the first one
 @end
 
 @interface ShoppingItem: ReorderingManagedObject
