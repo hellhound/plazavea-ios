@@ -24,6 +24,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
 - (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView;
+- (void)updatePreviousNextButtons;
 @end
 
 @implementation ShoppingListController
@@ -39,9 +40,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)dealloc
 {
-    [[self navigationController] setDelegate:nil];
     _delegate = nil;
     [_shoppingList release];
+    [_previousItem release];
+    [_nextItem release];
     [super dealloc];
 }
 
@@ -55,15 +57,17 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
-        // Set self as the navigation controller delegate
-        [[self navigationController] setDelegate:self];
+        // Conf the back button
+        _previousItem = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                target:self action:@selector(previousList:)];
+        // Conf the rewind button
+        _nextItem = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                target:self action:@selector(nextList:)];
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                target:nil action:NULL] autorelease];
-        // Conf the back button
-        UIBarButtonItem *backItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
                 target:nil action:NULL] autorelease];
         // Conf the add button
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
@@ -77,20 +81,17 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                 target:nil action:NULL] autorelease];
-        // Conf the rewind button
-        UIBarButtonItem *forwardItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                target:nil action:NULL] autorelease];
 
         [[self readonlyToolbarItems] addObjectsFromArray:
-                [NSArray arrayWithObjects:backItem, spacerItem, addItem,
+                [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,
-                    forwardItem, nil]];
+                    _nextItem, nil]];
         [[self editingToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:spacerItem, addItem, spacerItem,
                     spacerItem, trashItem, nil]];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
+    [self updatePreviousNextButtons];
     }
     return navItem;
 }
@@ -140,6 +141,20 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 {
     [alertView show];
     [alertView autorelease];
+}
+
+- (void)repairViewControllerList
+{
+    UINavigationController *navController = [self navigationController];
+
+    [navController setViewControllers:[NSArray arrayWithObjects:
+            [[navController viewControllers] objectAtIndex:0], self, nil]];
+}
+
+- (void)updatePreviousNextButtons
+{
+    [_previousItem setEnabled:[_shoppingList previous] != nil];
+    [_nextItem setEnabled:[_shoppingList next] != nil];
 }
 
 #pragma mark -
@@ -212,6 +227,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // And lastly, set the predicate to the fetch request of the results
         // controller 
         [[[self resultsController] fetchRequest] setPredicate:predicate];
+        [self updatePreviousNextButtons];
     }
 }
 
@@ -230,8 +246,28 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark -
 #pragma mark ShoppingListController (EventHandler)
 
-- (void)addShoppingListHandler:(UIControl *)control
+- (void)previousList:(UIControl *)control
 {
+    ShoppingList *previousList = [_shoppingList previous];
+
+    [self setShoppingList:previousList];
+    [[[self resultsController] fetchRequest] setPredicate:
+            [ShoppingListController predicateForItemsWithShoppingList:
+                previousList]];
+    [self fetchUpdateAndReload];
+    [self updatePreviousNextButtons];
+}
+
+- (void)nextList:(UIControl *)control
+{
+    ShoppingList *nextList = [_shoppingList next];
+
+    [self setShoppingList:[_shoppingList next]];
+    [[[self resultsController] fetchRequest] setPredicate:
+            [ShoppingListController predicateForItemsWithShoppingList:
+                nextList]];
+    [self fetchUpdateAndReload];
+    [self updatePreviousNextButtons];
 }
 
 - (void)addItemHandler:(UIControl *)control
@@ -239,6 +275,14 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [[self navigationController] pushViewController:
             [[[HistoryEntryController alloc]
                 initWithDelegate:self] autorelease] animated:YES];
+}
+
+- (void)deleteList:(UIControl *)control
+{
+}
+
+- (void)displayActionSheet:(UIControl *)control
+{
 }
 
 #pragma mark -

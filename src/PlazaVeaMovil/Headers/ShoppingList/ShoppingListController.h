@@ -18,11 +18,12 @@
 @end
 
 @interface ShoppingListController: EditableCellTableViewController
-    <UINavigationControllerDelegate, TSAlertViewDelegate,
-    HistoryEntryControllerDelegate>
+    <TSAlertViewDelegate, HistoryEntryControllerDelegate>
 {
     id<ShoppingListControllerDelegate> _delegate;
     ShoppingList *_shoppingList;
+    UIBarButtonItem *_previousItem;
+    UIBarButtonItem *_nextItem;
 }
 @property (nonatomic, retain) ShoppingList *shoppingList;
 @property (nonatomic, assign) id<ShoppingListControllerDelegate> delegate;
@@ -36,6 +37,9 @@
 
 @interface ShoppingListController (EventHandler)
 
-- (void)addShoppingListHandler:(UIControl *)control;
+- (void)previousList:(UIControl *)control;
+- (void)nextList:(UIControl *)control;
 - (void)addItemHandler:(UIControl *)control;
+- (void)deleteList:(UIControl *)control;
+- (void)displayActionSheet:(UIControl *)control;
 @end

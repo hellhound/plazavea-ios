@@ -170,51 +170,51 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 - (ShoppingList *)previous
 {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    // We want the previous list in order, so we sort the resulting fetched
+    // array in descending order
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kOrderField ascending:NO]];
 
     [request setEntity:[self entity]];
     [request setPredicate:[self predicateForPreviousList]];
     [request setFetchLimit:1];
+    [request setSortDescriptors:sortDescriptors];
 
     NSArray *lists = [[self managedObjectContext] executeFetchRequest:request];
 
-    if ([lists count] > 0)
-        return [lists objectAtIndex:0];
-
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kOrderField
-                ascending:YES]];
-
-    [request setPredicate:nil];
-    [request setSortDescriptors:sortDescriptors];
-    lists = [[self managedObjectContext] executeFetchRequest:request];
-    if ([lists count] > 0)
-        return [lists objectAtIndex:0];
-    return nil;
+    if ([lists count] == 0) {
+        // Request the last list
+        [request setPredicate:[self predicateForNextList]];
+        lists = [[self managedObjectContext] executeFetchRequest:request];
+        if ([lists count] == 0)
+            return nil;
+    }
+    return [lists objectAtIndex:0];
 }
 
 - (ShoppingList *)next
 {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    // We want the  next list in order, so we sort the resulting fetched
+    // array in  ascending order
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kOrderField ascending:YES]];
 
     [request setEntity:[self entity]];
-    [request setPredicate:[self predicateForPreviousList]];
+    [request setPredicate:[self predicateForNextList]];
     [request setFetchLimit:1];
+    [request setSortDescriptors:sortDescriptors];
 
     NSArray *lists = [[self managedObjectContext] executeFetchRequest:request];
 
-    if ([lists count] > 0)
-        return [lists objectAtIndex:0];
-
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kOrderField
-                ascending:NO]];
-
-    [request setPredicate:nil];
-    [request setSortDescriptors:sortDescriptors];
-    lists = [[self managedObjectContext] executeFetchRequest:request];
-    if ([lists count] > 0)
-        return [lists objectAtIndex:0];
-    return nil;
+    if ([lists count] == 0) {
+        // Request the first list
+        [request setPredicate:[self predicateForPreviousList]];
+        lists = [[self managedObjectContext] executeFetchRequest:request];
+        if ([lists count] == 0)
+            return nil;
+    }
+    return [lists objectAtIndex:0];
 }
 @end
 
