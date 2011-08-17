@@ -35,6 +35,7 @@
 - (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
 - (void)addShoppingList:(NSString *)name;
 - (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity;
+- (void)deleteShoppingList;
 @end
 
 @interface ShoppingListController (EventHandler)
@@ -42,6 +43,6 @@
 - (void)previousList:(UIControl *)control;
 - (void)nextList:(UIControl *)control;
 - (void)addItemHandler:(UIControl *)control;
-- (void)deleteList:(UIControl *)control;
+- (void)delete:(UIControl *)control;
 - (void)displayActionSheet:(UIControl *)control;
 @end

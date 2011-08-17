@@ -34,6 +34,7 @@
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */; };
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
+		2C81DF3813FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */; };
 		2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C844C0013F95F2F000BE222 /* HistoryEntryController.m */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
@@ -287,6 +288,7 @@
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListsController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
+		2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ShoppingListDeletionConfirmation.m"; sourceTree = "<group>"; };
 		2C844C0013F95F2F000BE222 /* HistoryEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntryController.m; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */,
 				2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */,
 				2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */,
+				2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */,
 				2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */,
 				2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */,
 				2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */,
@@ -875,6 +878,7 @@
 				2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */,
 				2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */,
 				2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */,
+				2C81DF3813FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

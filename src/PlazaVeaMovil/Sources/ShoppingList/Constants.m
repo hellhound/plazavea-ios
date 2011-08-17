@@ -59,6 +59,17 @@ NSString *const kShoppingItemNewOkButtonTitle = @"Ok";
 NSString *const kShoppingItemNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
 
+// TSAlertView's constants for shopping list deletion
+NSString *const kShoppingListDeletionTitle = @"Eliminación de lista";
+// NSLocalizedString(@"Eliminación de lista", nil)
+NSString *const kShoppingListDeletionMessage = @"¿Está seguro de eliminar la " \
+        @"lista de compras?";
+// NSLocalizedString(@"¿Está seguro de eliminar la lista de compras?", nil)
+NSString *const kShoppingListDeletionOkButtonTitle = @"Sí";
+// NSLocalizedString(@"Sí", nil)
+NSString *const kShoppingListDeletionCancelButtonTitle = @"No";
+// NSLocalizedString(@"No", nil)
+
 // ShoppingListController's constants
 
 const NSTimeInterval kShoppingListAlertViewDelay = .25;

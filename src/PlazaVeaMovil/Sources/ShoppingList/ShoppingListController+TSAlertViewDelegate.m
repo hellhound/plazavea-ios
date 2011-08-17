@@ -39,6 +39,10 @@
                         quantity:[quantityTextField text]];
             }
             break;
+        case kShoppingListAlertViewListDeletion:
+            if (buttonIndex != cancelButtonIndex)
+                [self deleteShoppingList];
+            break;
     }
 }
 @end

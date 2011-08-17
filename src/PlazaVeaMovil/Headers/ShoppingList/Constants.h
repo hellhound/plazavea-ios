@@ -37,7 +37,8 @@ extern NSString *const kShoppingListDefaultDetailText;
 
 typedef enum {
     kShoppingListAlertViewNewList,
-    kShoppingListAlertViewNewItem
+    kShoppingListAlertViewNewItem,
+    kShoppingListAlertViewListDeletion
 } ShoppingListAlertViewType;
 
 // TSAlertView's constants for shopping list creation
@@ -52,6 +53,12 @@ extern NSString *const kShoppingItemNewNamePlaceholder;
 extern NSString *const kShoppingItemNewQuantityPlaceholder;
 extern NSString *const kShoppingItemNewOkButtonTitle;
 extern NSString *const kShoppingItemNewCancelButtonTitle;
+
+// TSAlertView's constants for shopping list deletion
+extern NSString *const kShoppingListDeletionTitle;
+extern NSString *const kShoppingListDeletionMessage;
+extern NSString *const kShoppingListDeletionOkButtonTitle;
+extern NSString *const kShoppingListDeletionCancelButtonTitle;
 
 // ShoppingListController's constants
 

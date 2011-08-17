@@ -12,6 +12,7 @@
 #import "ShoppingList/Models.h"
 #import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
+#import "ShoppingList/TSAlertView+ShoppingListDeletionConfirmation.h"
 #import "ShoppingList/HistoryEntryController.h"
 #import "ShoppingList/ShoppingListController.h"
 
@@ -22,9 +23,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 + (void)initializePredicateTemplates;
 
+- (void)updatePreviousNextButtons;
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
 - (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView;
-- (void)updatePreviousNextButtons;
+- (void)showAlertViewForShoppingListDeletion:(TSAlertView *)alertView;
 @end
 
 @implementation ShoppingListController
@@ -80,7 +82,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // Conf the rewind trash button
         UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                target:self action:@selector(deleteList:)] autorelease];
+                target:self action:@selector(delete:)] autorelease];
 
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
@@ -131,6 +133,12 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             options:0] retain];
 }
 
+- (void)updatePreviousNextButtons
+{
+    [_previousItem setEnabled:[_shoppingList previous] != nil];
+    [_nextItem setEnabled:[_shoppingList next] != nil];
+}
+
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView
 {
     [alertView show];
@@ -143,18 +151,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [alertView autorelease];
 }
 
-- (void)repairViewControllerList
+- (void)showAlertViewForShoppingListDeletion:(TSAlertView *)alertView
 {
-    UINavigationController *navController = [self navigationController];
-
-    [navController setViewControllers:[NSArray arrayWithObjects:
-            [[navController viewControllers] objectAtIndex:0], self, nil]];
-}
-
-- (void)updatePreviousNextButtons
-{
-    [_previousItem setEnabled:[_shoppingList previous] != nil];
-    [_nextItem setEnabled:[_shoppingList next] != nil];
+    [alertView show];
+    [alertView autorelease];
 }
 
 #pragma mark -
@@ -243,6 +243,17 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [self fetchUpdateAndReload];
 }
 
+- (void)deleteShoppingList
+{
+    [[self context] deleteObject:_shoppingList];
+    [self saveContext];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didDeleteShoppingList:)])
+        [_delegate shoppingListController:self
+                didDeleteShoppingList:_shoppingList];
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark -
 #pragma mark ShoppingListController (EventHandler)
 
@@ -277,15 +288,16 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                 initWithDelegate:self] autorelease] animated:YES];
 }
 
-- (void)deleteList:(UIControl *)control
+- (void)delete:(UIControl *)control
 {
-    [[self context] deleteObject:_shoppingList];
-    [self saveContext];
-    if ([_delegate respondsToSelector:
-            @selector(shoppingListController:didDeleteShoppingList:)])
-        [_delegate shoppingListController:self
-                didDeleteShoppingList:_shoppingList];
-    [[self navigationController] popToRootViewControllerAnimated:YES];
+    // We need confirmation from the user
+    TSAlertView *alertView =
+            [[TSAlertView alertViewForShoppingListDeletion:self] retain];
+
+    // delay for 0.1 seconds
+    [self performSelector:@selector(showAlertViewForShoppingListDeletion:)
+            withObject:alertView
+            afterDelay:kShoppingListAlertViewDelay];
 }
 
 - (void)displayActionSheet:(UIControl *)control
