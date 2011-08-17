@@ -149,4 +149,10 @@
     [self fetchUpdateAndReload];
     return list;
 }
+
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+         didDeleteShoppingList:(ShoppingList *)shoppingList
+{
+    [self fetchUpdateAndReload];
+}
 @end

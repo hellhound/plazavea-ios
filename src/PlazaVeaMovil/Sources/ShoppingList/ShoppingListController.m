@@ -76,11 +76,11 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // Conf the action button
         UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                target:nil action:NULL] autorelease];
+                target:self action:@selector(displayActionSheet:)] autorelease];
         // Conf the rewind trash button
         UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                target:nil action:NULL] autorelease];
+                target:self action:@selector(deleteList:)] autorelease];
 
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
@@ -279,6 +279,13 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)deleteList:(UIControl *)control
 {
+    [[self context] deleteObject:_shoppingList];
+    [self saveContext];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didDeleteShoppingList:)])
+        [_delegate shoppingListController:self
+                didDeleteShoppingList:_shoppingList];
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 - (void)displayActionSheet:(UIControl *)control
