@@ -151,6 +151,15 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 @dynamic name, lastModificationDate, order, items;
 
 + (id)shoppingListWithName:(NSString *)name
+                   context:(NSManagedObjectContext *)context
+{
+    ShoppingList *newList = [self orderedObjectWithContext:context];
+
+    [newList setName:name];
+    return newList;
+}
+
++ (id)shoppingListWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController
 {
     ShoppingList *newList =
@@ -287,6 +296,19 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 #pragma mark ShoppingItem (Public)
 
 @dynamic name, quantity, order, checked, list;
+
++ (id)shoppingItemWithName:(NSString *)name
+                  quantity:(NSString *)quantity
+                      list:(ShoppingList *)shoppingList
+                   context:(NSManagedObjectContext *)context
+{
+    ShoppingItem *newItem = [self orderedObjectWithContext:context];
+
+    [newItem setName:name];
+    [newItem setQuantity:quantity];
+    [newItem setList:shoppingList];
+    return newItem;
+}
 
 + (id)shoppingItemWithName:(NSString *)name
                   quantity:(NSString *)quantity

@@ -11,6 +11,8 @@
 @property (nonatomic, retain) NSSet *items;
 
 + (id)shoppingListWithName:(NSString *)name
+                   context:(NSManagedObjectContext *)context;
++ (id)shoppingListWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController;
 
 - (NSString *)formattedLastModiciationDate;
@@ -25,6 +27,10 @@
 @property (nonatomic, retain) NSNumber *checked;
 @property (nonatomic, retain) ShoppingList *list;
 
++ (id)shoppingItemWithName:(NSString *)name
+                  quantity:(NSString *)quantity
+                      list:(ShoppingList *)shoppingList
+                   context:(NSManagedObjectContext *)context;
 + (id)shoppingItemWithName:(NSString *)name
                   quantity:(NSString *)quantity
                       list:(ShoppingList *)shoppingList

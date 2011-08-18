@@ -17,6 +17,8 @@
               didAddShoppingListWithName:(NSString *)name;
 - (void)shoppingListController:(ShoppingListController *)shoppingListController
          didDeleteShoppingList:(ShoppingList *)shoppingList;
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+          didCloneShoppingList:(ShoppingList *)shoppingList;
 @end
 
 @interface ShoppingListController: EditableCellTableViewController
@@ -33,19 +35,19 @@
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
-- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet;
 - (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity;
 - (void)deleteShoppingList;
 - (void)createNewShoppingListFromActionSheet:(BOOL)fromActionSheet;
-- (void)cloneShoppingList;
-- (void)mailShoppingList;
 @end
 
 @interface ShoppingListController (EventHandler)
 
+- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet;
 - (void)previousList:(UIControl *)control;
 - (void)nextList:(UIControl *)control;
-- (void)addItemHandler:(UIControl *)control;
+- (void)addItem:(UIControl *)control;
 - (void)delete:(UIControl *)control;
 - (void)displayActionSheet:(UIControl *)control;
+- (void)cloneShoppingList;
+- (void)mailShoppingList;
 @end

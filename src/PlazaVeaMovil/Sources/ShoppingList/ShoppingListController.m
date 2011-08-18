@@ -75,7 +75,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // Conf the add button
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:self action:@selector(addItemHandler:)] autorelease];
+                target:self action:@selector(addItem:)] autorelease];
         // Conf the action button
         UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -203,29 +203,6 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     }
 }
 
-- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet
-{
-    if ([_delegate respondsToSelector:
-            @selector(shoppingListController:didAddShoppingListWithName:)]) {
-        ShoppingList *list = [_delegate shoppingListController:self
-                didAddShoppingListWithName:name];
-        // This should take care of the title refreshing
-        [self setShoppingList:list];
-
-        // Now, create a new predicate for the new shopping list
-        NSPredicate *predicate =
-                [ShoppingListController predicateForItemsWithShoppingList:
-                    _shoppingList];
-
-        // And lastly, set the predicate to the fetch request of the results
-        // controller 
-        [[[self resultsController] fetchRequest] setPredicate:predicate];
-        if (fromActionSheet)
-            [self fetchUpdateAndReload];
-        [self updatePreviousNextButtons];
-    }
-}
-
 - (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity
 {
     [ShoppingHistoryEntry historyEntryWithName:name context:[self context]];
@@ -261,18 +238,31 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             afterDelay:kShoppingListAlertViewDelay];
 }
 
-- (void)cloneShoppingList
-{
-    // TODO
-}
-
-- (void)mailShoppingList
-{
-    // TODO
-}
-
 #pragma mark -
 #pragma mark ShoppingListController (EventHandler)
+
+- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet
+{
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didAddShoppingListWithName:)]) {
+        ShoppingList *list = [_delegate shoppingListController:self
+                didAddShoppingListWithName:name];
+        // This should take care of the title refreshing
+        [self setShoppingList:list];
+
+        // Now, create a new predicate for the new shopping list
+        NSPredicate *predicate =
+                [ShoppingListController predicateForItemsWithShoppingList:
+                    _shoppingList];
+
+        // And lastly, set the predicate to the fetch request of the results
+        // controller 
+        [[[self resultsController] fetchRequest] setPredicate:predicate];
+        if (fromActionSheet)
+            [self fetchUpdateAndReload];
+        [self updatePreviousNextButtons];
+    }
+}
 
 - (void)previousList:(UIControl *)control
 {
@@ -298,7 +288,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [self updatePreviousNextButtons];
 }
 
-- (void)addItemHandler:(UIControl *)control
+- (void)addItem:(UIControl *)control
 {
     [[self navigationController] pushViewController:
             [[[HistoryEntryController alloc]
@@ -323,6 +313,34 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             [UIActionSheet actionSheetForShoppingListMenu:self];
 
     [actionSheet showFromToolbar:[[self navigationController] toolbar]];
+}
+
+- (void)cloneShoppingList
+{
+    ShoppingList *clonedList =
+            [ShoppingList shoppingListWithName:[_shoppingList name]
+                context:[self context]];
+
+    for (ShoppingItem *item in [_shoppingList items]) {
+        ShoppingItem *clonedItem =
+                [ShoppingItem shoppingItemWithName:[item name]
+                    quantity:[item quantity] list:clonedList
+                    context:[self context]];
+
+        [clonedItem setChecked:[item checked]];
+    }
+    [self saveContext];
+    [self updatePreviousNextButtons];
+    [self fetchUpdateAndReload];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didCloneShoppingList:)])
+        [_delegate shoppingListController:self
+                didCloneShoppingList:_shoppingList];
+}
+
+- (void)mailShoppingList
+{
+    // TODO
 }
 
 #pragma mark -

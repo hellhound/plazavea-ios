@@ -156,4 +156,10 @@
 {
     [self fetchUpdateAndReload];
 }
+
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+          didCloneShoppingList:(ShoppingList *)shoppingList
+{
+    [self fetchUpdateAndReload];
+}
 @end

@@ -20,8 +20,10 @@
             [self createNewShoppingListFromActionSheet:YES];
             break;
         case kShoppingListActionSheetCloneButtonIndex:
+            [self cloneShoppingList];
             break;
         case kShoppingListActionSheetMailButtonIndex:
+            [self mailShoppingList];
             break;
     }
 }
