@@ -27,7 +27,8 @@
                 [[self navigationController]
                         popToRootViewControllerAnimated:YES];
             } else {
-                [self addShoppingList:[[alertView firstTextField] text]];
+                [self addShoppingList:[[alertView firstTextField] text]
+                        fromActionSheet:NO];
             }
             break;
         case kShoppingListAlertViewNewItem:
@@ -42,6 +43,11 @@
         case kShoppingListAlertViewListDeletion:
             if (buttonIndex != cancelButtonIndex)
                 [self deleteShoppingList];
+            break;
+        case kShoppingListAlertViewActionSheetNewList:
+            if (buttonIndex != cancelButtonIndex)
+                [self addShoppingList:[[alertView firstTextField] text]
+                        fromActionSheet:YES];
             break;
     }
 }

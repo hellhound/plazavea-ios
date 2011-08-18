@@ -12,6 +12,7 @@
 #pragma mark TSAlertView (NewShoppingListAlertView)
 
 + (TSAlertView *)alertViewForNewShoppingList:(id<TSAlertViewDelegate>)delegate
+                             fromActionSheet:(BOOL)fromActionSheet
 {
     TSAlertView *alertView = [[[TSAlertView alloc] initWithTitle:
                 NSLocalizedString(kShoppingListNewTitle, nil)
@@ -23,7 +24,9 @@
                  nil] autorelease];
     UITextField *textField = [alertView inputTextField];
 
-    [alertView setTag:kShoppingListAlertViewNewList];
+    [alertView setTag:fromActionSheet ?
+        kShoppingListAlertViewActionSheetNewList :
+        kShoppingListAlertViewNewList];
     [alertView setStyle:TSAlertViewStyleInput];
     [textField setPlaceholder:kShoppingListNewPlaceholder];
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];

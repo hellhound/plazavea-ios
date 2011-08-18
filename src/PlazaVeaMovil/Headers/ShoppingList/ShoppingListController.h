@@ -33,9 +33,12 @@
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
-- (void)addShoppingList:(NSString *)name;
+- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet;
 - (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity;
 - (void)deleteShoppingList;
+- (void)createNewShoppingListFromActionSheet:(BOOL)fromActionSheet;
+- (void)cloneShoppingList;
+- (void)mailShoppingList;
 @end
 
 @interface ShoppingListController (EventHandler)

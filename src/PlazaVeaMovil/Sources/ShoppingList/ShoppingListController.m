@@ -188,16 +188,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         [self setDelegate:delegate];
         [self setAllowsMovableCells:YES];
         [self setShoppingList:shoppingList];
-        if (shoppingList == nil) {
-            // We need to create a brand-new shopping list!
-            TSAlertView *alertView =
-                [[TSAlertView alertViewForNewShoppingList:self] retain];
-
-            // delay for 0.1 seconds
-            [self performSelector:@selector(showAlertViewForNewShoppingList:)
-                    withObject:alertView
-                    afterDelay:kShoppingListAlertViewDelay];
-        }
+        if (shoppingList == nil)
+            [self createNewShoppingListFromActionSheet:NO];
     }
     return self;
 }
@@ -211,7 +203,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     }
 }
 
-- (void)addShoppingList:(NSString *)name
+- (void)addShoppingList:(NSString *)name fromActionSheet:(BOOL)fromActionSheet
 {
     if ([_delegate respondsToSelector:
             @selector(shoppingListController:didAddShoppingListWithName:)]) {
@@ -228,6 +220,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         // And lastly, set the predicate to the fetch request of the results
         // controller 
         [[[self resultsController] fetchRequest] setPredicate:predicate];
+        if (fromActionSheet)
+            [self fetchUpdateAndReload];
         [self updatePreviousNextButtons];
     }
 }
@@ -253,6 +247,28 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         [_delegate shoppingListController:self
                 didDeleteShoppingList:_shoppingList];
     [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+- (void)createNewShoppingListFromActionSheet:(BOOL)fromActionSheet
+{
+    // We need to create a brand-new shopping list!
+    TSAlertView *alertView = [[TSAlertView alertViewForNewShoppingList:self
+            fromActionSheet:fromActionSheet] retain];
+
+    // delay for 0.1 seconds
+    [self performSelector:@selector(showAlertViewForNewShoppingList:)
+            withObject:alertView
+            afterDelay:kShoppingListAlertViewDelay];
+}
+
+- (void)cloneShoppingList
+{
+    // TODO
+}
+
+- (void)mailShoppingList
+{
+    // TODO
 }
 
 #pragma mark -

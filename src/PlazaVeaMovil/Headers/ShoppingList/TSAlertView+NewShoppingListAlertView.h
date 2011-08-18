@@ -5,5 +5,6 @@
 
 @interface TSAlertView (NewShoppingListAlertView)
 
-+ (TSAlertView *)alertViewForNewShoppingList:(id<TSAlertViewDelegate>)delegate;
++ (TSAlertView *)alertViewForNewShoppingList:(id<TSAlertViewDelegate>)delegate
+                             fromActionSheet:(BOOL)fromActionSheet;
 @end

@@ -38,7 +38,8 @@ extern NSString *const kShoppingListDefaultDetailText;
 typedef enum {
     kShoppingListAlertViewNewList,
     kShoppingListAlertViewNewItem,
-    kShoppingListAlertViewListDeletion
+    kShoppingListAlertViewListDeletion,
+    kShoppingListAlertViewActionSheetNewList
 } ShoppingListAlertViewType;
 
 // TSAlertView's constants for shopping list creation
@@ -59,6 +60,12 @@ extern NSString *const kShoppingListDeletionTitle;
 extern NSString *const kShoppingListDeletionMessage;
 extern NSString *const kShoppingListDeletionOkButtonTitle;
 extern NSString *const kShoppingListDeletionCancelButtonTitle;
+
+typedef enum {
+    kShoppingListActionSheetNewButtonIndex,
+    kShoppingListActionSheetCloneButtonIndex,
+    kShoppingListActionSheetMailButtonIndex
+} ShoppingListActionSheetIndex;
 
 // UIActionSheet's constants
 extern NSString *const kShoppingListActionSheetNewButtonTitle;

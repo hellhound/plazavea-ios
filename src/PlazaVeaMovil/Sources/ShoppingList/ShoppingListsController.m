@@ -123,7 +123,8 @@
 - (void)addShoppingListHandler:(UIControl *)control
 {
     if ([self isEditing]) {
-        TSAlertView *alertView = [TSAlertView alertViewForNewShoppingList:self];
+        TSAlertView *alertView = [TSAlertView alertViewForNewShoppingList:self
+                fromActionSheet:NO];
 
         [alertView show];
     } else {
