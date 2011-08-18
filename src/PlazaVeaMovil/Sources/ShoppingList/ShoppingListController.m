@@ -222,6 +222,19 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [self fetchUpdateAndReload];
 }
 
+- (void)modifyShoppingItem:(ShoppingItem *)shoppingItem
+                      name:(NSString *)name
+                  quantity:(NSString *)quantity
+{
+    [ShoppingHistoryEntry historyEntryWithName:name context:[self context]];
+
+    [shoppingItem setName:name];
+    [shoppingItem setQuantity:quantity];
+    // First, save the context
+    [self saveContext];
+    [self fetchUpdateAndReload];
+}
+
 - (void)deleteShoppingList
 {
     [[self context] deleteObject:_shoppingList];

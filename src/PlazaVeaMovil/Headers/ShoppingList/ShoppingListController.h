@@ -38,6 +38,9 @@
 
 - (id)initWithShoppingList:(ShoppingList *)shoppingList delegate:(id)delegate;
 - (void)addShoppingItem:(NSString *)name quantity:(NSString *)quantity;
+- (void)modifyShoppingItem:(ShoppingItem *)shoppingItem
+                      name:(NSString *)name
+                  quantity:(NSString *)quantity;
 - (void)deleteShoppingList;
 - (void)createNewShoppingListFromActionSheet:(BOOL)fromActionSheet;
 @end

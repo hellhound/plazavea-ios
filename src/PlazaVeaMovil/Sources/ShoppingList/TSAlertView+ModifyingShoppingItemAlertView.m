@@ -25,6 +25,7 @@
                 NSLocalizedString(kShoppingItemModificationOkButtonTitle, nil),
                  nil] autorelease];
 
+    [alertView setUserInfo:shoppingItem];
     [alertView setTag:kShoppingListAlertViewModifyingItem];
     [alertView setStyle:TSAlertViewStyleInput];
     [alertView addTextFieldWithLabel:

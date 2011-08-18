@@ -41,6 +41,14 @@
             }
             break;
         case kShoppingListAlertViewModifyingItem:
+            if (buttonIndex != cancelButtonIndex) {
+                UITextField *nameTextField = [alertView textFieldAtIndex:0];
+                UITextField *quantityTextField = [alertView textFieldAtIndex:1];
+
+                [self modifyShoppingItem:(ShoppingItem *)[alertView userInfo]
+                        name:[nameTextField text]
+                        quantity:[quantityTextField text]];
+            }
             break;
         case kShoppingListAlertViewListDeletion:
             if (buttonIndex != cancelButtonIndex)
