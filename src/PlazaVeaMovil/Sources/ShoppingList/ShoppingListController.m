@@ -11,8 +11,9 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
-#import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
+#import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
+#import "ShoppingList/TSAlertView+ModifyingShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+ShoppingListDeletionConfirmation.h"
 #import "ShoppingList/UIActionSheet+ShoppingListMenu.h"
 #import "ShoppingList/HistoryEntryController.h"
@@ -110,15 +111,17 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [[cell textLabel] setText:[item serialize]];
 }
 
-/*
-#pragma mark -
-#pragma mark EditableCellTableViewController (Overridable)
-
-- (void)didChangeObject:(ShoppingItem *)item value:(NSString *)value
+- (void)didSelectRowForObject:(ShoppingItem *)item
+                  atIndexPath:(NSIndexPath *)indexPath
 {
-    [item setName:value];
+    if ([self isEditing]) {
+        TSAlertView *alertView =
+                [TSAlertView alertViewForModifyingShoppingItem:self
+                    shoppingItem:item];
+
+        [alertView show];
+    }
 }
-*/
 
 #pragma mark -
 #pragma mark ShoppingListController (Private)
@@ -190,6 +193,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setDelegate:delegate];
         [self setAllowsMovableCells:YES];
+        [self setAllowsRowDeselectionOnEditing:YES];
         [self setShoppingList:shoppingList];
         if (shoppingList == nil)
             [self createNewShoppingListFromActionSheet:NO];

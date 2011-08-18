@@ -40,6 +40,8 @@
                         quantity:[quantityTextField text]];
             }
             break;
+        case kShoppingListAlertViewModifyingItem:
+            break;
         case kShoppingListAlertViewListDeletion:
             if (buttonIndex != cancelButtonIndex)
                 [self deleteShoppingList];
