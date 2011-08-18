@@ -104,10 +104,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 #pragma mark EditableTableViewController (Overridable)
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
+            forObject:(ShoppingItem *)item
           atIndexPath:(NSIndexPath *)indexPath
 {
-    [[cell textLabel] setText:[(ShoppingItem *)object name]];
+    [[cell textLabel] setText:[item serialize]];
 }
 
 #pragma mark -
