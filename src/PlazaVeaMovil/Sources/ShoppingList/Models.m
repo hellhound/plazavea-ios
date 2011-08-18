@@ -225,6 +225,13 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
     }
     return [lists objectAtIndex:0];
 }
+
+- (NSString *)serialize
+{
+    // Uberness in the making, KVC is _TRULY_ useful
+    return [(NSArray *)[[[self items] allObjects] valueForKey:@"serialize"]
+            componentsJoinedByString:@"\n"];
+}
 @end
 
 @implementation ShoppingItem
@@ -322,6 +329,11 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
     [newItem setQuantity:quantity];
     [newItem setList:shoppingList];
     return newItem;
+}
+
+- (NSString *)serialize
+{
+    return [NSString stringWithFormat:@"%@ %@", [self quantity], [self name]];
 }
 @end
 

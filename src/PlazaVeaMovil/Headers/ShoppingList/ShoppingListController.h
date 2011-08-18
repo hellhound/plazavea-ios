@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 #import <TSAlertView/TSAlertView.h>
 
@@ -22,7 +23,8 @@
 @end
 
 @interface ShoppingListController: EditableCellTableViewController
-    <UIActionSheetDelegate, TSAlertViewDelegate, HistoryEntryControllerDelegate>
+    <UIActionSheetDelegate, MFMailComposeViewControllerDelegate,
+    TSAlertViewDelegate, HistoryEntryControllerDelegate>
 {
     id<ShoppingListControllerDelegate> _delegate;
     ShoppingList *_shoppingList;

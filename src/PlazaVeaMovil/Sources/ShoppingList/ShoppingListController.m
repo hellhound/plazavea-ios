@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <MessageUI/MessageUI.h>
 
 #import <TSAlertView/TSAlertView.h>
 
@@ -340,7 +341,13 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)mailShoppingList
 {
-    // TODO
+    MFMailComposeViewController *picker = 
+            [[[MFMailComposeViewController alloc] init] autorelease];
+
+    [picker setMailComposeDelegate:self];
+    [picker setSubject:[_shoppingList name]];
+    [picker setMessageBody:[_shoppingList serialize] isHTML:NO];
+    [self presentModalViewController:picker animated:YES];
 }
 
 #pragma mark -

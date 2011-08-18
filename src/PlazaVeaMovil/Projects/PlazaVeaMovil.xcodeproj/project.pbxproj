@@ -13,6 +13,7 @@
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
+		2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */; };
 		2C279D5E13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */; };
 		2C2DA9CC13F0BB9E00D80BB0 /* ShoppingListsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */; };
 		2C2DF1F913F7A24300D4E70B /* NSMutableArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */; };
@@ -31,6 +32,7 @@
 		2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECF13F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png */; };
 		2C691EE013F04C4E00E1EFA5 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
+		2C6CF2A113FD9A6A00A93C7F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */; };
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
@@ -265,6 +267,7 @@
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+MFMailComposeViewControllerDelegate.m"; sourceTree = "<group>"; };
 		2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListsController.m; sourceTree = "<group>"; };
 		2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Additions.m"; sourceTree = "<group>"; };
@@ -287,6 +290,7 @@
 		2C691ECF13F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = ../../TSAlertView/TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
+		2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListsController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 				2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */,
 				2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */,
 				2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */,
+				2C6CF2A113FD9A6A00A93C7F /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +394,7 @@
 				2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */,
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
 				2C2F07FA13DE661B009F60DB /* CoreData.framework */,
+				2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 			children = (
 				2C844C0013F95F2F000BE222 /* HistoryEntryController.m */,
 				2C317F5913F0C07700BDC645 /* ShoppingListController.m */,
+				2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */,
 				2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */,
 				2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */,
 				2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */,
@@ -887,6 +894,7 @@
 				2C81DF3813FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m in Sources */,
 				2CDD810A13FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m in Sources */,
 				2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */,
+				2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

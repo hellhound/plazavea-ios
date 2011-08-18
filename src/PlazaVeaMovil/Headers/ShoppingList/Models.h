@@ -18,6 +18,7 @@
 - (NSString *)formattedLastModiciationDate;
 - (ShoppingList *)previous; // If there's no previous list, return the last one
 - (ShoppingList *)next; // If there's no next list, return the first one
+- (NSString *)serialize;
 @end
 
 @interface ShoppingItem: ReorderingManagedObject
@@ -35,6 +36,8 @@
                   quantity:(NSString *)quantity
                       list:(ShoppingList *)shoppingList
          resultsController:(NSFetchedResultsController *)resultsController;
+
+- (NSString *)serialize;
 @end
 
 @interface ShoppingHistoryEntry: ManagedObject
