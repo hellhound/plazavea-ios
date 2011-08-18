@@ -4,7 +4,7 @@
 
 #import <TSAlertView/TSAlertView.h>
 
-#import "Common/Controllers/EditableCellTableViewController.h"
+#import "Common/Controllers/EditableTableViewController.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/HistoryEntryController.h"
 
@@ -22,7 +22,7 @@
           didCloneShoppingList:(ShoppingList *)shoppingList;
 @end
 
-@interface ShoppingListController: EditableCellTableViewController
+@interface ShoppingListController: EditableTableViewController
     <UIActionSheetDelegate, MFMailComposeViewControllerDelegate,
     TSAlertViewDelegate, HistoryEntryControllerDelegate>
 {

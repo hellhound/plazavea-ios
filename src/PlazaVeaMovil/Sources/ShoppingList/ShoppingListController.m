@@ -6,7 +6,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Additions/NSNull+Additions.h"
-#import "Common/Controllers/EditableCellTableViewController.h"
+#import "Common/Controllers/EditableTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
@@ -110,6 +110,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     [[cell textLabel] setText:[item serialize]];
 }
 
+/*
 #pragma mark -
 #pragma mark EditableCellTableViewController (Overridable)
 
@@ -117,6 +118,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 {
     [item setName:value];
 }
+*/
 
 #pragma mark -
 #pragma mark ShoppingListController (Private)
