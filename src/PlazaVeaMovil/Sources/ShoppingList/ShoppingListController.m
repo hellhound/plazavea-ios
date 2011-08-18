@@ -13,6 +13,7 @@
 #import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/TSAlertView+ShoppingListDeletionConfirmation.h"
+#import "ShoppingList/UIActionSheet+ShoppingListMenu.h"
 #import "ShoppingList/HistoryEntryController.h"
 #import "ShoppingList/ShoppingListController.h"
 
@@ -302,6 +303,10 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)displayActionSheet:(UIControl *)control
 {
+    UIActionSheet *actionSheet =
+            [UIActionSheet actionSheetForShoppingListMenu:self];
+
+    [actionSheet showFromToolbar:[[self navigationController] toolbar]];
 }
 
 #pragma mark -

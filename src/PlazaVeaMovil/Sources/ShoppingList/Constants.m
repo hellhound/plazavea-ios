@@ -70,6 +70,12 @@ NSString *const kShoppingListDeletionOkButtonTitle = @"Sí";
 NSString *const kShoppingListDeletionCancelButtonTitle = @"No";
 // NSLocalizedString(@"No", nil)
 
+// UIActionSheet's constants
+NSString *const kShoppingListActionSheetNewButtonTitle = @"Nueva lista";
+NSString *const kShoppingListActionSheetCloneButtonTitle = @"Clonar lista";
+NSString *const kShoppingListActionSheetMailButtonTitle = @"Enviar vía email";
+NSString *const kShoppingListActionSheetCancelButtonTitle = @"Cancelar";
+
 // ShoppingListController's constants
 
 const NSTimeInterval kShoppingListAlertViewDelay = .25;

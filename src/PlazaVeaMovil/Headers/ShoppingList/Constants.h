@@ -60,6 +60,12 @@ extern NSString *const kShoppingListDeletionMessage;
 extern NSString *const kShoppingListDeletionOkButtonTitle;
 extern NSString *const kShoppingListDeletionCancelButtonTitle;
 
+// UIActionSheet's constants
+extern NSString *const kShoppingListActionSheetNewButtonTitle;
+extern NSString *const kShoppingListActionSheetCloneButtonTitle;
+extern NSString *const kShoppingListActionSheetMailButtonTitle;
+extern NSString *const kShoppingListActionSheetCancelButtonTitle;
+
 // ShoppingListController's constants
 
 extern const NSTimeInterval kShoppingListAlertViewDelay;

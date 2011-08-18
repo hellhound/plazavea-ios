@@ -20,7 +20,7 @@
 @end
 
 @interface ShoppingListController: EditableCellTableViewController
-    <TSAlertViewDelegate, HistoryEntryControllerDelegate>
+    <UIActionSheetDelegate, TSAlertViewDelegate, HistoryEntryControllerDelegate>
 {
     id<ShoppingListControllerDelegate> _delegate;
     ShoppingList *_shoppingList;
