@@ -376,8 +376,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                   historyEntry:(ShoppingHistoryEntry *)historyEntry
 {
     // We need to create a brand-new item for this list!
-    TSAlertView *alertView =
-            [[TSAlertView alertViewForNewShoppingItem:self] retain];
+    TSAlertView *alertView = [[TSAlertView alertViewForNewShoppingItem:self
+            historyEntry:historyEntry] retain];
 
     // delay for 0.1 seconds
     [self performSelector:@selector(showAlertViewForNewShoppingItem:)

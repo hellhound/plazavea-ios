@@ -4,6 +4,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "ShoppingList/Constants.h"
+#import "ShoppingList/Models.h"
 #import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 
 @implementation TSAlertView (NewShoppingItemAlertView)
@@ -12,6 +13,8 @@
 #pragma mark TSAlertView (NewShoppingItemAlertView)
 
 + (TSAlertView *)alertViewForNewShoppingItem:(id<TSAlertViewDelegate>)delegate
+                                historyEntry:
+    (ShoppingHistoryEntry *)historyEntry;
 {
     TSAlertView *alertView = [[[TSAlertView alloc] initWithTitle:
                 NSLocalizedString(kShoppingItemNewTitle, nil)
@@ -31,6 +34,7 @@
 
     [nameTextField setPlaceholder:kShoppingItemNewNamePlaceholder];
     [nameTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [nameTextField setText:[historyEntry name]];
     [quantityTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     return alertView;
 }
