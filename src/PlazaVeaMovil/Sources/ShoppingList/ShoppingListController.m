@@ -109,6 +109,8 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
           atIndexPath:(NSIndexPath *)indexPath
 {
     [[cell textLabel] setText:[item serialize]];
+    [cell setAccessoryType:[[item checked] boolValue] ?
+            UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
 }
 
 - (void)didSelectRowForObject:(ShoppingItem *)item
@@ -120,6 +122,20 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                     shoppingItem:item];
 
         [alertView show];
+    } else {
+        UITableViewCell *cell =
+                [[self tableView] cellForRowAtIndexPath:indexPath];
+        ShoppingItem *item =
+                [[self resultsController] objectAtIndexPath:indexPath];
+
+        if ([cell accessoryType] == UITableViewCellAccessoryNone) {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [item setChecked:[NSNumber numberWithBool:YES]];
+        } else {
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            [item setChecked:[NSNumber numberWithBool:NO]];
+        }
+        [self saveContext];
     }
 }
 
@@ -347,6 +363,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                     quantity:[item quantity] list:clonedList
                     context:[self context]];
 
+        [clonedItem setOrder:[item order]];
         [clonedItem setChecked:[item checked]];
     }
     [self saveContext];

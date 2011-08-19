@@ -263,7 +263,7 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
     [checked setName:kShoppingItemChecked];
     [checked setAttributeType:NSInteger32AttributeType];
     [checked setOptional:NO];
-    [checked setDefaultValue:[NSNumber numberWithInteger:0]];
+    [checked setDefaultValue:[NSNumber numberWithBool:NO]];
     // setting properties into the entity
     return [attributes setByAddingObjectsFromSet:
             [NSSet setWithObjects:name, quantity, checked, nil]]; 
