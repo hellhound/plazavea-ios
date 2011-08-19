@@ -20,7 +20,7 @@
     <UISearchBarDelegate, UISearchDisplayDelegate>
 {
     id<HistoryEntryControllerDelegate> _delegate;
-    NSFetchedResultsController *_filteredResultsController;
+    NSFetchedResultsController *_filteredController;
     UISearchDisplayController *_searchController;
 }
 @property (nonatomic, assign) id<HistoryEntryControllerDelegate> delegate;

@@ -33,6 +33,8 @@
 		2C691EE013F04C4E00E1EFA5 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C6CF2A113FD9A6A00A93C7F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */; };
+		2C75709613FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */; };
+		2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
 		2C7BF76D13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */; };
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
@@ -292,6 +294,8 @@
 		2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HistoryEntryController+UITableViewDataSource.m"; sourceTree = "<group>"; };
+		2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HistoryEntryController+UITableViewDelegate.m"; sourceTree = "<group>"; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
 		2C7BF76C13F2CF8500053BA8 /* ShoppingListsController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListsController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
@@ -462,6 +466,8 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */,
+				2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */,
 				2C844C0013F95F2F000BE222 /* HistoryEntryController.m */,
 				2C317F5913F0C07700BDC645 /* ShoppingListController.m */,
 				2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */,
@@ -899,6 +905,8 @@
 				2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */,
 				2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */,
 				2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */,
+				2C75709613FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m in Sources */,
+				2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

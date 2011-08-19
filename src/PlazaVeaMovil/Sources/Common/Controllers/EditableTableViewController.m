@@ -118,14 +118,15 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
                                  sortDescriptors:(NSArray *)sortDescriptors
 {
     // Conf the fetch request
-    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:entityName
-            inManagedObjectContext:_context]];
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+    [request setEntity:[NSEntityDescription entityForName:entityName
+       inManagedObjectContext:_context]];
+    [request setPredicate:predicate];
+    [request setSortDescriptors:sortDescriptors];
     // Conf fetch-request controller
     _resultsController = [[NSFetchedResultsController alloc]
-            initWithFetchRequest:fetchRequest
+            initWithFetchRequest:request
             managedObjectContext:_context
             sectionNameKeyPath:nil
             //cacheName:withCache??????];

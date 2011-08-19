@@ -3,6 +3,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Common/Additions/NSNull+Additions.h"
+#import "Common/Additions/NSError+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
@@ -17,7 +18,7 @@ static NSString *kNameVariableKey = @"NAME";
 
 // @private
 @property (nonatomic, readonly)
-    NSFetchedResultsController *filteredResultsController;
+    NSFetchedResultsController *filteredController;
 @property (nonatomic, retain) UISearchDisplayController *searchController;
 
 + (void)initializePredicateTemplates;
@@ -37,7 +38,9 @@ static NSString *kNameVariableKey = @"NAME";
 - (void)dealloc
 {
     _delegate = nil;
-    [_filteredResultsController release];
+    [_filteredController setDelegate:nil];
+    [_filteredController release];
+    [_searchController setDelegate:nil];
     [_searchController release];
     [super dealloc];
 }
@@ -133,7 +136,7 @@ static NSString *kNameVariableKey = @"NAME";
 #pragma mark HistoryEntryController (Private)
 
 @synthesize searchController = _searchController,
-    filteredResultsController = _filteredResultsController;
+    filteredController = _filteredController;
 
 + (void)initializePredicateTemplates
 {
@@ -159,7 +162,9 @@ static NSString *kNameVariableKey = @"NAME";
 + (NSPredicate *)predicateForEntriesLikeName:(NSString *)name
 {
     return [kEntriesPredicateTemplate predicateWithSubstitutionVariables:
-            [NSDictionary dictionaryWithObject:[NSNull nullOrObject:name]
+            [NSDictionary dictionaryWithObject:
+                    [NSNull nullOrObject:
+                        [NSString stringWithFormat:@"*%@*", name]]
                 forKey:kNameVariableKey]];
 }
 
@@ -178,6 +183,14 @@ static NSString *kNameVariableKey = @"NAME";
         [self setAllowsMovableCells:NO];
         [self setDelegate:delegate];
         [self setTitle:NSLocalizedString(kHistoryEntryTitle, nil)];
+        // Configure the results controller for searches
+        _filteredController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:[[self resultsController] fetchRequest]
+                managedObjectContext:context
+                sectionNameKeyPath:nil
+                cacheName:nil];
+        [_filteredController setDelegate:self];
+        [_searchController setDelegate:self];
     }
     return self;
 }
@@ -195,8 +208,18 @@ static NSString *kNameVariableKey = @"NAME";
 }
 
 #pragma mark -
-#pragma mark HistoryEntryController <UISearchBarDelegate>
-
-#pragma mark -
 #pragma mark HistoryEntryController <UISearchDisplayDelegate>
+
+- (BOOL)    searchDisplayController:(UISearchDisplayController *)controller
+   shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [[_filteredController fetchRequest] setPredicate:
+            [HistoryEntryController predicateForEntriesLikeName:searchString]];
+    
+    NSError *error = nil;
+
+    if (![_filteredController performFetch:&error])
+        [error log];
+    return YES;
+}
 @end
