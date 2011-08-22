@@ -40,6 +40,12 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 #pragma mark -
 #pragma mark UIViewController
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
+{
+    // This here avoids recursion
+    return [super initWithNibName:nibName bundle:bundle];
+}
+
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
@@ -110,6 +116,15 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 }
 
 #pragma mark -
+#pragma mark UITableViewController
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    // This here avoids recursion
+    return [super initWithStyle:style];
+}
+
+#pragma mark -
 #pragma mark EditableTableViewController (Private)
 
 
@@ -117,25 +132,27 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
                                        predicate:(NSPredicate *)predicate
                                  sortDescriptors:(NSArray *)sortDescriptors
 {
-    // Conf the fetch request
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    if (entityName != nil) {
+        // Conf the fetch request
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 
-    [request setEntity:[NSEntityDescription entityForName:entityName
-       inManagedObjectContext:_context]];
-    [request setPredicate:predicate];
-    [request setSortDescriptors:sortDescriptors];
-    // Conf fetch-request controller
-    _resultsController = [[NSFetchedResultsController alloc]
-            initWithFetchRequest:request
-            managedObjectContext:_context
-            sectionNameKeyPath:nil
-            //cacheName:withCache??????];
-            cacheName:nil];
-    // Set this controller as the delegate of the fetch-request controller.
-    // When this is set, the fetch-reqeust controller begin tracking changes
-    // to managed objects associated with its managed context.
-    [_resultsController setDelegate:self];
-    [self performFetch];
+        [request setEntity:[NSEntityDescription entityForName:entityName
+           inManagedObjectContext:_context]];
+        [request setPredicate:predicate];
+        [request setSortDescriptors:sortDescriptors];
+        // Conf fetch-request controller
+        _resultsController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:request
+                managedObjectContext:_context
+                sectionNameKeyPath:nil
+                //cacheName:withCache??????];
+                cacheName:nil];
+        // Set this controller as the delegate of the fetch-request controller.
+        // When this is set, the fetch-reqeust controller begin tracking changes
+        // to managed objects associated with its managed context.
+        [_resultsController setDelegate:self];
+        [self performFetch];
+    }
 }
 
 - (BOOL)shouldHideReadonlyToolbar

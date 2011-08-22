@@ -25,6 +25,7 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
+        [self setTitle:NSLocalizedString(@"Plaza Vea Móvil :)", nil)];
     }
     return self;
 }

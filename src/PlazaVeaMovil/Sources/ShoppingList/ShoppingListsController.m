@@ -19,7 +19,7 @@
 #pragma mark -
 #pragma mark NSObject
 
-- (id)init
+- (id)initWithStyle:(UITableViewStyle)style
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];

@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
 
+// LauncherViewController's constants
+
+extern NSString *const kLauncherTitle;
+
 // Controller URLs
 
 extern NSString *const kURLLauncher;
