@@ -8,6 +8,11 @@
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
 
+@interface LauncherViewController (Private)
+
+- (void)hideToolbar:(NSNumber *)animated;
+@end
+
 @implementation LauncherViewController
 
 #pragma mark -
@@ -49,6 +54,22 @@
                 nil],
             nil]];
     [superView addSubview:_launcherView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self performSelector:@selector(hideToolbar:)
+            withObject:[NSNumber numberWithBool:animated]
+            afterDelay:kLauncherToolbarDelay];
+}
+
+#pragma mark -
+#pragma mark LauncherViewController (Private)
+
+- (void)hideToolbar:(NSNumber *)animated
+{
+    [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 
 #pragma mark -

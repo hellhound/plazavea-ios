@@ -3,6 +3,8 @@
 // LauncherViewController's constants
 
 extern NSString *const kLauncherTitle;
+// toolbar delay
+extern const NSTimeInterval kLauncherToolbarDelay;
 
 // Controller URLs
 
