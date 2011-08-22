@@ -19,7 +19,7 @@
 #pragma mark -
 #pragma mark NSObject
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
@@ -38,7 +38,7 @@
 }
 
 #pragma mark -
-#pragma mark UIView
+#pragma mark UIViewController
 
 - (UINavigationItem *)navigationItem
 {

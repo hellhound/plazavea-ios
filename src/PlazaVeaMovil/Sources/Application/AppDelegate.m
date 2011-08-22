@@ -44,8 +44,11 @@
     // Launcher
     [map from:kURLLauncher toViewController:[LauncherViewController class]];
     // Shopping lists
+    // ShoppingListsController isn't a TTViewController so we MUST provide a
+    // custom selector for initialization
     [map from:kURLShoppingList
-            toViewController:[ShoppingListsController class]];
+            toViewController:[ShoppingListsController class]
+            selector:@selector(init)];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
