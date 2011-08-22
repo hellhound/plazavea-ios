@@ -2,10 +2,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface AppDelegate: NSObject <UIApplicationDelegate>
+#import <Three20/Three20.h>
+
+@interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate>
 {
     UIWindow *_window;
-    UIViewController *_rootViewController;
     // CoreData
     NSManagedObjectContext *_context;
     NSManagedObjectModel *_model;
@@ -13,7 +14,6 @@
     // Defaults
     NSDateFormatter *_dateFormatter;
 }
-@property (nonatomic, retain) UIViewController *rootViewController;
 @end
 
 @interface AppDelegate (CoreData)

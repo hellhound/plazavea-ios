@@ -42,6 +42,8 @@
 		2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C844C0013F95F2F000BE222 /* HistoryEntryController.m */; };
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
 		2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */; };
+		2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */; };
+		2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
@@ -527,6 +529,8 @@
 		2C844C0013F95F2F000BE222 /* HistoryEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntryController.m; sourceTree = "<group>"; };
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIActionSheetDelegate.m"; sourceTree = "<group>"; };
+		2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
+		2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recipeBook.png; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
@@ -632,6 +636,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */,
 				2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */,
@@ -652,8 +657,9 @@
 			isa = PBXGroup;
 			children = (
 				2C864B1E13E729BF00D46066 /* ShoppingList */,
-				2CD9933813E65DA400879980 /* Common */,
+				2CC1E40C1402BA7200A8DC62 /* Launcher */,
 				2CE7045913DE6B4500BB2279 /* Application */,
+				2CD9933813E65DA400879980 /* Common */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -709,6 +715,14 @@
 				2C1D792813E87C58000FD96C /* Constants.m */,
 			);
 			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		2CC1E40C1402BA7200A8DC62 /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */,
+			);
+			path = Launcher;
 			sourceTree = "<group>";
 		};
 		2CD9933813E65DA400879980 /* Common */ = {
@@ -1337,6 +1351,7 @@
 				2C691ED313F04BB900E1EFA5 /* TSAlertViewButtonBackground.png in Resources */,
 				2C691ED413F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */,
+				2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1387,6 +1402,7 @@
 				2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */,
 				2C75709613FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m in Sources */,
 				2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */,
+				2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import <Three20/Three20.h>
+
+#import "Launcher/LauncherViewController.h"
 #import "ShoppingList/ShoppingListsController.h"
 #import "Application/AppDelegate.h"
 
@@ -13,7 +16,6 @@
 - (void)dealloc
 {
     [_window release];
-    [_rootViewController release];
     [_context release];
     [_model release];
     [_coordinator release];
@@ -24,24 +26,36 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize rootViewController = _rootViewController;
-
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
 
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
 
-    // TODO The root view controller should be the one of the launcher
-    ShoppingListsController *shoppingController =
-            [[[ShoppingListsController alloc] init] autorelease];
-    _rootViewController = [[UINavigationController alloc]
-            initWithRootViewController:shoppingController];
+    TTNavigator *navigator = [TTNavigator navigator];
+    [navigator setWindow:_window];
+    TTURLMap *map = [navigator URLMap];
 
-    [_window addSubview:[_rootViewController view]];
+    // Launcher
+    [map from:@"tt://launcher/"
+            toViewController:[LauncherViewController class]];
+    // Shopping lists
+    [map from:@"tt://launcher/shoppinglists/" 
+            toViewController:[ShoppingListsController class]];
+    // Open root view controller
+    [navigator openURLAction:[[TTURLAction actionWithURLPath:@"tt://launcher/"]
+            applyAnimated:YES]];
     [_window makeKeyAndVisible];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)URL
+{
+    [[TTNavigator navigator] openURLAction:
+            [[TTURLAction actionWithURLPath:
+                [URL absoluteString]] applyAnimated:YES]];
     return YES;
 }
 
@@ -50,5 +64,14 @@
     // Saves changes in the application's managed object context before the
     // application terminates.
     [self saveContext];
+}
+
+#pragma mark -
+#pragma mark <TTNavigatorDelegate>
+
+- (BOOL)navigator:(TTNavigator *)navigator shouldOpenURL:(NSURL *)URL
+{
+    // FIXME: Opens URLs systematically!!!
+    return YES;
 }
 @end
