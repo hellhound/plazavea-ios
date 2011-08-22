@@ -102,3 +102,11 @@ const NSTimeInterval kShoppingListAlertViewDelay = .25;
 // Administration of history entries
 NSString *const kHistoryEntryTitle = @"Historial de ítems";
 // NSLocalizedString(@"Historial de ítems", nil)
+
+// Controller URLs
+
+NSString *const kURLShoppingList = @"tt://launcher/shoppinglists/";
+
+// Controller URL's calls
+
+NSString *const kURLShoppingListCall = @"tt://launcher/shoppinglists/";

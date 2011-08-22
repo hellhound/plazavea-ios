@@ -48,6 +48,7 @@
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
+		2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAF50D1402EB5500E652B7 /* Constants.m */; };
 		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
 		2CDD810A13FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */; };
 		2CE52FBC13EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */; };
@@ -535,6 +536,7 @@
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
+		2CDAF50D1402EB5500E652B7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+ShoppingListMenu.m"; sourceTree = "<group>"; };
 		2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+NSFetchedResultsControllerDelegate.m"; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 		2CC1E40C1402BA7200A8DC62 /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				2CDAF50D1402EB5500E652B7 /* Constants.m */,
 				2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */,
 			);
 			path = Launcher;
@@ -1403,6 +1406,7 @@
 				2C75709613FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m in Sources */,
 				2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */,
 				2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */,
+				2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

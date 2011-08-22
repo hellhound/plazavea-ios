@@ -6,3 +6,7 @@
 // App constants
 
 #define DATE_FORMAT @"dd'/'MM'/'yyyy HH':'mm"
+
+// Macros
+
+#define URL(...) [NSString stringWithFormat:__VA_ARGS__]

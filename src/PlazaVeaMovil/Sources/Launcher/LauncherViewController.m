@@ -3,7 +3,10 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
+#import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
+#import "ShoppingList/Constants.h"
 
 @implementation LauncherViewController
 
@@ -39,9 +42,9 @@
     [_launcherView setColumnCount:3];
     [_launcherView setPages:[NSArray arrayWithObjects:
             [NSArray arrayWithObjects:
-                [[[TTLauncherItem alloc] initWithTitle:@"Mis listas"
-                    image:@"bundle://recipeBook.png"
-                    URL:@"tt://launcher/shoppinglists/"] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kShoppingListTitle
+                    image:kURLShoppingListIcon
+                    URL:kURLShoppingListCall] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

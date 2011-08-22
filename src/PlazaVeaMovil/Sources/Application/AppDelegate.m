@@ -4,7 +4,10 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
+#import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
+#import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
 #import "Application/AppDelegate.h"
 
@@ -39,13 +42,13 @@
     TTURLMap *map = [navigator URLMap];
 
     // Launcher
-    [map from:@"tt://launcher/"
-            toViewController:[LauncherViewController class]];
+    [map from:kURLLauncher toViewController:[LauncherViewController class]];
     // Shopping lists
-    [map from:@"tt://launcher/shoppinglists/" 
+    [map from:kURLShoppingList
             toViewController:[ShoppingListsController class]];
     // Open root view controller
-    [navigator openURLAction:[[TTURLAction actionWithURLPath:@"tt://launcher/"]
+    [navigator openURLAction:
+            [[TTURLAction actionWithURLPath:kURLLauncherCall]
             applyAnimated:YES]];
     [_window makeKeyAndVisible];
     return YES;

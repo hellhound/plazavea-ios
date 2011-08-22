@@ -89,3 +89,11 @@ extern const NSTimeInterval kShoppingListAlertViewDelay;
 
 // Administration of history entries
 extern NSString *const kHistoryEntryTitle;
+
+// Controller URLs
+
+extern NSString *const kURLShoppingList;
+
+// Controller URL's calls
+
+extern NSString *const kURLShoppingListCall;
