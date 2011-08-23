@@ -15,6 +15,7 @@
 		2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */; };
 		2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */; };
 		2C15B8AE14032A2E0060D8AD /* TTURLImageResponse+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */; };
+		2C18B8BD14043705008AEC52 /* URLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C18B8BC14043705008AEC52 /* URLRequestModel.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
 		2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */; };
@@ -25,6 +26,7 @@
 		2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E213DE61B3009F60DB /* Foundation.framework */; };
 		2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */; };
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
+		2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F8FB01403FA9700FB7CA1 /* basket.png */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
 		2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */; };
@@ -47,10 +49,12 @@
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
 		2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */; };
 		2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */; };
+		2CAF05CD1403FC8B003C2A2C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF05CC1403FC8B003C2A2C /* Constants.m */; };
 		2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */; };
 		2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
+		2CC757BD140419D60022FAE2 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC757BC140419D60022FAE2 /* Models.m */; };
 		2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */; };
 		2CC81ED21403181C009D5B6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ED11403181C009D5B6E /* Reachability.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
@@ -507,6 +511,7 @@
 		2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledImageNode+ETag.m"; sourceTree = "<group>"; };
 		2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledText+ETag.m"; sourceTree = "<group>"; };
 		2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTURLImageResponse+ETag.m"; sourceTree = "<group>"; };
+		2C18B8BC14043705008AEC52 /* URLRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLRequestModel.m; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+MFMailComposeViewControllerDelegate.m"; sourceTree = "<group>"; };
@@ -518,6 +523,7 @@
 		2C2F07E213DE61B3009F60DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2F07E413DE61B3009F60DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2C2F8FB01403FA9700FB7CA1 /* basket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basket.png; sourceTree = "<group>"; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
@@ -543,10 +549,12 @@
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SupersequentImplementation.m"; sourceTree = "<group>"; };
 		2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIActionSheetDelegate.m"; sourceTree = "<group>"; };
+		2CAF05CC1403FC8B003C2A2C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
 		2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recipeBook.png; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
+		2CC757BC140419D60022FAE2 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReconnectableTableViewController.m; sourceTree = "<group>"; };
 		2CC81ED11403181C009D5B6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
@@ -657,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */,
+				2C2F8FB01403FA9700FB7CA1 /* basket.png */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */,
 				2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */,
@@ -676,6 +685,7 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2CAF05CB1403FC8B003C2A2C /* Recipes */,
 				2C864B1E13E729BF00D46066 /* ShoppingList */,
 				2CC1E40C1402BA7200A8DC62 /* Launcher */,
 				2CE7045913DE6B4500BB2279 /* Application */,
@@ -688,6 +698,7 @@
 		2C4F5BDF13F2E616007B3ADE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C18B8BC14043705008AEC52 /* URLRequestModel.m */,
 				2CFE570913F3691F003F9601 /* Constants.m */,
 				2C4F5BE013F2E616007B3ADE /* ManagedObject.m */,
 				2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */,
@@ -735,6 +746,15 @@
 				2C1D792813E87C58000FD96C /* Constants.m */,
 			);
 			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				2CC757BC140419D60022FAE2 /* Models.m */,
+				2CAF05CC1403FC8B003C2A2C /* Constants.m */,
+			);
+			path = Recipes;
 			sourceTree = "<group>";
 		};
 		2CC1E40C1402BA7200A8DC62 /* Launcher */ = {
@@ -1388,6 +1408,7 @@
 				2C691ED413F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */,
+				2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1447,6 +1468,9 @@
 				2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */,
 				2C15B8AE14032A2E0060D8AD /* TTURLImageResponse+ETag.m in Sources */,
 				2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */,
+				2CAF05CD1403FC8B003C2A2C /* Constants.m in Sources */,
+				2CC757BD140419D60022FAE2 /* Models.m in Sources */,
+				2C18B8BD14043705008AEC52 /* URLRequestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

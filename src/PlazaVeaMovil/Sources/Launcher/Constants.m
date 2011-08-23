@@ -19,5 +19,5 @@ NSString *const kURLLauncherCall = @"tt://launcher/";
 
 // Launcher item's icons
 
-NSString *const kURLShoppingListIcon = @"bundle://recipeBook.png";
-
+NSString *const kURLShoppingListIcon = @"bundle://basket.png";
+NSString *const kURLRecipesIcon = @"bundle://recipeBook.png";

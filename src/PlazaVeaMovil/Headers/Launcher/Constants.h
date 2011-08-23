@@ -17,3 +17,4 @@ extern NSString *const kURLLauncherCall;
 // Launcher item's icons
 
 extern NSString *const kURLShoppingListIcon;
+extern NSString *const kURLRecipesIcon;

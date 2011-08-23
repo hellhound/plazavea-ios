@@ -22,4 +22,17 @@
 
 // Macros
 
+// Endpoint-construction helper
+#define ENDPOINT(x) ENDPOINT_BASE_URL x
+// Helper for forming URL calls
 #define URL(...) [NSString stringWithFormat:__VA_ARGS__]
+// Helper for adding cache policy depending on URLRequestModel's property:
+// isTryingCache
+#define ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy) \
+        if ([self isTryingCache]) { \
+            [request setCachePolicy:cachePolicy]; \
+        } else { \
+            [request setCachePolicy:cachePolicy | \
+                TTURLRequestCachePolicyEtag]; \
+        } \
+        [request setCacheExpirationAge:TT_DEFAULT_CACHE_EXPIRATION_AGE]
