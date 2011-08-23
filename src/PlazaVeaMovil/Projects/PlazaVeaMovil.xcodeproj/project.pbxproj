@@ -11,6 +11,10 @@
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
 		2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D9D013F999190039E37C /* NSNull+Additions.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
+		2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */; };
+		2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */; };
+		2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */; };
+		2C15B8AE14032A2E0060D8AD /* TTURLImageResponse+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */; };
 		2C1D792913E87C58000FD96C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D792813E87C58000FD96C /* Constants.m */; };
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
 		2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */; };
@@ -41,16 +45,20 @@
 		2C81DF3813FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */; };
 		2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C844C0013F95F2F000BE222 /* HistoryEntryController.m */; };
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
+		2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */; };
 		2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */; };
 		2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */; };
 		2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
+		2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */; };
+		2CC81ED21403181C009D5B6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ED11403181C009D5B6E /* Reachability.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAF50D1402EB5500E652B7 /* Constants.m */; };
 		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
 		2CDD810A13FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */; };
+		2CDE36C514031D80001B132F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDE36C414031D80001B132F /* SystemConfiguration.framework */; };
 		2CE52FBC13EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */; };
 		2CE52FBD13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */; };
 		2CE52FBE13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */; };
@@ -495,6 +503,10 @@
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		2C02D9D013F999190039E37C /* NSNull+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Additions.m"; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
+		2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTImageView+ETag.m"; sourceTree = "<group>"; };
+		2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledImageNode+ETag.m"; sourceTree = "<group>"; };
+		2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledText+ETag.m"; sourceTree = "<group>"; };
+		2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTURLImageResponse+ETag.m"; sourceTree = "<group>"; };
 		2C1D792813E87C58000FD96C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+MFMailComposeViewControllerDelegate.m"; sourceTree = "<group>"; };
@@ -529,16 +541,20 @@
 		2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ShoppingListDeletionConfirmation.m"; sourceTree = "<group>"; };
 		2C844C0013F95F2F000BE222 /* HistoryEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntryController.m; sourceTree = "<group>"; };
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
+		2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SupersequentImplementation.m"; sourceTree = "<group>"; };
 		2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIActionSheetDelegate.m"; sourceTree = "<group>"; };
 		2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
 		2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recipeBook.png; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
+		2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReconnectableTableViewController.m; sourceTree = "<group>"; };
+		2CC81ED11403181C009D5B6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CDAF50D1402EB5500E652B7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+ShoppingListMenu.m"; sourceTree = "<group>"; };
+		2CDE36C414031D80001B132F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+NSFetchedResultsControllerDelegate.m"; sourceTree = "<group>"; };
 		2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDataSource.m"; sourceTree = "<group>"; };
 		2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDelegate.m"; sourceTree = "<group>"; };
@@ -581,6 +597,7 @@
 				2C2F07E313DE61B3009F60DB /* Foundation.framework in Frameworks */,
 				2C2F07E513DE61B3009F60DB /* CoreGraphics.framework in Frameworks */,
 				2C6CF2A113FD9A6A00A93C7F /* MessageUI.framework in Frameworks */,
+				2CDE36C514031D80001B132F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +648,7 @@
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
 				2C2F07FA13DE661B009F60DB /* CoreData.framework */,
 				2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */,
+				2CDE36C414031D80001B132F /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -728,6 +746,14 @@
 			path = Launcher;
 			sourceTree = "<group>";
 		};
+		2CC81ED01403181C009D5B6E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2CC81ED11403181C009D5B6E /* Reachability.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		2CD9933813E65DA400879980 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +761,7 @@
 				2CE52FB713EBC19A00A5D7FE /* Controllers */,
 				2C4F5BDF13F2E616007B3ADE /* Models */,
 				2C25BD3313E8F88F00A4311B /* Views */,
+				2CC81ED01403181C009D5B6E /* Networking */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -742,11 +769,16 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */,
+				2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */,
+				2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */,
+				2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */,
 				2C02D9D013F999190039E37C /* NSNull+Additions.m */,
 				2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */,
 				2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */,
 				2CE6077013EE420600431A7A /* NSURL+Additions.m */,
 				2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */,
+				2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */,
 				2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */,
 				2CD9933A13E65DA400879980 /* NSError+Additions.m */,
 				2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */,
@@ -765,6 +797,7 @@
 		2CE52FB713EBC19A00A5D7FE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */,
 				2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */,
 				2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */,
 				2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */,
@@ -1407,6 +1440,13 @@
 				2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */,
 				2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */,
 				2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */,
+				2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */,
+				2CC81ED21403181C009D5B6E /* Reachability.m in Sources */,
+				2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */,
+				2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */,
+				2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */,
+				2C15B8AE14032A2E0060D8AD /* TTURLImageResponse+ETag.m in Sources */,
+				2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

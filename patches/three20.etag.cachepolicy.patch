@@ -1,0 +1,23 @@
+diff --git a/src/Three20Network/Sources/TTURLRequestQueue.m b/src/Three20Network/Sources/TTURLRequestQueue.m
+index dc94e5d..708d133 100644
+--- a/src/Three20Network/Sources/TTURLRequestQueue.m
++++ b/src/Three20Network/Sources/TTURLRequestQueue.m
+@@ -260,7 +260,8 @@ static TTURLRequestQueue* gMainQueue = nil;
+   NSDate* timestamp = nil;
+   NSError* error = nil;
+ 
+-  if ((loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
++  if (!IS_MASK_SET(loader.cachePolicy, TTURLRequestCachePolicyEtag)
++      && (loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
+       && [self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
+                expires:loader.cacheExpirationAge
+                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
+@@ -628,7 +629,7 @@ static TTURLRequestQueue* gMainQueue = nil;
+   NSDate* timestamp = nil;
+   if ([self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
+                   expires:TT_CACHE_EXPIRATION_AGE_NEVER
+-                 fromDisk:!_suspended && (loader.cachePolicy & TTURLRequestCachePolicyDisk)
++                 fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
+                      data:&data error:&error timestamp:&timestamp]) {
+ 
+     if (nil == error) {
