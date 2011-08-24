@@ -92,8 +92,8 @@ extern NSString *const kHistoryEntryTitle;
 
 // Controller URLs
 
-extern NSString *const kURLShoppingList;
+extern NSString *const kURLShoppingLists;
 
 // Controller URL's calls
 
-extern NSString *const kURLShoppingListCall;
+extern NSString *const kURLShoppingListsCall;

@@ -30,6 +30,7 @@
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
 		2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */; };
+		2C59E2E1140554800061676D /* AlphabeticalRecipesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */; };
 		2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */; };
 		2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */; };
 		2C691ED213F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */; };
@@ -57,6 +58,7 @@
 		2CC757BD140419D60022FAE2 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC757BC140419D60022FAE2 /* Models.m */; };
 		2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */; };
 		2CC81ED21403181C009D5B6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ED11403181C009D5B6E /* Reachability.m */; };
+		2CD0E775140555CB00D8A5B0 /* RecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0E774140555CA00D8A5B0 /* RecipesController.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
 		2CD9933F13E65DA400879980 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */; };
 		2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAF50D1402EB5500E652B7 /* Constants.m */; };
@@ -530,6 +532,7 @@
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2C4F5BE013F2E616007B3ADE /* ManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObject.m; sourceTree = "<group>"; };
 		2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReorderingManagedObject.m; sourceTree = "<group>"; };
+		2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphabeticalRecipesDataSource.m; sourceTree = "<group>"; };
 		2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
 		2C691ECC13F04BB900E1EFA5 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = ../../TSAlertView/TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
@@ -557,6 +560,7 @@
 		2CC757BC140419D60022FAE2 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReconnectableTableViewController.m; sourceTree = "<group>"; };
 		2CC81ED11403181C009D5B6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		2CD0E774140555CA00D8A5B0 /* RecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesController.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
 		2CD9933B13E65DA400879980 /* NSFileManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Additions.m"; sourceTree = "<group>"; };
 		2CDAF50D1402EB5500E652B7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -751,6 +755,8 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2CD0E774140555CA00D8A5B0 /* RecipesController.m */,
+				2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */,
 				2CC757BC140419D60022FAE2 /* Models.m */,
 				2CAF05CC1403FC8B003C2A2C /* Constants.m */,
 			);
@@ -1471,6 +1477,8 @@
 				2CAF05CD1403FC8B003C2A2C /* Constants.m in Sources */,
 				2CC757BD140419D60022FAE2 /* Models.m in Sources */,
 				2C18B8BD14043705008AEC52 /* URLRequestModel.m in Sources */,
+				2C59E2E1140554800061676D /* AlphabeticalRecipesDataSource.m in Sources */,
+				2CD0E775140555CB00D8A5B0 /* RecipesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
+#import "Recipes/Constants.h"
+#import "Recipes/RecipesController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -46,9 +48,11 @@
     // Shopping lists
     // ShoppingListsController isn't a TTViewController so we MUST provide a
     // custom selector for initialization
-    [map from:kURLShoppingList
+    [map from:kURLShoppingLists
             toViewController:[ShoppingListsController class]
             selector:@selector(init)];
+    // Recipes
+    [map from:kURLRecipes toViewController:[RecipesController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

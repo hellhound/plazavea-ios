@@ -51,10 +51,10 @@
             [NSArray arrayWithObjects:
                 [[[TTLauncherItem alloc] initWithTitle:kShoppingListTitle
                     image:kURLShoppingListIcon
-                    URL:kURLShoppingListCall] autorelease],
+                    URL:kURLShoppingListsCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRecipesTitle
                     image:kURLRecipesIcon
-                    URL:nil] autorelease],
+                    URL:kURLRecipesCall] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

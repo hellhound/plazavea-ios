@@ -35,6 +35,12 @@ NSString *const kIngredientCommentKey = @"comment";
 
 NSString *const kRecipesTitle = @"Recetas";
 
+// Controllers URLs
+NSString *const kURLRecipes = @"tt://launcher/recipes/";
+
+// Controller URL's calls
+NSString *const kURLRecipesCall = @"tt://launcher/recipes/";
+
 // Endpoint URLs
 
 NSString *const kURLRecipeAlphabeticEndpoint =

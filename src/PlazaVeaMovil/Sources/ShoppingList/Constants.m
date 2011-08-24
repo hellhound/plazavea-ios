@@ -105,8 +105,8 @@ NSString *const kHistoryEntryTitle = @"Historial de ítems";
 
 // Controller URLs
 
-NSString *const kURLShoppingList = @"tt://launcher/shoppinglists/";
+NSString *const kURLShoppingLists = @"tt://launcher/shoppinglists/";
 
 // Controller URL's calls
 
-NSString *const kURLShoppingListCall = @"tt://launcher/shoppinglists/";
+NSString *const kURLShoppingListsCall = @"tt://launcher/shoppinglists/";

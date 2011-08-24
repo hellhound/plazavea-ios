@@ -33,6 +33,12 @@ extern NSString *const kIngredientCommentKey;
 
 extern NSString *const kRecipesTitle;
 
+// Controllers URLs
+extern NSString *const kURLRecipes;
+
+// Controller URL's calls
+extern NSString *const kURLRecipesCall;
+
 // Endpoint URLs
 
 extern NSString *const kURLRecipeAlphabeticEndpoint;
