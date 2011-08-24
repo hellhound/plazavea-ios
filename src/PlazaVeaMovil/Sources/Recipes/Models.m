@@ -40,16 +40,16 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 
     if (![rawIngredient isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((quantity = [rawIngredient objectForKey:kIngredientQuantityKey]) != nil)
+    if ((quantity = [rawIngredient objectForKey:kIngredientQuantityKey]) == nil)
         return nil;
     if (![quantity isKindOfClass:[NSString class]])
         return nil;
     if ((description =
-            [rawIngredient objectForKey:kIngredientDescriptionKey]) != nil)
+            [rawIngredient objectForKey:kIngredientDescriptionKey]) == nil)
         return nil;
     if (![description isKindOfClass:[NSString class]])
         return nil;
-    if ((comment = [rawIngredient objectForKey:kIngredientCommentKey]) != nil)
+    if ((comment = [rawIngredient objectForKey:kIngredientCommentKey]) == nil)
         return nil;
     if (![comment isKindOfClass:[NSString class]])
         return nil;
@@ -67,6 +67,18 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 
 #pragma mark -
 #pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        // Initialiazing only the mutable arrays
+        _extraPictureURLs = [[NSMutableArray alloc] init];
+        _ingredients = [[NSMutableArray alloc] init];
+        _procedures = [[NSMutableArray alloc] init];
+        _features = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (void)dealloc
 {
@@ -189,11 +201,11 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 
     if (![rawRecipe isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((recipeId = [rawRecipe objectForKey:kRecipeIdKey]) != nil)
+    if ((recipeId = [rawRecipe objectForKey:kRecipeIdKey]) == nil)
         return nil;
     if (![recipeId isKindOfClass:[NSNumber class]])
         return nil;
-    if ((name = [rawRecipe objectForKey:kRecipeNameKey]) != nil)
+    if ((name = [rawRecipe objectForKey:kRecipeNameKey]) == nil)
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
@@ -290,6 +302,14 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 #pragma mark -
 #pragma mark NSObject
 
+- (id)init
+{
+    if ((self = [super init]) != nil)
+        // Initialiazing only the mutable arrays
+        _recipes = [[NSMutableArray alloc] init];
+    return self;
+}
+
 - (void)dealloc
 {
     [_recipes release];
@@ -324,17 +344,19 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
-    TTURLRequest *request =
-            [TTURLRequest requestWithURL:kURLRecipeAlphabeticEndpoint
-                delegate:self];
+    if (![self isLoading]) {
+        TTURLRequest *request =
+                [TTURLRequest requestWithURL:kURLRecipeAlphabeticEndpoint
+                    delegate:self];
 
-    ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
-    [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
-    [request send];
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
 }
 
 #pragma mark -
-#pragma mark <TTURLRequestCacheDelegate>
+#pragma mark <TTURLRequestDelegate>
 
 - (void)requestDidFinishLoad:(TTURLRequest *)request
 {

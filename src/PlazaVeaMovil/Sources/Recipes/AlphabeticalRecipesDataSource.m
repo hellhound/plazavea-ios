@@ -2,6 +2,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Recipes/Models.h"
 #import "Recipes/AlphabeticalRecipesDataSource.h"
 
 @implementation AlphabeticalRecipesDataSource
@@ -11,8 +12,8 @@
 
 - (id)init
 {
-    if ((self = [super init]) != nil) {
-    }
+    if ((self = [super init]) != nil)
+        [self setModel:[[[RecipeCollection alloc] init] autorelease]];
     return self;
 }
 
@@ -29,25 +30,34 @@
 
 - (NSString *)titleForLoading:(BOOL)reloading
 {
-    return @"";
+    return @"Loading...";
 }
 
 - (NSString *)titleForEmpty
 {
-    return @"";
+    return @"Empty";
 }
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return @"";
+    return @"Error";
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return @"";
+    return @"lulwut?";
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    NSMutableArray *sections = [NSMutableArray arrayWithObject:@"Prueba"];
+    NSMutableArray *items = [NSMutableArray array];
+
+    for (Recipe *recipe in [(RecipeCollection *)[self model] recipes]) {
+        TTTableTextItem *item = [TTTableTextItem itemWithText:[recipe name]];
+        [items addObject:item];
+    }
+    [self setSections:sections];
+    [self setItems:[NSArray arrayWithObject:items]];
 }
 @end

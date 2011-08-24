@@ -6,7 +6,7 @@
 
 @interface URLRequestModel (Private)
 
-@property (nonatomic, assign) BOOL isTryingCache;
+- (void)setIsTryingCache:(BOOL)isTryingCache;
 @end 
 
 @implementation URLRequestModel
@@ -38,6 +38,14 @@
 {
     [self setIsTryingCache:NO];
     [super endUpdates];
+}
+
+#pragma mark -
+#pragma mark URLRequestModel (Private)
+
+- (void)setIsTryingCache:(BOOL)isTryingCache
+{
+    _isTryingCache = isTryingCache;
 }
 
 #pragma mark -

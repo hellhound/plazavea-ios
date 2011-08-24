@@ -5,10 +5,10 @@
 // Define HOST_NAME and ENDPOINT_BASE_URL
 #ifdef DEBUG
 #define HOST_NAME @"demos.bitzeppelin.com"
-#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"spsa/api"
+#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
 #else
 #define HOST_NAME @"demos.bitzeppelin.com"
-#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"spsa/api"
+#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
 #endif
 
 // CoreData constants

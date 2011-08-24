@@ -44,5 +44,5 @@ NSString *const kURLRecipesCall = @"tt://launcher/recipes/";
 // Endpoint URLs
 
 NSString *const kURLRecipeAlphabeticEndpoint =
-        ENDPOINT(@"/recipies/alphabetic.json");
-NSString *const kURLRecipeDetailEndpoint = ENDPOINT(@"/recipies/details.json");
+        ENDPOINT(@"/recipes/alphabetic.json");
+NSString *const kURLRecipeDetailEndpoint = ENDPOINT(@"/recipes/details.json");
