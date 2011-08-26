@@ -2,6 +2,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/AlphabeticalRecipesDataSource.h"
 
@@ -30,22 +31,27 @@
 
 - (NSString *)titleForLoading:(BOOL)reloading
 {
-    return @"Loading...";
+    return NSLocalizedString(kRecipesTitleForLoading, nil);
 }
 
 - (NSString *)titleForEmpty
 {
-    return @"Empty";
+    return NSLocalizedString(kRecipesTitleForEmpty, nil);
+}
+
+- (NSString *)subtitleForEmpty
+{
+    return NSLocalizedString(kRecipesSubtitleForEmpty, nil);
 }
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return @"Error";
+    return NSLocalizedString(kRecipesTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return @"lulwut?";
+    return NSLocalizedString(kRecipesSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView

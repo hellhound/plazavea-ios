@@ -29,6 +29,15 @@ extern NSString *const kIngredientQuantityKey;
 extern NSString *const kIngredientDescriptionKey;
 extern NSString *const kIngredientCommentKey;
 
+// Messages
+
+extern NSString *kRecipesTitleForLoading;
+extern NSString *kRecipesTitleForReloading;
+extern NSString *kRecipesTitleForEmpty;
+extern NSString *kRecipesSubtitleForEmpty;
+extern NSString *kRecipesTitleForError;
+extern NSString *kRecipesSubtitleForError;
+
 // RecipeController's constants
 
 extern NSString *const kRecipesTitle;

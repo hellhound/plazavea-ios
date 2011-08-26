@@ -2,5 +2,7 @@
 
 #import <Three20/Three20.h>
 
-@interface RecipesController: TTTableViewController
+#import "Common/Controllers/ReconnectableTableViewController.h"
+
+@interface RecipesController: ReconnectableTableViewController
 @end

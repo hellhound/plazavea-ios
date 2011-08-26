@@ -31,6 +31,24 @@ NSString *const kIngredientQuantityKey = @"quantity";
 NSString *const kIngredientDescriptionKey = @"product";
 NSString *const kIngredientCommentKey = @"comment";
 
+// Messages
+
+// AlphabeticalRecipesDataSource
+NSString *kRecipesTitleForLoading = @"Obteniendo lista de recetas";
+// NSLocalizedString(@"Obteniendo lista de recetas", nil)
+NSString *kRecipesTitleForReloading = @"Actualizando lista de recetas";
+// NSLocalizedString(@"Actualizando lista de recetas", nil)
+NSString *kRecipesTitleForEmpty = @"No hay recetas";
+// NSLocalizedString(@"No existen recetas aún", nil)
+NSString *kRecipesSubtitleForEmpty = @"Por favor intente de nuevo más tarde, "
+        @"aún no existen recetas disponibles";
+// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+//      @"recetas disponibles", nil)
+NSString *kRecipesTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *kRecipesSubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
 // RecipeController's constants
 
 NSString *const kRecipesTitle = @"Recetas";
