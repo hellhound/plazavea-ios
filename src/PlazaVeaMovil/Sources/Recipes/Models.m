@@ -13,7 +13,8 @@ static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 // Recipe collection's key pathes
-static NSString *const kMutbaleRecipesKey = @"recipes";
+static NSString *const kMutbaleSectionsKey = @"sections";
+static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
 @implementation Ingredient
 
@@ -304,39 +305,62 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 
 - (id)init
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         // Initialiazing only the mutable arrays
-        _recipes = [[NSMutableArray alloc] init];
+        _sections = [[NSMutableArray alloc] init];
+        _sectionTitles = [[NSMutableArray alloc] init];
+    }
     return self;
 }
 
 - (void)dealloc
 {
-    [_recipes release];
+    [_sections release];
+    [_sectionTitles release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark NSObject (NSKeyValueCoding)
 
-- (void)insertObject:(Recipe *)recipe inRecipesAtIndex:(NSUInteger)index
+- (void)insertObject:(Recipe *)recipe inSectionsAtIndex:(NSUInteger)index
 {
-    [_recipes insertObject:recipe atIndex:index];
+    [_sections insertObject:recipe atIndex:index];
 }
 
-- (void)insertRecipes:(NSArray *)recipes atIndexes:(NSIndexSet *)indexes
+- (void)insertSections:(NSArray *)recipes atIndexes:(NSIndexSet *)indexes
 {
-    [_recipes insertObjects:recipes atIndexes:indexes];
+    [_sections insertObjects:recipes atIndexes:indexes];
 }
 
-- (void)removeObjectFromRecipesAtIndex:(NSUInteger)index
+- (void)removeObjectFromSectionsAtIndex:(NSUInteger)index
 {
-    [_recipes removeObjectAtIndex:index];
+    [_sections removeObjectAtIndex:index];
 }
 
-- (void)removeRecipesAtIndexes:(NSIndexSet *)indexes
+- (void)removeSectionsAtIndexes:(NSIndexSet *)indexes
 {
-    [_recipes removeObjectsAtIndexes:indexes];
+    [_sections removeObjectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(Recipe *)recipe inSectionTitlesAtIndex:(NSUInteger)index
+{
+    [_sectionTitles insertObject:recipe atIndex:index];
+}
+
+- (void)insertSectionTitles:(NSArray *)recipes atIndexes:(NSIndexSet *)indexes
+{
+    [_sectionTitles insertObjects:recipes atIndexes:indexes];
+}
+
+- (void)removeObjectFromSectionTitlesAtIndex:(NSUInteger)index
+{
+    [_sectionTitles removeObjectAtIndex:index];
+}
+
+- (void)removeSectionTitlesAtIndexes:(NSIndexSet *)indexes
+{
+    [_sectionTitles removeObjectsAtIndexes:indexes];
 }
 
 #pragma mark -
@@ -363,31 +387,52 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
     NSDictionary *rootObject =
             [(TTURLJSONResponse *)[request response] rootObject];
     NSArray *letters;
-    NSMutableArray *mutableRecipes =
-            [self mutableArrayValueForKey:kMutbaleRecipesKey];
+    UILocalizedIndexedCollation *collation =
+            [UILocalizedIndexedCollation currentCollation];
+    NSMutableArray *mutableSections =
+            [self mutableArrayValueForKey:kMutbaleSectionsKey];
+    NSMutableArray *mutableSectionTitles =
+            [self mutableArrayValueForKey:kMutableSectionTitlesKey];
 
     if (![rootObject isKindOfClass:[NSDictionary class]])
         return;
     if ((letters =
             [rootObject objectForKey:kRecipeCollectionLettersKey]) == nil)
         return;
+
     for (NSDictionary *recipeCluster in letters) {
-        NSArray *rawRecipes;
+        NSArray *rawRecipesInSection;
+        NSString *sectionName;
 
         if (![recipeCluster isKindOfClass:[NSDictionary class]])
-            // Quit!
             return;
-        if ((rawRecipes = [recipeCluster objectForKey:
+        if ((sectionName =
+                [recipeCluster objectForKey:kRecipeCollectionLetterKey]) == nil)
+            return;
+        if (![sectionName isKindOfClass:[NSString class]])
+            return;
+        if ((rawRecipesInSection = [recipeCluster objectForKey:
                 kRecipeCollectionRecipesKey]) == nil)
             return;
-        for (NSDictionary *rawRecipe in rawRecipes) {
+        if (![rawRecipesInSection isKindOfClass:[NSArray class]])
+            return;
+
+        NSMutableArray *recipesInSection =
+                [NSMutableArray arrayWithCapacity:[rawRecipesInSection count]];
+
+        [mutableSectionTitles addObject:sectionName];
+        [collation sectionForObject:sectionName
+                collationStringSelector:@selector(description)];
+        for (NSDictionary *rawRecipe in rawRecipesInSection) {
             Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
 
             if (recipe == nil)
                 // Quit!
                 return;
-            [mutableRecipes addObject:recipe];
+            [recipesInSection addObject:
+                [TTTableTextItem itemWithText:[recipe name]]];
         }
+        [mutableSections addObject:recipesInSection];
     }
     [super requestDidFinishLoad:request];
 }
@@ -395,5 +440,10 @@ static NSString *const kMutbaleRecipesKey = @"recipes";
 #pragma mark -
 #pragma mark RecipeCollection (Public)
 
-@synthesize recipes = _recipes;
+@synthesize sections = _sections, sectionTitles = _sectionTitles;
+
+- (NSArray *)sectionIndexTitles
+{
+    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+}
 @end

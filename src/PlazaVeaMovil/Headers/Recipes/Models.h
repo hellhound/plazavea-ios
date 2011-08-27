@@ -49,7 +49,10 @@
 
 @interface RecipeCollection: URLRequestModel
 {
-    NSMutableArray *_recipes;
+    NSMutableArray *_sections;
+    NSMutableArray *_sectionTitles;
 }
-@property (nonatomic, readonly) NSArray *recipes;
+@property (nonatomic, readonly) NSArray *sections;
+@property (nonatomic, readonly) NSArray *sectionIndexTitles;
+@property (nonatomic, readonly) NSArray *sectionTitles;
 @end

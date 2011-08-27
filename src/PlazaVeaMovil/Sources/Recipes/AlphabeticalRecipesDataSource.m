@@ -23,7 +23,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return nil;
+    return [(RecipeCollection *)[self model] sectionIndexTitles];;
 }
 
 #pragma mark -
@@ -56,14 +56,14 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-    NSMutableArray *sections = [NSMutableArray arrayWithObject:@"Prueba"];
-    NSMutableArray *items = [NSMutableArray array];
+    RecipeCollection *collection = (RecipeCollection *)[self model];
+    NSArray *sections = [collection sections];
+    NSUInteger sectionCount = [sections count], i;
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:sectionCount];
 
-    for (Recipe *recipe in [(RecipeCollection *)[self model] recipes]) {
-        TTTableTextItem *item = [TTTableTextItem itemWithText:[recipe name]];
-        [items addObject:item];
-    }
-    [self setSections:sections];
-    [self setItems:[NSArray arrayWithObject:items]];
+    for (i = 0; i < sectionCount; i++)
+        [items addObject:[sections objectAtIndex:i]];
+    [self setSections:[[collection sectionTitles] mutableCopy]];
+    [self setItems:items];
 }
 @end
