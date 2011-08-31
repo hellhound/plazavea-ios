@@ -49,7 +49,7 @@ NSString *kRecipesTitleForError = @"Error";
 NSString *kRecipesSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
-// RecipeController's constants
+// RecipesController's constants
 
 NSString *const kRecipesTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
@@ -60,11 +60,18 @@ NSString *const kRecipesFoodButton = @"Comidas";
 NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
 // NSLocalizedString(@"Tipos de carne", nil)
 
-// Controllers URLs
-NSString *const kURLRecipes = @"tt://launcher/recipes/";
+// RecipeDetailController's constants
 
-// Controller URL's calls
+NSString *const kRecipeDetailTitle = @"Detalle de una receta";
+// NSLocalizedString(@"Detalle de una receta", nil);
+
+// Controllers' URLs
+NSString *const kURLRecipes = @"tt://launcher/recipes/";
+NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
+
+// Controllers' URL calls
 NSString *const kURLRecipesCall = @"tt://launcher/recipes/";
+NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 
 // Endpoint URLs
 

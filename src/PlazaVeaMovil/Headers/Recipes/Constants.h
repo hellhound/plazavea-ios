@@ -38,7 +38,7 @@ extern NSString *kRecipesSubtitleForEmpty;
 extern NSString *kRecipesTitleForError;
 extern NSString *kRecipesSubtitleForError;
 
-// RecipeController's constants
+// RecipesController's constants
 
 typedef enum {
     kRecipesSegmentedControlIndexDefault,
@@ -53,11 +53,17 @@ extern NSString *const kRecipesFoodButton;
 // UISegmentedControl's item for the toolbar: meat types button
 extern NSString *const kRecipesMeatTypesButton;
 
-// Controllers URLs
-extern NSString *const kURLRecipes;
+// RecipeDetailController's constants
 
-// Controller URL's calls
+extern NSString *const kRecipeDetailTitle;
+
+// Controllers' URLs
+extern NSString *const kURLRecipes;
+extern NSString *const kURLRecipeDetail;
+
+// Controllers' URL calls
 extern NSString *const kURLRecipesCall;
+extern NSString *const kURLRecipeDetailCall;
 
 // Endpoint URLs
 

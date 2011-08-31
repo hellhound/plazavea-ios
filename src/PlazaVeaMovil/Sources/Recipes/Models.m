@@ -430,7 +430,8 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
                 // Quit!
                 return;
             [recipesInSection addObject:
-                [TTTableTextItem itemWithText:[recipe name]]];
+                    [TTTableTextItem itemWithText:[recipe name]
+                        URL:URL(kURLRecipeDetailCall, [recipe recipeId])]];
         }
         [mutableSections addObject:recipesInSection];
     }

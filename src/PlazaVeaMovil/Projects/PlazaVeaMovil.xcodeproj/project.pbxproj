@@ -11,6 +11,7 @@
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
 		2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D9D013F999190039E37C /* NSNull+Additions.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
+		2C133FEA140E967600B7F7EC /* RecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */; };
 		2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */; };
 		2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */; };
 		2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */; };
@@ -50,6 +51,7 @@
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
 		2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */; };
 		2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */; };
+		2CAA3443140E9BF00053170B /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA3442140E9BF00053170B /* RecipeDetailController.m */; };
 		2CAF05CD1403FC8B003C2A2C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF05CC1403FC8B003C2A2C /* Constants.m */; };
 		2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */; };
 		2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */; };
@@ -509,6 +511,7 @@
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		2C02D9D013F999190039E37C /* NSNull+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Additions.m"; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
+		2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTImageView+ETag.m"; sourceTree = "<group>"; };
 		2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledImageNode+ETag.m"; sourceTree = "<group>"; };
 		2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledText+ETag.m"; sourceTree = "<group>"; };
@@ -552,6 +555,7 @@
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SupersequentImplementation.m"; sourceTree = "<group>"; };
 		2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIActionSheetDelegate.m"; sourceTree = "<group>"; };
+		2CAA3442140E9BF00053170B /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailController.m; sourceTree = "<group>"; };
 		2CAF05CC1403FC8B003C2A2C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
 		2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recipeBook.png; sourceTree = "<group>"; };
@@ -755,6 +759,8 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2CAA3442140E9BF00053170B /* RecipeDetailController.m */,
+				2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */,
 				2CD0E774140555CA00D8A5B0 /* RecipesController.m */,
 				2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */,
 				2CC757BC140419D60022FAE2 /* Models.m */,
@@ -1479,6 +1485,8 @@
 				2C18B8BD14043705008AEC52 /* URLRequestModel.m in Sources */,
 				2C59E2E1140554800061676D /* AlphabeticalRecipesDataSource.m in Sources */,
 				2CD0E775140555CB00D8A5B0 /* RecipesController.m in Sources */,
+				2C133FEA140E967600B7F7EC /* RecipeDetailDataSource.m in Sources */,
+				2CAA3443140E9BF00053170B /* RecipeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

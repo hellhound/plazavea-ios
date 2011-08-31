@@ -47,11 +47,13 @@
 
 - (NSString *)titleForError:(NSError *)error
 {
+    // TODO should show an iOS error
     return NSLocalizedString(kRecipesTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
+    // TODO should show an iOS error
     return NSLocalizedString(kRecipesSubtitleForError, nil);
 }
 

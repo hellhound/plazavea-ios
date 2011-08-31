@@ -11,6 +11,7 @@
 #import "ShoppingList/ShoppingListsController.h"
 #import "Recipes/Constants.h"
 #import "Recipes/RecipesController.h"
+#import "Recipes/RecipeDetailController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -53,6 +54,7 @@
             selector:@selector(init)];
     // Recipes
     [map from:kURLRecipes toViewController:[RecipesController class]];
+    [map from:kURLRecipeDetail toViewController:[RecipeDetailController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
