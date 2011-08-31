@@ -52,6 +52,13 @@ NSString *kRecipesSubtitleForError = @"Error";
 // RecipeController's constants
 
 NSString *const kRecipesTitle = @"Recetas";
+// NSLocalizedString(@"Recetas", nil)
+// UISegmentedControl's item for the toolbar: food button
+NSString *const kRecipesFoodButton = @"Comidas";
+// NSLocalizedString(@"Comidas", nil)
+// UISegmentedControl's item for the toolbar: meat types button
+NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
+// NSLocalizedString(@"Tipos de carne", nil)
 
 // Controllers URLs
 NSString *const kURLRecipes = @"tt://launcher/recipes/";

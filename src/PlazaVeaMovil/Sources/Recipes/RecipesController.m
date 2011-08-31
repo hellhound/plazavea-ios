@@ -9,7 +9,7 @@
 @implementation RecipesController
 
 #pragma mark -
-#pragma mark TTViewController
+#pragma mark UIViewController
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
@@ -18,6 +18,35 @@
         [self setTitle:kRecipesTitle];
     }
     return self;
+}
+
+- (UINavigationItem *)navigationItem
+{
+    UINavigationItem *navItem = [super navigationItem];
+
+    if ([self toolbarItems] == nil) {
+        // Conf the segmented control
+        UISegmentedControl *segControl =
+                [[[UISegmentedControl alloc] initWithItems:
+                    [NSArray arrayWithObjects:kRecipesFoodButton,
+                        kRecipesMeatTypesButton, nil]] autorelease];
+        UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
+                initWithCustomView:segControl] autorelease];
+
+        [segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+        [segControl setSelectedSegmentIndex:
+                kRecipesSegmentedControlIndexDefault];
+
+        // Conf a spacer
+        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                target:nil action:NULL] autorelease];
+
+        [self setToolbarItems:[NSArray arrayWithObjects:
+                spacerItem, segItem, spacerItem, nil]];
+        [[self navigationController] setToolbarHidden:NO];
+    }
+    return navItem;
 }
 
 #pragma mark -
