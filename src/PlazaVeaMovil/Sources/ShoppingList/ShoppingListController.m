@@ -96,7 +96,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                     spacerItem, trashItem, nil]];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
-    [self updatePreviousNextButtons];
+        [self updatePreviousNextButtons];
     }
     return navItem;
 }
