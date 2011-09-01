@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
@@ -53,6 +54,9 @@ static NSString *kNameVariableKey = @"NAME";
     UINavigationItem *navItem = [super navigationItem];
 
     // TODO We should use titleView instead of title in the navigationItem
+    // Conf the titleView
+    UIImageView *logoTypeView = [[UIImageView alloc] initWithImage:LOGOTYPE];
+
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
         // Conf a spacer
@@ -71,6 +75,7 @@ static NSString *kNameVariableKey = @"NAME";
         [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
+        [navItem setTitleView:logoTypeView];
     }
     return navItem;
 }
@@ -112,8 +117,9 @@ static NSString *kNameVariableKey = @"NAME";
                   atIndexPath:(NSIndexPath *)indexPath
 {
     if ([_delegate respondsToSelector:
-            @selector(historyEntryController:historyEntry:)])
-        [_delegate historyEntryController:self historyEntry:historyEntry];
+            @selector(historyEntryController:historyEntry:withText:)])
+        [_delegate historyEntryController:self historyEntry:historyEntry
+                withText:nil];
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -201,9 +207,20 @@ static NSString *kNameVariableKey = @"NAME";
 - (void)addHistoryEntry:(UIControl *)control
 {
     if ([_delegate respondsToSelector:
-            @selector(historyEntryController:historyEntry:)])
+            @selector(historyEntryController:historyEntry:withText:)])
+    {
         // we need to insert a new history entry so historyEntry should be nil
-        [_delegate historyEntryController:self historyEntry:nil];
+        NSString *searchText = 
+                [[[self searchDisplayController] searchBar] text];
+        if (searchText != nil && [[_filteredController
+                fetchedObjects] count] == 0){
+            [_delegate historyEntryController:self historyEntry:nil
+                    withText:searchText];
+        } else {
+            [_delegate historyEntryController:self historyEntry:nil
+                                     withText:nil];
+        }
+    }
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
