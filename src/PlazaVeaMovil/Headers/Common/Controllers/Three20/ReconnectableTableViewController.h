@@ -1,10 +1,9 @@
 #import <Foundation/Foundation.h>
 
-#import <Three20/Three20.h>
-
 #import "Common/Networking/Reachability.h"
+#import "Common/Controllers/Three20/TableViewController.h"
 
-@interface ReconnectableTableViewController: TTTableViewController
+@interface ReconnectableTableViewController: TableViewController
 {
     Reachability *hostReachability;
     BOOL didEnterBackground;

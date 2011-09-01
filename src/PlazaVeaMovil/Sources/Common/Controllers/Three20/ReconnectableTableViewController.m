@@ -5,7 +5,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Networking/Reachability.h"
-#import "Common/Controllers/ReconnectableTableViewController.h"
+#import "Common/Controllers/Three20/ReconnectableTableViewController.h"
 
 @interface ReconnectableTableViewController (Private)
 

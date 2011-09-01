@@ -4,6 +4,7 @@
 #import <extThree20JSON/extThree20JSON.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/NSURL+Additions.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 
@@ -12,6 +13,7 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
 static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
+static NSString *const kMutableTipsKey = @"tips";
 // Recipe collection's key pathes
 static NSString *const kMutbaleSectionsKey = @"sections";
 static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
@@ -103,7 +105,7 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
 // KVC compliance for indexed to-many collections
 @synthesize extraPictureURLs = _extraPictureURLs, ingredients = _ingredients,
-    procedures = _procedures, features = _features;
+    procedures = _procedures, features = _features, tips = _tips;
 
 - (void)        insertObject:(NSURL *)extraURL
    inExtraPictureURLsAtIndex:(NSUInteger)index
@@ -188,6 +190,26 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
     [_features removeObjectsAtIndexes:indexes];
 }
 
+- (void)insertObject:(NSString *)tip inTipsAtIndex:(NSUInteger)index
+{
+    [_tips insertObject:tip atIndex:index];
+}
+
+- (void)insertTips:(NSArray *)tips atIndexes:(NSIndexSet *)indexes
+{
+    [_tips insertObjects:tips atIndexes:indexes];
+}
+
+- (void)removeObjectFromTipsAtIndex:(NSUInteger)index
+{
+    [_tips removeObjectAtIndex:index];
+}
+
+- (void)removeTipsAtIndexes:(NSIndexSet *)indexes
+{
+    [_tips removeObjectsAtIndexes:indexes];
+}
+
 #pragma mark -
 #pragma mark Recipe (Public)
 
@@ -227,7 +249,7 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
     NSString *code, *pictureURL, *facebookURL, *twitterURL;
     NSNumber *price, *rations;
-    NSArray *extraPictureURLs, *ingredients, *procedures, *features;
+    NSArray *extraPictureURLs, *ingredients, *procedures, *features, *tips;
     NSMutableArray *mutableExtraPictureURLs =
             [recipe mutableArrayValueForKey:kMutableExtraPictureURLsKey]; 
     NSMutableArray *mutableIngredients =
@@ -236,6 +258,8 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
             [recipe mutableArrayValueForKey:kMutableProceduresKey]; 
     NSMutableArray *mutableFeatures =
             [recipe mutableArrayValueForKey:kMutableFeaturesKey]; 
+    NSMutableArray *mutableTips =
+            [recipe mutableArrayValueForKey:kMutableTipsKey];
 
     if ((code = [rawRecipe objectForKey:kRecipeCodeKey]) == nil)
         return nil;
@@ -264,7 +288,11 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
         return nil;
     if (![features isKindOfClass:[NSArray class]])
         return nil;
-    if ((rations = [rawRecipe objectForKey:kRecipeRatinsKey]) == nil)
+    if ((tips = [rawRecipe objectForKey:kRecipeTipsKey]) == nil)
+        return nil;
+    if (![tips isKindOfClass:[NSArray class]])
+        return nil;
+    if ((rations = [rawRecipe objectForKey:kRecipeRationsKey]) == nil)
         return nil;
     if (![rations isKindOfClass:[NSNumber class]])
         return nil;
@@ -282,9 +310,14 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
     [recipe setRations:rations];
     [recipe setFacebookURL:[NSURL URLWithString:facebookURL]];
     [recipe setTwitterURL:[NSURL URLWithString:twitterURL]];
-    [mutableExtraPictureURLs addObjectsFromArray:extraPictureURLs];
-    [mutableProcedures addObjectsFromArray:procedures];
-    [mutableFeatures addObjectsFromArray:features];
+    for (NSString *extraPictureURL in extraPictureURLs) {
+        if (!([extraPictureURL isKindOfClass:[NSString class]] &&
+                [NSURL validateURL:extraPictureURL]))
+            // Quit!
+            return nil;
+        [mutableExtraPictureURLs addObject:
+                [NSURL URLWithString:extraPictureURL]];
+    }
     for (NSDictionary *rawIngredient in ingredients) {
         Ingredient *ingredient =
                 [Ingredient ingredientFromDictionary:rawIngredient];
@@ -294,7 +327,87 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
             return nil;
         [mutableIngredients addObject:ingredient];
     }
+    for (NSString *procedure in procedures) {
+        if (![procedure isKindOfClass:[NSString class]])
+            // Quit!
+            return nil;
+        [mutableProcedures addObject:procedure];
+    }
+    for (NSString *feature in features) {
+        if (![feature isKindOfClass:[NSString class]])
+            // Quit!
+            return nil;
+        [mutableFeatures addObject:feature];
+    }
+    for (NSString *tip in tips) {
+        if (![tip isKindOfClass:[NSString class]])
+            // Quit!
+            return nil;
+        [mutableTips addObject:tip];
+    }
     return recipe;
+}
+
+- (void)copyPropertiesFromRecipe:(Recipe *)recipe
+{
+    [self setRecipeId:[recipe recipeId]];
+    [self setCode:[[recipe code] copy]];
+    [self setName:[[recipe name] copy]];
+    [self setPictureURL:[recipe pictureURL]];
+    [self setPrice:[recipe price]];
+    [self setRations:[recipe rations]];
+    [self setFacebookURL:[recipe facebookURL]];
+    [self setTwitterURL:[recipe twitterURL]];
+
+    NSMutableArray *extraPictureURLs =
+            [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+    NSMutableArray *ingredients =
+            [self mutableArrayValueForKey:kMutableIngredientsKey];
+    NSMutableArray *procedures =
+            [self mutableArrayValueForKey:kMutableProceduresKey];
+    NSMutableArray *features =
+            [self mutableArrayValueForKey:kMutableFeaturesKey];
+    NSMutableArray *tips = [self mutableArrayValueForKey:kMutableTipsKey];
+
+    for (NSURL *extraPictureURL in [recipe extraPictureURLs])
+        [extraPictureURLs addObject:extraPictureURLs];
+    for (Ingredient *ingredient in [recipe ingredients])
+        [ingredients addObject:ingredient];
+    for (NSString *procedure in [recipe procedures])
+        [procedures addObject:procedure];
+    for (NSString *feature in [recipe features])
+        [features addObject:feature];
+    for (NSString *tip in [recipe tips])
+        [tips addObject:tip];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kURLRecipeDetailEndpoint, _recipeId) delegate:self]; 
+
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    Recipe *recipe = [Recipe recipeFromDictionary:rootObject];
+
+    // TODO should put the model in an error-aware state when recipe is nil
+    if (recipe != nil)
+        [self copyPropertiesFromRecipe:recipe];
 }
 @end
 
@@ -361,6 +474,16 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 - (void)removeSectionTitlesAtIndexes:(NSIndexSet *)indexes
 {
     [_sectionTitles removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark RecipeCollection (Public)
+
+@synthesize sections = _sections, sectionTitles = _sectionTitles;
+
+- (NSArray *)sectionIndexTitles
+{
+    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 }
 
 #pragma mark -
@@ -436,15 +559,5 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
         [mutableSections addObject:recipesInSection];
     }
     [super requestDidFinishLoad:request];
-}
-
-#pragma mark -
-#pragma mark RecipeCollection (Public)
-
-@synthesize sections = _sections, sectionTitles = _sectionTitles;
-
-- (NSArray *)sectionIndexTitles
-{
-    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 }
 @end

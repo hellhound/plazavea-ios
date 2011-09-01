@@ -20,7 +20,8 @@ NSString *const kRecipePriceKey = @"price";
 NSString *const kRecipeIngredientsKey = @"ingredients";
 NSString *const kRecipeProceduresKey = @"ingredients";
 NSString *const kRecipeFeaturesKey = @"features";
-NSString *const kRecipeRatinsKey = @"rations";
+NSString *const kRecipeTipsKey = @"tips";
+NSString *const kRecipeRationsKey = @"rations";
 NSString *const kRecipeFacebookURLKey = @"facebook_url";
 NSString *const kRecipeTwitterURLKey = @"twitter_url";
 
@@ -31,7 +32,7 @@ NSString *const kIngredientQuantityKey = @"quantity";
 NSString *const kIngredientDescriptionKey = @"product";
 NSString *const kIngredientCommentKey = @"comment";
 
-// Messages
+// AlphabeticalRecipesDataSource's messages
 
 // AlphabeticalRecipesDataSource
 NSString *kRecipesTitleForLoading = @"Obteniendo lista de recetas";
@@ -47,6 +48,23 @@ NSString *kRecipesSubtitleForEmpty = @"Por favor intente de nuevo más tarde, "
 NSString *kRecipesTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *kRecipesSubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
+// RecipeDetailDataSource's messages
+
+NSString *kRecipeDetailTitleForLoading = @"Obteniendo la receta";
+// NSLocalizedString(@"Obteniendo la receta", nil)
+NSString *kRecipeDetailTitleForReloading = @"Actualizando la receta";
+// NSLocalizedString(@"Actualizando la receta", nil)
+NSString *kRecipeDetailTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"Sin información", nil)
+NSString *kRecipeDetailSubtitleForEmpty = @"Por favor intente de nuevo más "
+        @"tarde, aún no existe información para esta receta";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existe "
+//      @"información para esta receta", nil)
+NSString *kRecipeDetailTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *kRecipeDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
 // RecipesController's constants
@@ -77,4 +95,5 @@ NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 
 NSString *const kURLRecipeAlphabeticEndpoint =
         ENDPOINT(@"/recipes/alphabetic.json");
-NSString *const kURLRecipeDetailEndpoint = ENDPOINT(@"/recipes/details.json");
+NSString *const kURLRecipeDetailEndpoint =
+        ENDPOINT(@"/recipes/%@/details.json");

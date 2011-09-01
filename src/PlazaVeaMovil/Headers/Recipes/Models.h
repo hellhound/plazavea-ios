@@ -26,6 +26,7 @@
     NSMutableArray *_ingredients;
     NSMutableArray *_procedures;
     NSMutableArray *_features;
+    NSMutableArray *_tips;
     NSNumber *_rations;
     NSURL *_facebookURL;
     NSURL *_twitterURL;
@@ -39,12 +40,15 @@
 @property (nonatomic, readonly) NSArray *ingredients;
 @property (nonatomic, readonly) NSArray *procedures;
 @property (nonatomic, readonly) NSArray *features;
+@property (nonatomic, readonly) NSArray *tips;
 @property (nonatomic, retain) NSNumber *rations;
 @property (nonatomic, retain) NSURL *facebookURL;
 @property (nonatomic, retain) NSURL *twitterURL;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe;
 + (id)recipeFromDictionary:(NSDictionary *)rawRecipe;
+
+- (void)copyPropertiesFromRecipe:(Recipe *)recipe;
 @end
 
 @interface RecipeCollection: URLRequestModel

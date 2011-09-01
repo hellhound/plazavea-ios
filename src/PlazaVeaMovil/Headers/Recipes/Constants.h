@@ -18,7 +18,8 @@ extern NSString *const kRecipePriceKey;
 extern NSString *const kRecipeIngredientsKey;
 extern NSString *const kRecipeProceduresKey;
 extern NSString *const kRecipeFeaturesKey;
-extern NSString *const kRecipeRatinsKey;
+extern NSString *const kRecipeTipsKey;
+extern NSString *const kRecipeRationsKey;
 extern NSString *const kRecipeFacebookURLKey;
 extern NSString *const kRecipeTwitterURLKey;
 
@@ -29,7 +30,7 @@ extern NSString *const kIngredientQuantityKey;
 extern NSString *const kIngredientDescriptionKey;
 extern NSString *const kIngredientCommentKey;
 
-// Messages
+// AlphabeticalRecipesDataSource's messages
 
 extern NSString *kRecipesTitleForLoading;
 extern NSString *kRecipesTitleForReloading;
@@ -37,6 +38,15 @@ extern NSString *kRecipesTitleForEmpty;
 extern NSString *kRecipesSubtitleForEmpty;
 extern NSString *kRecipesTitleForError;
 extern NSString *kRecipesSubtitleForError;
+
+// RecipeDetailDataSource's messages
+
+extern NSString *kRecipeDetailTitleForLoading;
+extern NSString *kRecipeDetailTitleForReloading;
+extern NSString *kRecipeDetailTitleForEmpty;
+extern NSString *kRecipeDetailSubtitleForEmpty;
+extern NSString *kRecipeDetailTitleForError;
+extern NSString *kRecipeDetailSubtitleForError;
 
 // RecipesController's constants
 

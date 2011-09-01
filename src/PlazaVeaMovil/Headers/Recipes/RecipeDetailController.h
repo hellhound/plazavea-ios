@@ -2,7 +2,9 @@
 
 #import <Three20/Three20.h>
 
-@interface RecipeDetailController: TTTableViewController
+#import "Common/Controllers/Three20/ReconnectableTableViewController.h"
+
+@interface RecipeDetailController: ReconnectableTableViewController
 
 - (id)initWithRecipeId:(NSString *)recipeId;
 @end

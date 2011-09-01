@@ -10,6 +10,8 @@
 		2C0036FF13EC48BB0029B4EE /* EditableCellTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */; };
 		2C02CC2213E71676009DFBF8 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */; };
 		2C02D9D113F999190039E37C /* NSNull+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D9D013F999190039E37C /* NSNull+Additions.m */; };
+		2C0B0228140F02BF00F1362C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0225140F02BF00F1362C /* Constants.m */; };
+		2C0B0229140F02BF00F1362C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0227140F02BF00F1362C /* TableViewController.m */; };
 		2C0DBE9313E8C1C000F705C1 /* AppDelegate+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */; };
 		2C133FEA140E967600B7F7EC /* RecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */; };
 		2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */; };
@@ -41,6 +43,7 @@
 		2C691EE013F04C4E00E1EFA5 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */; };
 		2C6C5E7013E66CF8000B0E10 /* AppDelegate+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */; };
 		2C6CF2A113FD9A6A00A93C7F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */; };
+		2C6FFDA0140F046000730B23 /* ReconnectableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FFD9F140F046000730B23 /* ReconnectableTableViewController.m */; };
 		2C75709613FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */; };
 		2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */; };
 		2C79B4A713EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */; };
@@ -58,7 +61,6 @@
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
 		2CC757BD140419D60022FAE2 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC757BC140419D60022FAE2 /* Models.m */; };
-		2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */; };
 		2CC81ED21403181C009D5B6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ED11403181C009D5B6E /* Reachability.m */; };
 		2CD0E775140555CB00D8A5B0 /* RecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0E774140555CA00D8A5B0 /* RecipesController.m */; };
 		2CD9933E13E65DA400879980 /* NSError+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9933A13E65DA400879980 /* NSError+Additions.m */; };
@@ -510,6 +512,8 @@
 		2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCellTableViewController.m; sourceTree = "<group>"; };
 		2C02CC2113E71676009DFBF8 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		2C02D9D013F999190039E37C /* NSNull+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Additions.m"; sourceTree = "<group>"; };
+		2C0B0225140F02BF00F1362C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2C0B0227140F02BF00F1362C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Defaults.m"; sourceTree = "<group>"; };
 		2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTImageView+ETag.m"; sourceTree = "<group>"; };
@@ -545,6 +549,7 @@
 		2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
 		2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreData.m"; sourceTree = "<group>"; };
 		2C6CF2A013FD9A6A00A93C7F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		2C6FFD9F140F046000730B23 /* ReconnectableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReconnectableTableViewController.m; sourceTree = "<group>"; };
 		2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HistoryEntryController+UITableViewDataSource.m"; sourceTree = "<group>"; };
 		2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HistoryEntryController+UITableViewDelegate.m"; sourceTree = "<group>"; };
 		2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableCellTableViewController+UITextFieldDelegate.m"; sourceTree = "<group>"; };
@@ -562,7 +567,6 @@
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2CC757BC140419D60022FAE2 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
-		2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReconnectableTableViewController.m; sourceTree = "<group>"; };
 		2CC81ED11403181C009D5B6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2CD0E774140555CA00D8A5B0 /* RecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesController.m; sourceTree = "<group>"; };
 		2CD9933A13E65DA400879980 /* NSError+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Additions.m"; sourceTree = "<group>"; };
@@ -620,6 +624,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0B0226140F02BF00F1362C /* Three20 */ = {
+			isa = PBXGroup;
+			children = (
+				2C6FFD9F140F046000730B23 /* ReconnectableTableViewController.m */,
+				2C0B0227140F02BF00F1362C /* TableViewController.m */,
+			);
+			path = Three20;
+			sourceTree = "<group>";
+		};
 		2C25BD3313E8F88F00A4311B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,13 +842,14 @@
 		2CE52FB713EBC19A00A5D7FE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2CC81ECE14031807009D5B6E /* ReconnectableTableViewController.m */,
 				2C79B4A613EC4DD100940A6E /* EditableCellTableViewController+UITextFieldDelegate.m */,
 				2C0036FE13EC48BB0029B4EE /* EditableCellTableViewController.m */,
 				2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */,
 				2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */,
 				2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */,
 				2CE52FBB13EBC19A00A5D7FE /* EditableTableViewController.m */,
+				2C0B0225140F02BF00F1362C /* Constants.m */,
+				2C0B0226140F02BF00F1362C /* Three20 */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1473,7 +1487,6 @@
 				2C75709713FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m in Sources */,
 				2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */,
 				2CDAF50E1402EB5500E652B7 /* Constants.m in Sources */,
-				2CC81ECF14031807009D5B6E /* ReconnectableTableViewController.m in Sources */,
 				2CC81ED21403181C009D5B6E /* Reachability.m in Sources */,
 				2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */,
 				2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */,
@@ -1487,6 +1500,9 @@
 				2CD0E775140555CB00D8A5B0 /* RecipesController.m in Sources */,
 				2C133FEA140E967600B7F7EC /* RecipeDetailDataSource.m in Sources */,
 				2CAA3443140E9BF00053170B /* RecipeDetailController.m in Sources */,
+				2C0B0228140F02BF00F1362C /* Constants.m in Sources */,
+				2C0B0229140F02BF00F1362C /* TableViewController.m in Sources */,
+				2C6FFDA0140F046000730B23 /* ReconnectableTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

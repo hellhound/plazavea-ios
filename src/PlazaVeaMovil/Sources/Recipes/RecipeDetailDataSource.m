@@ -3,6 +3,8 @@
 
 #import <Three20/Three20.h>
 
+#import "Recipes/Constants.h"
+#import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 
 @implementation RecipeDetailDataSource
@@ -12,7 +14,9 @@
 
 - (id)init
 {
-    return [super init];
+    if ((self = [super init]) != nil)
+        [self setModel:[[[Recipe alloc] init] autorelease]];
+    return self;
 }
 
 #pragma mark -
@@ -20,30 +24,31 @@
 
 - (NSString *)titleForLoading:(BOOL)reloading
 {
-    return nil;
+    return NSLocalizedString(kRecipeDetailTitleForLoading, nil);
 }
 
 - (NSString *)titleForEmpty
 {
-    return nil;
+    return NSLocalizedString(kRecipeDetailTitleForEmpty, nil);
 }
 
 - (NSString *)subtitleForEmpty
 {
-    return nil;
+    return NSLocalizedString(kRecipeDetailSubtitleForEmpty, nil);
 }
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return nil;
+    return NSLocalizedString(kRecipeDetailTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return nil;
+    return NSLocalizedString(kRecipeDetailSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    Recipe *recipe = (Recipe *)[self model];
 }
 @end

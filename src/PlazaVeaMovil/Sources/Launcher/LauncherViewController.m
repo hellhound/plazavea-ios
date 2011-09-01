@@ -31,7 +31,7 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
-        [self setTitle:NSLocalizedString(@"Plaza Vea Móvil :)", nil)];
+        [self setTitle:NSLocalizedString(kLauncherTitle, nil)];
     }
     return self;
 }
@@ -63,9 +63,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self performSelector:@selector(hideToolbar:)
-            withObject:[NSNumber numberWithBool:animated]
-            afterDelay:kLauncherToolbarDelay];
+    if ([self toolbarItems] == nil) {
+        [self performSelector:@selector(hideToolbar:)
+                withObject:[NSNumber numberWithBool:animated]
+                afterDelay:kLauncherToolbarDelay];
+    }
 }
 
 #pragma mark -
@@ -73,7 +75,8 @@
 
 - (void)hideToolbar:(NSNumber *)animated
 {
-    [[self navigationController] setToolbarHidden:YES animated:YES];
+    [[self navigationController] setToolbarHidden:YES
+            animated:[animated boolValue]];
 }
 
 #pragma mark -
