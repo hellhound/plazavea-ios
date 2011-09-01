@@ -5,6 +5,7 @@
 
 #import <TSAlertView/TSAlertView.h>
 
+#import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Controllers/EditableTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
@@ -62,6 +63,9 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
+        // Conf the titleView
+        UIImageView *logoTypeView =
+                [[UIImageView alloc] initWithImage:LOGOTYPE];
         // Conf the back button
         _previousItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
@@ -87,6 +91,7 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
                 initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                 target:self action:@selector(delete:)] autorelease];
 
+        [navItem setTitleView:logoTypeView];
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,
@@ -391,10 +396,11 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)historyEntryController:(HistoryEntryController *)historyEntryController
                   historyEntry:(ShoppingHistoryEntry *)historyEntry
+                      withText:(NSString *)productText
 {
     // We need to create a brand-new item for this list!
     TSAlertView *alertView = [[TSAlertView alertViewForNewShoppingItem:self
-            historyEntry:historyEntry] retain];
+            historyEntry:historyEntry withText:productText] retain];
 
     // delay for 0.1 seconds
     [self performSelector:@selector(showAlertViewForNewShoppingItem:)

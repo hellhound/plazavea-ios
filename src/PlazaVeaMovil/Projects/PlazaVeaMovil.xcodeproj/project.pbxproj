@@ -90,6 +90,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -596,6 +597,7 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../../Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -685,6 +687,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */,
 				2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */,
 				2C2F8FB01403FA9700FB7CA1 /* basket.png */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
@@ -1435,6 +1438,7 @@
 				2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */,
 				2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */,
+				CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

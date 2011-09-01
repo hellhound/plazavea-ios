@@ -72,8 +72,15 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         // Conf the toolbar
         [[self editingToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
+    //Conf the color
     [self updateUndoRedo];
     return navItem;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    //change the colors
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

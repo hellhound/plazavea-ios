@@ -12,8 +12,11 @@
 @optional
 // history entry can be nil; thus differentiating between an insert and a
 // selection
+// also withText can be nil, if with text and history entry are setted, the
+// alert prefed history entry over withText
 - (void)historyEntryController:(HistoryEntryController *)historyEntryController
-                  historyEntry:(ShoppingHistoryEntry *)historyEntry;
+                  historyEntry:(ShoppingHistoryEntry *)historyEntry
+                      withText:(NSString *)productText;
 @end
 
 @interface HistoryEntryController: EditableTableViewController

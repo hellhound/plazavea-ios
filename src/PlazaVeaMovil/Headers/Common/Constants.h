@@ -36,3 +36,9 @@
                 TTURLRequestCachePolicyEtag]; \
         } \
         [request setCacheExpirationAge:TT_DEFAULT_CACHE_EXPIRATION_AGE]
+
+//Define the colors for the navigation bar and toolbar
+#define BAR_COLOR [UIColor colorWithRed:1 green:0.867 blue:0 alpha:1]
+//Define the UIImage for the banner
+
+#define LOGOTYPE [UIImage imageNamed:@"plazaVeaLogo.png"]

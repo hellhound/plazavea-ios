@@ -43,8 +43,9 @@
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
+    // Conf the titleView
+    UIImageView *logoTypeView = [[UIImageView alloc] initWithImage:LOGOTYPE];
 
-    // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
@@ -62,6 +63,7 @@
         [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
+        [navItem setTitleView:logoTypeView];
     }
     return navItem;
 }
