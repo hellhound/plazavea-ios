@@ -4,7 +4,6 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
-#import "Common/GraphicsConstants.h"
 #import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
