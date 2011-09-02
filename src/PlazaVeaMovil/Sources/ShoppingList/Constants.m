@@ -36,6 +36,13 @@ NSString *const kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text
 NSString *const kShoppingListDefaultDetailText = @"Nuevo";
 // NSLocalizedString(@"Nuevo", nil)
+NSString *const kShoppingListCloningRepetitionName = @"Copia";
+// NSLocalizedString(@"Copia", nil)
+NSString *const kShoppingListCloningRepetitionPattern =
+        @"%@.*\\(\\s*%@\\s*\\d+\\s*\\).*";
+// NSLocalizedString(@".*\\(\\s*%@\\s*\\d+\\s*\\).*", nil)
+NSString *const kShoppingListCloningRepetitionSuffix = @"%@ (%@ %li)";
+// NSLocalizedString(@" (%@)", nil)
 
 // TSAlertView's constants for shopping list creation
 NSString *const kShoppingListNewTitle = @"Nueva lista";

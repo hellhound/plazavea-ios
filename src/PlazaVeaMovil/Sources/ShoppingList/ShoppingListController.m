@@ -21,7 +21,7 @@
 #import "ShoppingList/ShoppingListController.h"
 
 static NSPredicate *kShoppingItemsPredicateTemplate;
-static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
+static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 
 @interface ShoppingListController (Private)
 
@@ -371,13 +371,13 @@ static NSString *kShoppingListVariableKey = @"SHOPPING_LIST";
         [clonedItem setOrder:[item order]];
         [clonedItem setChecked:[item checked]];
     }
-    [self saveContext];
     [self updatePreviousNextButtons];
     [self fetchUpdateAndReload];
     if ([_delegate respondsToSelector:
             @selector(shoppingListController:didCloneShoppingList:)])
         [_delegate shoppingListController:self
                 didCloneShoppingList:_shoppingList];
+    [self saveContext];
 }
 
 - (void)mailShoppingList

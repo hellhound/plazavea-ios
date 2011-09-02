@@ -34,6 +34,9 @@ extern NSString *const kShoppingListTitle;
 extern NSString *const kShoppingListCacheName;
 // Default detail text
 extern NSString *const kShoppingListDefaultDetailText;
+extern NSString *const kShoppingListCloningRepetitionName;
+extern NSString *const kShoppingListCloningRepetitionPattern;
+extern NSString *const kShoppingListCloningRepetitionSuffix;
 
 typedef enum {
     kShoppingListAlertViewNewList,
