@@ -333,7 +333,10 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 
 - (NSString *)serialize
 {
-    return [NSString stringWithFormat:@"%@ %@", [self quantity], [self name]];
+    if ([self quantity] != nil)
+        return [NSString stringWithFormat:@"%@ %@", [self quantity],
+                [self name]];
+    return [self name];
 }
 @end
 

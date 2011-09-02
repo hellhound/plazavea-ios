@@ -39,6 +39,8 @@
     [nameTextField setText:[shoppingItem name]];
     [quantityTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [quantityTextField setText:[shoppingItem quantity]];
+    [alertView setShouldNotAdmitBlanks:
+            kShoppingItemModificationBlankCheckingFlags];
     return alertView;
 }
 @end
