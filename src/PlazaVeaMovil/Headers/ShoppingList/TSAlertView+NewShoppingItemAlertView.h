@@ -10,5 +10,5 @@
 + (TSAlertView *)alertViewForNewShoppingItem:(id<TSAlertViewDelegate>)delegate
                                 historyEntry:
     (ShoppingHistoryEntry *)historyEntry
-                                    withText:aText;
+                                    withText:(NSString *)text;
 @end

@@ -15,7 +15,7 @@
 + (TSAlertView *)alertViewForNewShoppingItem:(id<TSAlertViewDelegate>)delegate
                                 historyEntry:
     (ShoppingHistoryEntry *)historyEntry
-                                    withText:aText
+                                    withText:(NSString *)text
 {
     TSAlertView *alertView = [[[TSAlertView alloc] initWithTitle:
                 NSLocalizedString(kShoppingItemNewTitle, nil)
@@ -35,14 +35,11 @@
 
     [nameTextField setPlaceholder:kShoppingItemNewNamePlaceholder];
     [nameTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
-    if (historyEntry != nil) {
-        [nameTextField setText:[historyEntry name]];
-    } else if (aText != nil) {
-        [nameTextField setText:aText];
-    } else {
-        [nameTextField setText:@""];
-    }
+    [nameTextField setText:
+            historyEntry != nil ? [historyEntry name] :
+            text != nil ? text : @""];
     [quantityTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [alertView setShouldNotAdmitBlanks:kShoppingItemNewBlankCheckingFlags];
     return alertView;
 }
 @end

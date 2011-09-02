@@ -46,6 +46,8 @@ NSString *const kShoppingListNewOkButtonTitle = @"Ok";
 // NSLocalizedString(@"Ok", nil)
 NSString *const kShoppingListNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
+// Quantity should be optional
+const NSUInteger kShoppingItemNewBlankCheckingFlags = 1 << 0;
 
 // TSAlertView's constants for shopping item creation
 NSString *const kShoppingItemNewTitle = @"Nuevo ítem";
@@ -58,6 +60,8 @@ NSString *const kShoppingItemNewOkButtonTitle = @"Ok";
 // NSLocalizedString(@"Ok", nil)
 NSString *const kShoppingItemNewCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
+// Quantity should be optional
+const NSUInteger kShoppingItemModificationBlankCheckingFlags = 1 << 0;
 
 // TSAlertView's constants for shopping item modification
 NSString *const kShoppingItemModificationTitle = @"Modificación de ítem";

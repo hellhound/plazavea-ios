@@ -55,6 +55,7 @@ extern NSString *const kShoppingItemNewNamePlaceholder;
 extern NSString *const kShoppingItemNewQuantityPlaceholder;
 extern NSString *const kShoppingItemNewOkButtonTitle;
 extern NSString *const kShoppingItemNewCancelButtonTitle;
+extern const NSUInteger kShoppingItemNewBlankCheckingFlags;
 
 // TSAlertView's constants for shopping item modification
 extern NSString *const kShoppingItemModificationTitle;
@@ -62,6 +63,7 @@ extern NSString *const kShoppingItemModificationNamePlaceholder;
 extern NSString *const kShoppingItemModificationQuantityPlaceholder;
 extern NSString *const kShoppingItemModificationOkButtonTitle;
 extern NSString *const kShoppingItemModificationCancelButtonTitle;
+extern const NSUInteger kShoppingItemModificationBlankCheckingFlags;
 
 // TSAlertView's constants for shopping list deletion
 extern NSString *const kShoppingListDeletionTitle;
