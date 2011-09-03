@@ -41,7 +41,7 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 
 - (void)willSave
 {
-    if (![self isDeleted])
+    if (([self isInserted] || [self isUpdated]) && ![self isDeleted])
         // Using primitives inside willSave avoids infinite recursion
         [self setPrimitiveLastModificationDate:[NSDate date]];
 }
