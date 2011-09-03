@@ -376,7 +376,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
     if ([_delegate respondsToSelector:
             @selector(shoppingListController:didCloneShoppingList:)])
         [_delegate shoppingListController:self
-                didCloneShoppingList:_shoppingList];
+                didCloneShoppingList:clonedList];
     [self saveContext];
 }
 
