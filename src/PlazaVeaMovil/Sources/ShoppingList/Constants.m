@@ -84,7 +84,7 @@ NSString *const kShoppingItemModificationCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
 
 // TSAlertView's constants for shopping list deletion
-NSString *const kShoppingListDeletionTitle = @"Eliminación de lista";
+NSString *const kShoppingListDeletionTitle = @"";
 // NSLocalizedString(@"Eliminación de lista", nil)
 NSString *const kShoppingListDeletionMessage = @"¿Está seguro de eliminar la " \
         @"lista de compras?";
