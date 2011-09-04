@@ -25,7 +25,7 @@
         case kShoppingListAlertViewNewList:
             if (buttonIndex == cancelButtonIndex) {
                 [[self navigationController]
-                        popToRootViewControllerAnimated:YES];
+                        popToViewController:_delegate animated:YES];
             } else {
                 [self addShoppingList:[[alertView firstTextField] text]
                         fromActionSheet:NO];
