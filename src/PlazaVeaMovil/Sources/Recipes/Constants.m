@@ -133,6 +133,6 @@ NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 NSString *const kURLRecipeCategoriesEndpoint =
         ENDPOINT(@"/recipes/categories.json");
 NSString *const kURLRecipeAlphabeticEndpoint =
-        ENDPOINT(@"/recipes/alphabetic.json");
+        ENDPOINT(@"/recipes/alphabetic.json?cat=%@");
 NSString *const kURLRecipeDetailEndpoint =
         ENDPOINT(@"/recipes/%@/details.json");

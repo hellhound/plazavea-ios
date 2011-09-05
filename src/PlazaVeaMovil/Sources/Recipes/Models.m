@@ -556,16 +556,6 @@ static NSString *const kMutableTipsKey = @"tips";
 #pragma mark -
 #pragma mark NSObject
 
-- (id)init
-{
-    if ((self = [super init]) != nil) {
-        // Initialiazing only the mutable arrays
-        _sections = [[NSMutableArray alloc] init];
-        _sectionTitles = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     [_sections release];
@@ -619,7 +609,19 @@ static NSString *const kMutableTipsKey = @"tips";
 #pragma mark -
 #pragma mark RecipeCollection (Public)
 
-@synthesize sections = _sections, sectionTitles = _sectionTitles;
+@synthesize categoryId = _categoryId, sections = _sections,
+    sectionTitles = _sectionTitles;
+
+- (id)initWithCategoryId:(NSString *)categoryId
+{
+    if ((self = [super init]) != nil) {
+        _categoryId = [categoryId copy];
+        // Initialiazing only the mutable arrays
+        _sections = [[NSMutableArray alloc] init];
+        _sectionTitles = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (NSArray *)sectionIndexTitles
 {
@@ -633,7 +635,8 @@ static NSString *const kMutableTipsKey = @"tips";
 {
     if (![self isLoading]) {
         TTURLRequest *request =
-                [TTURLRequest requestWithURL:kURLRecipeAlphabeticEndpoint
+                [TTURLRequest requestWithURL:
+                        URL(kURLRecipeAlphabeticEndpoint, _categoryId)
                     delegate:self];
 
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);

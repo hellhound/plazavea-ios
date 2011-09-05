@@ -9,21 +9,25 @@
 @implementation RecipeListController
 
 #pragma mark -
-#pragma mark UIViewController
-
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
-{
-    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
-        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
-    return self;
-}
-
-#pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
 {
-    [self setDataSource:
-            [[[AlphabeticalRecipesDataSource alloc] init] autorelease]];
+    [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+            initWithCategoryId:_categoryId] autorelease]];
+}
+
+#pragma mark -
+#pragma mark RecipeListController (Public)
+
+@synthesize categoryId = _categoryId;
+
+- (id)initWithCategoryId:(NSString *)categoryId
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        _categoryId = [categoryId copy];
+        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+    }
+    return self;
 }
 @end

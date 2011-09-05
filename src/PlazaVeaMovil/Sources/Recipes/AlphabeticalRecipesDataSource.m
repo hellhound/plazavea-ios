@@ -12,10 +12,11 @@
 #pragma mark -
 #pragma mark NSObject
 
-- (id)init
+- (id)initWithCategoryId:(NSString *)categoryId
 {
     if ((self = [super init]) != nil)
-        [self setModel:[[[RecipeCollection alloc] init] autorelease]];
+        [self setModel:[[[RecipeCollection alloc]
+                initWithCategoryId:categoryId] autorelease]];
     return self;
 }
 
@@ -24,7 +25,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return [(RecipeCollection *)[self model] sectionIndexTitles];;
+    return [(RecipeCollection *)[self model] sectionIndexTitles];
 }
 
 #pragma mark -

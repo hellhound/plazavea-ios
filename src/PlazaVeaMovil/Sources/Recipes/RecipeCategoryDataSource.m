@@ -2,6 +2,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeCategoryDataSource.h"
@@ -58,7 +59,7 @@
         for (RecipeCategory *category in categories) {
             TTTableTextItem *item =
                     [TTTableTextItem itemWithText:[category name]
-                        URL:@"tt://nil"];
+                        URL:URL(kURLRecipeListCall, [category categoryId])];
 
             [items addObject:item];
         }
