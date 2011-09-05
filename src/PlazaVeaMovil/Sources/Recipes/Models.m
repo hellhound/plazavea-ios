@@ -8,15 +8,155 @@
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 
+// Recipe category collection's key pathes
+static NSString *const kMutableCategoriesKey = @"categories";
+// Recipe collection's key pathes
+static NSString *const kMutbaleSectionsKey = @"sections";
+static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 // Recipe's key pathes
 static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
 static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 static NSString *const kMutableTipsKey = @"tips";
-// Recipe collection's key pathes
-static NSString *const kMutbaleSectionsKey = @"sections";
-static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
+
+@implementation RecipeCategory
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_categoryId release];
+    [_name release];
+    [_recipeCount release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark RecipeCategory (Public)
+
+@synthesize categoryId = _categoryId, name = _name, recipeCount = _recipeCount;
+
++ (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory
+{
+    NSNumber *categoryId, *recipeCount;
+    NSString *name;
+
+    if (![rawRecipeCategory isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((categoryId =
+            [rawRecipeCategory objectForKey:kRecipeCategoryIdKey]) == nil)
+        return nil;
+    if (![categoryId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawRecipeCategory objectForKey:kRecipeCategoryNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((recipeCount =
+            [rawRecipeCategory objectForKey:kRecipeCategoryCountKey]) == nil)
+        return nil;
+    if (![recipeCount isKindOfClass:[NSNumber class]])
+        return nil;
+
+    RecipeCategory *category = [[[RecipeCategory alloc] init] autorelease];
+
+    [category setCategoryId:categoryId];
+    [category setName:name];
+    [category setRecipeCount:recipeCount];
+    return category;
+}
+@end
+
+@implementation RecipeCategoryCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil)
+        _categories = [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_categories release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+// KVC compliance for indexed to-many collections
+@synthesize categories = _categories;
+
+- (void)insertObject:(NSURL *)categories inCategoriesAtIndex:(NSUInteger)index
+{
+    [_categories insertObject:categories atIndex:index];
+}
+
+- (void)insertCategories:(NSArray *)categories atIndexes:(NSIndexSet *)indexes
+{
+    [_categories insertObjects:categories atIndexes:indexes];
+}
+
+- (void)removeObjectFromCategoriesAtIndex:(NSUInteger)index
+{
+    [_categories removeObjectAtIndex:index];
+}
+
+- (void)removeCategoriesAtIndexes:(NSIndexSet *)indexes
+{
+    [_categories removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request =
+                [TTURLRequest requestWithURL:kURLRecipeCategoriesEndpoint
+                    delegate:self];
+
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    NSArray *rawCategories;
+    NSMutableArray *mutableCategories =
+            [self mutableArrayValueForKey:kMutableCategoriesKey];
+
+    if (![rootObject isKindOfClass:[NSDictionary class]])
+        return;
+    if ((rawCategories = [rootObject objectForKey:
+            kRecipeCategoryCollectionCategoriesKey]) == nil)
+        return;
+    for (NSDictionary *rawRecipeCategory in rawCategories) {
+        RecipeCategory *recipeCategory =
+                [RecipeCategory recipeCategoryFromDictionary:rawRecipeCategory];
+
+        if (recipeCategory == nil)
+            // Quit!
+            return;
+        [mutableCategories addObject:recipeCategory];
+    }
+    [super requestDidFinishLoad:request];
+}
+@end
 
 @implementation Ingredient
 

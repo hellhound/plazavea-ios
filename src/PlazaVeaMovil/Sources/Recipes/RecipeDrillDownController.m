@@ -3,20 +3,17 @@
 #import <Three20/Three20.h>
 
 #import "Recipes/Constants.h"
-#import "Recipes/AlphabeticalRecipesDataSource.h"
-#import "Recipes/RecipesController.h"
+#import "Recipes/RecipeDrillDownController.h"
 
-@implementation RecipesController
+@implementation RecipeDrillDownController
 
 #pragma mark -
 #pragma mark UIViewController
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
-    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
+    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
         [self setTableViewStyle:UITableViewStylePlain];
-        [self setTitle:kRecipesTitle];
-    }
     return self;
 }
 
@@ -47,14 +44,5 @@
         [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;
-}
-
-#pragma mark -
-#pragma mark TTTableViewController
-
-- (void)createModel
-{
-    [self setDataSource:
-            [[[AlphabeticalRecipesDataSource alloc] init] autorelease]];
 }
 @end

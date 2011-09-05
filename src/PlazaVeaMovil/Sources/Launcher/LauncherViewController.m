@@ -67,9 +67,9 @@
                 [[[TTLauncherItem alloc] initWithTitle:kShoppingListTitle
                     image:kURLShoppingListIcon
                     URL:kURLShoppingListsCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kRecipesTitle
+                [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
                     image:kURLRecipesIcon
-                    URL:kURLRecipesCall] autorelease],
+                    URL:kURLRecipeCategoriesCall] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

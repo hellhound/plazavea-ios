@@ -3,6 +3,14 @@
 #import "Common/Constants.h"
 #import "Recipes/Constants.h"
 
+// Recipe category collection's constants
+NSString *const kRecipeCategoryCollectionCategoriesKey = @"categories";
+
+// Recipe category's constants
+NSString *const kRecipeCategoryIdKey = @"id";
+NSString *const kRecipeCategoryNameKey = @"name";
+NSString *const kRecipeCategoryCountKey = @"recipes";
+
 // Recipe collection's constants
 NSString *const kRecipeCollectionLettersKey = @"letters";
 NSString *const kRecipeCollectionLetterKey = @"letter";
@@ -32,22 +40,40 @@ NSString *const kIngredientQuantityKey = @"quantity";
 NSString *const kIngredientDescriptionKey = @"product";
 NSString *const kIngredientCommentKey = @"comment";
 
+// RecipeCategoryDataSource's messages
+
+// AlphabeticalRecipesDataSource
+NSString *kRecipeCategoryTitleForLoading = @"Obteniendo categorías";
+// NSLocalizedString(@"Obteniendo categorías", nil)
+NSString *kRecipeCategoryTitleForReloading = @"Actualizando categorías";
+// NSLocalizedString(@"Actualizando categorías", nil)
+NSString *kRecipeCategoryTitleForEmpty = @"No hay categorías";
+// NSLocalizedString(@"No hay categorías", nil)
+NSString *kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen categorías disponibles";
+// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+//      @"categorías disponibles", nil)
+NSString *kRecipeCategoryTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *kRecipeCategorySubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
 // AlphabeticalRecipesDataSource's messages
 
 // AlphabeticalRecipesDataSource
-NSString *kRecipesTitleForLoading = @"Obteniendo lista de recetas";
+NSString *kRecipeListTitleForLoading = @"Obteniendo lista de recetas";
 // NSLocalizedString(@"Obteniendo lista de recetas", nil)
-NSString *kRecipesTitleForReloading = @"Actualizando lista de recetas";
+NSString *kRecipeListTitleForReloading = @"Actualizando lista de recetas";
 // NSLocalizedString(@"Actualizando lista de recetas", nil)
-NSString *kRecipesTitleForEmpty = @"No hay recetas";
-// NSLocalizedString(@"No existen recetas aún", nil)
-NSString *kRecipesSubtitleForEmpty = @"Por favor intente de nuevo más tarde, "
-        @"aún no existen recetas disponibles";
+NSString *kRecipeListTitleForEmpty = @"No hay recetas";
+// NSLocalizedString(@"No recetas", nil)
+NSString *kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen recetas disponibles";
 // NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
 //      @"recetas disponibles", nil)
-NSString *kRecipesTitleForError = @"Error";
+NSString *kRecipeListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *kRecipesSubtitleForError = @"Error";
+NSString *kRecipeListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
 // RecipeDetailDataSource's messages
@@ -67,10 +93,8 @@ NSString *kRecipeDetailTitleForError = @"Error";
 NSString *kRecipeDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
-// RecipesController's constants
+// RecipeDrillDownController's constants
 
-NSString *const kRecipesTitle = @"Recetas";
-// NSLocalizedString(@"Recetas", nil)
 // UISegmentedControl's item for the toolbar: food button
 NSString *const kRecipesFoodButton = @"Comidas";
 // NSLocalizedString(@"Comidas", nil)
@@ -78,21 +102,36 @@ NSString *const kRecipesFoodButton = @"Comidas";
 NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
 // NSLocalizedString(@"Tipos de carne", nil)
 
+// RecipeCategoryController's constants
+NSString *const kRecipeCategoryTitle = @"Categorías";
+// NSLocalizedString(@"Categorías", nil)
+
+// RecipeListController's constants
+
+NSString *const kRecipeListTitle = @"Recetas";
+// NSLocalizedString(@"Recetas", nil)
+
 // RecipeDetailController's constants
 
 NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 // NSLocalizedString(@"Detalle de una receta", nil);
 
 // Controllers' URLs
-NSString *const kURLRecipes = @"tt://launcher/recipes/";
+NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";
+NSString *const kURLRecipeList =
+        @"tt://launcher/recipes/category/(initWithCategoryId:)/";
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 
 // Controllers' URL calls
-NSString *const kURLRecipesCall = @"tt://launcher/recipes/";
+NSString *const kURLRecipeCategoriesCall = @"tt://launcher/recipes/categories/";
+NSString *const kURLRecipeListCall =
+        @"tt://launcher/recipes/category/%@/";
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 
 // Endpoint URLs
 
+NSString *const kURLRecipeCategoriesEndpoint =
+        ENDPOINT(@"/recipes/categories.json");
 NSString *const kURLRecipeAlphabeticEndpoint =
         ENDPOINT(@"/recipes/alphabetic.json");
 NSString *const kURLRecipeDetailEndpoint =

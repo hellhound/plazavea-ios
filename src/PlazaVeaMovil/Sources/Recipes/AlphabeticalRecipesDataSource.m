@@ -32,29 +32,29 @@
 
 - (NSString *)titleForLoading:(BOOL)reloading
 {
-    return NSLocalizedString(kRecipesTitleForLoading, nil);
+    return NSLocalizedString(kRecipeListTitleForLoading, nil);
 }
 
 - (NSString *)titleForEmpty
 {
-    return NSLocalizedString(kRecipesTitleForEmpty, nil);
+    return NSLocalizedString(kRecipeListTitleForEmpty, nil);
 }
 
 - (NSString *)subtitleForEmpty
 {
-    return NSLocalizedString(kRecipesSubtitleForEmpty, nil);
+    return NSLocalizedString(kRecipeListSubtitleForEmpty, nil);
 }
 
 - (NSString *)titleForError:(NSError *)error
 {
     // TODO should show an iOS error
-    return NSLocalizedString(kRecipesTitleForError, nil);
+    return NSLocalizedString(kRecipeListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
     // TODO should show an iOS error
-    return NSLocalizedString(kRecipesSubtitleForError, nil);
+    return NSLocalizedString(kRecipeListSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
@@ -62,11 +62,14 @@
     RecipeCollection *collection = (RecipeCollection *)[self model];
     NSArray *sections = [collection sections];
     NSUInteger sectionCount = [sections count], i;
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:sectionCount];
 
-    for (i = 0; i < sectionCount; i++)
-        [items addObject:[sections objectAtIndex:i]];
-    [self setSections:[[collection sectionTitles] mutableCopy]];
-    [self setItems:items];
+    if (sectionCount > 0) {
+        NSMutableArray *items = [NSMutableArray arrayWithCapacity:sectionCount];
+
+        for (i = 0; i < sectionCount; i++)
+            [items addObject:[sections objectAtIndex:i]];
+        [self setSections:[[collection sectionTitles] mutableCopy]];
+        [self setItems:items];
+    }
 }
 @end

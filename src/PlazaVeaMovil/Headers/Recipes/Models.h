@@ -2,6 +2,26 @@
 
 #import "Common/Models/URLRequestModel.h"
 
+@interface RecipeCategory: NSObject
+{
+    NSNumber *_categoryId;
+    NSString *_name;
+    NSNumber *_recipeCount;
+}
+@property (nonatomic, retain) NSNumber *categoryId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSNumber *recipeCount;
+
++ (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory;
+@end
+
+@interface RecipeCategoryCollection: URLRequestModel
+{
+    NSMutableArray *_categories;
+}
+@property (nonatomic, readonly) NSArray *categories;
+@end
+
 @interface Ingredient: NSObject
 {
     NSString *_quantity;

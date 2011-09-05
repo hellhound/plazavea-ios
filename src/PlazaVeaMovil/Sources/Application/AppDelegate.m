@@ -10,7 +10,8 @@
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
 #import "Recipes/Constants.h"
-#import "Recipes/RecipesController.h"
+#import "Recipes/RecipeCategoryController.h"
+#import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
 #import "Application/AppDelegate.h"
 
@@ -53,7 +54,9 @@
             toViewController:[ShoppingListsController class]
             selector:@selector(init)];
     // Recipes
-    [map from:kURLRecipes toViewController:[RecipesController class]];
+    [map from:kURLRecipeCategories
+            toViewController:[RecipeCategoryController class]];
+    [map from:kURLRecipeList toViewController:[RecipeListController class]];
     [map from:kURLRecipeDetail toViewController:[RecipeDetailController class]];
     // Open root view controller
     [navigator openURLAction:
