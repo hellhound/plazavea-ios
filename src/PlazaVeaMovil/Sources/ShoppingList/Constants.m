@@ -39,7 +39,7 @@ NSString *const kShoppingListDefaultDetailText = @"Nuevo";
 NSString *const kShoppingListCloningRepetitionName = @"Copia";
 // NSLocalizedString(@"Copia", nil)
 NSString *const kShoppingListCloningRepetitionPattern =
-        @"%@.*\\(\\s*%@\\s*\\d+\\s*\\).*";
+        @"%@\\s*\\(\\s*%@\\s*\\d+\\s*\\)";
 // NSLocalizedString(@".*\\(\\s*%@\\s*\\d+\\s*\\).*", nil)
 NSString *const kShoppingListCloningRepetitionSuffix = @"%@ (%@ %li)";
 // NSLocalizedString(@" (%@)", nil)

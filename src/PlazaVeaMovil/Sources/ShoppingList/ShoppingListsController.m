@@ -5,6 +5,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/NSString+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
@@ -131,7 +132,8 @@ static NSCharacterSet *kCloningRepetitionSeparatorsSet;
 - (NSString *)resolveNewNameFromName:(NSString *)name
 {
     NSString *constantExpression =
-        [NSString stringWithFormat:kShoppingListCloningRepetitionPattern, name,
+        [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
+            [name stringByEscapingReservedRECharacterSet],
             kShoppingListCloningRepetitionName];
     NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingListName];
     NSExpression *rhs = [NSExpression expressionForConstantValue:
