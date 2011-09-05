@@ -7,7 +7,7 @@
 
 @class HistoryEntryController;
 
-@protocol HistoryEntryControllerDelegate <NSObject>
+@protocol HistoryEntryControllerDelegate <NSObject, NSCoding>
 
 @optional
 // history entry can be nil; thus differentiating between an insert and a

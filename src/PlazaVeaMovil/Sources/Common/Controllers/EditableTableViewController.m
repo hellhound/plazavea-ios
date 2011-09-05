@@ -117,7 +117,6 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
     }
     if (!editing && [_context hasChanges]) {
         [self saveContext];
-        [[_context undoManager] removeAllActions];
         [self reload];
     }
 }
@@ -348,6 +347,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         // TODO should present a nice UIViewAlert informing the error
         abort();
     }
+    [[_context undoManager] removeAllActions];
 }
 
 - (void)updateAndReload

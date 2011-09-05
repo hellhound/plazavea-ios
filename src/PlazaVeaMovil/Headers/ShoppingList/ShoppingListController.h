@@ -10,7 +10,7 @@
 
 @class ShoppingListController;
 
-@protocol ShoppingListControllerDelegate <NSObject>
+@protocol ShoppingListControllerDelegate <NSObject, NSCoding>
 
 @optional
 - (ShoppingList *)shoppingListController:

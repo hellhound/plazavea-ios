@@ -264,7 +264,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
             @selector(shoppingListController:didDeleteShoppingList:)])
         [_delegate shoppingListController:self
                 didDeleteShoppingList:_shoppingList];
-    [[self navigationController] popToRootViewControllerAnimated:YES];
+    [[self navigationController] popToViewController:_delegate animated:YES];
 }
 
 - (void)createNewShoppingListFromActionSheet:(BOOL)fromActionSheet
@@ -376,7 +376,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
     if ([_delegate respondsToSelector:
             @selector(shoppingListController:didCloneShoppingList:)])
         [_delegate shoppingListController:self
-                didCloneShoppingList:_shoppingList];
+                didCloneShoppingList:clonedList];
     [self saveContext];
 }
 
