@@ -40,7 +40,7 @@ NSString *const kShoppingListCloningRepetitionName = @"Copia";
 // NSLocalizedString(@"Copia", nil)
 NSString *const kShoppingListCloningRepetitionPattern =
         @"%@\\s*\\(\\s*%@\\s*\\d+\\s*\\)";
-// NSLocalizedString(@".*\\(\\s*%@\\s*\\d+\\s*\\).*", nil)
+// NSLocalizedString(@"%@\\s*\\(\\s*%@\\s*\\d+\\s*\\)", nil)
 NSString *const kShoppingListCloningRepetitionSuffix = @"%@ (%@ %li)";
 // NSLocalizedString(@" (%@)", nil)
 
@@ -97,8 +97,8 @@ NSString *const kShoppingListDeletionCancelButtonTitle = @"No";
 // UIActionSheet's constants
 NSString *const kShoppingListActionSheetNewButtonTitle = @"Nueva lista";
 // NSLocalizedString(@"Nueva lista", nil)
-NSString *const kShoppingListActionSheetCloneButtonTitle = @"Clonar lista";
-// NSLocalizedString(@"Clonar lista", nil)
+NSString *const kShoppingListActionSheetCloneButtonTitle = @"Duplicar lista";
+// NSLocalizedString(@"Duplicar lista", nil)
 NSString *const kShoppingListActionSheetMailButtonTitle = @"Enviar vía email";
 // NSLocalizedString(@"Enviar vía email", nil)
 NSString *const kShoppingListActionSheetCancelButtonTitle = @"Cancelar";
