@@ -58,7 +58,7 @@
 
         for (RecipeCategory *category in categories) {
             TTTableTextItem *item;
-            if ([[category subcategoriesCount]integerValue] == 0) {
+            if ([[category subcategoriesCount] integerValue] == 0) {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeListCall, [category categoryId])];
             } else {
