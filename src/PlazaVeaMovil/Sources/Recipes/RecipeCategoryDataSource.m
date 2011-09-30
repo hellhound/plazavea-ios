@@ -57,13 +57,28 @@
                 [NSMutableArray arrayWithCapacity:categoryCount];
 
         for (RecipeCategory *category in categories) {
-            TTTableTextItem *item =
-                    [TTTableTextItem itemWithText:[category name]
+            TTTableTextItem *item;
+            if ([[category subcategoriesCount]integerValue] == 0) {
+                item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeListCall, [category categoryId])];
-
+            } else {
+                item = [TTTableTextItem itemWithText:[category name]
+                        URL:URL(kURLRecipeSubCategoriesCall, 
+                            [category categoryId])];
+            }
             [items addObject:item];
         }
         [self setItems:items];
     }
+}
+
+#pragma mark -
+#pragma mark RecipeCategoryDataSource
+
+- (id)initWithCategoryId:(NSString *)categoryId{
+    if ((self = [super init]) != nil)
+        [self setModel:[[[RecipeCategoryCollection alloc]
+                initWithCategoryId:categoryId] autorelease]];
+    return self;
 }
 @end

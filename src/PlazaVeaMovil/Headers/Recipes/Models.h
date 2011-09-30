@@ -7,19 +7,25 @@
     NSNumber *_categoryId;
     NSString *_name;
     NSNumber *_recipeCount;
+    NSNumber *_subcategoriesCount;
 }
 @property (nonatomic, retain) NSNumber *categoryId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSNumber *recipeCount;
+@property (nonatomic, retain) NSNumber *subcategoriesCount;
 
 + (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory;
 @end
 
 @interface RecipeCategoryCollection: URLRequestModel
 {
+    NSString *_categoryId;
     NSMutableArray *_categories;
 }
 @property (nonatomic, readonly) NSArray *categories;
+@property (nonatomic, readonly) NSString *categoryId;
+
+- (id)initWithCategoryId:(NSString *)categoryId;
 @end
 
 @interface Ingredient: NSObject

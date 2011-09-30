@@ -36,11 +36,12 @@ static NSString *const kMutableTipsKey = @"tips";
 #pragma mark -
 #pragma mark RecipeCategory (Public)
 
-@synthesize categoryId = _categoryId, name = _name, recipeCount = _recipeCount;
+@synthesize categoryId = _categoryId, name = _name, recipeCount = _recipeCount,
+        subcategoriesCount = _subcategoriesCount;
 
 + (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory
 {
-    NSNumber *categoryId, *recipeCount;
+    NSNumber *categoryId, *recipeCount, *subcategoriesCount;
     NSString *name;
 
     if (![rawRecipeCategory isKindOfClass:[NSDictionary class]])
@@ -59,12 +60,18 @@ static NSString *const kMutableTipsKey = @"tips";
         return nil;
     if (![recipeCount isKindOfClass:[NSNumber class]])
         return nil;
+    if ((subcategoriesCount =
+            [rawRecipeCategory objectForKey:kRecipeSubcategoriesCountKey]) == nil)
+        return nil;
+    if (![subcategoriesCount isKindOfClass:[NSNumber class]])
+        return nil;
 
     RecipeCategory *category = [[[RecipeCategory alloc] init] autorelease];
 
     [category setCategoryId:categoryId];
     [category setName:name];
     [category setRecipeCount:recipeCount];
+    [category setSubcategoriesCount:subcategoriesCount];
     return category;
 }
 @end
@@ -114,14 +121,32 @@ static NSString *const kMutableTipsKey = @"tips";
 }
 
 #pragma mark -
+#pragma mark RecipeCategoryCollection
+@synthesize categoryId = _categoryId;
+
+- (id)initWithCategoryId:(NSString *)categoryId
+{
+    if ((self = [self init]) != nil) {
+        _categoryId = [categoryId copy];
+    }
+    return self;
+}
+
+#pragma mark -
 #pragma mark <TTModel>
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request =
-                [TTURLRequest requestWithURL:kURLRecipeCategoriesEndpoint
+        TTURLRequest *request;
+        if (_categoryId == nil) {
+            request = [TTURLRequest requestWithURL:kURLRecipeCategoriesEndpoint
                     delegate:self];
+        } else {
+            request = [TTURLRequest requestWithURL:
+                    URL(kURLRecipeSubcategoryEndpoint, _categoryId)
+                    delegate:self];
+        }
 
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];

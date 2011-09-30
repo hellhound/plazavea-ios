@@ -10,6 +10,7 @@ NSString *const kRecipeCategoryCollectionCategoriesKey = @"categories";
 NSString *const kRecipeCategoryIdKey = @"id";
 NSString *const kRecipeCategoryNameKey = @"name";
 NSString *const kRecipeCategoryCountKey = @"recipes";
+NSString *const kRecipeSubcategoriesCountKey = @"subcategories";
 
 // Recipe collection's constants
 NSString *const kRecipeCollectionLettersKey = @"letters";
@@ -105,6 +106,8 @@ NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
 // RecipeCategoryController's constants
 NSString *const kRecipeCategoryTitle = @"Categorías";
 // NSLocalizedString(@"Categorías", nil)
+NSString *const kRecipeSubcategoryTitle = @"Subcategorías";
+// NSLocalizedString(@"Subcategorías", nil)
 
 // RecipeListController's constants
 
@@ -118,12 +121,16 @@ NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 
 // Controllers' URLs
 NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";
+NSString *const kURLRecipeSubcategories =
+        @"tt://launcher/recipes/categories/subcategory/(initWithCategoryId:)/";
 NSString *const kURLRecipeList =
         @"tt://launcher/recipes/category/(initWithCategoryId:)/";
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 
 // Controllers' URL calls
 NSString *const kURLRecipeCategoriesCall = @"tt://launcher/recipes/categories/";
+NSString *const kURLRecipeSubCategoriesCall =
+        @"tt://launcher/recipes/categories/subcategory/%@/";
 NSString *const kURLRecipeListCall =
         @"tt://launcher/recipes/category/%@/";
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
@@ -132,6 +139,8 @@ NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 
 NSString *const kURLRecipeCategoriesEndpoint =
         ENDPOINT(@"/recipes/categories.json");
+NSString *const kURLRecipeSubcategoryEndpoint =
+        ENDPOINT(@"/recipes/categories.json?cat=%@");
 NSString *const kURLRecipeAlphabeticEndpoint =
         ENDPOINT(@"/recipes/alphabetic.json?cat=%@");
 NSString *const kURLRecipeDetailEndpoint =

@@ -8,6 +8,7 @@ extern NSString *const kRecipeCategoryCollectionCategoriesKey;
 extern NSString *const kRecipeCategoryIdKey;
 extern NSString *const kRecipeCategoryNameKey;
 extern NSString *const kRecipeCategoryCountKey;
+extern NSString *const kRecipeSubcategoriesCountKey;
 
 // Recipe collection's constants
 extern NSString *const kRecipeCollectionLettersKey;
@@ -81,6 +82,7 @@ extern NSString *const kRecipesMeatTypesButton;
 
 // RecipeCategoryController's constants
 extern NSString *const kRecipeCategoryTitle;
+extern NSString *const kRecipeSubcategoryTitle;
 
 // RecipeListController's constants
 
@@ -92,16 +94,19 @@ extern NSString *const kRecipeDetailTitle;
 
 // Controllers' URLs
 extern NSString *const kURLRecipeCategories;
+extern NSString *const kURLRecipeSubcategories;
 extern NSString *const kURLRecipeList;
 extern NSString *const kURLRecipeDetail;
 
 // Controllers' URL calls
 extern NSString *const kURLRecipeCategoriesCall;
+extern NSString *const kURLRecipeSubCategoriesCall;
 extern NSString *const kURLRecipeListCall;
 extern NSString *const kURLRecipeDetailCall;
 
 // Endpoint URLs
 
 extern NSString *const kURLRecipeCategoriesEndpoint;
+extern NSString *const kURLRecipeSubcategoryEndpoint;
 extern NSString *const kURLRecipeAlphabeticEndpoint;
 extern NSString *const kURLRecipeDetailEndpoint;

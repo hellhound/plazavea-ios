@@ -21,7 +21,28 @@
 
 - (void)createModel
 {
-    [self setDataSource:
-            [[[RecipeCategoryDataSource alloc] init] autorelease]];
+    if (_categoryId == nil) {
+        [self setDataSource:
+                [[[RecipeCategoryDataSource alloc] init] autorelease]];
+    }
+    else {
+        [self setDataSource:
+                [[[RecipeCategoryDataSource alloc]
+                        initWithCategoryId:_categoryId] autorelease]];
+    }
+}
+
+#pragma mark -
+#pragma mark RecipeCategoryController (Public)
+
+@synthesize categoryId = _categoryId;
+
+- (id)initWithCategoryId:(NSString *)categoryId
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil){
+        _categoryId = [categoryId copy];
+        [self setTitle:NSLocalizedString(kRecipeSubcategoryTitle, nil)];
+    }
+    return self;
 }
 @end
