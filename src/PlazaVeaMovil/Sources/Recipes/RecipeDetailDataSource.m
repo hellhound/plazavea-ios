@@ -7,15 +7,43 @@
 #import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 
+@interface RecipeDetailDataSource (private)
+
+- (void)setDelegate:(id<RecipeDetailDataSourceDelegate>)delegate;
+@end
+
 @implementation RecipeDetailDataSource
 
 #pragma mark -
 #pragma mark NSObject
 
-- (id)init
+- (void) dealloc
 {
-    if ((self = [super init]) != nil)
-        [self setModel:[[[Recipe alloc] init] autorelease]];
+    [self setDelegate:nil];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark RecipeDetailDataSource (private)
+
+- (void)setDelegate:(id<RecipeDetailDataSourceDelegate>)delegate
+{
+    _delegate = delegate;
+}
+
+#pragma mark -
+#pragma mark RecipeDetailDataSource (public)
+
+@synthesize delegate = _delegate;
+
+- (id)initWithRecipeId:(NSString *)recipeId
+              delegate:(id<RecipeDetailDataSourceDelegate>)delegate
+{
+    if ((self = [super init]) != nil){
+        [self setModel:[[[Recipe alloc]
+                initWithRecipeId:recipeId] autorelease]];
+        [self setDelegate:delegate];
+    }
     return self;
 }
 
@@ -50,5 +78,72 @@
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     Recipe *recipe = (Recipe *)[self model];
+    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray *sections = [NSMutableArray array];
+    NSString *recipeName = [recipe name];
+
+    [_delegate dataSource:self needsDetailImageWithURL:[recipe pictureURL]];
+    [sections addObject:@""];
+    [items addObject:[NSArray arrayWithObject:
+            [TTTableTextItem itemWithText:recipeName]]];
+    
+    //TODO: insert title and photo in header view
+    //if the features list have items doesnt show the ingredients n'
+    //procedures
+    if ([[recipe features] count] > 0){
+        NSMutableArray *subitems = [NSMutableArray array];
+
+        [sections addObject:
+                NSLocalizedString(kRecipeDetailSectionFeatures, nil)];
+        for (NSString *feature in [recipe features]) {
+            TTTableTextItem *item = [TTTableTextItem itemWithText: feature];
+
+            [subitems addObject:item];
+        }
+        [items addObject:subitems];
+    } 
+    else {
+        if ([[recipe ingredients] count] > 0) {
+            NSMutableArray *subitems = [NSMutableArray array];
+
+            [sections addObject:
+                    NSLocalizedString(kRecipeDetailSectionIngredients, nil)];
+            for (Ingredient *ingredient in [recipe ingredients]) {
+                TTTableTextItem *item = [TTTableTextItem 
+                        itemWithText: [ingredient formattedIngredientString]];
+
+                [subitems addObject:item];
+            }
+            [items addObject:subitems];
+        }
+        if ([[recipe procedures] count] > 0) {
+            NSMutableArray *subitems = [NSMutableArray array];
+
+            [sections addObject:
+                    NSLocalizedString(kRecipeDetailSectionProcedures, nil)];
+            for (NSString *procedure in [recipe procedures]) {
+                TTTableTextItem *item = [TTTableTextItem 
+                        itemWithText: procedure];
+
+                [subitems addObject:item];
+            }
+            [items addObject:subitems];
+        }
+        if ([[recipe tips] count] > 0) {
+            NSMutableArray *subitems = [NSMutableArray array];
+
+            [sections addObject:
+                    NSLocalizedString(kRecipeDetailSectionTips, nil)];
+            for (NSString *procedure in [recipe tips]) {
+                TTTableTextItem *item = [TTTableTextItem 
+                        itemWithText: procedure];
+
+                [subitems addObject:item];
+            }
+            [items addObject:subitems];
+        }
+    }
+    [self setSections:sections];
+    [self setItems:items];
 }
 @end

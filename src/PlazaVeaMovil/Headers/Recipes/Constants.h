@@ -1,5 +1,6 @@
 // Recipes module's constants
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // Recipe category collection's constants
 extern NSString *const kRecipeCategoryCollectionCategoriesKey;
@@ -65,6 +66,10 @@ extern NSString *kRecipeDetailTitleForEmpty;
 extern NSString *kRecipeDetailSubtitleForEmpty;
 extern NSString *kRecipeDetailTitleForError;
 extern NSString *kRecipeDetailSubtitleForError;
+extern NSString *kRecipeDetailSectionFeatures;
+extern NSString *kRecipeDetailSectionIngredients;
+extern NSString *kRecipeDetailSectionProcedures;
+extern NSString *kRecipeDetailSectionTips;
 
 // RecipeDrillDownController's constants
 
@@ -91,6 +96,9 @@ extern NSString *const kRecipeListTitle;
 // RecipeDetailController's constants
 
 extern NSString *const kRecipeDetailTitle;
+extern NSString *const kRecipeDetailDefaultImage;
+extern const CGFloat kRecipeDetailImageWidth;
+extern const CGFloat kRecipeDetailImageHeigth;
 
 // Controllers' URLs
 extern NSString *const kURLRecipeCategories;

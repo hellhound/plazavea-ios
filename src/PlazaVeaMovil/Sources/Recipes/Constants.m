@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "Common/Constants.h"
 #import "Recipes/Constants.h"
@@ -27,7 +28,7 @@ NSString *const kRecipePictureURLKey = @"picture";
 NSString *const kRecipeExtraPictureURLsKey = @"extra_pictures";
 NSString *const kRecipePriceKey = @"price";
 NSString *const kRecipeIngredientsKey = @"ingredients";
-NSString *const kRecipeProceduresKey = @"ingredients";
+NSString *const kRecipeProceduresKey = @"preparation";
 NSString *const kRecipeFeaturesKey = @"features";
 NSString *const kRecipeTipsKey = @"tips";
 NSString *const kRecipeRationsKey = @"rations";
@@ -93,6 +94,14 @@ NSString *kRecipeDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *kRecipeDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
+NSString *kRecipeDetailSectionFeatures = @"Características";
+// NSLocalizedString(@"Características", nil)
+NSString *kRecipeDetailSectionIngredients = @"Ingredients";
+// NSLocalizedString(@"Ingredients", nil)
+NSString *kRecipeDetailSectionProcedures = @"Preparación";
+// NSLocalizedString(@"Preparación", nil)
+NSString *kRecipeDetailSectionTips = @"Tips";
+// NSLocalizedString(@"Tips", nil)
 
 // RecipeDrillDownController's constants
 
@@ -118,6 +127,10 @@ NSString *const kRecipeListTitle = @"Recetas";
 
 NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 // NSLocalizedString(@"Detalle de una receta", nil);
+NSString *const kRecipeDetailDefaultImage =
+        @"bundle://default-recipe-detail.png";
+const CGFloat kRecipeDetailImageWidth = 60.;
+const CGFloat kRecipeDetailImageHeigth = 60.;
 
 // Controllers' URLs
 NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";

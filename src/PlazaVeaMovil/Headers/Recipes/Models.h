@@ -39,6 +39,7 @@
 @property (nonatomic, copy) NSString *comment;
 
 + (id)ingredientFromDictionary:(NSDictionary *)rawIngredient;
+- (NSString *)formattedIngredientString;
 @end
 
 @interface Recipe: URLRequestModel
@@ -74,6 +75,7 @@
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe;
 + (id)recipeFromDictionary:(NSDictionary *)rawRecipe;
 
+- (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromRecipe:(Recipe *)recipe;
 @end
 

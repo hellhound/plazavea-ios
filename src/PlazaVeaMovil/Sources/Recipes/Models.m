@@ -229,6 +229,12 @@ static NSString *const kMutableTipsKey = @"tips";
     [ingredient setComment:comment];
     return ingredient;
 }
+
+- (NSString *)formattedIngredientString
+{
+    return [NSString stringWithFormat:@"%@ %@ %@", _quantity, _description, 
+            _comment];
+}
 @end
 
 @implementation Recipe
@@ -244,6 +250,7 @@ static NSString *const kMutableTipsKey = @"tips";
         _ingredients = [[NSMutableArray alloc] init];
         _procedures = [[NSMutableArray alloc] init];
         _features = [[NSMutableArray alloc] init];
+        _tips = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -259,6 +266,7 @@ static NSString *const kMutableTipsKey = @"tips";
     [_ingredients release];
     [_procedures release];
     [_features release];
+    [_tips release];
     [_rations release];
     [_facebookURL release];
     [_twitterURL release];
@@ -355,9 +363,9 @@ static NSString *const kMutableTipsKey = @"tips";
     [_features removeObjectsAtIndexes:indexes];
 }
 
-- (void)insertObject:(NSString *)tip inTipsAtIndex:(NSUInteger)index
+- (void)insertObject:(NSString *)tips inTipsAtIndex:(NSUInteger)index
 {
-    [_tips insertObject:tip atIndex:index];
+    [_tips insertObject:tips atIndex:index];
 }
 
 - (void)insertTips:(NSArray *)tips atIndexes:(NSIndexSet *)indexes
@@ -433,7 +441,7 @@ static NSString *const kMutableTipsKey = @"tips";
     if ((pictureURL = [rawRecipe objectForKey:kRecipePictureURLKey]) == nil)
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
+        pictureURL = nil;
     if ((extraPictureURLs =
             [rawRecipe objectForKey:kRecipeExtraPictureURLsKey]) == nil)
         return nil;
@@ -461,16 +469,18 @@ static NSString *const kMutableTipsKey = @"tips";
         return nil;
     if (![rations isKindOfClass:[NSNumber class]])
         return nil;
-    if ((facebookURL = [rawRecipe objectForKey:kRecipeFeaturesKey]) == nil)
+    if ((facebookURL = [rawRecipe objectForKey:kRecipeFacebookURLKey]) == nil)
         return nil;
     if (![facebookURL isKindOfClass:[NSString class]])
         return nil;
-    if ((twitterURL = [rawRecipe objectForKey:kRecipeFeaturesKey]) == nil)
+    if ((twitterURL = [rawRecipe objectForKey:kRecipeTwitterURLKey]) == nil)
         return nil;
     if (![twitterURL isKindOfClass:[NSString class]])
         return nil;
     [recipe setCode:code];
-    [recipe setPictureURL:[NSURL URLWithString:pictureURL]];
+    if (pictureURL != nil) {
+        [recipe setPictureURL:[NSURL URLWithString:pictureURL]];
+    }
     [recipe setPrice:price];
     [recipe setRations:rations];
     [recipe setFacebookURL:[NSURL URLWithString:facebookURL]];
@@ -511,6 +521,17 @@ static NSString *const kMutableTipsKey = @"tips";
         [mutableTips addObject:tip];
     }
     return recipe;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId
+{
+    NSInteger recipeIntegerId = [recipeId integerValue];
+    if(recipeIntegerId < 0) {
+        return nil;
+    }
+    if((self = [self init]) != nil)
+        [self setRecipeId:[NSNumber numberWithInteger:recipeIntegerId]];
+    return self;
 }
 
 - (void)copyPropertiesFromRecipe:(Recipe *)recipe
@@ -573,6 +594,7 @@ static NSString *const kMutableTipsKey = @"tips";
     // TODO should put the model in an error-aware state when recipe is nil
     if (recipe != nil)
         [self copyPropertiesFromRecipe:recipe];
+    [super requestDidFinishLoad:request];
 }
 @end
 
