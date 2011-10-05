@@ -448,7 +448,7 @@ static NSString *const kMutableTipsKey = @"tips";
     if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
         return nil;
     if (![price isKindOfClass:[NSNumber class]])
-        return nil;
+        price=nil;
     if ((ingredients = [rawRecipe objectForKey:kRecipeIngredientsKey]) == nil)
         return nil;
     if (![ingredients isKindOfClass:[NSArray class]])
