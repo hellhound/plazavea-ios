@@ -165,18 +165,26 @@ static NSString *const kMutableTipsKey = @"tips";
     NSMutableArray *mutableCategories =
             [self mutableArrayValueForKey:kMutableCategoriesKey];
 
-    if (![rootObject isKindOfClass:[NSDictionary class]])
+    if (![rootObject isKindOfClass:[NSDictionary class]]){
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            tryAgain:NO];
         return;
+    }
     if ((rawCategories = [rootObject objectForKey:
-            kRecipeCategoryCollectionCategoriesKey]) == nil)
+            kRecipeCategoryCollectionCategoriesKey]) == nil){
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            tryAgain:NO];
         return;
+    }
     for (NSDictionary *rawRecipeCategory in rawCategories) {
         RecipeCategory *recipeCategory =
                 [RecipeCategory recipeCategoryFromDictionary:rawRecipeCategory];
 
-        if (recipeCategory == nil)
-            // Quit!
+        if (recipeCategory == nil){
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            tryAgain:NO];
             return;
+        }
         [mutableCategories addObject:recipeCategory];
     }
     [super requestDidFinishLoad:request];
@@ -591,9 +599,12 @@ static NSString *const kMutableTipsKey = @"tips";
             [(TTURLJSONResponse *)[request response] rootObject];
     Recipe *recipe = [Recipe recipeFromDictionary:rootObject];
 
-    // TODO should put the model in an error-aware state when recipe is nil
-    if (recipe != nil)
-        [self copyPropertiesFromRecipe:recipe];
+    if (recipe == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromRecipe:recipe];
     [super requestDidFinishLoad:request];
 }
 @end
@@ -717,18 +728,34 @@ static NSString *const kMutableTipsKey = @"tips";
         NSArray *rawRecipesInSection;
         NSString *sectionName;
 
-        if (![recipeCluster isKindOfClass:[NSDictionary class]])
+        if (![recipeCluster isKindOfClass:[NSDictionary class]]){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
             return;
+        }
         if ((sectionName =
-                [recipeCluster objectForKey:kRecipeCollectionLetterKey]) == nil)
+                [recipeCluster objectForKey:kRecipeCollectionLetterKey]) 
+                    == nil){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
             return;
-        if (![sectionName isKindOfClass:[NSString class]])
+        }
+        if (![sectionName isKindOfClass:[NSString class]]){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
             return;
+        }
         if ((rawRecipesInSection = [recipeCluster objectForKey:
-                kRecipeCollectionRecipesKey]) == nil)
+                kRecipeCollectionRecipesKey]) == nil){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
             return;
-        if (![rawRecipesInSection isKindOfClass:[NSArray class]])
+        }
+        if (![rawRecipesInSection isKindOfClass:[NSArray class]]){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
             return;
+        }
 
         NSMutableArray *recipesInSection =
                 [NSMutableArray arrayWithCapacity:[rawRecipesInSection count]];
@@ -739,9 +766,11 @@ static NSString *const kMutableTipsKey = @"tips";
         for (NSDictionary *rawRecipe in rawRecipesInSection) {
             Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
 
-            if (recipe == nil)
-                // Quit!
+            if (recipe == nil){
+            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
                 return;
+            }
             [recipesInSection addObject:
                     [TTTableTextItem itemWithText:[recipe name]
                         URL:URL(kURLRecipeDetailCall, [recipe recipeId])]];

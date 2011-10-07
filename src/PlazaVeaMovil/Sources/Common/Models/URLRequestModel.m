@@ -16,16 +16,7 @@
 
 - (void)didFailLoadWithError:(NSError *)error
 {
-    if (_isTryingCache) {
-        [super didFailLoadWithError:error];
-    } else {
-        [self setIsTryingCache:YES];
-        if ([self isLoading])
-            [self cancel]; // just in case
-        if (![self isLoaded])
-            [self load:TTURLRequestCachePolicyDefault more:NO];
-        [self didChange]; // show the cache content
-    }
+    [self didFailLoadWithError:error tryAgain:YES];
 }
 
 - (void)didFinishLoad
@@ -52,4 +43,22 @@
 #pragma mark URLRequestModel (Public)
 
 @synthesize isTryingCache = _isTryingCache;
+
+- (void)didFailLoadWithError:(NSError *)error tryAgain:(BOOL)tryAgain
+{
+    if (_isTryingCache) {
+        [super didFailLoadWithError:error];
+    } else {
+        [self setIsTryingCache:YES];
+        if ([self isLoading])
+            [self cancel]; // just in case
+        if (tryAgain && ![self isLoaded])
+            [self load:TTURLRequestCachePolicyDefault more:NO];
+        if (!tryAgain) {
+            [super didFailLoadWithError:error];
+        } else if ([self isLoaded]) {
+            [self didChange]; // show the cache content
+        }
+    }
+}
 @end

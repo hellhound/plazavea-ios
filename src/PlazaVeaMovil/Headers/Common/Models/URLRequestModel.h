@@ -7,4 +7,6 @@
     BOOL _isTryingCache;
 }
 @property (nonatomic, readonly) BOOL isTryingCache;
+
+- (void)didFailLoadWithError:(NSError *)error tryAgain:(BOOL)tryAgain;
 @end

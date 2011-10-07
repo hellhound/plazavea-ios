@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
@@ -72,7 +73,7 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return NSLocalizedString(kRecipeDetailSubtitleForError, nil);
+    return LOCALIZED_HTTP_REQUEST_ERROR(error);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
