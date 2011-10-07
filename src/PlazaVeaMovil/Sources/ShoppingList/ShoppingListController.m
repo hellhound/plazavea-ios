@@ -31,6 +31,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 - (void)showAlertViewForNewShoppingList:(TSAlertView *)alertView;
 - (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView;
 - (void)showAlertViewForShoppingListDeletion:(TSAlertView *)alertView;
+- (void)initializeHeader;
 @end
 
 @implementation ShoppingListController
@@ -105,7 +106,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
     }
     return navItem;
 }
-
+   
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
 
@@ -185,6 +186,37 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
     [alertView autorelease];
 }
 
+- (void)initializeHeader
+{
+    [super loadView];
+    UITableView *tableView = [self tableView];
+    CGRect bounds = [tableView bounds];
+    
+    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(.0, .0,
+            bounds.size.width, 20.)] autorelease];
+    
+    [nameLabel setAdjustsFontSizeToFitWidth:YES];
+    [nameLabel setNumberOfLines:1];
+    [nameLabel setMinimumFontSize:10];
+    [nameLabel setText:[_shoppingList name]];
+    
+    NSDateFormatter *dateFormatter = [(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] dateFormatter];
+    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(.0,
+            20., bounds.size.width, 20.)] autorelease];
+    
+    [dateLabel setTextAlignment:UITextAlignmentRight];
+    [dateLabel setText:[dateFormatter stringFromDate:[_shoppingList
+            lastModificationDate]]];
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
+            bounds.size.width, 40.)] autorelease];
+    
+    [headerView addSubview:nameLabel];
+    [headerView addSubview:dateLabel];
+    [tableView setTableHeaderView:headerView];
+}
+
 #pragma mark -
 #pragma mark ShoppingListController (Public)
 
@@ -216,8 +248,11 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
         [self setAllowsMovableCells:YES];
         [self setAllowsRowDeselectionOnEditing:YES];
         [self setShoppingList:shoppingList];
-        if (shoppingList == nil)
+        if (shoppingList == nil) {
             [self createNewShoppingListFromActionSheet:NO];
+        } else {
+            [self initializeHeader];
+        }
     }
     return self;
 }
@@ -299,8 +334,11 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
         // And lastly, set the predicate to the fetch request of the results
         // controller 
         [[[self resultsController] fetchRequest] setPredicate:predicate];
-        if (fromActionSheet)
+        if (fromActionSheet) {
             [self fetchUpdateAndReload];
+        } else {
+            [self initializeHeader];
+        }
         [self updatePreviousNextButtons];
     }
 }

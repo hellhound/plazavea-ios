@@ -1648,7 +1648,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = ../Resources/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1663,8 +1663,8 @@
 				INFOPLIST_FILE = "../Resources/PlazaVeaMovil-Debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "EBDA8DBA-7035-4280-9AE9-8C054BFDDD03";
+				PROVISIONING_PROFILE = "686CCB1C-F744-4D93-B46D-A1E533B88709";
+				"PROVISIONING_PROFILE[sdk=*]" = "686CCB1C-F744-4D93-B46D-A1E533B88709";
 				SYMROOT = ../build;
 				USER_HEADER_SEARCH_PATHS = ../Headers;
 				WRAPPER_EXTENSION = app;
@@ -1675,7 +1675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1688,7 +1688,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "686CCB1C-F744-4D93-B46D-A1E533B88709";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SYMROOT = ../build;
 				USER_HEADER_SEARCH_PATHS = ../Headers;
