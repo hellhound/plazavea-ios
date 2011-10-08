@@ -15,27 +15,10 @@
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
-static NSString *const kCloningRepetitionSeparators = @"()";
-static NSCharacterSet *kCloningRepetitionSeparatorsSet;
-
-@interface ShoppingListsController (Private)
-
-- (NSString *)resolveNewNameFromName:(NSString *)name;
-@end
-
 @implementation ShoppingListsController
 
 #pragma mark -
 #pragma mark NSObject
-
-+ (void)initialize
-{
-    if (self == [ShoppingListsController class]) {
-        kCloningRepetitionSeparatorsSet =
-                [[NSCharacterSet characterSetWithCharactersInString:
-                    kCloningRepetitionSeparators] retain];
-    }
-}
 
 - (id)init
 {
@@ -127,60 +110,6 @@ static NSCharacterSet *kCloningRepetitionSeparatorsSet;
 }
 
 #pragma mark -
-#pragma mark ShoppingListsController (Private)
-
-- (NSString *)resolveNewNameFromName:(NSString *)name
-{
-    NSString *constantExpression =
-        [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
-            [name stringByEscapingReservedRECharacterSet],
-            kShoppingListCloningRepetitionName];
-    NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingListName];
-    NSExpression *rhs = [NSExpression expressionForConstantValue:
-            NSLocalizedString(constantExpression, nil)];
-    NSPredicate *predicate =
-            [NSComparisonPredicate predicateWithLeftExpression:lhs
-                rightExpression:rhs
-                modifier:NSDirectPredicateModifier
-                type:NSMatchesPredicateOperatorType
-                options:NSCaseInsensitivePredicateOption |
-                    NSDiacriticInsensitivePredicateOption];
-    NSArray*sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kShoppingListName
-                ascending:NO]];
-    NSArray *filteredLists = [[[[self resultsController] fetchedObjects]
-                filteredArrayUsingPredicate:predicate]
-            sortedArrayUsingDescriptors:sortDescriptors];
-
-    if ([filteredLists count] == 0)
-        // There's no repeated name, give up an return the original name
-        return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
-                name, kShoppingListCloningRepetitionName, 1];
-
-    NSString *candidateName =
-            [(ShoppingList *)[filteredLists objectAtIndex:0] name];
-    NSArray *tokens = [candidateName componentsSeparatedByCharactersInSet:
-            kCloningRepetitionSeparatorsSet];
-
-    // Each token will always be an NSString and tokens will always have
-    // at least 3 elements
-    tokens = [(NSString *)[tokens objectAtIndex:[tokens count] - 2]
-            componentsSeparatedByCharactersInSet:
-                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    NSInteger copyNumber = 0;
-    NSString *token;
-    NSEnumerator *enumerator = [tokens reverseObjectEnumerator];
-
-    while ((token = [enumerator nextObject]) != nil)
-        if ((copyNumber = [token integerValue]) > 0)
-            break;
-    copyNumber++;
-    return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
-            name, kShoppingListCloningRepetitionName, copyNumber];
-}
-
-#pragma mark -
 #pragma mark ShoppingListsController (Public)
 
 - (void)addShoppingList:(NSString *)name
@@ -234,7 +163,8 @@ static NSCharacterSet *kCloningRepetitionSeparatorsSet;
 - (void)shoppingListController:(ShoppingListController *)shoppingListController
           didCloneShoppingList:(ShoppingList *)shoppingList
 {
-    [shoppingList setName:[self resolveNewNameFromName:[shoppingList name]]];
+    [shoppingList setName:[ShoppingList resolveNewNameFromName:[
+            shoppingList name]]];
     [self fetchUpdateAndReload];
 }
 @end

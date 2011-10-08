@@ -14,6 +14,7 @@
                    context:(NSManagedObjectContext *)context;
 + (id)shoppingListWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController;
++ (NSString *)resolveNewNameFromName:(NSString *)name;
 
 - (NSString *)formattedLastModiciationDate;
 - (ShoppingList *)previous; // If there's no previous list, return the last one

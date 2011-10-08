@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Common/Models/Constants.h"
 #import "Common/Models/ManagedObject.h"
@@ -16,6 +17,8 @@ static NSRelationshipDescription *kListRelationship;
 static NSPredicate *kPreviousListPredicateTemplate;
 static NSPredicate *kNextListPredicateTemplate;
 static NSPredicate *kHistoryEntryNamePredicateTemplate;
+// Sopping lists name
+static NSString *const kCloningRepetitionSeparators = @"()";
 
 @interface ShoppingList ()
 
@@ -167,6 +170,66 @@ static NSPredicate *kHistoryEntryNamePredicateTemplate;
 
     [newList setName:name];
     return newList;
+}
+
++ (NSString *)resolveNewNameFromName:(NSString *)name
+{
+    NSString *constantExpression =
+        [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
+            [name stringByEscapingReservedRECharacterSet],
+            kShoppingListCloningRepetitionName];
+    NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingListName];
+    NSExpression *rhs = [NSExpression expressionForConstantValue:
+            NSLocalizedString(constantExpression, nil)];
+    NSPredicate *predicate =
+            [NSComparisonPredicate predicateWithLeftExpression:lhs
+                rightExpression:rhs
+                modifier:NSDirectPredicateModifier
+                type:NSMatchesPredicateOperatorType
+                options:NSCaseInsensitivePredicateOption |
+                    NSDiacriticInsensitivePredicateOption];
+    NSManagedObjectContext *context = [(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kShoppingListName
+                ascending:NO]];
+    NSCharacterSet *cloningRepetitionSeparatorsSet =
+            [[NSCharacterSet characterSetWithCharactersInString:
+                kCloningRepetitionSeparators] retain];
+
+    [request setEntity:[self entity]];
+    [request setPredicate:predicate];
+    [request setSortDescriptors:sortDescriptors];
+
+    NSArray *filteredLists = [context executeFetchRequest:request];
+
+    if ([filteredLists count] == 0)
+        // There's no repeated name, give up an return the original name
+        return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
+                name, kShoppingListCloningRepetitionName, 1];
+
+    NSString *candidateName =
+            [(ShoppingList *)[filteredLists objectAtIndex:0] name];
+    NSArray *tokens = [candidateName componentsSeparatedByCharactersInSet:
+            cloningRepetitionSeparatorsSet];
+
+    // Each token will always be an NSString and tokens will always have
+    // at least 3 elements
+    tokens = [(NSString *)[tokens objectAtIndex:[tokens count] - 2]
+            componentsSeparatedByCharactersInSet:
+                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    NSInteger copyNumber = 0;
+    NSString *token;
+    NSEnumerator *enumerator = [tokens reverseObjectEnumerator];
+
+    while ((token = [enumerator nextObject]) != nil)
+        if ((copyNumber = [token integerValue]) > 0)
+            break;
+    copyNumber++;
+    return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
+            name, kShoppingListCloningRepetitionName, copyNumber];
 }
 
 - (NSString *)formattedLastModiciationDate
