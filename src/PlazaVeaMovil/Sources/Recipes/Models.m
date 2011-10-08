@@ -199,7 +199,7 @@ static NSString *const kMutableTipsKey = @"tips";
 - (void)dealloc
 {
     [_quantity release];
-    [_description release];
+    [_name release];
     [_comment release];
     [super dealloc];
 }
@@ -207,12 +207,12 @@ static NSString *const kMutableTipsKey = @"tips";
 #pragma mark -
 #pragma mark Ingredient (Public)
 
-@synthesize quantity = _quantity, description = _description,
+@synthesize quantity = _quantity, name = _name,
     comment = _comment;
 
 + (id)ingredientFromDictionary:(NSDictionary *)rawIngredient
 {
-    NSString *quantity, *description, *comment;
+    NSString *quantity, *name, *comment;
 
     if (![rawIngredient isKindOfClass:[NSDictionary class]])
         return nil;
@@ -220,10 +220,10 @@ static NSString *const kMutableTipsKey = @"tips";
         return nil;
     if (![quantity isKindOfClass:[NSString class]])
         return nil;
-    if ((description =
-            [rawIngredient objectForKey:kIngredientDescriptionKey]) == nil)
+    if ((name =
+            [rawIngredient objectForKey:kIngredientNameKey]) == nil)
         return nil;
-    if (![description isKindOfClass:[NSString class]])
+    if (![name isKindOfClass:[NSString class]])
         return nil;
     if ((comment = [rawIngredient objectForKey:kIngredientCommentKey]) == nil)
         return nil;
@@ -233,14 +233,14 @@ static NSString *const kMutableTipsKey = @"tips";
     Ingredient *ingredient = [[[Ingredient alloc] init] autorelease];
 
     [ingredient setQuantity:quantity];
-    [ingredient setDescription:description];
+    [ingredient setName:name];
     [ingredient setComment:comment];
     return ingredient;
 }
 
 - (NSString *)formattedIngredientString
 {
-    return [NSString stringWithFormat:@"%@ %@ %@", _quantity, _description, 
+    return [NSString stringWithFormat:@"%@ %@ %@", _quantity, _name, 
             _comment];
 }
 @end

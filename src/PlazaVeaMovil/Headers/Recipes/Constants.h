@@ -37,7 +37,7 @@ extern NSString *const kRecipeTwitterURLKey;
 
 // JSON keys
 extern NSString *const kIngredientQuantityKey;
-extern NSString *const kIngredientDescriptionKey;
+extern NSString *const kIngredientNameKey;
 extern NSString *const kIngredientCommentKey;
 
 // RecipeCategoryDataSource's messages

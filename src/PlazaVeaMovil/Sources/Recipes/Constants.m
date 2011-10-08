@@ -39,7 +39,7 @@ NSString *const kRecipeTwitterURLKey = @"twitter_url";
 
 // JSON keys
 NSString *const kIngredientQuantityKey = @"quantity";
-NSString *const kIngredientDescriptionKey = @"product";
+NSString *const kIngredientNameKey = @"product";
 NSString *const kIngredientCommentKey = @"comment";
 
 // RecipeCategoryDataSource's messages

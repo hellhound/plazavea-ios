@@ -31,11 +31,11 @@
 @interface Ingredient: NSObject
 {
     NSString *_quantity;
-    NSString *_description;
+    NSString *_name;
     NSString *_comment;
 }
 @property (nonatomic, copy) NSString *quantity;
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *comment;
 
 + (id)ingredientFromDictionary:(NSDictionary *)rawIngredient;
