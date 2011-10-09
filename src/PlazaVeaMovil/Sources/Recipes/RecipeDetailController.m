@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import <Three20/Three20.h>
 
 #import "Recipes/Constants.h"
+#import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/RecipeDetailController.h"
 
@@ -21,6 +23,23 @@
     [_recipeId release];
     [_imageView release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    UINavigationItem *navItem = [super navigationItem];
+    if (_toListButton == nil) {
+        _toListButton = [[UIBarButtonItem alloc]
+                initWithTitle:NSLocalizedString(
+                    kRecipeDetailToListButtonTitle, nil)
+                style:UIBarButtonItemStylePlain target:self
+               action:@selector(createShoppingListFormRecipe)];
+        [navItem setRightBarButtonItem:_toListButton];
+    }
+    return navItem;
 }
 
 #pragma mark -
@@ -71,6 +90,18 @@
                 CGRectMake(.0, .0, 60., 60.)] autorelease]];
     }
     return self;
+}
+
+- (void)createShoppingListFormRecipe
+{
+    [(Recipe *)[self model] createShoppingList];
+    UIAlertView *alertView =[[UIAlertView alloc]
+        initWithTitle:nil 
+            message:[NSString stringWithFormat:kRecipeDetailCreateMessage,
+                @"sd"] delegate:self cancelButtonTitle:kRecipeDetailCreateButton
+            otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 
 #pragma mark -

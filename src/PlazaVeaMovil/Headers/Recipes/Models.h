@@ -77,6 +77,8 @@
 
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromRecipe:(Recipe *)recipe;
+- (BOOL)isColdMeal;
+- (void)createShoppingList;
 @end
 
 @interface RecipeCollection: URLRequestModel

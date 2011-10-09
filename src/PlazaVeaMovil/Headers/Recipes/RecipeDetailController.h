@@ -10,7 +10,9 @@
 {
     NSString *_recipeId;
     TTImageView *_imageView;
+    UIBarButtonItem *_toListButton;
 }
 
 - (id)initWithRecipeId:(NSString *)recipeId;
+- (void)createShoppingListFormRecipe;
 @end

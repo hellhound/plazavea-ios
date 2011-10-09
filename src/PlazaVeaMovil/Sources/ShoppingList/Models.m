@@ -173,6 +173,7 @@ static NSString *const kCloningRepetitionSeparators = @"()";
 }
 
 + (NSString *)resolveNewNameFromName:(NSString *)name
+                      shouldBeCloned:(BOOL)shouldBeCloned
 {
     NSString *constantExpression =
         [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
@@ -206,8 +207,9 @@ static NSString *const kCloningRepetitionSeparators = @"()";
 
     if ([filteredLists count] == 0)
         // There's no repeated name, give up an return the original name
-        return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
-                name, kShoppingListCloningRepetitionName, 1];
+        return shouldBeCloned ?
+                [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
+                    name, kShoppingListCloningRepetitionName, 1] : name;
 
     NSString *candidateName =
             [(ShoppingList *)[filteredLists objectAtIndex:0] name];

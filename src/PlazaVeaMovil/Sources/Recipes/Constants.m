@@ -104,6 +104,8 @@ NSString *kRecipeDetailSectionTips = @"Tips";
 // NSLocalizedString(@"Tips", nil)
 
 // RecipeDrillDownController's constants
+NSString *const kRecipeDetailToListButtonTitle = @"Crear Lista";
+// NSLocalizedString(@"Crear Lista", nil)
 
 // UISegmentedControl's item for the toolbar: food button
 NSString *const kRecipesFoodButton = @"Comidas";
@@ -131,6 +133,10 @@ NSString *const kRecipeDetailDefaultImage =
         @"bundle://default-recipe-detail.png";
 const CGFloat kRecipeDetailImageWidth = 60.;
 const CGFloat kRecipeDetailImageHeigth = 60.;
+NSString *const kRecipeDetailCreateMessage = @"Lista %@ creada";
+// NSLocalizedString(@"Lista %@ creada", nil)
+NSString *const kRecipeDetailCreateButton = @"Ok";
+// NSLocalizedString(@"Ok", nil)
 
 // Controllers' URLs
 NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";

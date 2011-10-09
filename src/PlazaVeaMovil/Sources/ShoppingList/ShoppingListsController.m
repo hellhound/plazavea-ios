@@ -164,7 +164,7 @@
           didCloneShoppingList:(ShoppingList *)shoppingList
 {
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
-            shoppingList name]]];
+            shoppingList name] shouldBeCloned:YES]];
     [self fetchUpdateAndReload];
 }
 @end

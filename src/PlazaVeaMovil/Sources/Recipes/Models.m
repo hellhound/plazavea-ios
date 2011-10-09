@@ -5,6 +5,10 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSURL+Additions.h"
+#import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Application/AppDelegate.h"
+#import "ShoppingList/Models.h"
+#import "ShoppingList/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 
@@ -573,6 +577,61 @@ static NSString *const kMutableTipsKey = @"tips";
         [features addObject:feature];
     for (NSString *tip in [recipe tips])
         [tips addObject:tip];
+}
+
+- (BOOL)isColdMeal
+{
+    return [[self features] count] > 0; 
+}
+
+- (void)createShoppingList
+{
+    NSManagedObjectContext *context =
+            [(AppDelegate *)[[UIApplication sharedApplication]
+                delegate] context];
+    NSString *recipeTitle = [self name];
+    ShoppingList *shoppingList =
+            [ShoppingList shoppingListWithName:[ShoppingList
+                resolveNewNameFromName:recipeTitle shouldBeCloned:NO]
+                context:context];
+    NSArray *ingredients;
+
+    if ([self isColdMeal]) {
+        Ingredient *ingredient = [[[Ingredient alloc] init] autorelease];
+        [ingredient setQuantity:@""];
+        [ingredient setName:recipeTitle];
+        [ingredient setComment:@""];
+        ingredients = [NSArray arrayWithObject:ingredient];
+    } else {
+        ingredients = [self ingredients];
+    }
+    for (Ingredient *ingredient in ingredients) {
+        NSString *itemName = [ingredient name];
+
+        [ShoppingItem shoppingItemWithName:itemName
+                quantity:[ingredient quantity] list:shoppingList
+                context:context];
+
+        NSExpression *lhs = [NSExpression 
+                expressionForKeyPath:kShoppingListName];
+        NSExpression *rhs = [NSExpression expressionForConstantValue:itemName];
+        NSPredicate *predicate =
+                [NSComparisonPredicate predicateWithLeftExpression:lhs
+                    rightExpression:rhs
+                    modifier:NSDirectPredicateModifier
+                    type:NSEqualToPredicateOperatorType
+                    options:0];
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+        [request setEntity:[ShoppingHistoryEntry entity]];
+        [request setPredicate:predicate];
+
+        NSArray *entries = [context executeFetchRequest:request];
+        if ([entries count] > 0)
+            [ShoppingHistoryEntry historyEntryWithName:itemName
+                    context:context];
+    }
+    [context save];
 }
 
 #pragma mark -

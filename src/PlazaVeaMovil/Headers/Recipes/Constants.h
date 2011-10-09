@@ -80,6 +80,8 @@ typedef enum {
     kRecipesSegmentedControlIndexMeatTypesButton
 } RecipesSegmentedControlIndexTypes;
 
+extern NSString *const kRecipeDetailToListButtonTitle;
+
 // UISegmentedControl's item for the toolbar: food button
 extern NSString *const kRecipesFoodButton;
 // UISegmentedControl's item for the toolbar: meat types button
@@ -99,6 +101,8 @@ extern NSString *const kRecipeDetailTitle;
 extern NSString *const kRecipeDetailDefaultImage;
 extern const CGFloat kRecipeDetailImageWidth;
 extern const CGFloat kRecipeDetailImageHeigth;
+extern NSString *const kRecipeDetailCreateMessage;
+extern NSString *const kRecipeDetailCreateButton;
 
 // Controllers' URLs
 extern NSString *const kURLRecipeCategories;
