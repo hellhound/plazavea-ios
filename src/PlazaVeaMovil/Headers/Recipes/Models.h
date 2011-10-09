@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Common/Models/URLRequestModel.h"
+#import "ShoppingList/Models.h"
 
 @interface RecipeCategory: NSObject
 {
@@ -78,7 +79,7 @@
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromRecipe:(Recipe *)recipe;
 - (BOOL)isColdMeal;
-- (void)createShoppingList;
+- (ShoppingList *)createShoppingList;
 @end
 
 @interface RecipeCollection: URLRequestModel

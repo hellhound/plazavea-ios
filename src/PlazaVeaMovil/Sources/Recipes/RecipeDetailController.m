@@ -5,6 +5,7 @@
 
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
+#import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/RecipeDetailController.h"
 
@@ -94,11 +95,12 @@
 
 - (void)createShoppingListFormRecipe
 {
-    [(Recipe *)[self model] createShoppingList];
+    ShoppingList *shopingList = [(Recipe *)[self model] createShoppingList];
     UIAlertView *alertView =[[UIAlertView alloc]
         initWithTitle:nil 
             message:[NSString stringWithFormat:kRecipeDetailCreateMessage,
-                @"sd"] delegate:self cancelButtonTitle:kRecipeDetailCreateButton
+                [shopingList name]] delegate:self
+                cancelButtonTitle:kRecipeDetailCreateButton
             otherButtonTitles:nil];
     [alertView show];
     [alertView release];

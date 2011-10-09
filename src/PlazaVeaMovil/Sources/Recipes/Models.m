@@ -584,7 +584,7 @@ static NSString *const kMutableTipsKey = @"tips";
     return [[self features] count] > 0; 
 }
 
-- (void)createShoppingList
+- (ShoppingList *)createShoppingList
 {
     NSManagedObjectContext *context =
             [(AppDelegate *)[[UIApplication sharedApplication]
@@ -632,6 +632,7 @@ static NSString *const kMutableTipsKey = @"tips";
                     context:context];
     }
     [context save];
+    return shoppingList;
 }
 
 #pragma mark -
