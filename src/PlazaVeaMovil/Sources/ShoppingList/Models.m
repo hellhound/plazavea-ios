@@ -173,22 +173,32 @@ static NSString *const kCloningRepetitionSeparators = @"()";
 }
 
 + (NSString *)resolveNewNameFromName:(NSString *)name
-                      shouldBeCloned:(BOOL)shouldBeCloned
 {
     NSString *constantExpression =
         [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
             [name stringByEscapingReservedRECharacterSet],
             kShoppingListCloningRepetitionName];
+    // first term: name MATCHES[cd] @"pattern"
     NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingListName];
-    NSExpression *rhs = [NSExpression expressionForConstantValue:
+    NSExpression *rhs1 = [NSExpression expressionForConstantValue:
             NSLocalizedString(constantExpression, nil)];
-    NSPredicate *predicate =
-            [NSComparisonPredicate predicateWithLeftExpression:lhs
-                rightExpression:rhs
-                modifier:NSDirectPredicateModifier
-                type:NSMatchesPredicateOperatorType
-                options:NSCaseInsensitivePredicateOption |
-                    NSDiacriticInsensitivePredicateOption];
+    // second term: name like @"name"
+    NSExpression *rhs2 = [NSExpression expressionForConstantValue:name];
+    NSPredicate *predicate = [NSCompoundPredicate orPredicateWithSubpredicates:
+            [NSArray arrayWithObjects:
+                [NSComparisonPredicate predicateWithLeftExpression:lhs
+                    rightExpression:rhs1
+                    modifier:NSDirectPredicateModifier
+                    type:NSMatchesPredicateOperatorType
+                    options:NSCaseInsensitivePredicateOption |
+                        NSDiacriticInsensitivePredicateOption],
+                [NSComparisonPredicate predicateWithLeftExpression:lhs
+                    rightExpression:rhs2
+                    modifier:NSDirectPredicateModifier
+                    type:NSLikePredicateOperatorType
+                    options:NSCaseInsensitivePredicateOption |
+                        NSDiacriticInsensitivePredicateOption],
+                nil]];
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
@@ -204,12 +214,20 @@ static NSString *const kCloningRepetitionSeparators = @"()";
     [request setSortDescriptors:sortDescriptors];
 
     NSArray *filteredLists = [context executeFetchRequest:request];
+    NSUInteger filteredCount = [filteredLists count];
 
-    if ([filteredLists count] == 0)
-        // There's no repeated name, give up an return the original name
-        return shouldBeCloned ?
-                [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
-                    name, kShoppingListCloningRepetitionName, 1] : name;
+    if (filteredCount == 0 || ![[(ShoppingList *)
+            [filteredLists objectAtIndex:
+                filteredCount - 1] name] isEqualToString:name]) {
+        // Return name when there's no list with this name or the list name it's
+        // not taken (even if there are clones there, i.e. this should happen
+        // when the user deletes the original list).
+        return name;
+    } else if (filteredCount == 1) {
+        // Return the first clone
+        return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
+                    name, kShoppingListCloningRepetitionName, 1];
+    }
 
     NSString *candidateName =
             [(ShoppingList *)[filteredLists objectAtIndex:0] name];

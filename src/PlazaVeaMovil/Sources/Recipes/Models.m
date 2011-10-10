@@ -592,7 +592,7 @@ static NSString *const kMutableTipsKey = @"tips";
     NSString *recipeTitle = [self name];
     ShoppingList *shoppingList =
             [ShoppingList shoppingListWithName:[ShoppingList
-                resolveNewNameFromName:recipeTitle shouldBeCloned:NO]
+                resolveNewNameFromName:recipeTitle]
                 context:context];
     NSArray *ingredients;
 
