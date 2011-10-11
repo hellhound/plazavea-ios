@@ -22,6 +22,8 @@
 
 static NSPredicate *kShoppingItemsPredicateTemplate;
 static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
+static const NSInteger kListNameLabelTag = 100;
+static const NSInteger kListDateLabelTag = 101;
 
 @interface ShoppingListController (Private)
 
@@ -32,6 +34,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 - (void)showAlertViewForNewShoppingItem:(TSAlertView *)alertView;
 - (void)showAlertViewForShoppingListDeletion:(TSAlertView *)alertView;
 - (void)initializeHeader;
+- (void)updateHeader;
 @end
 
 @implementation ShoppingListController
@@ -188,24 +191,28 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 
 - (void)initializeHeader
 {
-    [super loadView];
     UITableView *tableView = [self tableView];
     CGRect bounds = [tableView bounds];
     
-    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(.0, .0,
-            bounds.size.width, 20.)] autorelease];
+    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5., .0,
+            (bounds.size.width - 10.), 20.)] autorelease];
     
     [nameLabel setAdjustsFontSizeToFitWidth:YES];
     [nameLabel setNumberOfLines:1];
     [nameLabel setMinimumFontSize:10];
     [nameLabel setText:[_shoppingList name]];
+    [nameLabel setTag:kListNameLabelTag];
     
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(.0,
-            20., bounds.size.width, 20.)] autorelease];
+    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5,
+            20., (bounds.size.width - 10), 20.)] autorelease];
     
+    [dateLabel setAdjustsFontSizeToFitWidth:YES];
     [dateLabel setTextAlignment:UITextAlignmentRight];
+    [dateLabel setNumberOfLines:1];
+    [dateLabel setMinimumFontSize:10];
+    [dateLabel setTag:kListDateLabelTag];
     [dateLabel setText:[dateFormatter stringFromDate:[_shoppingList
             lastModificationDate]]];
     
@@ -215,6 +222,27 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
     [headerView addSubview:nameLabel];
     [headerView addSubview:dateLabel];
     [tableView setTableHeaderView:headerView];
+}
+
+- (void)updateHeader
+{
+    UILabel *listNameLabel = (UILabel *)[[[self tableView] tableHeaderView]
+            viewWithTag:kListNameLabelTag];
+    
+    if (listNameLabel != nil)
+        [listNameLabel setText:[_shoppingList name]];
+    
+    UILabel *listDateLabel = (UILabel *)[[[self tableView] tableHeaderView]
+            viewWithTag:kListDateLabelTag];
+    
+    if (listDateLabel != nil) {
+        NSDateFormatter *dateFormatter = [(AppDelegate *)
+                [[UIApplication sharedApplication] delegate] dateFormatter];
+        
+        [listDateLabel setText:[dateFormatter stringFromDate:[_shoppingList
+                lastModificationDate]]];
+    }
+
 }
 
 #pragma mark -
@@ -352,6 +380,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
             [ShoppingListController predicateForItemsWithShoppingList:
                 previousList]];
     [self fetchUpdateAndReload];
+    [self updateHeader];
     [self updatePreviousNextButtons];
 }
 
@@ -364,6 +393,7 @@ static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
             [ShoppingListController predicateForItemsWithShoppingList:
                 nextList]];
     [self fetchUpdateAndReload];
+    [self updateHeader];
     [self updatePreviousNextButtons];
 }
 
