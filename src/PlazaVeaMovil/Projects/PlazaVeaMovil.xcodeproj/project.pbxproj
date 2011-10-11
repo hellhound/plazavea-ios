@@ -31,6 +31,8 @@
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F8FB01403FA9700FB7CA1 /* basket.png */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
+		2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5241444FF9C00C03CCB /* BaseMeatController.m */; };
+		2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
 		2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */; };
 		2C59E2E1140554800061676D /* AlphabeticalRecipesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */; };
@@ -541,6 +543,8 @@
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C2F8FB01403FA9700FB7CA1 /* basket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basket.png; sourceTree = "<group>"; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
+		2C49B5241444FF9C00C03CCB /* BaseMeatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMeatController.m; sourceTree = "<group>"; };
+		2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeController.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
 		2C4A0FFC13DEA3A9001E7BD0 /* PlazaVeaMovil-Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Release-Info.plist"; sourceTree = "<group>"; };
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -792,6 +796,8 @@
 				2CAA3442140E9BF00053170B /* RecipeDetailController.m */,
 				2CFD61D61415674100238AB5 /* RecipeListController.m */,
 				2C89B08F141563EC00E12055 /* RecipeCategoryController.m */,
+				2C49B5241444FF9C00C03CCB /* BaseMeatController.m */,
+				2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */,
 				2C89B090141563EC00E12055 /* RecipeDrillDownController.m */,
 				2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */,
 				2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */,
@@ -1531,6 +1537,8 @@
 				2CFD61D71415674100238AB5 /* RecipeListController.m in Sources */,
 				2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */,
 				2FE363F71443DE38003B233E /* MeatListController.m in Sources */,
+				2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */,
+				2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

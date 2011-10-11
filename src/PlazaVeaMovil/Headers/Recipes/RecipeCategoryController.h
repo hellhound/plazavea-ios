@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-#import "Recipes/RecipeDrillDownController.h"
+#import "Recipes/BaseRecipeController.h"
 
-@interface RecipeCategoryController: RecipeDrillDownController
+@interface RecipeCategoryController: BaseRecipeController
 {
     NSString *_categoryId;
 }

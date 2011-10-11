@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "Recipes/RecipeDrillDownController.h"
+#import "Recipes/BaseMeatController.h"
 
-@interface MeatListController: RecipeDrillDownController
+@interface MeatListController: BaseMeatController
 @end

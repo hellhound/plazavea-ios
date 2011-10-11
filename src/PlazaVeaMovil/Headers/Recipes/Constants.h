@@ -80,10 +80,10 @@ extern NSString *kRecipeDetailSectionTips;
 // RecipeDrillDownController's constants
 
 typedef enum {
-    kRecipesSegmentedControlIndexDefault,
-    kRecipesSegmentedControlIndexFoodButton =
-        kRecipesSegmentedControlIndexDefault,
-    kRecipesSegmentedControlIndexMeatTypesButton
+    kRecipesSegmentedControlIndexFoodButton,
+    kRecipesSegmentedControlIndexMeatButton,
+    kRecipesSegmentedControlIndexDefault =
+        kRecipesSegmentedControlIndexFoodButton
 } RecipesSegmentedControlIndexTypes;
 
 extern NSString *const kRecipeDetailToListButtonTitle;
