@@ -2,10 +2,10 @@
 
 #import <Three20/Three20.h>
 
-#import "Common/Controllers/Three20/ReconnectableTableViewController.h"
+#import "Recipes/RecipeDrillDownController.h"
 #import "Recipes/RecipeDetailDataSource.h"
 
-@interface RecipeDetailController: ReconnectableTableViewController
+@interface RecipeDetailController: RecipeDrillDownController
         <RecipeDetailDataSourceDelegate>
 {
     NSString *_recipeId;
