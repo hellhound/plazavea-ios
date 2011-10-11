@@ -2,10 +2,10 @@
 
 #import <Three20/Three20.h>
 
-#import "Recipes/RecipeDrillDownController.h"
+#import "Recipes/BaseRecipeController.h"
 #import "Recipes/RecipeDetailDataSource.h"
 
-@interface RecipeDetailController: RecipeDrillDownController
+@interface RecipeDetailController: BaseRecipeController
         <RecipeDetailDataSourceDelegate>
 {
     NSString *_recipeId;

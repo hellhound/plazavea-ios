@@ -55,8 +55,7 @@
             toViewController:[ShoppingListsController class]
             selector:@selector(init)];
     // Recipes
-    [map from:kURLMeats toViewController:[MeatListController class]
-            transition:UIViewAnimationTransitionFlipFromLeft];
+    [map from:kURLMeats toViewController:[MeatListController class]];
     [map from:kURLRecipeCategories
             toViewController:[RecipeCategoryController class]];
     [map from:kURLRecipeSubcategories
