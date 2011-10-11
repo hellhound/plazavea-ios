@@ -50,7 +50,8 @@
 
 - (void)switchControllers:(UISegmentedControl *)segControl
 {
-    if ([segControl selectedSegmentIndex] == kRecipesSegmentedControlIndexFoodButton) {
+    if ([segControl selectedSegmentIndex] ==
+            kRecipesSegmentedControlIndexFoodButton) {
         TTOpenURL(kURLRecipeCategoriesCall);
     } else {
         TTOpenURL(kURLMeatsCall);
