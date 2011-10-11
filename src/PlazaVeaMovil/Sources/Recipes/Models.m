@@ -19,6 +19,141 @@ static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 static NSString *const kMutableTipsKey = @"tips";
+static NSString *const kMeatURL =
+        @"http://restmocker.bitzeppelin.com/api/spsa/meats/listing.json";
+
+@implementation Meat
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_meatId release];
+    [_name release];
+    [_pictureURL release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Meat (Public)
+
+@synthesize meatId = _meatId, name = _name, pictureURL = _pictureURL;
+
++ (id)meatFromDictionary:(NSDictionary *)rawMeat
+{
+    NSNumber *meatId;
+    NSString *name, *pictureURL;
+    
+    if (![rawMeat isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((meatId = [rawMeat objectForKey:kMeatIdKey]) == nil)
+        return nil;
+    if (![meatId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawMeat objectForKey:kMeatNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((pictureURL = [rawMeat objectForKey:kMeatPictureURLKey]) == nil)
+        return nil;
+    if (![pictureURL isKindOfClass:[NSString class]])
+        return nil;
+    
+    Meat *meat = [[[Meat alloc] init] autorelease];
+    
+    [meat setMeatId:meatId];
+    [meat setName:name];
+    [meat setPictureURL:pictureURL];
+    return meat;
+}
+@end
+
+@implementation MeatCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil)
+        _meats = [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_meats release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize meats = _meats;
+
+- (void)insertObject:(NSURL *)meat inMeatsAtIndex:(NSUInteger)index
+{
+    [_meats insertObject:meat atIndex:index];
+}
+
+- (void)insertMeats:(NSArray *)meats atIndexes:(NSIndexSet *)indexes
+{
+    [_meats insertObjects:meats atIndexes:indexes];
+}
+
+- (void)removeObjectFromMeatsAtIndex:(NSUInteger)index
+{
+    [_meats removeObjectAtIndex:index];
+}
+
+- (void)removeMeatsAtIndexes:(NSIndexSet *)indexes
+{
+    [_meats removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:kMeatURL
+                delegate:self];
+        
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request setCachePolicy:cachePolicy];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
+            rootObject];
+    NSArray *rawMeats;
+    NSMutableArray *mutableMeats = [self mutableArrayValueForKey:kMeatsKey];
+    
+    if (![rootObject isKindOfClass:[NSDictionary class]])
+        return;
+    if ((rawMeats = [rootObject objectForKey:kMeatsKey]) == nil)
+        return;
+    if (![rawMeats isKindOfClass:[NSArray class]])
+        return;
+    for (NSDictionary *rawMeat in rawMeats) {
+        Meat *meat = [Meat meatFromDictionary:rawMeat];
+        
+        if (meat == nil)
+            return;
+        [mutableMeats addObject:meat];
+    }
+    [super requestDidFinishLoad:request];
+}
+
+@end
 
 @implementation RecipeCategory
 

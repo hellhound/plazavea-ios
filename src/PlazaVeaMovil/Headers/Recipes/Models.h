@@ -2,6 +2,26 @@
 
 #import "Common/Models/URLRequestModel.h"
 
+@interface Meat : NSObject
+{
+    NSNumber *_meatId;
+    NSString *_name;
+    NSString *_pictureURL;
+}
+@property (nonatomic, retain) NSNumber *meatId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *pictureURL;
+
++ (id)meatFromDictionary:(NSDictionary *)rawMeat;
+@end
+
+@interface MeatCollection : URLRequestModel
+{
+    NSMutableArray *_meats;
+}
+@property (nonatomic, readonly) NSMutableArray *meats;
+@end
+
 @interface RecipeCategory: NSObject
 {
     NSNumber *_categoryId;

@@ -4,6 +4,13 @@
 #import "Common/Constants.h"
 #import "Recipes/Constants.h"
 
+// Meat model's constants
+
+NSString *const kMeatIdKey = @"id";
+NSString *const kMeatNameKey = @"name";
+NSString *const kMeatPictureURLKey = @"picture";
+NSString *const kMeatsKey = @"meats";
+
 // Recipe category collection's constants
 NSString *const kRecipeCategoryCollectionCategoriesKey = @"categories";
 
@@ -133,6 +140,7 @@ const CGFloat kRecipeDetailImageWidth = 60.;
 const CGFloat kRecipeDetailImageHeigth = 60.;
 
 // Controllers' URLs
+NSString *const kURLMeats = @"tt://launcher/recipes/meats/";
 NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubcategories =
         @"tt://launcher/recipes/categories/subcategory/(initWithCategoryId:)/";
@@ -141,6 +149,7 @@ NSString *const kURLRecipeList =
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 
 // Controllers' URL calls
+NSString *const kURLMeatsCall = @"tt://launcher/recipes/meats/";
 NSString *const kURLRecipeCategoriesCall = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubCategoriesCall =
         @"tt://launcher/recipes/categories/subcategory/%@/";

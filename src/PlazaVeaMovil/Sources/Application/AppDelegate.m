@@ -10,6 +10,7 @@
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
 #import "Recipes/Constants.h"
+#import "Recipes/MeatListController.h"
 #import "Recipes/RecipeCategoryController.h"
 #import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
@@ -54,6 +55,8 @@
             toViewController:[ShoppingListsController class]
             selector:@selector(init)];
     // Recipes
+    [map from:kURLMeats toViewController:[MeatListController class]
+            transition:UIViewAnimationTransitionFlipFromLeft];
     [map from:kURLRecipeCategories
             toViewController:[RecipeCategoryController class]];
     [map from:kURLRecipeSubcategories
