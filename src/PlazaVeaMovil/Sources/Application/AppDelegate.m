@@ -62,6 +62,7 @@
     [map from:kURLRecipeSubcategories
             toViewController:[RecipeCategoryController class]];
     [map from:kURLRecipeList toViewController:[RecipeListController class]];
+    [map from:kURLRecipeMeatList toViewController:[RecipeListController class]];
     [map from:kURLRecipeDetail toViewController:[RecipeDetailController class]];
     // Open root view controller
     [navigator openURLAction:

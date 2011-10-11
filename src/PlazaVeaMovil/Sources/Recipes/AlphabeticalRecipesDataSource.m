@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/AlphabeticalRecipesDataSource.h"
@@ -10,13 +11,21 @@
 @implementation AlphabeticalRecipesDataSource
 
 #pragma mark -
-#pragma mark NSObject
+#pragma mark AlphabeticalRecipesDataSource
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
     if ((self = [super init]) != nil)
         [self setModel:[[[RecipeCollection alloc]
                 initWithCategoryId:categoryId] autorelease]];
+    return self;
+}
+
+- (id)initWithMeatId:(NSString *)meatId
+{
+    if ((self = [super init]) != nil)
+        [self setModel:[[[RecipeCollection alloc]
+                initWithMeatId:meatId] autorelease]];
     return self;
 }
 
@@ -48,14 +57,12 @@
 
 - (NSString *)titleForError:(NSError *)error
 {
-    // TODO should show an iOS error
     return NSLocalizedString(kRecipeListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    // TODO should show an iOS error
-    return NSLocalizedString(kRecipeListSubtitleForError, nil);
+    return LOCALIZED_HTTP_REQUEST_ERROR(error);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView

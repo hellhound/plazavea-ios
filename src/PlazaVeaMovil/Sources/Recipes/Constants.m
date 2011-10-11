@@ -152,6 +152,8 @@ NSString *const kURLRecipeSubcategories =
         @"tt://launcher/recipes/categories/subcategory/(initWithCategoryId:)/";
 NSString *const kURLRecipeList =
         @"tt://launcher/recipes/category/(initWithCategoryId:)/";
+NSString *const kURLRecipeMeatList =
+        @"tt://launcher/recipes/meat/(initWithMeatId:)/";
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 
 // Controllers' URL calls
@@ -161,6 +163,8 @@ NSString *const kURLRecipeSubCategoriesCall =
         @"tt://launcher/recipes/categories/subcategory/%@/";
 NSString *const kURLRecipeListCall =
         @"tt://launcher/recipes/category/%@/";
+NSString *const kURLRecipeMeatListCall =
+        @"tt://launcher/recipes/meat/%@/";
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 
 // Endpoint URLs
@@ -173,3 +177,7 @@ NSString *const kURLRecipeAlphabeticEndpoint =
         ENDPOINT(@"/recipes/alphabetic.json?cat=%@");
 NSString *const kURLRecipeDetailEndpoint =
         ENDPOINT(@"/recipes/%@/details.json");
+NSString *const kURLRecipeMeatsEndpoint =
+        ENDPOINT(@"/meats/listing.json");
+NSString *const kURLRecipeAlphabeticMeatEndpoint =
+        ENDPOINT(@"/meats/%@/recipes.json");

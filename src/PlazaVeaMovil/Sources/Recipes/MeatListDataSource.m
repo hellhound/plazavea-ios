@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/MeatListDataSource.h"
@@ -30,7 +31,8 @@
         TTTableImageItem *item = [TTTableImageItem itemWithText:[meat name]
                 imageURL:[meat pictureURL]
                     defaultImage:TTIMAGE(kRecipeDetailDefaultImage)
-                    imageStyle:nil URL:nil];
+                    imageStyle:nil
+                    URL:URL(kURLRecipeMeatListCall, [meat meatId])];
         [items addObject:item];
     }
     [self setItems:items];

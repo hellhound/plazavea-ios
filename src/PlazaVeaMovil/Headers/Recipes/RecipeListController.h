@@ -6,9 +6,12 @@
 
 @interface RecipeListController: RecipeDrillDownController
 {
-    NSString *_categoryId;
+    NSString *_collectionId;
+    BOOL _isMeat;
 }
-@property (nonatomic, readonly) NSString *categoryId;
+@property (nonatomic, readonly) NSString *collectionId;
+@property (nonatomic, readonly) BOOL isMeat;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (id)initWithMeatId:(NSString *)meatId;
 @end

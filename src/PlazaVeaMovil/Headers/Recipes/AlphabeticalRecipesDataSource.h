@@ -5,4 +5,5 @@
 @interface AlphabeticalRecipesDataSource: TTSectionedDataSource
 
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (id)initWithMeatId:(NSString *)meatId;
 @end

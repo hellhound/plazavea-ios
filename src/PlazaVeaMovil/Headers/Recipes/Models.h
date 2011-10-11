@@ -104,15 +104,17 @@
 
 @interface RecipeCollection: URLRequestModel
 {
-    NSString *_categoryId;
+    NSString *_collectionEndpointURL;
+    NSString *_collectionId;
     NSMutableArray *_sections;
     NSMutableArray *_sectionTitles;
 }
-@property (nonatomic, readonly) NSString *categoryId;
+@property (nonatomic, readonly) NSString *collectionId;
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) NSArray *sectionIndexTitles;
 @property (nonatomic, readonly) NSArray *sectionTitles;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (id)initWithMeatId:(NSString *)meatId;
 - (NSArray *)sectionIndexTitles;
 @end

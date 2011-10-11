@@ -23,8 +23,6 @@ static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 static NSString *const kMutableTipsKey = @"tips";
-static NSString *const kMeatURL =
-        @"http://restmocker.bitzeppelin.com/api/spsa/meats/listing.json";
 
 @implementation Meat
 
@@ -122,8 +120,8 @@ static NSString *const kMeatURL =
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request = [TTURLRequest requestWithURL:kMeatURL
-                delegate:self];
+        TTURLRequest *request = [TTURLRequest
+                requestWithURL:kURLRecipeMeatsEndpoint delegate:self];
         
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request setCachePolicy:cachePolicy];
@@ -540,7 +538,7 @@ static NSString *const kMeatURL =
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe
 {
     NSNumber *recipeId;
-    NSString *name;
+    NSString *name, *pictureURL;
 
     if (![rawRecipe isKindOfClass:[NSDictionary class]])
         return nil;
@@ -552,6 +550,10 @@ static NSString *const kMeatURL =
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
+    if ((pictureURL = [rawRecipe objectForKey:kRecipePictureURLKey]) == nil)
+        pictureURL = nil;
+    if (![pictureURL isKindOfClass:[NSString class]])
+        pictureURL = nil;
 
     Recipe *recipe = [[[Recipe alloc] init] autorelease];
 
@@ -809,6 +811,16 @@ static NSString *const kMeatURL =
 #pragma mark -
 #pragma mark NSObject
 
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        // Initialiazing only the mutable arrays
+        _sections = [[NSMutableArray alloc] init];
+        _sectionTitles = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [_sections release];
@@ -862,16 +874,25 @@ static NSString *const kMeatURL =
 #pragma mark -
 #pragma mark RecipeCollection (Public)
 
-@synthesize categoryId = _categoryId, sections = _sections,
+@synthesize collectionId = _collectionId, sections = _sections,
     sectionTitles = _sectionTitles;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
-    if ((self = [super init]) != nil) {
-        _categoryId = [categoryId copy];
-        // Initialiazing only the mutable arrays
-        _sections = [[NSMutableArray alloc] init];
-        _sectionTitles = [[NSMutableArray alloc] init];
+    if ((self = [self init]) != nil) {
+        _collectionId = [categoryId copy];
+        _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
+                _collectionId);
+    }
+    return self;
+}
+
+- (id)initWithMeatId:(NSString *)meatId
+{
+    if ((self = [self init]) != nil) {
+        _collectionId = [meatId copy];
+        _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
+                _collectionId);
     }
     return self;
 }
@@ -888,8 +909,7 @@ static NSString *const kMeatURL =
 {
     if (![self isLoading]) {
         TTURLRequest *request =
-                [TTURLRequest requestWithURL:
-                        URL(kURLRecipeAlphabeticEndpoint, _categoryId)
+                [TTURLRequest requestWithURL: _collectionEndpointURL 
                     delegate:self];
 
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
