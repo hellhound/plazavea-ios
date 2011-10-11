@@ -33,6 +33,8 @@
         [segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
         [segControl setSelectedSegmentIndex:
                 kRecipesSegmentedControlIndexDefault];
+        [segControl addTarget:self action:@selector(switchControllers:)
+                forControlEvents:UIControlEventValueChanged];
 
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
@@ -44,5 +46,15 @@
         [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;
+}
+
+- (void)switchControllers:(UISegmentedControl *)segControl
+{
+    if ([segControl selectedSegmentIndex] ==
+            kRecipesSegmentedControlIndexFoodButton) {
+        TTOpenURL(kURLRecipeCategoriesCall);
+    } else {
+        TTOpenURL(kURLMeatsCall);
+    }
 }
 @end

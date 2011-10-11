@@ -2,6 +2,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Meat model's constants
+extern NSString *const kMeatIdKey;
+extern NSString *const kMeatNameKey;
+extern NSString *const kMeatPictureURLKey;
+extern NSString *const kMeatsKey;
+
 // Recipe category collection's constants
 extern NSString *const kRecipeCategoryCollectionCategoriesKey;
 
@@ -105,12 +111,14 @@ extern NSString *const kRecipeDetailCreateMessage;
 extern NSString *const kRecipeDetailCreateButton;
 
 // Controllers' URLs
+extern NSString *const kURLMeats;
 extern NSString *const kURLRecipeCategories;
 extern NSString *const kURLRecipeSubcategories;
 extern NSString *const kURLRecipeList;
 extern NSString *const kURLRecipeDetail;
 
 // Controllers' URL calls
+extern NSString *const kURLMeatsCall;
 extern NSString *const kURLRecipeCategoriesCall;
 extern NSString *const kURLRecipeSubCategoriesCall;
 extern NSString *const kURLRecipeListCall;
