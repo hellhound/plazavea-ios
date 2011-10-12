@@ -78,8 +78,11 @@
 
 - (void)viewDidLoad
 {
+    NSError *modelError = [self modelError];
+
     // The view was loaded, see if we need reachability notifications
-    if ([self modelError] != nil)
+    if (modelError != nil && ![[modelError domain] isEqualToString:
+            APPLICATION_ERROR_DOMAIN])
         [self resetReachabilityNotification];
     [super viewDidLoad];
 }
@@ -89,8 +92,9 @@
 
 - (void)showError:(BOOL)show
 {
-    // Set the callback for reachability test
-    [self resetReachabilityNotification];
+    if (![[[self modelError] domain] isEqualToString:APPLICATION_ERROR_DOMAIN])
+        // Set the callback for reachability test
+        [self resetReachabilityNotification];
     [super showError:show];
 }
 

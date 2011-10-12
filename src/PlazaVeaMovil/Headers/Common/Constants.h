@@ -73,7 +73,7 @@
 // BACKEND_MESSAGE format
 #define BACKEND_ERROR_MESSAGE_FORMAT @"[%@]\n\n[%@]"
 // Default error domain for the app
-#define APPLICATION_ERROR_DOMAIN @"PZErrorDomain"
+#define APPLICATION_ERROR_DOMAIN @"BZErrorDomain"
 // Error codes in APPLICATION_ERROR_DOMAIN
 #define BACKEND_ERROR_CODE -1
 // User info for each error codes
