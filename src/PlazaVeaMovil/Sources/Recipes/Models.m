@@ -991,8 +991,8 @@ static NSString *const kMutableTipsKey = @"tips";
             if (_isFromMeat) {
                 [recipesInSection addObject:
                         [TTTableTextItem itemWithText:[recipe name]
-                            URL:URL(kURLRecipeDetailCall,
-                                [recipe recipeId])]];
+                            URL:URL(kURLRecipeMeatsDetailCall,
+                                [recipe recipeId], @"YES")]];
             } else {
                 [recipesInSection addObject:
                         [TTTableTextItem itemWithText:[recipe name]

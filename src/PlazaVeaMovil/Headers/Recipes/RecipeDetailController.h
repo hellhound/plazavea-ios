@@ -13,7 +13,7 @@
     UIBarButtonItem *_toListButton;
 }
 
-- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(BOOL)hasMeat;
+- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat;
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (void)createShoppingListFormRecipe;
 @end

@@ -81,14 +81,14 @@
 #pragma mark -
 #pragma mark RecipeDetailController (Public)
 
-- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(BOOL)hasMeat
+- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat
 {
     if ((self = [self initWithRecipeId:recipeId]) != nil) {
-        if (hasMeat){
-            [self setDefaultSegmentIndex:
+        if ([hasMeat boolValue]){
+            [self setSegmentIndex:
                     kRecipesSegmentedControlIndexMeatButton];
         } else {
-            [self setDefaultSegmentIndex:
+            [self setSegmentIndex:
                     kRecipesSegmentedControlIndexFoodButton];
         }
     }

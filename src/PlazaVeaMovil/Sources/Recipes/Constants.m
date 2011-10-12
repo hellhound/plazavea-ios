@@ -156,7 +156,7 @@ NSString *const kURLRecipeMeatList =
         @"tt://launcher/recipes/meat/(initWithMeatId:)/";
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 NSString *const kURLRecipeMeatsDetail =
-        @"tt://launcher/meats/recipe/(initWithRecipeId:)/";
+        @"tt://launcher/meats/recipe/(initWithRecipeId:)/(hasMeat:)/";
 
 // Controllers' URL calls
 NSString *const kURLMeatsCall = @"tt://launcher/recipes/meats/";
@@ -169,7 +169,7 @@ NSString *const kURLRecipeMeatListCall =
         @"tt://launcher/recipes/meat/%@/";
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 NSString *const kURLRecipeMeatsDetailCall =
-        @"tt://launcher/recipes/meat/recipe/%@/";
+        @"tt://launcher/meats/recipe/%@/%@/";
 
 // Endpoint URLs
 
@@ -181,11 +181,7 @@ NSString *const kURLRecipeAlphabeticEndpoint =
         ENDPOINT(@"/recipes/alphabetic.json?cat=%@");
 NSString *const kURLRecipeDetailEndpoint =
         ENDPOINT(@"/recipes/%@/details.json");
-//NSString *const kURLRecipeMeatsEndpoint =
-//        ENDPOINT(@"/meats/listing.json");
-//NSString *const kURLRecipeAlphabeticMeatEndpoint =
-//        ENDPOINT(@"/meats/%@/recipes.json");
 NSString *const kURLRecipeMeatsEndpoint =
-        @"http://restmocker.bitzeppelin.com/api/spsa/meats/listing.json";
+        ENDPOINT(@"/meats/listing.json");
 NSString *const kURLRecipeAlphabeticMeatEndpoint =
-        @"http://restmocker.bitzeppelin.com/api/spsa/meats/%@/recipes.json";
+        ENDPOINT(@"/meats/%@/recipes.json");
