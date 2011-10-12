@@ -55,7 +55,8 @@
             toViewController:[ShoppingListsController class]
             selector:@selector(init)];
     // Recipes
-    [map from:kURLMeats toViewController:[MeatListController class]];
+    [map from:kURLMeats toModalViewController:[MeatListController class]
+            transition:UIModalTransitionStyleFlipHorizontal];
     [map from:kURLRecipeCategories
             toViewController:[RecipeCategoryController class]];
     [map from:kURLRecipeSubcategories

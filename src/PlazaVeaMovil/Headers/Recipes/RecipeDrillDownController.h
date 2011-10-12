@@ -5,8 +5,8 @@
 
 @interface RecipeDrillDownController: ReconnectableTableViewController
 {
-    NSInteger _defaultSegmentIndex;
+    NSInteger _segmentIndex;
     UISegmentedControl *_segControl;
 }
-@property (nonatomic, assign) NSInteger defaultSegmentIndex;
+@property (nonatomic, assign) NSInteger segmentIndex;
 @end

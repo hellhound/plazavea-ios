@@ -14,7 +14,7 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
-        [self setDefaultSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
+        [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     return self;
 }
 @end
