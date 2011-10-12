@@ -42,7 +42,7 @@ static NSString *const kMutableTipsKey = @"tips";
 
 @synthesize meatId = _meatId, name = _name, pictureURL = _pictureURL;
 
-+ (id)meatFromDictionary:(NSDictionary *)rawMeat
++ (id)shortMeatFromDictionary:(NSDictionary *)rawMeat
 {
     NSNumber *meatId;
     NSString *name, *pictureURL;
@@ -59,8 +59,11 @@ static NSString *const kMutableTipsKey = @"tips";
         return nil;
     if ((pictureURL = [rawMeat objectForKey:kMeatPictureURLKey]) == nil)
         return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
+    if (![pictureURL isKindOfClass:[NSString class]]) {
+        if (![pictureURL isKindOfClass:[NSNull class]])
+            return nil;
+        pictureURL = nil;
+    }
     
     Meat *meat = [[[Meat alloc] init] autorelease];
     
@@ -155,7 +158,7 @@ static NSString *const kMutableTipsKey = @"tips";
         return;
     }
     for (NSDictionary *rawMeat in rawMeats) {
-        Meat *meat = [Meat meatFromDictionary:rawMeat];
+        Meat *meat = [Meat shortMeatFromDictionary:rawMeat];
         
         if (meat == nil) {
             [self didFailLoadWithError:
@@ -563,9 +566,12 @@ static NSString *const kMutableTipsKey = @"tips";
     if (![name isKindOfClass:[NSString class]])
         return nil;
     if ((pictureURL = [rawRecipe objectForKey:kRecipePictureURLKey]) == nil)
+        return nil;
+    if (![pictureURL isKindOfClass:[NSString class]]) {
+        if (![pictureURL isKindOfClass:[NSNull class]])
+            return nil;
         pictureURL = nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        pictureURL = nil;
+    }
 
     Recipe *recipe = [[[Recipe alloc] init] autorelease];
 

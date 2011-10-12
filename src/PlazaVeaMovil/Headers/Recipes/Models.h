@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *pictureURL;
 
-+ (id)meatFromDictionary:(NSDictionary *)rawMeat;
++ (id)shortMeatFromDictionary:(NSDictionary *)rawMeat;
 @end
 
 @interface MeatCollection : URLRequestModel
