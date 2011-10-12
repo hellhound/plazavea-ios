@@ -33,6 +33,7 @@
         _collectionId = [categoryId copy];
         _isMeat = NO;
         [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        [self setDefaultSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     }
     return self;
 }
@@ -43,6 +44,7 @@
         _collectionId = [meatId copy];
         _isMeat = YES;
         [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        [self setDefaultSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
     }
     return self;
 }

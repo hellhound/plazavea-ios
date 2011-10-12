@@ -81,6 +81,20 @@
 #pragma mark -
 #pragma mark RecipeDetailController (Public)
 
+- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(BOOL)hasMeat
+{
+    if ((self = [self initWithRecipeId:recipeId]) != nil) {
+        if (hasMeat){
+            [self setDefaultSegmentIndex:
+                    kRecipesSegmentedControlIndexMeatButton];
+        } else {
+            [self setDefaultSegmentIndex:
+                    kRecipesSegmentedControlIndexFoodButton];
+        }
+    }
+    return self;
+}
+
 - (id)initWithRecipeId:(NSString *)recipeId
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {

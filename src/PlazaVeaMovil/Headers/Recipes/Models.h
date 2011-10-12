@@ -108,6 +108,7 @@
     NSString *_collectionId;
     NSMutableArray *_sections;
     NSMutableArray *_sectionTitles;
+    BOOL _isFromMeat;
 }
 @property (nonatomic, readonly) NSString *collectionId;
 @property (nonatomic, readonly) NSArray *sections;

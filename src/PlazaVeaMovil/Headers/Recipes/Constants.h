@@ -117,6 +117,7 @@ extern NSString *const kURLRecipeSubcategories;
 extern NSString *const kURLRecipeList;
 extern NSString *const kURLRecipeMeatList;
 extern NSString *const kURLRecipeDetail;
+extern NSString *const kURLRecipeMeatsDetail;
 
 // Controllers' URL calls
 extern NSString *const kURLMeatsCall;
@@ -125,6 +126,7 @@ extern NSString *const kURLRecipeSubCategoriesCall;
 extern NSString *const kURLRecipeListCall;
 extern NSString *const kURLRecipeMeatListCall;
 extern NSString *const kURLRecipeDetailCall;
+extern NSString *const kURLRecipeMeatsDetailCall;
 
 // Endpoint URLs
 

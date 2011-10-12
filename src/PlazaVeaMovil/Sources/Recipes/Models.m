@@ -883,6 +883,7 @@ static NSString *const kMutableTipsKey = @"tips";
         _collectionId = [categoryId copy];
         _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
                 _collectionId);
+        _isFromMeat = NO;
     }
     return self;
 }
@@ -893,6 +894,7 @@ static NSString *const kMutableTipsKey = @"tips";
         _collectionId = [meatId copy];
         _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
                 _collectionId);
+        _isFromMeat = YES;
     }
     return self;
 }
@@ -986,9 +988,16 @@ static NSString *const kMutableTipsKey = @"tips";
                 tryAgain:NO];
                 return;
             }
-            [recipesInSection addObject:
-                    [TTTableTextItem itemWithText:[recipe name]
-                        URL:URL(kURLRecipeDetailCall, [recipe recipeId])]];
+            if (_isFromMeat) {
+                [recipesInSection addObject:
+                        [TTTableTextItem itemWithText:[recipe name]
+                            URL:URL(kURLRecipeDetailCall,
+                                [recipe recipeId])]];
+            } else {
+                [recipesInSection addObject:
+                        [TTTableTextItem itemWithText:[recipe name]
+                            URL:URL(kURLRecipeDetailCall, [recipe recipeId])]];
+            }
         }
         [mutableSections addObject:recipesInSection];
     }
