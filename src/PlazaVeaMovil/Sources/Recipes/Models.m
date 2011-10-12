@@ -139,17 +139,29 @@ static NSString *const kMutableTipsKey = @"tips";
     NSArray *rawMeats;
     NSMutableArray *mutableMeats = [self mutableArrayValueForKey:kMeatsKey];
     
-    if (![rootObject isKindOfClass:[NSDictionary class]])
+    if (![rootObject isKindOfClass:[NSDictionary class]]) {
+        [self didFailLoadWithError:
+            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
-    if ((rawMeats = [rootObject objectForKey:kMeatsKey]) == nil)
+    }
+    if ((rawMeats = [rootObject objectForKey:kMeatsKey]) == nil) {
+        [self didFailLoadWithError:
+            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
-    if (![rawMeats isKindOfClass:[NSArray class]])
+    }
+    if (![rawMeats isKindOfClass:[NSArray class]]) {
+        [self didFailLoadWithError:
+            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
+    }
     for (NSDictionary *rawMeat in rawMeats) {
         Meat *meat = [Meat meatFromDictionary:rawMeat];
         
-        if (meat == nil)
+        if (meat == nil) {
+            [self didFailLoadWithError:
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
             return;
+        }
         [mutableMeats addObject:meat];
     }
     [super requestDidFinishLoad:request];

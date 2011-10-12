@@ -21,6 +21,34 @@
 }
 
 #pragma mark -
+#pragma mark <TTTableViewDataSource>
+
+- (NSString *)titleForLoading:(BOOL)reloading
+{
+    return NSLocalizedString(kMeatsListTitleForLoading, nil);
+}
+
+- (NSString *)titleForEmpty
+{
+    return NSLocalizedString(kMeatsListTitleForEmpty, nil);
+}
+
+- (NSString *)subtitleForEmpty
+{
+    return NSLocalizedString(kMeatsListSubtitleForEmpty, nil);
+}
+
+- (NSString *)titleForError:(NSError *)error
+{
+    return NSLocalizedString(kMeatsListTitleForError, nil);
+}
+
+- (NSString *)subtitleForError:(NSError *)error
+{
+    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+}
+
+#pragma mark -
 #pragma mark TTableViewDataSource
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView

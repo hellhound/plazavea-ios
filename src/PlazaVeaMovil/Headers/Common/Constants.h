@@ -38,7 +38,7 @@
 
 // Error messages and codes
 #define SEVERE_ERROR \
-            @"Ocurrio un error. Espere un momento, estamos trabajando para " \
+            @"Ocurrió un error. Espere un momento, estamos trabajando para " \
             @"corregirlo y servirles mejor."
 #define INTERNET_ERROR @"La conexi\u00F3n a Internet parece estar desactivada"
 /*

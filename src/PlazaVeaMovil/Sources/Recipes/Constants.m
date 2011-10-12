@@ -52,62 +52,79 @@ NSString *const kIngredientCommentKey = @"comment";
 // RecipeCategoryDataSource's messages
 
 // AlphabeticalRecipesDataSource
-NSString *kRecipeCategoryTitleForLoading = @"Obteniendo categorías";
+NSString *const kRecipeCategoryTitleForLoading = @"Obteniendo categorías";
 // NSLocalizedString(@"Obteniendo categorías", nil)
-NSString *kRecipeCategoryTitleForReloading = @"Actualizando categorías";
+NSString *const kRecipeCategoryTitleForReloading = @"Actualizando categorías";
 // NSLocalizedString(@"Actualizando categorías", nil)
-NSString *kRecipeCategoryTitleForEmpty = @"No hay categorías";
+NSString *const kRecipeCategoryTitleForEmpty = @"No hay categorías";
 // NSLocalizedString(@"No hay categorías", nil)
-NSString *kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo más "
-        @"tarde, aún no existen categorías disponibles";
+NSString *const kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen categorías disponibles";
 // NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
 //      @"categorías disponibles", nil)
-NSString *kRecipeCategoryTitleForError = @"Error";
+NSString *const kRecipeCategoryTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *kRecipeCategorySubtitleForError = @"Error";
+NSString *const kRecipeCategorySubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
 // AlphabeticalRecipesDataSource's messages
 
 // AlphabeticalRecipesDataSource
-NSString *kRecipeListTitleForLoading = @"Obteniendo lista de recetas";
+NSString *const kRecipeListTitleForLoading = @"Obteniendo lista de recetas";
 // NSLocalizedString(@"Obteniendo lista de recetas", nil)
-NSString *kRecipeListTitleForReloading = @"Actualizando lista de recetas";
+NSString *const kRecipeListTitleForReloading = @"Actualizando lista de recetas";
 // NSLocalizedString(@"Actualizando lista de recetas", nil)
-NSString *kRecipeListTitleForEmpty = @"No hay recetas";
+NSString *const kRecipeListTitleForEmpty = @"No hay recetas";
 // NSLocalizedString(@"No recetas", nil)
-NSString *kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más "
+NSString *const kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más "
         @"tarde, aún no existen recetas disponibles";
 // NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
 //      @"recetas disponibles", nil)
-NSString *kRecipeListTitleForError = @"Error";
+NSString *const kRecipeListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *kRecipeListSubtitleForError = @"Error";
+NSString *const kRecipeListSubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
+// MeatListDataSource's constants
+
+NSString *const kMeatsListTitleForLoading = @"Obteniendo tipos de carnes";
+// NSLocalizedString(@"Obteniendo tipos de carnes", nil)
+NSString *const kMeatsListTitleForReloading = @"Actualizando tipos de carnes";
+// NSLocalizedString(@"Actualizando tipos de carnes", nil)
+NSString *const kMeatsListTitleForEmpty = @"No hay tipos de carnes";
+// NSLocalizedString(@"No hay tipos de carnes", nil)
+NSString *const kMeatsListSubtitleForEmpty = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen tipos de carnes disponibles";
+// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+//      @"tipos de carnes disponibles", nil)
+NSString *const kMeatsListTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kMeatsListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
 // RecipeDetailDataSource's messages
 
-NSString *kRecipeDetailTitleForLoading = @"Obteniendo la receta";
+NSString *const kRecipeDetailTitleForLoading = @"Obteniendo la receta";
 // NSLocalizedString(@"Obteniendo la receta", nil)
-NSString *kRecipeDetailTitleForReloading = @"Actualizando la receta";
+NSString *const kRecipeDetailTitleForReloading = @"Actualizando la receta";
 // NSLocalizedString(@"Actualizando la receta", nil)
-NSString *kRecipeDetailTitleForEmpty = @"Sin información";
+NSString *const kRecipeDetailTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"Sin información", nil)
-NSString *kRecipeDetailSubtitleForEmpty = @"Por favor intente de nuevo más "
-        @"tarde, aún no existe información para esta receta";
+NSString *const kRecipeDetailSubtitleForEmpty = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta receta";
 // NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existe "
 //      @"información para esta receta", nil)
-NSString *kRecipeDetailTitleForError = @"Error";
+NSString *const kRecipeDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *kRecipeDetailSubtitleForError = @"Error";
+NSString *const kRecipeDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *kRecipeDetailSectionFeatures = @"Características";
+NSString *const kRecipeDetailSectionFeatures = @"Características";
 // NSLocalizedString(@"Características", nil)
-NSString *kRecipeDetailSectionIngredients = @"Ingredients";
+NSString *const kRecipeDetailSectionIngredients = @"Ingredients";
 // NSLocalizedString(@"Ingredients", nil)
-NSString *kRecipeDetailSectionProcedures = @"Preparación";
+NSString *const kRecipeDetailSectionProcedures = @"Preparación";
 // NSLocalizedString(@"Preparación", nil)
-NSString *kRecipeDetailSectionTips = @"Tips";
+NSString *const kRecipeDetailSectionTips = @"Tips";
 // NSLocalizedString(@"Tips", nil)
 
 // RecipeDrillDownController's constants

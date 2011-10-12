@@ -46,36 +46,45 @@ extern NSString *const kIngredientQuantityKey;
 extern NSString *const kIngredientNameKey;
 extern NSString *const kIngredientCommentKey;
 
+// MeatListDataSource's constants
+
+extern NSString *const kMeatsListTitleForLoading;
+extern NSString *const kMeatsListTitleForReloading;
+extern NSString *const kMeatsListTitleForEmpty;
+extern NSString *const kMeatsListSubtitleForEmpty;
+extern NSString *const kMeatsListTitleForError;
+extern NSString *const kMeatsListSubtitleForError;
+
 // RecipeCategoryDataSource's messages
 
-extern NSString *kRecipeCategoryTitleForLoading;
-extern NSString *kRecipeCategoryTitleForReloading;
-extern NSString *kRecipeCategoryTitleForEmpty;
-extern NSString *kRecipeCategorySubtitleForEmpty;
-extern NSString *kRecipeCategoryTitleForError;
-extern NSString *kRecipeCategorySubtitleForError;
+extern NSString *const kRecipeCategoryTitleForLoading;
+extern NSString *const kRecipeCategoryTitleForReloading;
+extern NSString *const kRecipeCategoryTitleForEmpty;
+extern NSString *const kRecipeCategorySubtitleForEmpty;
+extern NSString *const kRecipeCategoryTitleForError;
+extern NSString *const kRecipeCategorySubtitleForError;
 
 // AlphabeticalRecipesDataSource's messages
 
-extern NSString *kRecipeListTitleForLoading;
-extern NSString *kRecipeListTitleForReloading;
-extern NSString *kRecipeListTitleForEmpty;
-extern NSString *kRecipeListSubtitleForEmpty;
-extern NSString *kRecipeListTitleForError;
-extern NSString *kRecipeListSubtitleForError;
+extern NSString *const kRecipeListTitleForLoading;
+extern NSString *const kRecipeListTitleForReloading;
+extern NSString *const kRecipeListTitleForEmpty;
+extern NSString *const kRecipeListSubtitleForEmpty;
+extern NSString *const kRecipeListTitleForError;
+extern NSString *const kRecipeListSubtitleForError;
 
 // RecipeDetailDataSource's messages
 
-extern NSString *kRecipeDetailTitleForLoading;
-extern NSString *kRecipeDetailTitleForReloading;
-extern NSString *kRecipeDetailTitleForEmpty;
-extern NSString *kRecipeDetailSubtitleForEmpty;
-extern NSString *kRecipeDetailTitleForError;
-extern NSString *kRecipeDetailSubtitleForError;
-extern NSString *kRecipeDetailSectionFeatures;
-extern NSString *kRecipeDetailSectionIngredients;
-extern NSString *kRecipeDetailSectionProcedures;
-extern NSString *kRecipeDetailSectionTips;
+extern NSString *const kRecipeDetailTitleForLoading;
+extern NSString *const kRecipeDetailTitleForReloading;
+extern NSString *const kRecipeDetailTitleForEmpty;
+extern NSString *const kRecipeDetailSubtitleForEmpty;
+extern NSString *const kRecipeDetailTitleForError;
+extern NSString *const kRecipeDetailSubtitleForError;
+extern NSString *const kRecipeDetailSectionFeatures;
+extern NSString *const kRecipeDetailSectionIngredients;
+extern NSString *const kRecipeDetailSectionProcedures;
+extern NSString *const kRecipeDetailSectionTips;
 
 // RecipeDrillDownController's constants
 
