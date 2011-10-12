@@ -83,11 +83,10 @@
             [[TTNavigator navigator] openURLAction:
                     [[TTURLAction actionWithURLPath:
                         kURLMeatsCall] applyAnimated:YES]];
+            [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
             break;
         case kRecipesSegmentedControlIndexFoodButton:
-            [[TTNavigator navigator] openURLAction:
-                    [[TTURLAction actionWithURLPath:
-                        kURLRecipeCategoriesCall] applyAnimated:YES]];
+            [self dismissModalViewControllerAnimated:YES];
             break;
     }
 }
@@ -95,15 +94,15 @@
 #pragma mark -
 #pragma mark RecipeDrillDownController (Public)
 
-@synthesize defaultSegmentIndex = _defaultSegmentIndex;
+@synthesize segmentIndex = _segmentIndex;
 
-- (void)setDefaultSegmentIndex:(NSInteger)defaultSegmentIndex
+- (void)setSegmentIndex:(NSInteger)segmentIndex
 {
     UISegmentedControl *segControl = [self segControl];
 
     [segControl removeTarget:self action:@selector(switchControllers:)
             forControlEvents:UIControlEventValueChanged];
-    [segControl setSelectedSegmentIndex:defaultSegmentIndex]; 
+    [segControl setSelectedSegmentIndex:segmentIndex]; 
     [segControl addTarget:self action:@selector(switchControllers:)
             forControlEvents:UIControlEventValueChanged];
 }
