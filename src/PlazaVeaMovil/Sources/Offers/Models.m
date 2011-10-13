@@ -268,7 +268,7 @@ static NSString *const kPromotionsKey = @"promotions";
     NSMutableArray *mutablePromotions =
             [self mutableArrayValueForKey:kPromotionsKey];
 
-    [mutablePromotions addObjectsFromArray:[self promotions]];
+    [mutablePromotions addObjectsFromArray:[collection promotions]];
 }
 
 #pragma mark -

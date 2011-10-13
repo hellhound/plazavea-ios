@@ -18,7 +18,7 @@
 - (id)init
 {
     if ((self = [super init]) != nil)
-        [self setModel:[[[Promotion alloc] init] autorelease]];
+        [self setModel:[[[PromotionCollection alloc] init] autorelease]];
     return self;
 }
 
