@@ -54,6 +54,7 @@
 		2C7FCE2513F21073006004FB /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */; };
 		2C81DF3813FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */; };
 		2C844C0113F95F2F000BE222 /* HistoryEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C844C0013F95F2F000BE222 /* HistoryEntryController.m */; };
+		2C858E32144784020020A302 /* PromotionListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C858E31144784020020A302 /* PromotionListDataSource.m */; };
 		2C89B091141563EC00E12055 /* RecipeCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C89B08F141563EC00E12055 /* RecipeCategoryController.m */; };
 		2C89B092141563EC00E12055 /* RecipeDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C89B090141563EC00E12055 /* RecipeDrillDownController.m */; };
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
@@ -580,6 +581,7 @@
 		2C7FCE2413F21073006004FB /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
 		2C81DF3713FC85600058BB51 /* TSAlertView+ShoppingListDeletionConfirmation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ShoppingListDeletionConfirmation.m"; sourceTree = "<group>"; };
 		2C844C0013F95F2F000BE222 /* HistoryEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntryController.m; sourceTree = "<group>"; };
+		2C858E31144784020020A302 /* PromotionListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionListDataSource.m; sourceTree = "<group>"; };
 		2C89B08F141563EC00E12055 /* RecipeCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCategoryController.m; sourceTree = "<group>"; };
 		2C89B090141563EC00E12055 /* RecipeDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDrillDownController.m; sourceTree = "<group>"; };
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2C858E31144784020020A302 /* PromotionListDataSource.m */,
 				2FA7FB761446361400211215 /* BaseOfferController.m */,
 				2FA7FB771446361400211215 /* OfferDrillDownController.m */,
 				2FA7FB701446204700211215 /* Models.m */,
@@ -1591,6 +1594,7 @@
 				CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */,
 				CCA4CFE314469CC80095514E /* TableImageSubtitleItem.m in Sources */,
 				CCA4CFE414469CC80095514E /* TableImageSubtitleItemCell.m in Sources */,
+				2C858E32144784020020A302 /* PromotionListDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,24 @@ NSString *const kPromotionTwitterURLKey = @"twitter_url";
 // Promition collection model's constants
 NSString *const kPromotionCollectionPromotions = @"promotions";
 
+// PromotionListDataSource's constants
+
+// Messages
+NSString *const kPromotionListTitleForLoading = @"Obteniendo promociones";
+// NSLocalizedString(@"Obteniendo promociones", nil)
+NSString *const kPromotionListTitleForReloading = @"Actualizando promociones";
+// NSLocalizedString(@"Actualizando promociones", nil)
+NSString *const kPromotionListTitleForEmpty = @"No hay promociones";
+// NSLocalizedString(@"No hay promociones", nil)
+NSString *const kPromotionListSubtitleForEmpty = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen promociones disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"promociones disponibles", nil)
+NSString *const kPromotionListTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionListSubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
 //UISegmentedControl's item for the toolbar: promo button
 NSString *const kOfferPromoButton = @"Promociones";
 //NSLocalizedString(@"Promociones", nil)
