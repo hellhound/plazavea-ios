@@ -371,19 +371,25 @@ static NSString *const kRecipeMiscYes = @"YES";
 
     if (![rawIngredient isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((quantity = [rawIngredient objectForKey:kIngredientQuantityKey]) == nil)
-        return nil;
-    if (![quantity isKindOfClass:[NSString class]])
-        return nil;
     if ((name =
             [rawIngredient objectForKey:kIngredientNameKey]) == nil)
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
+    if ((quantity = [rawIngredient objectForKey:kIngredientQuantityKey]) == nil)
+        return nil;
+    if (![quantity isKindOfClass:[NSString class]]){
+        if (![quantity isKindOfClass:[NSNull class]])
+            return nil;
+        quantity = @"";
+    }
     if ((comment = [rawIngredient objectForKey:kIngredientCommentKey]) == nil)
         return nil;
-    if (![comment isKindOfClass:[NSString class]])
-        return nil;
+    if (![comment isKindOfClass:[NSString class]]){
+        if (![comment isKindOfClass:[NSNull class]])
+            return nil;
+        comment = @"";
+    }
 
     Ingredient *ingredient = [[[Ingredient alloc] init] autorelease];
 
@@ -612,8 +618,11 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
         return nil;
-    if (![price isKindOfClass:[NSNumber class]])
+    if (![price isKindOfClass:[NSNumber class]]){
+        if (![price isKindOfClass:[NSNull class]])
+            return nil;
         price=nil;
+    }
     if ((ingredients = [rawRecipe objectForKey:kRecipeIngredientsKey]) == nil)
         return nil;
     if (![ingredients isKindOfClass:[NSArray class]])
