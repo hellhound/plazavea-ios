@@ -11,41 +11,16 @@
 #import "Offers/Constants.h"
 #import "Offers/OfferListDataSource.h"
 
-@interface OfferListDataSource (private)
-
-- (void)setDelegate:(id<OfferListDataSourceDelegate>)delegate;
-@end
-
 @implementation OfferListDataSource
-    
-#pragma mark -
-#pragma mark NSObject
-
-- (void)dealloc
-{
-    [self setDelegate:nil];
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark OfferListDataSource (private)
-
-- (void)setDelegate:(id<OfferListDataSourceDelegate>)delegate
-{
-    _delegate = delegate;
-}
 
 #pragma mark -
 #pragma mark OfferListDataSource (public)
 
-@synthesize delegate = _delegate;
 
-- (id)initWithImageDelegate:(id<OfferListDataSourceDelegate>)delegate
+- (id)init
 {
-    if ((self = [super init]) != nil) {
+    if ((self = [super init]) != nil)
         [self setModel:[[[OfferCollection alloc] init] autorelease]];
-        [self setDelegate:delegate];
-    }
     return self;
 }
 
@@ -85,12 +60,8 @@
     NSArray *offers = [(OfferCollection *)[self model] offers];
     NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
             pictureURL];
-    
-    if (bannerImageURL != nil) {
-        [_delegate dataSource:self needsOfferImageWithURL:bannerImageURL];
-    }
-    
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
+    
     for (Offer *offer in offers) {
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:[offer name] subtitle:nil
