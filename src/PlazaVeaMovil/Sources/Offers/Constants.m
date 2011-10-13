@@ -38,16 +38,23 @@ NSString *const kPromotionListTitleForError = @"Error";
 NSString *const kPromotionListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
-//UISegmentedControl's item for the toolbar: promo button
-NSString *const kOfferPromoButton = @"Promociones";
+//UISegmentedControl item's label for the toolbar: promo button
+NSString *const kOfferPromotionButtonLabel = @"Promociones";
 //NSLocalizedString(@"Promociones", nil)
-//UISegmentedControl's item for the toolbar: offers button
-NSString *const kOfferOfferButton = @"Ofertas";
+//UISegmentedControl item's label for the toolbar: offers button
+NSString *const kOfferButtonLabel = @"Ofertas";
 //NSLocalizedString(@"Ofertas", nil)
 
+// PromotionListController's constants
+
+NSString *const kPromotionListTitle = @"Promociones";
+// NSLocalizedString(@"Promociones", nil)
+
 //Controllers' URL
+NSString *const kURLPromotionList = @"tt://launcher/offers/";
 
 //Controllers' URL calls
+NSString *const kURLPromotionListCall = @"tt://launcher/offers/";
 
 // Endpoint URLs
 NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");

@@ -31,6 +31,7 @@
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F8FB01403FA9700FB7CA1 /* basket.png */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
+		2C3A326914479572007F1076 /* PromotionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3A326814479572007F1076 /* PromotionListController.m */; };
 		2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5241444FF9C00C03CCB /* BaseMeatController.m */; };
 		2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
@@ -66,6 +67,7 @@
 		2CC1E40E1402BA7200A8DC62 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */; };
 		2CC1E4101402BB0B00A8DC62 /* recipeBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */; };
 		2CC21AB613F3468F008BE6DB /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC21AB513F3468F008BE6DB /* Models.m */; };
+		2CC3F5341447939B002B0422 /* BasePromotionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3F5331447939B002B0422 /* BasePromotionController.m */; };
 		2CC5A94313F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */; };
 		2CC757BD140419D60022FAE2 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC757BC140419D60022FAE2 /* Models.m */; };
 		2CC81ED21403181C009D5B6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC81ED11403181C009D5B6E /* Reachability.m */; };
@@ -555,6 +557,7 @@
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C2F8FB01403FA9700FB7CA1 /* basket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basket.png; sourceTree = "<group>"; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
+		2C3A326814479572007F1076 /* PromotionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionListController.m; sourceTree = "<group>"; };
 		2C49B5241444FF9C00C03CCB /* BaseMeatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMeatController.m; sourceTree = "<group>"; };
 		2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeController.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
@@ -593,6 +596,7 @@
 		2CC1E40D1402BA7200A8DC62 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
 		2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recipeBook.png; sourceTree = "<group>"; };
 		2CC21AB513F3468F008BE6DB /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
+		2CC3F5331447939B002B0422 /* BasePromotionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePromotionController.m; sourceTree = "<group>"; };
 		2CC5A94113F9BDE600B43AA6 /* TSAlertView+NewShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingItemAlertView.m"; sourceTree = "<group>"; };
 		2CC757BC140419D60022FAE2 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2CC81ED11403181C009D5B6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -927,7 +931,9 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2C3A326814479572007F1076 /* PromotionListController.m */,
 				2C858E31144784020020A302 /* PromotionListDataSource.m */,
+				2CC3F5331447939B002B0422 /* BasePromotionController.m */,
 				2FA7FB761446361400211215 /* BaseOfferController.m */,
 				2FA7FB771446361400211215 /* OfferDrillDownController.m */,
 				2FA7FB701446204700211215 /* Models.m */,
@@ -1595,6 +1601,8 @@
 				CCA4CFE314469CC80095514E /* TableImageSubtitleItem.m in Sources */,
 				CCA4CFE414469CC80095514E /* TableImageSubtitleItemCell.m in Sources */,
 				2C858E32144784020020A302 /* PromotionListDataSource.m in Sources */,
+				2CC3F5341447939B002B0422 /* BasePromotionController.m in Sources */,
+				2C3A326914479572007F1076 /* PromotionListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

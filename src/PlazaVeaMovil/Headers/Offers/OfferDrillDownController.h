@@ -8,5 +8,5 @@
     NSInteger _segmentIndex;
     UISegmentedControl *_segControl;
 }
-@property (nonatomic, assign) NSInteger segmentedIndex;
+@property (nonatomic, assign) NSInteger segmentIndex;
 @end

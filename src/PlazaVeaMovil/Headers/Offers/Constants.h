@@ -35,20 +35,26 @@ extern NSString *const kPromotionListSubtitleForError;
 // OfferDrillDownController's constants
 
 typedef enum {
-    kOfferSegmentedControlIndexPromoButton,
+    kOfferSegmentedControlIndexPromotionButton,
     kOfferSegmentedControlIndexOfferButton,
     kOfferSegmentedControlIndexDefault =
         kOfferSegmentedControlIndexOfferButton
 }OfferSegmentedControlIndexTypes;
 
-//UISegmentedControl's item for the toolbar: promo button
-extern NSString *const kOfferPromoButton;
-//UISegmentedControl's item for the toolbar: offers button
-extern NSString *const kOfferOfferButton;
+//UISegmentedControl item's label for the toolbar: promo button
+extern NSString *const kOfferPromotionButtonLabel;
+//UISegmentedControl item's label for the toolbar: offers button
+extern NSString *const kOfferButtonLabel;
+
+// PromotionListController's constants
+
+extern NSString *const kPromotionListTitle;
 
 //Controllers' URL
+extern NSString *const kURLPromotionList;
 
 //Controllers' URL calls
+extern NSString *const kURLPromotionListCall;
 
 // Endpoint URLs
 extern NSString *const kPromotionListEndpoint;
