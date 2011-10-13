@@ -35,6 +35,7 @@
 		2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
 		2C4F5BE313F2E616007B3ADE /* ReorderingManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */; };
+		2C556B4E1446695E00B27C3B /* default-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C556B4D1446695E00B27C3B /* default-list.png */; };
 		2C59E2E1140554800061676D /* AlphabeticalRecipesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */; };
 		2C691ED013F04BB900E1EFA5 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */; };
 		2C691ED113F04BB900E1EFA5 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */; };
@@ -556,6 +557,7 @@
 		2C4A108313DEAFCA001E7BD0 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2C4F5BE013F2E616007B3ADE /* ManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObject.m; sourceTree = "<group>"; };
 		2C4F5BE113F2E616007B3ADE /* ReorderingManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReorderingManagedObject.m; sourceTree = "<group>"; };
+		2C556B4D1446695E00B27C3B /* default-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-list.png"; sourceTree = "<group>"; };
 		2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphabeticalRecipesDataSource.m; sourceTree = "<group>"; };
 		2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = ../../TSAlertView/TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C556B4D1446695E00B27C3B /* default-list.png */,
 				CC538FB3143C2425003C03BA /* default-recipe-detail.png */,
 				CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */,
 				2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */,
@@ -1490,6 +1493,7 @@
 				2C2F8FB11403FA9700FB7CA1 /* basket.png in Resources */,
 				CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */,
 				CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */,
+				2C556B4E1446695E00B27C3B /* default-list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

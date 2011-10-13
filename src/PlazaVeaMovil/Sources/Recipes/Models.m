@@ -577,6 +577,8 @@ static NSString *const kMutableTipsKey = @"tips";
 
     [recipe setRecipeId:recipeId];
     [recipe setName:name];
+    if (pictureURL != nil)
+        [recipe setPictureURL:[NSURL URLWithString:pictureURL]];
     return recipe;
 }
 
@@ -587,7 +589,7 @@ static NSString *const kMutableTipsKey = @"tips";
     if (recipe == nil)
         return nil;
 
-    NSString *code, *pictureURL, *facebookURL, *twitterURL;
+    NSString *code, *facebookURL, *twitterURL;
     NSNumber *price, *rations;
     NSArray *extraPictureURLs, *ingredients, *procedures, *features, *tips;
     NSMutableArray *mutableExtraPictureURLs =
@@ -605,10 +607,6 @@ static NSString *const kMutableTipsKey = @"tips";
         return nil;
     if (![code isKindOfClass:[NSString class]])
         return nil;
-    if ((pictureURL = [rawRecipe objectForKey:kRecipePictureURLKey]) == nil)
-        return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        pictureURL = nil;
     if ((extraPictureURLs =
             [rawRecipe objectForKey:kRecipeExtraPictureURLsKey]) == nil)
         return nil;
@@ -645,9 +643,6 @@ static NSString *const kMutableTipsKey = @"tips";
     if (![twitterURL isKindOfClass:[NSString class]])
         return nil;
     [recipe setCode:code];
-    if (pictureURL != nil) {
-        [recipe setPictureURL:[NSURL URLWithString:pictureURL]];
-    }
     [recipe setPrice:price];
     [recipe setRations:rations];
     [recipe setFacebookURL:[NSURL URLWithString:facebookURL]];
@@ -964,30 +959,35 @@ static NSString *const kMutableTipsKey = @"tips";
         NSString *sectionName;
 
         if (![recipeCluster isKindOfClass:[NSDictionary class]]){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            [self didFailLoadWithError:
+                    BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if ((sectionName =
                 [recipeCluster objectForKey:kRecipeCollectionLetterKey]) 
                     == nil){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            [self didFailLoadWithError:
+                    BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if (![sectionName isKindOfClass:[NSString class]]){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            [self didFailLoadWithError:
+                    BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if ((rawRecipesInSection = [recipeCluster objectForKey:
                 kRecipeCollectionRecipesKey]) == nil){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            [self didFailLoadWithError:
+                    BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if (![rawRecipesInSection isKindOfClass:[NSArray class]]){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            [self didFailLoadWithError:
+                    BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
@@ -1002,20 +1002,28 @@ static NSString *const kMutableTipsKey = @"tips";
             Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
 
             if (recipe == nil){
-            [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
-                tryAgain:NO];
+                [self didFailLoadWithError:
+                        BACKEND_ERROR([request urlPath], rootObject)
+                    tryAgain:NO];
                 return;
             }
-            if (_isFromMeat) {
-                [recipesInSection addObject:
-                        [TTTableTextItem itemWithText:[recipe name]
-                            URL:URL(kURLRecipeMeatsDetailCall,
-                                [recipe recipeId], @"YES")]];
-            } else {
-                [recipesInSection addObject:
-                        [TTTableTextItem itemWithText:[recipe name]
-                            URL:URL(kURLRecipeDetailCall, [recipe recipeId])]];
-            }
+
+            NSURL *pictureURL = [recipe pictureURL];
+            NSString *controllerURL = _isFromMeat ?
+                    URL(kURLRecipeMeatsDetailCall, [recipe recipeId], @"YES") :
+                    URL(kURLRecipeDetailCall, [recipe recipeId]);
+
+            if (pictureURL != nil)
+                pictureURL = IMAGE_URL(pictureURL, kRecipeListImageWidth,
+                        kRecipeListImageHeigth);
+
+            TTTableImageItem *item = 
+                    [TTTableImageItem itemWithText:[recipe name]
+                        imageURL:[pictureURL absoluteString]
+                        defaultImage:TTIMAGE(kRecipeListDefaultImage)
+                        URL:controllerURL];
+
+            [recipesInSection addObject:item];
         }
         [mutableSections addObject:recipesInSection];
     }

@@ -148,6 +148,9 @@ NSString *const kRecipeSubcategoryTitle = @"Subcategorías";
 
 NSString *const kRecipeListTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
+NSString *const kRecipeListDefaultImage = @"bundle://default-list.png";
+const CGFloat kRecipeListImageWidth = 50.;
+const CGFloat kRecipeListImageHeigth = 50.;
 
 // RecipeDetailController's constants
 
@@ -155,8 +158,8 @@ NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 // NSLocalizedString(@"Detalle de una receta", nil);
 NSString *const kRecipeDetailDefaultImage =
         @"bundle://default-recipe-detail.png";
-const CGFloat kRecipeDetailImageWidth = 60.;
-const CGFloat kRecipeDetailImageHeigth = 60.;
+const CGFloat kRecipeDetailImageWidth = 140.;
+const CGFloat kRecipeDetailImageHeigth = 140.;
 NSString *const kRecipeDetailCreateMessage = @"Lista %@ creada";
 // NSLocalizedString(@"Lista %@ creada", nil)
 NSString *const kRecipeDetailCreateButton = @"Ok";

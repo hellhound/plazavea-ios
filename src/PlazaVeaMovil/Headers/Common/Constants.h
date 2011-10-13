@@ -30,6 +30,12 @@
 #define ENDPOINT(x) ENDPOINT_BASE_URL x
 // Helper for forming URL calls
 #define URL(...) [NSString stringWithFormat:__VA_ARGS__]
+// Image query string
+#define IMAGE_QUERY_STRING @"%@?width=%lu&height=%lu"
+// Helper for image URLs with query string
+#define IMAGE_URL(url, width, height) [NSURL URLWithString: \
+        [NSString stringWithFormat:IMAGE_QUERY_STRING, [url absoluteString], \
+            (NSUInteger)width, (NSUInteger)height]]
 
 //Define the colors for the navigation bar and toolbar
 #define BAR_COLOR [UIColor colorWithRed:1 green:0.867 blue:0 alpha:1]
@@ -38,8 +44,8 @@
 
 // Error messages and codes
 #define SEVERE_ERROR \
-            @"Ocurrió un error. Espere un momento, estamos trabajando para " \
-            @"corregirlo y servirles mejor."
+        @"Ocurrió un error. Espere un momento, estamos trabajando para " \
+        @"corregirlo y servirles mejor."
 #define INTERNET_ERROR @"La conexi\u00F3n a Internet parece estar desactivada"
 /*
  * 20  -> NSPOSIXErrorDomain Operation could not be completed. Invalid argument
@@ -51,21 +57,21 @@
  * 503 -> NSURLErrorDomain Sevice unavailable
  */
 #define MESSAGE_FOR_ERROR_CODES [NSDictionary dictionaryWithObjectsAndKeys: \
-            INTERNET_ERROR, \
-            N(22), \
-            SEVERE_ERROR, \
-            N(400), \
-            SEVERE_ERROR, \
-            N(401), \
-            SEVERE_ERROR, \
-            N(403), \
-            SEVERE_ERROR, \
-            N(500), \
-            SEVERE_ERROR, \
-            N(503), \
-            SEVERE_ERROR, \
-            N(-1), \
-            nil] 
+        INTERNET_ERROR, \
+        N(22), \
+        SEVERE_ERROR, \
+        N(400), \
+        SEVERE_ERROR, \
+        N(401), \
+        SEVERE_ERROR, \
+        N(403), \
+        SEVERE_ERROR, \
+        N(500), \
+        SEVERE_ERROR, \
+        N(503), \
+        SEVERE_ERROR, \
+        N(-1), \
+        nil] 
 
 #define LOCALIZED_HTTP_REQUEST_ERROR(error) \
         [error HTTPRequestErrorDescriptionWithCodes:MESSAGE_FOR_ERROR_CODES]
