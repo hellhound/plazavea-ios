@@ -64,9 +64,10 @@
         UITableView *tableView = [self tableView];
         CGRect bounds = [tableView bounds];
         UIView *headerView = [[[UIView alloc] initWithFrame:
-                CGRectMake((bounds.size.width - kRecipeDetailImageWidth) / 2.,
-                        .0,60.,
-                        60.)] autorelease];
+                CGRectMake(
+                        (bounds.size.width - kRecipeDetailImageWidth) / 2., .0,
+                        kRecipeDetailImageWidth,
+                        kRecipeDetailImageHeigth)] autorelease];
 
         [headerView addSubview:_imageView];
         [tableView setTableHeaderView:headerView];
@@ -102,7 +103,9 @@
         [self setTitle:kRecipeDetailTitle];
         _recipeId = [recipeId copy];
         [self setImageView:[[[TTImageView alloc] initWithFrame:
-                CGRectMake(.0, .0, 60., 60.)] autorelease]];
+                CGRectMake(.0, .0,
+                    kRecipeDetailImageWidth,
+                    kRecipeDetailImageHeigth)] autorelease]];
     }
     return self;
 }

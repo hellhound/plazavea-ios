@@ -82,8 +82,12 @@
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
     NSString *recipeName = [recipe name];
+    NSURL *pictureURL = [recipe pictureURL];
 
-    [_delegate dataSource:self needsDetailImageWithURL:[recipe pictureURL]];
+    if (pictureURL != nil)
+        [_delegate dataSource:self needsDetailImageWithURL:
+                IMAGE_URL(pictureURL, kRecipeDetailImageWidth,
+                    kRecipeDetailImageHeigth)];
     [sections addObject:@""];
     [items addObject:[NSArray arrayWithObject:
             [TTTableTextItem itemWithText:recipeName]]];
