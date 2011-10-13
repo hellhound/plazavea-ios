@@ -100,6 +100,7 @@
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
+		CCE4548914468381000CED89 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE4548814468381000CED89 /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -616,6 +617,7 @@
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
+		CCE4548814468381000CED89 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -706,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				2C556B4D1446695E00B27C3B /* default-list.png */,
+				CCE4548814468381000CED89 /* Default.png */,
 				CC538FB3143C2425003C03BA /* default-recipe-detail.png */,
 				CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */,
 				2CC1E40F1402BB0B00A8DC62 /* recipeBook.png */,
@@ -1468,6 +1471,7 @@
 				CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */,
 				CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */,
 				2C556B4E1446695E00B27C3B /* default-list.png in Resources */,
+				CCE4548914468381000CED89 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
