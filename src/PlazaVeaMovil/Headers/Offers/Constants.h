@@ -18,14 +18,22 @@ extern NSString *const kOfferFacebookURLKey;
 extern NSString *const kOfferTwitterURLKey;
 
 // Offer collection model's constants
-extern NSString *const kOfferCollectionPictureURLKey;
-extern NSString *const kOfferCollectionStartKey;
-extern NSString *const kOfferCollectionEndKey;
+extern NSString *const kOfferCollectionOffersKey;
+extern NSString *const kOfferCollectionBannerKey;
 
 // Banner model's constant
 extern NSString *const kBannerPictureURLKey;
 extern NSString *const kBannerStartKey;
 extern NSString *const kBannerEndKey;
+
+// OfferListDataSource's constants
+extern NSString *const kOfferListTitleForLoading;
+extern NSString *const kOfferListTitleForReloading;
+extern NSString *const kOfferListTitleForEmpty;
+extern NSString *const kOfferListSubtitleForEmpty;
+extern NSString *const kOfferListTitleForError;
+extern NSString *const kOfferListSubtitleForError;
+extern NSString *const kOfferListDefaultImage;
 
 // Offer collection's constants
 
@@ -42,6 +50,12 @@ typedef enum {
 extern NSString *const kOfferPromoButton;
 // UISegmentedControl item for the toolbar: offer button
 extern NSString *const kOfferOfferButton;
+
+// OfferListController's constants
+extern NSString *const kOfferListTitle;
+extern NSString *const kBannerDefaultImage;
+extern const CGFloat kBannerImageWidth;
+extern const CGFloat kBannerImageHeight;
 
 // Controllers' URL
 extern NSString *const kURLOfferList;

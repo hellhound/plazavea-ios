@@ -91,9 +91,11 @@
 		2FA7FB751446345C00211215 /* OfferListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB741446345C00211215 /* OfferListController.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
 		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
+		2FDC8B7314475A55009542CA /* offerTag.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDC8B7214475A55009542CA /* offerTag.png */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
 		2FE363F71443DE38003B233E /* MeatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F61443DE38003B233E /* MeatListController.m */; };
+		2FECB2291447761600797365 /* default-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FECB2281447761600797365 /* default-banner.png */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
 		3206A0F794A6D7A3F259DBF5 /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3206A0F794A6D7A3F259DBF4 /* libextThree20JSON+SBJSON.a */; };
 		320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
@@ -619,9 +621,11 @@
 		2FA7FB741446345C00211215 /* OfferListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListController.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
 		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
+		2FDC8B7214475A55009542CA /* offerTag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offerTag.png; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
+		2FECB2281447761600797365 /* default-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner.png"; sourceTree = "<group>"; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../../Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = ../../Three20/src/extThree20JSON/extThree20JSON.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../../Three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -732,6 +736,8 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FECB2281447761600797365 /* default-banner.png */,
+				2FDC8B7214475A55009542CA /* offerTag.png */,
 				CCE455B314468992000CED89 /* Icon-Small.png */,
 				CCE455B414468992000CED89 /* Icon.png */,
 				2C556B4D1446695E00B27C3B /* default-list.png */,
@@ -1515,6 +1521,8 @@
 				CCE4548914468381000CED89 /* Default.png in Resources */,
 				CCE455B514468992000CED89 /* Icon-Small.png in Resources */,
 				CCE455B614468992000CED89 /* Icon.png in Resources */,
+				2FDC8B7314475A55009542CA /* offerTag.png in Resources */,
+				2FECB2291447761600797365 /* default-banner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

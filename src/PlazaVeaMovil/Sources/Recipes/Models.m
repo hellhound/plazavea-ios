@@ -24,6 +24,8 @@ static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 static NSString *const kMutableTipsKey = @"tips";
+//Meat's key pathes
+static NSString *const kMutableMeatsKey = @"meats";
 
 @implementation Meat
 
@@ -141,21 +143,22 @@ static NSString *const kMutableTipsKey = @"tips";
     NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
             rootObject];
     NSArray *rawMeats;
-    NSMutableArray *mutableMeats = [self mutableArrayValueForKey:kMeatsKey];
+    NSMutableArray *mutableMeats =
+            [self mutableArrayValueForKey:kMutableMeatsKey];
     
     if (![rootObject isKindOfClass:[NSDictionary class]]) {
         [self didFailLoadWithError:
-            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
     }
     if ((rawMeats = [rootObject objectForKey:kMeatsKey]) == nil) {
         [self didFailLoadWithError:
-            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
     }
     if (![rawMeats isKindOfClass:[NSArray class]]) {
         [self didFailLoadWithError:
-            BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
     }
     for (NSDictionary *rawMeat in rawMeats) {
@@ -163,7 +166,7 @@ static NSString *const kMutableTipsKey = @"tips";
         
         if (meat == nil) {
             [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+                    BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
             return;
         }
         [mutableMeats addObject:meat];

@@ -12,7 +12,7 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
-        [self setTitle:nil];
+        [self setTitle:kOfferListTitle];
         [self setVariableHeightRows:YES];
     }
     return self;

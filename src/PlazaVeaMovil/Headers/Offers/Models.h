@@ -2,13 +2,13 @@
 
 #import "Common/Models/URLRequestModel.h"
 
-@interface Banner : NSObject
+@interface Banner : URLRequestModel
 {
-    NSString *_pictureURL;
+    NSURL *_pictureURL;
     NSDate *_start;
     NSDate *_end;
 }
-@property (nonatomic, copy) NSString *pictureURL;
+@property (nonatomic, copy) NSURL *pictureURL;
 @property (nonatomic, retain) NSDate *start;
 @property (nonatomic, retain) NSDate *end;
 

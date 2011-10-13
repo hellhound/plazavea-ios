@@ -7,6 +7,9 @@
 #import "Offers/Constants.h"
 #import "Offers/Models.h"
 
+// Offer collection's key pathes
+static NSString *const kMutableOffersKey = @"offers";
+
 @implementation Banner
 
 #pragma mark -
@@ -28,29 +31,32 @@
 + (id)bannerFromDictionary:(NSDictionary *)rawBanner
 {
     NSString *pictureURL;
-    NSDate *start, *end;
+    //NSDate *start, *end;
     
     if (![rawBanner isKindOfClass:[NSDictionary class]])
         return nil;
     if ((pictureURL =
             [rawBanner objectForKey:kBannerPictureURLKey]) == nil)
         return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
-    if ((start = [rawBanner objectForKey:kBannerStartKey]) == nil)
+    if (![pictureURL isKindOfClass:[NSString class]]) {
+        if (![pictureURL isKindOfClass:[NSNull class]])
+            return nil;
+        pictureURL = nil;
+    }
+    /*if ((start = [rawBanner objectForKey:kBannerStartKey]) == nil)
         return nil;
     if (![start isKindOfClass:[NSDate class]])
         return nil;
     if ((end = [rawBanner objectForKey:kBannerEndKey]) == nil)
         return nil;
     if (![end isKindOfClass:[NSDate class]])
-        return nil;
+        return nil;*/
     
     Banner *banner = [[[Banner alloc] init] autorelease];
     
-    [banner setPictureURL:pictureURL];
-    [banner setStart:start];
-    [banner setEnd:end];
+    [banner setPictureURL:[NSURL URLWithString:pictureURL]];
+    //[banner setStart:start];
+    //[banner setEnd:end];
     return banner;
 }
 @end
@@ -102,8 +108,11 @@
         return nil;
     if ((code = [rawOffer objectForKey:kOfferCodeKey]) == nil)
         return nil;
-    if (![code isKindOfClass:[NSString class]])
-        return nil;
+    if (![code isKindOfClass:[NSString class]]) {
+        if (![code isKindOfClass:[NSNull class]])
+            return nil;
+        code = nil;
+    }
     if ((name = [rawOffer objectForKey:kOfferNameKey]) == nil)
         return nil;
     if (![name isKindOfClass:[NSString class]])
@@ -114,8 +123,11 @@
         return nil;
     if ((pictureURL = [rawOffer objectForKey:kOfferPictureURLKey]) == nil)
         return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
+    if (![pictureURL isKindOfClass:[NSString class]]) {
+        if (![pictureURL isKindOfClass:[NSNull class]])
+            return nil;
+        pictureURL = nil;
+    }
     
     Offer *offer = [[[Offer alloc] init] autorelease];
     
@@ -149,7 +161,7 @@
 #pragma mark -
 #pragma mark NSObject (NSKeyValueCoding)
 
-@synthesize offers = _offers;
+@synthesize offers = _offers, banner = _banner;
 
 - (void)insertObject:(Offer *)offer inOffersAtIndex:(NSUInteger)index
 {
@@ -181,8 +193,8 @@
                 [TTURLRequest requestWithURL:kURLOfferListEndpoint
                     delegate:self];
         
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
-        [request setCachePolicy:cachePolicy];
         [request send];
     }
 }
@@ -190,35 +202,51 @@
 #pragma mark -
 #pragma mark <TTURLRequestDelegate>
 
-- (void)requestDidStartLoad:(TTURLRequest *)request
+- (void)requestDidFinishLoad:(TTURLRequest *)request
 {
     NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
             rootObject];
     NSArray *rawOffers;
-    NSMutableArray *mutableOffers = [self mutableArrayValueForKey:@"offers"];
+    NSMutableArray *mutableOffers =
+            [self mutableArrayValueForKey:kMutableOffersKey];
     
-    if (![rootObject isKindOfClass:[NSDictionary class]])
+    if (![rootObject isKindOfClass:[NSDictionary class]]) {
         [self didFailLoadWithError:
                 BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
-    if ((rawOffers = [rootObject objectForKey:@"offers"]) == nil)
+    }
+    if ((rawOffers = [rootObject objectForKey:kOfferCollectionOffersKey])
+        == nil) {
         [self didFailLoadWithError:
                 BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
-    if (![rawOffers isKindOfClass:[NSArray class]])
+    }
+    if (![rawOffers isKindOfClass:[NSArray class]]) {
         [self didFailLoadWithError:
                 BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
         return;
+    }
     for (NSDictionary *rawOffer in rawOffers) {
         Offer *offer = [Offer shortOfferFromDictionary:rawOffer];
         
-        if (offer == nil)
+        if (offer == nil) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
             return;
+        }
         [mutableOffers addObject:offer];
     }
-    [super requestDidStartLoad:request];
+    
+    Banner *banner = [Banner bannerFromDictionary:
+                [rootObject objectForKey:kOfferCollectionBannerKey]];
+    
+    if (banner == nil) {
+        [self didFailLoadWithError:
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+        return;
+    }
+    [self setBanner:banner];
+    [super requestDidFinishLoad:request];
 }
 
 @end
