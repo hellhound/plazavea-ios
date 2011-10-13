@@ -4,6 +4,9 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Views/TableImageSubtitleItemCell.h"
+#import "Common/Views/OnlyImageItemCell.h"
+#import "Common/Views/TableImageSubtitleItem.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/MeatListDataSource.h"
@@ -56,14 +59,22 @@
     NSArray *meats = [(MeatCollection *)[self model] meats];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[meats count]];
     for (Meat *meat in meats) {
-        TTTableImageItem *item = [TTTableImageItem itemWithText:[meat name]
+        TableImageSubtitleItem *item = [TableImageSubtitleItem
+                itemWithText:[meat name] subtitle:nil
                 imageURL:[meat pictureURL]
-                    defaultImage:TTIMAGE(kRecipeDetailDefaultImage)
-                    imageStyle:nil
-                    URL:URL(kURLRecipeMeatListCall, [meat meatId])];
+                defaultImage:TTIMAGE(kRecipeListDefaultImage)
+                URL:URL(kURLRecipeMeatListCall, [meat meatId])];
         [items addObject:item];
     }
     [self setItems:items];
 }
-
+- (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
+{
+    if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
+        return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
+        return [OnlyImageItemCell class];
+    }
+    return [super tableView:tableView cellClassForObject:object];
+}
 @end

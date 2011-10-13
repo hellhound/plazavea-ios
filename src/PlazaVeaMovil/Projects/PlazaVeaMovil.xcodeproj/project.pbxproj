@@ -100,6 +100,9 @@
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
+		CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */; };
+		CCA4CFE314469CC80095514E /* TableImageSubtitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */; };
+		CCA4CFE414469CC80095514E /* TableImageSubtitleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */; };
 		CCE4548914468381000CED89 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE4548814468381000CED89 /* Default.png */; };
 		CCE455B514468992000CED89 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE455B314468992000CED89 /* Icon-Small.png */; };
 		CCE455B614468992000CED89 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE455B414468992000CED89 /* Icon.png */; };
@@ -619,6 +622,9 @@
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
+		CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyImageItemCell.m; sourceTree = "<group>"; };
+		CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableImageSubtitleItem.m; sourceTree = "<group>"; };
+		CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableImageSubtitleItemCell.m; sourceTree = "<group>"; };
 		CCE4548814468381000CED89 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CCE455B314468992000CED89 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		CCE455B414468992000CED89 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -662,6 +668,9 @@
 		2C25BD3313E8F88F00A4311B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */,
+				CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */,
+				CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */,
 				2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */,
 			);
 			path = Views;
@@ -1555,6 +1564,9 @@
 				2FE363F71443DE38003B233E /* MeatListController.m in Sources */,
 				2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */,
 				2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */,
+				CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */,
+				CCA4CFE314469CC80095514E /* TableImageSubtitleItem.m in Sources */,
+				CCA4CFE414469CC80095514E /* TableImageSubtitleItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
