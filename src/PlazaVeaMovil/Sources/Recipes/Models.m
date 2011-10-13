@@ -24,6 +24,8 @@ static NSString *const kMutableIngredientsKey = @"ingredients";
 static NSString *const kMutableProceduresKey = @"procedures";
 static NSString *const kMutableFeaturesKey = @"features";
 static NSString *const kMutableTipsKey = @"tips";
+// Recipe misc constants
+static NSString *const kRecipeMiscYes = @"YES";
 
 @implementation Meat
 
@@ -1011,7 +1013,8 @@ static NSString *const kMutableTipsKey = @"tips";
 
             NSURL *pictureURL = [recipe pictureURL];
             NSString *controllerURL = _isFromMeat ?
-                    URL(kURLRecipeMeatsDetailCall, [recipe recipeId], @"YES") :
+                    URL(kURLRecipeMeatsDetailCall, [recipe recipeId],
+                        kRecipeMiscYes) :
                     URL(kURLRecipeDetailCall, [recipe recipeId]);
 
             if (pictureURL != nil)

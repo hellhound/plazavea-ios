@@ -72,8 +72,6 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
-    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
-        return [OnlyImageItemCell class];
     }
     return [super tableView:tableView cellClassForObject:object];
 }
