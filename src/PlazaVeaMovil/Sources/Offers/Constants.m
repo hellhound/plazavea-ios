@@ -24,6 +24,13 @@ NSString *const kOfferCollectionPictureURLKey = @"picture";
 NSString *const kOfferCollectionStartKey = @"start";
 NSString *const kOfferCollectionEndKey = @"end";
 
+// Banner model's constants
+NSString *const kBannerPictureURLKey = @"picture";
+NSString *const kBannerStartKey = @"start";
+NSString *const kBannerEndKey = @"end";
+
+// Offer collection's constants
+
 //UISegmentedControl's item for the toolbar: promo button
 NSString *const kOfferPromoButton = @"Promociones";
 //NSLocalizedString(@"Promociones", nil)
@@ -40,3 +47,4 @@ NSString *const kURLOfferListCall = @"tt://launcher/offers/offers";
 // Endpoint URLs
 
 NSString *const kURLOfferListEndpoint = ENDPOINT(@"/offers/listing.json");
+

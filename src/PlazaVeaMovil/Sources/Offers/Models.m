@@ -4,6 +4,7 @@
 #import <extThree20JSON/extThree20JSON.h>
 
 #import "Common/Constants.h"
+#import "Offers/Constants.h"
 #import "Offers/Models.h"
 
 @implementation Banner
@@ -32,15 +33,15 @@
     if (![rawBanner isKindOfClass:[NSDictionary class]])
         return nil;
     if ((pictureURL =
-            [rawBanner objectForKey:kOfferCollectionPictureURLKey]) == nil)
+            [rawBanner objectForKey:kBannerPictureURLKey]) == nil)
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]])
         return nil;
-    if ((start = [rawBanner objectForKey:kOfferCollectionStartKey]) == nil)
+    if ((start = [rawBanner objectForKey:kBannerStartKey]) == nil)
         return nil;
     if (![start isKindOfClass:[NSDate class]])
         return nil;
-    if ((end = [rawBanner objectForKey:kOfferCollectionEndKey]) == nil)
+    if ((end = [rawBanner objectForKey:kBannerEndKey]) == nil)
         return nil;
     if (![end isKindOfClass:[NSDate class]])
         return nil;
@@ -91,8 +92,7 @@
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer
 {
     NSNumber *offerId, *price;
-    NSString *code, *name;
-    NSURL *pictureURL;
+    NSString *code, *name, *pictureURL;
     
     if (![rawOffer isKindOfClass:[NSDictionary class]])
         return nil;

@@ -1,3 +1,4 @@
+//Offers module's constants
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -21,6 +22,13 @@ extern NSString *const kOfferCollectionPictureURLKey;
 extern NSString *const kOfferCollectionStartKey;
 extern NSString *const kOfferCollectionEndKey;
 
+// Banner model's constant
+extern NSString *const kBannerPictureURLKey;
+extern NSString *const kBannerStartKey;
+extern NSString *const kBannerEndKey;
+
+// Offer collection's constants
+
 // OfferDrillDownController's constants
 
 typedef enum {
@@ -30,9 +38,12 @@ typedef enum {
         kOfferSegmentedControlIndexOfferButton
 }OfferSegmentedControlIndexTypes;
 
+// UISegmentedControl item for the toolbar: promo button
 extern NSString *const kOfferPromoButton;
+// UISegmentedControl item for the toolbar: offer button
 extern NSString *const kOfferOfferButton;
 
+// Controllers' URL
 extern NSString *const kURLOfferList;
 
 extern NSString *const kURLOfferListCall;
@@ -40,3 +51,4 @@ extern NSString *const kURLOfferListCall;
 // Endpoint URLs
 
 extern NSString *const kURLOfferListEndpoint;
+
