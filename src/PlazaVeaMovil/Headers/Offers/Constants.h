@@ -1,25 +1,21 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-// Offer model's constants
-extern NSString *const kOfferIdKey;
-extern NSString *const kOfferCodeKey;
-extern NSString *const kOfferNameKey;
-extern NSString *const kOfferDescriptionKey;
-extern NSString *const kOfferPriceKey;
-extern NSString *const kOfferDiscountKey;
-extern NSString *const kOfferOldPriceKey;
-extern NSString *const kOfferValidFromKey;
-extern NSString *const kOfferValidToKey;
-extern NSString *const kOfferPictureURLKey;
-extern NSString *const kOfferExtraPictureURLsKey;
-extern NSString *const kOfferFacebookURLKey;
-extern NSString *const kOfferTwitterURLKey;
+// Promotion model's constants
+extern NSString *const kPromotionIdKey;
+extern NSString *const kPromotionCodeKey;
+extern NSString *const kPromotionNameKey;
+extern NSString *const kPromotionBannerURLKey;
+extern NSString *const kPromotionDescriptionKey;
+extern NSString *const kPromotionLegaleseKey;
+extern NSString *const kPromotionValidFromKey;
+extern NSString *const kPromotionValidToKey;
+extern NSString *const kPromotionExtraPictureURLsKey;
+extern NSString *const kPromotionFacebookURLKey;
+extern NSString *const kPromotionTwitterURLKey;
 
-// Offer collection model's constants
-extern NSString *const kOfferCollectionPictureURLKey;
-extern NSString *const kOfferCollectionStartKey;
-extern NSString *const kOfferCollectionEndKey;
+// Promotion collection model's constants
+extern NSString *const kPromotionCollectionPromotions;
 
 // OfferDrillDownController's constants
 
@@ -30,13 +26,14 @@ typedef enum {
         kOfferSegmentedControlIndexOfferButton
 }OfferSegmentedControlIndexTypes;
 
+//UISegmentedControl's item for the toolbar: promo button
 extern NSString *const kOfferPromoButton;
+//UISegmentedControl's item for the toolbar: offers button
 extern NSString *const kOfferOfferButton;
 
-extern NSString *const kURLOfferList;
+//Controllers' URL
 
-extern NSString *const kURLOfferListCall;
+//Controllers' URL calls
 
 // Endpoint URLs
-
-extern NSString *const kURLOfferListEndpoint;
+extern NSString *const kPromotionListEndpoint;

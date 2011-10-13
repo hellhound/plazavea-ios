@@ -4,131 +4,15 @@
 #import <extThree20JSON/extThree20JSON.h>
 
 #import "Common/Constants.h"
+#import "Offers/Constants.h"
 #import "Offers/Models.h"
 
-@implementation Banner
+// Promotion KVC key's constants
+static NSString *const kExtraPictureURLsKey = @"extraPictureURLs";
+// PromotionCollection KVC key's constants
+static NSString *const kPromotionsKey = @"promotions";
 
-#pragma mark -
-#pragma mark NSObject
-
-- (void)dealloc
-{
-    [_pictureURL release];
-    [_start release];
-    [_end release];
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Banner (Public)
-
-@synthesize pictureURL = _pictureURL, start = _start, end = _end;
-
-+ (id)bannerFromDictionary:(NSDictionary *)rawBanner
-{
-    NSString *pictureURL;
-    NSDate *start, *end;
-    
-    if (![rawBanner isKindOfClass:[NSDictionary class]])
-        return nil;
-    if ((pictureURL =
-            [rawBanner objectForKey:kOfferCollectionPictureURLKey]) == nil)
-        return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
-    if ((start = [rawBanner objectForKey:kOfferCollectionStartKey]) == nil)
-        return nil;
-    if (![start isKindOfClass:[NSDate class]])
-        return nil;
-    if ((end = [rawBanner objectForKey:kOfferCollectionEndKey]) == nil)
-        return nil;
-    if (![end isKindOfClass:[NSDate class]])
-        return nil;
-    
-    Banner *banner = [[[Banner alloc] init] autorelease];
-    
-    [banner setPictureURL:pictureURL];
-    [banner setStart:start];
-    [banner setEnd:end];
-    return banner;
-}
-@end
-
-@implementation Offer
-
-#pragma mark -
-#pragma mark NSObject
-
-- (void)dealloc
-{
-    [_offerId release];
-    [_code release];
-    [_name release];
-    [_longDescription release];
-    [_price release];
-    [_oldPrice release];
-    [_discount release];
-    [_validFrom release];
-    [_validTo release];
-    [_pictureURL release];
-    [_extraPicturesURLs release];
-    [_facebookURL release];
-    [_twitterURL release];
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Offer (Public)
-
-@synthesize offerId = _offerId, code = _code, name = _name,
-        longDescription = _longDescription, price = _price,
-            oldPrice = _oldPrice, discount = _discount, validFrom = _validFrom,
-            validTo = _validTo, pictureURL = _pictureURL,
-            extraPictureURLs = _extraPicturesURLs, facebookURL = _facebookURL,
-            twitterURL = _twitterURL;
-            
-
-+ (id)shortOfferFromDictionary:(NSDictionary *)rawOffer
-{
-    NSNumber *offerId, *price;
-    NSString *code, *name;
-    NSURL *pictureURL;
-    
-    if (![rawOffer isKindOfClass:[NSDictionary class]])
-        return nil;
-    if ((offerId = [rawOffer objectForKey:kOfferIdKey]) == nil)
-        return nil;
-    if (![offerId isKindOfClass:[NSNumber class]])
-        return nil;
-    if ((code = [rawOffer objectForKey:kOfferCodeKey]) == nil)
-        return nil;
-    if (![code isKindOfClass:[NSString class]])
-        return nil;
-    if ((name = [rawOffer objectForKey:kOfferNameKey]) == nil)
-        return nil;
-    if (![name isKindOfClass:[NSString class]])
-        return nil;
-    if ((price = [rawOffer objectForKey:kOfferPriceKey]) == nil)
-        return nil;
-    if (![price isKindOfClass:[NSNumber class]])
-        return nil;
-    if ((pictureURL = [rawOffer objectForKey:kOfferPictureURLKey]) == nil)
-        return nil;
-    if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
-    
-    Offer *offer = [[[Offer alloc] init] autorelease];
-    
-    [offer setOfferId:offerId];
-    [offer setCode:code];
-    [offer setName:name];
-    [offer setPrice:price];
-    [offer setPictureURL:[NSURL URLWithString:pictureURL]];
-    return offer;
-}
-@end
-
-@implementation OfferCollection
+@implementation Promotion
 
 #pragma mark -
 #pragma mark NSObject
@@ -136,39 +20,255 @@
 - (id)init
 {
     if ((self = [super init]) != nil)
-        _offers = [[NSMutableArray alloc] init];
+        _extraPictureURLs = [[NSMutableArray alloc] init];
     return self;
 }
 
 - (void)dealloc
 {
-    [_offers release];
+    [_promotionId release];
+    [_code release];
+    [_name release];
+    [_bannerURL release];
+    [_longDescription release];
+    [_legalese release];
+    [_validFrom release];
+    [_validTo release];
+    [_extraPictureURLs release];
+    [_facebookURL release];
+    [_twitterURL release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark NSObject (NSKeyValueCoding)
 
-@synthesize offers = _offers;
+@synthesize extraPictureURLs = _extraPictureURLs;
 
-- (void)insertObject:(Offer *)offer inOffersAtIndex:(NSUInteger)index
+- (void)        insertObject:(NSString *)extraPictureURL
+   inExtraPictureURLsAtIndex:(NSUInteger)index
 {
-    [_offers insertObject:offer atIndex:index];
+    [_extraPictureURLs insertObject:extraPictureURL atIndex:index];
 }
 
-- (void)insertOffers:(NSArray *)array atIndexes:(NSIndexSet *)indexes
+- (void)insertExtraPictureURLs:(NSArray *)extraPictureURLs
+                     atIndexes:(NSIndexSet *)indexes
 {
-    [_offers insertObjects:array atIndexes:indexes];
+    [_extraPictureURLs insertObjects:extraPictureURLs atIndexes:indexes];
 }
 
-- (void)removeObjectFromOffersAtIndex:(NSUInteger)index
+- (void)removeObjectFromExtraPictureURLsAtIndex:(NSUInteger)index
 {
-    [_offers removeObjectAtIndex:index];
+    [_extraPictureURLs removeObjectAtIndex:index];
 }
 
-- (void)removeOffersAtIndexes:(NSIndexSet *)indexes
+- (void)removeExtraPictureURLsAtIndexes:(NSIndexSet *)indexes
 {
-    [_offers removeObjectsAtIndexes:indexes];
+    [_extraPictureURLs removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark Promotion (Public)
+
+@synthesize promotionId = _promotionId, code = _code, name = _name,
+    bannerURL = _bannerURL, longDescription = _longDescription,
+    legalese = _legalese, validFrom = _validFrom, validTo = _validTo,
+    facebookURL = _facebookURL, twitterURL = _twitterURL;
+
++ (id)shortPromotionFromDictionary:(NSDictionary *)rawPromotion
+{
+    NSNumber *promotionId;
+    NSString *code, *name, *bannerURL;
+
+    if (![rawPromotion isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((promotionId = [rawPromotion objectForKey:kPromotionIdKey]) == nil)
+        return nil;
+    if (![promotionId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((code = [rawPromotion objectForKey:kPromotionCodeKey]) == nil)
+        return nil;
+    if (![code isKindOfClass:[NSString class]])
+        return nil;
+    if ((name = [rawPromotion objectForKey:kPromotionNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((bannerURL = [rawPromotion objectForKey:kPromotionBannerURLKey]) == nil)
+        return nil;
+    if (![bannerURL isKindOfClass:[NSString class]]) {
+        if (![bannerURL isKindOfClass:[NSNull class]])
+            return nil;
+        bannerURL = nil;
+    }
+
+    Promotion *promotion = [[[Promotion alloc] init] autorelease];
+
+    [promotion setPromotionId:promotionId];
+    [promotion setCode:code];
+    [promotion setName:name];
+    [promotion setBannerURL:[NSURL URLWithString:bannerURL]];
+    return promotion;
+}
+
++ (id)promotionFromDictionary:(NSDictionary *)rawPromotion
+{
+    NSString *description, *legalese;
+    NSString *validFrom, *validTo;
+    NSArray *extraPictureURLs;
+    NSString *facebookURL, *twitterURL;
+    Promotion *promotion =
+            [Promotion shortPromotionFromDictionary:rawPromotion];
+    NSMutableArray *mutableExtraPictureURLs =
+            [promotion mutableArrayValueForKey:kExtraPictureURLsKey];
+
+    if (promotion == nil)
+        return nil;
+
+    if ((description =
+            [rawPromotion objectForKey:kPromotionDescriptionKey]) == nil)
+        return nil;
+    if (![description isKindOfClass:[NSString class]])
+        return nil;
+    if ((legalese = [rawPromotion objectForKey:kPromotionLegaleseKey]) == nil)
+        return nil;
+    if (![legalese isKindOfClass:[NSString class]])
+        return nil;
+    if ((validFrom = [rawPromotion objectForKey:kPromotionValidFromKey]) == nil)
+        return nil;
+    if (![validFrom isKindOfClass:[NSString class]])
+        return nil;
+    if ((validTo = [rawPromotion objectForKey:kPromotionValidToKey]) == nil)
+        return nil;
+    if (![validTo isKindOfClass:[NSString class]])
+        return nil;
+    if ((extraPictureURLs =
+            [rawPromotion objectForKey:kPromotionExtraPictureURLsKey]) == nil)
+        return nil;
+    if (![extraPictureURLs isKindOfClass:[NSArray class]])
+        return nil;
+    if ((facebookURL =
+            [rawPromotion objectForKey:kPromotionFacebookURLKey]) == nil)
+        return nil;
+    if (![facebookURL isKindOfClass:[NSString class]]) {
+        if (![facebookURL isKindOfClass:[NSNull class]])
+            return nil;
+        facebookURL = nil;
+    }
+    if (![twitterURL isKindOfClass:[NSString class]]) {
+        if (![twitterURL isKindOfClass:[NSNull class]])
+            return nil;
+        twitterURL = nil;
+    }
+    [promotion setLongDescription:description];
+    [promotion setLegalese:legalese];
+    [promotion setValidFrom:validFrom];
+    [promotion setValidTo:validTo];
+    [mutableExtraPictureURLs addObjectsFromArray:extraPictureURLs];
+    [promotion setFacebookURL:[NSURL URLWithString:facebookURL]];
+    [promotion setTwitterURL:[NSURL URLWithString:twitterURL]];
+    return promotion;
+}
+
+- (void)copyPropertiesFromPromotion:(Promotion *)promotion
+{
+    NSMutableArray *mutableExtraPictureURLs =
+            [self mutableArrayValueForKey:kExtraPictureURLsKey];
+
+    [self setPromotionId:[promotion promotionId]];
+    [self setCode:[promotion code]];
+    [self setName:[promotion name]];
+    [self setBannerURL:[promotion bannerURL]];
+    [self setLongDescription:[promotion longDescription]];
+    [self setLegalese:[promotion legalese]];
+    [self setValidFrom:[promotion validFrom]];
+    [self setValidTo:[promotion validTo]];
+    [mutableExtraPictureURLs addObjectsFromArray:[promotion extraPictureURLs]];
+    [self setFacebookURL:[promotion facebookURL]];
+    [self setTwitterURL:[promotion twitterURL]];
+}
+@end
+
+@implementation PromotionCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil)
+        _promotions = [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_promotions release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize promotions = _promotions;
+
+- (void)insertObject:(Promotion *)promotion
+ inPromotionsAtIndex:(NSUInteger)index
+{
+    [_promotions insertObject:promotion atIndex:index];
+}
+
+- (void)insertPromotions:(NSArray *)promotions
+               atIndexes:(NSIndexSet *)indexes
+{
+    [_promotions insertObjects:promotions atIndexes:indexes];
+}
+
+- (void)removeObjectFromPromotionsAtIndex:(NSUInteger)index
+{
+    [_promotions removeObjectAtIndex:index];
+}
+
+- (void)removePromotionsAtIndexes:(NSIndexSet *)indexes
+{
+    [_promotions removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark PromotionCollection (Public)
+
++ (id)promotionCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    PromotionCollection *collection =
+            [[[PromotionCollection alloc] init] autorelease];
+    NSArray *promotions;
+    NSMutableArray *mutablePromotions =
+            [collection mutableArrayValueForKey:kPromotionsKey];
+
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((promotions =
+            [rawCollection objectForKey:kPromotionCollectionPromotions]) == nil)
+        return nil;
+    if (![promotions isKindOfClass:[NSArray class]])
+        return nil;
+    for (NSDictionary *rawPromotion in promotions) {
+        Promotion *promotion =
+                [Promotion shortPromotionFromDictionary:rawPromotion];
+
+        if (promotion == nil)
+            return nil;
+        [mutablePromotions addObject:promotion];
+    }
+    return collection;
+}
+
+- (void)copyPropertiesFromPromotionCollection:(PromotionCollection *)collection
+{
+    NSMutableArray *mutablePromotions =
+            [self mutableArrayValueForKey:kPromotionsKey];
+
+    [mutablePromotions addObjectsFromArray:[self promotions]];
 }
 
 #pragma mark -
@@ -177,10 +277,9 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request =
-                [TTURLRequest requestWithURL:kURLOfferListEndpoint
-                    delegate:self];
-        
+        TTURLRequest *request = [TTURLRequest
+                requestWithURL:kPromotionListEndpoint delegate:self];
+
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request setCachePolicy:cachePolicy];
         [request send];
@@ -190,35 +289,19 @@
 #pragma mark -
 #pragma mark <TTURLRequestDelegate>
 
-- (void)requestDidStartLoad:(TTURLRequest *)request
+- (void)requestDidFinishLoad:(TTURLRequest *)request
 {
-    NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
-            rootObject];
-    NSArray *rawOffers;
-    NSMutableArray *mutableOffers = [self mutableArrayValueForKey:@"offers"];
-    
-    if (![rootObject isKindOfClass:[NSDictionary class]])
-        [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-        return;
-    if ((rawOffers = [rootObject objectForKey:@"offers"]) == nil)
-        [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-        return;
-    if (![rawOffers isKindOfClass:[NSArray class]])
-        [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-        return;
-    for (NSDictionary *rawOffer in rawOffers) {
-        Offer *offer = [Offer shortOfferFromDictionary:rawOffer];
-        
-        if (offer == nil)
-            [self didFailLoadWithError:
-                    BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-            return;
-        [mutableOffers addObject:offer];
-    }
-    [super requestDidStartLoad:request];
-}
+    TTURLJSONResponse *response = [request response];
+    NSDictionary *rootObject = [response rootObject];
+    PromotionCollection *collection =
+            [PromotionCollection promotionCollectionFromDictionary:rootObject];
 
+    if (collection == nil) {
+        [self didFailLoadWithError:
+                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromPromotionCollection:collection];
+    [super requestDidFinishLoad:request];
+}
 @end

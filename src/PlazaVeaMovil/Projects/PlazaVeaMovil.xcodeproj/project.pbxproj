@@ -87,8 +87,6 @@
 		2CFD61D71415674100238AB5 /* RecipeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD61D61415674100238AB5 /* RecipeListController.m */; };
 		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
-		2FA7FB731446309800211215 /* OfferListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB721446309800211215 /* OfferListDataSource.m */; };
-		2FA7FB751446345C00211215 /* OfferListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB741446345C00211215 /* OfferListController.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
 		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
@@ -615,8 +613,6 @@
 		2CFD61D61415674100238AB5 /* RecipeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListController.m; sourceTree = "<group>"; };
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
-		2FA7FB721446309800211215 /* OfferListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListDataSource.m; sourceTree = "<group>"; };
-		2FA7FB741446345C00211215 /* OfferListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListController.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
 		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -931,8 +927,6 @@
 			children = (
 				2FA7FB761446361400211215 /* BaseOfferController.m */,
 				2FA7FB771446361400211215 /* OfferDrillDownController.m */,
-				2FA7FB741446345C00211215 /* OfferListController.m */,
-				2FA7FB721446309800211215 /* OfferListDataSource.m */,
 				2FA7FB701446204700211215 /* Models.m */,
 				2FE27E721446558F00EE4EB3 /* Constants.m */,
 			);
@@ -1591,8 +1585,6 @@
 				2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */,
 				2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */,
 				2FA7FB711446204700211215 /* Models.m in Sources */,
-				2FA7FB731446309800211215 /* OfferListDataSource.m in Sources */,
-				2FA7FB751446345C00211215 /* OfferListController.m in Sources */,
 				2FA7FB781446361400211215 /* BaseOfferController.m in Sources */,
 				2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */,
 				2FE27E731446558F00EE4EB3 /* Constants.m in Sources */,

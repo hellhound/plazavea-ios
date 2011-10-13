@@ -4,25 +4,21 @@
 #import "Common/Constants.h"
 #import "Offers/Constants.h"
 
-// Offer model's constants
-NSString *const kOfferIdKey = @"id";
-NSString *const kOfferCodeKey = @"code";
-NSString *const kOfferNameKey = @"name";
-NSString *const kOfferDescriptionKey = @"description";
-NSString *const kOfferPriceKey = @"price";
-NSString *const kOfferOldPriceKey = @"old_price";
-NSString *const kOfferDiscountKey = @"discount";
-NSString *const kOfferValidFromKey = @"valid_from";
-NSString *const kOfferValidToKey = @"valid_to";
-NSString *const kOfferPictureURLKey = @"picture";
-NSString *const kOfferExtraPictureURLsKey = @"extra_pictures";
-NSString *const kOfferFacebookURLKey = @"facebook_url";
-NSString *const kOfferTwitterURLKey = @"twitter_url";
+// Promotion model's constants
+NSString *const kPromotionIdKey = @"id";
+NSString *const kPromotionCodeKey = @"code";
+NSString *const kPromotionNameKey = @"name";
+NSString *const kPromotionBannerURLKey = @"picture";
+NSString *const kPromotionDescriptionKey = @"description";
+NSString *const kPromotionLegaleseKey = @"legalese";
+NSString *const kPromotionValidFromKey = @"valid_from";
+NSString *const kPromotionValidToKey = @"valid_to";
+NSString *const kPromotionExtraPictureURLsKey = @"extra_pictures";
+NSString *const kPromotionFacebookURLKey = @"facebook_url";
+NSString *const kPromotionTwitterURLKey = @"twitter_url";
 
-// Offer collection model's constants
-NSString *const kOfferCollectionPictureURLKey = @"picture";
-NSString *const kOfferCollectionStartKey = @"start";
-NSString *const kOfferCollectionEndKey = @"end";
+// Promition collection model's constants
+NSString *const kPromotionCollectionPromotions = @"promotions";
 
 //UISegmentedControl's item for the toolbar: promo button
 NSString *const kOfferPromoButton = @"Promociones";
@@ -32,11 +28,8 @@ NSString *const kOfferOfferButton = @"Ofertas";
 //NSLocalizedString(@"Ofertas", nil)
 
 //Controllers' URL
-NSString *const kURLOfferList = @"tt://launcher/offers/offers";
 
 //Controllers' URL calls
-NSString *const kURLOfferListCall = @"tt://launcher/offers/offers";
 
 // Endpoint URLs
-
-NSString *const kURLOfferListEndpoint = ENDPOINT(@"/offers/listing.json");
+NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");
