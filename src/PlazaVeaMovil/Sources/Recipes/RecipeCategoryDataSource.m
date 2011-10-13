@@ -3,6 +3,9 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Views/TableImageSubtitleItem.h"
+#import "Common/Views/TableImageSubtitleItemCell.h"
+#import "Common/Views/OnlyImageItemCell.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeCategoryDataSource.h"
@@ -80,5 +83,18 @@
         [self setModel:[[[RecipeCategoryCollection alloc]
                 initWithCategoryId:categoryId] autorelease]];
     return self;
+}
+
+#pragma mark -
+#pragma mark <TTTableViewDataSource>
+
+- (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
+{
+    if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
+        return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
+        return [OnlyImageItemCell class];
+    }
+    return [super tableView:tableView cellClassForObject:object];
 }
 @end

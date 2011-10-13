@@ -31,6 +31,7 @@
 {
     if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
         [self setTableViewStyle:UITableViewStylePlain];
+        [self setVariableHeightRows:YES];
     return self;
 }
 

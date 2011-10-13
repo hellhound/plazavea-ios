@@ -6,6 +6,7 @@
 #import "Common/Constants.h"
 #import "Common/Additions/NSURL+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Common/Views/TableImageSubtitleItem.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/Constants.h"
@@ -1017,9 +1018,9 @@ static NSString *const kMutableTipsKey = @"tips";
                 pictureURL = IMAGE_URL(pictureURL, kRecipeListImageWidth,
                         kRecipeListImageHeigth);
 
-            TTTableImageItem *item = 
-                    [TTTableImageItem itemWithText:[recipe name]
-                        imageURL:[pictureURL absoluteString]
+            TableImageSubtitleItem *item = 
+                    [TableImageSubtitleItem itemWithText:[recipe name]
+                        subtitle:nil imageURL:[pictureURL absoluteString]
                         defaultImage:TTIMAGE(kRecipeListDefaultImage)
                         URL:controllerURL];
 
