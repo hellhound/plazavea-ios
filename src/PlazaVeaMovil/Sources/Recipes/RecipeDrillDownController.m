@@ -29,9 +29,10 @@
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
-    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
+    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil){
         [self setTableViewStyle:UITableViewStylePlain];
         [self setVariableHeightRows:YES];
+    }
     return self;
 }
 

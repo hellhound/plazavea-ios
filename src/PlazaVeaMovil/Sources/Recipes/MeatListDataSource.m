@@ -5,7 +5,6 @@
 
 #import "Common/Constants.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
-#import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"

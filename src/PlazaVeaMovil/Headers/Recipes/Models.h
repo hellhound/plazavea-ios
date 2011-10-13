@@ -76,8 +76,6 @@
     NSMutableArray *_features;
     NSMutableArray *_tips;
     NSNumber *_rations;
-    NSURL *_facebookURL;
-    NSURL *_twitterURL;
 }
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, copy) NSString *code;
@@ -90,8 +88,6 @@
 @property (nonatomic, readonly) NSArray *features;
 @property (nonatomic, readonly) NSArray *tips;
 @property (nonatomic, retain) NSNumber *rations;
-@property (nonatomic, retain) NSURL *facebookURL;
-@property (nonatomic, retain) NSURL *twitterURL;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe;
 + (id)recipeFromDictionary:(NSDictionary *)rawRecipe;
