@@ -85,6 +85,12 @@
 		2CF302C013F33BE500D9A95F /* NSManagedObjectContext+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */; };
 		2CFD61D71415674100238AB5 /* RecipeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD61D61415674100238AB5 /* RecipeListController.m */; };
 		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
+		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
+		2FA7FB731446309800211215 /* OfferListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB721446309800211215 /* OfferListDataSource.m */; };
+		2FA7FB751446345C00211215 /* OfferListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB741446345C00211215 /* OfferListController.m */; };
+		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
+		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
+		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
 		2FE363F71443DE38003B233E /* MeatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F61443DE38003B233E /* MeatListController.m */; };
 		3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3201088596B4756681693704 /* libThree20UICommon.a */; };
@@ -600,6 +606,12 @@
 		2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Additions.m"; sourceTree = "<group>"; };
 		2CFD61D61415674100238AB5 /* RecipeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListController.m; sourceTree = "<group>"; };
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
+		2FA7FB721446309800211215 /* OfferListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListDataSource.m; sourceTree = "<group>"; };
+		2FA7FB741446345C00211215 /* OfferListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListController.m; sourceTree = "<group>"; };
+		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
+		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
+		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
 		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../../Three20/src/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -726,6 +738,7 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2FA7FB6F1446204700211215 /* Offers */,
 				2CAF05CB1403FC8B003C2A2C /* Recipes */,
 				2C864B1E13E729BF00D46066 /* ShoppingList */,
 				2CC1E40C1402BA7200A8DC62 /* Launcher */,
@@ -890,6 +903,19 @@
 				2CE7045C13DE6B4500BB2279 /* main.m */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		2FA7FB6F1446204700211215 /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				2FA7FB761446361400211215 /* BaseOfferController.m */,
+				2FA7FB771446361400211215 /* OfferDrillDownController.m */,
+				2FA7FB741446345C00211215 /* OfferListController.m */,
+				2FA7FB721446309800211215 /* OfferListDataSource.m */,
+				2FA7FB701446204700211215 /* Models.m */,
+				2FE27E721446558F00EE4EB3 /* Constants.m */,
+			);
+			path = Offers;
 			sourceTree = "<group>";
 		};
 		3201088596B4756681693703 /* Products */ = {
@@ -1539,6 +1565,12 @@
 				2FE363F71443DE38003B233E /* MeatListController.m in Sources */,
 				2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */,
 				2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */,
+				2FA7FB711446204700211215 /* Models.m in Sources */,
+				2FA7FB731446309800211215 /* OfferListDataSource.m in Sources */,
+				2FA7FB751446345C00211215 /* OfferListController.m in Sources */,
+				2FA7FB781446361400211215 /* BaseOfferController.m in Sources */,
+				2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */,
+				2FE27E731446558F00EE4EB3 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
