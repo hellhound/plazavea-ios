@@ -6,8 +6,6 @@
 #import "Common/Constants.h"
 #import "Offers/Models.h"
 
-static NSString *const kURLOfferEndPoint = @"";
-
 @implementation Banner
 
 #pragma mark -
@@ -33,15 +31,16 @@ static NSString *const kURLOfferEndPoint = @"";
     
     if (![rawBanner isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((pictureURL = [rawBanner objectForKey:@"picture"]) == nil)
+    if ((pictureURL =
+            [rawBanner objectForKey:kOfferCollectionPictureURLKey]) == nil)
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]])
         return nil;
-    if ((start = [rawBanner objectForKey:@"start"]) == nil)
+    if ((start = [rawBanner objectForKey:kOfferCollectionStartKey]) == nil)
         return nil;
     if (![start isKindOfClass:[NSDate class]])
         return nil;
-    if ((end = [rawBanner objectForKey:@"end"]) == nil)
+    if ((end = [rawBanner objectForKey:kOfferCollectionEndKey]) == nil)
         return nil;
     if (![end isKindOfClass:[NSDate class]])
         return nil;
@@ -65,7 +64,7 @@ static NSString *const kURLOfferEndPoint = @"";
     [_offerId release];
     [_code release];
     [_name release];
-    [_description release];
+    [_longDescription release];
     [_price release];
     [_oldPrice release];
     [_discount release];
@@ -82,10 +81,11 @@ static NSString *const kURLOfferEndPoint = @"";
 #pragma mark Offer (Public)
 
 @synthesize offerId = _offerId, code = _code, name = _name,
-        description = _description, price = _price, oldPrice = _oldPrice,
-            discount = _discount, validFrom = _validFrom, validTo = _validTo,
-            pictureURL = _pictureURL, extraPictureURLs = _extraPicturesURLs,
-            facebookURL = _facebookURL, twitterURL = _twitterURL;
+        longDescription = _longDescription, price = _price,
+            oldPrice = _oldPrice, discount = _discount, validFrom = _validFrom,
+            validTo = _validTo, pictureURL = _pictureURL,
+            extraPictureURLs = _extraPicturesURLs, facebookURL = _facebookURL,
+            twitterURL = _twitterURL;
             
 
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer
@@ -96,25 +96,25 @@ static NSString *const kURLOfferEndPoint = @"";
     
     if (![rawOffer isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((offerId = [rawOffer objectForKey:@"id"]) == nil)
+    if ((offerId = [rawOffer objectForKey:kOfferIdKey]) == nil)
         return nil;
     if (![offerId isKindOfClass:[NSNumber class]])
         return nil;
-    if ((code = [rawOffer objectForKey:@"code"]) == nil)
+    if ((code = [rawOffer objectForKey:kOfferCodeKey]) == nil)
         return nil;
     if (![code isKindOfClass:[NSString class]])
         return nil;
-    if ((name = [rawOffer objectForKey:@"name"]) == nil)
+    if ((name = [rawOffer objectForKey:kOfferNameKey]) == nil)
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
-    if ((price = [rawOffer objectForKey:@"price"]) == nil)
+    if ((price = [rawOffer objectForKey:kOfferPriceKey]) == nil)
         return nil;
     if (![price isKindOfClass:[NSNumber class]])
         return nil;
-    if ((pictureURL = [rawOffer objectForKey:@"picture"]) == nil)
+    if ((pictureURL = [rawOffer objectForKey:kOfferPictureURLKey]) == nil)
         return nil;
-    if (![pictureURL isKindOfClass:[NSURL class]])
+    if (![pictureURL isKindOfClass:[NSString class]])
         return nil;
     
     Offer *offer = [[[Offer alloc] init] autorelease];
@@ -123,7 +123,7 @@ static NSString *const kURLOfferEndPoint = @"";
     [offer setCode:code];
     [offer setName:name];
     [offer setPrice:price];
-    [offer setPictureURL:pictureURL];
+    [offer setPictureURL:[NSURL URLWithString:pictureURL]];
     return offer;
 }
 @end
@@ -177,8 +177,9 @@ static NSString *const kURLOfferEndPoint = @"";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request = [TTURLRequest requestWithURL:kURLOfferEndPoint
-                delegate:self];
+        TTURLRequest *request =
+                [TTURLRequest requestWithURL:kURLOfferListEndpoint
+                    delegate:self];
         
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request setCachePolicy:cachePolicy];

@@ -20,7 +20,7 @@
     NSNumber *_offerId;
     NSString *_code;
     NSString *_name;
-    NSString *_description;
+    NSString *_longDescription;
     NSNumber *_price;
     NSNumber *_oldPrice;
     NSString *_discount;
@@ -34,14 +34,14 @@
 @property (nonatomic, retain) NSNumber *offerId;
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *longDescription;
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSNumber *oldPrice;
 @property (nonatomic, copy) NSString *discount;
 @property (nonatomic, retain) NSDate *validFrom;
 @property (nonatomic, retain) NSDate *validTo;
 @property (nonatomic, retain) NSURL *pictureURL;
-@property (nonatomic, readonly) NSMutableArray *extraPictureURLs;
+@property (nonatomic, readonly) NSArray *extraPictureURLs;
 @property (nonatomic, retain) NSURL *facebookURL;
 @property (nonatomic, retain) NSURL *twitterURL;
 
