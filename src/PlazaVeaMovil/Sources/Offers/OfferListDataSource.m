@@ -58,8 +58,6 @@
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     NSArray *offers = [(OfferCollection *)[self model] offers];
-    NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
-            pictureURL];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
     
     for (Offer *offer in offers) {
