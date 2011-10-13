@@ -14,6 +14,8 @@
 #import "Recipes/RecipeCategoryController.h"
 #import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
+#import "Offers/Constants.h"
+#import "Offers/PromotionListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -66,6 +68,10 @@
     [map from:kURLRecipeDetail toViewController:[RecipeDetailController class]];
     [map from:kURLRecipeMeatsDetail
             toViewController:[RecipeDetailController class]];
+    // Offers
+    [map from:kURLPromotionList
+            toModalViewController:[PromotionListController class]
+            transition:UIModalTransitionStyleFlipHorizontal];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

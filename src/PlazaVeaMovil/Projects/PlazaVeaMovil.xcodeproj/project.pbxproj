@@ -77,6 +77,7 @@
 		2CDCBD0B13EA585100E4E310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CDCBD0913EA585100E4E310 /* Localizable.strings */; };
 		2CDD810A13FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */; };
 		2CDE36C514031D80001B132F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDE36C414031D80001B132F /* SystemConfiguration.framework */; };
+		2CE107E51447992000F22C81 /* offers.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE107E41447992000F22C81 /* offers.png */; };
 		2CE52FBC13EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */; };
 		2CE52FBD13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */; };
 		2CE52FBE13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */; };
@@ -606,6 +607,7 @@
 		2CDCBD0A13EA585100E4E310 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		2CDD810913FCB674007A06A4 /* UIActionSheet+ShoppingListMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+ShoppingListMenu.m"; sourceTree = "<group>"; };
 		2CDE36C414031D80001B132F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CE107E41447992000F22C81 /* offers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offers.png; sourceTree = "<group>"; };
 		2CE52FB813EBC19A00A5D7FE /* EditableTableViewController+NSFetchedResultsControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+NSFetchedResultsControllerDelegate.m"; sourceTree = "<group>"; };
 		2CE52FB913EBC19A00A5D7FE /* EditableTableViewController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDataSource.m"; sourceTree = "<group>"; };
 		2CE52FBA13EBC19A00A5D7FE /* EditableTableViewController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditableTableViewController+UITableViewDelegate.m"; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CE107E41447992000F22C81 /* offers.png */,
 				CCE455B314468992000CED89 /* Icon-Small.png */,
 				CCE455B414468992000CED89 /* Icon.png */,
 				2C556B4D1446695E00B27C3B /* default-list.png */,
@@ -1518,6 +1521,7 @@
 				CCE4548914468381000CED89 /* Default.png in Resources */,
 				CCE455B514468992000CED89 /* Icon-Small.png in Resources */,
 				CCE455B614468992000CED89 /* Icon.png in Resources */,
+				2CE107E51447992000F22C81 /* offers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
