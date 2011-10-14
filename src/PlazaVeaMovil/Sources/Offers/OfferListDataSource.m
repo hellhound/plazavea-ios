@@ -64,7 +64,7 @@
     TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
         [bannerImageURL absoluteString] defaultImage:
             TTIMAGE(kBannerDefaultImage) URL:nil];
-    
+
     [items addObject:banner];
     for (Offer *offer in offers) {
         TableImageSubtitleItem *item = [TableImageSubtitleItem
