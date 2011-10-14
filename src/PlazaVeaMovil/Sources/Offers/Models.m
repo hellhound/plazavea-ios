@@ -233,6 +233,17 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     return offer;
 }
 
+- (id)initWithOfferId:(NSString *)offerId
+{
+    NSInteger offerIntegerId = [offerId integerValue];
+    if (offerIntegerId < 0) {
+        return nil;
+    }
+    if ((self = [super init]) != nil)
+        [self setOfferId:[NSNumber numberWithInteger:offerIntegerId]];
+    return self;
+}
+
 - (void)copyPropertiesFromOffer:(Offer *)offer
 {
     [self setOfferId:[offer offerId]];

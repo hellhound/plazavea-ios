@@ -2,7 +2,7 @@
 
 #import "Common/Models/URLRequestModel.h"
 
-@interface Banner: URLRequestModel
+@interface Banner: NSObject
 {
     NSURL *_pictureURL;
     NSDate *_start;
@@ -47,6 +47,8 @@
 
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer;
 + (id)offerFromDictionary:(NSDictionary *)rawOffer;
+
+- (id)initWithOfferId:(NSString *)offerId;
 
 - (void)copyPropertiesFromOffer:(Offer *)offer;
 @end

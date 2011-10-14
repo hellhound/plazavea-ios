@@ -64,6 +64,18 @@ extern NSString *const kOfferListSubtitleForError;
 extern NSString *const kOfferListDefaultImage;
 extern NSString *const kOfferListPriceTag;
 
+extern NSString *const kOfferDetailDefaultImage;
+extern const CGFloat kOfferDetailImageWidth;
+extern const CGFloat kOfferDetailImageHeight;
+
+// OfferDetailDataSource's constants
+
+// Messages
+extern NSString *const kOfferDetailTitleForLoading;
+extern NSString *const kOfferDetailTitleForEmpty;
+extern NSString *const kOfferDetailSubtitleForEmpty;
+extern NSString *const kOfferDetailTitleForError;
+
 // PromotionListDataSource's constants
 
 // Messages
@@ -104,10 +116,12 @@ extern NSString *const kPromotionListTitle;
 //Controllers' URL
 extern NSString *const kURLOfferList;
 extern NSString *const kURLPromotionList;
+extern NSString *const kURLOfferDetail;
 
 //Controllers' URL calls
 extern NSString *const kURLOfferListCall;
 extern NSString *const kURLPromotionListCall;
+extern NSString *const kURLOfferDetailCall;
 
 // Endpoint URLs
 extern NSString *const kURLOfferListEndpoint;

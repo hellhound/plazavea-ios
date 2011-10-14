@@ -52,9 +52,6 @@
     return LOCALIZED_HTTP_REQUEST_ERROR(error);
 }
 
-#pragma mark -
-#pragma mark TTTableViewDataSource
-
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     NSArray *offers = [(OfferCollection *)[self model] offers];
@@ -85,14 +82,12 @@
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:offerText subtitle:nil
                     imageURL:[pictureURL absoluteString]
-                    defaultImage:TTIMAGE(kOfferListDefaultImage) URL:nil];
+                    defaultImage:TTIMAGE(kOfferListDefaultImage)
+                    URL:URL(kURLOfferDetailCall, [offer offerId])];
         [items addObject:item];
     }
     [self setItems:items];
 }
-
-#pragma mark -
-#pragma mark <TTTableViewDataSource>
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {

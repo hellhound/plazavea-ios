@@ -95,6 +95,9 @@
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
 		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
+		2FADB6FE1448DAC400C9AB88 /* OfferDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */; };
+		2FADB7001448EBEA00C9AB88 /* default-offer-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */; };
+		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
 		2FE363F71443DE38003B233E /* MeatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F61443DE38003B233E /* MeatListController.m */; };
@@ -628,6 +631,9 @@
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
 		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
+		2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailDataSource.m; sourceTree = "<group>"; };
+		2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-offer-detail.png"; sourceTree = "<group>"; };
+		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
@@ -742,6 +748,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */,
 				2CE107E41447992000F22C81 /* offers.png */,
 				2FECB2281447761600797365 /* default-banner.png */,
 				CCE455B314468992000CED89 /* Icon-Small.png */,
@@ -941,6 +948,8 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2FADB7011448F10F00C9AB88 /* OfferDetailController.m */,
+				2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */,
 				2C3A326814479572007F1076 /* PromotionListController.m */,
 				2C858E31144784020020A302 /* PromotionListDataSource.m */,
 				2C0E85F71447B108006A7E02 /* OfferListController.m */,
@@ -1532,6 +1541,7 @@
 				CCE455B614468992000CED89 /* Icon.png in Resources */,
 				2CE107E51447992000F22C81 /* offers.png in Resources */,
 				2FECB2291447761600797365 /* default-banner.png in Resources */,
+				2FADB7001448EBEA00C9AB88 /* default-offer-detail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1619,6 +1629,8 @@
 				2C3A326914479572007F1076 /* PromotionListController.m in Sources */,
 				2C0E85F91447B108006A7E02 /* OfferListController.m in Sources */,
 				2C0E85FA1447B108006A7E02 /* OfferListDataSource.m in Sources */,
+				2FADB6FE1448DAC400C9AB88 /* OfferDetailDataSource.m in Sources */,
+				2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
