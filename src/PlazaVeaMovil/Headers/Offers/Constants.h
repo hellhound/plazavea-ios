@@ -76,8 +76,8 @@ extern NSString *const kPromotionListSubtitleForError;
 // OfferDrillDownController's constants
 
 typedef enum {
-    kOfferSegmentedControlIndexPromotionButton,
     kOfferSegmentedControlIndexOfferButton,
+    kOfferSegmentedControlIndexPromotionButton,
     kOfferSegmentedControlIndexDefault =
         kOfferSegmentedControlIndexOfferButton
 }OfferSegmentedControlIndexTypes;
