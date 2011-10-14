@@ -6,4 +6,9 @@
 #import "Offers/BasePromotionController.h"
 
 @interface PromotionListController: BasePromotionController
+{
+    UIBarButtonItem *_backButton;
+}
+
+- (void)popToNavigationWindow;
 @end

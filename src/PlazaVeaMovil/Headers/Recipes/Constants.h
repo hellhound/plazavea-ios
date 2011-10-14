@@ -46,6 +46,7 @@ extern NSString *const kIngredientQuantityKey;
 extern NSString *const kIngredientNameKey;
 extern NSString *const kIngredientCommentKey;
 
+
 // MeatListDataSource's constants
 
 extern NSString *const kMeatsListTitleForLoading;

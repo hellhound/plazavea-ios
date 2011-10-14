@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <UIKIt/UIKit.h>
+#import <UIKit/UIKit.h>
 
 #import <Three20/Three20.h>
 
