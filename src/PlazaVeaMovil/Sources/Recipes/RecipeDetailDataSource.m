@@ -6,7 +6,6 @@
 #import "Common/Constants.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
-#import "Common/Views/OnlyImageItemCell.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
@@ -95,7 +94,6 @@
     [items addObject:[NSArray arrayWithObject:
             [TTTableTextItem itemWithText:recipeName]]];
     
-    //TODO: insert title and photo in header view
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0){
@@ -159,8 +157,6 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
-    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
-        return [OnlyImageItemCell class];
     }
     return [super tableView:tableView cellClassForObject:object];
 }

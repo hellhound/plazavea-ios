@@ -5,7 +5,6 @@
 
 #import "Common/Constants.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
-#import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
@@ -72,8 +71,6 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
-    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
-        return [OnlyImageItemCell class];
     }
     return [super tableView:tableView cellClassForObject:object];
 }

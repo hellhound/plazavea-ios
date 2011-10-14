@@ -39,8 +39,6 @@ NSString *const kRecipeProceduresKey = @"preparation";
 NSString *const kRecipeFeaturesKey = @"features";
 NSString *const kRecipeTipsKey = @"tips";
 NSString *const kRecipeRationsKey = @"rations";
-NSString *const kRecipeFacebookURLKey = @"facebook_url";
-NSString *const kRecipeTwitterURLKey = @"twitter_url";
 
 // Ingredient model's constants
 
