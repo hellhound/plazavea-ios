@@ -35,8 +35,6 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 + (id)bannerFromDictionary:(NSDictionary *)rawBanner
 {
     NSString *pictureURL;
-    //NSDate *start, *end;
-    
     if (![rawBanner isKindOfClass:[NSDictionary class]])
         return nil;
     if ((pictureURL =
@@ -47,20 +45,10 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             return nil;
         pictureURL = nil;
     }
-    /*if ((start = [rawBanner objectForKey:kBannerStartKey]) == nil)
-        return nil;
-    if (![start isKindOfClass:[NSDate class]])
-        return nil;
-    if ((end = [rawBanner objectForKey:kBannerEndKey]) == nil)
-        return nil;
-    if (![end isKindOfClass:[NSDate class]])
-        return nil;*/
     
     Banner *banner = [[[Banner alloc] init] autorelease];
     
     [banner setPictureURL:[NSURL URLWithString:pictureURL]];
-    //[banner setStart:start];
-    //[banner setEnd:end];
     return banner;
 }
 @end
@@ -142,6 +130,59 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [offer setPictureURL:[NSURL URLWithString:pictureURL]];
     return offer;
 }
+
++ (id)offerFromDictionary:(NSDictionary *)rawOffer
+{
+    Offer *offer = [self shortOfferFromDictionary:rawOffer];
+
+    if (offer == nil) {
+        return nil;
+    }
+
+    NSString *longDescription, *discount, *validFrom, *validTo;
+    NSNumber *oldPrice;
+    NSMutableArray *extraPicturesURLs;
+    NSURL *facebookURL;
+    NSURL *twitterURL;
+
+    if ((longDescription = 
+            [rawOffer objectForKey:kOfferDescriptionKey]) == nil)
+        return nil;
+    if (![longDescription isKindOfClass:[NSString class]])
+        return nil;
+    if ((discount = [rawOffer objectForKey:kOfferDiscountKey]) == nil)
+        return nil;
+    if (![discount isKindOfClass:[NSString class]]){
+        if (![discount isKindOfClass:[NSNull class]])
+            return nil;
+        discount=nil;
+    }
+    if ((validFrom = [rawOffer objectForKey:kOfferValidFromKey]) == nil)
+        return nil;
+    if (![validFrom isKindOfClass:[NSString class]])
+        return nil;
+    if ((validTo = [rawOffer objectForKey:kOfferValidToKey]) == nil)
+        return nil;
+    if (![validTo isKindOfClass:[NSString class]])
+        return nil;
+    if ((oldPrice = [rawOffer objectForKey:kOfferOldPriceKey]) == nil)
+        return nil;
+    if (![oldPrice isKindOfClass:[NSNumber class]]){
+        if (![oldPrice isKindOfClass:[NSNull class]])
+            return nil;
+        oldPrice=nil;
+    }
+    if ((facebookURL = [NSURL URLWithString:
+            [rawOffer objectForKey:kOfferFacebookURLKey]]) == nil)
+        facebookURL = nil;
+    if ((twitterURL = [NSURL URLWithString:
+            [rawOffer objectForKey:kOfferTwitterURLKey]]) == nil)
+        twitterURL = nil;
+    if ((extraPicturesURLs =
+            [rawRecipe objectForKey:kRecipeExtraPictureURLsKey]) == nil)
+        return nil;
+}
+
 @end
 
 @implementation OfferCollection

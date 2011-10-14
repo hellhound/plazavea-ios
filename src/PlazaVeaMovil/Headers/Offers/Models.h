@@ -46,6 +46,10 @@
 @property (nonatomic, retain) NSURL *twitterURL;
 
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer;
++ (id)offerFromDictionary:(NSDictionary *)rawOffer;
+
+- (id)initWithOfferId(NSString *)offerId;
+- (void)copyPropertiesFromOffer:(Promotion *)offer;
 @end
 
 @interface OfferCollection : URLRequestModel
