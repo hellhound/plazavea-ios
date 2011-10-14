@@ -59,7 +59,13 @@
 {
     NSArray *offers = [(OfferCollection *)[self model] offers];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
+    NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
+                             pictureURL];
+    TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
+        [bannerImageURL absoluteString] defaultImage:
+            TTIMAGE(kBannerDefaultImage) URL:nil];
     
+    [items addObject:banner];
     for (Offer *offer in offers) {
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:[offer name] subtitle:nil
@@ -75,8 +81,11 @@
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {
-    if ([object isKindOfClass:[TableImageSubtitleItem class]])
+    if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
+        return [OnlyImageItemCell class];
+    }
     return [super tableView:tableView cellClassForObject:object];
 }
 @end
