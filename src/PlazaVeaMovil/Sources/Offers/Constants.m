@@ -70,6 +70,8 @@ NSString *const kOfferListTitleForError = @"Error";
 NSString *const kOfferListSubtitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
 NSString *const kOfferListDefaultImage = @"bundle://default-list.png";
+NSString *const kOfferListPriceTag = @" a S/.";
+//NSLocalizedString(@" a S/.", nil)
 
 // PromotionListDataSource's constants
 
