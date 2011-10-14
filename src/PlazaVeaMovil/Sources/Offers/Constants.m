@@ -105,7 +105,7 @@ NSString *const kPromotionListTitle = @"Promociones";
 
 NSString *const kOfferListTitle = @"Ofertas";
 // NSLocalizedString(@"Ofertas", nil)
-NSString *const kBannerDefaultImage = @"tt://bundle/default-banner.png";
+NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 100.;
 
