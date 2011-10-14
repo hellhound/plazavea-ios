@@ -15,6 +15,7 @@
 #import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
 #import "Offers/Constants.h"
+#import "Offers/OfferListController.h"
 #import "Offers/PromotionListController.h"
 #import "Application/AppDelegate.h"
 
@@ -69,6 +70,7 @@
     [map from:kURLRecipeMeatsDetail
             toViewController:[RecipeDetailController class]];
     // Offers
+    [map from:kURLOfferList toViewController:[OfferListController class]];
     [map from:kURLPromotionList
             toModalViewController:[PromotionListController class]
             transition:UIModalTransitionStyleFlipHorizontal];

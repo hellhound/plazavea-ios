@@ -59,6 +59,8 @@
 #define MESSAGE_FOR_ERROR_CODES [NSDictionary dictionaryWithObjectsAndKeys: \
         INTERNET_ERROR, \
         N(22), \
+        INTERNET_ERROR, \
+        N(-1001), \
         SEVERE_ERROR, \
         N(400), \
         SEVERE_ERROR, \
