@@ -124,3 +124,5 @@ NSString *const kURLPromotionListCall = @"tt://launcher/offers/";
 // Endpoint URLs
 NSString *const kURLOfferListEndpoint = ENDPOINT(@"/offers/listing.json");
 NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");
+NSString *const kURLOfferDetailEndpoint = ENDPOINT(@"/offers/%@/details.json");
+

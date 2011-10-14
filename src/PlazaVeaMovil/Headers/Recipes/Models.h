@@ -3,7 +3,7 @@
 #import "Common/Models/URLRequestModel.h"
 #import "ShoppingList/Models.h"
 
-@interface Meat : NSObject
+@interface Meat: NSObject
 {
     NSNumber *_meatId;
     NSString *_name;

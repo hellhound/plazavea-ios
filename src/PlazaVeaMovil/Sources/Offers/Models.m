@@ -89,14 +89,40 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 }
 
 #pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize extraPictureURLs = _extraPicturesURLs;
+
+- (void)        insertObject:(NSURL *)extraURL 
+   inExtraPictureURLsAtIndex:(NSUInteger)index
+{
+    [_extraPicturesURLs insertObject:extraURL atIndex:index];
+}
+
+- (void)insertExtraPictureURLs:(NSArray *)extraURLs
+                     atIndexes:(NSIndexSet *)indexes
+{
+    [_extraPicturesURLs removeObjectsAtIndexes:indexes];
+}
+
+- (void)removeObjectFromExtraPictureURLsAtIndex:(NSUInteger)index
+{
+    [_extraPicturesURLs removeObjectAtIndex:index];
+}
+
+- (void)removeExtraPictureURLsAtIndexes:(NSIndexSet *)indexes
+{
+    [_extraPicturesURLs removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
 #pragma mark Offer (Public)
 
 @synthesize offerId = _offerId, code = _code, name = _name,
         longDescription = _longDescription, price = _price,
             oldPrice = _oldPrice, discount = _discount, validFrom = _validFrom,
             validTo = _validTo, pictureURL = _pictureURL,
-            extraPictureURLs = _extraPicturesURLs, facebookURL = _facebookURL,
-            twitterURL = _twitterURL;
+            facebookURL = _facebookURL, twitterURL = _twitterURL;
             
 
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer
@@ -141,6 +167,122 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [offer setPrice:price];
     [offer setPictureURL:[NSURL URLWithString:pictureURL]];
     return offer;
+}
+
++ (id)offerFromDictionary:(NSDictionary *)rawOffer
+{
+    Offer *offer = [self shortOfferFromDictionary:rawOffer];
+    
+    if (offer == nil)
+        return nil;
+    
+    NSString *longDescription, *discount, *facebookURL, *twitterURL;
+    NSNumber *oldPrice;
+    NSArray *extraPictureURLs;
+    NSMutableArray *mutableExtraPictureURLs =
+            [offer mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+    
+    if ((longDescription = [rawOffer objectForKey:kOfferDescriptionKey]) == nil)
+        return nil;
+    if (![longDescription isKindOfClass:[NSString class]])
+        return nil;
+    if ((oldPrice = [rawOffer objectForKey:kOfferOldPriceKey]) == nil)
+        return  nil;
+    if (![oldPrice isKindOfClass:[NSNumber class]]) {
+        if (![oldPrice isKindOfClass:[NSNull class]])
+            return nil;
+        oldPrice = nil;
+    }
+    if ((discount = [rawOffer objectForKey:kOfferDiscountKey]) == nil)
+        return nil;
+    if (![discount isKindOfClass:[NSString class]]) {
+        if (![discount isKindOfClass:[NSString class]])
+            return nil;
+        discount = nil;
+    }
+    if ((extraPictureURLs =
+            [rawOffer objectForKey:kOfferExtraPictureURLsKey]) == nil)
+        return nil;
+    if (![extraPictureURLs isKindOfClass:[NSArray class]])
+        return nil;
+    if ((facebookURL = [rawOffer objectForKey:kOfferFacebookURLKey]) == nil)
+        return nil;
+    if (![facebookURL isKindOfClass:[NSString class]]) {
+        if (![facebookURL isKindOfClass:[NSNull class]])
+            return nil;
+        facebookURL = nil;
+    }
+    if ((twitterURL = [rawOffer objectForKey:kOfferTwitterURLKey]) == nil)
+        return nil;
+    if (![twitterURL isKindOfClass:[NSString class]]) {
+        if (![twitterURL isKindOfClass:[NSNull class]])
+            return nil;
+        twitterURL = nil;
+    }
+    [offer setLongDescription:longDescription];
+    [offer setOldPrice:oldPrice];
+    [offer setDiscount:discount];
+    [offer setFacebookURL:[NSURL URLWithString:facebookURL]];
+    [offer setTwitterURL:[NSURL URLWithString:twitterURL]];
+    for (NSString *extraPictureURL in extraPictureURLs) {
+        if (![extraPictureURL isKindOfClass:[NSString class]])
+            return nil;
+        [mutableExtraPictureURLs addObject:
+                [NSURL URLWithString:extraPictureURL]];
+    }
+    return offer;
+}
+
+- (void)copyPropertiesFromOffer:(Offer *)offer
+{
+    [self setOfferId:[offer offerId]];
+    [self setCode:[[offer code] copy]];
+    [self setName:[[offer name] copy]];
+    [self setLongDescription:[[offer longDescription] copy]];
+    [self setPrice:[offer price]];
+    [self setOldPrice:[offer oldPrice]];
+    [self setDiscount:[[offer discount] copy]];
+    [self setPictureURL:[offer pictureURL]];
+    [self setFacebookURL:[offer facebookURL]];
+    [self setTwitterURL:[offer twitterURL]];
+    
+    NSMutableArray *extraPictureURLs =
+            [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+    
+    for (NSURL *extraPictureURL in [offer extraPictureURLs])
+        [extraPictureURLs addObject:extraPictureURL];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kURLOfferDetailEndpoint, _offerId) delegate:self];
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    Offer *offer = [Offer offerFromDictionary:rootObject];
+    
+    if (offer == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromOffer:offer];
+    [super requestDidFinishLoad:request];
 }
 @end
 

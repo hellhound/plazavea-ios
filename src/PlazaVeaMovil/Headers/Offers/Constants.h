@@ -112,3 +112,4 @@ extern NSString *const kURLPromotionListCall;
 // Endpoint URLs
 extern NSString *const kURLOfferListEndpoint;
 extern NSString *const kPromotionListEndpoint;
+extern NSString *const kURLOfferDetailEndpoint;
