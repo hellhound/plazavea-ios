@@ -29,8 +29,10 @@
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
-    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
+    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil) {
         [self setTableViewStyle:UITableViewStylePlain];
+        [self setVariableHeightRows:YES];
+    }
     return self;
 }
 
@@ -39,8 +41,10 @@
     UINavigationItem *navItem = [super navigationItem];
     
     if ([self toolbarItems] == nil) {
+        // Conf the segmented item
         UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
                 initWithCustomView:[self segControl]] autorelease];
+        // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil action:NULL] autorelease];
@@ -61,23 +65,29 @@
 {
     if (_segControl != nil)
         return _segControl;
+    // Conf the segmented control
     [_segControl autorelease];
     _segControl = [[UISegmentedControl alloc] initWithItems:
-            [NSArray arrayWithObjects:kOfferPromoButton,
-                kOfferOfferButton, nil]];
+                [NSArray arrayWithObjects:kOfferButtonLabel,
+                    kOfferPromotionButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kOfferSegmentedControlIndexDefault];
     [_segControl addTarget:self action:@selector(switchControllers:)
-          forControlEvents:UIControlEventValueChanged];
+            forControlEvents:UIControlEventValueChanged];
     return _segControl;
 }
 
 - (void)switchControllers:(UISegmentedControl *)segControl
 {
     switch ([segControl selectedSegmentIndex]) {
-        case kOfferSegmentedControlIndexPromoButton:
+        case kOfferSegmentedControlIndexPromotionButton:
+            [[TTNavigator navigator] openURLAction:
+                    [[TTURLAction actionWithURLPath:
+                        kURLPromotionListCall] applyAnimated:YES]];
+            [self setSegmentIndex:kOfferSegmentedControlIndexOfferButton];
             break;
         case kOfferSegmentedControlIndexOfferButton:
+            [self dismissModalViewControllerAnimated:YES];
             break;
     }
 }
@@ -85,9 +95,9 @@
 #pragma mark -
 #pragma mark OfferDrillDownController (Public)
 
-@synthesize segmentedIndex = _segmentIndex;
+@synthesize segmentIndex = _segmentIndex;
 
-- (void)setSegmentedIndex:(NSInteger)segmentedIndex
+- (void)setSegmentIndex:(NSInteger)segmentedIndex
 {
     UISegmentedControl *segControl = [self segControl];
     

@@ -6,8 +6,10 @@
 
 // Define HOST_NAME and ENDPOINT_BASE_URL
 #ifdef DEBUG
-#define HOST_NAME @"demos.bitzeppelin.com"
-#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
+//#define HOST_NAME @"demos.bitzeppelin.com"
+#define HOST_NAME @"restmocker.bitzeppelin.com"
+//#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
+#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api/spsa"
 #else
 #define HOST_NAME @"demos.bitzeppelin.com"
 #define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
@@ -59,6 +61,8 @@
 #define MESSAGE_FOR_ERROR_CODES [NSDictionary dictionaryWithObjectsAndKeys: \
         INTERNET_ERROR, \
         N(22), \
+        INTERNET_ERROR, \
+        N(-1001), \
         SEVERE_ERROR, \
         N(400), \
         SEVERE_ERROR, \

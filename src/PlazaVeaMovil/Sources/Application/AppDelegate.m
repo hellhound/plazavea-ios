@@ -9,13 +9,14 @@
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
-#import "Offers/Constants.h"
-#import "Offers/OfferListController.h"
 #import "Recipes/Constants.h"
 #import "Recipes/MeatListController.h"
 #import "Recipes/RecipeCategoryController.h"
 #import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
+#import "Offers/Constants.h"
+#import "Offers/OfferListController.h"
+#import "Offers/PromotionListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -70,6 +71,9 @@
             toViewController:[RecipeDetailController class]];
     // Offers
     [map from:kURLOfferList toViewController:[OfferListController class]];
+    [map from:kURLPromotionList
+            toModalViewController:[PromotionListController class]
+            transition:UIModalTransitionStyleFlipHorizontal];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

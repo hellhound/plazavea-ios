@@ -60,7 +60,7 @@ NSString *const kRecipeCategoryTitleForEmpty = @"No hay categorías";
 // NSLocalizedString(@"No hay categorías", nil)
 NSString *const kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo "
         @"más tarde, aún no existen categorías disponibles";
-// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
 //      @"categorías disponibles", nil)
 NSString *const kRecipeCategoryTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
@@ -78,7 +78,7 @@ NSString *const kRecipeListTitleForEmpty = @"No hay recetas";
 // NSLocalizedString(@"No recetas", nil)
 NSString *const kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más "
         @"tarde, aún no existen recetas disponibles";
-// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
 //      @"recetas disponibles", nil)
 NSString *const kRecipeListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
@@ -95,7 +95,7 @@ NSString *const kMeatsListTitleForEmpty = @"No hay tipos de carnes";
 // NSLocalizedString(@"No hay tipos de carnes", nil)
 NSString *const kMeatsListSubtitleForEmpty = @"Por favor intente de nuevo más "
         @"tarde, aún no existen tipos de carnes disponibles";
-// NSLocalizedString(@"por favor intente de nuevo más tarde, aún no existen "
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
 //      @"tipos de carnes disponibles", nil)
 NSString *const kMeatsListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
