@@ -46,7 +46,7 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return NSLocalizedString(kRecipeCategorySubtitleForError, nil);
+    return LOCALIZED_HTTP_REQUEST_ERROR(error);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
