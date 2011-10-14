@@ -108,6 +108,8 @@ NSString *const kOfferListTitle = @"Ofertas";
 NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 100.;
+const CGFloat kOfferListImageWidth = 50.;
+const CGFloat kOfferListImageHeight = 50.;
 
 //Controllers' URL
 NSString *const kURLOfferList = @"tt://launcher/offers/offers/";

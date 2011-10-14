@@ -99,6 +99,8 @@ NSString *const kMeatsListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kMeatsListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
+const CGFloat kMeatsListImageWidth = 50.;
+const CGFloat kMeatsListImageHeight = 50.;
 
 // RecipeDetailDataSource's messages
 

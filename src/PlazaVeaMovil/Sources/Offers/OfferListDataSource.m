@@ -61,15 +61,27 @@
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
     NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
                              pictureURL];
-    TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
-        [bannerImageURL absoluteString] defaultImage:
-            TTIMAGE(kBannerDefaultImage) URL:nil];
+    
+    if (bannerImageURL != nil) {
+        bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,
+                kBannerImageHeight);
+        
+        TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
+                [bannerImageURL absoluteString] defaultImage:
+                    TTIMAGE(kBannerDefaultImage) URL:nil];
 
-    [items addObject:banner];
+        [items addObject:banner];
+    }
     for (Offer *offer in offers) {
+        NSURL *pictureURL = [offer pictureURL];
+        
+        if (pictureURL != nil) {
+            pictureURL = IMAGE_URL([offer pictureURL], kOfferListImageWidth,
+                    kOfferListImageHeight);
+        }
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:[offer name] subtitle:nil
-                    imageURL:[[offer pictureURL] absoluteString]
+                    imageURL:[pictureURL absoluteString]
                     defaultImage:TTIMAGE(kOfferListDefaultImage) URL:nil];
         [items addObject:item];
     }

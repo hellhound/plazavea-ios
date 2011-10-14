@@ -93,6 +93,8 @@ extern NSString *const kOfferListTitle;
 extern NSString *const kBannerDefaultImage;
 extern const CGFloat kBannerImageWidth;
 extern const CGFloat kBannerImageHeight;
+extern const CGFloat kOfferListImageWidth;
+extern const CGFloat kOfferListImageHeight;
 
 // PromotionListController's constants
 

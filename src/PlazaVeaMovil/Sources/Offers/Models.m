@@ -32,7 +32,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 
 @synthesize pictureURL = _pictureURL, start = _start, end = _end;
 
-+ (id)bannerFromDictionary:(NSDictionary *)rawBanner
++ (id)bannerFromDictionary:(id)rawBanner
 {
     NSString *pictureURL;
     //NSDate *start, *end;
@@ -240,15 +240,10 @@ static NSString *const kMutablePromotionsKey = @"promotions";
         }
         [mutableOffers addObject:offer];
     }
-    
+ 
     Banner *banner = [Banner bannerFromDictionary:
                 [rootObject objectForKey:kOfferCollectionBannerKey]];
-    
-    if (banner == nil) {
-        [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-        return;
-    }
+
     [self setBanner:banner];
     [super requestDidFinishLoad:request];
 }

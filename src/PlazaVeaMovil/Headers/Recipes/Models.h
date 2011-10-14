@@ -7,11 +7,11 @@
 {
     NSNumber *_meatId;
     NSString *_name;
-    NSString *_pictureURL;
+    NSURL *_pictureURL;
 }
 @property (nonatomic, retain) NSNumber *meatId;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *pictureURL;
+@property (nonatomic, copy) NSURL *pictureURL;
 
 + (id)shortMeatFromDictionary:(NSDictionary *)rawMeat;
 @end

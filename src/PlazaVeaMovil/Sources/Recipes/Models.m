@@ -74,7 +74,8 @@ static NSString *const kRecipeMiscYes = @"YES";
     
     [meat setMeatId:meatId];
     [meat setName:name];
-    [meat setPictureURL:pictureURL];
+    if (pictureURL != nil)
+        [meat setPictureURL:[NSURL URLWithString:pictureURL]];
     return meat;
 }
 @end
