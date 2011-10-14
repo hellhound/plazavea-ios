@@ -21,9 +21,12 @@ static CGSize kDefaultAccessorySize = {10., 15.};
 + (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object
 {
     TableImageSubtitleItem *item = object;    
-    UIImage *image = [item imageURL] != nil ? 
-            [[TTURLCache sharedCache] imageForURL:[item imageURL]] : 
-            [item defaultImage];
+    NSString *imageURL = [item imageURL];
+    UIImage *defaultImage = [item defaultImage];
+    UIImage *image =  defaultImage != nil ? defaultImage : 
+            imageURL != nil ?
+            [[TTURLCache sharedCache] imageForURL:imageURL] : 
+            nil;
     UIImage *accessoryImage = [item accessoryURL] != nil ? 
             [[TTURLCache sharedCache] imageForURL:[item accessoryURL]] : 
             nil;

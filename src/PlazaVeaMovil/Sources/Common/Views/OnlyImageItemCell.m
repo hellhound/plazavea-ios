@@ -17,9 +17,12 @@ static const CGFloat kDefaultImageSize = 50;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object 
 {
     TTTableImageItem *item = object;    
-    UIImage *image = [item imageURL] != nil ? 
-            [[TTURLCache sharedCache] imageForURL:[item imageURL]] : 
-            [item defaultImage];
+    NSString *imageURL = [item imageURL];
+    UIImage *defaultImage = [item defaultImage];
+    UIImage *image =  defaultImage != nil ? defaultImage : 
+            imageURL != nil ?
+            [[TTURLCache sharedCache] imageForURL:imageURL] : 
+            nil;
     TTImageStyle *style = [[item imageStyle] 
             firstStyleOfClass:[TTImageStyle class]];
 
