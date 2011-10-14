@@ -57,15 +57,20 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-    NSArray *offers = [(OfferCollection *)[self model] offers];
+    OfferCollection *offerCollection = (OfferCollection *)[self model];
+    NSArray *offers = [offerCollection offers];
+    Banner *banner = [offerCollection banner];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
-    NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
-                             pictureURL];
-    TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
-        [bannerImageURL absoluteString] defaultImage:
-            TTIMAGE(kBannerDefaultImage) URL:nil];
 
-    [items addObject:banner];
+    if (banner != nil) {
+        NSURL *bannerImageURL = 
+                [[(OfferCollection *)[self model] banner] pictureURL];
+        TTTableImageItem *bannerItem = [TTTableImageItem itemWithText:nil
+            imageURL:[bannerImageURL absoluteString]
+            defaultImage:TTIMAGE(kBannerDefaultImage) URL:nil];
+
+        [items addObject:bannerItem];
+    }
     for (Offer *offer in offers) {
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:[offer name] subtitle:nil

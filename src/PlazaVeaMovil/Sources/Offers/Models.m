@@ -244,11 +244,6 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     Banner *banner = [Banner bannerFromDictionary:
                 [rootObject objectForKey:kOfferCollectionBannerKey]];
     
-    if (banner == nil) {
-        [self didFailLoadWithError:
-                BACKEND_ERROR([request urlPath], rootObject) tryAgain:NO];
-        return;
-    }
     [self setBanner:banner];
     [super requestDidFinishLoad:request];
 }
