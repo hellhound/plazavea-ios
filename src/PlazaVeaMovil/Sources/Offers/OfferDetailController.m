@@ -11,6 +11,16 @@
 @implementation OfferDetailController
 
 #pragma mark -
+#pragma mark UITableViewController
+
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
+{
+    if ((self = [super initWithNibName:nibName bundle:bundle]) != nil)
+        [self setTitle:NSLocalizedString(kOfferDetailTitle, nil)];
+    return self;
+}
+
+#pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
@@ -24,7 +34,7 @@
 
 - (id)initWithOfferId:(NSString *)offerId
 {
-    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+    if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         [self setTableViewStyle:UITableViewStylePlain];
         _offerId = [offerId copy];
     }

@@ -129,6 +129,14 @@ NSString *const kPromotionListTitle = @"Promociones";
 NSString *const kOfferListTitle = @"Ofertas";
 // NSLocalizedString(@"Ofertas", nil)
 
+
+// OfferDetailController's constants
+
+// Messages
+NSString *const kOfferDetailTitle = @"Detalle de oferta";
+// NSLocalizedString(@"Detalle de oferta", nil)
+
+
 NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 100.;
