@@ -58,8 +58,7 @@
     NSArray *offers = [offerCollection offers];
     Banner *banner = [offerCollection banner];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
-    NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
-                             pictureURL];
+    NSURL *bannerImageURL = [banner pictureURL];
     
     if (bannerImageURL != nil) {
         bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,

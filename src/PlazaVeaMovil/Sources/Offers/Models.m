@@ -184,7 +184,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if ((discount = [rawOffer objectForKey:kOfferDiscountKey]) == nil)
         return nil;
     if (![discount isKindOfClass:[NSString class]]) {
-        if (![discount isKindOfClass:[NSString class]])
+        if (![discount isKindOfClass:[NSNull class]])
             return nil;
         discount = nil;
     }
