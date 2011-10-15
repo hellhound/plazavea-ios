@@ -3,15 +3,15 @@
 #import "Common/Models/URLRequestModel.h"
 #import "ShoppingList/Models.h"
 
-@interface Meat : NSObject
+@interface Meat: NSObject
 {
     NSNumber *_meatId;
     NSString *_name;
-    NSString *_pictureURL;
+    NSURL *_pictureURL;
 }
 @property (nonatomic, retain) NSNumber *meatId;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *pictureURL;
+@property (nonatomic, copy) NSURL *pictureURL;
 
 + (id)shortMeatFromDictionary:(NSDictionary *)rawMeat;
 @end

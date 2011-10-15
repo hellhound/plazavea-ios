@@ -17,6 +17,7 @@
 #import "Offers/Constants.h"
 #import "Offers/OfferListController.h"
 #import "Offers/PromotionListController.h"
+#import "Offers/OfferDetailController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -74,6 +75,7 @@
     [map from:kURLPromotionList
             toModalViewController:[PromotionListController class]
             transition:UIModalTransitionStyleFlipHorizontal];
+    [map from:kURLOfferDetail toViewController:[OfferDetailController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

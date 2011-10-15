@@ -52,37 +52,44 @@
     return LOCALIZED_HTTP_REQUEST_ERROR(error);
 }
 
-#pragma mark -
-#pragma mark TTTableViewDataSource
-
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     OfferCollection *offerCollection = (OfferCollection *)[self model];
     NSArray *offers = [offerCollection offers];
     Banner *banner = [offerCollection banner];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
+    NSURL *bannerImageURL = [[(OfferCollection *)[self model] banner]
+                             pictureURL];
+    
+    if (bannerImageURL != nil) {
+        bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,
+                kBannerImageHeight);
+        
+        TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
+                [bannerImageURL absoluteString] defaultImage:
+                    TTIMAGE(kBannerDefaultImage) URL:nil];
 
-    if (banner != nil) {
-        NSURL *bannerImageURL = 
-                [[(OfferCollection *)[self model] banner] pictureURL];
-        TTTableImageItem *bannerItem = [TTTableImageItem itemWithText:nil
-            imageURL:[bannerImageURL absoluteString]
-            defaultImage:TTIMAGE(kBannerDefaultImage) URL:nil];
-
-        [items addObject:bannerItem];
+        [items addObject:banner];
     }
     for (Offer *offer in offers) {
+        NSURL *pictureURL = [offer pictureURL];
+        
+        if (pictureURL != nil) {
+            pictureURL = IMAGE_URL([offer pictureURL], kOfferListImageWidth,
+                    kOfferListImageHeight);
+        }
+        NSString *offerText = [NSString stringWithFormat:@"%@%@%.2f",[offer name],
+                kOfferListPriceTag, [[offer price] floatValue]];
+        
         TableImageSubtitleItem *item = [TableImageSubtitleItem
-                itemWithText:[offer name] subtitle:nil
-                    imageURL:[[offer pictureURL] absoluteString]
-                    defaultImage:TTIMAGE(kOfferListDefaultImage) URL:nil];
+                itemWithText:offerText subtitle:nil
+                    imageURL:[pictureURL absoluteString]
+                    defaultImage:TTIMAGE(kOfferListDefaultImage)
+                    URL:URL(kURLOfferDetailCall, [offer offerId])];
         [items addObject:item];
     }
     [self setItems:items];
 }
-
-#pragma mark -
-#pragma mark <TTTableViewDataSource>
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {

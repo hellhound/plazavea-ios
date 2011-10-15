@@ -53,6 +53,8 @@ extern NSString *const kMeatsListTitleForEmpty;
 extern NSString *const kMeatsListSubtitleForEmpty;
 extern NSString *const kMeatsListTitleForError;
 extern NSString *const kMeatsListSubtitleForError;
+extern const CGFloat kMeatsListImageWidth;
+extern const CGFloat kMeatsListImageHeight;
 
 // RecipeCategoryDataSource's messages
 

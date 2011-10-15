@@ -58,9 +58,15 @@
     NSArray *meats = [(MeatCollection *)[self model] meats];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[meats count]];
     for (Meat *meat in meats) {
+        NSURL *pictureURL = [meat pictureURL];
+        
+        if (pictureURL != nil) {
+            pictureURL = IMAGE_URL([meat pictureURL], kMeatsListImageWidth,
+                                   kMeatsListImageHeight);
+        }
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:[meat name] subtitle:nil
-                imageURL:[meat pictureURL]
+                imageURL:[pictureURL absoluteString]
                 defaultImage:TTIMAGE(kRecipeListDefaultImage)
                 URL:URL(kURLRecipeMeatListCall, [meat meatId])];
         [items addObject:item];

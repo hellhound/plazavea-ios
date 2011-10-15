@@ -55,6 +55,8 @@ NSString *const kPromotionTwitterURLKey = @"twitter_url";
 NSString *const kPromotionCollectionPromotions = @"promotions";
 
 // OfferListDataSource's constants
+
+// Messages
 NSString *const kOfferListTitleForLoading = @"Obteniendo ofertas";
 //NSLocalizedString(@"Obteniendo ofertas", nil)
 NSString *const kOfferListTitleForReloading = @"Actualizando ofertas";
@@ -70,6 +72,26 @@ NSString *const kOfferListTitleForError = @"Error";
 NSString *const kOfferListSubtitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
 NSString *const kOfferListDefaultImage = @"bundle://default-list.png";
+NSString *const kOfferListPriceTag = @" a S/.";
+//NSLocalizedString(@" a S/.", nil)
+
+// OfferDetailDataSource's constants
+
+// Messages
+NSString *const kOfferDetailTitleForLoading = @"Obteniendo la oferta";
+//NSLocalizedString(@"Obteniendo la oferta", nil)
+NSString *const kOfferDetailTitleForEmpty = @"Sin información";
+//NSLocalizedString(@"Sin información", nil)
+NSString *const kOfferDetailSubtitleForEmpty = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta oferta";
+//NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información para esta oferta", nil)
+NSString *const kOfferDetailTitleForError = @"Error";
+//NSLocalizedString(@"Error", nil)
+
+NSString *const kOfferDetailDefaultImage = @"bundle://default-offer-detail.png";
+const CGFloat kOfferDetailImageWidth = 140.;
+const CGFloat kOfferDetailImageHeight = 140.;
 
 // PromotionListDataSource's constants
 
@@ -103,20 +125,30 @@ NSString *const kPromotionListTitle = @"Promociones";
        
 // OfferListController's constants
 
+// Messages
 NSString *const kOfferListTitle = @"Ofertas";
 // NSLocalizedString(@"Ofertas", nil)
+
 NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 100.;
+const CGFloat kOfferListImageWidth = 50.;
+const CGFloat kOfferListImageHeight = 50.;
 
 //Controllers' URL
 NSString *const kURLOfferList = @"tt://launcher/offers/offers/";
 NSString *const kURLPromotionList = @"tt://launcher/offers/";
+NSString *const kURLOfferDetail = @"tt://launcher/offer/(initWithOfferId:)/";
+
 
 //Controllers' URL calls
 NSString *const kURLOfferListCall = @"tt://launcher/offers/offers/";
 NSString *const kURLPromotionListCall = @"tt://launcher/offers/";
+NSString *const kURLOfferDetailCall = @"tt://launcher/offer/%@/";
+
 
 // Endpoint URLs
 NSString *const kURLOfferListEndpoint = ENDPOINT(@"/offers/listing.json");
 NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");
+NSString *const kURLOfferDetailEndpoint = ENDPOINT(@"/offers/%@/details.json");
+
