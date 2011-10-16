@@ -14,12 +14,25 @@
 @implementation OfferDetailDataSource
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void) dealloc
+{
+    [self setDelegate:nil];
+    [super dealloc];
+}
+#pragma mark -
 #pragma mark OfferDetailDataSource (public)
 
+@synthesize delegate = _delegate;
+
 - (id)initWithOfferId:(NSString *)offerId
+              delegate:(id<OfferDetailDataSourceDelegate>)delegate
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[Offer alloc] initWithOfferId:offerId] autorelease]];
+        [self setDelegate:delegate];
+    }
     return self;
 }
 
@@ -62,10 +75,12 @@
         pictureURL = IMAGE_URL(pictureURL, kOfferDetailImageWidth,
                 kOfferDetailImageHeight);
     }
+    [_delegate dataSource:self needsDetailImageWithURL:pictureURL
+            andTitle:[offer name]];
+
     TableImageSubtitleItem *item = [TableImageSubtitleItem
-            itemWithText:longDescription subtitle:nil
-                imageURL:[pictureURL absoluteString]
-                defaultImage:TTIMAGE(kOfferDetailDefaultImage) URL:nil];
+            itemWithText:longDescription subtitle:nil];
+
     [items addObject:item];
     [self setItems:items];
 }

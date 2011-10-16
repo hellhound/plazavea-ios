@@ -89,10 +89,6 @@ NSString *const kOfferDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 NSString *const kOfferDetailTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
 
-NSString *const kOfferDetailDefaultImage = @"bundle://default-offer-detail.png";
-const CGFloat kOfferDetailImageWidth = 140.;
-const CGFloat kOfferDetailImageHeight = 140.;
-
 // PromotionListDataSource's constants
 
 // Messages
@@ -135,7 +131,11 @@ NSString *const kOfferListTitle = @"Ofertas";
 // Messages
 NSString *const kOfferDetailTitle = @"Detalle de oferta";
 // NSLocalizedString(@"Detalle de oferta", nil)
-
+const CGFloat kOfferDetailImageWidth = 140.;
+const CGFloat kOfferDetailImageHeight = 140.;
+const CGFloat kOfferDetailLabelWidth = 320.;
+NSString *const kOfferDetailDefaultImage =
+        @"bundle://default-offer-detail.png";
 
 NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 const CGFloat kBannerImageWidth = 320.;

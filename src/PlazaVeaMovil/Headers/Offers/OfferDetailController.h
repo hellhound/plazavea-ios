@@ -7,8 +7,12 @@
 #import "Offers/OfferDetailDataSource.h"
 
 @interface OfferDetailController: BaseOfferController
+        <OfferDetailDataSourceDelegate>
 {
     NSString *_offerId;
+    UIView *_headerView;
+    UILabel *_titleLabel;
+    TTImageView *_imageView;
 }
 
 - (id)initWithOfferId:(NSString *)offerId;
