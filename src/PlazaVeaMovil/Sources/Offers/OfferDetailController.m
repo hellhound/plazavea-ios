@@ -84,12 +84,14 @@
         [_imageView setAutoresizingMask:UIViewAutoresizingNone];
         [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
                 UIViewAutoresizingFlexibleRightMargin];
+        [_imageView setBackgroundColor:[UIColor clearColor]];
         // Configuring the label
         [self setTitleLabel:
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease]];
         [_titleLabel setNumberOfLines:0];
         [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
         [_titleLabel setTextAlignment:UITextAlignmentCenter];
+        [_titleLabel setBackgroundColor:[UIColor clearColor]];
         // Adding the subviews to the header view
         [_headerView addSubview:_titleLabel];
         [_headerView addSubview:_imageView];
@@ -105,11 +107,13 @@
                   andTitle:(NSString *)title
 {
     // First we deal with the title
+    UITableView *tableView = [self tableView];
     UIFont *font = [_titleLabel font];
-    CGFloat titleWidth = CGRectGetWidth([[self view] bounds]);
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGFloat titleHeight = [title sizeWithFont:font
         forWidth:titleWidth
         lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect headerFrame = [_headerView frame];
     CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
     CGRect imageFrame = [_imageView frame];
 
@@ -118,5 +122,8 @@
     [_imageView setFrame:CGRectOffset(imageFrame, .0, titleHeight)];
     if (imageURL != nil)
         [_imageView setUrlPath:[imageURL absoluteString]];
+    headerFrame.size.height += titleHeight; 
+    [_headerView setFrame:headerFrame];
+    [tableView setTableHeaderView:_headerView];
 }
 @end
