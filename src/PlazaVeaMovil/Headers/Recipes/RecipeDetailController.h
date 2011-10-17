@@ -10,6 +10,8 @@
 {
     NSString *_recipeId;
     TTImageView *_imageView;
+    UIView *_headerView;
+    UILabel *_titleLabel;
     UIBarButtonItem *_toListButton;
 }
 

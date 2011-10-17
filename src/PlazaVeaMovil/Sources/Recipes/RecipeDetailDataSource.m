@@ -84,16 +84,16 @@
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
     NSString *recipeName = [recipe name];
+    NSString *rations = [NSString stringWithFormat:kRecipeRations,
+            [[recipe rations] stringValue]];
     NSURL *pictureURL = [recipe pictureURL];
 
-    if (pictureURL != nil)
-        [_delegate dataSource:self needsDetailImageWithURL:
-                IMAGE_URL(pictureURL, kRecipeDetailImageWidth,
-                    kRecipeDetailImageHeigth)];
-    [sections addObject:@""];
-    [items addObject:[NSArray arrayWithObject:
-            [TTTableTextItem itemWithText:recipeName]]];
-    
+    if (pictureURL != nil) {
+        pictureURL = IMAGE_URL(pictureURL, kRecipeDetailImageWidth,
+                kRecipeDetailImageHeigth);
+    }
+    [_delegate dataSource:self needsDetailImageWithURL:pictureURL
+        andTitle:recipeName];
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0){
@@ -109,6 +109,9 @@
         [items addObject:subitems];
     } 
     else {
+        [sections addObject:@""];
+        [items addObject:[NSArray arrayWithObject:
+                          [TTTableTextItem itemWithText:rations]]];
         if ([[recipe ingredients] count] > 0) {
             NSMutableArray *subitems = [NSMutableArray array];
 

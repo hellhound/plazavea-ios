@@ -12,6 +12,8 @@
 @interface RecipeDetailController ()
 
 @property (nonatomic, retain) TTImageView *imageView;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UILabel *titleLabel;
 @end
 
 @implementation RecipeDetailController
@@ -23,6 +25,8 @@
 {
     [_recipeId release];
     [_imageView release];
+    [_headerView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -44,6 +48,25 @@
 }
 
 #pragma mark -
+#pragma mark UIView
+
+- (void)loadView
+{
+    [super loadView];
+    
+    UITableView *tableView = [self tableView];
+    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            kRecipeDetailImageHeigth);
+    CGRect imageFrame = CGRectMake((boundsWidth - kRecipeDetailImageWidth) / 2.,
+            .0, kRecipeDetailImageWidth, kRecipeDetailImageHeigth);
+    
+    [_headerView setFrame:headerFrame];
+    [_imageView setFrame:imageFrame];
+    [tableView setTableHeaderView:_headerView];
+}
+
+#pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
@@ -52,32 +75,11 @@
             initWithRecipeId:_recipeId delegate:self] autorelease]];
 }
 
-- (void)didShowModel:(BOOL)firstTime
-{
-    if (firstTime) {
-        [_imageView setDefaultImage:TTIMAGE(kRecipeDetailDefaultImage)];
-        [_imageView setAutoresizingMask:UIViewAutoresizingNone];
-        [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-                UIViewAutoresizingFlexibleRightMargin];
-        [super didShowModel:firstTime];
-
-        UITableView *tableView = [self tableView];
-        CGRect bounds = [tableView bounds];
-        UIView *headerView = [[[UIView alloc] initWithFrame:
-                CGRectMake(
-                        (bounds.size.width - kRecipeDetailImageWidth) / 2., .0,
-                        kRecipeDetailImageWidth,
-                        kRecipeDetailImageHeigth)] autorelease];
-
-        [headerView addSubview:_imageView];
-        [tableView setTableHeaderView:headerView];
-    }
-}
-
 #pragma mark -
 #pragma mark RecipeController (Private)
 
-@synthesize imageView = _imageView;
+@synthesize imageView = _imageView, headerView = _headerView,
+        titleLabel = _titleLabel;
 
 #pragma mark -
 #pragma mark RecipeDetailController (Public)
@@ -102,10 +104,30 @@
         [self setTableViewStyle:UITableViewStylePlain];
         [self setTitle:kRecipeDetailTitle];
         _recipeId = [recipeId copy];
+        // Configuring the header view
+        [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
+                autorelease]];
+        // Configuring the image view
         [self setImageView:[[[TTImageView alloc] initWithFrame:
-                CGRectMake(.0, .0,
-                    kRecipeDetailImageWidth,
+                CGRectMake(.0, .0, kRecipeDetailImageWidth,
                     kRecipeDetailImageHeigth)] autorelease]];
+        [_imageView setDefaultImage:TTIMAGE(kRecipeDetailDefaultImage)];
+        [_imageView setAutoresizingMask:UIViewAutoresizingNone];
+        [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+                UIViewAutoresizingFlexibleRightMargin];
+        [_imageView setBackgroundColor:[UIColor clearColor]];
+        // Configuring the label
+        [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
+                autorelease]];
+        [_titleLabel setNumberOfLines:1];
+        [_titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [_titleLabel setMinimumFontSize:10];
+        [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [_titleLabel setTextAlignment:UITextAlignmentCenter];
+        [_titleLabel setBackgroundColor:[UIColor clearColor]];
+        // Adding the subviews to the header view
+        [_headerView addSubview:_titleLabel];
+        [_headerView addSubview:_imageView];
     }
     return self;
 }
@@ -128,7 +150,25 @@
 
 - (void)        dataSource:(RecipeDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
+                  andTitle:(NSString *)title
 {
-    [_imageView setUrlPath:[imageURL absoluteString]];
+    
+    UITableView *tableView = [self tableView];
+    UIFont *font = [_titleLabel font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGFloat titleHeight = [title sizeWithFont:font forWidth:titleWidth
+            lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect headerFrame = [_headerView frame];
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    CGRect imageFrame = [_imageView frame];
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
+    [_imageView setFrame:CGRectOffset(imageFrame, .0, titleHeight)];
+    if (imageURL != nil)
+        [_imageView setUrlPath:[imageURL absoluteString]];
+    headerFrame.size.height += titleHeight;
+    [_headerView setFrame:headerFrame];
+    [tableView setTableHeaderView:_headerView];
 }
 @end
