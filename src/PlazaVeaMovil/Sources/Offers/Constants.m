@@ -71,9 +71,9 @@ NSString *const kOfferListTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
 NSString *const kOfferListSubtitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
-NSString *const kOfferListDefaultImage = @"bundle://default-list.png";
 NSString *const kOfferListPriceTag = @" a S/.";
 //NSLocalizedString(@" a S/.", nil)
+NSString *const kOfferListDefaultImage = @"bundle://default-list.png";
 
 // OfferDetailDataSource's constants
 
@@ -114,6 +114,25 @@ NSString *const kOfferPromotionButtonLabel = @"Promociones";
 NSString *const kOfferButtonLabel = @"Ofertas";
 //NSLocalizedString(@"Ofertas", nil)
 
+// PromotionDetailDataSource's constants
+
+//Messages
+NSString *const kPromotionDetailTitleForLoading = @"Obteniendo la promoción";
+// NSLocalizedString(@"Obteniendo la promoción", nil)
+NSString *const kPromotionDetailTitleForReloading =
+        @"Actualizando la promoción";
+// NSLocalizedString(@"Actualizando la promoción", nil)
+NSString *const kPromotionDetailTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"Sin información", nil)
+NSString *const kPromotionDetailSubtitleForEmpty = @"Por favor intente de "
+        @" nuevo más tarde, aún no existe información para esta oferta";
+// NSLocalizedString(@"Por favor intente de "
+//      @" nuevo más tarde, aún no existe información para esta oferta", nil)
+NSString *const kPromotionDetailTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionDetailSubtitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+
 // PromotionListController's constants
 
 NSString *const kPromotionListTitle = @"Promociones";
@@ -143,20 +162,30 @@ const CGFloat kBannerImageHeight = 100.;
 const CGFloat kOfferListImageWidth = 50.;
 const CGFloat kOfferListImageHeight = 50.;
 
+// PromotionDetailController's constants
+NSString *const kPromotionDetailTitle = @"Detalle de la promoción";
+// NSLocalizedString(@"Detalle de la promoción", nil)
+const CGFloat kPromotionDetailImageWidth = 320.;
+const CGFloat kPromotionDetailImageHeight = 100.;
+
 //Controllers' URL
 NSString *const kURLOfferList = @"tt://launcher/offers/offers/";
-NSString *const kURLPromotionList = @"tt://launcher/offers/";
 NSString *const kURLOfferDetail = @"tt://launcher/offer/(initWithOfferId:)/";
-
+NSString *const kURLPromotionList = @"tt://launcher/offers/";
+NSString *const kURLPromotionDetail =
+        @"tt://launcher/offers/promotions/(initWithPromotionId:)/";
 
 //Controllers' URL calls
 NSString *const kURLOfferListCall = @"tt://launcher/offers/offers/";
-NSString *const kURLPromotionListCall = @"tt://launcher/offers/";
 NSString *const kURLOfferDetailCall = @"tt://launcher/offer/%@/";
-
+NSString *const kURLPromotionListCall = @"tt://launcher/offers/";
+NSString *const kURLPromotionDetailCall =
+        @"tt://launcher/offers/promotions/%@/";
 
 // Endpoint URLs
 NSString *const kURLOfferListEndpoint = ENDPOINT(@"/offers/listing.json");
-NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");
 NSString *const kURLOfferDetailEndpoint = ENDPOINT(@"/offers/%@/details.json");
+NSString *const kPromotionListEndpoint = ENDPOINT(@"/promotions/listing.json");
+NSString *const kURLPromotionDetailEndPoint =
+        ENDPOINT(@"/promotions/%@/details.json");
 

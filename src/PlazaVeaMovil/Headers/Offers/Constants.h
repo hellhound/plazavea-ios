@@ -82,6 +82,16 @@ extern NSString *const kPromotionListSubtitleForEmpty;
 extern NSString *const kPromotionListTitleForError;
 extern NSString *const kPromotionListSubtitleForError;
 
+// PromotionDetailDataSource's constants
+
+//Messages
+extern NSString *const kPromotionDetailTitleForLoading;
+extern NSString *const kPromotionDetailTitleForReloading;
+extern NSString *const kPromotionDetailTitleForEmpty;
+extern NSString *const kPromotionDetailSubtitleForEmpty;
+extern NSString *const kPromotionDetailTitleForError;
+extern NSString *const kPromotionDetailSubtitleForError;
+
 // OfferDrillDownController's constants
 
 typedef enum {
@@ -116,17 +126,25 @@ extern NSString *const kOfferDetailDefaultImage;
 
 extern NSString *const kPromotionListTitle;
 
+// PromotionDetailController's constants
+extern NSString *const kPromotionDetailTitle;
+extern const CGFloat kPromotionDetailImageWidth;
+extern const CGFloat kPromotionDetailImageHeight;
+
 //Controllers' URL
 extern NSString *const kURLOfferList;
-extern NSString *const kURLPromotionList;
 extern NSString *const kURLOfferDetail;
+extern NSString *const kURLPromotionList;
+extern NSString *const kURLPromotionDetail;
 
 //Controllers' URL calls
 extern NSString *const kURLOfferListCall;
-extern NSString *const kURLPromotionListCall;
 extern NSString *const kURLOfferDetailCall;
+extern NSString *const kURLPromotionListCall;
+extern NSString *const kURLPromotionDetailCall;
 
 // Endpoint URLs
 extern NSString *const kURLOfferListEndpoint;
-extern NSString *const kPromotionListEndpoint;
 extern NSString *const kURLOfferDetailEndpoint;
+extern NSString *const kPromotionListEndpoint;
+extern NSString *const kURLPromotionDetailEndPoint;

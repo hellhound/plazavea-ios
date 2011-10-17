@@ -49,7 +49,6 @@
 + (id)offerFromDictionary:(NSDictionary *)rawOffer;
 
 - (id)initWithOfferId:(NSString *)offerId;
-
 - (void)copyPropertiesFromOffer:(Offer *)offer;
 @end
 
@@ -92,6 +91,7 @@
 + (id)shortPromotionFromDictionary:(NSDictionary *)rawPromotion;
 + (id)promotionFromDictionary:(NSDictionary *)rawPromotion;
 
+- (id)initWithPromotionId:(NSString *)promotionId;
 - (void)copyPropertiesFromPromotion:(Promotion *)promotion;
 @end
 

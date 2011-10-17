@@ -58,6 +58,14 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 #pragma mark -
 #pragma mark NSObject
 
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        _extraPicturesURLs = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [_offerId release];
@@ -227,7 +235,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if (offerIntegerId < 0) {
         return nil;
     }
-    if ((self = [super init]) != nil)
+    if ((self = [self init]) != nil)
         [self setOfferId:[NSNumber numberWithInteger:offerIntegerId]];
     return self;
 }
@@ -549,6 +557,17 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     return promotion;
 }
 
+- (id)initWithPromotionId:(NSString *)promotionId
+{
+    NSInteger promotionIntegerId = [promotionId integerValue];
+    if (promotionIntegerId < 0) {
+        return nil;
+    }
+    if ((self = [self init]) != nil)
+        [self setPromotionId:[NSNumber numberWithInteger:promotionIntegerId]];
+    return self;
+}
+
 - (void)copyPropertiesFromPromotion:(Promotion *)promotion
 {
     NSMutableArray *mutableExtraPictureURLs =
@@ -565,6 +584,38 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [mutableExtraPictureURLs addObjectsFromArray:[promotion extraPictureURLs]];
     [self setFacebookURL:[promotion facebookURL]];
     [self setTwitterURL:[promotion twitterURL]];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kURLPromotionDetailEndPoint, _promotionId) delegate:self];
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
+            rootObject];
+    Promotion *promotion = [Promotion promotionFromDictionary:rootObject];
+    
+    if (promotion == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromPromotion:promotion];
+    [super requestDidFinishLoad:request];
 }
 @end
 

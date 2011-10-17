@@ -58,7 +58,7 @@
 }
 
 #pragma mark -
-#pragma mark RecipeController (Private)
+#pragma mark OfferDetailController (Private)
 
 @synthesize headerView = _headerView, titleLabel = _titleLabel,
     imageView = _imageView;
