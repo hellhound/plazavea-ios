@@ -505,7 +505,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     NSArray *extraPictureURLs;
     NSString *facebookURL, *twitterURL;
     Promotion *promotion =
-            [Promotion shortPromotionFromDictionary:rawPromotion];
+            [self shortPromotionFromDictionary:rawPromotion];
     NSMutableArray *mutableExtraPictureURLs =
             [promotion mutableArrayValueForKey:kMutableExtraPictureURLsKey];
 
@@ -594,6 +594,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if (![self isLoading]) {
         TTURLRequest *request = [TTURLRequest requestWithURL:
                 URL(kURLPromotionDetailEndPoint, _promotionId) delegate:self];
+        
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request send];
