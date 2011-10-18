@@ -488,7 +488,6 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             return nil;
         bannerURL = nil;
     }
-
     Promotion *promotion = [[[Promotion alloc] init] autorelease];
 
     [promotion setPromotionId:promotionId];
@@ -505,15 +504,15 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     NSArray *extraPictureURLs;
     NSString *facebookURL, *twitterURL;
     Promotion *promotion =
-            [self shortPromotionFromDictionary:rawPromotion];
+    [self shortPromotionFromDictionary:rawPromotion];
     NSMutableArray *mutableExtraPictureURLs =
-            [promotion mutableArrayValueForKey:kMutableExtraPictureURLsKey];
-
+    [promotion mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+    
     if (promotion == nil)
         return nil;
-
+    
     if ((description =
-            [rawPromotion objectForKey:kPromotionDescriptionKey]) == nil)
+         [rawPromotion objectForKey:kPromotionDescriptionKey]) == nil)
         return nil;
     if (![description isKindOfClass:[NSString class]])
         return nil;
@@ -530,18 +529,21 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if (![validTo isKindOfClass:[NSString class]])
         return nil;
     if ((extraPictureURLs =
-            [rawPromotion objectForKey:kPromotionExtraPictureURLsKey]) == nil)
+         [rawPromotion objectForKey:kPromotionExtraPictureURLsKey]) == nil)
         return nil;
     if (![extraPictureURLs isKindOfClass:[NSArray class]])
         return nil;
     if ((facebookURL =
-            [rawPromotion objectForKey:kPromotionFacebookURLKey]) == nil)
+         [rawPromotion objectForKey:kPromotionFacebookURLKey]) == nil)
         return nil;
     if (![facebookURL isKindOfClass:[NSString class]]) {
         if (![facebookURL isKindOfClass:[NSNull class]])
             return nil;
         facebookURL = nil;
     }
+    if ((twitterURL = [rawPromotion objectForKey:kPromotionTwitterURLKey])
+        == nil)
+        return nil;
     if (![twitterURL isKindOfClass:[NSString class]]) {
         if (![twitterURL isKindOfClass:[NSNull class]])
             return nil;

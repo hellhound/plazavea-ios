@@ -12,6 +12,7 @@
     NSString *_promotionId;
     UIView *_headerView;
     UILabel *_titleLabel;
+    TTImageView *_imageView;
 }
 
 - (id)initWithPromotionId:(NSString *)promotionId;
