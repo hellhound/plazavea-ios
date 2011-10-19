@@ -13,5 +13,20 @@ extern NSString *const kRegionNameKey;
 // JSON keys
 extern NSString *const kRegionCollectionRegions;
 
+// RegionListDataSource's constants
+
+// Messages
+extern NSString *const kRegionListTitleForLoading;
+extern NSString *const kRegionListTitleForReloading;
+extern NSString *const kRegionListTitleForEmpty;
+extern NSString *const kRegionListSubtitleForEmpty;
+extern NSString *const kRegionListTitleForError;
+extern NSString *const kRegionListSubtitleForError;
+
+// RegionListController's constants
+
+// Messages
+extern NSString *const kRegionListTitle;
+
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;
