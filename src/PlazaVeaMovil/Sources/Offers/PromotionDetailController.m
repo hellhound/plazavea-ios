@@ -38,9 +38,9 @@
     UITableView *tableView = [self tableView];
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0,
-            boundsWidth, kPromotionDetailImageWidth);
-    CGRect imageFrame = CGRectMake((boundsWidth - kPromotionDetailImageWidth) / 2.,
-            .0, kPromotionDetailImageWidth, kPromotionDetailImageHeight);
+            boundsWidth, kPromotionDetailImageHeight);
+    CGRect imageFrame = CGRectMake(.0, .0, kPromotionDetailImageWidth,
+            kPromotionDetailImageHeight);
     
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:imageFrame];
@@ -93,7 +93,7 @@ imageView = _imageView;
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
         // Adding the title label to the header
         [_headerView addSubview:_titleLabel];
-        [_headerView addSubview:_titleLabel];
+        [_headerView addSubview:_imageView];
     }
     return self;
 }
