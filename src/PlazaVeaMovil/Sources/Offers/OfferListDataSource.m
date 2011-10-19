@@ -77,8 +77,8 @@
             pictureURL = IMAGE_URL([offer pictureURL], kOfferListImageWidth,
                     kOfferListImageHeight);
         }
-        NSString *offerText = [NSString stringWithFormat:@"%@%@%.2f",[offer name],
-                kOfferListPriceTag, [[offer price] floatValue]];
+        NSString *offerText = [NSString stringWithFormat:@"%@%@%.2f",
+                [offer name], kOfferListPriceTag, [[offer price] floatValue]];
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:offerText subtitle:nil

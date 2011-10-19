@@ -156,6 +156,8 @@ const CGFloat kRecipeListImageHeigth = 50.;
 
 NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 // NSLocalizedString(@"Detalle de una receta", nil);
+NSString *const kRecipeRations = @"%@ personas";
+// NSLocalizedString(@"%@ personas", nil);
 NSString *const kRecipeDetailDefaultImage =
         @"bundle://default-recipe-detail.png";
 const CGFloat kRecipeDetailImageWidth = 140.;

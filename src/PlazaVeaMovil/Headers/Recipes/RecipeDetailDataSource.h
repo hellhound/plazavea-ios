@@ -17,5 +17,6 @@
 @protocol RecipeDetailDataSourceDelegate <NSObject>
 
 - (void)        dataSource:(RecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL;
+   needsDetailImageWithURL:(NSURL *)imageURL
+                  andTitle:(NSString *)title;
 @end

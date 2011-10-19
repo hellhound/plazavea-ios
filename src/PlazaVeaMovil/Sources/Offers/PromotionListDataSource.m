@@ -60,8 +60,9 @@
                 [NSMutableArray arrayWithCapacity:promotionCount];
 
         for (Promotion *promotion in promotions) {
-            TableImageSubtitleItem *item =
-                    [TableImageSubtitleItem itemWithText:[promotion name]];
+            TableImageSubtitleItem *item = [TableImageSubtitleItem
+                    itemWithText:[promotion name] URL:
+                        URL(kURLPromotionDetailCall, [promotion promotionId])];
 
             [items addObject:item];
         }

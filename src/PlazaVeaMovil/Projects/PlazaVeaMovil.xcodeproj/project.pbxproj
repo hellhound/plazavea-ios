@@ -94,6 +94,8 @@
 		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
 		2F78FF9C144F2F91007F9ACD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9A144F2F91007F9ACD /* Constants.m */; };
 		2F78FF9D144F2F91007F9ACD /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9B144F2F91007F9ACD /* Models.m */; };
+		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
+		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
 		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
@@ -632,6 +634,8 @@
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F78FF9A144F2F91007F9ACD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F78FF9B144F2F91007F9ACD /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
+		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
+		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
 		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
@@ -962,6 +966,8 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */,
+				2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */,
 				2FADB7011448F10F00C9AB88 /* OfferDetailController.m */,
 				2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */,
 				2C3A326814479572007F1076 /* PromotionListController.m */,
@@ -1647,6 +1653,8 @@
 				2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */,
 				2F78FF9C144F2F91007F9ACD /* Constants.m in Sources */,
 				2F78FF9D144F2F91007F9ACD /* Models.m in Sources */,
+				2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */,
+				2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
