@@ -11,7 +11,12 @@ extern NSString *const kRegionNameKey;
 // RegionCollection model's constants
 
 // JSON keys
-extern NSString *const kRegionCollectionRegions;
+extern NSString *const kRegionCollectionRegionsKey;
+
+// SubregionCollection model's constants
+
+// JSON keys
+extern NSString *const kSubregionCollectionRegionsKey;
 
 // RegionListDataSource's constants
 
@@ -36,3 +41,4 @@ extern NSString *const kURLRegionListCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;
+extern NSString *const kSubregionListEndPoint;

@@ -13,7 +13,12 @@ NSString *const kRegionNameKey = @"name";
 // Region Collection model's constants
 
 //JSON keys
-NSString *const kRegionCollectionRegions = @"regions";
+NSString *const kRegionCollectionRegionsKey = @"regions";
+
+// SubregionCollection model's constants
+
+// JSON keys
+NSString *const kSubregionCollectionRegionsKey = @"subregions";
 
 // RegionListDataSource's constants
 
@@ -45,3 +50,5 @@ NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");
+NSString *const kSubregionListEndPoint =
+        ENDPOINT(@"/regions/%@/subregions/listing.json/");
