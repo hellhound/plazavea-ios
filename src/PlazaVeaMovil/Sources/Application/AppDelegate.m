@@ -45,6 +45,9 @@
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    // Set the maxContentLength to auto
+    [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
+
     _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
 
     TTNavigator *navigator = [TTNavigator navigator];
