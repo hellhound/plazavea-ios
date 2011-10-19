@@ -35,9 +35,11 @@ extern NSString *const kRegionListTitle;
 
 // Controllers' URLs
 extern NSString *const kURLRegionList;
+extern NSString *const kURLSubregionList;
 
 // Controllers' URL calls
 extern NSString *const kURLRegionListCall;
+extern NSString *const kURLSubregionListCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;

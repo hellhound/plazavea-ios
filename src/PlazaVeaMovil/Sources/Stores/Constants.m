@@ -44,6 +44,7 @@ NSString *const kRegionListTitle = @"Tiendas";
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
+NSString *const kURLSubregionList = @"tt://launcher/stores/regions/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
