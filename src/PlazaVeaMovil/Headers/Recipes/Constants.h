@@ -117,6 +117,7 @@ extern const CGFloat kRecipeListImageHeigth;
 // RecipeDetailController's constants
 
 extern NSString *const kRecipeDetailTitle;
+extern NSString *const kRecipeRations;
 extern NSString *const kRecipeDetailDefaultImage;
 extern const CGFloat kRecipeDetailImageWidth;
 extern const CGFloat kRecipeDetailImageHeigth;
