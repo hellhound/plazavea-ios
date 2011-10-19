@@ -19,6 +19,8 @@
 #import "Offers/PromotionListController.h"
 #import "Offers/OfferDetailController.h"
 #import "Offers/PromotionDetailController.h"
+#import "Stores/Constants.h"
+#import "Stores/RegionListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -79,6 +81,8 @@
     [map from:kURLOfferDetail toViewController:[OfferDetailController class]];
     [map from:kURLPromotionDetail
             toViewController:[PromotionDetailController class]];
+    // Stores
+    [map from:kURLRegionList toViewController:[RegionListController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

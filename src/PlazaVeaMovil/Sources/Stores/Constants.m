@@ -34,8 +34,14 @@ NSString *const kRegionListSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
 
 // RegionListController's constants
-NSString *const kRegionListTitle = @"Departamentos";
+NSString *const kRegionListTitle = @"Tiendas";
 // NSLocalizedString(@"Departamentos", nil)
+
+// Controllers' URLs
+NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
+
+// Controllers' URL calls
+NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");

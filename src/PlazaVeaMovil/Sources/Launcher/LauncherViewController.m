@@ -9,6 +9,7 @@
 #import "ShoppingList/Constants.h"
 #import "Recipes/Constants.h"
 #import "Offers/Constants.h"
+#import "Stores/Constants.h"
 
 @interface LauncherViewController (Private)
 
@@ -74,6 +75,8 @@
                 [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
                     image:kURLOffersIcon 
                     URL:kURLOfferListCall] autorelease],
+             [[[TTLauncherItem alloc] initWithTitle:kRegionListTitle image:nil
+                    URL:kURLRegionListCall] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];
