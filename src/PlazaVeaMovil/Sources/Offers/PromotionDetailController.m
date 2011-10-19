@@ -1,3 +1,4 @@
+#import "math.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -108,8 +109,10 @@ imageView = _imageView;
     UITableView *tableView = [self tableView];
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
     CGFloat titleHeight = [title sizeWithFont:font
-            forWidth:titleWidth lineBreakMode:UILineBreakModeWordWrap].height;
+            constrainedToSize:constrainedTitleSize
+            lineBreakMode:UILineBreakModeWordWrap].height;
     CGRect headerFrame = [_headerView frame];
     CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
     CGRect imageFrame = [_imageView frame];

@@ -1,3 +1,4 @@
+#import "math.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -119,9 +120,7 @@
         // Configuring the label
         [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
                 autorelease]];
-        [_titleLabel setNumberOfLines:1];
-        [_titleLabel setAdjustsFontSizeToFitWidth:YES];
-        [_titleLabel setMinimumFontSize:10];
+        [_titleLabel setNumberOfLines:0];
         [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
         [_titleLabel setTextAlignment:UITextAlignmentCenter];
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -156,7 +155,9 @@
     UITableView *tableView = [self tableView];
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
-    CGFloat titleHeight = [title sizeWithFont:font forWidth:titleWidth
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
             lineBreakMode:UILineBreakModeWordWrap].height;
     CGRect headerFrame = [_headerView frame];
     CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
