@@ -75,7 +75,7 @@
                 [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
                     image:kURLOffersIcon 
                     URL:kURLOfferListCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kRegionListTitle
+                [[[TTLauncherItem alloc] initWithTitle:kRegionLauncherTitle
                     image:kURLStoresIcon
                     URL:kURLRegionListCall] autorelease],
                 nil],

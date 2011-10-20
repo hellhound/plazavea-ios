@@ -42,6 +42,8 @@
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _regionId = [regionId copy];
+        [self setTitle:kSubregionListTitle];
+        [self setVariableHeightRows:YES];
     }
     return self;
 }

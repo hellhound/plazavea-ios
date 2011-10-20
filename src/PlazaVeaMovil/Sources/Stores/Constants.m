@@ -39,8 +39,14 @@ NSString *const kRegionListSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
 
 // RegionListController's constants
-NSString *const kRegionListTitle = @"Tiendas";
+
+// Messages
+NSString *const kRegionListTitle = @"Departamentos";
 // NSLocalizedString(@"Departamentos", nil)
+NSString *const kSubregionListTitle = @"Provincias";
+// NSLocalizedString(@"Provincias", nil)
+NSString *const kRegionLauncherTitle = @"Tiendas";
+// NSLocalizedString(@"Tiendas", nil)
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";

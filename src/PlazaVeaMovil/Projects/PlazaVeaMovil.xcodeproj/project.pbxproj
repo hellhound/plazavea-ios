@@ -966,8 +966,8 @@
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				2F75AF13144FCF2700153145 /* SubregionDataSource.m */,
 				2F6C6E97144F673A0012E787 /* RegionListController.m */,
+				2F75AF13144FCF2700153145 /* SubregionDataSource.m */,
 				2F6C6E95144F5F100012E787 /* RegionListDataSource.m */,
 				2F78FF9A144F2F91007F9ACD /* Constants.m */,
 				2F78FF9B144F2F91007F9ACD /* Models.m */,

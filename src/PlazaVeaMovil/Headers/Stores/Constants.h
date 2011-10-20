@@ -32,6 +32,8 @@ extern NSString *const kRegionListSubtitleForError;
 
 // Messages
 extern NSString *const kRegionListTitle;
+extern NSString *const kSubregionListTitle;
+extern NSString *const kRegionLauncherTitle;
 
 // Controllers' URLs
 extern NSString *const kURLRegionList;
