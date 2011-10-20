@@ -9,19 +9,9 @@
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Stores/Models.h"
 #import "Stores/Constants.h"
-#import "Stores/RegionListDataSource.h"
+#import "Stores/SubregionDataSource.h"
 
-@implementation RegionListDataSource
-
-#pragma mark -
-#pragma mark RegionListDataSource
-
-- (id)init
-{
-    if ((self = [super init]) != nil)
-        [self setModel:[[[RegionCollection alloc] init] autorelease]];
-    return self;
-}
+@implementation SubregionDataSource
 
 #pragma mark -
 #pragma mark <TTTableViewDataSource>
@@ -53,15 +43,16 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-    RegionCollection *regionCollection = (RegionCollection *)[self model];
-    NSArray *regions = [regionCollection regions];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:[regions count]];
+    SubregionCollection *regionCollection = (SubregionCollection *)[self model];
+    NSArray *subregions = [regionCollection subregions];
+    NSMutableArray *items =
+            [NSMutableArray arrayWithCapacity:[subregions count]];
     
-    for (Region *region in regions) {
-        NSString *name = [region name];
+    for (Region *subregion in subregions) {
+        NSString *name = [subregion name];
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:URL(kURLSubregionListCall, [region regionId])];
+                subtitle:nil URL:nil];
         [items addObject:item];
     }
     [self setItems:items];
@@ -80,7 +71,7 @@
 - (id)initWithRegionId:(NSString *)regionId {
     if ((self = [super init]) != nil) {
         [self setModel:[[[SubregionCollection alloc] initWithRegionId:regionId]
-                autorelease]];
+                        autorelease]];
     }
     return self;
 }

@@ -44,10 +44,13 @@ NSString *const kRegionListTitle = @"Tiendas";
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
-NSString *const kURLSubregionList = @"tt://launcher/stores/regions/";
+NSString *const kURLSubregionList =
+        @"tt://launcher/stores/regions/subregions/(initWithRegionId:)/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
+NSString *const kURLSubregionListCall =
+        @"tt://launcher/stores/regions/subregions/%@/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");

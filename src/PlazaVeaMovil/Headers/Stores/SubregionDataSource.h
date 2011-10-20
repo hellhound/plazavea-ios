@@ -2,7 +2,7 @@
 
 #import <Three20/Three20.h>
 
-@interface RegionListDataSource: TTListDataSource
+@interface SubregionDataSource: TTListDataSource
 
 - (id)initWithRegionId:(NSString *)regionId;
 @end

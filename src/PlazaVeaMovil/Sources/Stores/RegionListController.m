@@ -2,6 +2,7 @@
 
 #import "Stores/Constants.h"
 #import "Stores/RegionListDataSource.h"
+#import "Stores/SubregionDataSource.h"
 #import "Stores/RegionListController.h"
 
 @implementation RegionListController
@@ -23,6 +24,25 @@
 
 - (void)createModel
 {
-    [self setDataSource:[[[RegionListDataSource alloc] init] autorelease]];
+    if (_regionId != nil) {
+        [self setDataSource:[[[SubregionDataSource alloc]
+                initWithRegionId:_regionId] autorelease]];
+    } else {
+        [self setDataSource:[[[RegionListDataSource alloc] init] autorelease]];
+    }
+}
+
+
+#pragma mark -
+#pragma mark RegionListController (Public)
+
+@synthesize regionId = _regionId;
+
+- (id)initWithRegionId:(NSString *)regionId
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        _regionId = [regionId copy];
+    }
+    return self;
 }
 @end

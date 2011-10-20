@@ -4,4 +4,10 @@
 #import "Common/Controllers/Three20/ReconnectableTableViewController.h"
 
 @interface RegionListController: ReconnectableTableViewController
+{
+    NSString *_regionId;
+}
+@property (nonatomic, copy) NSString *regionId;
+
+- (id)initWithRegionId:(NSString *)regionId;
 @end
