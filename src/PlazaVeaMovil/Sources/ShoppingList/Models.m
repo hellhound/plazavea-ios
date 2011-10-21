@@ -19,6 +19,8 @@ static NSPredicate *kNextListPredicateTemplate;
 static NSPredicate *kHistoryEntryNamePredicateTemplate;
 // Sopping lists name
 static NSString *const kCloningRepetitionSeparators = @"()";
+// NSString's description key
+static NSString *const kNSStringDescriptionKey = @"description";
 
 @interface ShoppingList ()
 
@@ -172,18 +174,35 @@ static NSString *const kCloningRepetitionSeparators = @"()";
     return newList;
 }
 
+/**
+ * Resolves a new name value based on what's already in the store. Either
+ * returning as it is or by appending a suffix to it to label it as a clone.
+ * First, filters the ShoppingList store in two arrays: one that contains any
+ * object with exact name matching, and an other that contains any object that
+ * matches the "clone" naming scheme.
+ * Then it decides wether it should return the name value as it is or whether
+ * it should return the name appended to a suffix. For this it takes into
+ * account the fact that when resolving a name for a shopping list, this object
+ * could already exist in the object context (even before it is stored onto the
+ * disk), this means that this method should ALWAYS consider the fact that there
+ * could exist an exact duplicate of another object during a cloning process.
+ * This' why this method is implemented to double-filter the ShoppingList store,
+ * taking into consideration the number of objects of each resulting array from
+ * both filters.
+ */
 + (NSString *)resolveNewNameFromName:(NSString *)name
 {
     NSString *constantExpression =
         [NSString stringWithFormat:kShoppingListCloningRepetitionPattern,
             [name stringByEscapingReservedRECharacterSet],
             kShoppingListCloningRepetitionName];
-    // first term: name MATCHES[cd] @"pattern"
     NSExpression *lhs = [NSExpression expressionForKeyPath:kShoppingListName];
+    // first term: name MATCHES[cd] @"pattern"
     NSExpression *rhs1 = [NSExpression expressionForConstantValue:
             NSLocalizedString(constantExpression, nil)];
     // second term: name like @"name"
     NSExpression *rhs2 = [NSExpression expressionForConstantValue:name];
+    // first term || second term
     NSPredicate *predicate = [NSCompoundPredicate orPredicateWithSubpredicates:
             [NSArray arrayWithObjects:
                 [NSComparisonPredicate predicateWithLeftExpression:lhs
@@ -202,37 +221,37 @@ static NSString *const kCloningRepetitionSeparators = @"()";
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kShoppingListName
-                ascending:NO]];
-    NSCharacterSet *cloningRepetitionSeparatorsSet =
-            [[NSCharacterSet characterSetWithCharactersInString:
-                kCloningRepetitionSeparators] retain];
 
     [request setEntity:[self entity]];
     [request setPredicate:predicate];
-    [request setSortDescriptors:sortDescriptors];
 
-    NSArray *filteredLists = [context executeFetchRequest:request];
-    NSUInteger filteredCount = [filteredLists count];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:kNSStringDescriptionKey
+                ascending:NO selector:@selector(localizedStandardCompare:)]];
+    // This here coalesces duplicate names and creates a set of names, that is,
+    // a collection of unique names. It has alphabetical and descending order.
+    NSArray *names =
+            [[[NSSet setWithArray:[[context executeFetchRequest:request]
+                valueForKey:kShoppingListName]] allObjects]
+            sortedArrayUsingDescriptors:sortDescriptors];
+    NSUInteger nameCount = [names count];
 
-    if (filteredCount == 0 || ![[(ShoppingList *)
-            [filteredLists objectAtIndex:
-                filteredCount - 1] name] isEqualToString:name]) {
+    if (nameCount == 0 ||
+            ![[names objectAtIndex:nameCount - 1] isEqualToString:name]) {
         // Return name when there's no list with this name or the list name it's
         // not taken (even if there are clones there, i.e. this should happen
         // when the user deletes the original list).
         return name;
-    } else if (filteredCount == 1) {
+    } else if (nameCount == 1) {
         // Return the first clone
         return [NSString stringWithFormat:kShoppingListCloningRepetitionSuffix,
                     name, kShoppingListCloningRepetitionName, 1];
     }
 
-    NSString *candidateName =
-            [(ShoppingList *)[filteredLists objectAtIndex:0] name];
+    NSString *candidateName = [names objectAtIndex:0];
     NSArray *tokens = [candidateName componentsSeparatedByCharactersInSet:
-            cloningRepetitionSeparatorsSet];
+            [NSCharacterSet characterSetWithCharactersInString:
+                kCloningRepetitionSeparators]];
 
     // Each token will always be an NSString and tokens will always have
     // at least 3 elements
