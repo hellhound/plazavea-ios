@@ -48,7 +48,6 @@
 - (void)copyPropertiesFromRegionCollection:(RegionCollection *)collection;
 @end
 
-
 @interface Store: NSObject
 {
     NSNumber *_storeId;
