@@ -21,6 +21,7 @@
 #import "Offers/PromotionDetailController.h"
 #import "Stores/Constants.h"
 #import "Stores/RegionListController.h"
+#import "Stores/StoreListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate

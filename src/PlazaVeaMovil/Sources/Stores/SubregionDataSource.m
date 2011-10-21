@@ -50,12 +50,17 @@
     
     if ([subregions count] == 1) {
         //jump to store list controller
+        Subregion *subregion = [subregions objectAtIndex:0];
+        [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
+                URL(kURLStoreListCall, [subregion subregionId])]
+                applyAnimated:NO]];
     } else {
-        for (Region *subregion in subregions) {
+        for (Subregion *subregion in subregions) {
             NSString *name = [subregion name];
             
             TableImageSubtitleItem *item = [TableImageSubtitleItem
-                    itemWithText:name subtitle:nil URL:nil];
+                    itemWithText:name subtitle:nil
+                    URL:URL(kURLStoreListCall, [subregion subregionId])];
             [items addObject:item];
         }
     }
