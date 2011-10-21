@@ -125,7 +125,7 @@ NSString *const kPromotionDetailTitleForReloading =
 NSString *const kPromotionDetailTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"Sin información", nil)
 NSString *const kPromotionDetailSubtitleForEmpty = @"Por favor intente de "
-        @" nuevo más tarde, aún no existe información para esta oferta";
+        @"nuevo más tarde, aún no existe información para esta oferta";
 // NSLocalizedString(@"Por favor intente de "
 //      @" nuevo más tarde, aún no existe información para esta oferta", nil)
 NSString *const kPromotionDetailTitleForError = @"Error";

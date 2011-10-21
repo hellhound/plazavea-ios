@@ -58,7 +58,7 @@
     NSMutableArray *_offers;
 }
 @property (nonatomic, retain) Banner *banner;
-@property (nonatomic, readonly) NSMutableArray *offers;
+@property (nonatomic, readonly) NSArray *offers;
 
 @end
 
