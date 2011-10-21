@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Additions/UIDevice+Additions.h"
 #import "Launcher/Constants.h"
 #import "Offers/Constants.h"
 #import "Offers/PromotionListDataSource.h"
@@ -45,10 +46,18 @@
 #pragma mark -
 #pragma mark MeatListController
 
-- (void)popToNavigationWindow{
+- (void)popToNavigationWindow
+{
     [self dismissModalViewControllerAnimated:YES];
-    [(UINavigationController *)
-            [[self parentViewController] parentViewController]
-                popToRootViewControllerAnimated:NO];
+    if ([[UIDevice currentDevice] deviceSystemVersion] > kSystemVersion4) {
+        [(UINavigationController *)
+                [[self parentViewController] performSelector:
+                        @selector(presentingViewController)]
+                    popToRootViewControllerAnimated:NO];
+    } else {
+        [(UINavigationController *)
+                [[self parentViewController] parentViewController]
+                    popToRootViewControllerAnimated:NO];
+    }
 }
 @end

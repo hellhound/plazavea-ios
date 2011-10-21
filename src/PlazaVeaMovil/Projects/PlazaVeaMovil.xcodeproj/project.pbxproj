@@ -61,6 +61,7 @@
 		2C89B091141563EC00E12055 /* RecipeCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C89B08F141563EC00E12055 /* RecipeCategoryController.m */; };
 		2C89B092141563EC00E12055 /* RecipeDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C89B090141563EC00E12055 /* RecipeDrillDownController.m */; };
 		2C8E748313FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */; };
+		2C90E6F81452065E00E728AD /* UIDevice+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C90E6F71452065E00E728AD /* UIDevice+Additions.m */; };
 		2C989384140334B100138A44 /* NSObject+SupersequentImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */; };
 		2CAA197A13FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */; };
 		2CAA3443140E9BF00053170B /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA3442140E9BF00053170B /* RecipeDetailController.m */; };
@@ -606,6 +607,7 @@
 		2C89B08F141563EC00E12055 /* RecipeCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCategoryController.m; sourceTree = "<group>"; };
 		2C89B090141563EC00E12055 /* RecipeDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDrillDownController.m; sourceTree = "<group>"; };
 		2C8E748213FDC482007BA731 /* TSAlertView+ModifyingShoppingItemAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+ModifyingShoppingItemAlertView.m"; sourceTree = "<group>"; };
+		2C90E6F71452065E00E728AD /* UIDevice+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Additions.m"; sourceTree = "<group>"; };
 		2C989383140334B100138A44 /* NSObject+SupersequentImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SupersequentImplementation.m"; sourceTree = "<group>"; };
 		2CAA197913FCBCC50045C0A8 /* ShoppingListController+UIActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+UIActionSheetDelegate.m"; sourceTree = "<group>"; };
 		2CAA3442140E9BF00053170B /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailController.m; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 				2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */,
 				2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */,
 				2C15B8AA14032A2E0060D8AD /* TTURLImageResponse+ETag.m */,
+				2C90E6F71452065E00E728AD /* UIDevice+Additions.m */,
 				2C02D9D013F999190039E37C /* NSNull+Additions.m */,
 				2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */,
 				2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */,
@@ -1675,6 +1678,7 @@
 				2F6C6E98144F673A0012E787 /* RegionListController.m in Sources */,
 				2F75AF14144FCF2700153145 /* SubregionDataSource.m in Sources */,
 				2CD1E27C1451099600083FD8 /* strnatcmp.c in Sources */,
+				2C90E6F81452065E00E728AD /* UIDevice+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
