@@ -981,14 +981,14 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
-				2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */,
 				2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */,
-				2FADB7011448F10F00C9AB88 /* OfferDetailController.m */,
 				2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */,
-				2C3A326814479572007F1076 /* PromotionListController.m */,
 				2C858E31144784020020A302 /* PromotionListDataSource.m */,
-				2C0E85F71447B108006A7E02 /* OfferListController.m */,
 				2C0E85F81447B108006A7E02 /* OfferListDataSource.m */,
+				2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */,
+				2FADB7011448F10F00C9AB88 /* OfferDetailController.m */,
+				2C3A326814479572007F1076 /* PromotionListController.m */,
+				2C0E85F71447B108006A7E02 /* OfferListController.m */,
 				2CC3F5331447939B002B0422 /* BasePromotionController.m */,
 				2FA7FB761446361400211215 /* BaseOfferController.m */,
 				2FA7FB771446361400211215 /* OfferDrillDownController.m */,

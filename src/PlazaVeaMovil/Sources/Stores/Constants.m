@@ -20,6 +20,24 @@ NSString *const kRegionCollectionRegionsKey = @"regions";
 // JSON keys
 NSString *const kSubregionCollectionRegionsKey = @"subregions";
 
+// Store model's constants's
+
+// JSON keys
+NSString *const kStoreIdKey = @"id";
+NSString *const kStoreNameKey = @"name";
+NSString *const kStoreAdressKey = @"address";
+NSString *const kStorePictureURLKey = @"picture";
+NSString *const kStoreLatitudeKey = @"latitude";
+NSString *const kStoreLongitudeKey = @"longitude";
+
+// StoreCollection's constants
+
+// JSON keys
+NSString *const kStoreCollectionDistrictsKey = @"districts";
+NSString *const kStoreCollectionNameKey = @"name";
+NSString *const kStoreCollectionIdKey = @"id";
+NSString *const kStoreCollectionStoresKey = @"stores";
+
 // RegionListDataSource's constants
 
 // Messages

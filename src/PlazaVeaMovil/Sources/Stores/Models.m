@@ -13,6 +13,10 @@ static NSString *const kMutableRegionsKey = @"regions";
 // SubregionCollection's key path
 static NSString *const kMUtableSubregionsKey = @"subregions";
 
+// StoreCollection's key path
+static NSString *const kMutableStoresKey = @"stores";
+static NSString *const kMutableStoreTitlesKey = @"storesTitles";
+
 @implementation Subregion
 
 #pragma mark -
@@ -362,16 +366,235 @@ static NSString *const kMUtableSubregionsKey = @"subregions";
 @synthesize storeId = _storeId, name = _name, address = _address,
     picture = _picture, latitude = _latitude, longitude = _longitude;
 
-+ (id)storeFromDictionary:(NSDictionary *)rawStore
++ (id)shortStoreFromDictionary:(NSDictionary *)rawStore
 {
     NSNumber *storeId;
     NSString *name;
     NSString *address;
-    NSURL *picture;
+    NSString *picture;
     NSNumber *latitude;
     NSNumber *longitude;
-    Store *store = [[[Store alloc] init] autorelease];
     
+    if (![rawStore isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((storeId = [rawStore objectForKey:kStoreIdKey]) == nil)
+        return nil;
+    if (![storeId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawStore objectForKey:kStoreNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((address = [rawStore objectForKey:kStoreAdressKey]) == nil)
+        return nil;
+    if (![address isKindOfClass:[NSString class]])
+        return nil;
+    if ((picture = [rawStore objectForKey:kStorePictureURLKey]) == nil)
+        return nil;
+    if (![picture isKindOfClass:[NSString class]])
+        return nil;
+    if ((latitude = [rawStore objectForKey:kStoreLatitudeKey]) == nil)
+        return nil;
+    if (![latitude isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((longitude = [rawStore objectForKey:kStoreLongitudeKey]) == nil)
+        return nil;
+    if (![longitude isKindOfClass:[NSNumber class]])
+        return nil;
+    
+    Store *store = [[[Store alloc] init] autorelease];
+    [store setStoreId:storeId];
+    [store setName:name];
+    [store setAddress:address];
+    [store setPicture:[NSURL URLWithString:picture]];
+    [store setLatitude:latitude];
+    [store setLongitude:longitude];
     return store;
+}
+@end
+
+@interface StoreCollection ()
+
+@property (nonatomic, retain) NSNumber *subregionId;
+@end
+
+@implementation StoreCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        _stores = [[NSMutableArray alloc] init];
+        _storesTitles = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_stores release];
+    [_storesTitles release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize stores = _stores, storesTitles = _storesTitles;
+
+- (void)insertObject:(Store *)store inStoresAtIndex:(NSUInteger)index
+{
+    [_stores insertObject:store atIndex:index];
+}
+
+- (void)insertStores:(NSArray *)stores atIndexes:(NSIndexSet *)indexes
+{
+    [_stores insertObjects:stores atIndexes:indexes];
+}
+
+- (void)removeObjectFromStoresAtIndex:(NSUInteger)index
+{
+    [_stores removeObjectAtIndex:index];
+}
+
+- (void)removeStoresAtIndexes:(NSIndexSet *)indexes
+{
+    [_stores removeObjectsAtIndexes:indexes];
+}
+
+- (void)    insertObject:(NSString *)storeTitle
+   inStoresTitlesAtIndex:(NSUInteger)index
+{
+    [_storesTitles insertObject:storeTitle atIndex:index];
+}
+
+- (void)insertStoresTitles:(NSArray *)storeTitles
+                 atIndexes:(NSIndexSet *)indexes
+{
+    [_storesTitles insertObjects:storeTitles atIndexes:indexes];
+}
+
+- (void)removeObjectFromStoresTitlesAtIndex:(NSUInteger)index
+{
+    [_storesTitles removeObjectAtIndex:index];
+}
+
+- (void)removeStoresTitlesAtIndexes:(NSIndexSet *)indexes
+{
+    [_storesTitles removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark StoreCollection
+
+@synthesize subregionId = _subregionId;
+
++ (id)storeCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    StoreCollection *collection = [[[StoreCollection alloc] init] autorelease];
+    NSArray *districts;
+    NSMutableArray *mutableStores =
+            [collection mutableArrayValueForKey:kMutableStoresKey];
+    NSMutableArray *mutableStoresTitles =
+            [collection mutableArrayValueForKey:kMutableStoreTitlesKey];
+    
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((districts = [rawCollection objectForKey:kStoreCollectionDistrictsKey])
+            == nil)
+        return nil;
+    if (![districts isKindOfClass:[NSArray class]])
+        return nil;
+    for (NSDictionary *storeCluster in districts) {
+        NSArray *rawStores;
+        NSString *sectionName;
+        NSNumber *sectionId;
+        
+        if  (![storeCluster isKindOfClass:[NSDictionary class]])
+            return nil;
+        if ((sectionName = [storeCluster objectForKey:kStoreCollectionNameKey])
+                == nil)
+            return nil;
+        if (![sectionName isKindOfClass:[NSString class]])
+            return nil;
+        if ((sectionId = [storeCluster objectForKey:kStoreCollectionIdKey])
+                == nil)
+            return nil;
+        if (![sectionId isKindOfClass:[NSNumber class]])
+            return nil;
+        if ((rawStores = [storeCluster objectForKey:kStoreCollectionStoresKey])
+                == nil)
+            return nil;
+        if (![rawStores isKindOfClass:[NSArray class]])
+            return nil;
+        
+        NSMutableArray *storesInDistrict =
+                [NSMutableArray arrayWithCapacity:[rawStores count]];
+        
+        [mutableStoresTitles addObject:sectionName];
+        for (NSDictionary *rawStore in rawStores) {
+            Store *store = [Store shortStoreFromDictionary:rawStore];
+            
+            if (store == nil)
+                return nil;
+            [storesInDistrict addObject:store];
+        }
+        [mutableStores addObject:storesInDistrict];
+    }
+    return collection;
+}
+
+- (id)initWithSubregionId:(NSString *)subregionId
+{
+    NSInteger subregionIntegerId = [subregionId integerValue];
+    if (subregionIntegerId < 0)
+        return nil;
+    if ((self = [self init]) != nil)
+        [self setSubregionId:[NSNumber numberWithInteger:subregionIntegerId]];
+    return self;
+}
+
+- (void)copyPropertiesFromStoreCollection:(StoreCollection *)collection;
+{
+    NSMutableArray *stores = [self mutableArrayValueForKey:kMutableStoresKey];
+    NSMutableArray *storeTitles =
+            [self mutableArrayValueForKey:kMutableStoreTitlesKey];
+    for (NSString *storeTitle in [collection storesTitles])
+        [storeTitles addObject:storeTitle];
+    for (Store *store in [collection stores])
+        [stores addObject:store];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kStoreListEndPoint, _subregionId) delegate:self]; 
+        
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    StoreCollection *collection =
+            [StoreCollection storeCollectionFromDictionary:rootObject];
+    
+    if (collection == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromStoreCollection:collection];
+    [self requestDidFinishLoad:request];
 }
 @end

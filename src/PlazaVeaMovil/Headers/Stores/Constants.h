@@ -18,6 +18,22 @@ extern NSString *const kRegionCollectionRegionsKey;
 // JSON keys
 extern NSString *const kSubregionCollectionRegionsKey;
 
+// Store model's constants
+
+// JSON keys
+extern NSString *const kStoreIdKey;
+extern NSString *const kStoreNameKey;
+extern NSString *const kStoreAdressKey;
+extern NSString *const kStorePictureURLKey;
+extern NSString *const kStoreLatitudeKey;
+extern NSString *const kStoreLongitudeKey;
+
+// StoreCollection's constants
+extern NSString *const kStoreCollectionDistrictsKey;
+extern NSString *const kStoreCollectionNameKey;
+extern NSString *const kStoreCollectionIdKey;
+extern NSString *const kStoreCollectionStoresKey;
+
 // RegionListDataSource's constants
 
 // Messages
