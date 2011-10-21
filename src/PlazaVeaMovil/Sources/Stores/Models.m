@@ -339,3 +339,39 @@ static NSString *const kMUtableSubregionsKey = @"subregions";
     [super requestDidFinishLoad:request];
 }
 @end
+
+@implementation Store
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_storeId release];
+    [_name release];
+    [_address release];
+    [_picture release];
+    [_latitude release];
+    [_longitude release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize storeId = _storeId, name = _name, address = _address,
+    picture = _picture, latitude = _latitude, longitude = _longitude;
+
++ (id)storeFromDictionary:(NSDictionary *)rawStore
+{
+    NSNumber *storeId;
+    NSString *name;
+    NSString *address;
+    NSURL *picture;
+    NSNumber *latitude;
+    NSNumber *longitude;
+    Store *store = [[[Store alloc] init] autorelease];
+    
+    return store;
+}
+@end
