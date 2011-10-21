@@ -48,12 +48,16 @@
     NSMutableArray *items =
             [NSMutableArray arrayWithCapacity:[subregions count]];
     
-    for (Region *subregion in subregions) {
-        NSString *name = [subregion name];
-        
-        TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:nil];
-        [items addObject:item];
+    if ([subregions count] == 1) {
+        //jump to store list controller
+    } else {
+        for (Region *subregion in subregions) {
+            NSString *name = [subregion name];
+            
+            TableImageSubtitleItem *item = [TableImageSubtitleItem
+                    itemWithText:name subtitle:nil URL:nil];
+            [items addObject:item];
+        }
     }
     [self setItems:items];
 }

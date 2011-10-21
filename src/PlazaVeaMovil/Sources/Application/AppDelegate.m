@@ -87,6 +87,7 @@
     // Stores
     [map from:kURLRegionList toViewController:[RegionListController class]];
     [map from:kURLSubregionList toViewController:[RegionListController class]];
+    [map from:kURLStoreList toViewController:[StoreListController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

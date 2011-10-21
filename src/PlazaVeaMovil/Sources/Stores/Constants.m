@@ -48,6 +48,13 @@ NSString *const kSubregionListTitle = @"Provincias";
 NSString *const kRegionLauncherTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
 
+
+// StoreListController's constants
+
+// Messages
+NSString *const kStoreListTitle = @"Tiendas";
+// NSLocalizedString(@"Tiendas", nil)
+
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =

@@ -35,6 +35,11 @@ extern NSString *const kRegionListTitle;
 extern NSString *const kSubregionListTitle;
 extern NSString *const kRegionLauncherTitle;
 
+// StoreListController's constants
+
+// Messages
+extern NSString *const kStoreListTitle;
+
 // Controllers' URLs
 extern NSString *const kURLRegionList;
 extern NSString *const kURLSubregionList;
