@@ -3,10 +3,10 @@
 
 typedef enum {
     kSystemVersion3,
-    kSystemVersion32,
     kSystemVersion4,
     kSystemVersion5,
-    kSystemVersion6andUp
+    kSystemVersion6andUp,
+    kSystemVersion32 = 1000
 } UIDeviceSystemVersion;
 
 @interface UIDevice (Additions)

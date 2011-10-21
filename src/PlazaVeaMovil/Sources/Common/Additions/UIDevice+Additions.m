@@ -3,7 +3,7 @@
 
 #import "Common/Additions/UIDevice+Additions.h"
 
-#define UIDEVICE_BASE_MAJOR_SYSTEM_VERSION 3
+#define UIDEVICE_BASE_MAJOR_SYSTEM_VERSION 2
 #define UIDEVICE_BASE_MINOR_SYSTEM_VERSION 1
 
 static NSCharacterSet *kPunctuationCharacterSet;
