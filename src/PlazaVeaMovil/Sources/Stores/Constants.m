@@ -48,17 +48,30 @@ NSString *const kSubregionListTitle = @"Provincias";
 NSString *const kRegionLauncherTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
 
+
+// StoreListController's constants
+
+// Messages
+NSString *const kStoreListTitle = @"Tiendas";
+// NSLocalizedString(@"Tiendas", nil)
+
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =
         @"tt://launcher/stores/regions/subregions/(initWithRegionId:)/";
+NSString *const kURLStoreList =
+        @"tt://launcher/stores/subregions/(initWithSubregionId:)/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionListCall =
         @"tt://launcher/stores/regions/subregions/%@/";
+NSString *const kURLStoreListCall =
+        @"tt://launcher/stores/subregions/%@/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");
 NSString *const kSubregionListEndPoint =
         ENDPOINT(@"/regions/%@/subregions/listing.json/");
+NSString *const kStoreListEndPoint =
+        ENDPOINT(@"/regions/%@/subregions/%@/stores/listing.json/");

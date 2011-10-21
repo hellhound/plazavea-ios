@@ -8,6 +8,15 @@
 @implementation RegionListController
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void) dealloc
+{
+    [_regionId release];
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark UITableViewController
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
