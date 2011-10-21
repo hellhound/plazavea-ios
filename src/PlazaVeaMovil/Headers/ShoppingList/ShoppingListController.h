@@ -26,13 +26,14 @@
     <UIActionSheetDelegate, MFMailComposeViewControllerDelegate,
     TSAlertViewDelegate, HistoryEntryControllerDelegate>
 {
-    id<ShoppingListControllerDelegate> _delegate;
+    UIViewController<ShoppingListControllerDelegate> *_delegate;
     ShoppingList *_shoppingList;
     UIBarButtonItem *_previousItem;
     UIBarButtonItem *_nextItem;
 }
 @property (nonatomic, retain) ShoppingList *shoppingList;
-@property (nonatomic, assign) id<ShoppingListControllerDelegate> delegate;
+@property (nonatomic, assign) 
+    UIViewController<ShoppingListControllerDelegate> *delegate;
 
 + (NSPredicate *)predicateForItemsWithShoppingList:(ShoppingList *)shoppingList;
 
