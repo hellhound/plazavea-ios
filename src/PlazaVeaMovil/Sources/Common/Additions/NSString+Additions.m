@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+#import "Common/Additions/strnatcmp.h"
 #import "Common/Additions/NSString+Additions.h"
 
 // []\^$.|?*+(){}
@@ -61,5 +62,12 @@
     result = NSSTRING_REPLACE(result, NSSTRING_STAR);
     result = NSSTRING_REPLACE(result, NSSTRING_PLUS);
     return result;
+}
+
+- (NSComparisonResult)localizedStandardCompare:(NSString *)comparee
+{
+    return (NSComparisonResult)strnatcasecmp(
+            [self cStringUsingEncoding:NSUTF8StringEncoding],
+            [comparee cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 @end
