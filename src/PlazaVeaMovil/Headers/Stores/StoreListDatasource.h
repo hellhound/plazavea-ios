@@ -2,7 +2,7 @@
 
 #import <Three20/Three20.h>
 
-@interface StoreListDataSource: TTSectionedDataSource
+@interface StoreListDataSource: TTListDataSource
 
 - (id)initWithSubregionId:(NSString *)subregionId;
 @end

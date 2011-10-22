@@ -56,6 +56,24 @@ NSString *const kRegionListTitleForError = @"Error";
 NSString *const kRegionListSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
 
+// StoreListDataSource's constants
+
+// Messages
+NSString *const kStoreListTitleForLoading = @"Obteniendo la lista";
+// NSLocalizedString(@"Obteniendo la lista", nil)
+NSString *const kStoreListTitleForReloading = @"Actualizando la lista";
+// NSLocalizedString(@"Actualizando la lista", nil)
+NSString *const kStoreListTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"@"Sin información", nil)
+NSString *const kStoreListSubtitleForEmpty = @"Por favor intente de nuevo "
+@"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kStoreListTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kStoreListSubtitleForError = @"Error";
+// NSLocalizedString(@""Error", nil)
+
 // RegionListController's constants
 
 // Messages

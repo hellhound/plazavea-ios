@@ -44,6 +44,16 @@ extern NSString *const kRegionListSubtitleForEmpty;
 extern NSString *const kRegionListTitleForError;
 extern NSString *const kRegionListSubtitleForError;
 
+// StoreListDataSource's constants
+
+// Messages
+extern NSString *const kStoreListTitleForLoading;
+extern NSString *const kStoreListTitleForReloading;
+extern NSString *const kStoreListTitleForEmpty;
+extern NSString *const kStoreListSubtitleForEmpty;
+extern NSString *const kStoreListTitleForError;
+extern NSString *const kStoreListSubtitleForError;
+
 // RegionListController's constants
 
 // Messages

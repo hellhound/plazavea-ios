@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Stores/Constants.h"
+#import "Stores/StoreListDataSource.h"
 #import "Stores/StoreListController.h"
 
 @implementation StoreListController
@@ -24,6 +25,15 @@
         [self setVariableHeightRows:YES];
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark TTTableViewController
+
+- (void)createModel
+{
+    [self setDataSource:[[[StoreListDataSource alloc]
+            initWithSubregionId:_subregionId] autorelease]];
 }
 
 #pragma mark -
