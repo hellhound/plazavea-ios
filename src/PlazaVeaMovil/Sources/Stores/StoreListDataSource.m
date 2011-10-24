@@ -16,10 +16,11 @@
 #pragma mark StoreListDataSource (public)
 
 - (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId
 {
     if ((self = [super init]) != nil) {
-        [self setModel:[[[StoreCollection alloc]
-                initWithSubregionId:subregionId] autorelease]];
+        [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
+                andRegionId:regionId] autorelease]];
     }
     return self;
 }
@@ -55,13 +56,33 @@
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     StoreCollection *collection = (StoreCollection *)[self model];
-    NSArray *stores = [collection stores];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:[stores count]];
+    NSArray *sections = [collection stores];
     
-    for (Store *store in stores) {
-        TTTableTextItem *item = [TTTableTextItem itemWithText:[store name]];
-        [items addObject:item];
+    if ([sections count] > 0) {
+        NSMutableArray *items =
+                [NSMutableArray arrayWithCapacity:[sections count]];
+        
+        for (NSArray *section in sections) {
+            NSMutableArray *sectionItems =
+                    [NSMutableArray arrayWithCapacity:[sections count]];
+            
+            for (Store *store in section) {
+                TableImageSubtitleItem *item = [TableImageSubtitleItem
+                        itemWithText:[store name] subtitle:nil URL:nil];
+                
+                [sectionItems addObject:item];
+            }
+            [items addObject:sectionItems];
+        }
+        [self setSections:[[collection districts] mutableCopy]];
+        [self setItems:items];
     }
-    [self setItems:items];
+}
+
+- (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
+{
+    if ([object isKindOfClass:[TableImageSubtitleItem class]])
+        return [TableImageSubtitleItemCell class];
+    return [super tableView:tableView cellClassForObject:object];
 }
 @end

@@ -4,5 +4,6 @@
 
 @interface StoreListDataSource: TTSectionedDataSource
 
-- (id)initWithSubregionId:(NSString *)subregionId;
+- (id)initWithSubregionId:(NSString *)subregionId
+                andRegionId:(NSString *)regionId;
 @end

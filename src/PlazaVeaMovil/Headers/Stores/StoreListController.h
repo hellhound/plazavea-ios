@@ -6,8 +6,11 @@
 @interface StoreListController : ReconnectableTableViewController
 {
     NSString *_subregionId;
+    NSString *_regionId;
 }
 @property (nonatomic, copy) NSString *subregionId;
+@property (nonatomic, copy) NSString *regionId;
 
-- (id)initWithSubregionId:(NSString *)subregionId;
+- (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId;
 @end

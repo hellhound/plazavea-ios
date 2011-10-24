@@ -52,15 +52,15 @@
 {
     NSNumber *_storeId;
     NSString *_name;
-    NSString *_address;
-    NSString *_picture;
+    NSString *_storeAddress;
+    NSURL *_pictureURL;
     NSNumber *_latitude;
     NSNumber *_longitude;
 }
 @property (nonatomic, retain) NSNumber *storeId;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *address;
-@property (nonatomic, retain) NSString *picture;
+@property (nonatomic, copy) NSString *storeAddress;
+@property (nonatomic, retain) NSURL *pictureURL;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
 
@@ -69,15 +69,17 @@
 
 @interface StoreCollection: URLRequestModel
 {
+    NSNumber *_regionId;
     NSNumber *_subregionId;
     NSMutableArray *_stores;
-    NSMutableArray *_storesTitles;
+    NSMutableArray *_districts;
 }
 @property (nonatomic, readonly) NSArray *stores;
-@property (nonatomic, readonly) NSArray *storesTitles;
+@property (nonatomic, readonly) NSArray *districts;
 
 + (id)storeCollectionFromDictionary:(NSDictionary *)rawCollection;
 
-- (id)initWithSubregionId:(NSString *)subregionId;
+- (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId;
 - (void)copyPropertiesFromStoreCollection:(StoreCollection *)collection;
 @end

@@ -56,15 +56,15 @@
                 [[navigator visibleViewController] navigationController];
         [navController popViewControllerAnimated:NO];
         [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
-                URL(kURLStoreListCall, [subregion subregionId])]
+                URL(kURLStoreListCall, [subregion subregionId], _regionId)]
                 applyAnimated:YES]];
     } else {
         for (Subregion *subregion in subregions) {
             NSString *name = [subregion name];
             
             TableImageSubtitleItem *item = [TableImageSubtitleItem
-                    itemWithText:name subtitle:nil
-                    URL:URL(kURLStoreListCall, [subregion subregionId])];
+                    itemWithText:name subtitle:nil URL:URL(kURLStoreListCall,
+                        [subregion subregionId], _regionId)];
             [items addObject:item];
         }
     }
@@ -81,8 +81,11 @@
 #pragma mark -
 #pragma mark RegionListDataSource (Public)
 
+@synthesize regionId = _regionId;
+
 - (id)initWithRegionId:(NSString *)regionId {
     if ((self = [super init]) != nil) {
+        _regionId = [regionId copy];
         [self setModel:[[[SubregionCollection alloc] initWithRegionId:regionId]
                         autorelease]];
     }

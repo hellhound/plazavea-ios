@@ -11,6 +11,7 @@
 
 - (void) dealloc
 {
+    [_regionId release];
     [_subregionId release];
     [super dealloc];
 }
@@ -33,18 +34,21 @@
 - (void)createModel
 {
     [self setDataSource:[[[StoreListDataSource alloc]
-            initWithSubregionId:_subregionId] autorelease]];
+            initWithSubregionId:_subregionId andRegionId:_regionId]
+                autorelease]];
 }
 
 #pragma mark -
 #pragma mark StoreListController (Public)
 
-@synthesize subregionId = _subregionId;
+@synthesize subregionId = _subregionId, regionId = _regionId;
 
 - (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId
 {
-    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+    if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         _subregionId = [subregionId copy];
+        _regionId = [regionId copy];
     }
     return self;
 }
