@@ -48,23 +48,56 @@
 - (void)copyPropertiesFromRegionCollection:(RegionCollection *)collection;
 @end
 
-@interface Store: NSObject
+@interface Service : NSObject
+{
+    NSNumber *_serviceId;
+    NSString *_name;
+    NSString *_serviceURL;
+}
+@property (nonatomic, retain) NSNumber *serviceId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *serviceURL;
+
++ (id)serviceFromDictionary:(NSDictionary *)rawService;
+@end
+
+@interface Store: URLRequestModel
 {
     NSNumber *_storeId;
     NSString *_name;
+    NSString *_code;
     NSString *_address;
+    NSString *_attendance;
     NSString *_picture;
+    Region *_region;
+    Subregion *_subregion;
+    NSString *_ubigeo;
+    NSString *_phones;
     NSNumber *_latitude;
     NSNumber *_longitude;
+    NSMutableArray *_services;
 }
 @property (nonatomic, retain) NSNumber *storeId;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *address;
+@property (nonatomic, copy) NSString *attendance;
 @property (nonatomic, retain) NSString *picture;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
+@property (nonatomic, retain) Region *region;
+@property (nonatomic, retain) Subregion *subregion;
+@property (nonatomic, copy) NSString *ubigeo;
+@property (nonatomic, copy) NSString *phones;
+@property (nonatomic, readonly) NSArray *services;
 
-+ (id)shortStoreFromDictionary:(NSDictionary *)rawStore;
++ (id)shortStoreFromDictionary:(NSDictionary *)rawStore 
+       whithLatitudeInLocation:(BOOL) latitudeInLocation;
++ (id)storeFromDictionary:(NSDictionary *)rawStore;
+
+
+- (id)initWithStoreId:(NSString *)storeId;
+- (void)copyPropertiesFromStore:(Store *)store;
 @end
 
 @interface StoreCollection: URLRequestModel

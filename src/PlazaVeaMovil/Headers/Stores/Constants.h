@@ -18,6 +18,13 @@ extern NSString *const kRegionCollectionRegionsKey;
 // JSON keys
 extern NSString *const kSubregionCollectionRegionsKey;
 
+// Service model's constants's
+
+// JSON keys
+extern NSString *const kServiceIdKey;
+extern NSString *const kServiceNameKey;
+extern NSString *const kServiceURLKey;
+
 // Store model's constants
 
 // JSON keys
@@ -27,6 +34,15 @@ extern NSString *const kStoreAdressKey;
 extern NSString *const kStorePictureURLKey;
 extern NSString *const kStoreLatitudeKey;
 extern NSString *const kStoreLongitudeKey;
+extern NSString *const kStoreCodeKey;
+extern NSString *const kStoreAttendanceKey;
+extern NSString *const kStoreLocationKey;
+extern NSString *const kStoreRegionKey;
+extern NSString *const kStoreSubregionKey;
+extern NSString *const kStoreDisctrictKey;
+extern NSString *const kStoreUbigeoKey;
+extern NSString *const kStorePhonesKey;
+extern NSString *const kStoreServicesKey;
 
 // StoreCollection's constants
 extern NSString *const kStoreCollectionDistrictsKey;
@@ -54,6 +70,16 @@ extern NSString *const kStoreListSubtitleForEmpty;
 extern NSString *const kStoreListTitleForError;
 extern NSString *const kStoreListSubtitleForError;
 
+// StoreDetailDataSource's constants
+
+// Messages
+extern NSString *const kStoreDetailTitleForLoading;
+extern NSString *const kStoreDetailTitleForReloading;
+extern NSString *const kStoreDetailTitleForEmpty;
+extern NSString *const kStoreDetailSubtitleForEmpty;
+extern NSString *const kStoreDetailTitleForError;
+extern NSString *const kStoreDetailSubtitleForError;
+
 // RegionListController's constants
 
 // Messages
@@ -80,3 +106,4 @@ extern NSString *const kURLStoreListCall;
 extern NSString *const kRegionListEndPoint;
 extern NSString *const kSubregionListEndPoint;
 extern NSString *const kStoreListEndPoint;
+extern NSString *const kStoreDetailEndPoint;

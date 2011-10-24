@@ -17,6 +17,9 @@ static NSString *const kMUtableSubregionsKey = @"subregions";
 static NSString *const kMutableStoresKey = @"stores";
 static NSString *const kMutableStoreTitlesKey = @"storesTitles";
 
+// Store's key pathes
+static NSString *const kMutableServicesKey = @"services";
+
 @implementation Subregion
 
 #pragma mark -
@@ -344,29 +347,120 @@ static NSString *const kMutableStoreTitlesKey = @"storesTitles";
 }
 @end
 
+@implementation Service
+
+#pragma mark -
+#pragma mark NSObject
+- (void) dealloc
+{
+    [_serviceId release];
+    [_name release];
+    [_serviceURL release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Service (Public)
+@synthesize serviceId = _serviceId, name = _name, serviceURL = _serviceURL;
+
++ (id)serviceFromDictionary:(NSDictionary *)rawService
+{
+    NSNumber *serviceId;
+    NSString *name;
+    NSString *serviceURL;
+
+    if (![rawService isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((serviceId = [rawService objectForKey:kServiceIdKey]) == nil)
+        return nil;
+    if (![serviceId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawService objectForKey:kServiceNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((serviceURL = [rawService objectForKey:kServiceURLKey]) == nil)
+        return nil;
+    if (![serviceURL isKindOfClass:[NSString class]])
+        return nil;
+
+    Service *service = [[[Service alloc] init] autorelease];
+
+    [service setServiceId:serviceId];
+    [service setName:name];
+    [service setServiceURL:serviceURL];
+
+    return service;
+}
+@end
+
 @implementation Store
 
 #pragma mark -
 #pragma mark NSObject
 
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        // Initialiazing only the mutable arrays
+        _services = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [_storeId release];
     [_name release];
+    [_code release];
     [_address release];
+    [_attendance release];
     [_picture release];
+    [_region release];
+    [_subregion release];
+    [_ubigeo release];
     [_latitude release];
     [_longitude release];
+    [_services release];
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark Region (Public)
+#pragma mark NSObject (NSKeyValueCoding)
 
-@synthesize storeId = _storeId, name = _name, address = _address,
-    picture = _picture, latitude = _latitude, longitude = _longitude;
+@synthesize services = _services;
+- (void)        insertObject:(Service *)service
+   inServicesAtIndex:(NSUInteger)index
+{
+    [_services insertObject:service atIndex:index];
+}
 
-+ (id)shortStoreFromDictionary:(NSDictionary *)rawStore
+- (void)insertServices:(NSArray *)services
+                     atIndexes:(NSIndexSet *)indexes
+{
+    [_services insertObjects:services atIndexes:indexes];
+}
+
+- (void)removeObjectFromServicesAtIndex:(NSUInteger)index
+{
+    [_services removeObjectAtIndex:index];
+}
+
+- (void)removeServicesAtIndexes:(NSIndexSet *)indexes
+{
+    [_services removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark Store (Public)
+
+@synthesize storeId = _storeId, name = _name, code = _code, address = _address,
+    attendance = _attendance,  picture = _picture, region = _region, 
+    subregion = _subregion, ubigeo = _ubigeo, phones = _phones,
+    latitude = _latitude, longitude = _longitude;
+
++ (id)shortStoreFromDictionary:(NSDictionary *)rawStore 
+       whithLatitudeInLocation:(BOOL) latitudeInLocation;
 {
     NSNumber *storeId;
     NSString *name;
@@ -397,11 +491,14 @@ static NSString *const kMutableStoreTitlesKey = @"storesTitles";
         return nil;
     if (![latitude isKindOfClass:[NSNumber class]])
         return nil;
-    if ((longitude = [rawStore objectForKey:kStoreLongitudeKey]) == nil)
-        return nil;
-    if (![longitude isKindOfClass:[NSNumber class]])
-        return nil;
-    
+    if (latitudeInLocation) {
+        //TODO:Implement
+    } else {
+        if ((longitude = [rawStore objectForKey:kStoreLongitudeKey]) == nil)
+            return nil;
+        if (![longitude isKindOfClass:[NSNumber class]])
+            return nil;
+    }
     Store *store = [[[Store alloc] init] autorelease];
     [store setStoreId:storeId];
     [store setName:name];
@@ -410,6 +507,147 @@ static NSString *const kMutableStoreTitlesKey = @"storesTitles";
     [store setLatitude:latitude];
     [store setLongitude:longitude];
     return store;
+}
+
++ (id)storeFromDictionary:(NSDictionary *)rawStore
+{
+    Store *store = [self shortStoreFromDictionary:rawStore 
+            whithLatitudeInLocation:YES];
+    if (store == nil)
+        return nil;
+
+    NSString *code, *phones, *attendance, *ubigeo;
+    NSDictionary *rawLocation, *rawRegion, *rawSubregion;
+    NSArray *services;
+    NSMutableArray *mutableServices =
+            [store mutableArrayValueForKey:kMutableServicesKey]; 
+    Region *region;
+    Subregion *subregion;
+
+    if ((code = [rawStore objectForKey:kStoreCodeKey]) == nil)
+        return nil;
+    if (![code isKindOfClass:[NSString class]]){
+        if (![code isKindOfClass:[NSNull class]])
+            return nil;
+        code=nil;
+    }
+    if ((attendance = [rawStore objectForKey:kStoreAttendanceKey]) == nil)
+        return nil;
+    if (![attendance isKindOfClass:[NSString class]]){
+        if (![attendance isKindOfClass:[NSNull class]])
+            return nil;
+        attendance=nil;
+    }
+    if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
+        return nil;
+    if (![rawLocation isKindOfClass:[NSDictionary class]]){
+        if (![rawLocation isKindOfClass:[NSNull class]])
+            return nil;
+        if ((rawRegion = [rawLocation objectForKey:kStoreRegionKey]) == nil)
+            return nil;
+        region = [Region regionFromDictionary:rawRegion];
+        if (region == nil)
+            return nil;
+        if ((rawSubregion = [rawLocation objectForKey:kStoreSubregionKey])
+                == nil)
+            return nil;
+        subregion = [Subregion subregionFromDictionary:rawSubregion];
+        if (subregion == nil)
+            return nil;
+        if ((ubigeo = [rawStore objectForKey:kStoreUbigeoKey]) == nil)
+            return nil;
+        if (![ubigeo isKindOfClass:[NSString class]])
+            return nil;
+    }
+    if ((phones = [rawStore objectForKey:kStorePhonesKey]) == nil)
+        return nil;
+    if (![phones isKindOfClass:[NSString class]]){
+        if (![phones isKindOfClass:[NSNull class]])
+            return nil;
+        phones=nil;
+    }
+    if ((services = [rawStore objectForKey:kStoreServicesKey]) == nil)
+        return nil;
+    if (![services isKindOfClass:[NSArray class]])
+        return nil;
+    [store setCode:code];
+    [store setAttendance:attendance];
+    [store setRegion:region];
+    [store setSubregion:subregion];
+    [store setUbigeo:ubigeo];
+    [store setPhones:phones];
+    for (NSDictionary *rawService in services) {
+        Service *service = [Service serviceFromDictionary:rawService];
+        if (service == nil)
+            return nil;
+        [mutableServices addObject:service];
+    }
+    return store;
+}
+
+- (id)initWithStoreId:(NSString *)storeId
+{
+    NSInteger storeIntegerId = [storeId integerValue];
+    if(storeIntegerId < 0) {
+        return nil;
+    }
+    if((self = [self init]) != nil)
+        [self setStoreId:[NSNumber numberWithInteger:storeIntegerId]];
+    return self;
+}
+
+- (void)copyPropertiesFromStore:(Store *)store
+{
+    [self setStoreId:[store storeId]];
+    [self setCode:[[store code] copy]];
+    [self setName:[[store name] copy]];
+    [self setAddress:[[store address] copy]];
+    [self setAttendance:[[store attendance] copy]];
+    [self setPicture:[store picture]];
+    [self setRegion:[store region]];
+    [self setSubregion:[store subregion]];
+    [self setUbigeo:[[store ubigeo] copy]];
+    [self setLatitude:[store latitude]];
+    [self setLongitude:[store longitude]];
+
+    NSMutableArray *services =
+            [self mutableArrayValueForKey:kMutableServicesKey]; 
+
+    for (Service *service in [store services])
+        [services addObject:service];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kStoreDetailEndPoint, _storeId) delegate:self]; 
+
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    Store *store = [Store storeFromDictionary:rootObject];
+
+    if (store == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+            tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromStore:store];
+    [super requestDidFinishLoad:request];
 }
 @end
 
@@ -535,7 +773,8 @@ static NSString *const kMutableStoreTitlesKey = @"storesTitles";
         
         [mutableStoresTitles addObject:sectionName];
         for (NSDictionary *rawStore in rawStores) {
-            Store *store = [Store shortStoreFromDictionary:rawStore];
+            Store *store = [Store shortStoreFromDictionary:rawStore 
+                    whithLatitudeInLocation:NO];
             
             if (store == nil)
                 return nil;
