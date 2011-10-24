@@ -4,6 +4,8 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Views/ImageCarouselItem.h"
+#import "Common/Views/ImageCarouselItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Offers/Constants.h"
@@ -72,8 +74,11 @@
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {
-    if ([object isKindOfClass:[TableImageSubtitleItem class]])
+    if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[ImageCarouselItem class]]) {
+        return [ImageCarouselItemCell class];
+    }
     return [super tableView:tableView cellClassForObject:object];
 }
 @end

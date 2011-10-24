@@ -16,6 +16,8 @@
 		2C0E85F91447B108006A7E02 /* OfferListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E85F71447B108006A7E02 /* OfferListController.m */; };
 		2C0E85FA1447B108006A7E02 /* OfferListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E85F81447B108006A7E02 /* OfferListDataSource.m */; };
 		2C133FEA140E967600B7F7EC /* RecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */; };
+		2C146F1A1456220100E5EAFC /* ImageCarouselItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C146F181456220100E5EAFC /* ImageCarouselItem.m */; };
+		2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C146F191456220100E5EAFC /* ImageCarouselItemCell.m */; };
 		2C15B8AB14032A2E0060D8AD /* TTImageView+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */; };
 		2C15B8AC14032A2E0060D8AD /* TTStyledImageNode+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */; };
 		2C15B8AD14032A2E0060D8AD /* TTStyledText+ETag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */; };
@@ -560,6 +562,8 @@
 		2C0E85F71447B108006A7E02 /* OfferListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListController.m; sourceTree = "<group>"; };
 		2C0E85F81447B108006A7E02 /* OfferListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListDataSource.m; sourceTree = "<group>"; };
 		2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailDataSource.m; sourceTree = "<group>"; };
+		2C146F181456220100E5EAFC /* ImageCarouselItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCarouselItem.m; sourceTree = "<group>"; };
+		2C146F191456220100E5EAFC /* ImageCarouselItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCarouselItemCell.m; sourceTree = "<group>"; };
 		2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTImageView+ETag.m"; sourceTree = "<group>"; };
 		2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledImageNode+ETag.m"; sourceTree = "<group>"; };
 		2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyledText+ETag.m"; sourceTree = "<group>"; };
@@ -720,6 +724,8 @@
 		2C25BD3313E8F88F00A4311B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C146F181456220100E5EAFC /* ImageCarouselItem.m */,
+				2C146F191456220100E5EAFC /* ImageCarouselItemCell.m */,
 				CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */,
 				CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */,
 				CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */,
@@ -1687,6 +1693,8 @@
 				2C90E6F81452065E00E728AD /* UIDevice+Additions.m in Sources */,
 				2FEE401A1452238A00D516E8 /* StoreListController.m in Sources */,
 				2FEE401B1452238A00D516E8 /* StoreListDataSource.m in Sources */,
+				2C146F1A1456220100E5EAFC /* ImageCarouselItem.m in Sources */,
+				2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
