@@ -124,6 +124,8 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CC1947BC1455E4940004C283 /* StoreDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1947BA1455E4940004C283 /* StoreDetailController.m */; };
+		CC1947BD1455E4940004C283 /* StoreDetailDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1947BB1455E4940004C283 /* StoreDetailDatasource.m */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
 		CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */; };
@@ -672,6 +674,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../../Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CC1947BA1455E4940004C283 /* StoreDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailController.m; sourceTree = "<group>"; };
+		CC1947BB1455E4940004C283 /* StoreDetailDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailDatasource.m; sourceTree = "<group>"; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
 		CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyImageItemCell.m; sourceTree = "<group>"; };
@@ -976,6 +980,8 @@
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				CC1947BA1455E4940004C283 /* StoreDetailController.m */,
+				CC1947BB1455E4940004C283 /* StoreDetailDatasource.m */,
 				2FEE40181452238A00D516E8 /* StoreListController.m */,
 				2F6C6E97144F673A0012E787 /* RegionListController.m */,
 				2FEE40191452238A00D516E8 /* StoreListDataSource.m */,
@@ -1687,6 +1693,8 @@
 				2C90E6F81452065E00E728AD /* UIDevice+Additions.m in Sources */,
 				2FEE401A1452238A00D516E8 /* StoreListController.m in Sources */,
 				2FEE401B1452238A00D516E8 /* StoreListDataSource.m in Sources */,
+				CC1947BC1455E4940004C283 /* StoreDetailController.m in Sources */,
+				CC1947BD1455E4940004C283 /* StoreDetailDatasource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,13 @@ NSString *const kRegionCollectionRegionsKey = @"regions";
 // JSON keys
 NSString *const kSubregionCollectionRegionsKey = @"subregions";
 
+// Service model's constants's
+
+// JSON keys
+NSString *const kServiceIdKey = @"id";
+NSString *const kServiceNameKey = @"name";
+NSString *const kServiceURLKey = @"url";
+
 // Store model's constants's
 
 // JSON keys
@@ -31,6 +38,15 @@ NSString *const kStoreAdressKey = @"address";
 NSString *const kStorePictureURLKey = @"picture";
 NSString *const kStoreLatitudeKey = @"latitude";
 NSString *const kStoreLongitudeKey = @"longitude";
+NSString *const kStoreCodeKey = @"code";
+NSString *const kStoreAttendanceKey = @"attendance";
+NSString *const kStoreLocationKey = @"location";
+NSString *const kStoreRegionKey = @"region";
+NSString *const kStoreSubregionKey = @"subregion";
+NSString *const kStoreDisctrictKey = @"disctrict";
+NSString *const kStoreUbigeoKey = @"ubigeo";
+NSString *const kStorePhonesKey = @"phones";
+NSString *const kStoreServicesKey = @"services";
 
 // StoreCollection's constants
 
@@ -76,6 +92,24 @@ NSString *const kStoreListTitleForError = @"Error";
 NSString *const kStoreListSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
 
+// StoreDetailDataSource's constants
+
+// Messages
+NSString *const kStoreDetailTitleForLoading = @"Obteniendo la lista";
+// NSLocalizedString(@"Obteniendo la lista", nil)
+NSString *const kStoreDetailTitleForReloading = @"Actualizando la lista";
+// NSLocalizedString(@"Actualizando la lista", nil)
+NSString *const kStoreDetailTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"@"Sin información", nil)
+NSString *const kStoreDetailSubtitleForEmpty = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kStoreDetailTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kStoreDetailSubtitleForError = @"Error";
+// NSLocalizedString(@""Error", nil)
+
 // RegionListController's constants
 
 // Messages
@@ -113,3 +147,4 @@ NSString *const kSubregionListEndPoint =
         ENDPOINT(@"/regions/%@/subregions/listing.json/");
 NSString *const kStoreListEndPoint =
         ENDPOINT(@"/regions/%@/subregions/%@/stores/listing.json/");
+NSString *const kStoreDetailEndPoint = ENDPOINT(@"/stores/%@/details.json/");
