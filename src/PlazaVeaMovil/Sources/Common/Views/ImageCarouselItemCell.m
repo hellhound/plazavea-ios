@@ -29,6 +29,11 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
                      style:(TTStyle *)globalStyle;
 @end
 
+@interface ImageCarouselItemCell (EventHandlers)
+
+- (void)changePage:(UIPageControl *)pageControl;
+@end
+
 @implementation ImageCarouselItemCell
 
 #pragma mark -
@@ -250,6 +255,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     if (_pageControl == nil) {
         // Configuring the page control
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
+        [_pageControl addTarget:self action:@selector(changePage:)
+               forControlEvents:UIControlEventValueChanged];
         [_pageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_pageControl setBackgroundColor:[UIColor lightGrayColor]];
         [_pageControl setCurrentPage:0];
@@ -266,6 +273,17 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
         [_activityIndicator setHidesWhenStopped:YES];
     }
     return _activityIndicator;
+}
+
+#pragma mark -
+#pragma mark ImageCarouselItemCell (EventHandlers)
+
+- (void)changePage:(UIPageControl *)pageControl
+{
+    TTImageView *imageView =
+            [[self loadedImageViews] objectAtIndex:[pageControl currentPage]];
+
+    [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
 }
 
 #pragma mark -
