@@ -38,6 +38,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     [_imageViews release];
     [_scrollView release];
     [_pageControl release];
+    [_defaultImageView release];
+    [_activityIndicator release];
     [super dealloc];
 }
 
@@ -45,8 +47,11 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 {
     [super didMoveToSuperview];
     for (UIView *view in _imageViews) {
+        UIPageControl *pageControl = [self pageControl];
+
         [view setBackgroundColor:[self backgroundColor]];
-        [[self pageControl] setCurrentPage:0]; // the first page
+        [pageControl setCurrentPage:0]; // the first page
+        [pageControl setNumberOfPages:0];
     }
 }
 
@@ -271,15 +276,28 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image
 {
-    /*
+    UIImageView *defaultImageView = [self defaultImageView];
+    UIScrollView *scrollView = [self scrollView];
+    UIActivityIndicatorView *activityIndicator = [self activityIndicator];
+    UIPageControl *pageControl = [self pageControl];
+
+    if ([defaultImageView superview] == scrollView) {
+        // Remove defaultImageView and activityIndicator from scrollView
+        [defaultImageView removeFromSuperview];
+        [activityIndicator removeFromSuperview];
+        [scrollView setContentSize:CGSizeZero];
+    }
+
+    CGSize contentSize = [scrollView contentSize];
+    CGRect imageFrame = [imageView frame];
+    CGFloat xOffset = contentSize.width;
+
+    contentSize.width += imageFrame.size.width;
+    [imageView setFrame:CGRectOffset(imageFrame, xOffset, .0)];
     // Configuring scrollView
-    //[scrollView setContentSize:
-    //          [ImageCarouselItemCell scrollContentSizeForItem:item]];
-    // Setting content's height to 1 http://j.mp/pz0KcZ
-    [scrollView setContentSize:CGSizeMake(
-            [ImageCarouselItemCell scrollContentSizeForItem:item].width, 1.)];
-    // Configuring the page control
-    [pageControl setNumberOfPages:[imageItems count]];
-    */
+    [scrollView setContentSize:contentSize];
+    [scrollView addSubview:imageView];
+    // Configuring pageControl
+    [pageControl setNumberOfPages:[pageControl numberOfPages] + 1];
 }
 @end
