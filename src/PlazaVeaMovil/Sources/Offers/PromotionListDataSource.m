@@ -64,7 +64,8 @@
                 [NSMutableArray arrayWithCapacity:promotionCount];
 
         for (Promotion *promotion in promotions) {
-            NSString *URL = URL(kURLPromotionDetailCall, [promotion promotionId]); 
+            NSString *URL = URL(kURLPromotionDetailCall,
+                    [promotion promotionId]); 
             TableImageSubtitleItem *item = [TableImageSubtitleItem
                     itemWithText:[promotion name] URL:URL];
             NSURL *bannerURL = [promotion bannerURL];
