@@ -60,13 +60,31 @@
     if (promotionCount > 0) {
         NSMutableArray *items =
                 [NSMutableArray arrayWithCapacity:promotionCount];
+        NSMutableArray *imageItems =
+                [NSMutableArray arrayWithCapacity:promotionCount];
 
         for (Promotion *promotion in promotions) {
+            NSString *URL = URL(kURLPromotionDetailCall, [promotion promotionId]); 
             TableImageSubtitleItem *item = [TableImageSubtitleItem
-                    itemWithText:[promotion name] URL:
-                        URL(kURLPromotionDetailCall, [promotion promotionId])];
+                    itemWithText:[promotion name] URL:URL];
+            NSURL *bannerURL = [promotion bannerURL];
 
             [items addObject:item];
+            if (bannerURL != nil) {
+                TableImageSubtitleItem *imageItem =
+                        [TableImageSubtitleItem itemWithText:nil subtitle:nil
+                            imageURL:[IMAGE_URL(bannerURL,
+                                kPromotionListImageWidth,
+                                kPromotionListImageHeight) absoluteString]
+                            defaultImage:TTIMAGE(kBannerDefaultImage) URL:URL];
+                [imageItems addObject:imageItem];
+            }
+        }
+        if ([imageItems count] > 0) {
+            ImageCarouselItem *carousel =
+                    [ImageCarouselItem itemWithImageItems:imageItems];
+
+            [items insertObject:carousel atIndex:0];
         }
         [self setItems:items];
     }
