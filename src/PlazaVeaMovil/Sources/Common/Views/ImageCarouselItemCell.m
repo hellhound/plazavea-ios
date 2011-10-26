@@ -16,7 +16,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 // It's only purpose is to retain every image view for being available to their
 // delegate
-@property (nonatomic, retain) NSMutableArray *mutableImageViews;
+@property (nonatomic, retain) NSMutableArray *imageViews;
+@property (nonatomic, retain) NSMutableArray *loadedImageViews;
 @property (nonatomic, readonly) UIScrollView *scrollView;
 @property (nonatomic, readonly) UIPageControl *pageControl;
 @property (nonatomic, retain) UIImageView *defaultImageView;
@@ -36,6 +37,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 - (void)dealloc
 {
     [_imageViews release];
+    [_loadedImageViews release];
     [_scrollView release];
     [_pageControl release];
     [_defaultImageView release];
@@ -103,19 +105,20 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 {
     [super setObject:object];
     // Reset *ImageViews each time a new object is assign to the cell
-    [self setMutableImageViews:[NSMutableArray array]];
+    [self setImageViews:[NSMutableArray array]];
+    [self setLoadedImageViews:[NSMutableArray array]];
 
     ImageCarouselItem *item = object;
 
     // ImageCarouselItemCell's properties
-    NSMutableArray *imageViews = [self mutableImageViews];
+    NSMutableArray *imageViews = [self imageViews];
     UIScrollView *scrollView = [self scrollView];
     // ImageCarouselItem's properties
     UIImage *defaultImage = [item defaultImage];
     TTStyle *style = [item style];
     NSArray *imageItems = [item imageItems];
 
-    // Configuring imageViews
+    // Configure each image view
     for (TableImageSubtitleItem *imageItem in imageItems) {
         CGSize imageSize = [ImageCarouselItemCell sizeForImageItem:imageItem
                 defaultImage:defaultImage style:style];
@@ -126,7 +129,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
         [imageView setDelegate:self];
         [imageView setUrlPath:[imageItem imageURL]];
         [imageView setDefaultImage:[imageItem defaultImage]];
-        // Add the TTImageView to imageViews
+        // We need to retain the image views somewhere before they are presented
+        // in the scroll view
         [imageViews addObject:imageView];
     }
     if (defaultImage != nil) {
@@ -150,7 +154,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 #pragma mark -
 #pragma mark ImageCarouselItemCell (Private)
 
-@synthesize mutableImageViews = _imageViews,
+@synthesize imageViews = _imageViews, loadedImageViews = _loadedImageViews,
     defaultImageView = _defaultImageView;
 
 + (CGSize)scrollContentSizeForItem:(ImageCarouselItem *)item
@@ -231,6 +235,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     if (_scrollView == nil) {
         // Configuring the scroll view
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        [_scrollView setDelegate:self];
         [_scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_scrollView setPagingEnabled:YES];
         [_scrollView setShowsVerticalScrollIndicator:NO];
@@ -264,11 +269,24 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 }
 
 #pragma mark -
-#pragma mark ImageCarouselItemCell
+#pragma mark <UIScrollViewDelegate>
 
-- (NSArray *)imageViews
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    return [self mutableImageViews];
+    NSArray *loadedImageViews = [self loadedImageViews];
+    UIPageControl *pageControl = [self pageControl];
+    CGPoint contentOffset = [scrollView contentOffset];
+    NSInteger i = 0;
+
+    // We use UIview given that TTImageView isn't a subclass of UIImageView and
+    // defaultImageView is an instance of UIImageView
+    for (UIView *view in loadedImageViews) {
+        if ([view pointInside:
+                    [scrollView convertPoint:contentOffset toView:view]
+                withEvent:nil])
+            [pageControl setCurrentPage:i]; 
+        i++;
+    }
 }
 
 #pragma mark -
@@ -276,6 +294,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image
 {
+    NSMutableArray *loadedImageViews = [self loadedImageViews];
     UIImageView *defaultImageView = [self defaultImageView];
     UIScrollView *scrollView = [self scrollView];
     UIActivityIndicatorView *activityIndicator = [self activityIndicator];
@@ -299,5 +318,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     [scrollView addSubview:imageView];
     // Configuring pageControl
     [pageControl setNumberOfPages:[pageControl numberOfPages] + 1];
+    // Add the TTImageView to loadedImageViews
+    [loadedImageViews addObject:imageView];
 }
 @end
