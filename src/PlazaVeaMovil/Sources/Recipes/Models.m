@@ -132,6 +132,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         TTURLRequest *request = [TTURLRequest
                 requestWithURL:kURLRecipeMeatsEndpoint delegate:self];
         
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request setCachePolicy:cachePolicy];
         [request send];
