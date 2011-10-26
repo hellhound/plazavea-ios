@@ -9,6 +9,8 @@
 //JSON keys
 NSString *const kRegionIdKey = @"id";
 NSString *const kRegionNameKey = @"name";
+NSString *const kRegionCountKey = @"count";
+NSString *const kRegionSuggestedKey = @"suggested";
 
 // Region Collection model's constants
 

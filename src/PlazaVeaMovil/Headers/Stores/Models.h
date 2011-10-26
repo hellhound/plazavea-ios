@@ -30,9 +30,13 @@
 {
     NSNumber *_regionId;
     NSString *_name;
+    NSNumber *_count;
+    NSNumber *_suggested;
 }
 @property (nonatomic, retain) NSNumber *regionId;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSNumber *count;
+@property (nonatomic, retain) NSNumber *suggested;
 
 + (id)regionFromDictionary:(NSDictionary *)rawRegion;
 @end

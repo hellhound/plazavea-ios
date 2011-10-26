@@ -59,9 +59,15 @@
     
     for (Region *region in regions) {
         NSString *name = [region name];
+        NSString *URL;
         
+        if ([[region count] integerValue] == 1) {  
+            URL = URL(kURLStoreListCall, [region suggested], [region regionId]);
+        } else {
+            URL = URL(kURLSubregionListCall, [region regionId]);
+        }
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:URL(kURLSubregionListCall, [region regionId])];
+                    subtitle:nil URL:URL];
         [items addObject:item];
     }
     [self setItems:items];
