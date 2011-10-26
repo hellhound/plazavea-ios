@@ -3,7 +3,7 @@
 #import <Three20/Three20.h>
 @protocol StoreDetailDataSourceDelegate;
 
-@interface StoreDetailDataSource: TTListDataSource
+@interface StoreDetailDataSource: TTSectionedDataSource
 {
     id<StoreDetailDataSourceDelegate> _delegate;
 }

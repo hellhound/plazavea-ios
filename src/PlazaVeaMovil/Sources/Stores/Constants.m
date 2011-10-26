@@ -43,7 +43,7 @@ NSString *const kStoreAttendanceKey = @"attendance";
 NSString *const kStoreLocationKey = @"location";
 NSString *const kStoreRegionKey = @"region";
 NSString *const kStoreSubregionKey = @"subregion";
-NSString *const kStoreDisctrictKey = @"disctrict";
+NSString *const kStoreDisctrictKey = @"district";
 NSString *const kStoreUbigeoKey = @"ubigeo";
 NSString *const kStorePhonesKey = @"phones";
 NSString *const kStoreServicesKey = @"services";
@@ -109,6 +109,16 @@ NSString *const kStoreDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kStoreDetailSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
+NSString *const kStoreDetailData = @"Datos";
+// NSLocalizedString(@"Datos", nil)
+NSString *const kStoreDetailServices = @"Servicios";
+// NSLocalizedString(@"Servicios", nil)
+NSString *const kStoreDetailAddress = @"Dirección: %@";
+// NSLocalizedString(@"Dirección: %@")
+NSString *const kStoreDetailAttendance = @"Horario: %@";
+// NSLocalizedString(@"Horario: %@")
+NSString *const kStoreDetailPhones = @"Teléfonos: %@";
+// NSLocalizedString(@"Teléfonos: %@")
 
 // RegionListController's constants
 
@@ -132,7 +142,8 @@ NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =
         @"tt://launcher/stores/regions/subregions/(initWithRegionId:)/";
 NSString *const kURLStoreList =
-        @"tt://launcher/stores/stores/(initWithSubregionId:)/(andRegionId:)";
+        @"tt://launcher/stores/stores/(initWithSubregionId:)/(andRegionId:)/";
+NSString *const kURLStoreDetail = @"tt://launcher/store/(initWithStoreId:)/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
@@ -140,9 +151,10 @@ NSString *const kURLSubregionListCall =
         @"tt://launcher/stores/regions/subregions/%@/";
 NSString *const kURLStoreListCall =
         @"tt://launcher/stores/stores/%@/%@";
+NSString *const kURLStoreDetailCall = @"tt://launcher/store/%@/"; 
 
 // Endpoint URLs
-NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");
+NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json/");
 NSString *const kSubregionListEndPoint =
         ENDPOINT(@"/regions/%@/subregions/listing.json/");
 NSString *const kStoreListEndPoint =

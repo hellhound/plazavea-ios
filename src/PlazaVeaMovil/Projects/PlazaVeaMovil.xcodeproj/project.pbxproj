@@ -981,9 +981,9 @@
 			isa = PBXGroup;
 			children = (
 				CC1947BA1455E4940004C283 /* StoreDetailController.m */,
-				CC1947BB1455E4940004C283 /* StoreDetailDatasource.m */,
 				2FEE40181452238A00D516E8 /* StoreListController.m */,
 				2F6C6E97144F673A0012E787 /* RegionListController.m */,
+				CC1947BB1455E4940004C283 /* StoreDetailDatasource.m */,
 				2FEE40191452238A00D516E8 /* StoreListDataSource.m */,
 				2F75AF13144FCF2700153145 /* SubregionDataSource.m */,
 				2F6C6E95144F5F100012E787 /* RegionListDataSource.m */,

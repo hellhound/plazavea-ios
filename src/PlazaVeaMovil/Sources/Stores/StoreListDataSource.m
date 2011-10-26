@@ -68,7 +68,8 @@
             
             for (Store *store in section) {
                 TableImageSubtitleItem *item = [TableImageSubtitleItem
-                        itemWithText:[store name] subtitle:nil URL:nil];
+                        itemWithText:[store name] subtitle:nil
+                            URL:URL(kURLStoreDetailCall, [store storeId])];
                 
                 [sectionItems addObject:item];
             }

@@ -449,7 +449,7 @@ static NSString *const kMutableServicesKey = @"services";
 
 @synthesize services = _services;
 
-- (void)        insertObject:(Service *)service
+- (void)insertObject:(Service *)service
    inServicesAtIndex:(NSUInteger)index
 {
     [_services insertObject:service atIndex:index];
@@ -550,14 +550,14 @@ static NSString *const kMutableServicesKey = @"services";
     if (![code isKindOfClass:[NSString class]]){
         if (![code isKindOfClass:[NSNull class]])
             return nil;
-        code=nil;
+        code = nil;
     }
     if ((attendance = [rawStore objectForKey:kStoreAttendanceKey]) == nil)
         return nil;
     if (![attendance isKindOfClass:[NSString class]]){
         if (![attendance isKindOfClass:[NSNull class]])
             return nil;
-        attendance=nil;
+        attendance = nil;
     }
     if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
         return nil;
@@ -585,7 +585,7 @@ static NSString *const kMutableServicesKey = @"services";
     if (![phones isKindOfClass:[NSString class]]){
         if (![phones isKindOfClass:[NSNull class]])
             return nil;
-        phones=nil;
+        phones = nil;
     }
     if ((services = [rawStore objectForKey:kStoreServicesKey]) == nil)
         return nil;
@@ -661,7 +661,7 @@ static NSString *const kMutableServicesKey = @"services";
     NSDictionary *rootObject =
             [(TTURLJSONResponse *)[request response] rootObject];
     Store *store = [Store storeFromDictionary:rootObject];
-
+    
     if (store == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];

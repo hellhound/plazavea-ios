@@ -67,7 +67,34 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-
+    Store *store = (Store *)[self model];
+    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray *sections = [NSMutableArray array];
+    
+    [sections addObject:kStoreDetailData];
+    TableImageSubtitleItem *address = [TableImageSubtitleItem itemWithText:
+            [NSString stringWithFormat:kStoreDetailAddress,
+                [store storeAddress]]];
+    TableImageSubtitleItem *attendance = [TableImageSubtitleItem itemWithText:
+            [NSString stringWithFormat:kStoreDetailAttendance,
+                [store attendance]]];
+    TableImageSubtitleItem *phones = [TableImageSubtitleItem itemWithText:
+            [NSString stringWithFormat:kStoreDetailPhones,[store phones]]];
+    [items addObject:[NSArray arrayWithObjects:address, attendance, phones,
+            nil]];
+    
+    [sections addObject:kStoreDetailServices];
+    
+    NSMutableArray *services = [NSMutableArray array];
+    
+    for (Service *service in [store services]) {
+        TableImageSubtitleItem *item =
+                [TableImageSubtitleItem itemWithText:[service name]];
+        [services addObject:item];
+    }
+    [items addObject:services];
+    [self setSections:sections];
+    [self setItems:items];
 }
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object

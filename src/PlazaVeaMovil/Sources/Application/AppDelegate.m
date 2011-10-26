@@ -22,6 +22,7 @@
 #import "Stores/Constants.h"
 #import "Stores/RegionListController.h"
 #import "Stores/StoreListController.h"
+#import "Stores/StoreDetailController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -89,6 +90,7 @@
     [map from:kURLRegionList toViewController:[RegionListController class]];
     [map from:kURLSubregionList toViewController:[RegionListController class]];
     [map from:kURLStoreList toViewController:[StoreListController class]];
+    [map from:kURLStoreDetail toViewController:[StoreDetailController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

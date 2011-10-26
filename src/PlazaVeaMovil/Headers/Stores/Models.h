@@ -96,9 +96,8 @@
 @property (nonatomic, readonly) NSArray *services;
 
 + (id)shortStoreFromDictionary:(NSDictionary *)rawStore 
-       whithLatitudeInLocation:(BOOL) latitudeInLocation;
+       whithLatitudeInLocation:(BOOL)latitudeInLocation;
 + (id)storeFromDictionary:(NSDictionary *)rawStore;
-
 
 - (id)initWithStoreId:(NSString *)storeId;
 - (void)copyPropertiesFromStore:(Store *)store;

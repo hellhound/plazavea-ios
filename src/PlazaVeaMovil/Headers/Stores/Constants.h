@@ -81,6 +81,11 @@ extern NSString *const kStoreDetailTitleForEmpty;
 extern NSString *const kStoreDetailSubtitleForEmpty;
 extern NSString *const kStoreDetailTitleForError;
 extern NSString *const kStoreDetailSubtitleForError;
+extern NSString *const kStoreDetailData;
+extern NSString *const kStoreDetailServices;
+extern NSString *const kStoreDetailAddress;
+extern NSString *const kStoreDetailAttendance;
+extern NSString *const kStoreDetailPhones;
 
 // RegionListController's constants
 
@@ -98,11 +103,13 @@ extern NSString *const kStoreListTitle;
 extern NSString *const kURLRegionList;
 extern NSString *const kURLSubregionList;
 extern NSString *const kURLStoreList;
+extern NSString *const kURLStoreDetail;
 
 // Controllers' URL calls
 extern NSString *const kURLRegionListCall;
 extern NSString *const kURLSubregionListCall;
 extern NSString *const kURLStoreListCall;
+extern NSString *const kURLStoreDetailCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;
