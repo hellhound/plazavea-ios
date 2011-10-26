@@ -268,6 +268,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if (![self isLoading]) {
         TTURLRequest *request = [TTURLRequest requestWithURL:
                 URL(kURLOfferDetailEndpoint, _offerId) delegate:self];
+
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request send];
@@ -713,6 +714,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
         TTURLRequest *request = [TTURLRequest
                 requestWithURL:kPromotionListEndpoint delegate:self];
 
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
         [request send];
     }
