@@ -129,12 +129,13 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
         // indicator
         UIActivityIndicatorView *activityIndicator = [self activityIndicator];
 
-        [self setDefaultImageView:[[[TTImageView alloc] initWithImage:
+        [self setDefaultImageView:[[[UIImageView alloc] initWithImage:
                 defaultImage] autorelease]];
 
         UIImageView *defaultImageView = [self defaultImageView];
 
         [activityIndicator setCenter:[defaultImageView center]];
+        [activityIndicator startAnimating];
         [scrollView setContentSize:[defaultImageView frame].size];
         [scrollView addSubview:defaultImageView];
         [scrollView addSubview:activityIndicator];

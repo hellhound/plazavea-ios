@@ -85,6 +85,7 @@
             ImageCarouselItem *carousel =
                     [ImageCarouselItem itemWithImageItems:imageItems];
 
+            [carousel setDefaultImage:TTIMAGE(kBannerDefaultImage)];
             [items insertObject:carousel atIndex:0];
         }
         [self setItems:items];
