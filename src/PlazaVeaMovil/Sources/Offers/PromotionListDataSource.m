@@ -62,6 +62,7 @@
                 [NSMutableArray arrayWithCapacity:promotionCount];
         NSMutableArray *imageItems =
                 [NSMutableArray arrayWithCapacity:promotionCount];
+        UIImage *defaultImage = TTIMAGE(kBannerDefaultImage);
 
         for (Promotion *promotion in promotions) {
             NSString *URL = URL(kURLPromotionDetailCall,
@@ -77,7 +78,7 @@
                             imageURL:[IMAGE_URL(bannerURL,
                                 kPromotionListImageWidth,
                                 kPromotionListImageHeight) absoluteString]
-                            defaultImage:TTIMAGE(kBannerDefaultImage) URL:URL];
+                            defaultImage:defaultImage URL:URL];
                 [imageItems addObject:imageItem];
             }
         }
@@ -85,7 +86,7 @@
             ImageCarouselItem *carousel =
                     [ImageCarouselItem itemWithImageItems:imageItems];
 
-            [carousel setDefaultImage:TTIMAGE(kBannerDefaultImage)];
+            [carousel setDefaultImage:defaultImage];
             [items insertObject:carousel atIndex:0];
         }
         [self setItems:items];
