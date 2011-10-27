@@ -214,12 +214,10 @@ static NSString *const kMutableServicesKey = @"services";
 @synthesize regionId = _regionId, name = _name, count = _count,
         suggested = _suggested;
 
-+ (id)regionFromDictionary:(NSDictionary *)rawRegion
++ (id)shortRegionFromDictionary:(NSDictionary *)rawRegion
 {
     NSNumber *regionId;
     NSString *name;
-    NSNumber *count;
-    NSNumber *suggested;
     if (![rawRegion isKindOfClass:[NSDictionary class]])
         return nil;
     if ((regionId = [rawRegion objectForKey:kRegionIdKey]) == nil)
@@ -230,6 +228,22 @@ static NSString *const kMutableServicesKey = @"services";
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
+    
+    Region *region = [[[Region alloc] init] autorelease];
+    
+    [region setRegionId:regionId];
+    [region setName:name];
+    return region;
+}
+
++ (id)regionFromDictionary:(NSDictionary *)rawRegion
+{
+    Region *region = [self shortRegionFromDictionary:rawRegion];
+    
+    if (region == nil)
+        return nil;
+    NSNumber *count;
+    NSNumber *suggested;
     if ((count = [rawRegion objectForKey:kRegionCountKey]) == nil)
         return nil;
     if (![count isKindOfClass:[NSNumber class]])
@@ -241,11 +255,6 @@ static NSString *const kMutableServicesKey = @"services";
             return nil;
         suggested = nil;
     }
-    
-    Region *region = [[[Region alloc] init] autorelease];
-    
-    [region setRegionId:regionId];
-    [region setName:name];
     [region setCount:count];
     [region setSuggested:suggested];
     return region;
@@ -437,6 +446,7 @@ static NSString *const kMutableServicesKey = @"services";
     [_attendance release];
     [_region release];
     [_subregion release];
+    [_district release];
     [_ubigeo release];
     [_latitude release];
     [_longitude release];
@@ -476,19 +486,15 @@ static NSString *const kMutableServicesKey = @"services";
 
 @synthesize storeId = _storeId, name = _name, code = _code,
         storeAddress = _storeAddress, attendance = _attendance,
-            pictureURL = _pictureURL, region = _region, 
+            pictureURL = _pictureURL, region = _region, district = _district,
             subregion = _subregion, ubigeo = _ubigeo, phones = _phones,
             latitude = _latitude, longitude = _longitude;
 
 + (id)shortStoreFromDictionary:(NSDictionary *)rawStore 
        whithLatitudeInLocation:(BOOL)latitudeInLocation;
 {
-    NSNumber *storeId;
-    NSString *name;
-    NSString *address;
-    NSString *pictureURL;
-    NSNumber *latitude;
-    NSNumber *longitude;
+    NSNumber *storeId, *latitude, *longitude;
+    NSString *name, *address, *pictureURL;
     
     if (![rawStore isKindOfClass:[NSDictionary class]])
         return nil;
@@ -536,16 +542,18 @@ static NSString *const kMutableServicesKey = @"services";
 {
     Store *store = [self shortStoreFromDictionary:rawStore 
             whithLatitudeInLocation:YES];
+    
     if (store == nil)
         return nil;
 
+    NSNumber *latitude, *longitude;
     NSString *code, *phones, *attendance, *ubigeo;
-    NSDictionary *rawLocation, *rawRegion, *rawSubregion;
+    NSDictionary *rawLocation, *rawRegion, *rawSubregion, *rawDistrict;
     NSArray *services;
     NSMutableArray *mutableServices =
             [store mutableArrayValueForKey:kMutableServicesKey]; 
     Region *region;
-    Subregion *subregion;
+    Subregion *subregion, *district;
 
     if ((code = [rawStore objectForKey:kStoreCodeKey]) == nil)
         return nil;
@@ -561,27 +569,42 @@ static NSString *const kMutableServicesKey = @"services";
             return nil;
         attendance = nil;
     }
-    /*if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
+    if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
         return nil;
     if (![rawLocation isKindOfClass:[NSDictionary class]]){
         if (![rawLocation isKindOfClass:[NSNull class]])
             return nil;
+    } else {
         if ((rawRegion = [rawLocation objectForKey:kStoreRegionKey]) == nil)
             return nil;
-        region = [Region regionFromDictionary:rawRegion];
+        region = [Region shortRegionFromDictionary:rawRegion];
         if (region == nil)
             return nil;
-        if ((rawSubregion = [rawLocation objectForKey:kStoreSubregionKey])
-                == nil)
+        if ((rawSubregion =
+                [rawLocation objectForKey:kStoreSubregionKey]) == nil)
             return nil;
         subregion = [Subregion subregionFromDictionary:rawSubregion];
         if (subregion == nil)
             return nil;
-        if ((ubigeo = [rawStore objectForKey:kStoreUbigeoKey]) == nil)
+        if ((rawDistrict =
+                [rawLocation objectForKey:kStoreDisctrictKey]) == nil)
+            return nil;
+        district = [Subregion subregionFromDictionary:rawDistrict];
+        if (district == nil)
+            return nil;
+        if ((ubigeo = [rawLocation objectForKey:kStoreUbigeoKey]) == nil)
             return nil;
         if (![ubigeo isKindOfClass:[NSString class]])
             return nil;
-    }*/
+        if ((latitude = [rawLocation objectForKey:kStoreLatitudeKey]) == nil)
+            return nil;
+        if (![latitude isKindOfClass:[NSNumber class]])
+            return nil;
+        if ((longitude = [rawLocation objectForKey:kStoreLongitudeKey]) == nil)
+            return nil;
+        if (![longitude isKindOfClass:[NSNumber class]])
+            return nil;
+    }
     if ((phones = [rawStore objectForKey:kStorePhonesKey]) == nil)
         return nil;
     if (![phones isKindOfClass:[NSString class]]){
@@ -595,9 +618,12 @@ static NSString *const kMutableServicesKey = @"services";
         return nil;
     [store setCode:code];
     [store setAttendance:attendance];
-    /*[store setRegion:region];
+    [store setRegion:region];
     [store setSubregion:subregion];
-    [store setUbigeo:ubigeo];*/
+    [store setUbigeo:ubigeo];
+    [store setLatitude:latitude];
+    [store setLongitude:longitude];
+    [store setDistrict:district];
     [store setPhones:phones];
     for (NSDictionary *rawService in services) {
         Service *service = [Service serviceFromDictionary:rawService];
@@ -630,6 +656,7 @@ static NSString *const kMutableServicesKey = @"services";
     [self setPhones:[[store phones] copy]];
     [self setRegion:[store region]];
     [self setSubregion:[store subregion]];
+    [self setDistrict:[store district]];
     [self setUbigeo:[[store ubigeo] copy]];
     [self setLatitude:[store latitude]];
     [self setLongitude:[store longitude]];

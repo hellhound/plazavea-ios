@@ -38,6 +38,7 @@
 @property (nonatomic, retain) NSNumber *count;
 @property (nonatomic, retain) NSNumber *suggested;
 
++ (id)shortRegionFromDictionary:(NSDictionary *)rawRegion;
 + (id)regionFromDictionary:(NSDictionary *)rawRegion;
 @end
 
@@ -75,6 +76,7 @@
     NSString *_attendance;
     Region *_region;
     Subregion *_subregion;
+    Subregion *_district;
     NSString *_ubigeo;
     NSString *_phones;
     NSNumber *_latitude;
@@ -91,6 +93,7 @@
 @property (nonatomic, retain) NSNumber *longitude;
 @property (nonatomic, retain) Region *region;
 @property (nonatomic, retain) Subregion *subregion;
+@property (nonatomic, retain) Subregion *district;
 @property (nonatomic, copy) NSString *ubigeo;
 @property (nonatomic, copy) NSString *phones;
 @property (nonatomic, readonly) NSArray *services;

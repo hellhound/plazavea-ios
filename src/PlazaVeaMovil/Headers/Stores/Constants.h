@@ -82,6 +82,7 @@ extern NSString *const kStoreDetailSubtitleForEmpty;
 extern NSString *const kStoreDetailTitleForError;
 extern NSString *const kStoreDetailSubtitleForError;
 extern NSString *const kStoreDetailData;
+extern NSString *const kStoreDetailDistrict;
 extern NSString *const kStoreDetailServices;
 extern NSString *const kStoreDetailAddress;
 extern NSString *const kStoreDetailAttendance;

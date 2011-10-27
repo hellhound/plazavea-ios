@@ -75,13 +75,16 @@
     TableImageSubtitleItem *address = [TableImageSubtitleItem itemWithText:
             [NSString stringWithFormat:kStoreDetailAddress,
                 [store storeAddress]]];
+    TableImageSubtitleItem *district = [TableImageSubtitleItem itemWithText:
+            [NSString stringWithFormat:kStoreDetailDistrict,
+                [[store district] name]]];
     TableImageSubtitleItem *attendance = [TableImageSubtitleItem itemWithText:
             [NSString stringWithFormat:kStoreDetailAttendance,
                 [store attendance]]];
     TableImageSubtitleItem *phones = [TableImageSubtitleItem itemWithText:
             [NSString stringWithFormat:kStoreDetailPhones,[store phones]]];
-    [items addObject:[NSArray arrayWithObjects:address, attendance, phones,
-            nil]];
+    [items addObject:[NSArray arrayWithObjects:address, district, attendance,
+            phones, nil]];
     
     [sections addObject:kStoreDetailServices];
     

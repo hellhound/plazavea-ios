@@ -115,6 +115,8 @@ NSString *const kStoreDetailServices = @"Servicios";
 // NSLocalizedString(@"Servicios", nil)
 NSString *const kStoreDetailAddress = @"Dirección: %@";
 // NSLocalizedString(@"Dirección: %@")
+NSString *const kStoreDetailDistrict = @"Distrito: %@";
+// NSLocalizedString(@"Distrito: %@")
 NSString *const kStoreDetailAttendance = @"Horario: %@";
 // NSLocalizedString(@"Horario: %@")
 NSString *const kStoreDetailPhones = @"Teléfonos: %@";
