@@ -532,7 +532,8 @@ static NSString *const kMutableServicesKey = @"services";
     [store setStoreId:storeId];
     [store setName:name];
     [store setStoreAddress:address];
-    [store setPictureURL:[NSURL URLWithString:pictureURL]];
+    if (pictureURL)
+        [store setPictureURL:[NSURL URLWithString:pictureURL]];
     [store setLatitude:latitude];
     [store setLongitude:longitude];
     return store;
