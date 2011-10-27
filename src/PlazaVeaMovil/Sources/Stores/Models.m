@@ -508,13 +508,15 @@ static NSString *const kMutableServicesKey = @"services";
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]])
         return nil;
-    if ((latitude = [rawStore objectForKey:kStoreLatitudeKey]) == nil)
-        return nil;
-    if (![latitude isKindOfClass:[NSNumber class]])
-        return nil;
     if (latitudeInLocation) {
         //TODO:Implement
+        latitude = nil;
+        longitude = nil;
     } else {
+        if ((latitude = [rawStore objectForKey:kStoreLatitudeKey]) == nil)
+            return nil;
+        if (![latitude isKindOfClass:[NSNumber class]])
+            return nil;
         if ((longitude = [rawStore objectForKey:kStoreLongitudeKey]) == nil)
             return nil;
         if (![longitude isKindOfClass:[NSNumber class]])
@@ -559,7 +561,7 @@ static NSString *const kMutableServicesKey = @"services";
             return nil;
         attendance = nil;
     }
-    if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
+    /*if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
         return nil;
     if (![rawLocation isKindOfClass:[NSDictionary class]]){
         if (![rawLocation isKindOfClass:[NSNull class]])
@@ -579,7 +581,7 @@ static NSString *const kMutableServicesKey = @"services";
             return nil;
         if (![ubigeo isKindOfClass:[NSString class]])
             return nil;
-    }
+    }*/
     if ((phones = [rawStore objectForKey:kStorePhonesKey]) == nil)
         return nil;
     if (![phones isKindOfClass:[NSString class]]){
@@ -593,9 +595,9 @@ static NSString *const kMutableServicesKey = @"services";
         return nil;
     [store setCode:code];
     [store setAttendance:attendance];
-    [store setRegion:region];
+    /*[store setRegion:region];
     [store setSubregion:subregion];
-    [store setUbigeo:ubigeo];
+    [store setUbigeo:ubigeo];*/
     [store setPhones:phones];
     for (NSDictionary *rawService in services) {
         Service *service = [Service serviceFromDictionary:rawService];
@@ -625,6 +627,7 @@ static NSString *const kMutableServicesKey = @"services";
     [self setStoreAddress:[[store storeAddress] copy]];
     [self setAttendance:[[store attendance] copy]];
     [self setPictureURL:[store pictureURL]];
+    [self setPhones:[[store phones] copy]];
     [self setRegion:[store region]];
     [self setSubregion:[store subregion]];
     [self setUbigeo:[[store ubigeo] copy]];

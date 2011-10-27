@@ -47,6 +47,7 @@
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         [self setTableViewStyle:UITableViewStylePlain];
         _storeId = [storeId copy];
+        [self setVariableHeightRows:YES];
     }
     return self;
 }
