@@ -7,6 +7,8 @@
 // JSON keys
 extern NSString *const kRegionIdKey;
 extern NSString *const kRegionNameKey;
+extern NSString *const kRegionCountKey;
+extern NSString *const kRegionSuggestedKey;
 
 // RegionCollection model's constants
 

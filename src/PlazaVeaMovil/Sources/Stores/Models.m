@@ -198,6 +198,8 @@ static NSString *const kMutableStoreTitlesKey = @"districts";
 
 - (void)dealloc
 {
+    [_count release];
+    [_suggested release];
     [_regionId release];
     [_name release];
     [super dealloc];
@@ -206,12 +208,15 @@ static NSString *const kMutableStoreTitlesKey = @"districts";
 #pragma mark -
 #pragma mark Region (Public)
 
-@synthesize regionId = _regionId, name = _name;
+@synthesize regionId = _regionId, name = _name, count = _count,
+        suggested = _suggested;
 
 + (id)regionFromDictionary:(NSDictionary *)rawRegion
 {
     NSNumber *regionId;
     NSString *name;
+    NSNumber *count;
+    NSNumber *suggested;
     if (![rawRegion isKindOfClass:[NSDictionary class]])
         return nil;
     if ((regionId = [rawRegion objectForKey:kRegionIdKey]) == nil)
@@ -222,11 +227,24 @@ static NSString *const kMutableStoreTitlesKey = @"districts";
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
+    if ((count = [rawRegion objectForKey:kRegionCountKey]) == nil)
+        return nil;
+    if (![count isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((suggested = [rawRegion objectForKey:kRegionSuggestedKey]) == nil)
+        return nil;
+    if (![suggested isKindOfClass:[NSNumber class]]) {
+        if (![suggested isKindOfClass:[NSNull class]])
+            return nil;
+        suggested = nil;
+    }
     
     Region *region = [[[Region alloc] init] autorelease];
     
     [region setRegionId:regionId];
     [region setName:name];
+    [region setCount:count];
+    [region setSuggested:suggested];
     return region;
 }
 @end
@@ -284,7 +302,7 @@ static NSString *const kMutableStoreTitlesKey = @"districts";
     NSArray *regions;
     NSMutableArray *mutableRegions =
             [collection mutableArrayValueForKey:kMutableRegionsKey];
-    
+ 
     if (![rawCollection isKindOfClass:[NSDictionary class]])
         return nil;
     if ((regions =
@@ -407,7 +425,8 @@ static NSString *const kMutableStoreTitlesKey = @"districts";
     [store setStoreId:storeId];
     [store setName:name];
     [store setStoreAddress:address];
-    [store setPictureURL:[NSURL URLWithString:pictureURL]];
+    if (pictureURL)
+        [store setPictureURL:[NSURL URLWithString:pictureURL]];
     [store setLatitude:latitude];
     [store setLongitude:longitude];
     return store;
