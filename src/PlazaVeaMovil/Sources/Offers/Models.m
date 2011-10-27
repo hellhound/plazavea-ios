@@ -48,7 +48,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     
     Banner *banner = [[[Banner alloc] init] autorelease];
     
-    [banner setPictureURL:[NSURL URLWithString:pictureURL]];
+    if(pictureURL)
+        [banner setPictureURL:[NSURL URLWithString:pictureURL]];
     return banner;
 }
 @end
@@ -161,7 +162,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [offer setCode:code];
     [offer setName:name];
     [offer setPrice:price];
-    [offer setPictureURL:[NSURL URLWithString:pictureURL]];
+    if (pictureURL)
+        [offer setPictureURL:[NSURL URLWithString:pictureURL]];
     return offer;
 }
 
@@ -218,8 +220,10 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [offer setLongDescription:longDescription];
     [offer setOldPrice:oldPrice];
     [offer setDiscount:discount];
-    [offer setFacebookURL:[NSURL URLWithString:facebookURL]];
-    [offer setTwitterURL:[NSURL URLWithString:twitterURL]];
+    if (facebookURL)
+        [offer setFacebookURL:[NSURL URLWithString:facebookURL]];
+    if (twitterURL)
+        [offer setTwitterURL:[NSURL URLWithString:twitterURL]];
     for (NSString *extraPictureURL in extraPictureURLs) {
         if (![extraPictureURL isKindOfClass:[NSString class]])
             return nil;
@@ -494,7 +498,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [promotion setPromotionId:promotionId];
     [promotion setCode:code];
     [promotion setName:name];
-    [promotion setBannerURL:[NSURL URLWithString:bannerURL]];
+    if (bannerURL != nil)
+        [promotion setBannerURL:[NSURL URLWithString:bannerURL]];
     return promotion;
 }
 
@@ -555,8 +560,10 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [promotion setValidFrom:validFrom];
     [promotion setValidTo:validTo];
     [mutableExtraPictureURLs addObjectsFromArray:extraPictureURLs];
-    [promotion setFacebookURL:[NSURL URLWithString:facebookURL]];
-    [promotion setTwitterURL:[NSURL URLWithString:twitterURL]];
+    if (facebookURL)
+        [promotion setFacebookURL:[NSURL URLWithString:facebookURL]];
+    if (twitterURL)
+        [promotion setTwitterURL:[NSURL URLWithString:twitterURL]];
     return promotion;
 }
 
