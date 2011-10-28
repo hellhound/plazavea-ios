@@ -70,6 +70,7 @@
     Store *store = (Store *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
+    NSURL *pictureURL = [store pictureURL];
     
     [sections addObject:kStoreDetailData];
     TableImageSubtitleItem *address = [TableImageSubtitleItem itemWithText:
@@ -95,6 +96,8 @@
                 [TableImageSubtitleItem itemWithText:[service name]];
         [services addObject:item];
     }
+    [_delegate dataSource:self needsDetailImageWithURL:pictureURL
+            andTitle:[store name]];
     [items addObject:services];
     [self setSections:sections];
     [self setItems:items];

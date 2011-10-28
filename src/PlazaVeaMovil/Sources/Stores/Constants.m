@@ -58,6 +58,13 @@ NSString *const kStoreCollectionStoresKey = @"stores";
 
 // RegionListDataSource's constants
 
+// Generic sizes and images
+const CGFloat kStoreDetailImageWidth = 320.;
+const CGFloat kStoreDetailImageHeight = 100.;
+const CGFloat kStoreDetailLabelWidth = 320.;
+NSString *const kStoreDetailDefaultImage =
+        @"bundle://default-banner.png";
+
 // Messages
 NSString *const kRegionListTitleForLoading = @"Obteniendo la lista";
 // NSLocalizedString(@"Obteniendo la lista", nil)

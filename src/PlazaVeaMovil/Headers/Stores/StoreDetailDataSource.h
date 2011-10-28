@@ -14,5 +14,9 @@
 @end
 
 @protocol StoreDetailDataSourceDelegate <NSObject>
+
+- (void)        dataSource:(StoreDetailDataSource *)dataSource
+   needsDetailImageWithURL:(NSURL *)imageURL
+                  andTitle:(NSString *)title;
 @end
 

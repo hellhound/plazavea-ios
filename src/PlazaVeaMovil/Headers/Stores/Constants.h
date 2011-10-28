@@ -88,6 +88,14 @@ extern NSString *const kStoreDetailAddress;
 extern NSString *const kStoreDetailAttendance;
 extern NSString *const kStoreDetailPhones;
 
+// StoreDetailController
+
+// Generic sizes and images
+extern const CGFloat kStoreDetailImageWidth;
+extern const CGFloat kStoreDetailImageHeight;
+extern const CGFloat kStoreDetailLabelWidth;
+extern NSString *const kStoreDetailDefaultImage;
+
 // RegionListController's constants
 
 // Messages
