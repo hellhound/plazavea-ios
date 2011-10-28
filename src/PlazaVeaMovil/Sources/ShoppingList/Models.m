@@ -83,17 +83,19 @@ static NSString *const kNSStringDescriptionKey = @"description";
 + (NSSet *)relationships
 {
     NSSet *relationships = [super relationships];
+    NSRelationshipDescription *itemsRelationship =
+            [self relationshipWithName:kShoppingListItems];
 
-    kItemsRelationship = [self relationshipWithName:kShoppingListItems];
-    [kItemsRelationship setName:kShoppingListItems];
-    [kItemsRelationship setDestinationEntity:[ShoppingItem entity]];
-    [kItemsRelationship setInverseRelationship:
+    itemsRelationship = [self relationshipWithName:kShoppingListItems];
+    [itemsRelationship setName:kShoppingListItems];
+    [itemsRelationship setDestinationEntity:[ShoppingItem entity]];
+    [itemsRelationship setInverseRelationship:
             [ShoppingItem relationshipWithName:kShoppingItemList]];
-    [kItemsRelationship setOptional:NO];
-    [kItemsRelationship setMaxCount:-1]; // to-many relationship
-    [kItemsRelationship setMinCount:0];
-    [kItemsRelationship setDeleteRule:NSCascadeDeleteRule];
-    return [relationships setByAddingObject:kItemsRelationship];
+    [itemsRelationship setOptional:NO];
+    [itemsRelationship setMaxCount:-1]; // to-many relationship
+    [itemsRelationship setMinCount:0];
+    [itemsRelationship setDeleteRule:NSCascadeDeleteRule];
+    return [relationships setByAddingObject:itemsRelationship];
 }
 
 + (NSRelationshipDescription *)relationshipWithName:(NSString *)relationshipName
@@ -374,16 +376,18 @@ static NSString *const kNSStringDescriptionKey = @"description";
 + (NSSet *)relationships
 {
     NSSet *relationships = [super relationships];
-    kListRelationship = [self relationshipWithName:kShoppingItemList];
-    [kListRelationship setName:kShoppingItemList];
-    [kListRelationship setDestinationEntity:[ShoppingList entity]];
-    [kListRelationship setInverseRelationship:
+    NSRelationshipDescription *listRelationship = 
+        [self relationshipWithName:kShoppingItemList];
+
+    [listRelationship setName:kShoppingItemList];
+    [listRelationship setDestinationEntity:[ShoppingList entity]];
+    [listRelationship setInverseRelationship:
             [ShoppingList relationshipWithName:kShoppingListItems]];
-    [kListRelationship setOptional:NO];
-    [kListRelationship setMaxCount:1];
-    [kListRelationship setMinCount:1];
-    [kListRelationship setDeleteRule:NSNullifyDeleteRule];
-    return [relationships setByAddingObject:kListRelationship];
+    [listRelationship setOptional:NO];
+    [listRelationship setMaxCount:1];
+    [listRelationship setMinCount:1];
+    [listRelationship setDeleteRule:NSNullifyDeleteRule];
+    return [relationships setByAddingObject:listRelationship];
 }
 
 + (NSRelationshipDescription *)relationshipWithName:(NSString *)relationshipName
