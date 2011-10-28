@@ -86,7 +86,6 @@ static NSString *const kNSStringDescriptionKey = @"description";
     NSRelationshipDescription *itemsRelationship =
             [self relationshipWithName:kShoppingListItems];
 
-    itemsRelationship = [self relationshipWithName:kShoppingListItems];
     [itemsRelationship setName:kShoppingListItems];
     [itemsRelationship setDestinationEntity:[ShoppingItem entity]];
     [itemsRelationship setInverseRelationship:
