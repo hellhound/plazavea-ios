@@ -8,6 +8,7 @@
 {
     NSMutableArray *_imageViews;
     NSMutableArray *_loadedImageViews;
+    NSMutableArray *_shownEntries;
     UIScrollView *_scrollView;
     UIPageControl *_pageControl;
     UIImageView *_defaultImageView;

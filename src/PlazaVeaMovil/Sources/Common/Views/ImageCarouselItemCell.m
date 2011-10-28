@@ -12,26 +12,74 @@ static const CGFloat kCarouselPageControlHeight = 20.;
 static const NSTimeInterval kCarouselAnimationDuration = 1.5;
 static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
+@interface CircularScrollEntry: NSObject
+{
+    TTImageView *_imageView;
+    NSInteger _index;
+}
+@property (nonatomic, retain) TTImageView *imageView; 
+@property (nonatomic, assign) NSInteger index;
+
++ (id)entryWithImageView:(TTImageView *)imageView index:(NSInteger)index;
+@end
+
+@implementation CircularScrollEntry
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_imageView release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark CircularScrollEntry (Public)
+
+@synthesize imageView = _imageView, index = _index;
+
++ (id)entryWithImageView:(TTImageView *)imageView index:(NSInteger)index
+{
+    CircularScrollEntry *entry =
+            [[[CircularScrollEntry alloc] init] autorelease];
+
+    [entry setImageView:imageView];
+    [entry setIndex:index];
+    return entry;
+}
+@end
+
 @interface ImageCarouselItemCell ()
 
 // It's only purpose is to retain every image view for being available to their
 // delegate
 @property (nonatomic, retain) NSMutableArray *imageViews;
 @property (nonatomic, retain) NSMutableArray *loadedImageViews;
+// collection of CircularScrollEntry instances holding the image view's
+// loadedImageViews' index and the TTImageView instances as its properties
+@property (nonatomic, retain) NSMutableArray *shownEntries;
 @property (nonatomic, readonly) UIScrollView *scrollView;
 @property (nonatomic, readonly) UIPageControl *pageControl;
 @property (nonatomic, retain) UIImageView *defaultImageView;
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, readonly) NSInteger currentIndex;
+@property (nonatomic, readonly) NSInteger previousIndex;
+@property (nonatomic, readonly) NSInteger nextIndex;
 
 + (CGSize)scrollContentSizeForItem:(ImageCarouselItem *)item;
 + (CGSize)sizeForImageItem:(TableImageSubtitleItem *)item
               defaultImage:(UIImage *)globalDefaultImage
                      style:(TTStyle *)globalStyle;
+
+- (void)cleanScrollView;
+- (void)createCircularIllusion;
+- (void)scrollClockwise:(BOOL)clockwiseScrolling;
 @end
 
 @interface ImageCarouselItemCell (EventHandlers)
 
-- (void)changePage:(UIPageControl *)pageControl;
+- (void)refreshPageControl:(UIPageControl *)pageControl;
 @end
 
 @implementation ImageCarouselItemCell
@@ -43,6 +91,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 {
     [_imageViews release];
     [_loadedImageViews release];
+    [_shownEntries release];
     [_scrollView release];
     [_pageControl release];
     [_defaultImageView release];
@@ -53,7 +102,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    for (UIView *view in _imageViews) {
+    for (UIView *view in [self imageViews]) {
         UIPageControl *pageControl = [self pageControl];
 
         [view setBackgroundColor:[self backgroundColor]];
@@ -109,15 +158,16 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 - (void)setObject:(id)object
 {
     [super setObject:object];
-    // Reset *ImageViews each time a new object is assign to the cell
+    // Reset *ImageViews and shown entries each time a new object is assign to
+    // the cell
     [self setImageViews:[NSMutableArray array]];
     [self setLoadedImageViews:[NSMutableArray array]];
+    [self setShownEntries:[NSMutableArray array]];
 
     ImageCarouselItem *item = object;
 
     // ImageCarouselItemCell's properties
     NSMutableArray *imageViews = [self imageViews];
-    UIScrollView *scrollView = [self scrollView];
     // ImageCarouselItem's properties
     UIImage *defaultImage = [item defaultImage];
     TTStyle *style = [item style];
@@ -141,6 +191,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     if (defaultImage != nil) {
         // Configuring scrollView with the defualt imageView and activity
         // indicator
+        UIScrollView *scrollView = [self scrollView];
         UIActivityIndicatorView *activityIndicator = [self activityIndicator];
 
         [self setDefaultImageView:[[[UIImageView alloc] initWithImage:
@@ -160,7 +211,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 #pragma mark ImageCarouselItemCell (Private)
 
 @synthesize imageViews = _imageViews, loadedImageViews = _loadedImageViews,
-    defaultImageView = _defaultImageView;
+    shownEntries = _shownEntries, defaultImageView = _defaultImageView;
 
 + (CGSize)scrollContentSizeForItem:(ImageCarouselItem *)item
 {
@@ -244,6 +295,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
         [_scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_scrollView setPagingEnabled:YES];
         [_scrollView setShowsVerticalScrollIndicator:NO];
+        [_scrollView setShowsHorizontalScrollIndicator:NO];
         [_scrollView setDirectionalLockEnabled:YES];
         [_scrollView setAlwaysBounceHorizontal:YES];
     }
@@ -255,7 +307,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     if (_pageControl == nil) {
         // Configuring the page control
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
-        [_pageControl addTarget:self action:@selector(changePage:)
+        [_pageControl addTarget:self action:@selector(refreshPageControl:)
                forControlEvents:UIControlEventValueChanged];
         [_pageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_pageControl setBackgroundColor:[UIColor lightGrayColor]];
@@ -267,21 +319,172 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 - (UIActivityIndicatorView *)activityIndicator
 {
     if (_activityIndicator == nil) {
-        _activityIndicator = [[[UIActivityIndicatorView alloc]
+        _activityIndicator = [[UIActivityIndicatorView alloc]
                 initWithActivityIndicatorStyle:
-                    UIActivityIndicatorViewStyleGray] autorelease];
+                    UIActivityIndicatorViewStyleGray];
         [_activityIndicator setHidesWhenStopped:YES];
     }
     return _activityIndicator;
 }
 
+- (NSInteger)currentIndex
+{
+    CGPoint contentOffset = [[self scrollView] contentOffset];
+    NSArray *shownEntries = [self shownEntries];
+    UIScrollView *scrollView = [self scrollView];
+    NSInteger currentPage = 0;
+
+    for (CircularScrollEntry *entry in shownEntries) {
+        TTImageView *imageView = [entry imageView];
+
+        if ([imageView pointInside:
+                    [scrollView convertPoint:contentOffset toView:imageView]
+                withEvent:nil]) {
+            currentPage = [entry index];
+            break;
+        }
+    }
+    return currentPage;
+}
+
+- (NSInteger)previousIndex
+{
+    NSInteger loadedCount = (NSInteger)[[self loadedImageViews] count];
+    NSInteger currentIndex = [self currentIndex];
+
+    if (loadedCount == 0)
+        return 0;
+    return currentIndex == 0 ? loadedCount - 1 : currentIndex - 1;
+}
+
+- (NSInteger)nextIndex
+{
+    NSInteger loadedCount = (NSInteger)[[self loadedImageViews] count];
+    NSInteger currentIndex = [self currentIndex];
+
+    if (loadedCount == 0)
+        return 0;
+    return currentIndex == loadedCount - 1 ? 0 : currentIndex + 1;
+}
+
+- (void)cleanScrollView
+{
+    NSMutableArray *shownEntries = [self shownEntries];
+    UIImageView *defaultImageView = [self defaultImageView];
+    UIActivityIndicatorView *activityIndicator = [self activityIndicator];
+
+    // Remove defaultImageView and activityIndicator from scrollView
+    [defaultImageView removeFromSuperview];
+    [activityIndicator stopAnimating];
+    [activityIndicator removeFromSuperview];
+    // Remove shown image views
+    for (CircularScrollEntry *entry in shownEntries)
+        [[entry imageView] removeFromSuperview];
+    [[self scrollView] setContentSize:CGSizeZero];
+    // Clear all entries
+    [shownEntries removeAllObjects];
+}
+
+- (void)createCircularIllusion
+{
+    NSArray *loadedImageViews = [self loadedImageViews];
+    NSUInteger loadedCount = [loadedImageViews count];
+
+    if (loadedCount < 1)
+        return;
+
+    NSMutableArray *shownEntries = [self shownEntries];
+    NSInteger currentIndex = [self currentIndex];
+    NSInteger previousIndex = [self previousIndex];
+    NSInteger nextIndex = [self nextIndex];
+    UIScrollView *scrollView = [self scrollView];
+    TTImageView *imageView;
+    CircularScrollEntry *entry;
+
+    // Clear all entries before messing with shownEntries
+    [self cleanScrollView];
+    if (loadedCount > 1) {
+        //
+        // Previous-image view configuration
+        //
+        // Fetch the previous-image view from the array of loaded ones
+        imageView = [loadedImageViews objectAtIndex:previousIndex];
+        // Create an entry for the previous-image view
+        entry = [CircularScrollEntry entryWithImageView:imageView
+                index:previousIndex];
+        // Add the previous-image view before the current one
+        [shownEntries insertObject:entry atIndex:0];
+    }
+    //
+    // Current-image view configuration
+    //
+    // Add the currently shown entry
+    imageView = [loadedImageViews objectAtIndex:currentIndex];
+    entry = [CircularScrollEntry entryWithImageView:imageView
+            index:currentIndex];
+    [shownEntries addObject:entry];
+    if (loadedCount > 1) {
+        //
+        // Next-image view configuration
+        //
+        // Fetch the next-image view from the array of loaded ones
+        imageView = [loadedImageViews objectAtIndex:nextIndex];
+        // Create an entry for the next-image view
+        entry = [CircularScrollEntry entryWithImageView:imageView
+                index:nextIndex];
+        // Add the next-image view after the current one
+        [shownEntries addObject:entry];
+    }
+    //
+    // Configuring scrollView's
+    //
+    CGFloat xOffset = .0;
+    CGSize scrollSize = [scrollView frame].size;
+    CGSize contentSize = scrollSize;
+
+    contentSize.width = xOffset;
+
+    for (CircularScrollEntry *entry in shownEntries) {
+        TTImageView *imageView = [entry imageView];
+        CGSize imageSize = [imageView bounds].size;
+
+        if (imageSize.width > imageSize.height) {
+            imageSize.width = scrollSize.width;
+            imageSize.height *= imageSize.width / scrollSize.width;
+        } else {
+            imageSize.height = scrollSize.height;
+            imageSize.width *= imageSize.height / scrollSize.height;
+        }
+        [imageView setFrame:
+                CGRectMake(xOffset, .0, imageSize.width, imageSize.height)];
+        [scrollView addSubview:imageView];
+        contentSize.width = xOffset += imageSize.width;
+    }
+    [scrollView setContentSize:contentSize];
+}
+
+- (void)scrollClockwise:(BOOL)clockwiseScrolling
+{
+    NSArray *shownEntries = [self shownEntries];
+
+    if ([shownEntries count] < 2)
+        return;
+
+    NSInteger index =
+            clockwiseScrolling ? [self nextIndex] : [self previousIndex];
+    TTImageView *imageView = [[self loadedImageViews] objectAtIndex:index];
+
+    [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
+    [self createCircularIllusion];
+}
+
 #pragma mark -
 #pragma mark ImageCarouselItemCell (EventHandlers)
 
-- (void)changePage:(UIPageControl *)pageControl
+- (void)refreshPageControl:(UIPageControl *)pageControl
 {
     TTImageView *imageView =
-            [[self loadedImageViews] objectAtIndex:[pageControl currentPage]];
+            [[self loadedImageViews] objectAtIndex:[self currentIndex]];
 
     [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
 }
@@ -291,20 +494,10 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSArray *loadedImageViews = [self loadedImageViews];
     UIPageControl *pageControl = [self pageControl];
-    CGPoint contentOffset = [scrollView contentOffset];
-    NSInteger i = 0;
 
-    // We use UIview given that TTImageView isn't a subclass of UIImageView and
-    // defaultImageView is an instance of UIImageView
-    for (UIView *view in loadedImageViews) {
-        if ([view pointInside:
-                    [scrollView convertPoint:contentOffset toView:view]
-                withEvent:nil])
-            [pageControl setCurrentPage:i]; 
-        i++;
-    }
+    [self createCircularIllusion];
+    [pageControl setCurrentPage:[self currentIndex]]; 
 }
 
 #pragma mark -
@@ -313,30 +506,12 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 - (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image
 {
     NSMutableArray *loadedImageViews = [self loadedImageViews];
-    UIImageView *defaultImageView = [self defaultImageView];
-    UIScrollView *scrollView = [self scrollView];
-    UIActivityIndicatorView *activityIndicator = [self activityIndicator];
     UIPageControl *pageControl = [self pageControl];
 
-    if ([defaultImageView superview] == scrollView) {
-        // Remove defaultImageView and activityIndicator from scrollView
-        [defaultImageView removeFromSuperview];
-        [activityIndicator removeFromSuperview];
-        [scrollView setContentSize:CGSizeZero];
-    }
-
-    CGSize contentSize = [scrollView contentSize];
-    CGRect imageFrame = [imageView frame];
-    CGFloat xOffset = contentSize.width;
-
-    contentSize.width += imageFrame.size.width;
-    [imageView setFrame:CGRectOffset(imageFrame, xOffset, .0)];
-    // Configuring scrollView
-    [scrollView setContentSize:contentSize];
-    [scrollView addSubview:imageView];
-    // Configuring pageControl
-    [pageControl setNumberOfPages:[pageControl numberOfPages] + 1];
     // Add the TTImageView to loadedImageViews
     [loadedImageViews addObject:imageView];
+    // Configuring pageControl
+    [pageControl setNumberOfPages:[loadedImageViews count]];
+    [self createCircularIllusion];
 }
 @end
