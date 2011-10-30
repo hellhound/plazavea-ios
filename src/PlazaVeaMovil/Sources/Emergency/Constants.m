@@ -1,6 +1,8 @@
 // Emergency-number module's constants
 #import <Foundation/Foundation.h>
 
+#import "Emergency/Constants.h"
+
 // EmergencyCategory model's constants
 
 NSString *const kEmergencyCategoryEntity = @"EmergencyCategory";
