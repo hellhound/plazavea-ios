@@ -25,6 +25,8 @@
 		2C2379A813EC4CA700A6E1FD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */; };
 		2C277CDC13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */; };
 		2C279D5E13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */; };
+		2C291C13145CD08B002B7F78 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C291C11145CD08B002B7F78 /* Constants.m */; };
+		2C291C14145CD08B002B7F78 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C291C12145CD08B002B7F78 /* Models.m */; };
 		2C2DA9CC13F0BB9E00D80BB0 /* ShoppingListsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */; };
 		2C2DF1F913F7A24300D4E70B /* NSMutableArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */; };
 		2C2F07E113DE61B3009F60DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07E013DE61B3009F60DB /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -573,6 +575,8 @@
 		2C2379A713EC4CA700A6E1FD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		2C277CDB13FDA99600E0228D /* ShoppingListController+MFMailComposeViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+MFMailComposeViewControllerDelegate.m"; sourceTree = "<group>"; };
 		2C279D5D13F2D5E900832A46 /* ShoppingListController+TSAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShoppingListController+TSAlertViewDelegate.m"; sourceTree = "<group>"; };
+		2C291C11145CD08B002B7F78 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2C291C12145CD08B002B7F78 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2C2DA9CA13F0BB9E00D80BB0 /* ShoppingListsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListsController.m; sourceTree = "<group>"; };
 		2C2DF1F813F7A24300D4E70B /* NSMutableArray+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Additions.m"; sourceTree = "<group>"; };
 		2C2F07DC13DE61B3009F60DB /* PlazaVeaMovil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaVeaMovil.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -736,6 +740,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2C291C10145CD08B002B7F78 /* Emergency */ = {
+			isa = PBXGroup;
+			children = (
+				2C291C11145CD08B002B7F78 /* Constants.m */,
+				2C291C12145CD08B002B7F78 /* Models.m */,
+			);
+			path = Emergency;
+			sourceTree = "<group>";
+		};
 		2C2F07D113DE61B3009F60DB = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +825,7 @@
 			isa = PBXGroup;
 			children = (
 				CCAED0B0145CCBB600453A06 /* Emergency */,
+				2C291C10145CD08B002B7F78 /* Emergency */,
 				2F78FF99144F2F91007F9ACD /* Stores */,
 				2FA7FB6F1446204700211215 /* Offers */,
 				2CAF05CB1403FC8B003C2A2C /* Recipes */,
@@ -1711,6 +1725,8 @@
 				CC6C20371459F39E0032C921 /* StoreDetailDataSource.m in Sources */,
 				CCAED0B3145CCC0200453A06 /* Constants.m in Sources */,
 				CCAED0B4145CCC0200453A06 /* Models.m in Sources */,
+				2C291C13145CD08B002B7F78 /* Constants.m in Sources */,
+				2C291C14145CD08B002B7F78 /* Models.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

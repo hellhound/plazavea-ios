@@ -1,15 +1,12 @@
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
-#import "Common/Models/ManagedObject.h"
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
 
-static NSRelationshipDescription *kCategoriesRelationship;
 static NSRelationshipDescription *kNumbersRelationship;
+static NSRelationshipDescription *kCategoryRelationship;
 
 @implementation EmergencyCategory
 
@@ -25,10 +22,8 @@ static NSRelationshipDescription *kNumbersRelationship;
     [name setName:kEmergencyCategoryName];
     [name setAttributeType:NSStringAttributeType];
     [name setOptional:NO];
-
-    // setting properties into the entity
-    return [attributes setByAddingObjectsFromSet:
-            [NSSet setWithObjects:name, nil]]; 
+    [name setIndexed:YES]; // allows faster searching and sorting
+    return [attributes setByAddingObject:name];
 }
 
 + (NSSet *)relationships
@@ -42,32 +37,53 @@ static NSRelationshipDescription *kNumbersRelationship;
     [numbersRelationship setInverseRelationship:
             [EmergencyNumber relationshipWithName:kEmergencyNumberCategory]];
     [numbersRelationship setOptional:NO];
-    [numbersRelationship setMaxCount:-1]; // to-many relationship
+    [numbersRelationship setMaxCount:-1]; // infinite to-many relationship
     [numbersRelationship setMinCount:0];
     [numbersRelationship setDeleteRule:NSCascadeDeleteRule];
     return [relationships setByAddingObject:numbersRelationship];
 }
 
-+ (NSRelationshipDescription *)relationshipWithName:(NSString *)relationshipName
++ (NSRelationshipDescription *)relationshipWithName:(NSString *)name
 {
-    NSRelationshipDescription *relationship =
-            [super relationshipWithName:relationshipName];
+    NSRelationshipDescription *relationship = [super relationshipWithName:name];
 
     if (relationship != nil)
         return relationship;
-    if ([relationshipName isEqualToString:kEmergencyNumberCategory]) {
-        if (kCategoriesRelationship == nil)
-            kCategoriesRelationship = [[NSRelationshipDescription alloc] init];
-        return kCategoriesRelationship; 
+    if ([name isEqualToString:kEmergencyCategoryNumbers]) {
+        if (kNumbersRelationship == nil)
+            kNumbersRelationship = [[NSRelationshipDescription alloc] init];
+        return kNumbersRelationship;
     }
     return nil;
 }
 
 #pragma mark -
-#pragma mark EmergencyCategory (public)
-@dynamic name, numbers;
-@end
+#pragma mark EmergencyCategory (Public)
 
+// KVO properties
+@dynamic name, numbers;
+
++ (id)categoryWithName:(NSString *)name
+               context:(NSManagedObjectContext *)context
+{
+    EmergencyCategory *category = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:context] autorelease];
+
+    [category setName:name];
+    return category;
+}
+
++ (id)categoryWithName:(NSString *)name
+     resultsController:(NSFetchedResultsController *)resultsController
+{
+    EmergencyCategory *category = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:
+                [resultsController managedObjectContext]] autorelease];
+
+    [category setName:name];
+    return category;
+}
+@end
 
 @implementation EmergencyNumber
 
@@ -83,6 +99,7 @@ static NSRelationshipDescription *kNumbersRelationship;
     [name setName:kEmergencyNumberName];
     [name setAttributeType:NSStringAttributeType];
     [name setOptional:NO];
+    [name setIndexed:YES]; // allows faster searching and sorting
 
     NSAttributeDescription *phone =
             [[[NSAttributeDescription alloc] init] autorelease];
@@ -90,40 +107,39 @@ static NSRelationshipDescription *kNumbersRelationship;
     [phone setName:kEmergencyNumberPhone];
     [phone setAttributeType:NSStringAttributeType];
     [phone setOptional:NO];
-
-    // setting properties into the entity
+    [phone setIndexed:YES]; // allows faster searching and sorting
     return [attributes setByAddingObjectsFromSet:
-            [NSSet setWithObjects:name, phone, nil]]; 
+            [NSSet setWithObjects:name, phone, nil]];
+
 }
 
 + (NSSet *)relationships
 {
     NSSet *relationships = [super relationships];
-    NSRelationshipDescription *categoryRelationship = 
-        [self relationshipWithName:kEmergencyNumberCategory];
+    NSRelationshipDescription *categoryRelationship =
+            [self relationshipWithName:kEmergencyNumberCategory];
 
     [categoryRelationship setName:kEmergencyNumberCategory];
-    [categoryRelationship setDestinationEntity:[EmergencyCategory entity]];
+    [categoryRelationship setDestinationEntity:[EmergencyNumber entity]];
     [categoryRelationship setInverseRelationship:
             [EmergencyCategory relationshipWithName:kEmergencyCategoryNumbers]];
     [categoryRelationship setOptional:NO];
-    [categoryRelationship setMaxCount:1];
+    [categoryRelationship setMaxCount:1]; // to-one relationship
     [categoryRelationship setMinCount:1];
     [categoryRelationship setDeleteRule:NSNullifyDeleteRule];
     return [relationships setByAddingObject:categoryRelationship];
 }
 
-+ (NSRelationshipDescription *)relationshipWithName:(NSString *)relationshipName
++ (NSRelationshipDescription *)relationshipWithName:(NSString *)name
 {
-    NSRelationshipDescription *relationship =
-            [super relationshipWithName:relationshipName];
+    NSRelationshipDescription *relationship = [super relationshipWithName:name];
 
     if (relationship != nil)
         return relationship;
-    if ([relationshipName isEqualToString:kEmergencyNumberCategory]) {
-        if (kNumbersRelationship == nil)
-            kNumbersRelationship = [[NSRelationshipDescription alloc] init];
-        return kNumbersRelationship; 
+    if ([name isEqualToString:kEmergencyCategoryNumbers]) {
+        if (kCategoryRelationship == nil)
+            kCategoryRelationship = [[NSRelationshipDescription alloc] init];
+        return kCategoryRelationship;
     }
     return nil;
 }
@@ -131,6 +147,35 @@ static NSRelationshipDescription *kNumbersRelationship;
 #pragma mark -
 #pragma mark EmergencyNumber (Public)
 
+// KVO properties
 @dynamic name, phone, category;
 
++ (id)numberWithName:(NSString *)name
+               phone:(NSString *)phone
+            category:(EmergencyCategory *)category
+             context:(NSManagedObjectContext *)context
+{
+    EmergencyNumber *number = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:context] autorelease];
+
+    [number setName:name];
+    [number setPhone:phone];
+    [number setCategory:category];
+    return category;
+}
+
++ (id)numberWithName:(NSString *)name
+               phone:(NSString *)phone
+            category:(EmergencyCategory *)category
+   resultsController:(NSFetchedResultsController *)resultsController
+{
+    EmergencyNumber *number = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:
+                [resultsController managedObjectContext]] autorelease];
+
+    [number setName:name];
+    [number setPhone:phone];
+    [number setCategory:category];
+    return category;
+}
 @end
