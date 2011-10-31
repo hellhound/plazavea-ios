@@ -9,8 +9,10 @@
 
 static const CGSize kCarouselDefaultContentSize = {320., 100.};
 static const CGFloat kCarouselPageControlHeight = 20.;
-static const NSTimeInterval kCarouselAnimationDuration = 1.5;
-static const NSTimeInterval kCarouselPromotionDuration = 6.;
+static const NSTimeInterval kCarouselAnimationDuration = 2.;
+static const NSTimeInterval kCarouselDelayBetweenAnimations = 8.;
+// Animtion identifier
+static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 
 @interface CircularScrollEntry: NSObject
 {
@@ -63,6 +65,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 @property (nonatomic, readonly) UIPageControl *pageControl;
 @property (nonatomic, retain) UIImageView *defaultImageView;
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) NSTimer *animationIntervalTimer;
+@property (nonatomic, assign, getter=isAnimating) BOOL animating;
 @property (nonatomic, readonly) NSInteger currentIndex;
 @property (nonatomic, readonly) NSInteger previousIndex;
 @property (nonatomic, readonly) NSInteger nextIndex;
@@ -74,12 +78,22 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)cleanScrollView;
 - (void)createCircularIllusion;
-- (void)scrollClockwise:(BOOL)clockwiseScrolling;
 @end
 
 @interface ImageCarouselItemCell (EventHandlers)
 
-- (void)refreshPageControl:(UIPageControl *)pageControl;
+- (void)refreshPageControlHandler:(UIPageControl *)pageControl;
+@end
+
+@interface ImageCarouselItemCell (Autoscrolling)
+
+- (void)scheduleAutoscrolling;
+- (void)unscheduleAutoscrolling;
+- (void)cancelAutoscrolling;
+- (void)animateAutoscrolling;
+- (void)autoscrollingDidStop:(NSString *)animationId
+                    finished:(NSNumber *)finished
+                     context:(void *)context;
 @end
 
 @implementation ImageCarouselItemCell
@@ -89,6 +103,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)dealloc
 {
+    [self unscheduleAutoscrolling];
     [_imageViews release];
     [_loadedImageViews release];
     [_shownEntries release];
@@ -96,6 +111,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     [_pageControl release];
     [_defaultImageView release];
     [_activityIndicator release];
+    [_animationIntervalTimer release];
     [super dealloc];
 }
 
@@ -211,7 +227,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 #pragma mark ImageCarouselItemCell (Private)
 
 @synthesize imageViews = _imageViews, loadedImageViews = _loadedImageViews,
-    shownEntries = _shownEntries, defaultImageView = _defaultImageView;
+    shownEntries = _shownEntries, defaultImageView = _defaultImageView,
+    animationIntervalTimer = _animationIntervalTimer, animating = _animating;
 
 + (CGSize)scrollContentSizeForItem:(ImageCarouselItem *)item
 {
@@ -307,8 +324,9 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     if (_pageControl == nil) {
         // Configuring the page control
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
-        [_pageControl addTarget:self action:@selector(refreshPageControl:)
-               forControlEvents:UIControlEventValueChanged];
+        [_pageControl addTarget:self
+                action:@selector(refreshPageControlHandler:)
+                forControlEvents:UIControlEventValueChanged];
         [_pageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_pageControl setBackgroundColor:[UIColor lightGrayColor]];
         [_pageControl setCurrentPage:0];
@@ -470,25 +488,10 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     }
 }
 
-- (void)scrollClockwise:(BOOL)clockwiseScrolling
-{
-    NSArray *shownEntries = [self shownEntries];
-
-    if ([shownEntries count] < 2)
-        return;
-
-    NSInteger index =
-            clockwiseScrolling ? [self nextIndex] : [self previousIndex];
-    TTImageView *imageView = [[self loadedImageViews] objectAtIndex:index];
-
-    [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
-    [self createCircularIllusion];
-}
-
 #pragma mark -
 #pragma mark ImageCarouselItemCell (EventHandlers)
 
-- (void)refreshPageControl:(UIPageControl *)pageControl
+- (void)refreshPageControlHandler:(UIPageControl *)pageControl
 {
     TTImageView *imageView =
             [[self loadedImageViews] objectAtIndex:[self currentIndex]];
@@ -497,24 +500,78 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 }
 
 #pragma mark -
+#pragma mark ImageCarouselItemCell (Autoscrolling)
+
+- (void)scheduleAutoscrolling
+{
+    [self setAnimationIntervalTimer:
+            [NSTimer timerWithTimeInterval:kCarouselDelayBetweenAnimations
+                target:self selector:@selector(animateAutoscrolling)
+                userInfo:nil repeats:YES]];
+    [[NSRunLoop mainRunLoop] addTimer:[self animationIntervalTimer]
+            forMode:NSDefaultRunLoopMode];
+}
+
+- (void)unscheduleAutoscrolling
+{
+    [self cancelAutoscrolling];
+    [[self animationIntervalTimer] invalidate];
+}
+
+- (void)cancelAutoscrolling
+{
+    if ([self isAnimating])
+        [[[self scrollView] layer] removeAnimationForKey:
+                kCarouselAutoscrollKey];
+}
+
+- (void)animateAutoscrolling
+{
+    NSArray *shownEntries = [self shownEntries];
+
+    if ([shownEntries count] < 2)
+        return;
+
+    TTImageView *imageView =
+            [[self loadedImageViews] objectAtIndex:[self nextIndex]];
+
+    [self setAnimating:YES];
+    [UIView beginAnimations:kCarouselAutoscrollKey context:NULL];
+    [UIView setAnimationDuration:kCarouselAnimationDuration];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:
+            @selector(autoscrollingDidStop:finished:context:)];
+    [[self scrollView] setContentOffset:[imageView frame].origin];
+    [UIView commitAnimations];
+}
+
+- (void)autoscrollingDidStop:(NSString *)animationId
+                    finished:(NSNumber *)finished
+                     context:(void *)context
+{
+    [self setAnimating:NO];
+    [self createCircularIllusion];
+    [[self pageControl] setCurrentPage:[self currentIndex]]; 
+}
+
+#pragma mark -
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    [self unscheduleAutoscrolling];
     if (![scrollView isDragging]) {
-        UIPageControl *pageControl = [self pageControl];
-
         [self createCircularIllusion];
-        [pageControl setCurrentPage:[self currentIndex]]; 
+        [[self pageControl] setCurrentPage:[self currentIndex]]; 
     }
+    [self scheduleAutoscrolling];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    UIPageControl *pageControl = [self pageControl];
-
+    [self unscheduleAutoscrolling];
     [self createCircularIllusion];
-    [pageControl setCurrentPage:[self currentIndex]]; 
+    [[self pageControl] setCurrentPage:[self currentIndex]]; 
 }
 
 #pragma mark -
@@ -522,6 +579,8 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image
 {
+    [self unscheduleAutoscrolling];
+
     NSMutableArray *loadedImageViews = [self loadedImageViews];
     UIPageControl *pageControl = [self pageControl];
 
@@ -530,5 +589,6 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
     // Configuring pageControl
     [pageControl setNumberOfPages:[loadedImageViews count]];
     [self createCircularIllusion];
+    [self scheduleAutoscrolling];
 }
 @end

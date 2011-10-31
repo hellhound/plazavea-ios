@@ -13,5 +13,7 @@
     UIPageControl *_pageControl;
     UIImageView *_defaultImageView;
     UIActivityIndicatorView *_activityIndicator;
+    NSTimer *_animationIntervalTimer;
+    BOOL _animating;
 }
 @end
