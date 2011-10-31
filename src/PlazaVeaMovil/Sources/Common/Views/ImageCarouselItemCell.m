@@ -493,10 +493,13 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 
 - (void)refreshPageControlHandler:(UIPageControl *)pageControl
 {
+    [self unscheduleAutoscrolling];
+
     TTImageView *imageView =
             [[self loadedImageViews] objectAtIndex:[self currentIndex]];
 
     [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
+    [self scheduleAutoscrolling];
 }
 
 #pragma mark -
