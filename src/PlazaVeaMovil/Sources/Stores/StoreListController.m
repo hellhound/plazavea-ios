@@ -13,7 +13,6 @@
 {
     [_regionId release];
     [_subregionId release];
-    [_stores release];
     [super dealloc];
 }
 
@@ -42,7 +41,7 @@
 #pragma mark -
 #pragma mark StoreListController (Public)
 
-@synthesize subregionId = _subregionId, regionId = _regionId, stores = _stores;
+@synthesize subregionId = _subregionId, regionId = _regionId;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
@@ -52,23 +51,5 @@
         _regionId = [regionId copy];
     }
     return self;
-}
-
-#pragma mark -
-#pragma mark <StoreListDataSourceDelegate>
-
-- (void)    dataSource:(StoreListDataSource *)dataSource
-  needsStoreCollection:(NSArray *)stores
-{
-    NSMutableArray *unlistedStores =
-            [NSMutableArray arrayWithCapacity:[stores count]];
-    
-    for (NSArray *sections in stores) {
-        for (Store *store in sections) {
-            [unlistedStores addObject:store];
-        }
-    }
-    
-    [self setStores:unlistedStores];
 }
 @end

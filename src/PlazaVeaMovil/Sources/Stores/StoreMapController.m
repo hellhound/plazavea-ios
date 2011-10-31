@@ -41,8 +41,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     CGRect viewBounds = [[self view] bounds];
+    UINavigationController *navigationController = [self navigationController];
+    
+    if (![navigationController isToolbarHidden]) {
+        viewBounds.size.height -=
+                CGRectGetHeight([[navigationController toolbar] frame]);
+    }
+    
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:viewBounds];
+
     [mapView setDelegate:self];
     [mapView setMapType:MKMapTypeStandard];
     [mapView setZoomEnabled:YES];
@@ -61,15 +70,19 @@
         // Conf GPS
         UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
                 initWithTitle:kStoreMapGPSButton
-                    style:UIBarButtonItemStyleBordered target:self action:nil]
+                    style:UIBarButtonItemStyleBordered target:self action:NULL]
                     autorelease];
+        // Conf CurlButton
+        UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                    target:self action:NULL] autorelease];
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil action:NULL] autorelease];
         
         [self setToolbarItems:[NSArray arrayWithObjects:
-                spacerItem, segItem, spacerItem, nil]];
+                GPSItem, spacerItem, segItem, spacerItem, curlItem, nil]];
         [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;

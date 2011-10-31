@@ -57,7 +57,7 @@
 }
 
 #pragma mark -
-#pragma mark OfferDetailController (Private)
+#pragma mark StoreDetailController (Private)
 
 @synthesize headerView = _headerView, titleLabel = _titleLabel,
     imageView = _imageView;
@@ -94,7 +94,7 @@
 }
 
 #pragma mark -
-#pragma mark <OfferDetailDataSourceDelegate>
+#pragma mark <StoreDetailDataSourceDelegate>
 
 - (void)        dataSource:(StoreDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
