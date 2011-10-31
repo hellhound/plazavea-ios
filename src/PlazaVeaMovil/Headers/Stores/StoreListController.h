@@ -2,8 +2,9 @@
 #import <UIKit/UIKit.h>
 
 #import "Common/Controllers/Three20/ReconnectableTableViewController.h"
+#import "Stores/StoreMapTogglingController.h"
 
-@interface StoreListController : ReconnectableTableViewController
+@interface StoreListController : StoreMapTogglingController
 {
     NSString *_subregionId;
     NSString *_regionId;

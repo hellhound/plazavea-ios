@@ -145,6 +145,10 @@ NSString *const kRegionLauncherTitle = @"Tiendas";
 // Messages
 NSString *const kStoreListTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
+NSString *const kStoreListButtonLabel = @"Lista";
+// NSLocalizedString(@"Lista", nil)
+NSString *const kStoreMapButtonLabel = @"Mapa";
+// NSLocalizedString(@"Mapa", nil)
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";

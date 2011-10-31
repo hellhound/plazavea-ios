@@ -103,6 +103,7 @@
 		2F75AF14144FCF2700153145 /* SubregionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F75AF13144FCF2700153145 /* SubregionDataSource.m */; };
 		2F78FF9C144F2F91007F9ACD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9A144F2F91007F9ACD /* Constants.m */; };
 		2F78FF9D144F2F91007F9ACD /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9B144F2F91007F9ACD /* Models.m */; };
+		2F79C978145F041B002161B2 /* StoreMapTogglingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C977145F041B002161B2 /* StoreMapTogglingController.m */; };
 		2FA10202144F98160079A0E6 /* Stores.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA10201144F98160079A0E6 /* Stores.png */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
@@ -655,6 +656,7 @@
 		2F75AF13144FCF2700153145 /* SubregionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubregionDataSource.m; sourceTree = "<group>"; };
 		2F78FF9A144F2F91007F9ACD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F78FF9B144F2F91007F9ACD /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
+		2F79C977145F041B002161B2 /* StoreMapTogglingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMapTogglingController.m; sourceTree = "<group>"; };
 		2FA10201144F98160079A0E6 /* Stores.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stores.png; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
@@ -994,6 +996,7 @@
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				2F79C977145F041B002161B2 /* StoreMapTogglingController.m */,
 				CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */,
 				CC1947BA1455E4940004C283 /* StoreDetailController.m */,
 				2FEE40181452238A00D516E8 /* StoreListController.m */,
@@ -1711,6 +1714,7 @@
 				CC6C20371459F39E0032C921 /* StoreDetailDataSource.m in Sources */,
 				2C291C13145CD08B002B7F78 /* Constants.m in Sources */,
 				2C291C14145CD08B002B7F78 /* Models.m in Sources */,
+				2F79C978145F041B002161B2 /* StoreMapTogglingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
