@@ -10,7 +10,7 @@
 static const CGSize kCarouselDefaultContentSize = {320., 100.};
 static const CGFloat kCarouselPageControlHeight = 20.;
 static const NSTimeInterval kCarouselAnimationDuration = 2.;
-static const NSTimeInterval kCarouselDelayBetweenAnimations = 8.;
+static const NSTimeInterval kCarouselDelayBetweenAnimations = 5.;
 // Animtion identifier
 static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 
