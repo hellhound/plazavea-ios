@@ -13,14 +13,27 @@
 @implementation StoreListDataSource
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [self setDelegate:nil];
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark StoreListDataSource (public)
+
+@synthesize delegate = _delegate;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
+                 delegate:(id<StoreListDataSourceDelegate>)delegate
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
                 andRegionId:regionId] autorelease]];
+        [self setDelegate:delegate];
     }
     return self;
 }
@@ -57,6 +70,8 @@
 {
     StoreCollection *collection = (StoreCollection *)[self model];
     NSArray *sections = [collection stores];
+    
+    [_delegate dataSource:self needsStoreCollection:sections];
     
     if ([sections count] > 0) {
         NSMutableArray *items =

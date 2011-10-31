@@ -150,6 +150,10 @@ NSString *const kStoreListButtonLabel = @"Lista";
 NSString *const kStoreMapButtonLabel = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
 
+// StoreMapController's constants
+NSString *const kStoreMapTitle = @"Tiendas";
+// NSLocalizedString(@"Tiendas", nil)
+
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =
@@ -157,6 +161,7 @@ NSString *const kURLSubregionList =
 NSString *const kURLStoreList =
         @"tt://launcher/stores/stores/(initWithSubregionId:)/(andRegionId:)/";
 NSString *const kURLStoreDetail = @"tt://launcher/store/(initWithStoreId:)/";
+NSString *const kURLStoreMap = @"tt://launcher/stores/map/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
@@ -164,7 +169,8 @@ NSString *const kURLSubregionListCall =
         @"tt://launcher/stores/regions/subregions/%@/";
 NSString *const kURLStoreListCall =
         @"tt://launcher/stores/stores/%@/%@";
-NSString *const kURLStoreDetailCall = @"tt://launcher/store/%@/"; 
+NSString *const kURLStoreDetailCall = @"tt://launcher/store/%@/";
+NSString *const kURLStoreMapCall = @"tt://launcher/stores/map/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json/");

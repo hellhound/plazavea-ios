@@ -50,7 +50,7 @@
                     target:nil action:NULL] autorelease];
         
         [self setToolbarItems:[NSArray arrayWithObjects:
-                               spacerItem, segItem, spacerItem, nil]];
+                spacerItem, segItem, spacerItem, nil]];
         [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;
@@ -68,8 +68,8 @@
     // Conf the segmented control
     [_segControl autorelease];
     _segControl = [[UISegmentedControl alloc] initWithItems:
-                   [NSArray arrayWithObjects:kStoreListButtonLabel,
-                    kStoreMapButtonLabel, nil]];
+            [NSArray arrayWithObjects:kStoreListButtonLabel,
+                kStoreMapButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kStoreSegmentedControlIndexDefault];
     [_segControl addTarget:self action:@selector(switchControllers:)
@@ -79,17 +79,17 @@
 
 - (void)switchControllers:(UISegmentedControl *)segControl
 {
-    /*switch ([segControl selectedSegmentIndex]) {
-        case kOfferSegmentedControlIndexPromotionButton:
+    switch ([segControl selectedSegmentIndex]) {
+        case kStoreSegmentedControlIndexMapButon:
             [[TTNavigator navigator] openURLAction:
              [[TTURLAction actionWithURLPath:
-               kURLPromotionListCall] applyAnimated:YES]];
-            [self setSegmentIndex:kOfferSegmentedControlIndexOfferButton];
+               kURLStoreMap] applyAnimated:YES]];
+            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
             break;
-        case kOfferSegmentedControlIndexOfferButton:
+        case kStoreSegmentedControlIndexListButton:
             [self dismissModalViewControllerAnimated:YES];
             break;
-    }*/
+    }
 }
 
 #pragma mark -

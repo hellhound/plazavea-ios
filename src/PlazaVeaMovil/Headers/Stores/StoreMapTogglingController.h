@@ -3,7 +3,7 @@
 
 #import "Common/Controllers/Three20/ReconnectableTableViewController.h"
 
-@interface StoreMapTogglingController: ReconnectableTableViewController
+@interface StoreMapTogglingController: ReconnectableTableViewController 
 {
     NSInteger _segmentIndex;
     UISegmentedControl *_segControl;

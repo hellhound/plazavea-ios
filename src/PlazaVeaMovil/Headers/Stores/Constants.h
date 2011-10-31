@@ -119,17 +119,23 @@ typedef enum {
 extern NSString *const kStoreListButtonLabel;
 extern NSString *const kStoreMapButtonLabel;
 
+// StoreMapController's constants
+
+extern NSString *const kStoreMapTitle;
+
 // Controllers' URLs
 extern NSString *const kURLRegionList;
 extern NSString *const kURLSubregionList;
 extern NSString *const kURLStoreList;
 extern NSString *const kURLStoreDetail;
+extern NSString *const kURLStoreMap;
 
 // Controllers' URL calls
 extern NSString *const kURLRegionListCall;
 extern NSString *const kURLSubregionListCall;
 extern NSString *const kURLStoreListCall;
 extern NSString *const kURLStoreDetailCall;
+extern NSString *const kURLStoreMapCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;
