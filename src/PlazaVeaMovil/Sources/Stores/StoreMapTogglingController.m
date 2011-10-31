@@ -57,7 +57,7 @@
 }
 
 #pragma mark -
-#pragma mark OfferDrillDownController (Private)
+#pragma mark StoreMapTogglingController (Private)
 
 @synthesize segControl = _segControl;
 
@@ -82,8 +82,7 @@
     switch ([segControl selectedSegmentIndex]) {
         case kStoreSegmentedControlIndexMapButon:
             [[TTNavigator navigator] openURLAction:
-             [[TTURLAction actionWithURLPath:
-               kURLStoreMap] applyAnimated:YES]];
+             [[TTURLAction actionWithURLPath: kURLStoreMap] applyAnimated:YES]];
             [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
             break;
         case kStoreSegmentedControlIndexListButton:
@@ -93,7 +92,7 @@
 }
 
 #pragma mark -
-#pragma mark OfferDrillDownController (Public)
+#pragma mark StoreMapTogglingController (Public)
 
 @synthesize segmentIndex = _segmentIndex;
 

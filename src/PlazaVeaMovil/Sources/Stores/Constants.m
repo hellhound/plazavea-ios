@@ -151,8 +151,10 @@ NSString *const kStoreMapButtonLabel = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
 
 // StoreMapController's constants
-NSString *const kStoreMapTitle = @"Tiendas";
-// NSLocalizedString(@"Tiendas", nil)
+NSString *const kStoreMapTitle = @"Mapa";
+// NSLocalizedString(@"Mapa", nil)
+NSString *const kStoreMapGPSButton = @"GPS";
+// NSLocalizedString(@"GPS", nil)
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
