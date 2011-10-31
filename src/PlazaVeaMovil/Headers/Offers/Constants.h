@@ -61,6 +61,7 @@ extern NSString *const kOfferListTitleForEmpty;
 extern NSString *const kOfferListSubtitleForEmpty;
 extern NSString *const kOfferListTitleForError;
 extern NSString *const kOfferListSubtitleForError;
+
 extern NSString *const kOfferListDefaultImage;
 extern NSString *const kOfferListPriceTag;
 
@@ -81,6 +82,10 @@ extern NSString *const kPromotionListTitleForEmpty;
 extern NSString *const kPromotionListSubtitleForEmpty;
 extern NSString *const kPromotionListTitleForError;
 extern NSString *const kPromotionListSubtitleForError;
+
+extern const CGFloat kPromotionListImageWidth;
+extern const CGFloat kPromotionListImageHeight;
+extern NSString *const kPromotionListDefaultBanner;
 
 // PromotionDetailDataSource's constants
 
