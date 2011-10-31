@@ -387,6 +387,7 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 
 - (void)createCircularIllusion
 {
+    // TODO createCircularIllusion needs cleansing
     NSArray *loadedImageViews = [self loadedImageViews];
     NSUInteger loadedCount = [loadedImageViews count];
 
@@ -461,6 +462,12 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
         contentSize.width = xOffset += imageSize.width;
     }
     [scrollView setContentSize:contentSize];
+    if (loadedCount > 1) {
+        imageView = [(CircularScrollEntry *)
+                [[self shownEntries] objectAtIndex:1] imageView];
+
+        [scrollView setContentOffset:[imageView frame].origin];
+    }
 }
 
 - (void)scrollClockwise:(BOOL)clockwiseScrolling
@@ -493,6 +500,16 @@ static const NSTimeInterval kCarouselPromotionDuration = 6.;
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (![scrollView isDragging]) {
+        UIPageControl *pageControl = [self pageControl];
+
+        [self createCircularIllusion];
+        [pageControl setCurrentPage:[self currentIndex]]; 
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     UIPageControl *pageControl = [self pageControl];
 
