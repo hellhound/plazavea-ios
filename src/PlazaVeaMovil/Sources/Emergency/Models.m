@@ -136,7 +136,7 @@ static NSRelationshipDescription *kCategoryRelationship;
 
     if (relationship != nil)
         return relationship;
-    if ([name isEqualToString:kEmergencyCategoryNumbers]) {
+    if ([name isEqualToString:kEmergencyNumberCategory]) {
         if (kCategoryRelationship == nil)
             kCategoryRelationship = [[NSRelationshipDescription alloc] init];
         return kCategoryRelationship;
