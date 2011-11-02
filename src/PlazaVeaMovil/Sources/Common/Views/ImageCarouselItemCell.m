@@ -3,7 +3,7 @@
 
 #import <Three20/Three20.h>
 
-#import "Common/VIews/TableImageSubtitleItem.h"
+#import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/ImageCarouselItem.h"
 #import "Common/Views/ImageCarouselItemCell.h"
 
