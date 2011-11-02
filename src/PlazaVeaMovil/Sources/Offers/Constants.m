@@ -71,6 +71,7 @@ NSString *const kOfferListTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
 NSString *const kOfferListSubtitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
+
 NSString *const kOfferListPriceTag = @" a S/.";
 //NSLocalizedString(@" a S/.", nil)
 NSString *const kOfferListDefaultImage = @"bundle://default-list.png";
@@ -107,6 +108,9 @@ NSString *const kPromotionListTitleForError = @"Error";
 NSString *const kPromotionListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
+const CGFloat kPromotionListImageWidth = 320.;
+const CGFloat kPromotionListImageHeight = 100.;
+NSString *const kPromotionListDefaultBanner = @"bundle://default-banner.png";
 //UISegmentedControl item's label for the toolbar: promo button
 NSString *const kOfferPromotionButtonLabel = @"Promociones";
 //NSLocalizedString(@"Promociones", nil)
