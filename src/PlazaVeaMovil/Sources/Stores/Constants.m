@@ -102,10 +102,10 @@ NSString *const kStoreListSubtitleForError = @"Error";
 // StoreDetailDataSource's constants
 
 // Messages
-NSString *const kStoreDetailTitleForLoading = @"Obteniendo la lista";
-// NSLocalizedString(@"Obteniendo la lista", nil)
-NSString *const kStoreDetailTitleForReloading = @"Actualizando la lista";
-// NSLocalizedString(@"Actualizando la lista", nil)
+NSString *const kStoreDetailTitleForLoading = @"Obteniendo datos";
+// NSLocalizedString(@"Obteniendo datos", nil)
+NSString *const kStoreDetailTitleForReloading = @"Actualizando datos";
+// NSLocalizedString(@"Actualizando datos", nil)
 NSString *const kStoreDetailTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"@"Sin información", nil)
 NSString *const kStoreDetailSubtitleForEmpty = @"Por favor intente de nuevo "
