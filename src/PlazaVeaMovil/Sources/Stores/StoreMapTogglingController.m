@@ -9,8 +9,6 @@
 @interface StoreMapTogglingController ()
 
 @property (nonatomic, readonly) UISegmentedControl *segControl;
-
-- (void)switchControllers:(UISegmentedControl *)segControl;
 @end
 
 @implementation StoreMapTogglingController
@@ -21,7 +19,6 @@
 - (void) dealloc
 {
     [_segControl release];
-    [_stores release];
     [super dealloc];
 }
 
@@ -79,7 +76,7 @@
 #pragma mark -
 #pragma mark StoreMapTogglingController (Public)
 
-@synthesize segmentIndex = _segmentIndex, stores = _stores;
+@synthesize segmentIndex = _segmentIndex;
 
 - (void)setSegmentIndex:(NSInteger)segmentedIndex
 {
@@ -90,22 +87,5 @@
     [segControl setSelectedSegmentIndex:segmentedIndex];
     [segControl addTarget:self action:@selector(switchControllers:)
          forControlEvents:UIControlEventValueChanged];
-}
-
-#pragma mark -
-#pragma mark <StoreListDataSourceDelegate>
-
-- (void)    dataSource:(StoreListDataSource *)dataSource
-  needsStoreCollection:(NSArray *)stores
-{
-    NSMutableArray *unlistedStores =
-    [NSMutableArray arrayWithCapacity:[stores count]];
-    
-    for (NSArray *sections in stores) {
-        for (Store *store in sections) {
-            [unlistedStores addObject:store];
-        }
-    }
-    [self setStores:unlistedStores];
 }
 @end

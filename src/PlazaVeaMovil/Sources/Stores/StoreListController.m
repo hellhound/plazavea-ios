@@ -51,8 +51,8 @@
 - (void)createModel
 {
     [self setDataSource:[[[StoreListDataSource alloc]
-            initWithSubregionId:_subregionId andRegionId:_regionId
-                delegate:self] autorelease]];
+            initWithSubregionId:_subregionId andRegionId:_regionId]
+                autorelease]];
 }
 
 #pragma mark -
