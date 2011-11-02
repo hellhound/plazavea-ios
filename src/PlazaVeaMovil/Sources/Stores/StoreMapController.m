@@ -11,6 +11,9 @@
 #import "Stores/Models.h"
 #import "Stores/StoreMapController.h"
 
+// min region
+static float minRegion = 500.;
+
 @interface StoreMapController ()
 
 @property (nonatomic, retain) MKMapView *mapView;
@@ -78,19 +81,34 @@
 - (void)didLoadModel:(BOOL)firstTime
 {
     CGRect viewBounds = [[self view] bounds];
-    NSArray *stores = [(StoreCollection *)[self model] stores];
+    NSArray *stores;
     
     [self setMapView:[[MKMapView alloc] initWithFrame:viewBounds]];
-    for (NSArray *sections in stores) {
-        for (Store *store in sections) {
-            CLLocationCoordinate2D coordinate =
-                    CLLocationCoordinate2DMake([[store latitude] doubleValue],
+        
+    if ([[self model] isKindOfClass:[StoreCollection class]]) {
+        stores = [(StoreCollection *)[self model] stores];
+        
+        for (NSArray *sections in stores) {
+            for (Store *store in sections) {
+                CLLocationCoordinate2D coordinate =
+                CLLocationCoordinate2DMake([[store latitude] doubleValue],
                         [[store longitude] doubleValue]);
-            MapAnnotation *annotation = [[[MapAnnotation alloc]
-                    initWithCoordinate:coordinate title:[store name]
-                        andSubtitle:nil] autorelease];
-            [[self mapView] addAnnotation:annotation];
+                MapAnnotation *annotation = [[[MapAnnotation alloc]
+                        initWithCoordinate:coordinate title:[store name]
+                            andSubtitle:nil] autorelease];
+                [[self mapView] addAnnotation:annotation];
+            }
         }
+    } else if ([[self model] isKindOfClass:[Store class]]) {
+        Store *store = (Store *)[self model];
+        
+        CLLocationCoordinate2D coordinate =
+        CLLocationCoordinate2DMake([[store latitude] doubleValue],
+                [[store longitude] doubleValue]);
+        MapAnnotation *annotation = [[[MapAnnotation alloc]
+                initWithCoordinate:coordinate title:[store name]
+                    andSubtitle:[store storeAddress]] autorelease];
+        [[self mapView] addAnnotation:annotation];
     }
     
     float minLatitude = 0, minLongitude = 0, maxLatitude = 0, maxLongitude = 0;
@@ -105,6 +123,10 @@
         maxLongitude = maxLongitude == 0 ? [annotation coordinate].longitude :
                 MAX(maxLongitude, [annotation coordinate].longitude);
     }
+    CLLocation *pointA = [[[CLLocation alloc] initWithLatitude:minLatitude
+            longitude:minLongitude] autorelease];
+    CLLocation *pointB = [[[CLLocation alloc] initWithLatitude:maxLatitude
+            longitude:minLongitude] autorelease];
     MKCoordinateSpan span =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
@@ -112,11 +134,17 @@
             CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
                 (maxLongitude - (span.longitudeDelta / 2)));
     
+    float distance = [pointA distanceFromLocation:pointB];
     [[self mapView] setDelegate:self];
     [[self mapView] setMapType:MKMapTypeStandard];
     [[self mapView] setZoomEnabled:YES];
     [[self mapView] setScrollEnabled:YES];
-    [[self mapView] setRegion:MKCoordinateRegionMake(center, span)];
+    if (distance <= minRegion) {
+        [[self mapView] setRegion:MKCoordinateRegionMakeWithDistance
+                (center, minRegion, minRegion)];
+    } else {
+        [[self mapView] setRegion:MKCoordinateRegionMake(center, span)];
+    }
      _region = [[self mapView] region];
     [[self view] addSubview:[self mapView]];
 }
@@ -133,6 +161,15 @@
         [self setTitle:kStoreMapTitle];
         [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
                 andRegionId:regionId] autorelease]];
+    }
+    return self;
+}
+
+- (id)initWithStoreId:(NSString *)storeId
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setTitle:kStoreMapTitle];
+        [self setModel:[[[Store alloc] initWithStoreId:storeId] autorelease]];
     }
     return self;
 }
@@ -190,9 +227,6 @@
 - (void)toggleUserAnnotation:(id)sender
 {
     [_mapView setShowsUserLocation:![_mapView showsUserLocation]];
-    if (![_mapView showsUserLocation]) {
-        [[self mapView] setRegion:_region animated:YES];
-    }
 }
 
 #pragma mark -

@@ -94,6 +94,9 @@
     [map from:kURLStoreDetail toViewController:[StoreDetailController class]];
     [map from:kURLStoreMap toModalViewController:[StoreMapController class]
             transition:UIModalTransitionStyleFlipHorizontal];
+    [map from:kURLStoreDetailMap toModalViewController:
+            [StoreMapController class]
+                transition:UIModalTransitionStyleFlipHorizontal];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

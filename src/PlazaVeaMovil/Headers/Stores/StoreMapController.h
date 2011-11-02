@@ -17,6 +17,7 @@
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId;
+- (id)initWithStoreId:(NSString *)storeId;
 - (void)popToNavigationWindow;
 - (void)toggleUserAnnotation:(id)sender;
 @end

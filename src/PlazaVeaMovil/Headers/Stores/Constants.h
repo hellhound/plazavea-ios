@@ -130,6 +130,7 @@ extern NSString *const kURLSubregionList;
 extern NSString *const kURLStoreList;
 extern NSString *const kURLStoreDetail;
 extern NSString *const kURLStoreMap;
+extern NSString *const kURLStoreDetailMap;
 
 // Controllers' URL calls
 extern NSString *const kURLRegionListCall;
@@ -137,6 +138,7 @@ extern NSString *const kURLSubregionListCall;
 extern NSString *const kURLStoreListCall;
 extern NSString *const kURLStoreDetailCall;
 extern NSString *const kURLStoreMapCall;
+extern NSString *const kURLStoreDetailMapCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;

@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Stores/Constants.h"
 #import "Stores/StoreDetailController.h"
 
@@ -45,6 +46,25 @@
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:imageFrame];
     [tableView setTableHeaderView:_headerView];
+}
+
+#pragma mark -
+#pragma mark UITableViewController
+
+- (UINavigationItem *)navigationItem
+{
+    UINavigationItem *navItem = [super navigationItem];
+    
+    if ([self toolbarItems] != nil) {
+        for (UIBarButtonItem *item in [self toolbarItems]) {
+            if ([[item customView] isKindOfClass:[UISegmentedControl class]]) {
+                [(UISegmentedControl *)[item customView] addTarget:self
+                        action:@selector(switchControllers:)
+                            forControlEvents:UIControlEventValueChanged];
+            }
+        }
+    }
+    return navItem;
 }
 
 #pragma mark -
@@ -91,6 +111,21 @@
         [_headerView addSubview:_imageView];
     }
     return self;
+}
+
+- (void)switchControllers:(UISegmentedControl *)segControl
+{
+    switch ([segControl selectedSegmentIndex]) {
+        case kStoreSegmentedControlIndexMapButon:
+            [[TTNavigator navigator] openURLAction:[[TTURLAction
+                    actionWithURLPath:URL(kURLStoreDetailMapCall, _storeId)]
+                        applyAnimated:YES]];
+            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+            break;
+        case kStoreSegmentedControlIndexListButton:
+            [self dismissModalViewControllerAnimated:YES];
+            break;
+    }
 }
 
 #pragma mark -
