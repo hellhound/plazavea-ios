@@ -8,6 +8,7 @@
 #import "Common/Additions/UIDevice+Additions.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
+#import "Stores/Models.h"
 #import "Stores/StoreMapController.h"
 
 @interface StoreMapController ()
@@ -38,7 +39,7 @@
     return self;
 }
 
-- (void)viewDidLoad
+/*- (void)viewDidLoad
 {
     [super viewDidLoad];
     
@@ -57,7 +58,7 @@
     [mapView setZoomEnabled:YES];
     [mapView setScrollEnabled:YES];
     [[self view] addSubview:mapView];
-}
+}*/
 
 - (UINavigationItem *)navigationItem
 {
@@ -89,7 +90,66 @@
 }
 
 #pragma mark -
+#pragma mark TTModelViewController
+
+- (void)didLoadModel:(BOOL)firstTime
+{
+    CGRect viewBounds = [[self view] bounds];
+    MKMapView *mapView = [[MKMapView alloc] initWithFrame:viewBounds];
+    NSArray *stores = [(StoreCollection *)[self model] stores];
+    
+    for (NSArray *sections in stores) {
+        for (Store *store in sections) {
+            CLLocationCoordinate2D coordinate =
+                    CLLocationCoordinate2DMake([[store latitude] doubleValue],
+                        [[store longitude] doubleValue]);
+            MapAnnotation *annotation = [[[MapAnnotation alloc]
+                    initWithCoordinate:coordinate title:[store name]
+                        andSubtitle:nil] autorelease];
+            [mapView addAnnotation:annotation];
+        }
+    }
+    
+    float minLatitude = 0, minLongitude = 0, maxLatitude = 0, maxLongitude = 0;
+    
+    for (MapAnnotation *annotation in [mapView annotations]) {
+        minLatitude = minLatitude == 0 ? [annotation coordinate].latitude :
+                MIN(minLatitude, [annotation coordinate].latitude);
+        minLongitude = minLongitude == 0 ? [annotation coordinate].longitude :
+                MIN(minLongitude, [annotation coordinate].longitude);
+        maxLatitude = maxLatitude == 0 ? [annotation coordinate].latitude :
+                MAX(maxLatitude, [annotation coordinate].latitude);
+        maxLongitude = maxLongitude == 0 ? [annotation coordinate].longitude :
+                MAX(maxLongitude, [annotation coordinate].longitude);
+    }
+    MKCoordinateSpan span =
+            MKCoordinateSpanMake((maxLatitude - minLatitude),
+                (maxLongitude - minLongitude));
+    CLLocationCoordinate2D center =
+            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
+                (maxLongitude - (span.longitudeDelta / 2)));
+    
+    [mapView setDelegate:self];
+    [mapView setMapType:MKMapTypeStandard];
+    [mapView setZoomEnabled:YES];
+    [mapView setScrollEnabled:YES];
+    [mapView setRegion:MKCoordinateRegionMake(center, span)];
+    [[self view] addSubview:mapView];
+}
+
+#pragma mark -
 #pragma mark StoreMapController
+
+- (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setTitle:kStoreMapTitle];
+        [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
+                andRegionId:regionId] autorelease]];
+    }
+    return self;
+}
 
 - (void)popToNavigationWindow
 {

@@ -5,7 +5,7 @@
 
 #import <Three20/Three20.h>
 
-@interface StoreMapController: TTViewController <MKMapViewDelegate>
+@interface StoreMapController: TTModelViewController <MKMapViewDelegate>
 {
     UIBarButtonItem *_backButton;
     NSInteger _segmentIndex;
@@ -13,5 +13,7 @@
 }
 @property (nonatomic, assign) NSInteger segmentIndex;
 
+- (id)initWithSubregionId:(NSString *)subregionId
+              andRegionId:(NSString *)regionId;
 - (void)popToNavigationWindow;
 @end

@@ -73,23 +73,7 @@
                 kStoreMapButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kStoreSegmentedControlIndexDefault];
-    [_segControl addTarget:self action:@selector(switchControllers:)
-          forControlEvents:UIControlEventValueChanged];
     return _segControl;
-}
-
-- (void)switchControllers:(UISegmentedControl *)segControl
-{
-    switch ([segControl selectedSegmentIndex]) {
-        case kStoreSegmentedControlIndexMapButon:
-            [[TTNavigator navigator] openURLAction:
-             [[TTURLAction actionWithURLPath: kURLStoreMap] applyAnimated:YES]];
-            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
-            break;
-        case kStoreSegmentedControlIndexListButton:
-            [self dismissModalViewControllerAnimated:YES];
-            break;
-    }
 }
 
 #pragma mark -

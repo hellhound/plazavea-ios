@@ -422,6 +422,37 @@ static NSString *const kMutableServicesKey = @"services";
 }
 @end
 
+@implementation MapAnnotation
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_title release];
+    [_subtitle release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark MapAnnotation
+
+@synthesize coordinate = _coordinate, title = _title, subtitle = _subtitle;
+
+- (id) initWithCoordinate:(CLLocationCoordinate2D)coordinate
+                    title:(NSString *)title
+              andSubtitle:(NSString *)subtitle
+{
+    if ((self = [self init]) != nil) {
+        _coordinate = coordinate;
+        _title = title;
+        _subtitle = subtitle;
+    }
+    return  self;
+}
+
+@end
+
 @implementation Store
 
 #pragma mark -

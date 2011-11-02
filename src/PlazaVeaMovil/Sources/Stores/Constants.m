@@ -163,7 +163,8 @@ NSString *const kURLSubregionList =
 NSString *const kURLStoreList =
         @"tt://launcher/stores/stores/(initWithSubregionId:)/(andRegionId:)/";
 NSString *const kURLStoreDetail = @"tt://launcher/store/(initWithStoreId:)/";
-NSString *const kURLStoreMap = @"tt://launcher/stores/map/";
+NSString *const kURLStoreMap =
+        @"tt://launcher/stores/map/(initWithSubregionId:)/(andRegionId:)/";
 
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
@@ -172,7 +173,7 @@ NSString *const kURLSubregionListCall =
 NSString *const kURLStoreListCall =
         @"tt://launcher/stores/stores/%@/%@";
 NSString *const kURLStoreDetailCall = @"tt://launcher/store/%@/";
-NSString *const kURLStoreMapCall = @"tt://launcher/stores/map/";
+NSString *const kURLStoreMapCall = @"tt://launcher/stores/map/%@/%@/";
 
 // Endpoint URLs
 NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json/");

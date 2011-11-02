@@ -1,4 +1,6 @@
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 #import "Common/Models/URLRequestModel.h"
 
@@ -64,6 +66,21 @@
 @property (nonatomic, copy) NSString *serviceURL;
 
 + (id)serviceFromDictionary:(NSDictionary *)rawService;
+@end
+
+@interface MapAnnotation: NSObject <MKAnnotation>
+{
+    CLLocationCoordinate2D _coordinate;
+    NSString *_title;
+    NSString *_subtitle;
+}
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
+                   title:(NSString *)title
+             andSubtitle:(NSString *)subtitle;
 @end
 
 @interface Store: URLRequestModel

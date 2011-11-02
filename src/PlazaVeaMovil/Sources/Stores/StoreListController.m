@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+#import "Common/Constants.h"
 #import "Stores/Constants.h"
 #import "Stores/StoreListDataSource.h"
 #import "Stores/StoreListController.h"
@@ -28,6 +29,22 @@
     return self;
 }
 
+- (UINavigationItem *)navigationItem
+{
+    UINavigationItem *navItem = [super navigationItem];
+    
+    if ([self toolbarItems] != nil) {
+        for (UIBarButtonItem *item in [self toolbarItems]) {
+            if ([[item customView] isKindOfClass:[UISegmentedControl class]]) {
+                [(UISegmentedControl *)[item customView] addTarget:self
+                        action:@selector(switchControllers:)
+                            forControlEvents:UIControlEventValueChanged];
+            }
+        }
+    }
+    return navItem;
+}
+
 #pragma mark -
 #pragma mark TTTableViewController
 
@@ -51,5 +68,20 @@
         _regionId = [regionId copy];
     }
     return self;
+}
+
+- (void)switchControllers:(UISegmentedControl *)segControl
+{
+    switch ([segControl selectedSegmentIndex]) {
+        case kStoreSegmentedControlIndexMapButon:
+            [[TTNavigator navigator] openURLAction:[[TTURLAction
+                    actionWithURLPath:URL(kURLStoreMapCall, _subregionId,
+                        _regionId)] applyAnimated:YES]];
+            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+            break;
+        case kStoreSegmentedControlIndexListButton:
+            [self dismissModalViewControllerAnimated:YES];
+            break;
+    }
 }
 @end
