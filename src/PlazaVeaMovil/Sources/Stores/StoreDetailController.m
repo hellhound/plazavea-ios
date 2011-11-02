@@ -46,6 +46,7 @@
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:imageFrame];
     [tableView setTableHeaderView:_headerView];
+    [self refresh];
 }
 
 #pragma mark -

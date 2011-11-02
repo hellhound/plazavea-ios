@@ -45,6 +45,12 @@ static float minRegion = 500.;
     return self;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[self mapView] setShowsUserLocation:NO];
+}
+
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
