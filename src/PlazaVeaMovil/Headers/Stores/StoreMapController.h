@@ -10,10 +10,13 @@
     UIBarButtonItem *_backButton;
     NSInteger _segmentIndex;
     UISegmentedControl *_segControl;
+    MKMapView *_mapView;
+    MKCoordinateRegion _region;
 }
 @property (nonatomic, assign) NSInteger segmentIndex;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId;
 - (void)popToNavigationWindow;
+- (void)toggleUserAnnotation:(id)sender;
 @end

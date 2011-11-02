@@ -13,7 +13,9 @@
 
 @interface StoreMapController ()
 
+@property (nonatomic, retain) MKMapView *mapView;
 @property (nonatomic, readonly) UISegmentedControl *segControl;
+@property (nonatomic, assign) MKCoordinateRegion region;
 
 - (void)switchControllers:(UISegmentedControl *)segControl;
 @end
@@ -25,6 +27,7 @@
 
 - (void) dealloc
 {
+    [_mapView release];
     [_segControl release];
     [super dealloc];
 }
@@ -39,27 +42,6 @@
     return self;
 }
 
-/*- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    CGRect viewBounds = [[self view] bounds];
-    UINavigationController *navigationController = [self navigationController];
-    
-    if (![navigationController isToolbarHidden]) {
-        viewBounds.size.height -=
-                CGRectGetHeight([[navigationController toolbar] frame]);
-    }
-    
-    MKMapView *mapView = [[MKMapView alloc] initWithFrame:viewBounds];
-
-    [mapView setDelegate:self];
-    [mapView setMapType:MKMapTypeStandard];
-    [mapView setZoomEnabled:YES];
-    [mapView setScrollEnabled:YES];
-    [[self view] addSubview:mapView];
-}*/
-
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
@@ -71,7 +53,8 @@
         // Conf GPS
         UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
                 initWithTitle:kStoreMapGPSButton
-                    style:UIBarButtonItemStyleBordered target:self action:NULL]
+                    style:UIBarButtonItemStyleBordered target:self
+                    action:@selector(toggleUserAnnotation:)]
                     autorelease];
         // Conf CurlButton
         UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
@@ -95,9 +78,9 @@
 - (void)didLoadModel:(BOOL)firstTime
 {
     CGRect viewBounds = [[self view] bounds];
-    MKMapView *mapView = [[MKMapView alloc] initWithFrame:viewBounds];
     NSArray *stores = [(StoreCollection *)[self model] stores];
     
+    [self setMapView:[[MKMapView alloc] initWithFrame:viewBounds]];
     for (NSArray *sections in stores) {
         for (Store *store in sections) {
             CLLocationCoordinate2D coordinate =
@@ -106,13 +89,13 @@
             MapAnnotation *annotation = [[[MapAnnotation alloc]
                     initWithCoordinate:coordinate title:[store name]
                         andSubtitle:nil] autorelease];
-            [mapView addAnnotation:annotation];
+            [[self mapView] addAnnotation:annotation];
         }
     }
     
     float minLatitude = 0, minLongitude = 0, maxLatitude = 0, maxLongitude = 0;
     
-    for (MapAnnotation *annotation in [mapView annotations]) {
+    for (MapAnnotation *annotation in [[self mapView] annotations]) {
         minLatitude = minLatitude == 0 ? [annotation coordinate].latitude :
                 MIN(minLatitude, [annotation coordinate].latitude);
         minLongitude = minLongitude == 0 ? [annotation coordinate].longitude :
@@ -129,16 +112,19 @@
             CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
                 (maxLongitude - (span.longitudeDelta / 2)));
     
-    [mapView setDelegate:self];
-    [mapView setMapType:MKMapTypeStandard];
-    [mapView setZoomEnabled:YES];
-    [mapView setScrollEnabled:YES];
-    [mapView setRegion:MKCoordinateRegionMake(center, span)];
-    [[self view] addSubview:mapView];
+    [[self mapView] setDelegate:self];
+    [[self mapView] setMapType:MKMapTypeStandard];
+    [[self mapView] setZoomEnabled:YES];
+    [[self mapView] setScrollEnabled:YES];
+    [[self mapView] setRegion:MKCoordinateRegionMake(center, span)];
+     _region = [[self mapView] region];
+    [[self view] addSubview:[self mapView]];
 }
 
 #pragma mark -
 #pragma mark StoreMapController
+
+@synthesize mapView = _mapView, region = _region;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
@@ -201,6 +187,14 @@
     }
 }
 
+- (void)toggleUserAnnotation:(id)sender
+{
+    [_mapView setShowsUserLocation:![_mapView showsUserLocation]];
+    if (![_mapView showsUserLocation]) {
+        [[self mapView] setRegion:_region animated:YES];
+    }
+}
+
 #pragma mark -
 #pragma mark StoreMapController (Public)
 
@@ -215,5 +209,32 @@
     [segControl setSelectedSegmentIndex:segmentedIndex];
     [segControl addTarget:self action:@selector(switchControllers:)
          forControlEvents:UIControlEventValueChanged];
+}
+
+
+#pragma mark -
+#pragma mark <MKMapViewDelegate>
+
+- (void)        mapView:(MKMapView *)mapView
+  didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocationCoordinate2D center = _region.center;
+    CLLocationCoordinate2D currentLocation =
+            [[userLocation location] coordinate];
+    
+    float minLatitude = MIN(center.latitude, currentLocation.latitude);
+    float minLongitude = MIN(center.longitude, currentLocation.longitude);
+    float maxLatitude = MAX(center.latitude, currentLocation.latitude);
+    float maxLongitude = MAX(center.longitude, currentLocation.longitude);
+    
+    MKCoordinateSpan span =
+            MKCoordinateSpanMake((maxLatitude - minLatitude),
+                (maxLongitude - minLongitude));
+    CLLocationCoordinate2D newCenter =
+            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
+                (maxLongitude - (span.longitudeDelta / 2)));
+    
+    [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, span)
+            animated:YES];
 }
 @end
