@@ -108,17 +108,37 @@ extern NSString *const kRegionLauncherTitle;
 // Messages
 extern NSString *const kStoreListTitle;
 
+// StoreMapTogglingController's constants
+
+typedef enum {
+    kStoreSegmentedControlIndexListButton,
+    kStoreSegmentedControlIndexMapButon,
+    kStoreSegmentedControlIndexDefault = kStoreSegmentedControlIndexListButton
+}StoreSegmentedControlIndexTypes;
+
+extern NSString *const kStoreListButtonLabel;
+extern NSString *const kStoreMapButtonLabel;
+
+// StoreMapController's constants
+
+extern NSString *const kStoreMapTitle;
+extern NSString *const kStoreMapGPSButton;
+
 // Controllers' URLs
 extern NSString *const kURLRegionList;
 extern NSString *const kURLSubregionList;
 extern NSString *const kURLStoreList;
 extern NSString *const kURLStoreDetail;
+extern NSString *const kURLStoreMap;
+extern NSString *const kURLStoreDetailMap;
 
 // Controllers' URL calls
 extern NSString *const kURLRegionListCall;
 extern NSString *const kURLSubregionListCall;
 extern NSString *const kURLStoreListCall;
 extern NSString *const kURLStoreDetailCall;
+extern NSString *const kURLStoreMapCall;
+extern NSString *const kURLStoreDetailMapCall;
 
 // Endpoint URLs
 extern NSString *const kRegionListEndPoint;

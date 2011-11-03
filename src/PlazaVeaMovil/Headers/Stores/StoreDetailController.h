@@ -5,8 +5,9 @@
 #import "Common/Controllers/Three20/ReconnectableTableViewController.h"
 
 #import "Stores/StoreDetailDataSource.h"
+#import "Stores/StoreMapTogglingController.h"
 
-@interface StoreDetailController : ReconnectableTableViewController
+@interface StoreDetailController : StoreMapTogglingController
         <StoreDetailDataSourceDelegate>
 {
     NSString *_storeId;

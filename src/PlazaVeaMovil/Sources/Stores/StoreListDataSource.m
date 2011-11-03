@@ -13,7 +13,16 @@
 @implementation StoreListDataSource
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark StoreListDataSource (public)
+
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
@@ -57,7 +66,7 @@
 {
     StoreCollection *collection = (StoreCollection *)[self model];
     NSArray *sections = [collection stores];
-    
+        
     if ([sections count] > 0) {
         NSMutableArray *items =
                 [NSMutableArray arrayWithCapacity:[sections count]];

@@ -7,6 +7,15 @@
 @implementation RecipeCategoryController
 
 #pragma mark -
+#pragma mark UIView
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self refresh];
+}
+
+#pragma mark -
 #pragma mark UITableViewController
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
