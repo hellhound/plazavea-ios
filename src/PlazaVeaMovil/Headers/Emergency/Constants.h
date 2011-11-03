@@ -5,6 +5,7 @@
 
 // Administration of Emergency numbers
 extern NSString *const kEmergencyCategoryTitle;
+extern NSString *const kEmergencyInitialCSV;
 
 extern NSString *const kEmergencyCategoryEntity;
 extern NSString *const kEmergencyCategoryClass;

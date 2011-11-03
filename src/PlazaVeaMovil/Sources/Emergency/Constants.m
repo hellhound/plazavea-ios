@@ -9,6 +9,8 @@
 NSString *const kEmergencyCategoryTitle = @"Categorías";
 // NSLocalizedString(@"Categorías", nil)
 
+NSString *const kEmergencyInitialCSV = @"emergency-initial-data";
+
 NSString *const kEmergencyCategoryEntity = @"EmergencyCategory";
 NSString *const kEmergencyCategoryClass = @"EmergencyCategory";
 NSString *const kEmergencyCategoryName = @"name";
