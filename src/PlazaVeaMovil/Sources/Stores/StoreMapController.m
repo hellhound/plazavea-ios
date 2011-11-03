@@ -13,6 +13,7 @@
 
 // min region
 static float minRegion = 500.;
+static NSString *const kAnnotationId = @"AnnotationView";
 
 @interface StoreMapController ()
 
@@ -63,7 +64,7 @@ static float minRegion = 500.;
         UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
                 initWithTitle:kStoreMapGPSButton
                     style:UIBarButtonItemStyleBordered target:self
-                    action:@selector(toggleUserAnnotation:)]
+                    action:@selector(updateUserAnnotation:)]
                     autorelease];
         // Conf CurlButton
         UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
@@ -230,9 +231,9 @@ static float minRegion = 500.;
     }
 }
 
-- (void)toggleUserAnnotation:(id)sender
+- (void)updateUserAnnotation:(id)sender
 {
-    [_mapView setShowsUserLocation:![_mapView showsUserLocation]];
+    [_mapView setShowsUserLocation:YES];
 }
 
 #pragma mark -
@@ -257,30 +258,67 @@ static float minRegion = 500.;
 
 - (void)        mapView:(MKMapView *)mapView
   didUpdateUserLocation:(MKUserLocation *)userLocation
-{
+{   
     CLLocationCoordinate2D center = _region.center;
+    MKCoordinateSpan span = _region.span;
     CLLocationCoordinate2D currentLocation =
             [[userLocation location] coordinate];
     
-    float minLatitude = MIN(center.latitude, currentLocation.latitude);
-    float minLongitude = MIN(center.longitude, currentLocation.longitude);
-    float maxLatitude = MAX(center.latitude, currentLocation.latitude);
-    float maxLongitude = MAX(center.longitude, currentLocation.longitude);
+    for (MapAnnotation *annotation in [_mapView annotations]) {
+        if ([[annotation title] isEqualToString:kStoreMapCurrentLocation])
+            [_mapView removeAnnotation:annotation];
+    }
+    MapAnnotation *location = [[[MapAnnotation alloc]
+            initWithCoordinate:currentLocation title:kStoreMapCurrentLocation
+                andSubtitle:nil] autorelease];
     
-    MKCoordinateSpan span =
+    [_mapView addAnnotation:location];
+    
+    float minLatitude = MIN((center.latitude - span.latitudeDelta),
+            currentLocation.latitude);
+    float minLongitude = MIN((center.longitude - span.longitudeDelta),
+            currentLocation.longitude);
+    float maxLatitude = MAX((center.latitude + span.latitudeDelta),
+            currentLocation.latitude);
+    float maxLongitude = MAX((center.longitude + span.longitudeDelta),
+            currentLocation.longitude);
+    
+    MKCoordinateSpan newSpan =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
     CLLocationCoordinate2D newCenter =
-            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
-                (maxLongitude - (span.longitudeDelta / 2)));
+            CLLocationCoordinate2DMake((maxLatitude - (newSpan.latitudeDelta /
+                2)), (maxLongitude - (newSpan.longitudeDelta / 2)));
     
-    [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, span)
+    [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, newSpan)
             animated:YES];
+    if ([[userLocation location] horizontalAccuracy] <= 100.)
+        [_mapView setShowsUserLocation:NO];
+    [_mapView performSelector:@selector(setShowsUserLocation:) withObject:NO
+            afterDelay:10];
+}
+
+- (void)                mapView:(MKMapView *)mapView
+   didFailToLocateUserWithError:(NSError *)error
+{
+    [_mapView setShowsUserLocation:NO];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    MKAnnotationView *annotationView = [_mapView
+            dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
+    if (annotationView == nil) {
+        annotationView = [[[MKAnnotationView alloc]
+                initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
+                    autorelease];
+        if ([annotation subtitle] == nil) {
+            [annotationView setRightCalloutAccessoryView:
+                    [UIButton buttonWithType:UIButtonTypeDetailDisclosure]]; 
+        }
+            
+    }
     return nil;
 }
 @end

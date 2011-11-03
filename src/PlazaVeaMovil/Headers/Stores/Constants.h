@@ -123,6 +123,7 @@ extern NSString *const kStoreMapButtonLabel;
 
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;
+extern NSString *const kStoreMapCurrentLocation;
 
 // Controllers' URLs
 extern NSString *const kURLRegionList;
