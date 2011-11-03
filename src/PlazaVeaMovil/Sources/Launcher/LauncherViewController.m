@@ -10,6 +10,7 @@
 #import "Recipes/Constants.h"
 #import "Offers/Constants.h"
 #import "Stores/Constants.h"
+#import "Emergency/Constants.h"
 
 @interface LauncherViewController (Private)
 
@@ -78,6 +79,9 @@
                 [[[TTLauncherItem alloc] initWithTitle:kRegionLauncherTitle
                     image:kURLStoresIcon
                     URL:kURLRegionListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
+                    image:kURLStoresIcon
+                    URL:kURLEmergencyCategory] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

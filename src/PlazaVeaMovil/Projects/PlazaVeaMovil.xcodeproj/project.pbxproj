@@ -136,6 +136,8 @@
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
 		CC6C20371459F39E0032C921 /* StoreDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */; };
+		CC81EA771463190F0003E3F5 /* EmergencyCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC81EA751463190F0003E3F5 /* EmergencyCategoryController.m */; };
+		CC81EA781463190F0003E3F5 /* EmergencyNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC81EA761463190F0003E3F5 /* EmergencyNumberController.m */; };
 		CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */; };
 		CCA4CFE314469CC80095514E /* TableImageSubtitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */; };
 		CCA4CFE414469CC80095514E /* TableImageSubtitleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */; };
@@ -694,6 +696,8 @@
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
 		CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailDataSource.m; sourceTree = "<group>"; };
+		CC81EA751463190F0003E3F5 /* EmergencyCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyCategoryController.m; sourceTree = "<group>"; };
+		CC81EA761463190F0003E3F5 /* EmergencyNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyNumberController.m; sourceTree = "<group>"; };
 		CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyImageItemCell.m; sourceTree = "<group>"; };
 		CCA4CFE014469CC80095514E /* TableImageSubtitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableImageSubtitleItem.m; sourceTree = "<group>"; };
 		CCA4CFE114469CC80095514E /* TableImageSubtitleItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableImageSubtitleItemCell.m; sourceTree = "<group>"; };
@@ -755,6 +759,8 @@
 		2C291C10145CD08B002B7F78 /* Emergency */ = {
 			isa = PBXGroup;
 			children = (
+				CC81EA751463190F0003E3F5 /* EmergencyCategoryController.m */,
+				CC81EA761463190F0003E3F5 /* EmergencyNumberController.m */,
 				2C291C11145CD08B002B7F78 /* Constants.m */,
 				2C291C12145CD08B002B7F78 /* Models.m */,
 			);
@@ -1735,6 +1741,8 @@
 				2F79C97A145F11D9002161B2 /* StoreMapController.m in Sources */,
 				2C146F1A1456220100E5EAFC /* ImageCarouselItem.m in Sources */,
 				2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */,
+				CC81EA771463190F0003E3F5 /* EmergencyCategoryController.m in Sources */,
+				CC81EA781463190F0003E3F5 /* EmergencyNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
