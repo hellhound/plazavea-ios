@@ -73,10 +73,14 @@
     CLLocationCoordinate2D _coordinate;
     NSString *_title;
     NSString *_subtitle;
+    NSString *_pictureURL;
+    NSNumber *_storeId;
 }
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, copy) NSString *pictureURL;
+@property (nonatomic, copy) NSNumber *storeId;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
                    title:(NSString *)title

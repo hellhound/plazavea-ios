@@ -6,14 +6,11 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/UIDevice+Additions.h"
+#import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
 #import "Stores/Models.h"
 #import "Stores/StoreMapController.h"
-
-// min region
-static float minRegion = 500.;
-static NSString *const kAnnotationId = @"AnnotationView";
 
 @interface StoreMapController ()
 
@@ -46,10 +43,16 @@ static NSString *const kAnnotationId = @"AnnotationView";
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[self navigationController] setToolbarHidden:NO animated:YES];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [[self mapView] setShowsUserLocation:NO];
+    [_mapView setShowsUserLocation:NO];
 }
 
 - (UINavigationItem *)navigationItem
@@ -103,7 +106,8 @@ static NSString *const kAnnotationId = @"AnnotationView";
                 MapAnnotation *annotation = [[[MapAnnotation alloc]
                         initWithCoordinate:coordinate title:[store name]
                             andSubtitle:nil] autorelease];
-                [[self mapView] addAnnotation:annotation];
+                [annotation setStoreId:[store storeId]];
+                [_mapView addAnnotation:annotation];
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
@@ -115,12 +119,13 @@ static NSString *const kAnnotationId = @"AnnotationView";
         MapAnnotation *annotation = [[[MapAnnotation alloc]
                 initWithCoordinate:coordinate title:[store name]
                     andSubtitle:[store storeAddress]] autorelease];
-        [[self mapView] addAnnotation:annotation];
+        [annotation setPictureURL:[[store pictureURL] absoluteString]];
+        [_mapView addAnnotation:annotation];
     }
     
     float minLatitude = 0, minLongitude = 0, maxLatitude = 0, maxLongitude = 0;
     
-    for (MapAnnotation *annotation in [[self mapView] annotations]) {
+    for (MapAnnotation *annotation in [_mapView annotations]) {
         minLatitude = minLatitude == 0 ? [annotation coordinate].latitude :
                 MIN(minLatitude, [annotation coordinate].latitude);
         minLongitude = minLongitude == 0 ? [annotation coordinate].longitude :
@@ -142,18 +147,18 @@ static NSString *const kAnnotationId = @"AnnotationView";
                 (maxLongitude - (span.longitudeDelta / 2)));
     
     float distance = [pointA distanceFromLocation:pointB];
-    [[self mapView] setDelegate:self];
-    [[self mapView] setMapType:MKMapTypeStandard];
-    [[self mapView] setZoomEnabled:YES];
-    [[self mapView] setScrollEnabled:YES];
+    [_mapView setDelegate:self];
+    [_mapView setMapType:MKMapTypeStandard];
+    [_mapView setZoomEnabled:YES];
+    [_mapView setScrollEnabled:YES];
     if (distance <= minRegion) {
-        [[self mapView] setRegion:MKCoordinateRegionMakeWithDistance
+        [_mapView setRegion:MKCoordinateRegionMakeWithDistance
                 (center, minRegion, minRegion)];
     } else {
-        [[self mapView] setRegion:MKCoordinateRegionMake(center, span)];
+        [_mapView setRegion:MKCoordinateRegionMake(center, span)];
     }
-     _region = [[self mapView] region];
-    [[self view] addSubview:[self mapView]];
+     _region = [_mapView region];
+    [[self view] addSubview:_mapView];
 }
 
 #pragma mark -
@@ -208,8 +213,8 @@ static NSString *const kAnnotationId = @"AnnotationView";
     // Conf the segmented control
     [_segControl autorelease];
     _segControl = [[UISegmentedControl alloc] initWithItems:
-                   [NSArray arrayWithObjects:kStoreListButtonLabel,
-                    kStoreMapButtonLabel, nil]];
+            [NSArray arrayWithObjects:kStoreListButtonLabel,
+                kStoreMapButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kStoreSegmentedControlIndexMapButon];
     [_segControl addTarget:self action:@selector(switchControllers:)
@@ -307,18 +312,50 @@ static NSString *const kAnnotationId = @"AnnotationView";
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    MKAnnotationView *annotationView = [_mapView
-            dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
-    if (annotationView == nil) {
-        annotationView = [[[MKAnnotationView alloc]
-                initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
-                    autorelease];
-        if ([annotation subtitle] == nil) {
-            [annotationView setRightCalloutAccessoryView:
-                    [UIButton buttonWithType:UIButtonTypeDetailDisclosure]]; 
+    if ([[annotation title] isEqualToString:kStoreMapCurrentLocation])
+        return nil;
+    if ([annotation subtitle] != nil) {
+        MKAnnotationView *annotationView = [_mapView
+                dequeueReusableAnnotationViewWithIdentifier:
+                    kPictureAnnotationId];
+        if (annotationView == nil) {
+            annotationView = [[[MKAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:
+                        kPictureAnnotationId] autorelease];
+            [annotationView setImage:[UIImage
+                    imageNamed:kStoreMapAnnotationImage]];
+            [annotationView setCanShowCallout:YES];
+            TTImageView *image = [[[TTImageView alloc] initWithFrame:
+                    CGRectMake(.0, .0, kStoreMapImageWidth,
+                        kStoreMapImageHeight)] autorelease];
+            [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
+            [annotationView setLeftCalloutAccessoryView:image];
         }
-            
+        return annotationView;
+    } else {
+        MKAnnotationView *annotationView = [_mapView
+                dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
+        if (annotationView == nil) {
+            annotationView = [[[MKAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
+                        autorelease];
+            [annotationView setImage:[UIImage
+                    imageNamed:kStoreMapAnnotationImage]];
+            [annotationView setCanShowCallout:YES];
+            [annotationView setRightCalloutAccessoryView:
+                    [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        }
+        return annotationView;
     }
-    return nil;
+}
+
+- (void)                mapView:(MKMapView *)mapView
+                 annotationView:(MKAnnotationView *)view
+  calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSNumber *storeId = [(MapAnnotation *)[view annotation] storeId];
+    [[TTNavigator navigator] openURLAction:
+     [[TTURLAction actionWithURLPath:URL(kURLStoreDetailCall, storeId)]
+        applyAnimated:YES]];
 }
 @end
