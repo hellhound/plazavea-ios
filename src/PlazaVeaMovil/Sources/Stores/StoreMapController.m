@@ -114,7 +114,7 @@
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
-        [_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
+        //[_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
         Store *store = (Store *)[self model];
         
         CLLocationCoordinate2D coordinate =

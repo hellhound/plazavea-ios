@@ -145,7 +145,7 @@ NSString *const kRegionLauncherTitle = @"Tiendas";
 // Messages
 NSString *const kStoreListTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
-NSString *const kStoreListButtonLabel = @"Lista";
+NSString *const kStoreListButtonLabel = @"Tiendas";
 // NSLocalizedString(@"Lista", nil)
 NSString *const kStoreMapButtonLabel = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
