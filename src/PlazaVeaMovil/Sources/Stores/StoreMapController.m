@@ -60,10 +60,11 @@
     UINavigationItem *navItem = [super navigationItem];
 
     [self setToolbarItems:nil];
-    
+    // Conf seg
     _segControl = nil;
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
+    [segItem setWidth:150.];
     // Conf GPS
     UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
             initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
@@ -91,7 +92,7 @@
 {
     CGRect viewBounds = [[self view] bounds];
     NSArray *stores;
-    
+        
     [self setMapView:[[MKMapView alloc] initWithFrame:viewBounds]];
         
     if ([[self model] isKindOfClass:[StoreCollection class]]) {
@@ -113,6 +114,7 @@
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
+        [_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
         Store *store = (Store *)[self model];
         
         CLLocationCoordinate2D coordinate =
@@ -323,18 +325,17 @@
             pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
                     reuseIdentifier:kPinAnnotationId] autorelease];
             [pin setPinColor:MKPinAnnotationColorGreen];
+            [pin setCanShowCallout:YES];
             [pin setAnimatesDrop:YES];
         }
         return pin;
     }
-    MKAnnotationView *annotationView = [_mapView
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[_mapView
             dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
     if (annotationView == nil) {
-        annotationView = [[[MKAnnotationView alloc]
+        annotationView = [[[MKPinAnnotationView alloc]
                 initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
                     autorelease];
-        [annotationView setImage:[UIImage
-                imageNamed:kStoreMapAnnotationImage]];
         [annotationView setCanShowCallout:YES];
         if ([(MapAnnotation *)annotation storeId] != nil) {
             [annotationView setRightCalloutAccessoryView:
@@ -345,6 +346,7 @@
                     autorelease];
         [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
         [annotationView setLeftCalloutAccessoryView:image];
+        [annotationView setAnimatesDrop:YES];
     }
     return annotationView;
 }

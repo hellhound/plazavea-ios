@@ -59,6 +59,8 @@
     if ([self toolbarItems] != nil) {
         for (UIBarButtonItem *item in [self toolbarItems]) {
             if ([[item customView] isKindOfClass:[UISegmentedControl class]]) {
+                [(UISegmentedControl *)[item customView]
+                  setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
                 [(UISegmentedControl *)[item customView] addTarget:self
                         action:@selector(switchControllers:)
                             forControlEvents:UIControlEventValueChanged];

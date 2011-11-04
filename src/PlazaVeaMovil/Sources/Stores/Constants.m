@@ -149,6 +149,8 @@ NSString *const kStoreListButtonLabel = @"Lista";
 // NSLocalizedString(@"Lista", nil)
 NSString *const kStoreMapButtonLabel = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
+NSString *const kStoreDetailButtonLabel = @"Detalles";
+// NSLocalizedString(@"Detalles", nil)
 
 // StoreMapController's constants
 NSString *const kStoreMapTitle = @"Mapa";

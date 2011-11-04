@@ -118,6 +118,7 @@ typedef enum {
 
 extern NSString *const kStoreListButtonLabel;
 extern NSString *const kStoreMapButtonLabel;
+extern NSString *const kStoreDetailButtonLabel;
 
 // StoreMapController's constants
 
