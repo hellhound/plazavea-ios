@@ -106,6 +106,8 @@
                         initWithCoordinate:coordinate] autorelease];
                 
                 [annotation setTitle:[store name]];
+                [annotation setSubtitle:[store storeAddress]];
+                [annotation setPictureURL:[[store pictureURL] absoluteString]];
                 [annotation setStoreId:[store storeId]];
                 [_mapView addAnnotation:annotation];
             }
@@ -316,50 +318,35 @@
 {
     if ([[annotation title] isEqualToString:kStoreMapCurrentLocation]) {
         MKPinAnnotationView *pin = (MKPinAnnotationView *)[_mapView
-                dequeueReusableAnnotationViewWithIdentifier:@"location"];
+                dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationId];
         if (pin == nil) {
-            pin = [[[MKPinAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:@"location"]
-                   autorelease];
+            pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                    reuseIdentifier:kPinAnnotationId] autorelease];
             [pin setPinColor:MKPinAnnotationColorGreen];
             [pin setAnimatesDrop:YES];
         }
         return pin;
     }
-    if ([annotation subtitle] != nil) {
-        MKAnnotationView *annotationView = [_mapView
-                dequeueReusableAnnotationViewWithIdentifier:
-                    kPictureAnnotationId];
-        if (annotationView == nil) {
-            annotationView = [[[MKAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:
-                        kPictureAnnotationId] autorelease];
-            [annotationView setImage:[UIImage
-                    imageNamed:kStoreMapAnnotationImage]];
-            [annotationView setCanShowCallout:YES];
-            TTImageView *image = [[[TTImageView alloc] initWithFrame:
-                    CGRectMake(.0, .0, kStoreMapImageWidth,
-                        kStoreMapImageHeight)] autorelease];
-            [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
-            [annotationView setLeftCalloutAccessoryView:image];
-        }
-        return annotationView;
-    } else {
-        MKAnnotationView *annotationView = [_mapView
-                dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
-        if (annotationView == nil) {
-            annotationView = [[[MKAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
-                        autorelease];
-            [annotationView setImage:[UIImage
-                    imageNamed:kStoreMapAnnotationImage]];
-            [annotationView setCanShowCallout:YES];
+    MKAnnotationView *annotationView = [_mapView
+            dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
+    if (annotationView == nil) {
+        annotationView = [[[MKAnnotationView alloc]
+                initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
+                    autorelease];
+        [annotationView setImage:[UIImage
+                imageNamed:kStoreMapAnnotationImage]];
+        [annotationView setCanShowCallout:YES];
+        if ([(MapAnnotation *)annotation storeId] != nil) {
             [annotationView setRightCalloutAccessoryView:
                     [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
         }
-        return annotationView;
+        TTImageView *image = [[[TTImageView alloc] initWithFrame:
+                CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
+                    autorelease];
+        [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
+        [annotationView setLeftCalloutAccessoryView:image];
     }
-    return nil;
+    return annotationView;
 }
 
 - (void)                mapView:(MKMapView *)mapView

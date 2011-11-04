@@ -160,7 +160,7 @@ NSString *const kStoreMapCurrentLocation = @"Ubicación actual";
 NSString *const kStoreMapAnnotationImage = @"Icon-Small.png";
 const float minRegion = 500.;
 NSString *const kAnnotationId = @"AnnotationView";
-NSString *const kPictureAnnotationId = @"PictureAnnotationView";
+NSString *const kPinAnnotationId = @"PinAnnotationView";
 const CGFloat kStoreMapImageWidth = 32.;
 const CGFloat kStoreMapImageHeight = 32.;
 
