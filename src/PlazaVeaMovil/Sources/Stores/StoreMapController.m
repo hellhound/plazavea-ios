@@ -59,29 +59,28 @@
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    if ([self toolbarItems] == nil) {
-        // Conf the segmented item
-        UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
-                initWithCustomView:[self segControl]] autorelease];
-        // Conf GPS
-        UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
-                initWithTitle:kStoreMapGPSButton
-                    style:UIBarButtonItemStyleBordered target:self
-                    action:@selector(updateUserAnnotation:)]
-                    autorelease];
-        // Conf CurlButton
-        UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
-                    target:self action:NULL] autorelease];
-        // Conf a spacer
-        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil action:NULL] autorelease];
-        
-        [self setToolbarItems:[NSArray arrayWithObjects:
-                GPSItem, spacerItem, segItem, spacerItem, curlItem, nil]];
-        [[self navigationController] setToolbarHidden:NO];
-    }
+    [self setToolbarItems:nil];
+    
+    _segControl = nil;
+    UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
+            initWithCustomView:[self segControl]] autorelease];
+    // Conf GPS
+    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
+            initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
+                target:self action:@selector(updateUserAnnotation:)]
+                autorelease];
+    // Conf CurlButton
+    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                target:self action:NULL] autorelease];
+    // Conf a spacer
+    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                target:nil action:NULL] autorelease];
+    
+    [self setToolbarItems:[NSArray arrayWithObjects:
+            GPSItem, spacerItem, segItem, spacerItem, curlItem, nil]];
+    [[self navigationController] setToolbarHidden:NO];
     return navItem;
 }
 
@@ -315,8 +314,18 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    if ([[annotation title] isEqualToString:kStoreMapCurrentLocation])
-        return nil;
+    if ([[annotation title] isEqualToString:kStoreMapCurrentLocation]) {
+        MKPinAnnotationView *pin = (MKPinAnnotationView *)[_mapView
+                dequeueReusableAnnotationViewWithIdentifier:@"location"];
+        if (pin == nil) {
+            pin = [[[MKPinAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:@"location"]
+                   autorelease];
+            [pin setPinColor:MKPinAnnotationColorGreen];
+            [pin setAnimatesDrop:YES];
+        }
+        return pin;
+    }
     if ([annotation subtitle] != nil) {
         MKAnnotationView *annotationView = [_mapView
                 dequeueReusableAnnotationViewWithIdentifier:
