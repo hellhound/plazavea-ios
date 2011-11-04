@@ -24,6 +24,10 @@ NSString *const kEmergencyNumberName = @"name";
 NSString *const kEmergencyNumberPhone = @"phone";
 NSString *const kEmergencyNumberCategory = @"category";
 
+// EmergencyFile model's constants
+
+NSString *const kEmergencyFileName = @"name";
+
 // Controller URLs
 
 NSString *const kURLEmergencyCategory = @"tt://launcher/emergencycategories/";

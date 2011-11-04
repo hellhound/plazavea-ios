@@ -29,3 +29,13 @@
             category:(EmergencyCategory *)category
    resultsController:(NSFetchedResultsController *)resultsController;
 @end
+
+@interface EmergencyFile: ManagedObject
+
+@property (nonatomic, retain) NSString *name;
+
++ (id)fileWithName:(NSString *)name
+             context:(NSManagedObjectContext *)context;
++ (id)fileWithName:(NSString *)name
+   resultsController:(NSFetchedResultsController *)resultsController;
+@end
