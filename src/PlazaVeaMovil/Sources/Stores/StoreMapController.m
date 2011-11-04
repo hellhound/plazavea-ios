@@ -104,8 +104,9 @@
                 CLLocationCoordinate2DMake([[store latitude] doubleValue],
                         [[store longitude] doubleValue]);
                 MapAnnotation *annotation = [[[MapAnnotation alloc]
-                        initWithCoordinate:coordinate title:[store name]
-                            andSubtitle:nil] autorelease];
+                        initWithCoordinate:coordinate] autorelease];
+                
+                [annotation setTitle:[store name]];
                 [annotation setStoreId:[store storeId]];
                 [_mapView addAnnotation:annotation];
             }
@@ -117,8 +118,10 @@
         CLLocationCoordinate2DMake([[store latitude] doubleValue],
                 [[store longitude] doubleValue]);
         MapAnnotation *annotation = [[[MapAnnotation alloc]
-                initWithCoordinate:coordinate title:[store name]
-                    andSubtitle:[store storeAddress]] autorelease];
+                initWithCoordinate:coordinate] autorelease];
+        
+        [annotation setTitle:[store name]];
+        [annotation setSubtitle:[store storeAddress]];
         [annotation setPictureURL:[[store pictureURL] absoluteString]];
         [_mapView addAnnotation:annotation];
     }
@@ -274,9 +277,9 @@
             [_mapView removeAnnotation:annotation];
     }
     MapAnnotation *location = [[[MapAnnotation alloc]
-            initWithCoordinate:currentLocation title:kStoreMapCurrentLocation
-                andSubtitle:nil] autorelease];
+            initWithCoordinate:currentLocation] autorelease];
     
+    [location setTitle:kStoreMapCurrentLocation];
     [_mapView addAnnotation:location];
     
     float minLatitude = MIN((center.latitude - span.latitudeDelta),
@@ -347,6 +350,7 @@
         }
         return annotationView;
     }
+    return nil;
 }
 
 - (void)                mapView:(MKMapView *)mapView

@@ -82,9 +82,7 @@
 @property (nonatomic, copy) NSString *pictureURL;
 @property (nonatomic, copy) NSNumber *storeId;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
-                   title:(NSString *)title
-             andSubtitle:(NSString *)subtitle;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 @end
 
 @interface Store: URLRequestModel

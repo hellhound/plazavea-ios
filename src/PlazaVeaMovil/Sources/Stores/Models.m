@@ -441,13 +441,9 @@ static NSString *const kMutableServicesKey = @"services";
         pictureURL = _pictureURL, storeId = _storeId;
 
 - (id) initWithCoordinate:(CLLocationCoordinate2D)coordinate
-                    title:(NSString *)title
-              andSubtitle:(NSString *)subtitle
 {
     if ((self = [self init]) != nil) {
         _coordinate = coordinate;
-        _title = title;
-        _subtitle = subtitle;
     }
     return  self;
 }
