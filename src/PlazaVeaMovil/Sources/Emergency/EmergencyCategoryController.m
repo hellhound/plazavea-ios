@@ -24,11 +24,14 @@
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyCategoryName
+                ascending:YES] autorelease]];
+
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyCategoryEntity predicate:nil
-            sortDescriptors:nil inContext:context]) != nil) {
-        NSLog(@"%@", _resultsController);
-        //TODO: puth the names in a constant
+            sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        //TODO: search for a csv
         NSString *filepath = [[NSBundle mainBundle]
                 pathForResource:kEmergencyInitialCSV ofType:@"csv"];
         NSString *csvString = [NSString stringWithContentsOfFile:filepath
