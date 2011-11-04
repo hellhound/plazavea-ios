@@ -31,12 +31,13 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyCategoryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        //TODO: search for a csv
-        NSString *filepath = [[NSBundle mainBundle]
-                pathForResource:kEmergencyInitialCSV ofType:@"csv"];
+        NSArray *csvPathFiles = [[NSBundle mainBundle]
+                pathsForResourcesOfType:@"csv" inDirectory:nil];
+        NSString *filepath = [csvPathFiles objectAtIndex:0];
         NSString *csvString = [NSString stringWithContentsOfFile:filepath
                 encoding:NSUTF8StringEncoding error:nil];
         NSArray *pasredCSV = [csvString getParsedRows];
+        NSLog(@"%@", pasredCSV);
     }
     return self;
 }
