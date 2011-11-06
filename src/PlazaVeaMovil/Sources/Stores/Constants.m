@@ -155,6 +155,14 @@ NSString *const kStoreMapTitle = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
 NSString *const kStoreMapGPSButton = @"GPS";
 // NSLocalizedString(@"GPS", nil)
+NSString *const kStoreMapCurrentLocation = @"Ubicación actual";
+// NSLocalizedString(@"Ubicación actual", nil)
+NSString *const kStoreMapAnnotationImage = @"Icon-Small.png";
+const float minRegion = 500.;
+NSString *const kAnnotationId = @"AnnotationView";
+NSString *const kPictureAnnotationId = @"PictureAnnotationView";
+const CGFloat kStoreMapImageWidth = 32.;
+const CGFloat kStoreMapImageHeight = 32.;
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";

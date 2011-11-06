@@ -123,6 +123,13 @@ extern NSString *const kStoreMapButtonLabel;
 
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;
+extern NSString *const kStoreMapCurrentLocation;
+extern NSString *const kStoreMapAnnotationImage;
+extern const float minRegion;
+extern NSString *const kAnnotationId;
+extern NSString *const kPictureAnnotationId;
+extern const CGFloat kStoreMapImageWidth;
+extern const CGFloat kStoreMapImageHeight;
 
 // Controllers' URLs
 extern NSString *const kURLRegionList;

@@ -6,13 +6,11 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/UIDevice+Additions.h"
+#import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
 #import "Stores/Models.h"
 #import "Stores/StoreMapController.h"
-
-// min region
-static float minRegion = 500.;
 
 @interface StoreMapController ()
 
@@ -45,39 +43,44 @@ static float minRegion = 500.;
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[self navigationController] setToolbarHidden:NO animated:YES];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [[self mapView] setShowsUserLocation:NO];
+    [_mapView setShowsUserLocation:NO];
 }
 
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    if ([self toolbarItems] == nil) {
-        // Conf the segmented item
-        UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
-                initWithCustomView:[self segControl]] autorelease];
-        // Conf GPS
-        UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
-                initWithTitle:kStoreMapGPSButton
-                    style:UIBarButtonItemStyleBordered target:self
-                    action:@selector(toggleUserAnnotation:)]
-                    autorelease];
-        // Conf CurlButton
-        UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
-                    target:self action:NULL] autorelease];
-        // Conf a spacer
-        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil action:NULL] autorelease];
-        
-        [self setToolbarItems:[NSArray arrayWithObjects:
-                GPSItem, spacerItem, segItem, spacerItem, curlItem, nil]];
-        [[self navigationController] setToolbarHidden:NO];
-    }
+    [self setToolbarItems:nil];
+    
+    _segControl = nil;
+    UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
+            initWithCustomView:[self segControl]] autorelease];
+    // Conf GPS
+    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
+            initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
+                target:self action:@selector(updateUserAnnotation:)]
+                autorelease];
+    // Conf CurlButton
+    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                target:self action:NULL] autorelease];
+    // Conf a spacer
+    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                target:nil action:NULL] autorelease];
+    
+    [self setToolbarItems:[NSArray arrayWithObjects:
+            GPSItem, spacerItem, segItem, spacerItem, curlItem, nil]];
+    [[self navigationController] setToolbarHidden:NO];
     return navItem;
 }
 
@@ -100,9 +103,11 @@ static float minRegion = 500.;
                 CLLocationCoordinate2DMake([[store latitude] doubleValue],
                         [[store longitude] doubleValue]);
                 MapAnnotation *annotation = [[[MapAnnotation alloc]
-                        initWithCoordinate:coordinate title:[store name]
-                            andSubtitle:nil] autorelease];
-                [[self mapView] addAnnotation:annotation];
+                        initWithCoordinate:coordinate] autorelease];
+                
+                [annotation setTitle:[store name]];
+                [annotation setStoreId:[store storeId]];
+                [_mapView addAnnotation:annotation];
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
@@ -112,14 +117,17 @@ static float minRegion = 500.;
         CLLocationCoordinate2DMake([[store latitude] doubleValue],
                 [[store longitude] doubleValue]);
         MapAnnotation *annotation = [[[MapAnnotation alloc]
-                initWithCoordinate:coordinate title:[store name]
-                    andSubtitle:[store storeAddress]] autorelease];
-        [[self mapView] addAnnotation:annotation];
+                initWithCoordinate:coordinate] autorelease];
+        
+        [annotation setTitle:[store name]];
+        [annotation setSubtitle:[store storeAddress]];
+        [annotation setPictureURL:[[store pictureURL] absoluteString]];
+        [_mapView addAnnotation:annotation];
     }
     
     float minLatitude = 0, minLongitude = 0, maxLatitude = 0, maxLongitude = 0;
     
-    for (MapAnnotation *annotation in [[self mapView] annotations]) {
+    for (MapAnnotation *annotation in [_mapView annotations]) {
         minLatitude = minLatitude == 0 ? [annotation coordinate].latitude :
                 MIN(minLatitude, [annotation coordinate].latitude);
         minLongitude = minLongitude == 0 ? [annotation coordinate].longitude :
@@ -141,18 +149,18 @@ static float minRegion = 500.;
                 (maxLongitude - (span.longitudeDelta / 2)));
     
     float distance = [pointA distanceFromLocation:pointB];
-    [[self mapView] setDelegate:self];
-    [[self mapView] setMapType:MKMapTypeStandard];
-    [[self mapView] setZoomEnabled:YES];
-    [[self mapView] setScrollEnabled:YES];
+    [_mapView setDelegate:self];
+    [_mapView setMapType:MKMapTypeStandard];
+    [_mapView setZoomEnabled:YES];
+    [_mapView setScrollEnabled:YES];
     if (distance <= minRegion) {
-        [[self mapView] setRegion:MKCoordinateRegionMakeWithDistance
+        [_mapView setRegion:MKCoordinateRegionMakeWithDistance
                 (center, minRegion, minRegion)];
     } else {
-        [[self mapView] setRegion:MKCoordinateRegionMake(center, span)];
+        [_mapView setRegion:MKCoordinateRegionMake(center, span)];
     }
-     _region = [[self mapView] region];
-    [[self view] addSubview:[self mapView]];
+     _region = [_mapView region];
+    [[self view] addSubview:_mapView];
 }
 
 #pragma mark -
@@ -207,8 +215,8 @@ static float minRegion = 500.;
     // Conf the segmented control
     [_segControl autorelease];
     _segControl = [[UISegmentedControl alloc] initWithItems:
-                   [NSArray arrayWithObjects:kStoreListButtonLabel,
-                    kStoreMapButtonLabel, nil]];
+            [NSArray arrayWithObjects:kStoreListButtonLabel,
+                kStoreMapButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kStoreSegmentedControlIndexMapButon];
     [_segControl addTarget:self action:@selector(switchControllers:)
@@ -230,9 +238,9 @@ static float minRegion = 500.;
     }
 }
 
-- (void)toggleUserAnnotation:(id)sender
+- (void)updateUserAnnotation:(id)sender
 {
-    [_mapView setShowsUserLocation:![_mapView showsUserLocation]];
+    [_mapView setShowsUserLocation:YES];
 }
 
 #pragma mark -
@@ -257,24 +265,110 @@ static float minRegion = 500.;
 
 - (void)        mapView:(MKMapView *)mapView
   didUpdateUserLocation:(MKUserLocation *)userLocation
-{
+{   
     CLLocationCoordinate2D center = _region.center;
+    MKCoordinateSpan span = _region.span;
     CLLocationCoordinate2D currentLocation =
             [[userLocation location] coordinate];
     
-    float minLatitude = MIN(center.latitude, currentLocation.latitude);
-    float minLongitude = MIN(center.longitude, currentLocation.longitude);
-    float maxLatitude = MAX(center.latitude, currentLocation.latitude);
-    float maxLongitude = MAX(center.longitude, currentLocation.longitude);
+    for (MapAnnotation *annotation in [_mapView annotations]) {
+        if ([[annotation title] isEqualToString:kStoreMapCurrentLocation])
+            [_mapView removeAnnotation:annotation];
+    }
+    MapAnnotation *location = [[[MapAnnotation alloc]
+            initWithCoordinate:currentLocation] autorelease];
     
-    MKCoordinateSpan span =
+    [location setTitle:kStoreMapCurrentLocation];
+    [_mapView addAnnotation:location];
+    
+    float minLatitude = MIN((center.latitude - span.latitudeDelta),
+            currentLocation.latitude);
+    float minLongitude = MIN((center.longitude - span.longitudeDelta),
+            currentLocation.longitude);
+    float maxLatitude = MAX((center.latitude + span.latitudeDelta),
+            currentLocation.latitude);
+    float maxLongitude = MAX((center.longitude + span.longitudeDelta),
+            currentLocation.longitude);
+    
+    MKCoordinateSpan newSpan =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
     CLLocationCoordinate2D newCenter =
-            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
-                (maxLongitude - (span.longitudeDelta / 2)));
+            CLLocationCoordinate2DMake((maxLatitude - (newSpan.latitudeDelta /
+                2)), (maxLongitude - (newSpan.longitudeDelta / 2)));
     
-    [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, span)
+    [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, newSpan)
             animated:YES];
+    if ([[userLocation location] horizontalAccuracy] <= 100.)
+        [_mapView setShowsUserLocation:NO];
+    [_mapView performSelector:@selector(setShowsUserLocation:) withObject:NO
+            afterDelay:10];
+}
+
+- (void)                mapView:(MKMapView *)mapView
+   didFailToLocateUserWithError:(NSError *)error
+{
+    [_mapView setShowsUserLocation:NO];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView
+            viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([[annotation title] isEqualToString:kStoreMapCurrentLocation]) {
+        MKPinAnnotationView *pin = (MKPinAnnotationView *)[_mapView
+                dequeueReusableAnnotationViewWithIdentifier:@"location"];
+        if (pin == nil) {
+            pin = [[[MKPinAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:@"location"]
+                   autorelease];
+            [pin setPinColor:MKPinAnnotationColorGreen];
+            [pin setAnimatesDrop:YES];
+        }
+        return pin;
+    }
+    if ([annotation subtitle] != nil) {
+        MKAnnotationView *annotationView = [_mapView
+                dequeueReusableAnnotationViewWithIdentifier:
+                    kPictureAnnotationId];
+        if (annotationView == nil) {
+            annotationView = [[[MKAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:
+                        kPictureAnnotationId] autorelease];
+            [annotationView setImage:[UIImage
+                    imageNamed:kStoreMapAnnotationImage]];
+            [annotationView setCanShowCallout:YES];
+            TTImageView *image = [[[TTImageView alloc] initWithFrame:
+                    CGRectMake(.0, .0, kStoreMapImageWidth,
+                        kStoreMapImageHeight)] autorelease];
+            [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
+            [annotationView setLeftCalloutAccessoryView:image];
+        }
+        return annotationView;
+    } else {
+        MKAnnotationView *annotationView = [_mapView
+                dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
+        if (annotationView == nil) {
+            annotationView = [[[MKAnnotationView alloc]
+                    initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
+                        autorelease];
+            [annotationView setImage:[UIImage
+                    imageNamed:kStoreMapAnnotationImage]];
+            [annotationView setCanShowCallout:YES];
+            [annotationView setRightCalloutAccessoryView:
+                    [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        }
+        return annotationView;
+    }
+    return nil;
+}
+
+- (void)                mapView:(MKMapView *)mapView
+                 annotationView:(MKAnnotationView *)view
+  calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSNumber *storeId = [(MapAnnotation *)[view annotation] storeId];
+    [[TTNavigator navigator] openURLAction:
+     [[TTURLAction actionWithURLPath:URL(kURLStoreDetailCall, storeId)]
+        applyAnimated:YES]];
 }
 @end
