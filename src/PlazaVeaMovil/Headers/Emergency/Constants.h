@@ -23,7 +23,3 @@ extern NSString *const kEmergencyNumberCategory;
 // EmergencyFile model's constants
 
 extern NSString *const kEmergencyFileName;
-
-// Controller URLs
-
-extern NSString *const kURLEmergencyCategory;
