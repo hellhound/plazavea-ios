@@ -73,7 +73,7 @@
         [EmergencyFile fileWithName:csvFilePath context:_context];
         [self saveContext];
     }
-
+//cut here
     EmergencyFile *emergencyFile = [[resultsController fetchedObjects]
         objectAtIndex:0];
     if (![[emergencyFile name] isEqualToString:csvFilePath]){
@@ -87,5 +87,20 @@
     NSArray *pasredCSV = [csvString getParsedRows];
     //convert a parsedCSV in a diciotnary
     NSMutableDictionary *emergencyThree = [NSMutableDictionary dictionary];
+    for (NSArray *parsedRow in pasredCSV){
+        NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
+        NSMutableArray *parsedCollectionNumbers = [emergencyThree 
+                objextForKey:parsedRowCategory]
+
+        if (parsedCollectionNumbers == nil){
+            [emergencyThree setObject:[NSMutableArray array] 
+                    forKey:parsedRowCategory];
+        }
+        NSString *parsedName = [parsedRow objectAtIndex:1];
+        NSString *parsedNumber = [parsedRow objectAtIndex:2];
+        [parsedCollectionNumbers addObject:[NSDictionary 
+                dictionaryWithObjectsAndKeys:parsedName, @"name", parsedNumber,
+                @"number", nil];
+    }
 }
 @end
