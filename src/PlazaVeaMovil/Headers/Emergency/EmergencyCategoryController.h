@@ -8,6 +8,7 @@
 {
     EmergencyCategory *_emergencyCategory;
 }
+- (void)loadCSV:(NSString *)csvFilePath;
 @property (nonatomic, retain) EmergencyCategory *emergencyCategory;
 
 @end
