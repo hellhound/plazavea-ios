@@ -178,10 +178,9 @@ static NSString *kNameVariableKey = @"NAME";
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:
-            [NSSortDescriptor sortDescriptorWithKey:kShoppingHistoryEntryName
-                ascending:YES],
-            nil];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:
+            kShoppingHistoryEntryName ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingHistoryEntryEntity predicate:nil

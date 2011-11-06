@@ -14,6 +14,10 @@
     // Defaults
     NSDateFormatter *_dateFormatter;
 }
+// Unfortunately we have to declare the property window to work on pre-iOS 5
+// devices because theres a new property window on <UIApplicationDelegate> in
+// SDK 5.0
+@property (nonatomic, retain) UIWindow *window;
 @end
 
 @interface AppDelegate (CoreData)
