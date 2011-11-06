@@ -95,6 +95,7 @@
 		2CE7045E13DE6B4500BB2279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7045C13DE6B4500BB2279 /* main.m */; };
 		2CE72FB813EC0BD600DDF9C6 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */; };
 		2CE9779013F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */; };
+		2CEA22091466F91300391721 /* CLLocation+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA22081466F91300391721 /* CLLocation+Additions.m */; };
 		2CF302C013F33BE500D9A95F /* NSManagedObjectContext+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */; };
 		2CFD61D71415674100238AB5 /* RecipeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD61D61415674100238AB5 /* RecipeListController.m */; };
 		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
@@ -654,6 +655,7 @@
 		2CE7045C13DE6B4500BB2279 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CE72FB713EC0BD600DDF9C6 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
 		2CE9778F13F2CD97003E9851 /* TSAlertView+NewShoppingListAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSAlertView+NewShoppingListAlertView.m"; sourceTree = "<group>"; };
+		2CEA22081466F91300391721 /* CLLocation+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Additions.m"; sourceTree = "<group>"; };
 		2CF302BF13F33BE500D9A95F /* NSManagedObjectContext+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Additions.m"; sourceTree = "<group>"; };
 		2CFD61D61415674100238AB5 /* RecipeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListController.m; sourceTree = "<group>"; };
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -959,6 +961,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				2CEA22081466F91300391721 /* CLLocation+Additions.m */,
 				2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */,
 				2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */,
 				2C15B8A914032A2E0060D8AD /* TTStyledText+ETag.m */,
@@ -1739,6 +1742,7 @@
 				2F79C97A145F11D9002161B2 /* StoreMapController.m in Sources */,
 				2C146F1A1456220100E5EAFC /* ImageCarouselItem.m in Sources */,
 				2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */,
+				2CEA22091466F91300391721 /* CLLocation+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
