@@ -39,7 +39,6 @@
             [self loadCSV:csvFilePath];
             //comparo el nombre con el original
             //si no hay o es diferente cargo
-            NSLog(@"yahoo");
         }
     }
     return self;
@@ -52,35 +51,41 @@
 
 - (void)loadCSV:(NSString *)csvFilePath
 {
-    //TODO fix
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kEmergencyCategoryName
+    NSArray *sortFileNameDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyFileName
                 ascending:YES] autorelease]];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 
     [request setEntity:[EmergencyFile entity]];
     [request setPredicate:nil];
-    [request setSortDescriptors:sortDescriptors];
+    [request setSortDescriptors:sortFileNameDescriptors];
 
     NSFetchedResultsController *resultsController = 
-        [[NSFetchedResultsController alloc]
+        [[[NSFetchedResultsController alloc]
             initWithFetchRequest:request
             managedObjectContext:_context
             sectionNameKeyPath:nil
-            cacheName:nil];
+            cacheName:nil] autorelease];
     NSError *fetchError = nil;
 
     [resultsController performFetch:&fetchError];
     if ([[resultsController fetchedObjects] count] == 0){
-        EmergencyFile *emergencyFile = [EmergencyFile fileWithName:csvFilePath
-                context:_context];
+        [EmergencyFile fileWithName:csvFilePath context:_context];
         [self saveContext];
     }
-    NSLog(@"%@", [[resultsController fetchedObjects] objectAtIndex:0]);
 
+    EmergencyFile *emergencyFile = [[resultsController fetchedObjects]
+        objectAtIndex:0];
+    if (![[emergencyFile name] isEqualToString:csvFilePath]){
+        [emergencyFile setName:csvFilePath];
+        [self saveContext];
+    } else {
+        return;
+    }
     NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
             encoding:NSUTF8StringEncoding error:nil];
     NSArray *pasredCSV = [csvString getParsedRows];
-    //NSLog(@"%@", pasredCSV);
+    //convert a parsedCSV in a diciotnary
+    NSMutableDictionary *emergencyThree = [NSMutableDictionary dictionary];
 }
 @end
