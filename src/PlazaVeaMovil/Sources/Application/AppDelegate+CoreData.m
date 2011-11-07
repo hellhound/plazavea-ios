@@ -5,6 +5,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSObject+Additions.h"
+#import "Common/Additions/NSURL+Additions.h"
 #import "Common/Additions/NSFileManager+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"

@@ -10,6 +10,7 @@
 #import "Recipes/Constants.h"
 #import "Offers/Constants.h"
 #import "Stores/Constants.h"
+#import "Emergency/Constants.h"
 
 @interface LauncherViewController (Private)
 

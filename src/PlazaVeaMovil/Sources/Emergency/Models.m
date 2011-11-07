@@ -179,3 +179,51 @@ static NSRelationshipDescription *kCategoryRelationship;
     return category;
 }
 @end
+
+@implementation EmergencyFile
+
+#pragma mark -
+#pragma mark ManagedObject (Overridable)
+
++ (NSSet *)attributes
+{
+    NSSet *attributes = [super attributes];
+    NSAttributeDescription *name =
+            [[[NSAttributeDescription alloc] init] autorelease];
+
+    [name setName:kEmergencyFileName];
+    [name setAttributeType:NSStringAttributeType];
+    [name setOptional:NO];
+    [name setIndexed:YES]; // allows faster searching and sorting
+    return [attributes setByAddingObjectsFromSet:
+            [NSSet setWithObjects:name, nil]];
+
+}
+
+#pragma mark -
+#pragma mark EmergencyFile (Public)
+
+// KVO properties
+@dynamic name;
+
++ (id)fileWithName:(NSString *)name
+             context:(NSManagedObjectContext *)context
+{
+    EmergencyFile *file = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:context] autorelease];
+
+    [file setName:name];
+    return file;
+}
+
++ (id)fileWithName:(NSString *)name
+   resultsController:(NSFetchedResultsController *)resultsController
+{
+    EmergencyFile *file = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:
+                [resultsController managedObjectContext]] autorelease];
+
+    [file setName:name];
+    return file;
+}
+@end

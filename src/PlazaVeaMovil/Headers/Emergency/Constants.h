@@ -3,6 +3,10 @@
 
 // EmergencyCategory model's constants
 
+// Administration of Emergency numbers
+extern NSString *const kEmergencyCategoryTitle;
+extern NSString *const kEmergencyInitialCSV;
+
 extern NSString *const kEmergencyCategoryEntity;
 extern NSString *const kEmergencyCategoryClass;
 extern NSString *const kEmergencyCategoryName;
@@ -15,3 +19,7 @@ extern NSString *const kEmergencyNumberClass;
 extern NSString *const kEmergencyNumberName;
 extern NSString *const kEmergencyNumberPhone;
 extern NSString *const kEmergencyNumberCategory;
+
+// EmergencyFile model's constants
+
+extern NSString *const kEmergencyFileName;

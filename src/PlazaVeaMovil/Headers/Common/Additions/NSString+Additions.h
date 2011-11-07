@@ -5,4 +5,5 @@
 - (BOOL)isEmptyByTrimming;
 - (NSString *)stringByEscapingReservedRECharacterSet;
 - (NSComparisonResult)localizedStandardCompare:(NSString *)comparee;
+-(NSArray *)getParsedRows;
 @end

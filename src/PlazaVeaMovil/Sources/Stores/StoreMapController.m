@@ -6,6 +6,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/UIDevice+Additions.h"
+#import "Common/Additions/CLLocation+Additions.h"
 #import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
@@ -72,7 +73,7 @@
                 autorelease];
     // Conf CurlButton
     UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                 target:self action:NULL] autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
@@ -100,9 +101,11 @@
         
         for (NSArray *sections in stores) {
             for (Store *store in sections) {
-                CLLocationCoordinate2D coordinate =
-                CLLocationCoordinate2DMake([[store latitude] doubleValue],
-                        [[store longitude] doubleValue]);
+                CLLocationCoordinate2D coordinate;
+
+                coordinate.latitude = [[store latitude] doubleValue];
+                coordinate.longitude = [[store longitude] doubleValue];
+
                 MapAnnotation *annotation = [[[MapAnnotation alloc]
                         initWithCoordinate:coordinate] autorelease];
                 
@@ -117,9 +120,11 @@
         //[_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
         Store *store = (Store *)[self model];
         
-        CLLocationCoordinate2D coordinate =
-        CLLocationCoordinate2DMake([[store latitude] doubleValue],
-                [[store longitude] doubleValue]);
+        CLLocationCoordinate2D coordinate;
+
+        coordinate.latitude = [[store latitude] doubleValue];
+        coordinate.longitude = [[store longitude] doubleValue];
+
         MapAnnotation *annotation = [[[MapAnnotation alloc]
                 initWithCoordinate:coordinate] autorelease];
         
@@ -148,11 +153,13 @@
     MKCoordinateSpan span =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
-    CLLocationCoordinate2D center =
-            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
-                (maxLongitude - (span.longitudeDelta / 2)));
+    CLLocationCoordinate2D center;
+
+    center.latitude = maxLatitude - (span.latitudeDelta / 2);
+    center.longitude = maxLongitude - (span.longitudeDelta / 2);
     
-    float distance = [pointA distanceFromLocation:pointB];
+    CLLocationDistance distance = [pointA distanceFrom:pointB];
+
     [_mapView setDelegate:self];
     [_mapView setMapType:MKMapTypeStandard];
     [_mapView setZoomEnabled:YES];
@@ -297,9 +304,10 @@
     MKCoordinateSpan newSpan =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
-    CLLocationCoordinate2D newCenter =
-            CLLocationCoordinate2DMake((maxLatitude - (newSpan.latitudeDelta /
-                2)), (maxLongitude - (newSpan.longitudeDelta / 2)));
+    CLLocationCoordinate2D newCenter;
+
+    newCenter.latitude = maxLatitude - (newSpan.latitudeDelta / 2);
+    newCenter.longitude = maxLongitude - (newSpan.longitudeDelta / 2);
     
     [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, newSpan)
             animated:YES];
