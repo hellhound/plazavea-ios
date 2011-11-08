@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
@@ -225,5 +226,73 @@ static NSRelationshipDescription *kCategoryRelationship;
 
     [file setName:name];
     return file;
+}
+
++ (void)loadFromCSVinContext:(NSManagedObjectContext *)context
+{
+    BOOL firstUpdate = NO;
+    NSArray *csvPathFiles = [[NSBundle mainBundle]
+            pathsForResourcesOfType:@"csv" inDirectory:nil];
+
+    if ([csvPathFiles count] == 0){
+        return;
+    }
+
+    NSString *csvFilePath = [csvPathFiles objectAtIndex:0];
+    NSArray *sortFileNameDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyFileName
+                ascending:YES] autorelease]];
+    NSFetchRequest *fileRequest = [[[NSFetchRequest alloc] init] autorelease];
+
+    [fileRequest setEntity:[EmergencyFile entity]];
+    [fileRequest setPredicate:nil];
+    [fileRequest setSortDescriptors:sortFileNameDescriptors];
+
+    NSFetchedResultsController *resultsController = 
+        [[[NSFetchedResultsController alloc]
+            initWithFetchRequest:fileRequest
+            managedObjectContext:context
+            sectionNameKeyPath:nil
+            cacheName:nil] autorelease];
+    NSError *fetchError = nil;
+
+    [resultsController performFetch:&fetchError];
+    if ([[resultsController fetchedObjects] count] == 0){
+        [EmergencyFile fileWithName:csvFilePath context:context];
+        firstUpdate = YES;
+    }
+
+    EmergencyFile *emergencyFile = [[resultsController fetchedObjects]
+        objectAtIndex:0];
+
+    if (![[emergencyFile name] isEqualToString:csvFilePath]){
+        [emergencyFile setName:csvFilePath];
+    } else if(!firstUpdate) {
+        return;
+    }
+
+    NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
+            encoding:NSUTF8StringEncoding error:nil];
+    NSArray *pasredCSV = [csvString getParsedRows];
+    NSMutableDictionary *emergencyThree = [NSMutableDictionary dictionary];
+
+    for (NSArray *parsedRow in pasredCSV){
+        NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
+        NSMutableArray *parsedCollectionNumbers = [emergencyThree 
+                objectForKey:parsedRowCategory];
+
+        if (parsedCollectionNumbers == nil){
+            [emergencyThree setObject:[NSMutableArray array] 
+                    forKey:parsedRowCategory];
+        }
+        NSString *parsedName = [parsedRow objectAtIndex:1];
+        NSString *parsedNumber = [parsedRow objectAtIndex:2];
+        [parsedCollectionNumbers addObject:[NSDictionary 
+                dictionaryWithObjectsAndKeys:parsedName, @"name", parsedNumber,
+                @"number", nil]];
+    }
+    NSLog(@"%@", emergencyThree);
+    //TODO: delete all entries
+
 }
 @end

@@ -38,4 +38,5 @@
              context:(NSManagedObjectContext *)context;
 + (id)fileWithName:(NSString *)name
    resultsController:(NSFetchedResultsController *)resultsController;
++ (void)loadFromCSVinContext:(NSManagedObjectContext *)context;
 @end
