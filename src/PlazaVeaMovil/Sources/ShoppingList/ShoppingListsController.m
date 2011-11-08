@@ -24,9 +24,9 @@
 {
     NSManagedObjectContext *context = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] context];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kOrderField
-                ascending:NO] autorelease]];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:
+            kShoppingHistoryEntryName ascending:NO] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil

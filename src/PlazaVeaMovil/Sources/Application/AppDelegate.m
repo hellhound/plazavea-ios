@@ -46,6 +46,8 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
+@synthesize window = _window;
+
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
 

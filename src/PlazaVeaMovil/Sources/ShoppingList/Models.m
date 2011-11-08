@@ -226,9 +226,10 @@ static NSString *const kNSStringDescriptionKey = @"description";
     [request setEntity:[self entity]];
     [request setPredicate:predicate];
 
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kNSStringDescriptionKey
-                ascending:NO selector:@selector(localizedStandardCompare:)]];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:
+                kNSStringDescriptionKey ascending:NO
+            selector:@selector(localizedStandardCompare:)] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     // This here coalesces duplicate names and creates a set of names, that is,
     // a collection of unique names. It has alphabetical and descending order.
     NSArray *names =
@@ -284,8 +285,9 @@ static NSString *const kNSStringDescriptionKey = @"description";
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     // We want the previous list in order, so we sort the resulting fetched
     // array in descending order
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kOrderField ascending:NO]];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:
+            kOrderField ascending:NO] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 
     [request setEntity:[self entity]];
     [request setPredicate:[self predicateForPreviousList]];
@@ -309,8 +311,9 @@ static NSString *const kNSStringDescriptionKey = @"description";
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     // We want the  next list in order, so we sort the resulting fetched
     // array in  ascending order
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:kOrderField ascending:YES]];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:
+            kOrderField ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 
     [request setEntity:[self entity]];
     [request setPredicate:[self predicateForNextList]];

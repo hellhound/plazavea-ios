@@ -6,6 +6,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/UIDevice+Additions.h"
+#import "Common/Additions/CLLocation+Additions.h"
 #import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
@@ -60,7 +61,13 @@
     UINavigationItem *navItem = [super navigationItem];
 
     [self setToolbarItems:nil];
-    
+    if (_backButton == nil) {
+        _backButton = [[UIBarButtonItem alloc] initWithTitle:_buttonTitle
+                style:UIBarButtonItemStylePlain target:self
+                    action:@selector(popToNavigationWindow)];
+        [navItem setLeftBarButtonItem:_backButton];
+    }
+    // Conf seg
     _segControl = nil;
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
@@ -71,7 +78,7 @@
                 autorelease];
     // Conf CurlButton
     UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                 target:self action:NULL] autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
@@ -91,7 +98,7 @@
 {
     CGRect viewBounds = [[self view] bounds];
     NSArray *stores;
-    
+        
     [self setMapView:[[MKMapView alloc] initWithFrame:viewBounds]];
         
     if ([[self model] isKindOfClass:[StoreCollection class]]) {
@@ -99,23 +106,30 @@
         
         for (NSArray *sections in stores) {
             for (Store *store in sections) {
-                CLLocationCoordinate2D coordinate =
-                CLLocationCoordinate2DMake([[store latitude] doubleValue],
-                        [[store longitude] doubleValue]);
+                CLLocationCoordinate2D coordinate;
+
+                coordinate.latitude = [[store latitude] doubleValue];
+                coordinate.longitude = [[store longitude] doubleValue];
+
                 MapAnnotation *annotation = [[[MapAnnotation alloc]
                         initWithCoordinate:coordinate] autorelease];
                 
                 [annotation setTitle:[store name]];
+                [annotation setSubtitle:[store storeAddress]];
+                [annotation setPictureURL:[[store pictureURL] absoluteString]];
                 [annotation setStoreId:[store storeId]];
                 [_mapView addAnnotation:annotation];
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
+        //[_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
         Store *store = (Store *)[self model];
         
-        CLLocationCoordinate2D coordinate =
-        CLLocationCoordinate2DMake([[store latitude] doubleValue],
-                [[store longitude] doubleValue]);
+        CLLocationCoordinate2D coordinate;
+
+        coordinate.latitude = [[store latitude] doubleValue];
+        coordinate.longitude = [[store longitude] doubleValue];
+
         MapAnnotation *annotation = [[[MapAnnotation alloc]
                 initWithCoordinate:coordinate] autorelease];
         
@@ -144,11 +158,13 @@
     MKCoordinateSpan span =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
-    CLLocationCoordinate2D center =
-            CLLocationCoordinate2DMake((maxLatitude - (span.latitudeDelta / 2)),
-                (maxLongitude - (span.longitudeDelta / 2)));
+    CLLocationCoordinate2D center;
+
+    center.latitude = maxLatitude - (span.latitudeDelta / 2);
+    center.longitude = maxLongitude - (span.longitudeDelta / 2);
     
-    float distance = [pointA distanceFromLocation:pointB];
+    CLLocationDistance distance = [pointA distanceFrom:pointB];
+
     [_mapView setDelegate:self];
     [_mapView setMapType:MKMapTypeStandard];
     [_mapView setZoomEnabled:YES];
@@ -166,12 +182,14 @@
 #pragma mark -
 #pragma mark StoreMapController
 
-@synthesize mapView = _mapView, region = _region;
+@synthesize mapView = _mapView, region = _region, buttonTitle =_buttonTitle;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
+                 andTitle:(NSString *)title
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setButtonTitle:title];
         [self setTitle:kStoreMapTitle];
         [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
                 andRegionId:regionId] autorelease]];
@@ -180,8 +198,10 @@
 }
 
 - (id)initWithStoreId:(NSString *)storeId
+             andTitle:(NSString *)title
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setButtonTitle:title];
         [self setTitle:kStoreMapTitle];
         [self setModel:[[[Store alloc] initWithStoreId:storeId] autorelease]];
     }
@@ -195,11 +215,11 @@
         [(UINavigationController *)
          [[self parentViewController] performSelector:
           @selector(presentingViewController)]
-         popToRootViewControllerAnimated:NO];
+         popViewControllerAnimated:NO];
     } else {
         [(UINavigationController *)
          [[self parentViewController] parentViewController]
-         popToRootViewControllerAnimated:NO];
+         popViewControllerAnimated:NO];
     }
 }
 
@@ -281,21 +301,22 @@
     [location setTitle:kStoreMapCurrentLocation];
     [_mapView addAnnotation:location];
     
-    float minLatitude = MIN((center.latitude - span.latitudeDelta),
+    float minLatitude = MIN((center.latitude - (span.latitudeDelta / 2)),
             currentLocation.latitude);
-    float minLongitude = MIN((center.longitude - span.longitudeDelta),
+    float minLongitude = MIN((center.longitude - (span.longitudeDelta / 2)),
             currentLocation.longitude);
-    float maxLatitude = MAX((center.latitude + span.latitudeDelta),
+    float maxLatitude = MAX((center.latitude + (span.latitudeDelta / 2)),
             currentLocation.latitude);
-    float maxLongitude = MAX((center.longitude + span.longitudeDelta),
+    float maxLongitude = MAX((center.longitude + (span.longitudeDelta / 2)),
             currentLocation.longitude);
     
     MKCoordinateSpan newSpan =
             MKCoordinateSpanMake((maxLatitude - minLatitude),
                 (maxLongitude - minLongitude));
-    CLLocationCoordinate2D newCenter =
-            CLLocationCoordinate2DMake((maxLatitude - (newSpan.latitudeDelta /
-                2)), (maxLongitude - (newSpan.longitudeDelta / 2)));
+    CLLocationCoordinate2D newCenter;
+
+    newCenter.latitude = maxLatitude - (newSpan.latitudeDelta / 2);
+    newCenter.longitude = maxLongitude - (newSpan.longitudeDelta / 2);
     
     [[self mapView] setRegion:MKCoordinateRegionMake(newCenter, newSpan)
             animated:YES];
@@ -316,50 +337,35 @@
 {
     if ([[annotation title] isEqualToString:kStoreMapCurrentLocation]) {
         MKPinAnnotationView *pin = (MKPinAnnotationView *)[_mapView
-                dequeueReusableAnnotationViewWithIdentifier:@"location"];
+                dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationId];
         if (pin == nil) {
-            pin = [[[MKPinAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:@"location"]
-                   autorelease];
+            pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                    reuseIdentifier:kPinAnnotationId] autorelease];
             [pin setPinColor:MKPinAnnotationColorGreen];
+            [pin setCanShowCallout:YES];
             [pin setAnimatesDrop:YES];
         }
         return pin;
     }
-    if ([annotation subtitle] != nil) {
-        MKAnnotationView *annotationView = [_mapView
-                dequeueReusableAnnotationViewWithIdentifier:
-                    kPictureAnnotationId];
-        if (annotationView == nil) {
-            annotationView = [[[MKAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:
-                        kPictureAnnotationId] autorelease];
-            [annotationView setImage:[UIImage
-                    imageNamed:kStoreMapAnnotationImage]];
-            [annotationView setCanShowCallout:YES];
-            TTImageView *image = [[[TTImageView alloc] initWithFrame:
-                    CGRectMake(.0, .0, kStoreMapImageWidth,
-                        kStoreMapImageHeight)] autorelease];
-            [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
-            [annotationView setLeftCalloutAccessoryView:image];
-        }
-        return annotationView;
-    } else {
-        MKAnnotationView *annotationView = [_mapView
-                dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
-        if (annotationView == nil) {
-            annotationView = [[[MKAnnotationView alloc]
-                    initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
-                        autorelease];
-            [annotationView setImage:[UIImage
-                    imageNamed:kStoreMapAnnotationImage]];
-            [annotationView setCanShowCallout:YES];
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[_mapView
+            dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
+    if (annotationView == nil) {
+        annotationView = [[[MKPinAnnotationView alloc]
+                initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
+                    autorelease];
+        [annotationView setCanShowCallout:YES];
+        if ([(MapAnnotation *)annotation storeId] != nil) {
             [annotationView setRightCalloutAccessoryView:
                     [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
         }
-        return annotationView;
+        TTImageView *image = [[[TTImageView alloc] initWithFrame:
+                CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
+                    autorelease];
+        [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
+        [annotationView setLeftCalloutAccessoryView:image];
+        [annotationView setAnimatesDrop:YES];
     }
-    return nil;
+    return annotationView;
 }
 
 - (void)                mapView:(MKMapView *)mapView

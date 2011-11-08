@@ -15,6 +15,7 @@ dsa_priv.pem
 *.pbxuser
 *.xcworkspace/
 xcuserdata/
+.LSOverride
 
 # Generated files
 VersionX-revision.h

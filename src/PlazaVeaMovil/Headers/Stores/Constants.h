@@ -118,6 +118,7 @@ typedef enum {
 
 extern NSString *const kStoreListButtonLabel;
 extern NSString *const kStoreMapButtonLabel;
+extern NSString *const kStoreDetailButtonLabel;
 
 // StoreMapController's constants
 
@@ -127,7 +128,7 @@ extern NSString *const kStoreMapCurrentLocation;
 extern NSString *const kStoreMapAnnotationImage;
 extern const float minRegion;
 extern NSString *const kAnnotationId;
-extern NSString *const kPictureAnnotationId;
+extern NSString *const kPinAnnotationId;
 extern const CGFloat kStoreMapImageWidth;
 extern const CGFloat kStoreMapImageHeight;
 

@@ -59,6 +59,8 @@
     if ([self toolbarItems] != nil) {
         for (UIBarButtonItem *item in [self toolbarItems]) {
             if ([[item customView] isKindOfClass:[UISegmentedControl class]]) {
+                /*[(UISegmentedControl *)[item customView]
+                  setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];*/
                 [(UISegmentedControl *)[item customView] addTarget:self
                         action:@selector(switchControllers:)
                             forControlEvents:UIControlEventValueChanged];
@@ -118,10 +120,10 @@
 {
     switch ([segControl selectedSegmentIndex]) {
         case kStoreSegmentedControlIndexMapButon:
-            [[TTNavigator navigator] openURLAction:[[TTURLAction
-                    actionWithURLPath:URL(kURLStoreDetailMapCall, _storeId)]
-                        applyAnimated:YES]];
             [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+            [[TTNavigator navigator] openURLAction:[[TTURLAction
+                    actionWithURLPath:URL(kURLStoreDetailMapCall, _storeId, 
+                        kStoreListTitle)] applyAnimated:YES]];
             break;
         case kStoreSegmentedControlIndexListButton:
             [self dismissModalViewControllerAnimated:YES];

@@ -4,10 +4,12 @@
 
 @interface Banner: NSObject
 {
+    NSNumber *_bannerId;
     NSURL *_pictureURL;
     NSDate *_start;
     NSDate *_end;
 }
+@property (nonatomic, retain) NSNumber *bannerId;
 @property (nonatomic, copy) NSURL *pictureURL;
 @property (nonatomic, retain) NSDate *start;
 @property (nonatomic, retain) NSDate *end;
