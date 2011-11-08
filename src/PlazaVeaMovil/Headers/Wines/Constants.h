@@ -25,3 +25,6 @@ extern NSString *const kWineSmellKey;
 extern NSString *const kWineTemperatureKey;
 extern NSString *const kWineCellaringKey;
 extern NSString *const kWineOxygenationKey;
+
+// Endpoint URLs
+extern NSString *const kURLWineDetailEndPoint;

@@ -27,3 +27,6 @@ NSString *const kWineSmellKey = @"smell";
 NSString *const kWineTemperatureKey = @"temperature";
 NSString *const kWineCellaringKey = @"cellaring";
 NSString *const kWineOxygenationKey = @"oxygenation";
+
+// Endpoint URLs
+NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");

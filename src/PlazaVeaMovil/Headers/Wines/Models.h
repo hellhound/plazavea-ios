@@ -11,7 +11,7 @@
     NSString *_name;
     NSNumber *_milliliters;
     NSURL *_pictureURL;
-    NSMutableArray *_extraPicturesURLs;
+    NSMutableArray *_extraPictureURLs;
     NSNumber *_price;
     NSNumber *_harvestYear;
     NSString *_barrel;
@@ -27,7 +27,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSNumber *milliliters;
 @property (nonatomic, retain) NSURL *pictureURL;
-@property (nonatomic, readonly) NSArray *extraPicturesURLs;
+@property (nonatomic, readonly) NSArray *extraPictureURLs;
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSNumber *harvestYear;
 @property (nonatomic, copy) NSString *barrel;
@@ -38,6 +38,7 @@
 @property (nonatomic, retain) NSNumber *cellaring;
 @property (nonatomic, retain) NSNumber *oxygenation;
 
++ (id)shortWineFromDictionary:(NSDictionary *)rawWine;
 + (id)wineFromDictionary:(NSDictionary *)rawWine;
 
 - (id)initWithWineId:(NSString *)wineId;
