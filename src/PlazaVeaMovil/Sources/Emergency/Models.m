@@ -275,6 +275,9 @@ static NSRelationshipDescription *kCategoryRelationship;
     } else if(!firstUpdate) {
         return;
     }
+    
+    //deleting old data
+    [self cleandata:context];
 
     NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
             encoding:NSUTF8StringEncoding error:nil];
@@ -296,7 +299,6 @@ static NSRelationshipDescription *kCategoryRelationship;
                 dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
                 parsedNumber, kEmergencyNumberPhone, nil]];
     }
-    //TODO: delete all entries
     for (NSString *categoryname in [emergencyThree allKeys]){
         EmergencyCategory *emergencyCategory = [EmergencyCategory
                 categoryWithName:categoryname context:context];
@@ -317,5 +319,57 @@ static NSRelationshipDescription *kCategoryRelationship;
                 return;
         }
     }
+}
+
++ (void)cleandata:(NSManagedObjectContext *)context
+{
+    //category
+    NSArray *sortCategoryDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyCategoryName
+                ascending:YES] autorelease]];
+    NSFetchRequest *categoryRequest =
+            [[[NSFetchRequest alloc] init] autorelease];
+
+    [categoryRequest setEntity:[EmergencyCategory entity]];
+    [categoryRequest setPredicate:nil];
+    [categoryRequest setSortDescriptors:sortCategoryDescriptors];
+
+    NSFetchedResultsController *resultsController = 
+        [[[NSFetchedResultsController alloc]
+            initWithFetchRequest:categoryRequest
+            managedObjectContext:context
+            sectionNameKeyPath:nil
+            cacheName:nil] autorelease];
+    NSError *fetchError = nil;
+    NSError *contextError = nil;
+
+    [resultsController performFetch:&fetchError];
+    for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
+        [context deleteObject:manageObject];
+    }
+    [context save:&contextError];
+    //phones
+    NSArray *sortNumberDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyNumberName
+                ascending:YES] autorelease]];
+    NSFetchRequest *numberRequest =
+            [[[NSFetchRequest alloc] init] autorelease];
+
+    [numberRequest setEntity:[EmergencyNumber entity]];
+    [numberRequest setPredicate:nil];
+    [numberRequest setSortDescriptors:sortNumberDescriptors];
+
+    resultsController = [[[NSFetchedResultsController alloc]
+            initWithFetchRequest:numberRequest
+            managedObjectContext:context
+            sectionNameKeyPath:nil
+            cacheName:nil] autorelease];
+    fetchError = nil;
+
+    [resultsController performFetch:&fetchError];
+    for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
+        [context deleteObject:manageObject];
+    }
+    [context save:&contextError];
 }
 @end
