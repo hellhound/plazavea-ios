@@ -1,10 +1,25 @@
 #import <Foundation/Foundation.h>
 
+#import "Common/Constants.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferListDataSource.h"
 #import "Offers/OfferListController.h"
 
+@interface OfferListController ()
+
+@property (nonatomic, retain) NSNumber *bannerId;
+@end
+
 @implementation OfferListController
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_bannerId release];
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark UIView
@@ -30,8 +45,31 @@
 #pragma mark -
 #pragma mark TTTableViewController
 
-- (void) createModel
+- (void)createModel
 {
-    [self setDataSource:[[[OfferListDataSource alloc] init] autorelease]];
+    [self setDataSource:[[[OfferListDataSource alloc] initWithListDelegate:self]
+            autorelease]];
+}
+
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
+                URL(kURLOfferDetailCall, _bannerId)] applyAnimated:YES]];
+    }
+}
+
+#pragma mark -
+#pragma mark OfferListController (Private)
+
+@synthesize bannerId = _bannerId;
+
+#pragma mark -
+#pragma mark <OfferListDataSourceDelegate>
+
+- (void)    dataSource:(OfferListDataSource *)dataSource
+needsBannerId:(NSNumber *)bannerId
+{
+    [self setBannerId:bannerId];
 }
 @end

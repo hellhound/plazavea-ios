@@ -30,6 +30,7 @@ NSString *const kOfferCollectionBannerKey = @"banner";
 // Banner model's constants
 
 // JSON keys
+NSString *const kBannerIdKey = @"id";
 NSString *const kBannerPictureURLKey = @"picture";
 NSString *const kBannerStartKey = @"start";
 NSString *const kBannerEndKey = @"end";

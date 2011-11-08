@@ -4,4 +4,8 @@
 #import "Offers/BaseOfferController.h"
 
 @interface OfferListController: BaseOfferController
+        <OfferListDataSourceDelegate>
+{
+    NSNumber *_bannerId;
+}
 @end
