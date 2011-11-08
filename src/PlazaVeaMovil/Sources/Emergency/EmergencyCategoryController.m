@@ -22,12 +22,15 @@
 
 - (id)init
 {
+    NSArray *sortDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kEmergencyFileName
+                ascending:YES] autorelease]];
+    NSManagedObjectContext *context = [(AppDelegate *)
+            [[UIApplication sharedApplication] delegate] context];
+
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyCategoryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-
-        NSManagedObjectContext *context = [(AppDelegate *)
-                [[UIApplication sharedApplication] delegate] context];
         [EmergencyFile loadFromCSVinContext:context];
     }
     return self;

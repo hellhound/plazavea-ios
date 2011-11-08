@@ -255,11 +255,14 @@ static NSRelationshipDescription *kCategoryRelationship;
             sectionNameKeyPath:nil
             cacheName:nil] autorelease];
     NSError *fetchError = nil;
+    NSError *contextError = nil;
 
     [resultsController performFetch:&fetchError];
     if ([[resultsController fetchedObjects] count] == 0){
         [EmergencyFile fileWithName:csvFilePath context:context];
         firstUpdate = YES;
+        [context save:&contextError];
+        [resultsController performFetch:&fetchError];
     }
 
     EmergencyFile *emergencyFile = [[resultsController fetchedObjects]
@@ -291,8 +294,9 @@ static NSRelationshipDescription *kCategoryRelationship;
                 dictionaryWithObjectsAndKeys:parsedName, @"name", parsedNumber,
                 @"number", nil]];
     }
-    NSLog(@"%@", emergencyThree);
     //TODO: delete all entries
+    //TODO: store all data
+    NSLog(@"%@", emergencyThree);
 
 }
 @end
