@@ -121,7 +121,7 @@ static NSRelationshipDescription *kCategoryRelationship;
             [self relationshipWithName:kEmergencyNumberCategory];
 
     [categoryRelationship setName:kEmergencyNumberCategory];
-    [categoryRelationship setDestinationEntity:[EmergencyNumber entity]];
+    [categoryRelationship setDestinationEntity:[EmergencyCategory entity]];
     [categoryRelationship setInverseRelationship:
             [EmergencyCategory relationshipWithName:kEmergencyCategoryNumbers]];
     [categoryRelationship setOptional:NO];
@@ -162,7 +162,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [number setName:name];
     [number setPhone:phone];
     [number setCategory:category];
-    return category;
+    return number;
 }
 
 + (id)numberWithName:(NSString *)name
@@ -177,7 +177,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [number setName:name];
     [number setPhone:phone];
     [number setCategory:category];
-    return category;
+    return number;
 }
 @end
 
@@ -262,6 +262,8 @@ static NSRelationshipDescription *kCategoryRelationship;
         [EmergencyFile fileWithName:csvFilePath context:context];
         firstUpdate = YES;
         [context save:&contextError];
+        if (contextError != nil)
+            return;
         [resultsController performFetch:&fetchError];
     }
 
@@ -291,12 +293,29 @@ static NSRelationshipDescription *kCategoryRelationship;
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedNumber = [parsedRow objectAtIndex:2];
         [parsedCollectionNumbers addObject:[NSDictionary 
-                dictionaryWithObjectsAndKeys:parsedName, @"name", parsedNumber,
-                @"number", nil]];
+                dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
+                parsedNumber, kEmergencyNumberPhone, nil]];
     }
     //TODO: delete all entries
-    //TODO: store all data
-    NSLog(@"%@", emergencyThree);
-
+    for (NSString *categoryname in [emergencyThree allKeys]){
+        EmergencyCategory *emergencyCategory = [EmergencyCategory
+                categoryWithName:categoryname context:context];
+        [context save:&contextError];
+        if (contextError != nil)
+            return;
+        NSArray *emergencyNumberCollection = [emergencyThree 
+                objectForKey:categoryname];
+        for (NSDictionary *emergencyNumber in emergencyNumberCollection){
+            NSString *name =
+                    [emergencyNumber objectForKey:kEmergencyNumberName];
+            NSString *phone =
+                    [emergencyNumber objectForKey:kEmergencyNumberPhone];
+            [EmergencyNumber numberWithName:name phone:phone
+                    category:emergencyCategory context:context];
+            [context save:&contextError];
+            if (contextError != nil)
+                return;
+        }
+    }
 }
 @end

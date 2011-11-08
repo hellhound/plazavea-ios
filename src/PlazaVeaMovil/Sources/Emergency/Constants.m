@@ -6,7 +6,7 @@
 // EmergencyCategory model's constants
 
 // Administration of Emergency numbers
-NSString *const kEmergencyCategoryTitle = @"Categorías";
+NSString *const kEmergencyCategoryTitle = @"Num. Emergencia";
 // NSLocalizedString(@"Categorías", nil)
 
 NSString *const kEmergencyInitialCSV = @"emergency-initial-data";
