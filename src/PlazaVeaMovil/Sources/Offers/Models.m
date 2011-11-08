@@ -21,6 +21,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 
 - (void)dealloc
 {
+    [_bannerId release];
     [_pictureURL release];
     [_start release];
     [_end release];
@@ -30,12 +31,18 @@ static NSString *const kMutablePromotionsKey = @"promotions";
 #pragma mark -
 #pragma mark Banner (Public)
 
-@synthesize pictureURL = _pictureURL, start = _start, end = _end;
+@synthesize bannerId = _bannerId, pictureURL = _pictureURL, start = _start,
+        end = _end;
 
 + (id)bannerFromDictionary:(id)rawBanner
 {
+    NSNumber *bannerId;
     NSString *pictureURL;
     if (![rawBanner isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((bannerId = [rawBanner objectForKey:kBannerIdKey]) == nil)
+        return nil;
+    if (![bannerId isKindOfClass:[NSNumber class]])
         return nil;
     if ((pictureURL =
             [rawBanner objectForKey:kBannerPictureURLKey]) == nil)
@@ -48,6 +55,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     
     Banner *banner = [[[Banner alloc] init] autorelease];
     
+    [banner setBannerId:bannerId];
     if(pictureURL)
         [banner setPictureURL:[NSURL URLWithString:pictureURL]];
     return banner;

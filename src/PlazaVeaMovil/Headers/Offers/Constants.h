@@ -28,6 +28,7 @@ extern NSString *const kOfferCollectionBannerKey;
 // Banner model's constant
 
 //JSON keys
+extern NSString *const kBannerIdKey;
 extern NSString *const kBannerPictureURLKey;
 extern NSString *const kBannerStartKey;
 extern NSString *const kBannerEndKey;

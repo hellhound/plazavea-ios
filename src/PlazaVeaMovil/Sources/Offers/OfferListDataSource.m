@@ -14,13 +14,25 @@
 @implementation OfferListDataSource
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [self setDelegate:nil];
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark OfferListDataSource (public)
 
+@synthesize delegate = _delegate;
 
-- (id)init
+- (id)initWithListDelegate:(id<OfferListDataSourceDelegate>)delegate
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[OfferCollection alloc] init] autorelease]];
+        [self setDelegate:delegate];
+    }
     return self;
 }
 
@@ -59,7 +71,9 @@
     Banner *banner = [offerCollection banner];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
     NSURL *bannerImageURL = [banner pictureURL];
+    NSNumber *bannerId = [banner bannerId];
     
+    [_delegate dataSource:self needsBannerId:bannerId];
     if (bannerImageURL != nil) {
         bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,
                 kBannerImageHeight);
