@@ -24,6 +24,8 @@
 #import "Stores/StoreListController.h"
 #import "Stores/StoreDetailController.h"
 #import "Stores/StoreMapController.h"
+#import "Emergency/Constants.h"
+#import "Emergency/EmergencyCategoryController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -97,6 +99,10 @@
     [map from:kURLStoreDetailMap toModalViewController:
             [StoreMapController class]
                 transition:UIModalTransitionStyleFlipHorizontal];
+    // Emergency numbers
+    [map from:kURLEmergencyCategory
+            toViewController:[EmergencyCategoryController class]
+            selector:@selector(init)];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
