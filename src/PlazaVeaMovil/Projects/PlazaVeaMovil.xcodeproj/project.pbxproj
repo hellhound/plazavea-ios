@@ -101,6 +101,8 @@
 		2CFE570A13F3691F003F9601 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFE570913F3691F003F9601 /* Constants.m */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
+		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
+		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
 		2F6C6E96144F5F100012E787 /* RegionListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C6E95144F5F100012E787 /* RegionListDataSource.m */; };
 		2F6C6E98144F673A0012E787 /* RegionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C6E97144F673A0012E787 /* RegionListController.m */; };
 		2F75AF14144FCF2700153145 /* SubregionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F75AF13144FCF2700153145 /* SubregionDataSource.m */; };
@@ -661,6 +663,8 @@
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
+		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
+		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F6C6E95144F5F100012E787 /* RegionListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionListDataSource.m; sourceTree = "<group>"; };
 		2F6C6E97144F673A0012E787 /* RegionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionListController.m; sourceTree = "<group>"; };
 		2F75AF13144FCF2700153145 /* SubregionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubregionDataSource.m; sourceTree = "<group>"; };
@@ -843,6 +847,7 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2F5B2A4414699E38008CFB6A /* Wines */,
 				2C291C10145CD08B002B7F78 /* Emergency */,
 				2F78FF99144F2F91007F9ACD /* Stores */,
 				2FA7FB6F1446204700211215 /* Offers */,
@@ -1013,6 +1018,15 @@
 				2CE7045C13DE6B4500BB2279 /* main.m */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		2F5B2A4414699E38008CFB6A /* Wines */ = {
+			isa = PBXGroup;
+			children = (
+				2F5B2A4714699ED3008CFB6A /* Constants.m */,
+				2F5B2A4514699E38008CFB6A /* Models.m */,
+			);
+			path = Wines;
 			sourceTree = "<group>";
 		};
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
@@ -1743,6 +1757,8 @@
 				2C146F1A1456220100E5EAFC /* ImageCarouselItem.m in Sources */,
 				2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */,
 				2CEA22091466F91300391721 /* CLLocation+Additions.m in Sources */,
+				2F5B2A4614699E38008CFB6A /* Models.m in Sources */,
+				2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
