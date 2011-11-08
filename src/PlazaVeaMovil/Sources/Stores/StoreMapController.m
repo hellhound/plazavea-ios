@@ -61,11 +61,16 @@
     UINavigationItem *navItem = [super navigationItem];
 
     [self setToolbarItems:nil];
+    if (_backButton == nil) {
+        _backButton = [[UIBarButtonItem alloc] initWithTitle:_buttonTitle
+                style:UIBarButtonItemStylePlain target:self
+                    action:@selector(popToNavigationWindow)];
+        [navItem setLeftBarButtonItem:_backButton];
+    }
     // Conf seg
     _segControl = nil;
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
-    [segItem setWidth:150.];
     // Conf GPS
     UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
             initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
@@ -177,12 +182,14 @@
 #pragma mark -
 #pragma mark StoreMapController
 
-@synthesize mapView = _mapView, region = _region;
+@synthesize mapView = _mapView, region = _region, buttonTitle =_buttonTitle;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
+                 andTitle:(NSString *)title
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setButtonTitle:title];
         [self setTitle:kStoreMapTitle];
         [self setModel:[[[StoreCollection alloc] initWithSubregionId:subregionId
                 andRegionId:regionId] autorelease]];
@@ -191,8 +198,10 @@
 }
 
 - (id)initWithStoreId:(NSString *)storeId
+             andTitle:(NSString *)title
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        [self setButtonTitle:title];
         [self setTitle:kStoreMapTitle];
         [self setModel:[[[Store alloc] initWithStoreId:storeId] autorelease]];
     }
@@ -206,11 +215,11 @@
         [(UINavigationController *)
          [[self parentViewController] performSelector:
           @selector(presentingViewController)]
-         popToRootViewControllerAnimated:NO];
+         popViewControllerAnimated:NO];
     } else {
         [(UINavigationController *)
          [[self parentViewController] parentViewController]
-         popToRootViewControllerAnimated:NO];
+         popViewControllerAnimated:NO];
     }
 }
 
@@ -292,13 +301,13 @@
     [location setTitle:kStoreMapCurrentLocation];
     [_mapView addAnnotation:location];
     
-    float minLatitude = MIN((center.latitude - span.latitudeDelta),
+    float minLatitude = MIN((center.latitude - (span.latitudeDelta / 2)),
             currentLocation.latitude);
-    float minLongitude = MIN((center.longitude - span.longitudeDelta),
+    float minLongitude = MIN((center.longitude - (span.longitudeDelta / 2)),
             currentLocation.longitude);
-    float maxLatitude = MAX((center.latitude + span.latitudeDelta),
+    float maxLatitude = MAX((center.latitude + (span.latitudeDelta / 2)),
             currentLocation.latitude);
-    float maxLongitude = MAX((center.longitude + span.longitudeDelta),
+    float maxLongitude = MAX((center.longitude + (span.longitudeDelta / 2)),
             currentLocation.longitude);
     
     MKCoordinateSpan newSpan =

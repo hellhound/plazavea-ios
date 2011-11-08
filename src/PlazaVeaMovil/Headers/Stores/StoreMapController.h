@@ -12,12 +12,16 @@
     UISegmentedControl *_segControl;
     MKMapView *_mapView;
     MKCoordinateRegion _region;
+    NSString *_buttonTitle;
 }
 @property (nonatomic, assign) NSInteger segmentIndex;
+@property (nonatomic, copy) NSString *buttonTitle;
 
 - (id)initWithSubregionId:(NSString *)subregionId
-              andRegionId:(NSString *)regionId;
-- (id)initWithStoreId:(NSString *)storeId;
+              andRegionId:(NSString *)regionId
+                 andTitle:(NSString *)title;
+- (id)initWithStoreId:(NSString *)storeId
+             andTitle:(NSString *)title;
 - (void)popToNavigationWindow;
 - (void)updateUserAnnotation:(id)sender;
 @end

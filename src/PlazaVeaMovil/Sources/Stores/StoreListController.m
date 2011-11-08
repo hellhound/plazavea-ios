@@ -80,10 +80,14 @@
 {
     switch ([segControl selectedSegmentIndex]) {
         case kStoreSegmentedControlIndexMapButon:
+            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+            NSArray *viewControllers = [(UINavigationController *)
+                    [self parentViewController] viewControllers];
+            NSString *buttonTitle = [[viewControllers objectAtIndex:
+                    ([viewControllers count] - 2)] title];
             [[TTNavigator navigator] openURLAction:[[TTURLAction
                     actionWithURLPath:URL(kURLStoreMapCall, _subregionId,
-                        _regionId)] applyAnimated:YES]];
-            [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+                        _regionId, buttonTitle)] applyAnimated:YES]];
             break;
         case kStoreSegmentedControlIndexListButton:
             [self dismissModalViewControllerAnimated:YES];

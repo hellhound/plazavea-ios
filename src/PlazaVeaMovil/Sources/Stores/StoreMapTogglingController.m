@@ -42,7 +42,6 @@
         // Conf the segmented item
         UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
                 initWithCustomView:[self segControl]] autorelease];
-        [segItem setWidth:150.];
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace

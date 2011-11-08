@@ -120,10 +120,10 @@
 {
     switch ([segControl selectedSegmentIndex]) {
         case kStoreSegmentedControlIndexMapButon:
-            [[TTNavigator navigator] openURLAction:[[TTURLAction
-                    actionWithURLPath:URL(kURLStoreDetailMapCall, _storeId)]
-                        applyAnimated:YES]];
             [self setSegmentIndex:kStoreSegmentedControlIndexListButton];
+            [[TTNavigator navigator] openURLAction:[[TTURLAction
+                    actionWithURLPath:URL(kURLStoreDetailMapCall, _storeId, 
+                        kStoreListTitle)] applyAnimated:YES]];
             break;
         case kStoreSegmentedControlIndexListButton:
             [self dismissModalViewControllerAnimated:YES];
