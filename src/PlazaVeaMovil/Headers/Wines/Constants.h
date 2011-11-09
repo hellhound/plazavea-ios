@@ -80,9 +80,11 @@ extern NSString *const kSomelierTitle;
 
 // Controllers' URLs
 extern NSString *const kURLStrainList;
+extern NSString *const kURLWineList;
 
 // Controllers' URL calls
 extern NSString *const kURLStrainListCall;
+extern NSString *const kURLWineListCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;

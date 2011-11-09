@@ -59,15 +59,10 @@
     
     for (Strain *strain in strains) {
         NSString *name = [strain name];
-        /*NSString *URL;
-        
-        if ([[region count] integerValue] == 1) {  
-            URL = URL(kURLStoreListCall, [region suggested], [region regionId]);
-        } else {
-            URL = URL(kURLSubregionListCall, [region regionId]);
-        }*/
+        NSString *url = URL(kURLWineListCall, [strain strainId]);
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:nil];
+                subtitle:nil URL:URL(kURLWineListCall, [strain strainId])];
+        
         [items addObject:item];
     }
     [self setItems:items];

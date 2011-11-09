@@ -101,9 +101,12 @@ NSString *const kSomelierTitle = @"Somelier";
 
 // Controllers' URLs
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
+NSString *const kURLWineList =
+        @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
 
 // Controllers' URL calls
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
+NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");
