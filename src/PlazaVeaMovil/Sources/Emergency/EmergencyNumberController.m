@@ -120,4 +120,20 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
                 reuseIdentifier:reuseIdentifier] autorelease];
     return cell;
 }
+
+- (void)didSelectRowForObject:(EmergencyNumber *)emergencyNumber
+                  atIndexPath:(NSIndexPath *)indexPath
+{
+    if (![self isEditing]){
+        NSCharacterSet *characterSet = 
+            [NSCharacterSet characterSetWithCharactersInString:@" -"];
+        NSString *phoneNumber = [[[emergencyNumber phone]
+                componentsSeparatedByCharactersInSet:characterSet]
+                componentsJoinedByString: @""];
+        NSString *formatedNumber =
+                [NSString stringWithFormat:@"tel://%@", phoneNumber];
+        [[UIApplication sharedApplication]
+                openURL:[NSURL URLWithString:formatedNumber]];
+    }
+}
 @end
