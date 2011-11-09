@@ -55,5 +55,34 @@
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) NSArray *sectionTitles;
 
++ (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection;
+
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (void)copyPropertiesFromWineCollection:(WineCollection *)collection;
+@end
+
+@interface Strain: NSObject
+{
+    NSNumber *_strainId;
+    NSString *_name;
+    NSNumber *_subcategories;
+    NSNumber *_wines;
+}
+@property (nonatomic, retain) NSNumber *strainId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSNumber *subcategories;
+@property (nonatomic, retain) NSNumber *wines;
+
++ (id)strainFromDictionary:(NSDictionary *)rawStrain;
+@end
+
+@interface StrainCollection: URLRequestModel
+{
+    NSMutableArray *_strains;
+}
+@property (nonatomic, readonly) NSArray *strains;
+
++ (id)strainCollectionFromDictionary:(NSDictionary *)rawCollection;
+
+- (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection;
 @end

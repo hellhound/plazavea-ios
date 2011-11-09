@@ -20,3 +20,4 @@ extern NSString *const kURLShoppingListIcon;
 extern NSString *const kURLRecipesIcon;
 extern NSString *const kURLOffersIcon;
 extern NSString *const kURLStoresIcon;
+extern NSString *const kURLSomelierIcon;

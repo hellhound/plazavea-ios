@@ -26,6 +26,7 @@
 #import "Stores/StoreMapController.h"
 #import "Emergency/Constants.h"
 #import "Emergency/EmergencyCategoryController.h"
+#import "Wines/Constants.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate

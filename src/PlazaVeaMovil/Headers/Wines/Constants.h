@@ -30,8 +30,46 @@ extern NSString *const kWineOxygenationKey;
 
 // JSON keys
 extern NSString *const kWineCollectionLetterKey;
-extern NSString *const kWineCOllectionWinesKey;
+extern NSString *const kWineCollectionWinesKey;
+
+// Strain model's constants
+
+// JSON keys
+extern NSString *const kStrainIdKey;
+extern NSString *const kStrainNameKey;
+extern NSString *const kStrainSubcategories;
+extern NSString *const kStrainWines;
+
+// StrainCollection model's constants
+
+// JSON keys
+extern NSString *const kStrainCollectionCategoriesKey;
+
+// StrainListDataSource's constants
+
+// Messages
+extern NSString *const kStrainListTitleForLoading;
+extern NSString *const kStrainListTitleForReloading;
+extern NSString *const kStrainListTitleForEmpty;
+extern NSString *const kStrainListSubtitleForEmpty;
+extern NSString *const kStrainListTitleForError;
+extern NSString *const kStrainListSubtitleForError;
+
+// StrainListController's constants
+
+//messages
+extern NSString *const kStrainListTitle;
+
+// messages
+extern NSString *const kSomelierTitle;
+
+// Controllers' URLs
+extern NSString *const kURLStrainList;
+
+// Controllers' URL calls
+extern NSString *const kURLStrainListCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;
 extern NSString *const kURLWineCollectionEndPoint;
+extern NSString *const kURLStrainCollectionEndPoint;

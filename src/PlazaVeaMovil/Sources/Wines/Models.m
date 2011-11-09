@@ -9,8 +9,9 @@
 #import "Wines/Models.h"
 
 static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
-static NSString *const kMutbaleSectionsKey = @"sections";
+static NSString *const kMutableSectionsKey = @"sections";
 static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
+static NSString *const kMutableStrainsKeys = @"categories";
 
 @implementation Wine
 
@@ -232,7 +233,7 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
     [self setOxygenation:[wine oxygenation]];
     
     NSMutableArray *extraPictureURLs =
-    [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+            [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
     
     for (NSURL *extraPictureURL in [wine extraPictureURLs])
         [extraPictureURLs addObject:extraPictureURL];
@@ -344,12 +345,73 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
 @synthesize categoryId = _categoryId;
 
++ (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    WineCollection *collection = [[[WineCollection alloc] init] autorelease];
+    NSArray *wines;
+    NSMutableArray *mutableSections =
+            [collection mutableArrayValueForKey:kMutableSectionsKey];
+    NSMutableArray *mutableSectionTitles =
+            [collection mutableArrayValueForKey:kMutableSectionTitlesKey];
+    
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((wines = [rawCollection objectForKey:kWineCollectionWinesKey]) == nil)
+        return nil;
+    if (![wines isKindOfClass:[NSArray class]])
+        return nil;
+    for (NSDictionary *wineCollection in wines) {
+        NSArray *rawWines;
+        NSString *sectionTitles;
+        
+        if  (![wineCollection isKindOfClass:[NSDictionary class]])
+            return nil;
+        if ((sectionTitles =
+                [wineCollection objectForKey:kWineCollectionLetterKey]) == nil)
+            return nil;
+        if (![sectionTitles isKindOfClass:[NSString class]])
+            return nil;
+        if ((rawWines =
+                [wineCollection objectForKey:kWineCollectionWinesKey]) == nil)
+            return nil;
+        if (![rawWines isKindOfClass:[NSArray class]])
+            return nil;
+        
+        NSMutableArray *winesInSection =
+                [NSMutableArray arrayWithCapacity:[rawWines count]];
+        
+        [mutableSectionTitles addObject:sectionTitles];
+        for (NSDictionary *rawWine in rawWines) {
+            Wine *wine = [Wine shortWineFromDictionary:rawWine];
+            
+            if (wine == nil)
+                return nil;
+            [winesInSection addObject:wine];
+        }
+        [mutableSections addObject:winesInSection];
+    }
+    return collection;
+}
+
 - (id)initWithCategoryId:(NSString *)categoryId
 {
     if ((self = [self init]) != nil) {
         _categoryId = [categoryId copy];
     }
     return self;
+}
+
+- (void)copyPropertiesFromWineCollection:(WineCollection *)collection
+{
+    NSMutableArray *sections =
+            [self mutableArrayValueForKey:kMutableSectionsKey];
+    NSMutableArray *sectionTitles =
+            [self mutableArrayValueForKey:kMutableSectionTitlesKey];
+
+    for (NSString *letter in [collection sectionTitles])
+        [sectionTitles addObject:letter];
+    for (Wine *wine in [collection sections])
+        [sections addObject:wine];
 }
 
 #pragma mark -
@@ -371,6 +433,185 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
 - (void)requestDidFinishLoad:(TTURLRequest *)request
 {
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    WineCollection *wineCollection =
+            [WineCollection wineCollectionFromDictionary:rootObject];
+    
+    if (wineCollection == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                          tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromWineCollection:wineCollection];
+    [super requestDidFinishLoad:request];
+}
+@end
+
+@implementation Strain
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_strainId release];
+    [_name release];
+    [_subcategories release];
+    [_wines release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Strain (Public)
+
+@synthesize  strainId = _strainId, name = _name, subcategories = _subcategories,
+        wines = _wines;
+
++ (id)strainFromDictionary:(NSDictionary *)rawStrain
+{
+    NSNumber *strainId, *subcategories, *wines;
+    NSString *name;
+    
+    if (![rawStrain isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((strainId = [rawStrain objectForKey:kStrainIdKey]) == nil)
+        return nil;
+    if (![strainId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawStrain objectForKey:kStrainNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    if ((subcategories = [rawStrain objectForKey:kStrainIdKey]) == nil)
+        return nil;
+    if (![subcategories isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((wines = [rawStrain objectForKey:kStrainIdKey]) == nil)
+        return nil;
+    if (![wines isKindOfClass:[NSNumber class]])
+        return nil;
+    
+    Strain *strain = [[[Strain alloc] init] autorelease];
+    
+    [strain setStrainId:strainId];
+    [strain setName:name];
+    [strain setSubcategories:subcategories];
+    [strain setWines:wines];
+    return strain;
+}
+@end
+
+@implementation StrainCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil)
+            _strains = [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_strains release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize strains = _strains;
+
+- (void)insertObject:(Strain *)strain inRegionsAtIndex:(NSUInteger)index
+{
+    [_strains insertObject:strain atIndex:index];
+}
+
+- (void)insertRegions:(NSArray *)strains atIndexes:(NSIndexSet *)indexes
+{
+    [_strains insertObjects:strains atIndexes:indexes];
+}
+
+- (void)removeObjectFromRegionsAtIndex:(NSUInteger)index
+{
+    [_strains removeObjectAtIndex:index];
+}
+
+- (void)removeRegionsAtIndexes:(NSIndexSet *)indexes
+{
+    [_strains removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark StrainCollection (Public)
+
++ (id)strainCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    StrainCollection *collection =
+            [[[StrainCollection alloc] init] autorelease];
+    NSArray *strains;
+    NSMutableArray *mutableStrains =
+            [collection mutableArrayValueForKey:kMutableStrainsKeys];
+    
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((strains =
+         [rawCollection objectForKey:kStrainCollectionCategoriesKey]) == nil)
+        return nil;
+    if (![strains isKindOfClass:[NSArray class]])
+        return nil;
+    for (NSDictionary *rawStrain in strains) {
+        Strain *strain = [Strain strainFromDictionary:rawStrain];
+        
+        if (strain == nil)
+            return nil;
+        [mutableStrains addObject:strain];
+    }
+    return collection;
+}
+
+- (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection
+{
+    NSMutableArray *mutableStrains =
+            [self mutableArrayValueForKey:kMutableStrainsKeys];
+    
+    [mutableStrains addObjectsFromArray:[collection strains]];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest
+                requestWithURL:kURLStrainCollectionEndPoint delegate:self];
+        
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    StrainCollection *collection =
+            [StrainCollection strainCollectionFromDictionary:rootObject];
+    
+    if (collection == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                          tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromStrainCollection:collection];
     [super requestDidFinishLoad:request];
 }
 @end
