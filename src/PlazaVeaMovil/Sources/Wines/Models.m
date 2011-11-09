@@ -121,25 +121,15 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
 
 + (id)wineFromDictionary:(NSDictionary *)rawWine
 {
-    NSNumber *wineId, *milliliters, *price, *harvestYear, *temperature,
-            *cellaring, *oxygenation;
-    NSString *code, *name, *barrel, *look, *taste, *smell, *pictureURL;
+    Wine *wine = [self shortWineFromDictionary:rawWine];
+    
+    if (wine == nil)
+        return nil;
+    
+    NSNumber *harvestYear, *temperature, *cellaring, *oxygenation;
+    NSString *code, *barrel, *look, *taste, *smell, *pictureURL;
     NSArray *extrasPictureURLs;
     
-    if (![rawWine isKindOfClass:[NSDictionary class]])
-        return nil;
-    if ((wineId = [rawWine objectForKey:kWineIdKey]) == nil)
-        return nil;
-    if (![wineId isKindOfClass:[NSNumber class]])
-        return nil;
-    if ((milliliters = [rawWine objectForKey:kWineMillilitersKey]) == nil)
-        return nil;
-    if (![milliliters isKindOfClass:[NSNumber class]])
-        return nil;
-    if ((price = [rawWine objectForKey:kWinePriceKey]) == nil)
-        return nil;
-    if (![price isKindOfClass:[NSNumber class]])
-        return nil;
     if ((harvestYear = [rawWine objectForKey:kWineHarvestYearKey]) == nil)
         return nil;
     if (![harvestYear isKindOfClass:[NSNumber class]])
@@ -159,10 +149,6 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
     if ((code = [rawWine objectForKey:kWineCodeKey]) == nil)
         return nil;
     if (![code isKindOfClass:[NSString class]])
-        return nil;
-    if ((name = [rawWine objectForKey:kWineNameKey]) == nil)
-        return nil;
-    if (![name isKindOfClass:[NSString class]])
         return nil;
     if ((barrel = [rawWine objectForKey:kWineBarrelKey]) == nil)
         return nil;
@@ -193,7 +179,6 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
     if (![extrasPictureURLs isKindOfClass:[NSArray class]])
         return nil;
     
-    Wine *wine = [[[Wine alloc] init] autorelease];
     NSMutableArray *mutableExtraPicturesURLs =
             [wine mutableArrayValueForKey:kMutableExtraPictureURLsKey];
     for (NSString *extraPictureURL in extrasPictureURLs) {
@@ -202,13 +187,9 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
         [mutableExtraPicturesURLs addObject:
                 [NSURL URLWithString:extraPictureURL]];
     }
-    [wine setWineId:wineId];
     [wine setCode:code];
-    [wine setName:name];
-    [wine setMilliliters:milliliters];
     if (pictureURL)
         [wine setPictureURL:[NSURL URLWithString:pictureURL]];
-    [wine setPrice:price];
     [wine setHarvestYear:harvestYear];
     [wine setBarrel:barrel];
     [wine setLook:look];
