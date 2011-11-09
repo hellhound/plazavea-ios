@@ -79,6 +79,9 @@
                 [[[TTLauncherItem alloc] initWithTitle:kRegionLauncherTitle
                     image:kURLStoresIcon
                     URL:kURLRegionListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
+                    image:kURLStoresIcon
+                    URL:kURLEmergencyCategory] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];
