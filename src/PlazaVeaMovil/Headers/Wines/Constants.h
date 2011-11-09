@@ -60,6 +60,21 @@ extern NSString *const kStrainListSubtitleForError;
 //messages
 extern NSString *const kStrainListTitle;
 
+// WineListDataSource's constants
+
+// Messages
+extern NSString *const kWineListTitleForLoading;
+extern NSString *const kWineListTitleForReloading;
+extern NSString *const kWineListTitleForEmpty;
+extern NSString *const kWineListSubtitleForEmpty;
+extern NSString *const kWineListTitleForError;
+extern NSString *const kWineListSubtitleForError;
+
+// WineListController's constants
+
+// Messages
+extern NSString *const kWineListTitle;
+
 // messages
 extern NSString *const kSomelierTitle;
 

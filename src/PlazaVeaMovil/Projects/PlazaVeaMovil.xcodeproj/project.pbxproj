@@ -102,6 +102,8 @@
 		2F012A05146B16B3006098EB /* Somelier.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F012A04146B16B3006098EB /* Somelier.png */; };
 		2F012A07146B1A8C006098EB /* StrainListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F012A06146B1A8C006098EB /* StrainListDataSource.m */; };
 		2F012A09146B1F11006098EB /* StrainListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F012A08146B1F11006098EB /* StrainListController.m */; };
+		2F0A6878146B38F900380798 /* WineListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A6877146B38F900380798 /* WineListDataSource.m */; };
+		2F0A687A146B3E8100380798 /* WineListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A6879146B3E8100380798 /* WineListController.m */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
@@ -668,6 +670,8 @@
 		2F012A04146B16B3006098EB /* Somelier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Somelier.png; sourceTree = "<group>"; };
 		2F012A06146B1A8C006098EB /* StrainListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrainListDataSource.m; sourceTree = "<group>"; };
 		2F012A08146B1F11006098EB /* StrainListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrainListController.m; sourceTree = "<group>"; };
+		2F0A6877146B38F900380798 /* WineListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListDataSource.m; sourceTree = "<group>"; };
+		2F0A6879146B3E8100380798 /* WineListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListController.m; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -1033,8 +1037,10 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
-				2F012A08146B1F11006098EB /* StrainListController.m */,
+				2F0A6877146B38F900380798 /* WineListDataSource.m */,
 				2F012A06146B1A8C006098EB /* StrainListDataSource.m */,
+				2F0A6879146B3E8100380798 /* WineListController.m */,
+				2F012A08146B1F11006098EB /* StrainListController.m */,
 				2F5B2A4714699ED3008CFB6A /* Constants.m */,
 				2F5B2A4514699E38008CFB6A /* Models.m */,
 			);
@@ -1775,6 +1781,8 @@
 				2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */,
 				2F012A07146B1A8C006098EB /* StrainListDataSource.m in Sources */,
 				2F012A09146B1F11006098EB /* StrainListController.m in Sources */,
+				2F0A6878146B38F900380798 /* WineListDataSource.m in Sources */,
+				2F0A687A146B3E8100380798 /* WineListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
