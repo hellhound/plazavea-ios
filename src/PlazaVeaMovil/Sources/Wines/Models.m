@@ -11,7 +11,7 @@
 static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
 static NSString *const kMutableSectionsKey = @"sections";
 static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
-static NSString *const kMutableStrainsKeys = @"categories";
+static NSString *const kMutableStrainsKeys = @"strains";
 
 @implementation Wine
 
@@ -535,7 +535,7 @@ static NSString *const kMutableStrainsKeys = @"categories";
     [_strains insertObjects:strains atIndexes:indexes];
 }
 
-- (void)removeObjectFromStrainssAtIndex:(NSUInteger)index
+- (void)removeObjectFromStrainsAtIndex:(NSUInteger)index
 {
     [_strains removeObjectAtIndex:index];
 }
