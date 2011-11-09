@@ -84,7 +84,7 @@
                     image:kURLStoresIcon
                     URL:kURLEmergencyCategory] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
-                    image:kURLSomelierIcon URL:kURLStrainList] autorelease],
+                    image:kURLSomelierIcon URL:kURLStrainListCall] autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

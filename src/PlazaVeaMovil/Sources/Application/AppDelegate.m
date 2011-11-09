@@ -27,6 +27,7 @@
 #import "Emergency/Constants.h"
 #import "Emergency/EmergencyCategoryController.h"
 #import "Wines/Constants.h"
+#import "Wines/StrainListController.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -106,6 +107,8 @@
     [map from:kURLEmergencyCategory
             toViewController:[EmergencyCategoryController class]
             selector:@selector(init)];
+    // Somelier
+    [map from:kURLStrainList toViewController:[StrainListController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

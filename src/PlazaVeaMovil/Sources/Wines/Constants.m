@@ -76,10 +76,10 @@ NSString *const kSomelierTitle = @"Somelier";
 // NSLocalizedString(@""Somelier", nil) 
 
 // Controllers' URLs
-NSString *const kURLStrainList = @"tt:/launcher/wines/strains/";
+NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
 
 // Controllers' URL calls
-NSString *const kURLStrainListCall = @"tt:/launcher/wines/strains/";
+NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");

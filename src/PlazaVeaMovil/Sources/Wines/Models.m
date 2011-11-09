@@ -525,22 +525,22 @@ static NSString *const kMutableStrainsKeys = @"categories";
 
 @synthesize strains = _strains;
 
-- (void)insertObject:(Strain *)strain inRegionsAtIndex:(NSUInteger)index
+- (void)insertObject:(Strain *)strain inStrainsAtIndex:(NSUInteger)index
 {
     [_strains insertObject:strain atIndex:index];
 }
 
-- (void)insertRegions:(NSArray *)strains atIndexes:(NSIndexSet *)indexes
+- (void)insertStrains:(NSArray *)strains atIndexes:(NSIndexSet *)indexes
 {
     [_strains insertObjects:strains atIndexes:indexes];
 }
 
-- (void)removeObjectFromRegionsAtIndex:(NSUInteger)index
+- (void)removeObjectFromStrainssAtIndex:(NSUInteger)index
 {
     [_strains removeObjectAtIndex:index];
 }
 
-- (void)removeRegionsAtIndexes:(NSIndexSet *)indexes
+- (void)removeStrainsAtIndexes:(NSIndexSet *)indexes
 {
     [_strains removeObjectsAtIndexes:indexes];
 }

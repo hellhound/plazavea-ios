@@ -16,4 +16,13 @@
         [self setVariableHeightRows:YES];
     }
     return self;
-}@end
+}
+
+#pragma mark -
+#pragma mark TTTableViewController
+
+- (void)createModel
+{
+    [self setDataSource:[[[StrainListDataSource alloc] init] autorelease]];
+}
+@end
