@@ -286,15 +286,16 @@ static NSRelationshipDescription *kCategoryRelationship;
 
     for (NSArray *parsedRow in pasredCSV){
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
+        NSString *parsedName = [parsedRow objectAtIndex:1];
+        NSString *parsedNumber = [parsedRow objectAtIndex:2];
         NSMutableArray *parsedCollectionNumbers = [emergencyThree 
                 objectForKey:parsedRowCategory];
 
         if (parsedCollectionNumbers == nil){
-            [emergencyThree setObject:[NSMutableArray array] 
+            parsedCollectionNumbers = [NSMutableArray array];
+            [emergencyThree setObject: parsedCollectionNumbers
                     forKey:parsedRowCategory];
         }
-        NSString *parsedName = [parsedRow objectAtIndex:1];
-        NSString *parsedNumber = [parsedRow objectAtIndex:2];
         [parsedCollectionNumbers addObject:[NSDictionary 
                 dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
                 parsedNumber, kEmergencyNumberPhone, nil]];
