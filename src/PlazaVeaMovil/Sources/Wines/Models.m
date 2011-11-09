@@ -9,6 +9,8 @@
 #import "Wines/Models.h"
 
 static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
+static NSString *const kMutbaleSectionsKey = @"sections";
+static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 
 @implementation Wine
 
@@ -266,6 +268,109 @@ static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
         return;
     }
     [self copyPropertiesFromWine:wine];
+    [super requestDidFinishLoad:request];
+}
+@end
+
+@implementation WineCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        // Initialiazing only the mutable arrays
+        _sections = [[NSMutableArray alloc] init];
+        _sectionTitles = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_sections release];
+    [_sectionTitles release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize sections = _sections, sectionTitles = _sectionTitles;
+
+- (void)insertObject:(Wine *)wine inSectionsAtIndex:(NSUInteger)index
+{
+    [_sections insertObject:wine atIndex:index];
+}
+
+- (void)insertSections:(NSArray *)wines atIndexes:(NSIndexSet *)indexes
+{
+    [_sections insertObjects:wines atIndexes:indexes];
+}
+
+- (void)removeObjectFromSectionsAtIndex:(NSUInteger)index
+{
+    [_sections removeObjectAtIndex:index];
+}
+
+- (void)removeSectionsAtIndexes:(NSIndexSet *)indexes
+{
+    [_sections removeObjectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(NSString *)letter inSectionTitlesAtIndex:(NSUInteger)index
+{
+    [_sectionTitles insertObject:letter atIndex:index];
+}
+
+- (void)insertSectionTitles:(NSArray *)letters atIndexes:(NSIndexSet *)indexes
+{
+    [_sectionTitles insertObjects:letters atIndexes:indexes];
+}
+
+- (void)removeObjectFromSectionTitlesAtIndex:(NSUInteger)index
+{
+    [_sectionTitles removeObjectAtIndex:index];
+}
+
+- (void)removeSectionTitlesAtIndexes:(NSIndexSet *)indexes
+{
+    [_sectionTitles removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark WineCollection (Public)
+
+@synthesize categoryId = _categoryId;
+
+- (id)initWithCategoryId:(NSString *)categoryId
+{
+    if ((self = [self init]) != nil) {
+        _categoryId = [categoryId copy];
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:
+                URL(kURLWineCollectionEndPoint, _categoryId) delegate:self];
+        
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
     [super requestDidFinishLoad:request];
 }
 @end

@@ -26,5 +26,12 @@ extern NSString *const kWineTemperatureKey;
 extern NSString *const kWineCellaringKey;
 extern NSString *const kWineOxygenationKey;
 
+// WineCollection's constants
+
+// JSON keys
+extern NSString *const kWineCollectionLetterKey;
+extern NSString *const kWineCOllectionWinesKey;
+
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;
+extern NSString *const kURLWineCollectionEndPoint;

@@ -44,3 +44,16 @@
 - (id)initWithWineId:(NSString *)wineId;
 - (void)copyPropertiesFromWine:(Wine *)wine;
 @end
+
+@interface WineCollection: URLRequestModel
+{
+    NSString *_categoryId;
+    NSMutableArray *_sections;
+    NSMutableArray *_sectionTitles;
+}
+@property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, readonly) NSArray *sections;
+@property (nonatomic, readonly) NSArray *sectionTitles;
+
+- (id)initWithCategoryId:(NSString *)categoryId;
+@end

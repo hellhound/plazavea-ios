@@ -28,5 +28,13 @@ NSString *const kWineTemperatureKey = @"temperature";
 NSString *const kWineCellaringKey = @"cellaring";
 NSString *const kWineOxygenationKey = @"oxygenation";
 
+// WineCollection's constants
+
+// JSON keys
+NSString *const kWineCollectionLetterKey = @"letter";
+NSString *const kWineCOllectionWinesKey = @"wines";
+
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");
+NSString *const kURLWineCollectionEndPoint =
+        ENDPOINT(@"/wines/%@/alphabetic.json");
