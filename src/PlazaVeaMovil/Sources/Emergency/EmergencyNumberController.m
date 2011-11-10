@@ -42,9 +42,11 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 
 - (UINavigationItem *)navigationItem
 {
-    UINavigationItem *navItem = [super navigationItem];
-    [navItem setRightBarButtonItem:nil];
-    return navItem;
+    if (_navItem == nil){
+        _navItem = [super navigationItem];
+        [_navItem setRightBarButtonItem:nil];
+    }
+    return _navItem;
 }
 
 #pragma mark -
@@ -87,6 +89,7 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
             entityName:kEmergencyNumberEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         //TODO:load title and other stuff
+        [self setTitle:NSLocalizedString(kEmergencyNumberTitle, nil)];
         [self setEmergencyCategory:emergencyCategory];
         [self setCellStyle:UITableViewCellStyleSubtitle];
     }

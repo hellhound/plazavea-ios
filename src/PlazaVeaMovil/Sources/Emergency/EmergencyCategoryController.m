@@ -38,9 +38,11 @@
 
 - (UINavigationItem *)navigationItem
 {
-    UINavigationItem *navItem = [super navigationItem];
-    [navItem setRightBarButtonItem:nil];
-    return navItem;
+    if (_navItem == nil){
+        _navItem = [super navigationItem];
+        [_navItem setRightBarButtonItem:nil];
+    }
+    return _navItem;
 }
 
 #pragma mark -

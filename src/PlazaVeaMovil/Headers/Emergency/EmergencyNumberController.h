@@ -6,6 +6,7 @@
 
 @interface EmergencyNumberController : EditableCellTableViewController
 {
+    UINavigationItem *_navItem;
     EmergencyCategory *_emergencyCategory;
 }
 @property (nonatomic, retain) EmergencyCategory *emergencyCategory;

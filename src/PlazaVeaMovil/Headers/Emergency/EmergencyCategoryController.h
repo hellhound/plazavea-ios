@@ -5,5 +5,8 @@
 #import "Emergency/Models.h"
 
 @interface EmergencyCategoryController : EditableCellTableViewController
+{
+    UINavigationItem *_navItem;
+}
 
 @end

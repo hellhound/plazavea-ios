@@ -7,7 +7,7 @@
 
 // Administration of Emergency numbers
 NSString *const kEmergencyCategoryTitle = @"Num. Emergencia";
-// NSLocalizedString(@"Categorías", nil)
+// NSLocalizedString(@"Num. Emergencia", nil)
 
 NSString *const kEmergencyInitialCSV = @"emergency-initial-data";
 
@@ -17,6 +17,9 @@ NSString *const kEmergencyCategoryName = @"name";
 NSString *const kEmergencyCategoryNumbers = @"numbers";
 
 // EmergencyNumber model's constants
+
+NSString *const kEmergencyNumberTitle = @"Num. Emergencia";
+// NSLocalizedString(@"Num. Emergencia", nil)
 
 NSString *const kEmergencyNumberEntity = @"EmergencyNumber";
 NSString *const kEmergencyNumberClass = @"EmergencyNumber";

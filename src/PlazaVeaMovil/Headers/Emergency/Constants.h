@@ -14,6 +14,8 @@ extern NSString *const kEmergencyCategoryNumbers;
 
 // EmergencyNumber model's constants
 
+extern NSString *const kEmergencyNumberTitle;
+
 extern NSString *const kEmergencyNumberEntity;
 extern NSString *const kEmergencyNumberClass;
 extern NSString *const kEmergencyNumberName;

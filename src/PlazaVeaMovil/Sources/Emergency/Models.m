@@ -255,21 +255,20 @@ static NSRelationshipDescription *kCategoryRelationship;
             sectionNameKeyPath:nil
             cacheName:nil] autorelease];
     NSError *fetchError = nil;
-    NSError *contextError = nil;
 
     [resultsController performFetch:&fetchError];
+
+    EmergencyFile *emergencyFile;
+
     if ([[resultsController fetchedObjects] count] == 0){
-        [EmergencyFile fileWithName:csvFilePath context:context];
+        emergencyFile = [EmergencyFile fileWithName:csvFilePath
+                context:context];
         firstUpdate = YES;
-        [context save:&contextError];
-        if (contextError != nil)
-            return;
-        [resultsController performFetch:&fetchError];
+        [context save:nil];
+    } else {
+        emergencyFile = [[resultsController fetchedObjects]
+            objectAtIndex:0];
     }
-
-    EmergencyFile *emergencyFile = [[resultsController fetchedObjects]
-        objectAtIndex:0];
-
     if (![[emergencyFile name] isEqualToString:csvFilePath]){
         [emergencyFile setName:csvFilePath];
     } else if(!firstUpdate) {
@@ -303,11 +302,9 @@ static NSRelationshipDescription *kCategoryRelationship;
     for (NSString *categoryname in [emergencyThree allKeys]){
         EmergencyCategory *emergencyCategory = [EmergencyCategory
                 categoryWithName:categoryname context:context];
-        [context save:&contextError];
-        if (contextError != nil)
-            return;
         NSArray *emergencyNumberCollection = [emergencyThree 
                 objectForKey:categoryname];
+
         for (NSDictionary *emergencyNumber in emergencyNumberCollection){
             NSString *name =
                     [emergencyNumber objectForKey:kEmergencyNumberName];
@@ -315,9 +312,7 @@ static NSRelationshipDescription *kCategoryRelationship;
                     [emergencyNumber objectForKey:kEmergencyNumberPhone];
             [EmergencyNumber numberWithName:name phone:phone
                     category:emergencyCategory context:context];
-            [context save:&contextError];
-            if (contextError != nil)
-                return;
+            [context save:nil];
         }
     }
 }
@@ -342,13 +337,12 @@ static NSRelationshipDescription *kCategoryRelationship;
             sectionNameKeyPath:nil
             cacheName:nil] autorelease];
     NSError *fetchError = nil;
-    NSError *contextError = nil;
 
     [resultsController performFetch:&fetchError];
     for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
         [context deleteObject:manageObject];
     }
-    [context save:&contextError];
+    [context save:nil];
     //phones
     NSArray *sortNumberDescriptors = [NSArray arrayWithObject:
             [[[NSSortDescriptor alloc] initWithKey:kEmergencyNumberName
@@ -371,6 +365,6 @@ static NSRelationshipDescription *kCategoryRelationship;
     for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
         [context deleteObject:manageObject];
     }
-    [context save:&contextError];
+    [context save:nil];
 }
 @end
