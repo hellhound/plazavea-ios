@@ -23,3 +23,4 @@ NSString *const kURLShoppingListIcon = @"bundle://basket.png";
 NSString *const kURLRecipesIcon = @"bundle://recipeBook.png";
 NSString *const kURLOffersIcon = @"bundle://offers.png";
 NSString *const kURLStoresIcon = @"bundle://Stores.png";
+NSString *const kURLSomelierIcon = @"bundle://Somelier.png";
