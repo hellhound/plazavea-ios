@@ -63,9 +63,42 @@
     [sections addObject:kWineInfoLabel];
     TTTableCaptionItem *country = [TTTableCaptionItem
             itemWithText:[[wine country] name] caption:kWineCountryLabel];
-    
-    [items addObject:[NSArray arrayWithObjects:country, nil]];
-    
+    TTTableCaptionItem *region = [TTTableCaptionItem
+            itemWithText:[[wine region] name] caption:kWineRegionLabel];
+    TTTableCaptionItem *brand = [TTTableCaptionItem
+            itemWithText:[[wine brand] name] caption:kWineBrandLabel];
+    TTTableCaptionItem *kind = [TTTableCaptionItem
+            itemWithText:[[wine kind] name] caption:kWineKindLabel];
+    TTTableCaptionItem *winery = [TTTableCaptionItem
+            itemWithText:[[wine winery] name] caption:kWineWineryLabel];
+    TTTableCaptionItem *harvest = [TTTableCaptionItem
+            itemWithText:[[wine harvestYear] stringValue]
+                caption:kWineHarvestYearLabel];
+    TTTableCaptionItem *barrel = [TTTableCaptionItem
+            itemWithText:[wine barrel] caption:kWineBarrelLabel];
+    TTTableCaptionItem *price = [TTTableCaptionItem
+            itemWithText:[[wine price] stringValue] caption:kWinePriceLabel];
+    [items addObject:[NSArray arrayWithObjects:country, region, brand, kind,
+            winery, harvest, barrel, price, nil]];
+    // Taste section
+    [sections addObject:kWineTastingLabel];
+    TTTableCaptionItem *look = [TTTableCaptionItem
+            itemWithText:[wine look] caption:kWineLookLabel];
+    TTTableCaptionItem *taste = [TTTableCaptionItem
+            itemWithText:[wine taste] caption:kWineTasteLabel];
+    TTTableCaptionItem *smell = [TTTableCaptionItem
+            itemWithText:[wine smell] caption:kWineSmellLabel];
+    [items addObject:[NSArray arrayWithObjects:look, taste, smell, nil]];
+    // Tips section
+    [sections addObject:kWineTastingLabel];
+    TTTableCaptionItem *temp = [TTTableCaptionItem itemWithText:
+            [[wine temperature] stringValue] caption:kWineTemperatureLabel];
+    TTTableCaptionItem *cellaring = [TTTableCaptionItem itemWithText:
+            [[wine cellaring] stringValue] caption:kWineCellaringLabel];
+    TTTableCaptionItem *oxygenation = [TTTableCaptionItem itemWithText:
+            [[wine oxygenation] stringValue] caption:kWineOxygenationLabel];
+    [items addObject:
+            [NSArray arrayWithObjects:temp, cellaring, oxygenation, nil]];
     [self setSections:sections];
     [self setItems:items];
 }

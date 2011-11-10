@@ -337,7 +337,7 @@ static NSString *const kMutableStrainsKeys = @"strains";
         return nil;
     
     NSNumber *harvestYear, *temperature, *cellaring, *oxygenation;
-    NSString *code, *barrel, *look, *taste, *smell, *pictureURL;
+    NSString *code, *barrel, *look, *taste, *smell;
     NSArray *extrasPictureURLs;
     NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery;
     Country *country;
@@ -422,8 +422,6 @@ static NSString *const kMutableStrainsKeys = @"strains";
                 [NSURL URLWithString:extraPictureURL]];
     }
     [wine setCode:code];
-    if (pictureURL)
-        [wine setPictureURL:[NSURL URLWithString:pictureURL]];
     [wine setHarvestYear:harvestYear];
     [wine setBarrel:barrel];
     [wine setLook:look];
@@ -432,6 +430,11 @@ static NSString *const kMutableStrainsKeys = @"strains";
     [wine setTemperature:temperature];
     [wine setCellaring:cellaring];
     [wine setOxygenation:oxygenation];
+    [wine setCountry:country];
+    [wine setRegion:region];
+    [wine setBrand:brand];
+    [wine setKind:kind];
+    [wine setWinery:winery];
     return wine;
 }
 
@@ -462,12 +465,17 @@ static NSString *const kMutableStrainsKeys = @"strains";
     [self setTemperature:[wine temperature]];
     [self setCellaring:[wine cellaring]];
     [self setOxygenation:[wine oxygenation]];
+    [self setCountry:[wine country]];
+    [self setRegion:[wine region]];
+    [self setBrand:[wine brand]];
+    [self setKind:[wine kind]];
+    [self setWinery:[wine winery]];
     
-    NSMutableArray *extraPictureURLs =
+    /*NSMutableArray *extraPictureURLs =
             [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
     
     for (NSURL *extraPictureURL in [wine extraPictureURLs])
-        [extraPictureURLs addObject:extraPictureURL];
+        [extraPictureURLs addObject:extraPictureURL];*/
 }
 
 #pragma mark -

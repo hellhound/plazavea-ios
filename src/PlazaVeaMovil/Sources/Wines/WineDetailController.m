@@ -48,6 +48,7 @@ imageView = _imageView;
 {
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         [self setTableViewStyle:UITableViewStylePlain];
+        [self setVariableHeightRows:YES];
         _wineId = [wineId copy];
     }
     return self;
