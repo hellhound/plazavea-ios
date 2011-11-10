@@ -349,6 +349,8 @@ static NSString *const kMutableStrainsKeys = @"strains";
 {
     WineCollection *collection = [[[WineCollection alloc] init] autorelease];
     NSArray *wines;
+    UILocalizedIndexedCollation *collation =
+            [UILocalizedIndexedCollation currentCollation];
     NSMutableArray *mutableSections =
             [collection mutableArrayValueForKey:kMutableSectionsKey];
     NSMutableArray *mutableSectionTitles =
@@ -381,6 +383,8 @@ static NSString *const kMutableStrainsKeys = @"strains";
                 [NSMutableArray arrayWithCapacity:[rawWines count]];
         
         [mutableSectionTitles addObject:sectionTitles];
+        [collation sectionForObject:sectionTitles
+                collationStringSelector:@selector(description)];
         for (NSDictionary *rawWine in rawWines) {
             Wine *wine = [Wine shortWineFromDictionary:rawWine];
             
@@ -412,6 +416,11 @@ static NSString *const kMutableStrainsKeys = @"strains";
         [sectionTitles addObject:letter];
     for (Wine *wine in [collection sections])
         [sections addObject:wine];
+}
+
+- (NSArray *)sectionIndexTitles
+{
+    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 }
 
 #pragma mark -

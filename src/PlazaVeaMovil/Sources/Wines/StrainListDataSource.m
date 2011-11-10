@@ -59,7 +59,6 @@
     
     for (Strain *strain in strains) {
         NSString *name = [strain name];
-        NSString *url = URL(kURLWineListCall, [strain strainId]);
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
                 subtitle:nil URL:URL(kURLWineListCall, [strain strainId])];
         

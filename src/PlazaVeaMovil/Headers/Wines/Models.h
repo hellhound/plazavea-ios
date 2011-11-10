@@ -59,6 +59,7 @@
 
 - (id)initWithCategoryId:(NSString *)categoryId;
 - (void)copyPropertiesFromWineCollection:(WineCollection *)collection;
+- (NSArray *)sectionIndexTitles;
 @end
 
 @interface Strain: NSObject
