@@ -102,6 +102,10 @@ extern NSString *const kWineOxygenationLabel;
 extern NSString *const kWineInfoLabel;
 extern NSString *const kWineTastingLabel;
 extern NSString *const kWineTipsLabel;
+extern NSString *const kWinePriceUnits;
+extern NSString *const kWineTemperatureUnits;
+extern NSString *const kWineCellaringUnits;
+extern NSString *const kWineOxygenationUnits;
 
 // Launcher
 extern NSString *const kSomelierTitle;

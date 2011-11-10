@@ -1915,6 +1915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = ../Resources/Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
@@ -1943,6 +1944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;

@@ -148,6 +148,14 @@ NSString *const kWineTastingLabel = @"Nota de cata";
 // NSLocalizedString(@"Nota de cata", nil)
 NSString *const kWineTipsLabel = @"Tips";
 // NSLocalizedString(@"Tips", nil)
+NSString *const kWinePriceUnits = @"S/. %@";
+// NSLocalizedString(@"S/. %@", nil)
+NSString *const kWineTemperatureUnits = @"%@ ºC";
+// NSLocalizedString(@"%@ ºC", nil)
+NSString *const kWineCellaringUnits = @"%@ meses";
+// NSLocalizedString(@"%@ meses", nil)
+NSString *const kWineOxygenationUnits = @"%@ minutos";
+// NSLocalizedString(@"%@ minutos", nil)
 
 // messages
 NSString *const kSomelierTitle = @"Somelier";

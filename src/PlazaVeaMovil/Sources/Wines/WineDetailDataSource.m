@@ -61,6 +61,8 @@
     
     // Info section
     [sections addObject:kWineInfoLabel];
+    NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
+            [[wine price] stringValue]];
     TTTableCaptionItem *country = [TTTableCaptionItem
             itemWithText:[[wine country] name] caption:kWineCountryLabel];
     TTTableCaptionItem *region = [TTTableCaptionItem
@@ -77,7 +79,8 @@
     TTTableCaptionItem *barrel = [TTTableCaptionItem
             itemWithText:[wine barrel] caption:kWineBarrelLabel];
     TTTableCaptionItem *price = [TTTableCaptionItem
-            itemWithText:[[wine price] stringValue] caption:kWinePriceLabel];
+            itemWithText:priceLabel caption:kWinePriceLabel];
+    
     [items addObject:[NSArray arrayWithObjects:country, region, brand, kind,
             winery, harvest, barrel, price, nil]];
     // Taste section
@@ -88,15 +91,23 @@
             itemWithText:[wine taste] caption:kWineTasteLabel];
     TTTableCaptionItem *smell = [TTTableCaptionItem
             itemWithText:[wine smell] caption:kWineSmellLabel];
+    
     [items addObject:[NSArray arrayWithObjects:look, taste, smell, nil]];
     // Tips section
-    [sections addObject:kWineTastingLabel];
-    TTTableCaptionItem *temp = [TTTableCaptionItem itemWithText:
-            [[wine temperature] stringValue] caption:kWineTemperatureLabel];
-    TTTableCaptionItem *cellaring = [TTTableCaptionItem itemWithText:
-            [[wine cellaring] stringValue] caption:kWineCellaringLabel];
-    TTTableCaptionItem *oxygenation = [TTTableCaptionItem itemWithText:
-            [[wine oxygenation] stringValue] caption:kWineOxygenationLabel];
+    [sections addObject:kWineTipsLabel];
+    NSString *tempLabel = [NSString stringWithFormat:kWineTemperatureUnits,
+            [[wine temperature] stringValue]];
+    NSString *cellLabel = [NSString stringWithFormat:kWineCellaringUnits,
+            [[wine cellaring] stringValue]];
+    NSString *oxyLabel = [NSString stringWithFormat:kWineOxygenationUnits,
+            [[wine oxygenation] stringValue]];
+    TTTableCaptionItem *temp = [TTTableCaptionItem itemWithText:tempLabel
+            caption:kWineTemperatureLabel];
+    TTTableCaptionItem *cellaring = [TTTableCaptionItem itemWithText:cellLabel
+            caption:kWineCellaringLabel];
+    TTTableCaptionItem *oxygenation = [TTTableCaptionItem itemWithText:oxyLabel
+            caption:kWineOxygenationLabel];
+    
     [items addObject:
             [NSArray arrayWithObjects:temp, cellaring, oxygenation, nil]];
     [self setSections:sections];
