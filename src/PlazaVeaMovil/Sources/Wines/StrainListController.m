@@ -2,7 +2,7 @@
 
 #import "Wines/Constants.h"
 #import "Wines/StrainListDataSource.h"
-#import "WInes/StrainListController.h"
+#import "Wines/StrainListController.h"
 
 @implementation StrainListController
 
