@@ -75,7 +75,17 @@ extern NSString *const kWineListSubtitleForError;
 // Messages
 extern NSString *const kWineListTitle;
 
-// messages
+// WineListDataSource's constants
+
+// Messages
+extern NSString *const kWineDetailTitleForLoading;
+extern NSString *const kWineDetailTitleForReloading;
+extern NSString *const kWineDetailTitleForEmpty;
+extern NSString *const kWineDetailSubtitleForEmpty;
+extern NSString *const kWineDetailTitleForError;
+extern NSString *const kWineDetailSubtitleForError;
+
+// Launcher
 extern NSString *const kSomelierTitle;
 
 // Controllers' URLs

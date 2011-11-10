@@ -4,6 +4,61 @@
 
 #import "Common/Models/URLRequestModel.h"
 
+@interface Country: NSObject
+{
+    NSNumber *_countryId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *countryId;
+@property (nonatomic, copy) NSString *name;
+
++ (id)countryFromDictionary:(NSDictionary *)rawData;
+@end
+
+@interface WineRegion: NSObject
+{
+    NSNumber *_regionId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *regionId;
+@property (nonatomic, copy) NSString *name;
+
++ (id)regionFromDictionary:(NSDictionary *)rawData;
+@end
+
+@interface Brand: NSObject
+{
+    NSNumber *_brandId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *brandId;
+@property (nonatomic, copy) NSString *name;
+
++ (id)brandFromDictionary:(NSDictionary *)rawData;
+@end
+
+@interface Kind: NSObject
+{
+    NSNumber *_kindId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *kindId;
+@property (nonatomic, copy) NSString *name;
+
++ (id)kindFromDictionary:(NSDictionary *)rawData;
+@end
+
+@interface Winery: NSObject
+{
+    NSNumber *_wineryId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *wineryId;
+@property (nonatomic, copy) NSString *name;
+
++ (id)wineryFromDictionary:(NSDictionary *)rawData;
+@end
+
 @interface Wine: URLRequestModel
 {
     NSNumber *_wineId;
@@ -21,6 +76,11 @@
     NSNumber *_temperature;
     NSNumber *_cellaring;
     NSNumber *_oxygenation;
+    Country *_country;
+    WineRegion *_region;
+    Brand *_brand;
+    Kind *_kind;
+    Winery *_winery;
 }
 @property (nonatomic, retain) NSNumber *wineId;
 @property (nonatomic, copy) NSString *code;
@@ -37,6 +97,11 @@
 @property (nonatomic, retain) NSNumber *temperature;
 @property (nonatomic, retain) NSNumber *cellaring;
 @property (nonatomic, retain) NSNumber *oxygenation;
+@property (nonatomic, retain) Country *country;
+@property (nonatomic, retain) WineRegion *region;
+@property (nonatomic, retain) Brand *brand;
+@property (nonatomic, retain) Kind *kind;
+@property (nonatomic, retain) Winery *winery;
 
 + (id)shortWineFromDictionary:(NSDictionary *)rawWine;
 + (id)wineFromDictionary:(NSDictionary *)rawWine;

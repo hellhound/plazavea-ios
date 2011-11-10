@@ -93,7 +93,25 @@ NSString *const kWineListSubtitleForError = @"Error";
 
 // Messages
 NSString *const kWineListTitle = @"Vinos";
-// NSLocalizedString(@""Cepas", nil) 
+// NSLocalizedString(@""Vinos", nil) 
+
+// WineDetailDataSource's constants
+
+// Messages
+NSString *const kWineDetailTitleForLoading = @"Obteniendo datos";
+// NSLocalizedString(@"Obteniendo datos", nil)
+NSString *const kWineDetailTitleForReloading = @"Actualizando datos";
+// NSLocalizedString(@"Actualizando datos", nil)
+NSString *const kWineDetailTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"@"Sin información", nil)
+NSString *const kWineDetailSubtitleForEmpty = @"Por favor intente de nuevo "
+@"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kWineDetailTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kWineDetailSubtitleForError = @"Error";
+// NSLocalizedString(@""Error", nil)
 
 // messages
 NSString *const kSomelierTitle = @"Somelier";

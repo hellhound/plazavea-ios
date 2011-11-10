@@ -13,6 +13,206 @@ static NSString *const kMutableSectionsKey = @"sections";
 static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 static NSString *const kMutableStrainsKeys = @"strains";
 
+@implementation Country
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_countryId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize countryId = _countryId, name = _name;
+
++ (id)countryFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *modelId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![modelId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    Country *model = [[[Country alloc] init] autorelease];
+    
+    [model setCountryId:modelId];
+    [model setName:name];
+    return model;
+}
+@end
+
+@implementation WineRegion
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_regionId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize regionId = _regionId, name = _name;
+
++ (id)regionFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *modelId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![modelId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    WineRegion *model = [[[WineRegion alloc] init] autorelease];
+    
+    [model setRegionId:modelId];
+    [model setName:name];
+    return model;
+}
+@end
+
+@implementation Brand
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_brandId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize brandId = _brandId, name = _name;
+
++ (id)brandFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *modelId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![modelId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    Brand *model = [[[Brand alloc] init] autorelease];
+    
+    [model setBrandId:modelId];
+    [model setName:name];
+    return model;
+}
+@end
+
+@implementation Kind
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_kindId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize kindId = _kindId, name = _name;
+
++ (id)kindFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *modelId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![modelId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    Kind *model = [[[Kind alloc] init] autorelease];
+    
+    [model setKindId:modelId];
+    [model setName:name];
+    return model;
+}
+@end
+
+@implementation Winery
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_wineryId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize wineryId = _wineryId, name = _name;
+
++ (id)wineryFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *modelId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![modelId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    Winery *model = [[[Winery alloc] init] autorelease];
+    
+    [model setWineryId:modelId];
+    [model setName:name];
+    return model;
+}
+@end
+
 @implementation Wine
 
 #pragma mark -
@@ -42,6 +242,11 @@ static NSString *const kMutableStrainsKeys = @"strains";
     [_temperature release];
     [_cellaring release];
     [_oxygenation release];
+    [_country release];
+    [_region release];
+    [_brand release];
+    [_kind release];
+    [_winery release];
     [super dealloc];
 }
 
@@ -79,7 +284,9 @@ static NSString *const kMutableStrainsKeys = @"strains";
         milliliters = _milliliters, pictureURL= _pictureURL, price = _price,
             harvestYear = _harvestYear, barrel = _barrel, look = _look,
             taste = _taste, smell = _smell, temperature = _temperature,
-            cellaring = _cellaring, oxygenation = _oxygenation;
+            cellaring = _cellaring, oxygenation = _oxygenation,
+            country = _country, region = _region, brand = _brand, kind = _kind,
+            winery = _winery;
 
 + (id)shortWineFromDictionary:(NSDictionary *)rawWine
 {
@@ -132,6 +339,12 @@ static NSString *const kMutableStrainsKeys = @"strains";
     NSNumber *harvestYear, *temperature, *cellaring, *oxygenation;
     NSString *code, *barrel, *look, *taste, *smell, *pictureURL;
     NSArray *extrasPictureURLs;
+    NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery;
+    Country *country;
+    WineRegion *region;
+    Brand *brand;
+    Kind *kind;
+    Winery *winery;
     
     if ((harvestYear = [rawWine objectForKey:kWineHarvestYearKey]) == nil)
         return nil;
@@ -169,13 +382,31 @@ static NSString *const kMutableStrainsKeys = @"strains";
         return nil;
     if (![smell isKindOfClass:[NSString class]])
         return nil;
-    if ((pictureURL = [rawWine objectForKey:kWinePictureURLKey]) == nil)
+    if ((rawCountry = [rawWine objectForKey:kWineCountryKey]) == nil)
         return nil;
-    if (![pictureURL isKindOfClass:[NSString class]]) {
-        if (![pictureURL isKindOfClass:[NSNull class]])
-            return nil;
-        pictureURL = nil;
-    }
+    country = [Country countryFromDictionary:rawCountry];
+    if (country == nil)
+        return nil;
+    if ((rawRegion = [rawWine objectForKey:kWineRegionKey]) == nil)
+        return nil;
+    region = [WineRegion regionFromDictionary:rawRegion];
+    if (region == nil)
+        return nil;
+    if ((rawBrand = [rawWine objectForKey:kWineBrandKey]) == nil)
+        return nil;
+    brand = [Brand brandFromDictionary:rawBrand];
+    if (country == nil)
+        return nil;
+    if ((rawKind = [rawWine objectForKey:kWineKindKey]) == nil)
+        return nil;
+    kind = [Country countryFromDictionary:rawKind];
+    if (kind == nil)
+        return nil;
+    if ((rawWinery = [rawWine objectForKey:kWineWineryKey]) == nil)
+        return nil;
+    winery = [Country countryFromDictionary:rawWinery];
+    if (winery == nil)
+        return nil;
     if ((extrasPictureURLs =
             [rawWine objectForKey:kWineExtraPicturesKey]) == nil)
         return nil;
