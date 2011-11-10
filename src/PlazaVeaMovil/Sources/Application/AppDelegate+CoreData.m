@@ -10,6 +10,7 @@
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Common/Models/ManagedObject.h"
+#import "Emergency/Models.h"
 #import "Application/AppDelegate.h"
 
 @interface AppDelegate (CoreDataPrivate)
@@ -44,6 +45,8 @@
     [_model setEntities:[allEntities allObjects]];
     if ([allLocalizations count] > 0)
         [_model setLocalizationDictionary:allLocalizations];
+    //load the emergencynumbers from CSV
+    [EmergencyFile loadFromCSVinContext:context];
 }
 
 #pragma mark -

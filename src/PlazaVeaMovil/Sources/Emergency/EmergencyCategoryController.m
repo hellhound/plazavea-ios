@@ -10,6 +10,7 @@
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
 #import "Emergency/EmergencyCategoryController.h"
+#import "Emergency/EmergencyNumberController.h"
 
 @implementation EmergencyCategoryController
 
@@ -27,7 +28,6 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyCategoryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [EmergencyFile loadFromCSVinContext:context];
         [self setTitle:NSLocalizedString(kEmergencyCategoryTitle, nil)];
     }
     return self;
@@ -38,9 +38,11 @@
 
 - (UINavigationItem *)navigationItem
 {
-    UINavigationItem *navItem = [super navigationItem];
-    [navItem setRightBarButtonItem:nil];
-    return navItem;
+    if (_navItem == nil){
+        _navItem = [super navigationItem];
+        [_navItem setRightBarButtonItem:nil];
+    }
+    return _navItem;
 }
 
 #pragma mark -
@@ -71,5 +73,16 @@
                 initWithStyle:_cellStyle
                 reuseIdentifier:reuseIdentifier] autorelease];
     return cell;
+}
+
+- (void)didSelectRowForObject:(EmergencyCategory *)emergencyCategory
+                  atIndexPath:(NSIndexPath *)indexPath
+{
+    if (![self isEditing])
+        [[self navigationController]
+                pushViewController:
+                    [[[EmergencyNumberController alloc]
+                        initWithCategory:emergencyCategory] autorelease]
+                animated:YES];
 }
 @end

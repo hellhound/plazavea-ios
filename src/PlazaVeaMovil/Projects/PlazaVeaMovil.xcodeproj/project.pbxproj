@@ -142,6 +142,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CC10ED83146A270C0004CA1B /* EmergencyNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */; };
 		CC1947BC1455E4940004C283 /* StoreDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1947BA1455E4940004C283 /* StoreDetailController.m */; };
 		CC2083801469A32E00F81BE1 /* EmergencyCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
@@ -712,6 +713,7 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../../Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyNumberController.m; sourceTree = "<group>"; };
 		CC1947BA1455E4940004C283 /* StoreDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailController.m; sourceTree = "<group>"; };
 		CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyCategoryController.m; sourceTree = "<group>"; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 		2C291C10145CD08B002B7F78 /* Emergency */ = {
 			isa = PBXGroup;
 			children = (
+				CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */,
 				CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */,
 				2C291C11145CD08B002B7F78 /* Constants.m */,
 				2C291C12145CD08B002B7F78 /* Models.m */,
@@ -1783,6 +1786,7 @@
 				2C146F1B1456220100E5EAFC /* ImageCarouselItemCell.m in Sources */,
 				CC2083801469A32E00F81BE1 /* EmergencyCategoryController.m in Sources */,
 				2CEA22091466F91300391721 /* CLLocation+Additions.m in Sources */,
+				CC10ED83146A270C0004CA1B /* EmergencyNumberController.m in Sources */,
 				2F5B2A4614699E38008CFB6A /* Models.m in Sources */,
 				2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */,
 				2F012A07146B1A8C006098EB /* StrainListDataSource.m in Sources */,
