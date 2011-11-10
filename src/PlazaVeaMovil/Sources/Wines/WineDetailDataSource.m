@@ -58,7 +58,13 @@
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
-    NSURL *pictureURL = [wine pictureURL];
+    
+    // Info section
+    [sections addObject:kWineInfoLabel];
+    TTTableCaptionItem *country = [TTTableCaptionItem
+            itemWithText:[[wine country] name] caption:kWineCountryLabel];
+    
+    [items addObject:[NSArray arrayWithObjects:country, nil]];
     
     [self setSections:sections];
     [self setItems:items];

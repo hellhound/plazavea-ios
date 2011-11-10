@@ -75,7 +75,7 @@ extern NSString *const kWineListSubtitleForError;
 // Messages
 extern NSString *const kWineListTitle;
 
-// WineListDataSource's constants
+// WineDetailDataSource's constants
 
 // Messages
 extern NSString *const kWineDetailTitleForLoading;
@@ -84,6 +84,24 @@ extern NSString *const kWineDetailTitleForEmpty;
 extern NSString *const kWineDetailSubtitleForEmpty;
 extern NSString *const kWineDetailTitleForError;
 extern NSString *const kWineDetailSubtitleForError;
+extern NSString *const kWineMillilitersLabel;
+extern NSString *const kWineCountryLabel;
+extern NSString *const kWineRegionLabel;
+extern NSString *const kWineBrandLabel;
+extern NSString *const kWineKindLabel;
+extern NSString *const kWineWineryLabel;
+extern NSString *const kWinePriceLabel;
+extern NSString *const kWineHarvestYearLabel;
+extern NSString *const kWineBarrelLabel;
+extern NSString *const kWineLookLabel;
+extern NSString *const kWineTasteLabel;
+extern NSString *const kWineSmellLabel;
+extern NSString *const kWineTemperatureLabel;
+extern NSString *const kWineCellaringLabel;
+extern NSString *const kWineOxygenationLabel;
+extern NSString *const kWineInfoLabel;
+extern NSString *const kWineTastingLabel;
+extern NSString *const kWineTipsLabel;
 
 // Launcher
 extern NSString *const kSomelierTitle;
@@ -91,10 +109,12 @@ extern NSString *const kSomelierTitle;
 // Controllers' URLs
 extern NSString *const kURLStrainList;
 extern NSString *const kURLWineList;
+extern NSString *const kURLWineDetail;
 
 // Controllers' URL calls
 extern NSString *const kURLStrainListCall;
 extern NSString *const kURLWineListCall;
+extern NSString *const kURLWineDetailCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;

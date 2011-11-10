@@ -112,6 +112,42 @@ NSString *const kWineDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kWineDetailSubtitleForError = @"Error";
 // NSLocalizedString(@""Error", nil)
+NSString *const kWineMillilitersLabel = @"Mililitros";
+// NSLocalizedString(@"Mililitros", nil)
+NSString *const kWineCountryLabel = @"País";
+// NSLocalizedString(@"País", nil)
+NSString *const kWineRegionLabel = @"Región";
+// NSLocalizedString(@"Región", nil)
+NSString *const kWineBrandLabel = @"Marca";
+// NSLocalizedString(@"Marca", nil)
+NSString *const kWineKindLabel = @"Tipo";
+// NSLocalizedString(@"Tipo", nil)
+NSString *const kWineWineryLabel = @"Bodega";
+// NSLocalizedString(@"Bodega, nil)
+NSString *const kWinePriceLabel = @"Precio";
+// NSLocalizedString(@"Precio", nil)
+NSString *const kWineHarvestYearLabel = @"Fecha de vendimia";
+// NSLocalizedString(@"Fecha de vendimia", nil)
+NSString *const kWineBarrelLabel = @"Barrica";
+// NSLocalizedString(@"Barrica, nil)
+NSString *const kWineLookLabel = @"Vista";
+// NSLocalizedString(@"Vista", nil)
+NSString *const kWineTasteLabel = @"Gusto";
+// NSLocalizedString(@"Gusto", nil)
+NSString *const kWineSmellLabel = @"Nariz";
+// NSLocalizedString(@"Nariz", nil)
+NSString *const kWineTemperatureLabel = @"Temperatura";
+// NSLocalizedString(@"Temperatura", nil)
+NSString *const kWineCellaringLabel = @"Potencial de guarda";
+// NSLocalizedString(@"Potencial de guarda", nil)
+NSString *const kWineOxygenationLabel = @"Oxigenación";
+// NSLocalizedString(@"Oxigenación", nil)
+NSString *const kWineInfoLabel = @"Información";
+// NSLocalizedString(@"Información", nil)
+NSString *const kWineTastingLabel = @"Nota de cata";
+// NSLocalizedString(@"Nota de cata", nil)
+NSString *const kWineTipsLabel = @"Tips";
+// NSLocalizedString(@"Tips", nil)
 
 // messages
 NSString *const kSomelierTitle = @"Somelier";
@@ -121,10 +157,12 @@ NSString *const kSomelierTitle = @"Somelier";
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
+NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
 
 // Controllers' URL calls
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
+NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");

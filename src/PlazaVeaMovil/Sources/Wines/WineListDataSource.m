@@ -77,7 +77,7 @@
             for (Wine *wine in section) {
                 TableImageSubtitleItem *item = [TableImageSubtitleItem
                         itemWithText:[wine name] subtitle:nil
-                            URL:nil];
+                            URL:URL(kURLWineDetailCall, [wine wineId])];
                 
                 [sectionItems addObject:item];
             }
