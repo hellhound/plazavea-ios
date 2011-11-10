@@ -7,9 +7,11 @@
 #import "Wines/WineDetailDataSource.h"
 
 @interface WineDetailController : ReconnectableTableViewController
+        <WineDetailDataSourceDelegate>
 {
     NSString *_wineId;
     UIView *_headerView;
+    UIView *_footerView;
     UILabel *_titleLabel;
     TTImageView *_imageView;
 }

@@ -105,7 +105,7 @@ NSString *const kWineDetailTitleForReloading = @"Actualizando datos";
 NSString *const kWineDetailTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"@"Sin información", nil)
 NSString *const kWineDetailSubtitleForEmpty = @"Por favor intente de nuevo "
-@"más tarde, aún no existe información disponible";
+        @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kWineDetailTitleForError = @"Error";
@@ -126,7 +126,7 @@ NSString *const kWineWineryLabel = @"Bodega";
 // NSLocalizedString(@"Bodega, nil)
 NSString *const kWinePriceLabel = @"Precio";
 // NSLocalizedString(@"Precio", nil)
-NSString *const kWineHarvestYearLabel = @"Fecha de vendimia";
+NSString *const kWineHarvestYearLabel = @"Fecha de Vendimia";
 // NSLocalizedString(@"Fecha de vendimia", nil)
 NSString *const kWineBarrelLabel = @"Barrica";
 // NSLocalizedString(@"Barrica, nil)
@@ -138,7 +138,7 @@ NSString *const kWineSmellLabel = @"Nariz";
 // NSLocalizedString(@"Nariz", nil)
 NSString *const kWineTemperatureLabel = @"Temperatura";
 // NSLocalizedString(@"Temperatura", nil)
-NSString *const kWineCellaringLabel = @"Potencial de guarda";
+NSString *const kWineCellaringLabel = @"Potencia de Guarda";
 // NSLocalizedString(@"Potencial de guarda", nil)
 NSString *const kWineOxygenationLabel = @"Oxigenación";
 // NSLocalizedString(@"Oxigenación", nil)

@@ -14,13 +14,33 @@
 @implementation WineDetailDataSource
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void) dealloc
+{
+    [self setDelegate:nil];
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark StoreDetailDataSource (public)
+
+@synthesize  delegate = _delegate;
 
 
 - (id)initWithWineId:(NSString *)wineId
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[Wine alloc] initWithWineId:wineId] autorelease]];
+    }
+    return self;
+}
+- (id)initWithWineId:(NSString *)wineId
+            delegate:(id<WineDetailDataSourceDelegate>)delegate
+{
+    if ((self = [super init]) != nil) {
+        [self setModel:[[[Wine alloc] initWithWineId:wineId] autorelease]];
+        [self setDelegate:delegate];
     }
     return self;
 }
@@ -58,6 +78,8 @@
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
+    [_delegate dataSource:self needsDetailImageWithURL:[wine pictureURL]
+            andTitle:[wine name]];
     
     // Info section
     [sections addObject:kWineInfoLabel];
