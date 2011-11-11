@@ -104,6 +104,7 @@
 		2F012A09146B1F11006098EB /* StrainListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F012A08146B1F11006098EB /* StrainListController.m */; };
 		2F0A6878146B38F900380798 /* WineListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A6877146B38F900380798 /* WineListDataSource.m */; };
 		2F0A687A146B3E8100380798 /* WineListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A6879146B3E8100380798 /* WineListController.m */; };
+		2F142222146D4D7000CB10A9 /* default-wine-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F142221146D4D7000CB10A9 /* default-wine-detail.png */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
@@ -674,6 +675,7 @@
 		2F012A08146B1F11006098EB /* StrainListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrainListController.m; sourceTree = "<group>"; };
 		2F0A6877146B38F900380798 /* WineListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListDataSource.m; sourceTree = "<group>"; };
 		2F0A6879146B3E8100380798 /* WineListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListController.m; sourceTree = "<group>"; };
+		2F142221146D4D7000CB10A9 /* default-wine-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-wine-detail.png"; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F142221146D4D7000CB10A9 /* default-wine-detail.png */,
 				2F012A04146B16B3006098EB /* Somelier.png */,
 				CC6B5C2A1469DF8D00407DAA /* emergency-initial-data-11-8.csv */,
 				2FA10201144F98160079A0E6 /* Stores.png */,
@@ -1673,6 +1676,7 @@
 				2FA10202144F98160079A0E6 /* Stores.png in Resources */,
 				CC6B5C2B1469DF8D00407DAA /* emergency-initial-data-11-8.csv in Resources */,
 				2F012A05146B16B3006098EB /* Somelier.png in Resources */,
+				2F142222146D4D7000CB10A9 /* default-wine-detail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
