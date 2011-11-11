@@ -76,6 +76,7 @@
     NSMutableArray *_features;
     NSMutableArray *_tips;
     NSNumber *_rations;
+    NSUInteger _didFinishCount;
 }
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, copy) NSString *code;
@@ -96,6 +97,7 @@
 - (void)copyPropertiesFromRecipe:(Recipe *)recipe;
 - (BOOL)isColdMeal;
 - (ShoppingList *)createShoppingList;
+- (void)confirmFinishLoad;
 @end
 
 @interface RecipeCollection: URLRequestModel
