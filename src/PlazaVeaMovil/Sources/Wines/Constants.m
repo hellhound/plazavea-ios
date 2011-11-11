@@ -157,7 +157,13 @@ NSString *const kWineCellaringUnits = @"%@ meses";
 NSString *const kWineOxygenationUnits = @"%@ minutos";
 // NSLocalizedString(@"%@ minutos", nil)
 
-// messages
+// Generic sizes and images
+const CGFloat kWineDetailImageWidth = 100.;
+const CGFloat kWineDetailImageHeight = 150.;
+const CGFloat kWineDetailLabelWidth = 320.;
+NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
+
+// Launcher
 NSString *const kSomelierTitle = @"Somelier";
 // NSLocalizedString(@""Somelier", nil) 
 

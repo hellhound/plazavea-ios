@@ -107,6 +107,12 @@ extern NSString *const kWineTemperatureUnits;
 extern NSString *const kWineCellaringUnits;
 extern NSString *const kWineOxygenationUnits;
 
+// Generic sizes and images
+extern const CGFloat kWineDetailImageWidth;
+extern const CGFloat kWineDetailImageHeight;
+extern const CGFloat kWineDetailLabelWidth;
+extern NSString *const kWineDetailDefaultImage;
+
 // Launcher
 extern NSString *const kSomelierTitle;
 

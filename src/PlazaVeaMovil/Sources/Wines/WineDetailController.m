@@ -5,7 +5,6 @@
 
 #import "Common/Constants.h"
 #import "Wines/Constants.h"
-#import "Stores/Constants.h"
 #import "Wines/WineDetailController.h"
 
 @interface WineDetailController()
@@ -41,10 +40,10 @@
     
     UITableView *tableView = [self tableView];
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect footerFrame = CGRectMake(.0, .0, boundsWidth,
-            kStoreDetailImageHeight);
-    CGRect imageFrame = CGRectMake((boundsWidth - kStoreDetailImageWidth) / 2.,
-            .0, kStoreDetailImageWidth, kStoreDetailImageHeight);
+    CGRect footerFrame =
+            CGRectMake(.0, .0, boundsWidth, kWineDetailImageHeight);
+    CGRect imageFrame = CGRectMake((boundsWidth - kWineDetailImageWidth) / 2.,
+            .0, kWineDetailImageWidth, kWineDetailImageHeight);
     
     [_footerView setFrame:footerFrame];
     [_imageView setFrame:imageFrame];
@@ -79,9 +78,9 @@
         [self setFooterView:[[[UIView alloc] initWithFrame:CGRectZero]
                 autorelease]];
         [self setImageView:[[[TTImageView alloc] initWithFrame:
-                CGRectMake(.0, .0, kStoreDetailImageWidth,
-                    kStoreDetailImageHeight)] autorelease]];
-        [_imageView setDefaultImage:TTIMAGE(kStoreDetailDefaultImage)];
+                CGRectMake(.0, .0, kWineDetailImageWidth,
+                    kWineDetailImageHeight)] autorelease]];
+        [_imageView setDefaultImage:TTIMAGE(kWineDetailDefaultImage)];
         [_imageView setAutoresizingMask:UIViewAutoresizingNone];
         [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
                 UIViewAutoresizingFlexibleRightMargin];
