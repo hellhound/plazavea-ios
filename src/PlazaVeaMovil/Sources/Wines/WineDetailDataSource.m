@@ -6,6 +6,8 @@
 #import "Common/Constants.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
+#import "Common/Views/TableCaptionItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
 
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
@@ -85,33 +87,33 @@
     [sections addObject:kWineInfoLabel];
     NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
             [[wine price] stringValue]];
-    TTTableCaptionItem *country = [TTTableCaptionItem
+    TableCaptionItem *country = [TableCaptionItem
             itemWithText:[[wine country] name] caption:kWineCountryLabel];
-    TTTableCaptionItem *region = [TTTableCaptionItem
+    TableCaptionItem *region = [TableCaptionItem
             itemWithText:[[wine region] name] caption:kWineRegionLabel];
-    TTTableCaptionItem *brand = [TTTableCaptionItem
+    TableCaptionItem *brand = [TableCaptionItem
             itemWithText:[[wine brand] name] caption:kWineBrandLabel];
-    TTTableCaptionItem *kind = [TTTableCaptionItem
+    TableCaptionItem *kind = [TableCaptionItem
             itemWithText:[[wine kind] name] caption:kWineKindLabel];
-    TTTableCaptionItem *winery = [TTTableCaptionItem
+    TableCaptionItem *winery = [TableCaptionItem
             itemWithText:[[wine winery] name] caption:kWineWineryLabel];
-    TTTableCaptionItem *harvest = [TTTableCaptionItem
+    TableCaptionItem *harvest = [TableCaptionItem
             itemWithText:[[wine harvestYear] stringValue]
                 caption:kWineHarvestYearLabel];
-    TTTableCaptionItem *barrel = [TTTableCaptionItem
+    TableCaptionItem *barrel = [TableCaptionItem
             itemWithText:[wine barrel] caption:kWineBarrelLabel];
-    TTTableCaptionItem *price = [TTTableCaptionItem
+    TableCaptionItem *price = [TableCaptionItem
             itemWithText:priceLabel caption:kWinePriceLabel];
     
     [items addObject:[NSArray arrayWithObjects:country, region, brand, kind,
             winery, harvest, barrel, price, nil]];
     // Taste section
     [sections addObject:kWineTastingLabel];
-    TTTableCaptionItem *look = [TTTableCaptionItem
+    TableCaptionItem *look = [TableCaptionItem
             itemWithText:[wine look] caption:kWineLookLabel];
-    TTTableCaptionItem *taste = [TTTableCaptionItem
+    TableCaptionItem *taste = [TableCaptionItem
             itemWithText:[wine taste] caption:kWineTasteLabel];
-    TTTableCaptionItem *smell = [TTTableCaptionItem
+    TableCaptionItem *smell = [TableCaptionItem
             itemWithText:[wine smell] caption:kWineSmellLabel];
     
     [items addObject:[NSArray arrayWithObjects:look, taste, smell, nil]];
@@ -123,11 +125,11 @@
             [[wine cellaring] stringValue]];
     NSString *oxyLabel = [NSString stringWithFormat:kWineOxygenationUnits,
             [[wine oxygenation] stringValue]];
-    TTTableCaptionItem *temp = [TTTableCaptionItem itemWithText:tempLabel
+    TableCaptionItem *temp = [TableCaptionItem itemWithText:tempLabel
             caption:kWineTemperatureLabel];
-    TTTableCaptionItem *cellaring = [TTTableCaptionItem itemWithText:cellLabel
+    TableCaptionItem *cellaring = [TableCaptionItem itemWithText:cellLabel
             caption:kWineCellaringLabel];
-    TTTableCaptionItem *oxygenation = [TTTableCaptionItem itemWithText:oxyLabel
+    TableCaptionItem *oxygenation = [TableCaptionItem itemWithText:oxyLabel
             caption:kWineOxygenationLabel];
     
     [items addObject:
@@ -140,6 +142,8 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]])
         return [TableImageSubtitleItemCell class];
+    if ([object isKindOfClass:[TableCaptionItem class]])
+        return [TableCaptionItemCell class];
     return [super tableView:tableView cellClassForObject:object];
 }
 
