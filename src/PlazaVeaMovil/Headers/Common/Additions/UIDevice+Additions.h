@@ -12,4 +12,5 @@ typedef enum {
 @interface UIDevice (Additions)
 
 - (UIDeviceSystemVersion)deviceSystemVersion;
+- (NSString *)generateRandomUUID;
 @end
