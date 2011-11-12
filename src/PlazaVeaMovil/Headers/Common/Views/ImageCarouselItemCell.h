@@ -3,8 +3,18 @@
 
 #import <Three20/Three20.h>
 
+@class LinkableScrollView;
+
+@protocol LinkableScrollViewDelegate <UIScrollViewDelegate>
+
+- (void)scrollViewDidTapped:(UITouch *)touch withEvent:(UIEvent *)event;
+@end
+
+@interface LinkableScrollView: UIScrollView
+@end
+
 @interface ImageCarouselItemCell: TTTableLinkedItemCell
-    <UIScrollViewDelegate, TTImageViewDelegate>
+    <UIScrollViewDelegate, TTImageViewDelegate, LinkableScrollViewDelegate>
 {
     NSMutableArray *_imageViews;
     NSMutableArray *_loadedImageViews;

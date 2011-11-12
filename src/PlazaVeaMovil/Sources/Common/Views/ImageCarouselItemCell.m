@@ -52,6 +52,25 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 }
 @end
 
+@implementation LinkableScrollView
+
+#pragma mark -
+#pragma mark UIRespoonder
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([touches count] != 1)
+        [super touchesEnded:touches withEvent:event];
+
+    id<LinkableScrollViewDelegate> delegate =
+            (id<LinkableScrollViewDelegate>)[self delegate];
+
+    if ([delegate conformsToProtocol:@protocol(LinkableScrollViewDelegate)])
+        [delegate scrollViewDidTapped:(UITouch *)[touches anyObject]
+            withEvent:event];
+}
+@end
+
 @interface ImageCarouselItemCell ()
 
 // It's only purpose is to retain every image view for being available to their
@@ -307,7 +326,7 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 {
     if (_scrollView == nil) {
         // Configuring the scroll view
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        _scrollView = [[LinkableScrollView alloc] initWithFrame:CGRectZero];
         [_scrollView setDelegate:self];
         [_scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [_scrollView setPagingEnabled:YES];
@@ -593,5 +612,36 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
     [pageControl setNumberOfPages:[loadedImageViews count]];
     [self createCircularIllusion];
     [self scheduleAutoscrolling];
+}
+
+#pragma mark -
+#pragma mark <LinkableScrollViewDelegate>
+
+- (void)scrollViewDidTapped:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([self isAnimating])
+        return;
+    for (CircularScrollEntry *entry in [self shownEntries]) {
+        TTImageView *imageView = [entry imageView];
+        UIView *touchedView = [imageView hitTest:
+                [touch locationInView:imageView] withEvent:event];
+
+        if (touchedView != nil) {
+            // FIXME Should be done using a NSDictionary containing both the
+            // TTImageView and the TableImageSutbtitleItem that represent
+            // tapped banner
+            ImageCarouselItem *carouselItem = [self object];
+
+            for (TableImageSubtitleItem *item in [carouselItem imageItems])
+                if ([item isKindOfClass:[TableImageSubtitleItem class]] &&
+                        [[item imageURL] isEqualToString:
+                            [imageView urlPath]]) {
+                    [[TTNavigator navigator] openURLAction:
+                            [[TTURLAction actionWithURLPath:[item URL]]
+                                applyAnimated:YES]];
+                }
+            break;
+        }
+    }
 }
 @end
