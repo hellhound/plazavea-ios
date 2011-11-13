@@ -18,6 +18,8 @@
 // devices because theres a new property window on <UIApplicationDelegate> in
 // SDK 5.0
 @property (nonatomic, retain) UIWindow *window;
+
+- (NSString *)getUUID;
 @end
 
 @interface AppDelegate (CoreData)

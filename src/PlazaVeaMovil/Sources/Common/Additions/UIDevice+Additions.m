@@ -52,14 +52,4 @@ static NSCharacterSet *kPunctuationCharacterSet;
         return kSystemVersion6andUp;
     return majorVersion;
 }
-
-- (NSString *)generateRandomUUID
-{
-    CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuidStr = [(NSString *)CFUUIDCreateString(
-            kCFAllocatorDefault, uuidObject) autorelease];
-
-    CFRelease(uuidObject);
-    return uuidStr;
-}
 @end
