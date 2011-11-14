@@ -54,7 +54,7 @@
 {
     EmergencyCategory *category = (EmergencyCategory *)object;
 
-    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[category name]];
 }
 
