@@ -130,3 +130,4 @@ extern NSString *const kURLWineDetailCall;
 extern NSString *const kURLWineDetailEndPoint;
 extern NSString *const kURLWineCollectionEndPoint;
 extern NSString *const kURLStrainCollectionEndPoint;
+extern NSString *const kURLRecipeStrainCollectionEndPoint;

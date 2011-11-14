@@ -787,6 +787,12 @@ static NSString *const kRecipeMiscYes = @"YES";
     return shoppingList;
 }
 
+- (void)confirmFinishLoad{
+    _didFinishCount += 1;
+    if (_didFinishCount == 2){
+    }
+}
+
 #pragma mark -
 #pragma mark <TTModel>
 

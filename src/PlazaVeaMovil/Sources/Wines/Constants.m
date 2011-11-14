@@ -184,3 +184,5 @@ NSString *const kURLWineCollectionEndPoint =
         ENDPOINT(@"/wines/%@/alphabetic.json");
 NSString *const kURLStrainCollectionEndPoint =
         ENDPOINT(@"/wines/categories.json");
+NSString *const kURLRecipeStrainCollectionEndPoint =
+        ENDPOINT(@"/recipes/%@/wines/categories.json");
