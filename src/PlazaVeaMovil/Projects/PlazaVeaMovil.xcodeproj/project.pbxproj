@@ -150,6 +150,7 @@
 		CC2083801469A32E00F81BE1 /* EmergencyCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
+		CC5F8524146F558300414D33 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F8523146F558300414D33 /* Constants.m */; };
 		CC6B5C2B1469DF8D00407DAA /* emergency-initial-data-11-8.csv in Resources */ = {isa = PBXBuildFile; fileRef = CC6B5C2A1469DF8D00407DAA /* emergency-initial-data-11-8.csv */; };
 		CC6C20371459F39E0032C921 /* StoreDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */; };
 		CCA4CFE214469CC80095514E /* OnlyImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */; };
@@ -724,6 +725,7 @@
 		CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyCategoryController.m; sourceTree = "<group>"; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
+		CC5F8523146F558300414D33 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CC6B5C2A1469DF8D00407DAA /* emergency-initial-data-11-8.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emergency-initial-data-11-8.csv"; sourceTree = "<group>"; };
 		CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailDataSource.m; sourceTree = "<group>"; };
 		CCA4CFDF14469CC80095514E /* OnlyImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyImageItemCell.m; sourceTree = "<group>"; };
@@ -1042,6 +1044,7 @@
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				CC5F8523146F558300414D33 /* Constants.m */,
 				2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */,
 				2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */,
 				2CE7045B13DE6B4500BB2279 /* AppDelegate.m */,
@@ -1807,6 +1810,7 @@
 				2F6DA8F3146C488000FCEF87 /* WineDetailController.m in Sources */,
 				2F14234E146D615700CB10A9 /* TableCaptionItem.m in Sources */,
 				2F14234F146D615700CB10A9 /* TableCaptionItemCell.m in Sources */,
+				CC5F8524146F558300414D33 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

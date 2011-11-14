@@ -30,6 +30,7 @@
 #import "Wines/StrainListController.h"
 #import "Wines/WineListController.h"
 #import "Wines/WineDetailController.h"
+#import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
 @implementation AppDelegate
@@ -51,6 +52,23 @@
 #pragma mark AppDelegate (Public)
 
 @synthesize window = _window;
+
+- (NSString *)getUUID{
+    //get a UUID value from UserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *uuidStr = [defaults stringForKey:kApplicationUUIDKey];
+
+    if (uuidStr == nil) {
+        CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+
+        uuidStr = [(NSString *)CFUUIDCreateString(
+                kCFAllocatorDefault, uuidObject) autorelease];
+        CFRelease(uuidObject);
+        [defaults setObject:uuidStr forKey:kApplicationUUIDKey];
+        [defaults synchronize];
+    }
+    return uuidStr;
+}
 
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
