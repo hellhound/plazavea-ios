@@ -39,6 +39,7 @@ NSString *const kRecipeProceduresKey = @"preparation";
 NSString *const kRecipeFeaturesKey = @"features";
 NSString *const kRecipeTipsKey = @"tips";
 NSString *const kRecipeRationsKey = @"rations";
+NSString *const kRecipeStrainsKey = @"categories";
 
 // Ingredient model's constants
 
@@ -126,6 +127,8 @@ NSString *const kRecipeDetailSectionProcedures = @"Preparación";
 // NSLocalizedString(@"Preparación", nil)
 NSString *const kRecipeDetailSectionTips = @"Tips";
 // NSLocalizedString(@"Tips", nil)
+NSString *const kRecipeDetailSectionStrains = @"Vinos recomendados";
+// NSLocalizedString(@"Vinos recomendados", nil)
 
 // RecipeDrillDownController's constants
 NSString *const kRecipeDetailToListButtonTitle = @"Crear Lista";

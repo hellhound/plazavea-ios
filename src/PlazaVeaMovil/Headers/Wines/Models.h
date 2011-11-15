@@ -3,7 +3,6 @@
 #import <MapKit/MapKit.h>
 
 #import "Common/Models/URLRequestModel.h"
-#import "Recipes/Models.h"
 
 @interface Country: NSObject
 {
@@ -152,15 +151,4 @@
 + (id)strainCollectionFromDictionary:(NSDictionary *)rawCollection;
 
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection;
-@end
-
-@interface StrainRecipeCollection: StrainCollection
-{
-    NSNumber *_recipeId;
-    Recipe *_recipeDelegate;
-}
-@property (nonatomic, copy) NSNumber *recipeId;
-@property (nonatomic, assign) Recipe *recipeDelegate;
-
-- (id)initWithRecipeId:(NSString *)recipeId delegate:(id)delegate;
 @end

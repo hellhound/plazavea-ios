@@ -6,6 +6,8 @@
 #import "Common/Constants.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
+#import "Wines/Models.h"
+#import "Wines/Constants.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
@@ -46,6 +48,7 @@
         [self setModel:[[[Recipe alloc]
                 initWithRecipeId:recipeId] autorelease]];
         [self setDelegate:delegate];
+        
     }
     return self;
 }
@@ -147,6 +150,20 @@
                 TTTableTextItem *item = [TTTableTextItem 
                         itemWithText: procedure];
 
+                [subitems addObject:item];
+            }
+            [items addObject:subitems];
+        }
+        if ([[[recipe strains] strains] count] > 0) {
+            NSMutableArray *subitems = [NSMutableArray array];
+            
+            [sections addObject:
+                    NSLocalizedString(kRecipeDetailSectionStrains, nil)];
+            for (Strain *strain in [[recipe strains] strains]) {
+                TTTableTextItem *item = [TTTableTextItem
+                        itemWithText:[strain name]
+                            URL:URL(kURLWineListCall, [strain strainId])];
+                
                 [subitems addObject:item];
             }
             [items addObject:subitems];

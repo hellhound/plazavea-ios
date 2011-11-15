@@ -10,6 +10,7 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Models.h"
 #import "ShoppingList/Constants.h"
+#import "Wines/Models.h"
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 
@@ -442,6 +443,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [_features release];
     [_tips release];
     [_rations release];
+    [_strains release];
     [super dealloc];
 }
 
@@ -559,7 +561,8 @@ static NSString *const kRecipeMiscYes = @"YES";
 #pragma mark Recipe (Public)
 
 @synthesize recipeId = _recipeId, code = _code, name = _name,
-    pictureURL = _pictureURL, price = _price, rations = _rations;
+        pictureURL = _pictureURL, price = _price, rations = _rations,
+            strains = _strains;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe
 {
@@ -602,6 +605,8 @@ static NSString *const kRecipeMiscYes = @"YES";
 
     NSString *code;
     NSNumber *price, *rations;
+    NSDictionary *rawStrains;
+    StrainCollection *strains;
     NSArray *extraPictureURLs, *ingredients, *procedures, *features, *tips;
     NSMutableArray *mutableExtraPictureURLs =
             [recipe mutableArrayValueForKey:kMutableExtraPictureURLsKey]; 
@@ -648,9 +653,17 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if (![rations isKindOfClass:[NSNumber class]])
         return nil;
+    //if ((rawStrains = [rawRecipe objectForKey:kRecipeStrainsKey]) == nil)
+    //    return nil;
+    rawStrains = [NSDictionary dictionaryWithObjectsAndKeys:
+            [rawRecipe objectForKey:kRecipeStrainsKey], kRecipeStrainsKey, nil];
+    strains = [StrainCollection strainCollectionFromDictionary:rawStrains];
+    //if (strains == nil)
+    //    return nil;
     [recipe setCode:code];
     [recipe setPrice:price];
     [recipe setRations:rations];
+    [recipe setStrains:strains];
     for (NSString *extraPictureURL in extraPictureURLs) {
         if (!([extraPictureURL isKindOfClass:[NSString class]] &&
                 [NSURL validateURL:extraPictureURL]))
@@ -708,6 +721,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [self setPictureURL:[recipe pictureURL]];
     [self setPrice:[recipe price]];
     [self setRations:[recipe rations]];
+    [self setStrains:[recipe strains]];
 
     NSMutableArray *extraPictureURLs =
             [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];

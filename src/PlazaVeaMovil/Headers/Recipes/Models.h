@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Common/Models/URLRequestModel.h"
+#import "Wines/Models.h"
 #import "ShoppingList/Models.h"
 
 @interface Meat: NSObject
@@ -77,6 +78,7 @@
     NSMutableArray *_tips;
     NSNumber *_rations;
     NSUInteger _didFinishCount;
+    StrainCollection *_strains;
 }
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, copy) NSString *code;
@@ -89,6 +91,7 @@
 @property (nonatomic, readonly) NSArray *features;
 @property (nonatomic, readonly) NSArray *tips;
 @property (nonatomic, retain) NSNumber *rations;
+@property (nonatomic, retain) StrainCollection *strains;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe;
 + (id)recipeFromDictionary:(NSDictionary *)rawRecipe;

@@ -36,6 +36,7 @@ extern NSString *const kRecipeProceduresKey;
 extern NSString *const kRecipeFeaturesKey;
 extern NSString *const kRecipeTipsKey;
 extern NSString *const kRecipeRationsKey;
+extern NSString *const kRecipeStrainsKey;
 
 // Ingredient model's constants
 
@@ -86,6 +87,7 @@ extern NSString *const kRecipeDetailSectionFeatures;
 extern NSString *const kRecipeDetailSectionIngredients;
 extern NSString *const kRecipeDetailSectionProcedures;
 extern NSString *const kRecipeDetailSectionTips;
+extern NSString *const kRecipeDetailSectionStrains;
 
 // RecipeDrillDownController's constants
 
