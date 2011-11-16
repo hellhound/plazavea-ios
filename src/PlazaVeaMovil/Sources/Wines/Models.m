@@ -765,6 +765,7 @@ static NSString *const kMutableStrainsKeys = @"strains";
 - (void)dealloc
 {
     [_strains release];
+    [_recipeId release];
     [super dealloc];
 }
 
@@ -821,6 +822,14 @@ static NSString *const kMutableStrainsKeys = @"strains";
     return collection;
 }
 
+- (id)initWithRecipeId:(NSString *)recipeId
+{
+    if ((self = [self init]) != nil) {
+        _recipeId = [recipeId copy];
+    }
+    return self;
+}
+
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection
 {
     NSMutableArray *mutableStrains =
@@ -835,8 +844,13 @@ static NSString *const kMutableStrainsKeys = @"strains";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request = [TTURLRequest
-                requestWithURL:kURLStrainCollectionEndPoint delegate:self];
+        NSString *url;
+        if (_recipeId != nil) {
+            url = URL(kURLRecipeStrainCollectionEndPoint, _recipeId);
+        } else {
+            url = kURLStrainCollectionEndPoint;
+        }
+        TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
         
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];

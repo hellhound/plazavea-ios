@@ -145,10 +145,12 @@
 @interface StrainCollection: URLRequestModel
 {
     NSMutableArray *_strains;
+    NSString *_recipeId;
 }
 @property (nonatomic, readonly) NSArray *strains;
 
 + (id)strainCollectionFromDictionary:(NSDictionary *)rawCollection;
 
+- (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection;
 @end
