@@ -318,34 +318,83 @@ static NSRelationshipDescription *kCategoryRelationship;
     for (NSArray *parsedRow in pasredCSV){
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
-        // food especific rows
-        NSMutableArray *parsedCollectionNumbers =
+        NSString *parsedCalories = [parsedRow objectAtIndex:2];
+        NSString *parsedCarbohidrates = [parsedRow objectAtIndex:3];
+        NSString *parsedFat = [parsedRow objectAtIndex:4];
+        NSString *parsedProteins = [parsedRow objectAtIndex:5];
+        NSString *parsedVitaminA = [parsedRow objectAtIndex:6];
+        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];           
+        NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         
-        if (parsedCollectionNumbers == nil){
-            parsedCollectionNumbers = [NSMutableArray array];
-            [foodThree setObject: parsedCollectionNumbers
-                               forKey:parsedRowCategory];
+        if (parsedCollectionFoods == nil){
+            parsedCollectionFoods = [NSMutableArray array];
+            [foodThree setObject: parsedCollectionFoods
+                    forKey:parsedRowCategory];
         }
-        [parsedCollectionNumbers addObject:[NSDictionary 
-                                            dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
-                                            parsedNumber, kEmergencyNumberPhone, nil]];
+        [parsedCollectionFoods addObject:[NSDictionary 
+                dictionaryWithObjectsAndKeys:parsedName, kFoodName,
+                    parsedCalories, kFoodCalories, parsedCarbohidrates,
+                    kFoodCarbohidrates, parsedFat, kFoodFat, parsedProteins,
+                    kFoodProteins, parsedVitaminA, kFoodVitaminA,
+                    parsedVitaminC, kFoodVitaminC, nil]];
     }
     for (NSString *categoryname in [foodThree allKeys]){
-        EmergencyCategory *emergencyCategory = [EmergencyCategory
-                                                categoryWithName:categoryname context:context];
-        NSArray *emergencyNumberCollection = [foodThree 
-                                              objectForKey:categoryname];
+        FoodCategory *foodCategory =
+                [FoodCategory categoryWithName:categoryname context:context];
+        NSArray *foodCollection = [foodThree objectForKey:categoryname];
         
-        for (NSDictionary *emergencyNumber in emergencyNumberCollection){
-            NSString *name =
-            [emergencyNumber objectForKey:kEmergencyNumberName];
-            NSString *phone =
-            [emergencyNumber objectForKey:kEmergencyNumberPhone];
-            [EmergencyNumber numberWithName:name phone:phone
-                                   category:emergencyCategory context:context];
+        for (NSDictionary *food in foodCollection){
+            NSString *name = [food objectForKey:kFoodName];
+            [Food foodWithName:name category:foodCategory context:context];
             [context save:nil];
         }
     }
+}
+
++ (void)cleandata:(NSManagedObjectContext *)context
+{
+    //category
+    NSArray *sortCategoryDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kFoodCategoryName
+                    ascending:YES] autorelease]];
+    NSFetchRequest *categoryRequest =
+    [[[NSFetchRequest alloc] init] autorelease];
+    
+    [categoryRequest setEntity:[FoodCategory entity]];
+    [categoryRequest setPredicate:nil];
+    [categoryRequest setSortDescriptors:sortCategoryDescriptors];
+    
+    NSFetchedResultsController *resultsController =
+            [[[NSFetchedResultsController alloc] initWithFetchRequest:
+                categoryRequest managedObjectContext:context sectionNameKeyPath:
+                nil cacheName:nil] autorelease];
+    NSError *fetchError = nil;
+    
+    [resultsController performFetch:&fetchError];
+    for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
+        [context deleteObject:manageObject];
+    }
+    [context save:nil];
+    // foods
+    NSArray *sortNumberDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kFoodName
+                ascending:YES] autorelease]];
+    NSFetchRequest *foodRequest = [[[NSFetchRequest alloc] init] autorelease];
+    
+    [foodRequest setEntity:[Food entity]];
+    [foodRequest setPredicate:nil];
+    [foodRequest setSortDescriptors:sortNumberDescriptors];
+    
+    resultsController = [[[NSFetchedResultsController alloc]
+            initWithFetchRequest:foodRequest managedObjectContext:context
+                sectionNameKeyPath:nil cacheName:nil] autorelease];
+    fetchError = nil;
+    
+    [resultsController performFetch:&fetchError];
+    for (NSManagedObject *manageObject in [resultsController fetchedObjects]) {
+        [context deleteObject:manageObject];
+    }
+    [context save:nil];
 }
 @end
