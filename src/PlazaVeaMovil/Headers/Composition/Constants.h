@@ -8,6 +8,8 @@ extern NSString *const kFoodCategoryClass;
 extern NSString *const kFoodCategoryName;
 extern NSString *const kFoodCategoryFoods;
 
+extern NSString *const kFoodTitle;
+
 // Food model's constants
 extern NSString *const kFoodEntity;
 extern NSString *const kFoodClass;

@@ -4,7 +4,7 @@
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Composition/Models.h"
 
-@interface FoodCategoryController : EditableCellTableViewController
+@interface FoodCategoryListController : EditableCellTableViewController
 {
     UINavigationItem *_navItem;
 }

@@ -66,6 +66,7 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
             type:NSEqualToPredicateOperatorType
             options:0] retain];
 }
+
 #pragma mark -
 #pragma mark EmergencyNumberController (Public)
 

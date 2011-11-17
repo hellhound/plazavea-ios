@@ -3,13 +3,17 @@
 #import "Composition/Constants.h"
 
 NSString *const kFoodCategoryTitle = @"Composición Nutricional";
-// NSLocalizedString(@"Composición Nutricional, nil)
+// NSLocalizedString(@"Composición Nutricional", nil)
 
 // FoodCategory model's constants
 NSString *const kFoodCategoryEntity = @"FoodCategory";
 NSString *const kFoodCategoryClass = @"FoodCategory";
 NSString *const kFoodCategoryName = @"name";
 NSString *const kFoodCategoryFoods = @"foods";
+
+
+NSString *const kFoodTitle = @"Alimentos";
+// NSLocalizedString(@"Alimentos", nil)
 
 // Food model's constants
 NSString *const kFoodEntity = @"Food";

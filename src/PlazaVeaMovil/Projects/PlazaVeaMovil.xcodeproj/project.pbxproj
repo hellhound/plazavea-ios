@@ -107,6 +107,7 @@
 		2F13CBFD1475726600A1A95F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F13CBFB1475726600A1A95F /* Constants.m */; };
 		2F13CBFE1475726600A1A95F /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F13CBFC1475726600A1A95F /* Models.m */; };
 		2F13CC001475C80400A1A95F /* FoodCategoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F13CBFF1475C80400A1A95F /* FoodCategoryListController.m */; };
+		2F13CC021475D2CC00A1A95F /* FoodListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F13CC011475D2CC00A1A95F /* FoodListController.m */; };
 		2F142222146D4D7000CB10A9 /* default-wine-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F142221146D4D7000CB10A9 /* default-wine-detail.png */; };
 		2F14234E146D615700CB10A9 /* TableCaptionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F14234C146D615700CB10A9 /* TableCaptionItem.m */; };
 		2F14234F146D615700CB10A9 /* TableCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */; };
@@ -685,6 +686,7 @@
 		2F13CBFB1475726600A1A95F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F13CBFC1475726600A1A95F /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F13CBFF1475C80400A1A95F /* FoodCategoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCategoryListController.m; sourceTree = "<group>"; };
+		2F13CC011475D2CC00A1A95F /* FoodListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodListController.m; sourceTree = "<group>"; };
 		2F142221146D4D7000CB10A9 /* default-wine-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-wine-detail.png"; sourceTree = "<group>"; };
 		2F14234C146D615700CB10A9 /* TableCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItem.m; sourceTree = "<group>"; };
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 		2F13CBFA1475726600A1A95F /* Composition */ = {
 			isa = PBXGroup;
 			children = (
+				2F13CC011475D2CC00A1A95F /* FoodListController.m */,
 				2F13CBFF1475C80400A1A95F /* FoodCategoryListController.m */,
 				2F13CBFB1475726600A1A95F /* Constants.m */,
 				2F13CBFC1475726600A1A95F /* Models.m */,
@@ -1831,6 +1834,7 @@
 				2F13CBFD1475726600A1A95F /* Constants.m in Sources */,
 				2F13CBFE1475726600A1A95F /* Models.m in Sources */,
 				2F13CC001475C80400A1A95F /* FoodCategoryListController.m in Sources */,
+				2F13CC021475D2CC00A1A95F /* FoodListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
