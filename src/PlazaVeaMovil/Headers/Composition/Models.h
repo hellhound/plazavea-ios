@@ -17,16 +17,25 @@
 @interface Food: ManagedObject
 
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSNumber *calories;
-@property (nonatomic, retain) NSNumber *carbohidates;
-@property (nonatomic, retain) NSNumber *fat;
-@property (nonatomic, retain) NSNumber *proteins;
-@property (nonatomic, retain) NSNumber *vitaminA;
-@property (nonatomic, retain) NSNumber *vitaminC;
+@property (nonatomic, retain) NSString *calories;
+@property (nonatomic, retain) NSString *carbohidrates;
+@property (nonatomic, retain) NSString *fat;
+@property (nonatomic, retain) NSString *proteins;
+@property (nonatomic, retain) NSString *vitaminA;
+@property (nonatomic, retain) NSString *vitaminC;
 @property (nonatomic, retain) FoodCategory *category;
 
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
+           context:(NSManagedObjectContext *)context;
++ (id)foodWithName:(NSString *)name
+          category:(FoodCategory *)category
+          calories:(NSString *)calories
+     carbohidrates:(NSString *)carbohidrates
+               fat:(NSString *)fat
+          proteins:(NSString *)proteins
+          vitaminA:(NSString *)vitaminA
+          vitaminC:(NSString *)vitaminC
            context:(NSManagedObjectContext *)context;
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category

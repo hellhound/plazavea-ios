@@ -189,12 +189,12 @@ static NSRelationshipDescription *kCategoryRelationship;
 #pragma mark Food (Public)
 
 // KVO properties
-@dynamic name, calories, carbohidates, fat, proteins, vitaminA, vitaminC,
+@dynamic name, calories, carbohidrates, fat, proteins, vitaminA, vitaminC,
         category;
 
 + (id)foodWithName:(NSString *)name
-            category:(FoodCategory *)category
-             context:(NSManagedObjectContext *)context
+          category:(FoodCategory *)category
+           context:(NSManagedObjectContext *)context
 {
     Food *food = [[[self alloc] initWithEntity:[self entity]
             insertIntoManagedObjectContext:context] autorelease];
@@ -205,8 +205,32 @@ static NSRelationshipDescription *kCategoryRelationship;
 }
 
 + (id)foodWithName:(NSString *)name
-            category:(FoodCategory *)category
-   resultsController:(NSFetchedResultsController *)resultsController
+          category:(FoodCategory *)category
+          calories:(NSString *)calories 
+     carbohidrates:(NSString *)carbohidrates
+               fat:(NSString *)fat
+          proteins:(NSString *)proteins
+          vitaminA:(NSString *)vitaminA
+          vitaminC:(NSString *)vitaminC
+           context:(NSManagedObjectContext *)context
+{
+    Food *food = [[[self alloc] initWithEntity:[self entity]
+                insertIntoManagedObjectContext:context] autorelease];
+    
+    [food setName:name];
+    [food setCategory:category];
+    [food setCalories:calories];
+    [food setCarbohidrates:carbohidrates];
+    [food setFat:fat];
+    [food setProteins:proteins];
+    [food setVitaminA:vitaminA];
+    [food setVitaminC:vitaminC];
+    return food;
+}
+
++ (id)foodWithName:(NSString *)name
+          category:(FoodCategory *)category
+ resultsController:(NSFetchedResultsController *)resultsController
 {
     Food *food = [[[self alloc] initWithEntity:[self entity]
             insertIntoManagedObjectContext:
@@ -273,7 +297,6 @@ static NSRelationshipDescription *kCategoryRelationship;
     if ([csvPathFiles count] == 0){
         return;
     }
-    
     NSString *csvFilePath = [csvPathFiles objectAtIndex:1];
     NSArray *sortFileNameDescriptors = [NSArray arrayWithObject:
             [[[NSSortDescriptor alloc] initWithKey:kFoodFileName
@@ -323,7 +346,7 @@ static NSRelationshipDescription *kCategoryRelationship;
         NSString *parsedFat = [parsedRow objectAtIndex:4];
         NSString *parsedProteins = [parsedRow objectAtIndex:5];
         NSString *parsedVitaminA = [parsedRow objectAtIndex:6];
-        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];          
+        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];         
         NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         
@@ -346,7 +369,15 @@ static NSRelationshipDescription *kCategoryRelationship;
         
         for (NSDictionary *food in foodCollection){
             NSString *name = [food objectForKey:kFoodName];
-            [Food foodWithName:name category:foodCategory context:context];
+            NSString *calories = [food objectForKey:kFoodCalories];
+            NSString *carbohidrates = [food objectForKey:kFoodCarbohidrates];
+            NSString *fat = [food objectForKey:kFoodFat];
+            NSString *proteins = [food objectForKey:kFoodProteins];
+            NSString *vitaminA = [food objectForKey:kFoodVitaminA];
+            NSString *vitaminC = [food objectForKey:kFoodVitaminC];
+            [Food foodWithName:name category:foodCategory calories:calories
+                    carbohidrates:carbohidrates fat:fat proteins:proteins
+                        vitaminA:vitaminA vitaminC:vitaminC context:context];
             [context save:nil];
         }
     }

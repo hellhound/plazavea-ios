@@ -30,7 +30,7 @@
 
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kShoppingListEntity predicate:nil
-            sortDescriptors:sortDescriptors inContext:context]) != nil) {
+                sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kShoppingListTitle, nil)];
         [self setAllowsMovableCells:YES];
         [self setCellStyle:UITableViewCellStyleSubtitle];
@@ -51,7 +51,7 @@
     if ([self toolbarItems] == nil) {
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                target:nil action:NULL] autorelease];
+                    target:nil action:NULL] autorelease];
         // Conf the add-item button
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd

@@ -97,6 +97,7 @@ static NSString *const kFoodVariableKey = @"EMERGENCY_NUMBER";
 {
     Food *food = (Food *)object;
     
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
 }
 

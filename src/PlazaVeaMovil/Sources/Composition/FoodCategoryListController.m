@@ -9,7 +9,9 @@
 #import "Application/AppDelegate.h"
 #import "Composition/Constants.h"
 #import "Composition/Models.h"
+#import "Composition/FoodListController.h"
 #import "Composition/FoodCategoryListController.h"
+#import "Composition/FoodListController.h"
 
 @implementation FoodCategoryListController
 
@@ -69,15 +71,17 @@
     if (cell == nil)
         cell = [[[EditableTableViewCell alloc]
                  initWithStyle:_cellStyle
-                 reuseIdentifier:reuseIdentifier] autorelease];
+                    reuseIdentifier:reuseIdentifier] autorelease];
     return cell;
 }
 
-- (void)didSelectRowForObject:(FoodCategory *)FoodCategory
+- (void)didSelectRowForObject:(FoodCategory *)foodCategory
                   atIndexPath:(NSIndexPath *)indexPath
 {
     if (![self isEditing]) {
-        //TO-DO
+        [[self navigationController] pushViewController:
+                [[[FoodListController alloc] initWithCategory:foodCategory]
+                    autorelease] animated:YES];
     }
 }
 @end
