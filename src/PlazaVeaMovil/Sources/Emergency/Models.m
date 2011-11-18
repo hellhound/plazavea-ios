@@ -208,7 +208,7 @@ static NSRelationshipDescription *kCategoryRelationship;
 @dynamic name;
 
 + (id)fileWithName:(NSString *)name
-             context:(NSManagedObjectContext *)context
+           context:(NSManagedObjectContext *)context
 {
     EmergencyFile *file = [[[self alloc] initWithEntity:[self entity]
             insertIntoManagedObjectContext:context] autorelease];
@@ -218,7 +218,7 @@ static NSRelationshipDescription *kCategoryRelationship;
 }
 
 + (id)fileWithName:(NSString *)name
-   resultsController:(NSFetchedResultsController *)resultsController
+ resultsController:(NSFetchedResultsController *)resultsController
 {
     EmergencyFile *file = [[[self alloc] initWithEntity:[self entity]
             insertIntoManagedObjectContext:

@@ -274,7 +274,7 @@ static NSRelationshipDescription *kCategoryRelationship;
         return;
     }
     
-    NSString *csvFilePath = [csvPathFiles objectAtIndex:0];
+    NSString *csvFilePath = [csvPathFiles objectAtIndex:1];
     NSArray *sortFileNameDescriptors = [NSArray arrayWithObject:
             [[[NSSortDescriptor alloc] initWithKey:kFoodFileName
                 ascending:YES] autorelease]];
@@ -319,11 +319,11 @@ static NSRelationshipDescription *kCategoryRelationship;
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedCalories = [parsedRow objectAtIndex:2];
-        NSString *parsedCarbohidrates = [parsedRow objectAtIndex:3];
+        /*NSString *parsedCarbohidrates = [parsedRow objectAtIndex:3];
         NSString *parsedFat = [parsedRow objectAtIndex:4];
         NSString *parsedProteins = [parsedRow objectAtIndex:5];
         NSString *parsedVitaminA = [parsedRow objectAtIndex:6];
-        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];           
+        NSString *parsedVitaminC = [parsedRow objectAtIndex:7]; */          
         NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         
@@ -332,12 +332,15 @@ static NSRelationshipDescription *kCategoryRelationship;
             [foodThree setObject: parsedCollectionFoods
                     forKey:parsedRowCategory];
         }
-        [parsedCollectionFoods addObject:[NSDictionary 
+        /*[parsedCollectionFoods addObject:[NSDictionary 
                 dictionaryWithObjectsAndKeys:parsedName, kFoodName,
                     parsedCalories, kFoodCalories, parsedCarbohidrates,
                     kFoodCarbohidrates, parsedFat, kFoodFat, parsedProteins,
                     kFoodProteins, parsedVitaminA, kFoodVitaminA,
-                    parsedVitaminC, kFoodVitaminC, nil]];
+                    parsedVitaminC, kFoodVitaminC, nil]];*/
+        [parsedCollectionFoods addObject:[NSDictionary 
+                dictionaryWithObjectsAndKeys:parsedName, kFoodName,
+                    parsedCalories, kFoodCalories, nil]];
     }
     for (NSString *categoryname in [foodThree allKeys]){
         FoodCategory *foodCategory =

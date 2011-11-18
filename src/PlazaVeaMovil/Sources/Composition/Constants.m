@@ -29,3 +29,6 @@ NSString *const kFoodCategory = @"category";
 
 // FoodFile model's constants
 NSString *const kFoodFileName = @"name";
+
+// Controller URLs
+NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";

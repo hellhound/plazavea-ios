@@ -12,6 +12,7 @@
 #import "Stores/Constants.h"
 #import "Emergency/Constants.h"
 #import "Wines/Constants.h"
+#import "Composition/Constants.h"
 
 @interface LauncherViewController (Private)
 
@@ -85,6 +86,9 @@
                     URL:kURLEmergencyCategory] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
                     image:kURLSomelierIcon URL:kURLStrainListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kFoodCategoryTitle
+                    image:kURLCompositionIcon URL:kURLFoodCategory]
+                    autorelease],
                 nil],
             nil]];
     [superView addSubview:_launcherView];

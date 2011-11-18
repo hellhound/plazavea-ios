@@ -30,6 +30,8 @@
 #import "Wines/StrainListController.h"
 #import "Wines/WineListController.h"
 #import "Wines/WineDetailController.h"
+#import "Composition/Constants.h"
+#import "Composition/FoodCategoryListController.h"
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
@@ -131,6 +133,9 @@
     [map from:kURLStrainList toViewController:[StrainListController class]];
     [map from:kURLWineList toViewController:[WineListController class]];
     [map from:kURLWineDetail toViewController:[WineDetailController class]];
+    // Nutritional composition
+    [map from:kURLFoodCategory toViewController:
+            [FoodCategoryListController class] selector:@selector(init)];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

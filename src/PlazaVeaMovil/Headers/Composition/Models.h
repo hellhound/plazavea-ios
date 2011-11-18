@@ -26,11 +26,11 @@
 @property (nonatomic, retain) FoodCategory *category;
 
 + (id)foodWithName:(NSString *)name
-            category:(FoodCategory *)category
-             context:(NSManagedObjectContext *)context;
+          category:(FoodCategory *)category
+           context:(NSManagedObjectContext *)context;
 + (id)foodWithName:(NSString *)name
-            category:(FoodCategory *)category
-   resultsController:(NSFetchedResultsController *)resultsController;
+          category:(FoodCategory *)category
+ resultsController:(NSFetchedResultsController *)resultsController;
 @end
 
 @interface FoodFile: ManagedObject

@@ -11,6 +11,7 @@
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Common/Models/ManagedObject.h"
 #import "Emergency/Models.h"
+#import "Composition/Models.h"
 #import "Application/AppDelegate.h"
 
 @interface AppDelegate (CoreDataPrivate)
@@ -47,6 +48,7 @@
         [_model setLocalizationDictionary:allLocalizations];
     //load the emergencynumbers from CSV
     [EmergencyFile loadFromCSVinContext:context];
+    [FoodFile loadFromCSVinContext:context];
 }
 
 #pragma mark -

@@ -24,3 +24,6 @@ extern NSString *const kFoodCategory;
 
 // FoodFile model's constants
 extern NSString *const kFoodFileName;
+
+// Controller URLs
+extern NSString *const kURLFoodCategory;
