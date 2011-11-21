@@ -11,7 +11,8 @@ NSString *const kFoodCategoryEntity = @"FoodCategory";
 NSString *const kFoodCategoryClass = @"FoodCategory";
 NSString *const kFoodCategoryName = @"name";
 NSString *const kFoodCategoryFoods = @"foods";
-
+NSString *const kFoodCategoryHeader = @"Composición Nutricional";
+// NSLocalizedString(@"Composición Nutricional", nil)
 
 NSString *const kFoodTitle = @"Alimentos";
 // NSLocalizedString(@"Alimentos", nil)
@@ -58,3 +59,5 @@ const CGFloat kFoodDetailImageHeight = 140.;
 
 // Controller URLs
 NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";
+NSString *const kURLFoodDetail =
+        @"tt://launcher/foodcategory/fooddetail/(initWithFood:)/";

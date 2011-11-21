@@ -13,6 +13,12 @@
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodListController.h"
 
+@interface FoodCategoryListController ()
+
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UILabel *titleLabel;
+@end
+
 @implementation FoodCategoryListController
 
 #pragma mark -
@@ -29,9 +35,49 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kFoodCategoryEntity predicate:nil
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [self setTitle:NSLocalizedString(kFoodCategoryTitle, nil)];
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark UIView
+
+- (void)loadView
+{
+    [super loadView];
+    
+    UITableView *tableView = [self tableView];
+    
+    // Configuring the header view
+    [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
+                         autorelease]];
+    // Configuring the label
+    [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
+                         autorelease]];
+    [_titleLabel setNumberOfLines:0];
+    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [_titleLabel setTextAlignment:UITextAlignmentCenter];
+    [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *title = kFoodCategoryHeader;
+    UIFont *font = [_titleLabel font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
+    // Adding the subviews to the header view
+    [_headerView addSubview:_titleLabel];
+    
+    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, titleHeight);
+    
+    [_headerView setFrame:headerFrame];
+    [tableView setTableHeaderView:_headerView];
 }
 
 #pragma mark -
@@ -47,7 +93,9 @@
 }
 
 #pragma mark -
-#pragma mark EmergencyCategoryController
+#pragma mark FoodCategoryListController
+
+@synthesize headerView = _headerView, titleLabel = _titleLabel;
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
             forObject:(NSManagedObject *)object

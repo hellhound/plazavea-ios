@@ -8,6 +8,8 @@
 {
     UINavigationItem *_navItem;
     FoodCategory *_foodCategory;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, retain) FoodCategory *foodCategory;
 

@@ -9,6 +9,9 @@ extern NSString *const kFoodCategoryClass;
 extern NSString *const kFoodCategoryName;
 extern NSString *const kFoodCategoryFoods;
 
+// messages
+extern NSString *const kFoodCategoryHeader;
+
 extern NSString *const kFoodTitle;
 
 // Food model's constants
@@ -46,3 +49,8 @@ extern const CGFloat kFoodDetailImageHeight;
 
 // Controller URLs
 extern NSString *const kURLFoodCategory;
+extern NSString *const kURLFoodDetail;
+
+// Controller URL's call
+extern NSString *const kURLFoodCategoryCall;
+extern NSString *const kURLFoodDetailCall;
