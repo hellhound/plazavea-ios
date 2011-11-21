@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 extern NSString *const kFoodCategoryTitle;
 
@@ -27,6 +28,8 @@ extern NSString *const kFoodFileName;
 extern NSString *const kFoodCSVFile;
 
 // FoodDetailController's constants
+
+// messages
 extern NSString *const kFoodDetailHeader;
 extern NSString *const kFoodDetailCalories;
 extern NSString *const kFoodDetailCarbohidrates;
@@ -35,6 +38,11 @@ extern NSString *const kFoodDetailProteins;
 extern NSString *const kFoodDetailVitaminA;
 extern NSString *const kFoodDetailVitaminC;
 extern NSString *const kFoodDetailTitle;
+
+// image
+extern NSString *const kFoodDetailDefaultImage;
+extern const CGFloat kFoodDetailImageWidth;
+extern const CGFloat kFoodDetailImageHeight;
 
 // Controller URLs
 extern NSString *const kURLFoodCategory;

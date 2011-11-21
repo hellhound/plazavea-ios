@@ -9,7 +9,7 @@
 #import "Common/Views/TableCaptionItemCell.h"
 
 static const CGFloat kKeySpacing = 12;
-static const CGFloat kKeyWidth = 115;
+static const CGFloat kKeyWidth = 125;
 
 @implementation TableCaptionItemCell
 

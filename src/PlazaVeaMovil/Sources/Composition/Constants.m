@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "Composition/Constants.h"
 
@@ -31,7 +32,9 @@ NSString *const kFoodCategory = @"category";
 NSString *const kFoodFileName = @"name";
 NSString *const kFoodCSVFile = @"food.csv";
 
-// FoodDetailController's messages
+// FoodDetailController's constants
+
+// messages
 NSString *const kFoodDetailHeader = @"Composición";
 // NSLocalizedString(@"Composición", nil)
 NSString *const kFoodDetailCalories = @"Calorías";
@@ -49,6 +52,9 @@ NSString *const kFoodDetailVitaminC = @"Vitamina C";
 NSString *const kFoodDetailTitle = @"";
 // NSLocalizedString(@"", nil)
 
+NSString *const kFoodDetailDefaultImage = @"bundle://default-food-detail.png";
+const CGFloat kFoodDetailImageWidth = 140.;
+const CGFloat kFoodDetailImageHeight = 140.;
 
 // Controller URLs
 NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";

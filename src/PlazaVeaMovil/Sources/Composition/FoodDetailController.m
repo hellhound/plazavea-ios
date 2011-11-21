@@ -1,23 +1,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+
+#import <Three20/Three20.h>
 
 #import "Common/Constants.h"
-#import "Common/Additions/NSNull+Additions.h"
-#import "Common/Controllers/EditableCellTableViewController.h"
-#import "Common/Views/EditableTableViewCell.h"
-#import "Common/Additions/NSManagedObjectContext+Additions.h"
-#import "Application/AppDelegate.h"
 #import "Composition/Constants.h"
-#import "Composition/Models.h"
+#import "Composition/FoodDetailDataSource.h"
 #import "Composition/FoodDetailController.h"
 
-static NSPredicate *kFoodsPredicateTemplate;
-static NSString *const kFoodVariableKey = @"FOOD";
+@interface FoodDetailController ()
 
-@interface FoodDetailController (Private)
-
-+ (void)initializePredicateTemplates;
+@property (nonatomic, retain) TTImageView *imageView;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UILabel *titleLabel;
 @end
 
 @implementation FoodDetailController
@@ -25,94 +20,98 @@ static NSString *const kFoodVariableKey = @"FOOD";
 #pragma mark -
 #pragma mark NSObject
 
-+ (void)initialize
-{
-    if (self == [FoodDetailController class])
-        [self initializePredicateTemplates];
-}
-
-- (void)dealloc
+- (void) dealloc
 {
     [_food release];
+    [_imageView release];
+    [_headerView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark UIViewController
+#pragma mark UIView
 
-- (UINavigationItem *)navigationItem
+- (void)loadView
 {
-    if (_navItem == nil){
-        _navItem = [super navigationItem];
-        [_navItem setRightBarButtonItem:nil];
-    }
-    return _navItem;
+    [super loadView];
+    
+    UITableView *tableView = [self tableView];
+    
+    // Configuring the header view
+    [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
+                         autorelease]];
+    // Configuring the image view
+    [self setImageView:[[[TTImageView alloc] initWithFrame:
+                         CGRectMake(.0, .0, kFoodDetailImageWidth,
+                                    kFoodDetailImageHeight)] autorelease]];
+    [_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
+    [_imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+     UIViewAutoresizingFlexibleRightMargin];
+    [_imageView setBackgroundColor:[UIColor clearColor]];
+    // Configuring the label
+    [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
+                         autorelease]];
+    [_titleLabel setNumberOfLines:0];
+    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [_titleLabel setTextAlignment:UITextAlignmentCenter];
+    [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *title = [_food name];
+    UIFont *font = [_titleLabel font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
+    // Adding the subviews to the header view
+    [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:_imageView];
+    
+    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
+            + titleHeight);
+    CGRect imageFrame = CGRectMake((boundsWidth - kFoodDetailImageWidth) / 2.,
+            .0, kFoodDetailImageWidth, kFoodDetailImageHeight);
+    
+    [_headerView setFrame:headerFrame];
+    [_imageView setFrame:CGRectOffset(imageFrame, .0, titleHeight)];
+    /*if (imageURL != nil)
+        [_imageView setUrlPath:[imageURL absoluteString]];*/
+    [tableView setTableHeaderView:_headerView];
+    [self refresh];
 }
 
 #pragma mark -
-#pragma mark FoodListController (Private)
+#pragma mark TTTableViewController
 
-+ (void)initializePredicateTemplates
+- (void)createModel
 {
-    NSExpression *lhs = [NSExpression expressionForKeyPath:kFoodCategory];
-    NSExpression *rhs = [NSExpression expressionForVariable:kFoodVariableKey];
-    
-    kFoodsPredicateTemplate = [[NSComparisonPredicate 
-            predicateWithLeftExpression:lhs rightExpression:rhs
-                modifier:NSDirectPredicateModifier type:
-                NSEqualToPredicateOperatorType options:0] retain];
+    [self setDataSource:
+            [[[FoodDetailDataSource alloc] initWithFood:_food] autorelease]];
 }
 
 #pragma mark -
-#pragma mark FoodistController (Public)
+#pragma mark RecipeController (Private)
 
-@synthesize food = _food;
+@synthesize imageView = _imageView, headerView = _headerView,
+        titleLabel = _titleLabel;
 
-- (id)initWithFood:(Food *)food;
+#pragma mark -
+#pragma mark FoodDetailController
+
+- (id) initWithFood:(Food *)food
 {
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kFoodName ascending:YES]
-                autorelease]];
-    NSManagedObjectContext *context = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] context];
-    
-    NSPredicate *predicate = [kFoodsPredicateTemplate 
-            predicateWithSubstitutionVariables: [NSDictionary
-                dictionaryWithObject:[NSNull nullOrObject:food]
-                forKey:kFoodVariableKey]];
-    
-    if ((self = [super initWithStyle:UITableViewStylePlain
-            entityName:kFoodEntity predicate:predicate
-                sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [self setTitle:NSLocalizedString(kFoodDetailTitle, nil)];
-        [self setFood:food];
+    if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
+        [self setTableViewStyle:UITableViewStylePlain];
+        [self setVariableHeightRows:YES];
+        _food = food;
     }
     return self;
-}
-
-- (void)didCreateCell:(EditableTableViewCell *)cell
-            forObject:(NSManagedObject *)object
-          atIndexPath:(NSIndexPath *)indexPath
-{
-    Food *food = (Food *)object;
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [[cell textLabel] setText:[food name]];
-}
-
-#pragma mark -
-#pragma mark EditableTableViewController (Overridable)
-
-- (UITableViewCell *)cellForObject:(NSManagedObject *)object
-                     withCellClass:(Class)cellClass
-                         reuseCell:(EditableTableViewCell *)cell
-                   reuseIdentifier:(NSString *)reuseIdentifier
-                       atIndexPath:(NSIndexPath *)indexPath
-{
-    if (cell == nil)
-        cell = [[[EditableTableViewCell alloc]
-                 initWithStyle:_cellStyle
-                 reuseIdentifier:reuseIdentifier] autorelease];
-    return cell;
 }
 @end
