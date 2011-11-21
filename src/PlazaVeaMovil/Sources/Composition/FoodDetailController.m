@@ -11,30 +11,29 @@
 #import "Composition/Constants.h"
 #import "Composition/Models.h"
 #import "Composition/FoodDetailController.h"
-#import "Composition/FoodListController.h"
 
 static NSPredicate *kFoodsPredicateTemplate;
 static NSString *const kFoodVariableKey = @"FOOD";
 
-@interface FoodListController (Private)
+@interface FoodDetailController (Private)
 
 + (void)initializePredicateTemplates;
 @end
 
-@implementation FoodListController
+@implementation FoodDetailController
 
 #pragma mark -
 #pragma mark NSObject
 
 + (void)initialize
 {
-    if (self == [FoodListController class])
+    if (self == [FoodDetailController class])
         [self initializePredicateTemplates];
 }
 
 - (void)dealloc
 {
-    [_foodCategory release];
+    [_food release];
     [super dealloc];
 }
 
@@ -67,9 +66,9 @@ static NSString *const kFoodVariableKey = @"FOOD";
 #pragma mark -
 #pragma mark FoodistController (Public)
 
-@synthesize foodCategory = _foodCategory;
+@synthesize food = _food;
 
-- (id)initWithCategory:(FoodCategory *)foodCategory;
+- (id)initWithFood:(Food *)food;
 {
     NSArray *sortDescriptors = [NSArray arrayWithObject:
             [[[NSSortDescriptor alloc] initWithKey:kFoodName ascending:YES]
@@ -79,14 +78,14 @@ static NSString *const kFoodVariableKey = @"FOOD";
     
     NSPredicate *predicate = [kFoodsPredicateTemplate 
             predicateWithSubstitutionVariables: [NSDictionary
-                dictionaryWithObject:[NSNull nullOrObject:foodCategory]
+                dictionaryWithObject:[NSNull nullOrObject:food]
                 forKey:kFoodVariableKey]];
     
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kFoodEntity predicate:predicate
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        [self setTitle:NSLocalizedString(kFoodTitle, nil)];
-        [self setFoodCategory:foodCategory];
+        [self setTitle:NSLocalizedString(kFoodDetailTitle, nil)];
+        [self setFood:food];
     }
     return self;
 }
@@ -115,15 +114,5 @@ static NSString *const kFoodVariableKey = @"FOOD";
                  initWithStyle:_cellStyle
                  reuseIdentifier:reuseIdentifier] autorelease];
     return cell;
-}
-
-- (void)didSelectRowForObject:(Food *)food
-                  atIndexPath:(NSIndexPath *)indexPath
-{
-    if (![self isEditing]) {
-        [[self navigationController] pushViewController:
-         [[[FoodDetailController alloc] initWithFood:food] autorelease]
-                animated:YES];
-    }
 }
 @end

@@ -24,6 +24,17 @@ extern NSString *const kFoodCategory;
 
 // FoodFile model's constants
 extern NSString *const kFoodFileName;
+extern NSString *const kFoodCSVFile;
+
+// FoodDetailController's constants
+extern NSString *const kFoodDetailHeader;
+extern NSString *const kFoodDetailCalories;
+extern NSString *const kFoodDetailCarbohidrates;
+extern NSString *const kFoodDetailFat;
+extern NSString *const kFoodDetailProteins;
+extern NSString *const kFoodDetailVitaminA;
+extern NSString *const kFoodDetailVitaminC;
+extern NSString *const kFoodDetailTitle;
 
 // Controller URLs
 extern NSString *const kURLFoodCategory;

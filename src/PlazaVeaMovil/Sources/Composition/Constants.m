@@ -2,8 +2,8 @@
 
 #import "Composition/Constants.h"
 
-NSString *const kFoodCategoryTitle = @"Composición Nutricional";
-// NSLocalizedString(@"Composición Nutricional", nil)
+NSString *const kFoodCategoryTitle = @"Composición";
+// NSLocalizedString(@"Composición", nil)
 
 // FoodCategory model's constants
 NSString *const kFoodCategoryEntity = @"FoodCategory";
@@ -29,6 +29,26 @@ NSString *const kFoodCategory = @"category";
 
 // FoodFile model's constants
 NSString *const kFoodFileName = @"name";
+NSString *const kFoodCSVFile = @"food.csv";
+
+// FoodDetailController's messages
+NSString *const kFoodDetailHeader = @"Composición";
+// NSLocalizedString(@"Composición", nil)
+NSString *const kFoodDetailCalories = @"Calorías";
+// NSLocalizedString(@"Calorías", nil)
+NSString *const kFoodDetailCarbohidrates = @"Carbohidratos disponibles";
+// NSLocalizedString(@"Carbohidratos disponibles", nil)
+NSString *const kFoodDetailFat = @"Grasas";
+// NSLocalizedString(@"Grasas", nil)
+NSString *const kFoodDetailProteins = @"Proteínas";
+// NSLocalizedString(@"Proteínas", nil)
+NSString *const kFoodDetailVitaminA = @"Vitamina A";
+// NSLocalizedString(@"Vitamina A", nil)
+NSString *const kFoodDetailVitaminC = @"Vitamina C";
+// NSLocalizedString(@"Vitamina C", nil)
+NSString *const kFoodDetailTitle = @"";
+// NSLocalizedString(@"", nil)
+
 
 // Controller URLs
 NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";
