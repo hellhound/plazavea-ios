@@ -163,7 +163,7 @@ static NSString *const kFoodVariableKey = @"FOOD";
     if (cell == nil)
         cell = [[[EditableTableViewCell alloc]
                  initWithStyle:_cellStyle
-                 reuseIdentifier:reuseIdentifier] autorelease];
+                    reuseIdentifier:reuseIdentifier] autorelease];
     return cell;
 }
 
@@ -172,8 +172,8 @@ static NSString *const kFoodVariableKey = @"FOOD";
 {
     if (![self isEditing]) {
         [[self navigationController] pushViewController:
-         [[[FoodDetailController alloc] initWithFood:food] autorelease]
-                animated:YES];
+                [[[FoodDetailController alloc] initWithFood:food] autorelease]
+                    animated:YES];
     }
 }
 @end

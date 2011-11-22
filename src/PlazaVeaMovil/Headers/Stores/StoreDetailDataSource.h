@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Three20/Three20.h>
+
 @protocol StoreDetailDataSourceDelegate;
 
 @interface StoreDetailDataSource: TTSectionedDataSource

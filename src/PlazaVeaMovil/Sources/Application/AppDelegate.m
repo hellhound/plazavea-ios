@@ -32,6 +32,7 @@
 #import "Wines/WineDetailController.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
+#import "Composition/FoodDetailController.h"
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
@@ -136,6 +137,7 @@
     // Nutritional composition
     [map from:kURLFoodCategory toViewController:
             [FoodCategoryListController class] selector:@selector(init)];
+    [map from:kURLFoodDetail toViewController:[FoodDetailController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]

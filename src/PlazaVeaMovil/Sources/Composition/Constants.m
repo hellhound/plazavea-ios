@@ -59,5 +59,4 @@ const CGFloat kFoodDetailImageHeight = 140.;
 
 // Controller URLs
 NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";
-NSString *const kURLFoodDetail =
-        @"tt://launcher/foodcategory/fooddetail/(initWithFood:)/";
+NSString *const kURLFoodDetail = @"tt://launcher/foodcategory/fooddetail/";
