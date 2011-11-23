@@ -20,6 +20,7 @@ NSString *const kFoodTitle = @"Alimentos";
 // Food model's constants
 NSString *const kFoodEntity = @"Food";
 NSString *const kFoodClass = @"Food";
+NSString *const kFoodInitial = @"Initial";
 NSString *const kFoodName = @"name";
 NSString *const kFoodCalories = @"calories";
 NSString *const kFoodCarbohidrates = @"carbohidrates";

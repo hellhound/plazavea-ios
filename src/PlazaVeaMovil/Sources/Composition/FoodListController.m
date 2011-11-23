@@ -100,20 +100,33 @@ static NSString *const kFoodVariableKey = @"FOOD";
 
 - (id)initWithCategory:(FoodCategory *)foodCategory;
 {
-    NSArray *sortDescriptors = [NSArray arrayWithObject:
-            [[[NSSortDescriptor alloc] initWithKey:kFoodName ascending:YES]
-                autorelease]];
-    NSManagedObjectContext *context = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] context];
-    
-    NSPredicate *predicate = [kFoodsPredicateTemplate 
-            predicateWithSubstitutionVariables: [NSDictionary
-                dictionaryWithObject:[NSNull nullOrObject:foodCategory]
-                forKey:kFoodVariableKey]];
-    
-    if ((self = [super initWithStyle:UITableViewStylePlain
-            entityName:kFoodEntity predicate:predicate
-                sortDescriptors:sortDescriptors inContext:context]) != nil) {
+    if ((self = [super initWithStyle:UITableViewStylePlain]) != nil) {
+        NSArray *sortDescriptors = [NSArray arrayWithObject:
+                [[[NSSortDescriptor alloc] initWithKey:kFoodName ascending:YES]
+                    autorelease]];
+        NSManagedObjectContext *context = [(AppDelegate *)
+                [[UIApplication sharedApplication] delegate] context];
+        NSPredicate *predicate = [kFoodsPredicateTemplate 
+                predicateWithSubstitutionVariables: [NSDictionary
+                    dictionaryWithObject:[NSNull nullOrObject:foodCategory]
+                    forKey:kFoodVariableKey]];
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        
+        [request setEntity:[NSEntityDescription entityForName:kFoodEntity
+                inManagedObjectContext:context]];
+        [request setPredicate:predicate];
+        [request setSortDescriptors:sortDescriptors];
+        // Conf fetch-request controller
+        _resultsController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:request
+                managedObjectContext:context
+                sectionNameKeyPath:kFoodInitial 
+                cacheName:nil];
+        
+        [_resultsController setDelegate:self];
+        [self performFetch];
+        [self setAllowsRowDeselection:YES];
+        [self setPerformsSelectionAction:YES];
         [self setFoodCategory:foodCategory];
         
         UITableView *tableView = [self tableView];
@@ -147,7 +160,7 @@ static NSString *const kFoodVariableKey = @"FOOD";
 {
     Food *food = (Food *)object;
     
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
 }
 
@@ -158,6 +171,22 @@ static NSString *const kFoodVariableKey = @"FOOD";
 canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return [_resultsController sectionIndexTitles];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[_resultsController sections] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return [[_resultsController sectionIndexTitles] objectAtIndex:section];
 }
 
 #pragma mark -
