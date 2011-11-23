@@ -204,7 +204,6 @@ static NSString *kPredicateNameVariableKey = @"NAME";
 {
     Food *food = (Food *)object;
     
-    //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
 }
 
@@ -257,7 +256,6 @@ titleForHeaderInSection:(NSInteger)section
     UITableViewCell *cell;
     if (tableView == [self tableView]){
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-        //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         NSManagedObject *object =
         [_filteredController objectAtIndexPath:indexPath];
@@ -270,7 +268,6 @@ titleForHeaderInSection:(NSInteger)section
                          reuseCell:cell reuseIdentifier:reuseIdentifier
                        atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     return cell;
 }
@@ -300,6 +297,9 @@ titleForHeaderInSection:(NSInteger)section
                     animated:YES];
     }
 }
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
 
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath

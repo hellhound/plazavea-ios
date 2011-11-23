@@ -3,6 +3,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/NSNull+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
@@ -10,13 +11,17 @@
 #import "Composition/Constants.h"
 #import "Composition/Models.h"
 #import "Composition/FoodListController.h"
+#import "Composition/FoodDetailController.h"
 #import "Composition/FoodCategoryListController.h"
-#import "Composition/FoodListController.h"
+
+static NSString *kPredicateNameVariableKey = @"NAME";
 
 @interface FoodCategoryListController ()
 
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UILabel *titleLabel;
+@property (nonatomic, readonly) NSFetchedResultsController *filteredController;
+@property (nonatomic, retain) UISearchDisplayController *searchController;
 @end
 
 @implementation FoodCategoryListController
@@ -35,19 +40,57 @@
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kFoodCategoryEntity predicate:nil
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
+        // Configure the results controller for searches
+        NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
+                [[[NSSortDescriptor alloc] initWithKey:kFoodName
+                    ascending:YES] autorelease]];
+        NSFetchRequest *searchRequest =
+        [[[NSFetchRequest alloc] init] autorelease];
+        
+        [searchRequest setEntity:[NSEntityDescription 
+                entityForName:kFoodEntity
+                    inManagedObjectContext:context]];
+        [searchRequest setSortDescriptors:filteredSortDescriptors];
+        _filteredController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:searchRequest
+                    managedObjectContext:context
+                    sectionNameKeyPath:nil
+                    cacheName:nil];
+        [_filteredController setDelegate:self];
+        [_searchController setDelegate:self];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [_filteredController setDelegate:nil];
+    [_filteredController release];
+    [_searchController setDelegate:nil];
+    [_searchController release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    if (_navItem == nil){
+        _navItem = [super navigationItem];
+        [_navItem setRightBarButtonItem:nil];
+    }
+    return _navItem;
 }
 
 #pragma mark -
 #pragma mark UIView
 
-- (void)loadView
+- (void)viewDidLoad
 {
-    [super loadView];
+    [super viewDidLoad];
     
     UITableView *tableView = [self tableView];
-    
     // Configuring the header view
     [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
                          autorelease]];
@@ -72,30 +115,38 @@
     [_titleLabel setFrame:titleFrame];
     // Adding the subviews to the header view
     [_headerView addSubview:_titleLabel];
+    // Conf search
+    UISearchBar *searchBar =
+    [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
     
+    [searchBar sizeToFit];
+    [searchBar setTag:100];
+    [searchBar setDelegate:self];
+    [self setSearchController:[[[UISearchDisplayController alloc]
+            initWithSearchBar:searchBar contentsController:self] autorelease]];
+    [_searchController setDelegate:self];
+    [_searchController setSearchResultsDataSource:self];
+    [_searchController setSearchResultsDelegate:self];
+    [_headerView addSubview:searchBar];
+    
+    CGRect searchFrame = [searchBar frame];
+    searchFrame.origin.y += titleHeight;
+    [searchBar setFrame:searchFrame];
+    CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, titleHeight);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            titleHeight + searchHeight);
     
     [_headerView setFrame:headerFrame];
     [tableView setTableHeaderView:_headerView];
 }
 
 #pragma mark -
-#pragma mark UIViewController
-
-- (UINavigationItem *)navigationItem
-{
-    if (_navItem == nil){
-        _navItem = [super navigationItem];
-        [_navItem setRightBarButtonItem:nil];
-    }
-    return _navItem;
-}
-
-#pragma mark -
 #pragma mark FoodCategoryListController
 
-@synthesize headerView = _headerView, titleLabel = _titleLabel;
+@synthesize headerView = _headerView, titleLabel = _titleLabel,
+        filteredController = _filteredController,
+            searchController = _searchController;
 
 - (void)didCreateCell:(EditableTableViewCell *)cell
             forObject:(NSManagedObject *)object
@@ -140,5 +191,90 @@
 canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == [self tableView]) {
+            return [super tableView:tableView numberOfRowsInSection:section];
+    }
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    if (tableView == [self tableView]){
+        cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    } else {
+        NSManagedObject *object =
+        [_filteredController objectAtIndexPath:indexPath];
+        Class cellClass =
+        [self cellClassForObject:object atIndexPath:indexPath];
+        NSString *reuseIdentifier = NSStringFromClass(cellClass);
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [self cellForObject:object withCellClass:cellClass
+                         reuseCell:cell reuseIdentifier:reuseIdentifier
+                       atIndexPath:indexPath];
+        [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    return cell;
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView]) {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    } else {
+        Food *food = [_filteredController objectAtIndexPath:indexPath];
+        [[self navigationController] pushViewController:
+                [[[FoodDetailController alloc] initWithFood:food] autorelease]
+                    animated:YES];
+
+    }
+}
+
+#pragma mark -
+#pragma mark HistoryEntryController <UISearchDisplayDelegate>
+
+- (BOOL)    searchDisplayController:(UISearchDisplayController *)controller
+   shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSExpression *lhsName = [NSExpression expressionForKeyPath:kFoodName];
+    NSExpression *rhsName =
+            [NSExpression expressionForVariable:kPredicateNameVariableKey];
+    
+    NSPredicate *kNamePredicateTemplate = [[NSComparisonPredicate
+            predicateWithLeftExpression:lhsName
+                rightExpression:rhsName
+                modifier:NSDirectPredicateModifier
+                type:NSLikePredicateOperatorType
+                options:NSCaseInsensitivePredicateOption |
+                NSDiacriticInsensitivePredicateOption] retain];
+    NSPredicate * predicateName = 
+    [kNamePredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:
+                [NSNull nullOrObject:
+                [NSString stringWithFormat:@"*%@*", searchString]]
+                forKey:kPredicateNameVariableKey]];
+    
+    [[_filteredController fetchRequest] setPredicate:predicateName];
+    
+    NSError *error = nil;
+    
+    if (![_filteredController performFetch:&error])
+        [error log];
+    return YES;
 }
 @end
