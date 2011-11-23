@@ -39,8 +39,17 @@
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kEmergencyCategoryTitle, nil)];
         // Configure the results controller for searches
+        NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
+                [[[NSSortDescriptor alloc] initWithKey:kEmergencyNumberName
+                    ascending:YES] autorelease]];
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+
+        [request setEntity:[NSEntityDescription 
+                entityForName:kEmergencyNumberEntity
+                inManagedObjectContext:_context]];
+        [request setSortDescriptors:filteredSortDescriptors];
         _filteredController = [[NSFetchedResultsController alloc]
-                initWithFetchRequest:[[self resultsController] fetchRequest]
+                initWithFetchRequest:request
                 managedObjectContext:context
                 sectionNameKeyPath:nil
                 cacheName:nil];
@@ -109,7 +118,6 @@
 {
     EmergencyCategory *category = (EmergencyCategory *)object;
 
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[category name]];
 }
 
@@ -130,15 +138,28 @@
     return cell;
 }
 
-- (void)didSelectRowForObject:(EmergencyCategory *)emergencyCategory
+- (void)didSelectRowForObject:(NSManagedObject *)emergencyObject
                   atIndexPath:(NSIndexPath *)indexPath
 {
-    if (![self isEditing])
-        [[self navigationController]
-                pushViewController:
-                    [[[EmergencyNumberController alloc]
-                        initWithCategory:emergencyCategory] autorelease]
-                animated:YES];
+    if ([emergencyObject isKindOfClass:[EmergencyCategory class]]) {
+        if (![self isEditing])
+            [[self navigationController]
+                    pushViewController:
+                        [[[EmergencyNumberController alloc]
+                            initWithCategory:(EmergencyCategory *)
+                                emergencyObject] autorelease]
+                    animated:YES];
+    } else {
+        NSCharacterSet *characterSet = 
+            [NSCharacterSet characterSetWithCharactersInString:@" -"];
+        NSString *phoneNumber = [[[(EmergencyNumber *)emergencyObject phone]
+                componentsSeparatedByCharactersInSet:characterSet]
+                componentsJoinedByString: @""];
+        NSString *formatedNumber =
+                [NSString stringWithFormat:@"tel://%@", phoneNumber];
+        [[UIApplication sharedApplication]
+                openURL:[NSURL URLWithString:formatedNumber]];
+    }
 }
 
 #pragma mark -
@@ -159,20 +180,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == [self tableView])
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell;
+    if (tableView == [self tableView]){
+        cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    } else {
+        NSManagedObject *object =
+                [_filteredController objectAtIndexPath:indexPath];
+        Class cellClass =
+                [self cellClassForObject:object atIndexPath:indexPath];
+        NSString *reuseIdentifier = NSStringFromClass(cellClass);
 
-    NSManagedObject *object =
-            [_filteredController objectAtIndexPath:indexPath];
-    Class cellClass = [self cellClassForObject:object atIndexPath:indexPath];
-    NSString *reuseIdentifier = NSStringFromClass(cellClass);
-    UITableViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-
-    cell = [self cellForObject:object withCellClass:cellClass
-            reuseCell:cell reuseIdentifier:reuseIdentifier
-            atIndexPath:indexPath];
-    [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [self cellForObject:object withCellClass:cellClass
+                reuseCell:cell reuseIdentifier:reuseIdentifier
+                atIndexPath:indexPath];
+        [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
     return cell;
 }
 

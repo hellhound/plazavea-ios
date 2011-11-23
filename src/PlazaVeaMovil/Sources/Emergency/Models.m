@@ -10,6 +10,8 @@
 static NSRelationshipDescription *kNumbersRelationship;
 static NSRelationshipDescription *kCategoryRelationship;
 static NSString *kPredicateNameVariableKey = @"NAME";
+static NSString *kPredicatePhoneVariableKey = @"PHONE";
+static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
 @implementation EmergencyCategory
 
@@ -184,24 +186,73 @@ static NSString *kPredicateNameVariableKey = @"NAME";
 
 + (NSPredicate *)predicateForEntriesLike:(NSString *)seasrchText
 {
-    NSExpression *lhs =
+    NSExpression *lhsName =
             [NSExpression expressionForKeyPath:kEmergencyNumberName];
-    NSExpression *rhs =
+    NSExpression *rhsName =
             [NSExpression expressionForVariable:kPredicateNameVariableKey];
 
-    NSPredicate *kEntriesPredicateTemplate = [[NSComparisonPredicate
-        predicateWithLeftExpression:lhs
-        rightExpression:rhs
+    NSPredicate *kNamePredicateTemplate = [[NSComparisonPredicate
+        predicateWithLeftExpression:lhsName
+        rightExpression:rhsName
         modifier:NSDirectPredicateModifier
         type:NSLikePredicateOperatorType
         options:NSCaseInsensitivePredicateOption |
             NSDiacriticInsensitivePredicateOption] retain];
 
-    return [kEntriesPredicateTemplate predicateWithSubstitutionVariables:
+    NSExpression *lhsPhone =
+            [NSExpression expressionForKeyPath:kEmergencyNumberPhone];
+    NSExpression *rhsPhone =
+            [NSExpression expressionForVariable:kPredicatePhoneVariableKey];
+
+    NSPredicate *kPhonePredicateTemplate = [[NSComparisonPredicate
+        predicateWithLeftExpression:lhsPhone
+        rightExpression:rhsPhone
+        modifier:NSDirectPredicateModifier
+        type:NSLikePredicateOperatorType
+        options:NSCaseInsensitivePredicateOption |
+            NSDiacriticInsensitivePredicateOption] retain];
+
+    NSExpression *lhsCategory =
+            [NSExpression expressionForKeyPath:
+                [NSString stringWithFormat:@"%@.%@",kEmergencyNumberCategory,
+                    kEmergencyCategoryName]];
+    NSExpression *rhsCategory =
+            [NSExpression expressionForVariable:kPredicateCategoryVariableKey];
+
+    NSPredicate *kCategoryPredicateTemplate = [[NSComparisonPredicate
+        predicateWithLeftExpression:lhsCategory
+        rightExpression:rhsCategory
+        modifier:NSDirectPredicateModifier
+        type:NSLikePredicateOperatorType
+        options:NSCaseInsensitivePredicateOption |
+            NSDiacriticInsensitivePredicateOption] retain];
+
+    NSPredicate * predicateName = 
+        [kNamePredicateTemplate predicateWithSubstitutionVariables:
             [NSDictionary dictionaryWithObject:
                     [NSNull nullOrObject:
                         [NSString stringWithFormat:@"*%@*", seasrchText]]
                 forKey:kPredicateNameVariableKey]];
+
+    NSPredicate * predicatePhone = 
+        [kPhonePredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:
+                    [NSNull nullOrObject:
+                        [NSString stringWithFormat:@"*%@*", seasrchText]]
+                forKey:kPredicatePhoneVariableKey]];
+
+    NSPredicate * predicateCategory = 
+        [kCategoryPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:
+                    [NSNull nullOrObject:
+                        [NSString stringWithFormat:@"*%@*", seasrchText]]
+                forKey:kPredicateCategoryVariableKey]];
+
+    return [NSCompoundPredicate orPredicateWithSubpredicates:
+            [NSArray arrayWithObjects:predicateName, predicatePhone, 
+                predicateCategory, nil]];
+
+     
 }
 @end
 
