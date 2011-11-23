@@ -12,6 +12,15 @@
 #import "Emergency/EmergencyCategoryController.h"
 #import "Emergency/EmergencyNumberController.h"
 
+@interface EmergencyCategoryController ()
+
+// @private
+@property (nonatomic, readonly)
+    NSFetchedResultsController *filteredController;
+@property (nonatomic, retain) UISearchDisplayController *searchController;
+
+@end
+
 @implementation EmergencyCategoryController
 
 #pragma mark -
@@ -33,6 +42,15 @@
     return self;
 }
 
+- (void) dealloc
+{
+    [_filteredController setDelegate:nil];
+    [_filteredController release];
+    [_searchController setDelegate:nil];
+    [_searchController release];
+    [super dealloc];
+}
+
 #pragma mark -
 #pragma mark UIViewController
 
@@ -44,6 +62,35 @@
     }
     return _navItem;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Setup searchBar and searchDisplayController
+    UISearchBar *searchBar =
+            [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+
+    [searchBar sizeToFit];
+    [searchBar setDelegate:self];
+    [self setSearchController:
+            [[[UISearchDisplayController alloc] initWithSearchBar:searchBar
+                contentsController:self] autorelease]];
+    [_searchController setDelegate:self];
+    [_searchController setSearchResultsDataSource:self];
+    [_searchController setSearchResultsDelegate:self];
+    [[self tableView] setTableHeaderView:searchBar];
+}
+
+- (void)viewDidUnload
+{
+    [self setSearchController:nil];
+}
+
+#pragma mark -
+#pragma mark EmergencyCategoryController (Private)
+
+@synthesize searchController = _searchController,
+    filteredController = _filteredController;
 
 #pragma mark -
 #pragma mark EmergencyCategoryController
@@ -84,5 +131,20 @@
                     [[[EmergencyNumberController alloc]
                         initWithCategory:emergencyCategory] autorelease]
                 animated:YES];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return [super tableView:tableView numberOfRowsInSection:section];
+
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
 }
 @end
