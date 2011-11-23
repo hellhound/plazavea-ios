@@ -5,8 +5,11 @@
 #import "Composition/Models.h"
 
 @interface FoodListController : EditableCellTableViewController
+        <UISearchBarDelegate, UISearchDisplayDelegate>
 {
     UINavigationItem *_navItem;
+    NSFetchedResultsController *_filteredController;
+    UISearchDisplayController *_searchController;
     FoodCategory *_foodCategory;
     UIView *_headerView;
     UILabel *_titleLabel;
