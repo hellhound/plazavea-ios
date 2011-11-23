@@ -15,7 +15,11 @@
 static NSPredicate *kEmergencyNumbersPredicateTemplate;
 static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 
-@interface EmergencyNumberController (Private)
+@interface EmergencyNumberController ()
+
+@property (nonatomic, readonly)
+    NSFetchedResultsController *filteredController;
+@property (nonatomic, retain) UISearchDisplayController *searchController;
 
 + (void)initializePredicateTemplates;
 @end
@@ -33,6 +37,10 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 
 - (void)dealloc
 {
+    [_filteredController setDelegate:nil];
+    [_filteredController release];
+    [_searchController setDelegate:nil];
+    [_searchController release];
     [_emergencyCategory release];
     [super dealloc];
 }
@@ -49,8 +57,34 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
     return _navItem;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Setup searchBar and searchDisplayController
+    UISearchBar *searchBar =
+            [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+
+    [searchBar sizeToFit];
+    [searchBar setDelegate:self];
+    [self setSearchController:
+            [[[UISearchDisplayController alloc] initWithSearchBar:searchBar
+                contentsController:self] autorelease]];
+    [_searchController setDelegate:self];
+    [_searchController setSearchResultsDataSource:self];
+    [_searchController setSearchResultsDelegate:self];
+    [[self tableView] setTableHeaderView:searchBar];
+}
+
+- (void)viewDidUnload
+{
+    [self setSearchController:nil];
+}
+
 #pragma mark -
 #pragma mark EmergencyNumberController (Private)
+
+@synthesize searchController = _searchController,
+    filteredController = _filteredController;
 
 + (void)initializePredicateTemplates
 {
@@ -89,10 +123,17 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
     if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyNumberEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
-        //TODO:load title and other stuff
         [self setTitle:NSLocalizedString(kEmergencyNumberTitle, nil)];
         [self setEmergencyCategory:emergencyCategory];
         [self setCellStyle:UITableViewCellStyleSubtitle];
+        // Configure the results controller for searches
+        _filteredController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:[[self resultsController] fetchRequest]
+                managedObjectContext:context
+                sectionNameKeyPath:nil
+                cacheName:nil];
+        [_filteredController setDelegate:self];
+        [_searchController setDelegate:self];
     }
     return self;
 }
@@ -139,5 +180,56 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
         [[UIApplication sharedApplication]
                 openURL:[NSURL URLWithString:formatedNumber]];
     }
+}
+
+#pragma mark -
+#pragma mark EmergencyNumberController<UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return [super tableView:tableView numberOfRowsInSection:section];
+
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView])
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    NSManagedObject *object =
+            [_filteredController objectAtIndexPath:indexPath];
+    Class cellClass = [self cellClassForObject:object atIndexPath:indexPath];
+    NSString *reuseIdentifier = NSStringFromClass(cellClass);
+    UITableViewCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+
+    cell = [self cellForObject:object withCellClass:cellClass
+            reuseCell:cell reuseIdentifier:reuseIdentifier
+            atIndexPath:indexPath];
+    [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark EmergencyNumberController <UISearchDisplayDelegate>
+
+- (BOOL)    searchDisplayController:(UISearchDisplayController *)controller
+   shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [[_filteredController fetchRequest] setPredicate:
+            [EmergencyNumber predicateForEntriesLike:searchString]];
+    
+    NSError *error = nil;
+
+    if (![_filteredController performFetch:&error])
+        [error log];
+    return YES;
 }
 @end

@@ -5,8 +5,11 @@
 #import "Emergency/Models.h"
 
 @interface EmergencyCategoryController : EditableCellTableViewController
+    <UISearchBarDelegate, UISearchDisplayDelegate>
 {
     UINavigationItem *_navItem;
+    NSFetchedResultsController *_filteredController;
+    UISearchDisplayController *_searchController;
 }
 
 @end
