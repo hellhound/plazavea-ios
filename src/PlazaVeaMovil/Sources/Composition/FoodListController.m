@@ -93,7 +93,7 @@ static NSString *const kFoodVariableKey = @"FOOD";
 }
 
 #pragma mark -
-#pragma mark FoodistController (Public)
+#pragma mark FoodListController (Public)
 
 @synthesize foodCategory = _foodCategory, headerView = _headerView,
         titleLabel = _titleLabel;
@@ -149,6 +149,15 @@ static NSString *const kFoodVariableKey = @"FOOD";
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (BOOL)    tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 #pragma mark -

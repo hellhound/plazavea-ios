@@ -132,4 +132,13 @@
                     autorelease] animated:YES];
     }
 }
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (BOOL)    tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 @end
