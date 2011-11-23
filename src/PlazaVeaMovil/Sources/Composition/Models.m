@@ -94,6 +94,15 @@ static NSRelationshipDescription *kCategoryRelationship;
 + (NSSet *)attributes
 {
     NSSet *attributes = [super attributes];
+    NSAttributeDescription *initial =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [initial setName:kFoodInitial];
+    [initial setAttributeType:NSStringAttributeType];
+    [initial setOptional:NO];
+    [initial setIndexed:YES];
+    [initial setTransient:YES];
+    
     NSAttributeDescription *name =
             [[[NSAttributeDescription alloc] init] autorelease];
     
@@ -111,7 +120,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [calories setIndexed:YES]; // allows faster searching and sorting
     
     NSAttributeDescription *carbohidrates =
-    [[[NSAttributeDescription alloc] init] autorelease];
+            [[[NSAttributeDescription alloc] init] autorelease];
     
     [carbohidrates setName:kFoodCarbohidrates];
     [carbohidrates setAttributeType:NSStringAttributeType];
@@ -119,7 +128,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [carbohidrates setIndexed:YES]; // allows faster searching and sorting
     
     NSAttributeDescription *fat =
-    [[[NSAttributeDescription alloc] init] autorelease];
+            [[[NSAttributeDescription alloc] init] autorelease];
     
     [fat setName:kFoodFat];
     [fat setAttributeType:NSStringAttributeType];
@@ -127,7 +136,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [fat setIndexed:YES]; // allows faster searching and sorting
     
     NSAttributeDescription *proteins =
-    [[[NSAttributeDescription alloc] init] autorelease];
+            [[[NSAttributeDescription alloc] init] autorelease];
     
     [proteins setName:kFoodProteins];
     [proteins setAttributeType:NSStringAttributeType];
@@ -135,7 +144,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [proteins setIndexed:YES]; // allows faster searching and sorting
     
     NSAttributeDescription *vitaminA =
-    [[[NSAttributeDescription alloc] init] autorelease];
+            [[[NSAttributeDescription alloc] init] autorelease];
     
     [vitaminA setName:kFoodVitaminA];
     [vitaminA setAttributeType:NSStringAttributeType];
@@ -143,15 +152,15 @@ static NSRelationshipDescription *kCategoryRelationship;
     [vitaminA setIndexed:YES]; // allows faster searching and sorting
     
     NSAttributeDescription *vitaminC =
-    [[[NSAttributeDescription alloc] init] autorelease];
+            [[[NSAttributeDescription alloc] init] autorelease];
     
     [vitaminC setName:kFoodVitaminC];
     [vitaminC setAttributeType:NSStringAttributeType];
     [vitaminC setOptional:NO];
     [vitaminC setIndexed:YES]; // allows faster searching and sorting
     return [attributes setByAddingObjectsFromSet:
-            [NSSet setWithObjects:name, calories, carbohidrates, fat, proteins,
-                vitaminA, vitaminC, nil]];
+            [NSSet setWithObjects:initial, name, calories, carbohidrates, fat,
+                proteins, vitaminA, vitaminC, nil]];
 }
 
 + (NSSet *)relationships
@@ -189,7 +198,7 @@ static NSRelationshipDescription *kCategoryRelationship;
 #pragma mark Food (Public)
 
 // KVO properties
-@dynamic name, calories, carbohidrates, fat, proteins, vitaminA, vitaminC,
+@dynamic initial, name, calories, carbohidrates, fat, proteins, vitaminA, vitaminC,
         category;
 
 + (id)foodWithName:(NSString *)name
@@ -217,6 +226,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     Food *food = [[[self alloc] initWithEntity:[self entity]
                 insertIntoManagedObjectContext:context] autorelease];
     
+    [food setInitial:[name substringToIndex:1]];
     [food setName:name];
     [food setCategory:category];
     [food setCalories:calories];
@@ -239,6 +249,14 @@ static NSRelationshipDescription *kCategoryRelationship;
     [food setName:name];
     [food setCategory:category];
     return food;
+}
+
+- (NSString *)initial
+{
+    [self willAccessValueForKey:kFoodInitial];
+    NSString *initial = [[self name] substringToIndex:1];
+    [self didAccessValueForKey:kFoodInitial];
+    return initial;
 }
 @end
 

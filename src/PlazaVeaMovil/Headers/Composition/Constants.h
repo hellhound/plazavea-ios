@@ -17,6 +17,7 @@ extern NSString *const kFoodTitle;
 // Food model's constants
 extern NSString *const kFoodEntity;
 extern NSString *const kFoodClass;
+extern NSString *const kFoodInitial;
 extern NSString *const kFoodName;
 extern NSString *const kFoodCalories;
 extern NSString *const kFoodCarbohidrates;

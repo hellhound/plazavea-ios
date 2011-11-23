@@ -16,6 +16,7 @@
 
 @interface Food: ManagedObject
 
+@property (nonatomic, retain) NSString *initial;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *calories;
 @property (nonatomic, retain) NSString *carbohidrates;
