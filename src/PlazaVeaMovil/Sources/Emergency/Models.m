@@ -2,12 +2,14 @@
 #import <CoreData/CoreData.h>
 
 #import "Common/Additions/NSString+Additions.h"
+#import "Common/Additions/NSNull+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
 
 static NSRelationshipDescription *kNumbersRelationship;
 static NSRelationshipDescription *kCategoryRelationship;
+static NSString *kPredicateNameVariableKey = @"NAME";
 
 @implementation EmergencyCategory
 
@@ -178,6 +180,28 @@ static NSRelationshipDescription *kCategoryRelationship;
     [number setPhone:phone];
     [number setCategory:category];
     return number;
+}
+
++ (NSPredicate *)predicateForEntriesLike:(NSString *)seasrchText
+{
+    NSExpression *lhs =
+            [NSExpression expressionForKeyPath:kEmergencyNumberName];
+    NSExpression *rhs =
+            [NSExpression expressionForVariable:kPredicateNameVariableKey];
+
+    NSPredicate *kEntriesPredicateTemplate = [[NSComparisonPredicate
+        predicateWithLeftExpression:lhs
+        rightExpression:rhs
+        modifier:NSDirectPredicateModifier
+        type:NSLikePredicateOperatorType
+        options:NSCaseInsensitivePredicateOption |
+            NSDiacriticInsensitivePredicateOption] retain];
+
+    return [kEntriesPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:
+                    [NSNull nullOrObject:
+                        [NSString stringWithFormat:@"*%@*", seasrchText]]
+                forKey:kPredicateNameVariableKey]];
 }
 @end
 

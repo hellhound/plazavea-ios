@@ -38,6 +38,14 @@
             entityName:kEmergencyCategoryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kEmergencyCategoryTitle, nil)];
+        // Configure the results controller for searches
+        _filteredController = [[NSFetchedResultsController alloc]
+                initWithFetchRequest:[[self resultsController] fetchRequest]
+                managedObjectContext:context
+                sectionNameKeyPath:nil
+                cacheName:nil];
+        [_filteredController setDelegate:self];
+        [_searchController setDelegate:self];
     }
     return self;
 }
@@ -146,5 +154,41 @@
             [[_filteredController sections] objectAtIndex:section];
     
     return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView])
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    NSManagedObject *object =
+            [_filteredController objectAtIndexPath:indexPath];
+    Class cellClass = [self cellClassForObject:object atIndexPath:indexPath];
+    NSString *reuseIdentifier = NSStringFromClass(cellClass);
+    UITableViewCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+
+    cell = [self cellForObject:object withCellClass:cellClass
+            reuseCell:cell reuseIdentifier:reuseIdentifier
+            atIndexPath:indexPath];
+    [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark HistoryEntryController <UISearchDisplayDelegate>
+
+- (BOOL)    searchDisplayController:(UISearchDisplayController *)controller
+   shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [[_filteredController fetchRequest] setPredicate:
+            [EmergencyNumber predicateForEntriesLike:searchString]];
+    
+    NSError *error = nil;
+
+    if (![_filteredController performFetch:&error])
+        [error log];
+    return YES;
 }
 @end

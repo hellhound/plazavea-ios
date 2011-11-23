@@ -28,6 +28,8 @@
                phone:(NSString *)phone
             category:(EmergencyCategory *)category
    resultsController:(NSFetchedResultsController *)resultsController;
+
++ (NSPredicate *)predicateForEntriesLike:(NSString *)seasrchText;
 @end
 
 @interface EmergencyFile: ManagedObject
