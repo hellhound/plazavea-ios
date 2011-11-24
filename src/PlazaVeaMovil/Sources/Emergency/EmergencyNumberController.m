@@ -232,4 +232,35 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
         [error log];
     return YES;
 }
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView]) {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    } else {
+        if ((_allowsRowDeselection && ![self isEditing]) ||
+                (_allowsRowDeselectionOnEditing && [self isEditing])){
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+        if (_performsSelectionAction)
+            [self didSelectRowForObject:
+                    [_filteredController objectAtIndexPath:indexPath]
+                        atIndexPath:indexPath];
+    }
+}
+
+- (void)                        tableView:(UITableView *)tableView
+ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView]) {
+        [super tableView:tableView
+                accessoryButtonTappedForRowWithIndexPath:indexPath];
+    } else {
+        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
 @end
