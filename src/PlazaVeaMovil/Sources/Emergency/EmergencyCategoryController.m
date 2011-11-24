@@ -38,6 +38,8 @@
             entityName:kEmergencyCategoryEntity predicate:nil
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kEmergencyCategoryTitle, nil)];
+        [self setCellStyle:UITableViewCellStyleSubtitle];
+
         // Configure the results controller for searches
         NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
                 [[[NSSortDescriptor alloc] initWithKey:kEmergencyNumberName
@@ -116,9 +118,15 @@
             forObject:(NSManagedObject *)object
           atIndexPath:(NSIndexPath *)indexPath
 {
-    EmergencyCategory *category = (EmergencyCategory *)object;
+    if ([object isKindOfClass:[EmergencyCategory class]]) {
+        EmergencyCategory *category = (EmergencyCategory *)object;
+        [[cell textLabel] setText:[category name]];
+    } else {
+        EmergencyNumber *emergencyNumber = (EmergencyNumber *)object;
+        [[cell textLabel] setText:[emergencyNumber name]];
+        [[cell detailTextLabel] setText:[emergencyNumber phone]];
+    }
 
-    [[cell textLabel] setText:[category name]];
 }
 
 #pragma mark -
@@ -215,5 +223,36 @@
     if (![_filteredController performFetch:&error])
         [error log];
     return YES;
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView]) {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    } else {
+        if ((_allowsRowDeselection && ![self isEditing]) ||
+                (_allowsRowDeselectionOnEditing && [self isEditing])){
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+        if (_performsSelectionAction)
+            [self didSelectRowForObject:
+                    [_filteredController objectAtIndexPath:indexPath]
+                        atIndexPath:indexPath];
+    }
+}
+
+- (void)                        tableView:(UITableView *)tableView
+ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == [self tableView]) {
+        [super tableView:tableView
+                accessoryButtonTappedForRowWithIndexPath:indexPath];
+    } else {
+        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 @end
