@@ -41,8 +41,11 @@
         [self setCellStyle:UITableViewCellStyleSubtitle];
 
         // Configure the results controller for searches
+        NSString *categoryKey = 
+                [NSString stringWithFormat:@"%@.%@",kEmergencyNumberCategory,
+                    kEmergencyCategoryName];
         NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
-                [[[NSSortDescriptor alloc] initWithKey:kEmergencyNumberName
+                [[[NSSortDescriptor alloc] initWithKey:categoryKey
                     ascending:YES] autorelease]];
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 
@@ -53,7 +56,7 @@
         _filteredController = [[NSFetchedResultsController alloc]
                 initWithFetchRequest:request
                 managedObjectContext:context
-                sectionNameKeyPath:nil
+                sectionNameKeyPath:categoryKey
                 cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
@@ -183,6 +186,40 @@
             [[_filteredController sections] objectAtIndex:section];
     
     return [sectionInfo numberOfObjects];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (tableView == [self tableView])
+        return [[_resultsController sections] count];
+    return [[_filteredController sections] count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (tableView == [self tableView])
+        return [_resultsController sectionIndexTitles];
+    return [_filteredController sectionIndexTitles];
+}
+
+-       (NSInteger)tableView:(UITableView *)tableView 
+ sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    if (tableView == [self tableView])
+        return [_resultsController sectionForSectionIndexTitle:title
+                atIndex:index];
+    return [_filteredController sectionForSectionIndexTitle:title
+            atIndex:index];
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+    titleForHeaderInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo;
+    if (tableView == [self tableView]){
+        sectionInfo = 
+                [[_resultsController sections] objectAtIndex:section];
+    } else {
+        sectionInfo = 
+                [[_filteredController sections] objectAtIndex:section];
+    }
+    return [sectionInfo name];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
