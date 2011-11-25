@@ -41,11 +41,13 @@ static NSString *kPredicateNameVariableKey = @"NAME";
             entityName:kFoodCategoryEntity predicate:nil
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
         // Configure the results controller for searches
+        NSString *categoryKey = 
+                [NSString stringWithFormat:@"%@.%@",kFoodCategory,kFoodName];
         NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
-                [[[NSSortDescriptor alloc] initWithKey:kFoodName
+                [[[NSSortDescriptor alloc] initWithKey:categoryKey
                     ascending:YES] autorelease]];
         NSFetchRequest *searchRequest =
-        [[[NSFetchRequest alloc] init] autorelease];
+                [[[NSFetchRequest alloc] init] autorelease];
         
         [searchRequest setEntity:[NSEntityDescription 
                 entityForName:kFoodEntity
@@ -54,7 +56,7 @@ static NSString *kPredicateNameVariableKey = @"NAME";
         _filteredController = [[NSFetchedResultsController alloc]
                 initWithFetchRequest:searchRequest
                     managedObjectContext:context
-                    sectionNameKeyPath:nil
+                    sectionNameKeyPath:categoryKey
                     cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
@@ -93,10 +95,10 @@ static NSString *kPredicateNameVariableKey = @"NAME";
     UITableView *tableView = [self tableView];
     // Configuring the header view
     [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
-                         autorelease]];
+            autorelease]];
     // Configuring the label
     [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
-                         autorelease]];
+            autorelease]];
     [_titleLabel setNumberOfLines:0];
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
@@ -205,6 +207,42 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
     return [sectionInfo numberOfObjects];
 }
 
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    if (tableView == [self tableView])
+        return [_resultsController sectionIndexTitles];
+    return [_filteredController sectionIndexTitles];
+}
+
+-       (NSInteger)tableView:(UITableView *)tableView 
+ sectionForSectionIndexTitle:(NSString *)title
+                     atIndex:(NSInteger)index
+{
+    if (tableView == [self tableView])
+        return [_resultsController sectionForSectionIndexTitle:title
+                atIndex:index];
+    return [_filteredController sectionForSectionIndexTitle:title
+                atIndex:index];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == [self tableView])
+        return [[_resultsController sections] count];
+    return [[_filteredController sections] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return nil;
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    
+    return [sectionInfo name];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -269,7 +307,29 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
                 [NSString stringWithFormat:@"*%@*", searchString]]
                 forKey:kPredicateNameVariableKey]];
     
-    [[_filteredController fetchRequest] setPredicate:predicateName];
+    NSExpression *lhsProperties =
+            [NSExpression expressionForKeyPath:kFoodProperties];
+    NSExpression *rhsProperties =
+            [NSExpression expressionForVariable:kPredicateNameVariableKey];
+    
+    NSPredicate *kPropertiesPredicateTemplate = [[NSComparisonPredicate
+                predicateWithLeftExpression:lhsProperties
+                    rightExpression:rhsProperties
+                    modifier:NSDirectPredicateModifier
+                    type:NSLikePredicateOperatorType
+                    options:NSCaseInsensitivePredicateOption |
+                    NSDiacriticInsensitivePredicateOption] retain];
+    NSPredicate * predicateProperties = 
+    [kPropertiesPredicateTemplate predicateWithSubstitutionVariables:
+            [NSDictionary dictionaryWithObject:
+                [NSNull nullOrObject:
+                [NSString stringWithFormat:@"*%@*", searchString]]
+                forKey:kPredicateNameVariableKey]];
+    
+    [[_filteredController fetchRequest] setPredicate:
+            [NSCompoundPredicate orPredicateWithSubpredicates:
+                [NSArray arrayWithObjects:predicateName, predicateProperties,
+                 nil]]];
     
     NSError *error = nil;
     

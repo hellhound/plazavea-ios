@@ -23,23 +23,47 @@
     if ((self = [super init]) != nil) {        
         NSMutableArray *items = [NSMutableArray array];
         NSMutableArray *sections = [NSMutableArray array];
+        NSMutableArray *tempItems = [NSMutableArray array];
         
+        if ([[food calories] length] > 0) {
+            TableCaptionItem *calories = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailCaloriesSufix,
+                        [food calories]] caption:kFoodDetailCalories];
+            [tempItems addObject:calories];
+        }
+        if ([[food carbohidrates] length] > 0) {
+            TableCaptionItem *carbohidrates = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailCarbohidratesSufix,
+                        [food carbohidrates]] caption:kFoodDetailCarbohidrates];
+            [tempItems addObject:carbohidrates];
+        }
+        if ([[food fat] length] > 0) {
+            TableCaptionItem *fat = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailFatSufix,
+                        [food fat]] caption:kFoodDetailFat];
+            [tempItems addObject:fat];
+        }
+        if ([[food proteins] length] > 0) {
+            TableCaptionItem *proteins = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailProteinsSufix,
+                        [food proteins]] caption:kFoodDetailProteins];
+            [tempItems addObject:proteins];
+        }
+        if ([[food vitaminA] length] > 0) {
+            TableCaptionItem *vitaminA = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailVitaminASufix,
+                        [food vitaminA]] caption:kFoodDetailVitaminA];
+            [tempItems addObject:vitaminA];
+        }
+        if ([[food vitaminC] length] > 0) {
+            TableCaptionItem *vitaminC = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailVitaminCSufix,
+                        [food vitaminC]] caption:kFoodDetailVitaminC];
+            [tempItems addObject:vitaminC];
+        }
         [sections addObject:kFoodDetailHeader];
-        TableCaptionItem *calories = [TableCaptionItem itemWithText:
-                [food calories] caption:kFoodDetailCalories];
-        TableCaptionItem *carbohidrates = [TableCaptionItem itemWithText:
-                [food carbohidrates] caption:kFoodDetailCarbohidrates];
-        TableCaptionItem *fat = [TableCaptionItem itemWithText:
-                [food fat] caption:kFoodDetailFat];
-        TableCaptionItem *proteins = [TableCaptionItem itemWithText:
-                [food proteins] caption:kFoodDetailProteins];
-        TableCaptionItem *vitaminA = [TableCaptionItem itemWithText:
-                [food vitaminA] caption:kFoodDetailVitaminA];
-        TableCaptionItem *vitaminC = [TableCaptionItem itemWithText:
-                [food vitaminC] caption:kFoodDetailVitaminC];
-        [items addObject:[NSArray arrayWithObjects:calories, carbohidrates, fat,
-                proteins, vitaminA, vitaminC, nil]];
         [self setSections:sections];
+        [items addObject:tempItems];
         [self setItems:items];
     }
     return self;

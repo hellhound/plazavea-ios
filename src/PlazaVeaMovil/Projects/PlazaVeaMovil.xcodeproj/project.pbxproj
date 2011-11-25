@@ -113,6 +113,7 @@
 		2F14234F146D615700CB10A9 /* TableCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
+		2F19B8B2147FF6EE00582D7E /* foods_01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2F19B8B1147FF6EE00582D7E /* foods_01.csv */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
 		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
 		2F6C6E96144F5F100012E787 /* RegionListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C6E95144F5F100012E787 /* RegionListDataSource.m */; };
@@ -137,7 +138,6 @@
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
 		2FDAE83F1476C5620050E87E /* composition.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDAE83E1476C5620050E87E /* composition.png */; };
-		2FDAE8411476CD180050E87E /* foods.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2FDAE8401476CD180050E87E /* foods.csv */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
 		2FE363F71443DE38003B233E /* MeatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F61443DE38003B233E /* MeatListController.m */; };
@@ -697,6 +697,7 @@
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
+		2F19B8B1147FF6EE00582D7E /* foods_01.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foods_01.csv; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F6C6E95144F5F100012E787 /* RegionListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionListDataSource.m; sourceTree = "<group>"; };
@@ -721,7 +722,6 @@
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2FDAE83E1476C5620050E87E /* composition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = composition.png; sourceTree = "<group>"; };
-		2FDAE8401476CD180050E87E /* foods.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foods.csv; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
@@ -863,8 +863,8 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F19B8B1147FF6EE00582D7E /* foods_01.csv */,
 				2F9E1036147AF4770047901D /* default-food-detail.png */,
-				2FDAE8401476CD180050E87E /* foods.csv */,
 				2FDAE83E1476C5620050E87E /* composition.png */,
 				2F142221146D4D7000CB10A9 /* default-wine-detail.png */,
 				2F012A04146B16B3006098EB /* Somelier.png */,
@@ -1725,8 +1725,8 @@
 				2F012A05146B16B3006098EB /* Somelier.png in Resources */,
 				2F142222146D4D7000CB10A9 /* default-wine-detail.png in Resources */,
 				2FDAE83F1476C5620050E87E /* composition.png in Resources */,
-				2FDAE8411476CD180050E87E /* foods.csv in Resources */,
 				2F9E1037147AF4770047901D /* default-food-detail.png in Resources */,
+				2F19B8B2147FF6EE00582D7E /* foods_01.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

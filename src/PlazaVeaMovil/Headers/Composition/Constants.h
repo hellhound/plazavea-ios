@@ -26,6 +26,7 @@ extern NSString *const kFoodProteins;
 extern NSString *const kFoodVitaminA;
 extern NSString *const kFoodVitaminC;
 extern NSString *const kFoodCategory;
+extern NSString *const kFoodProperties;
 
 // FoodFile model's constants
 extern NSString *const kFoodFileName;
@@ -42,6 +43,12 @@ extern NSString *const kFoodDetailProteins;
 extern NSString *const kFoodDetailVitaminA;
 extern NSString *const kFoodDetailVitaminC;
 extern NSString *const kFoodDetailTitle;
+extern NSString *const kFoodDetailCaloriesSufix;
+extern NSString *const kFoodDetailCarbohidratesSufix;
+extern NSString *const kFoodDetailFatSufix;
+extern NSString *const kFoodDetailProteinsSufix;
+extern NSString *const kFoodDetailVitaminASufix;
+extern NSString *const kFoodDetailVitaminCSufix;
 
 // image
 extern NSString *const kFoodDetailDefaultImage;

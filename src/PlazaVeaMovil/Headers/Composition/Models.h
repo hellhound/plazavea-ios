@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString *vitaminA;
 @property (nonatomic, retain) NSString *vitaminC;
 @property (nonatomic, retain) FoodCategory *category;
+@property (nonatomic, retain) NSString *properties;
 
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
@@ -37,6 +38,7 @@
           proteins:(NSString *)proteins
           vitaminA:(NSString *)vitaminA
           vitaminC:(NSString *)vitaminC
+        properties:(NSString *)properties
            context:(NSManagedObjectContext *)context;
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category

@@ -1,3 +1,5 @@
+#import <limits.h>
+#import <math.h>
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
@@ -158,9 +160,17 @@ static NSRelationshipDescription *kCategoryRelationship;
     [vitaminC setAttributeType:NSStringAttributeType];
     [vitaminC setOptional:NO];
     [vitaminC setIndexed:YES]; // allows faster searching and sorting
+    
+    NSAttributeDescription *properties =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [properties setName:kFoodProperties];
+    [properties setAttributeType:NSStringAttributeType];
+    [properties setOptional:NO];
+    [properties setIndexed:YES];
     return [attributes setByAddingObjectsFromSet:
-            [NSSet setWithObjects:initial, name, calories, carbohidrates, fat,
-                proteins, vitaminA, vitaminC, nil]];
+            [NSSet setWithObjects:initial, name, calories, carbohidrates,
+                fat, proteins, vitaminA, vitaminC, properties, nil]];
 }
 
 + (NSSet *)relationships
@@ -198,8 +208,8 @@ static NSRelationshipDescription *kCategoryRelationship;
 #pragma mark Food (Public)
 
 // KVO properties
-@dynamic initial, name, calories, carbohidrates, fat, proteins, vitaminA, vitaminC,
-        category;
+@dynamic initial, name, calories, carbohidrates, fat, proteins, vitaminA,
+        vitaminC, category, properties;
 
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
@@ -221,6 +231,7 @@ static NSRelationshipDescription *kCategoryRelationship;
           proteins:(NSString *)proteins
           vitaminA:(NSString *)vitaminA
           vitaminC:(NSString *)vitaminC
+        properties:(NSString *)properties
            context:(NSManagedObjectContext *)context
 {
     Food *food = [[[self alloc] initWithEntity:[self entity]
@@ -235,6 +246,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     [food setProteins:proteins];
     [food setVitaminA:vitaminA];
     [food setVitaminC:vitaminC];
+    [food setProperties:properties];
     return food;
 }
 
@@ -249,14 +261,6 @@ static NSRelationshipDescription *kCategoryRelationship;
     [food setName:name];
     [food setCategory:category];
     return food;
-}
-
-- (NSString *)initial
-{
-    [self willAccessValueForKey:kFoodInitial];
-    NSString *initial = [[self name] substringToIndex:1];
-    [self didAccessValueForKey:kFoodInitial];
-    return initial;
 }
 @end
 
@@ -355,16 +359,54 @@ static NSRelationshipDescription *kCategoryRelationship;
             encoding:NSUTF8StringEncoding error:nil];
     NSArray *pasredCSV = [csvString getParsedRows];
     NSMutableDictionary *foodThree = [NSMutableDictionary dictionary];
+    NSString *parsedProperties = @"";
     
     for (NSArray *parsedRow in pasredCSV){
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedCalories = [parsedRow objectAtIndex:2];
+        if (fabs([parsedCalories floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedCalories = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailCalories];
+        }
         NSString *parsedCarbohidrates = [parsedRow objectAtIndex:3];
+        if (fabs([parsedCarbohidrates floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedCarbohidrates = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailCarbohidrates];
+        }
         NSString *parsedFat = [parsedRow objectAtIndex:4];
+        if (fabs([parsedFat floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedFat = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailFat];
+        }
         NSString *parsedProteins = [parsedRow objectAtIndex:5];
+        if (fabs([parsedProteins floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedProteins = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailProteins];
+        }
         NSString *parsedVitaminA = [parsedRow objectAtIndex:6];
-        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];         
+        if (fabs([parsedVitaminA doubleValue]) < (.0 + FLT_EPSILON)) {
+            parsedVitaminA = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailVitaminA];
+        }
+        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];
+        if (fabs([parsedVitaminC floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedVitaminC = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailVitaminC];
+        }
+
         NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         
@@ -378,7 +420,8 @@ static NSRelationshipDescription *kCategoryRelationship;
                     parsedCalories, kFoodCalories, parsedCarbohidrates,
                     kFoodCarbohidrates, parsedFat, kFoodFat, parsedProteins,
                     kFoodProteins, parsedVitaminA, kFoodVitaminA,
-                    parsedVitaminC, kFoodVitaminC, nil]];
+                    parsedVitaminC, kFoodVitaminC, parsedProperties,
+                    kFoodProperties, nil]];
     }
     for (NSString *categoryname in [foodThree allKeys]){
         FoodCategory *foodCategory =
@@ -393,9 +436,11 @@ static NSRelationshipDescription *kCategoryRelationship;
             NSString *proteins = [food objectForKey:kFoodProteins];
             NSString *vitaminA = [food objectForKey:kFoodVitaminA];
             NSString *vitaminC = [food objectForKey:kFoodVitaminC];
+            NSString *properties = [food objectForKey:kFoodProperties];
             [Food foodWithName:name category:foodCategory calories:calories
                     carbohidrates:carbohidrates fat:fat proteins:proteins
-                        vitaminA:vitaminA vitaminC:vitaminC context:context];
+                        vitaminA:vitaminA vitaminC:vitaminC
+                        properties:properties context:context];
             [context save:nil];
         }
     }
