@@ -292,7 +292,6 @@ titleForHeaderInSection:(NSInteger)section
     NSExpression *lhsName = [NSExpression expressionForKeyPath:kFoodName];
     NSExpression *rhsName =
             [NSExpression expressionForVariable:kPredicateNameVariableKey];
-    
     NSPredicate *kNamePredicateTemplate = [[NSComparisonPredicate
             predicateWithLeftExpression:lhsName
                 rightExpression:rhsName
@@ -306,19 +305,17 @@ titleForHeaderInSection:(NSInteger)section
                 [NSNull nullOrObject:
                 [NSString stringWithFormat:@"*%@*", searchString]]
                 forKey:kPredicateNameVariableKey]];
-    
     NSExpression *lhsProperties =
             [NSExpression expressionForKeyPath:kFoodProperties];
     NSExpression *rhsProperties =
             [NSExpression expressionForVariable:kPredicateNameVariableKey];
-    
     NSPredicate *kPropertiesPredicateTemplate = [[NSComparisonPredicate
-                predicateWithLeftExpression:lhsProperties
-                    rightExpression:rhsProperties
-                    modifier:NSDirectPredicateModifier
-                    type:NSLikePredicateOperatorType
-                    options:NSCaseInsensitivePredicateOption |
-                    NSDiacriticInsensitivePredicateOption] retain];
+            predicateWithLeftExpression:lhsProperties
+                rightExpression:rhsProperties
+                modifier:NSDirectPredicateModifier
+                type:NSLikePredicateOperatorType
+                options:NSCaseInsensitivePredicateOption |
+                NSDiacriticInsensitivePredicateOption] retain];
     NSPredicate * predicateProperties = 
     [kPropertiesPredicateTemplate predicateWithSubstitutionVariables:
             [NSDictionary dictionaryWithObject:
