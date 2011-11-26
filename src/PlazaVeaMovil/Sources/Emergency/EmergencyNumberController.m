@@ -120,7 +120,7 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
                     [NSNull nullOrObject:emergencyCategory]
                 forKey:kEmergencyNumberVariableKey]];
 
-    if ((self = [super initWithStyle:UITableViewStylePlain
+    if ((self = [self initWithStyle:UITableViewStylePlain
             entityName:kEmergencyNumberEntity predicate:predicate
             sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kEmergencyNumberTitle, nil)];
@@ -163,6 +163,39 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
+
+- (id)initWithStyle:(UITableViewStyle)style
+         entityName:(NSString *)entityName
+          predicate:(NSPredicate *)predicate
+    sortDescriptors:(NSArray *)sortDescriptors
+          inContext:(NSManagedObjectContext *)context
+{
+    if ((self = [super initWithStyle:style]) != nil) {
+        _context = [context retain];
+        if (entityName != nil) {
+            // Conf the fetch request
+            NSFetchRequest *request = 
+                    [[[NSFetchRequest alloc] init] autorelease];
+
+            [request setEntity:[NSEntityDescription entityForName:entityName
+               inManagedObjectContext:_context]];
+            [request setPredicate:predicate];
+            [request setSortDescriptors:sortDescriptors];
+            // Conf fetch-request controller
+            _resultsController = [[NSFetchedResultsController alloc]
+                    initWithFetchRequest:request
+                    managedObjectContext:_context
+                    sectionNameKeyPath:kEmergencyNumberFirstLetter
+                    cacheName:nil];
+            [_resultsController setDelegate:self];
+            [self performFetch];
+        }
+        // Allow row deselection
+        [self setAllowsRowDeselection:YES];
+        [self setPerformsSelectionAction:YES];
+    }
+    return self;
+}
 
 - (UITableViewCell *)cellForObject:
         (NSManagedObject *)object

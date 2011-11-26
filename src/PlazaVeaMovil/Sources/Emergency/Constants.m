@@ -26,6 +26,7 @@ NSString *const kEmergencyNumberClass = @"EmergencyNumber";
 NSString *const kEmergencyNumberName = @"name";
 NSString *const kEmergencyNumberPhone = @"phone";
 NSString *const kEmergencyNumberCategory = @"category";
+NSString *const kEmergencyNumberFirstLetter = @"uppercaseFirstLetterOfName";
 
 // EmergencyFile model's constants
 

@@ -21,6 +21,7 @@ extern NSString *const kEmergencyNumberClass;
 extern NSString *const kEmergencyNumberName;
 extern NSString *const kEmergencyNumberPhone;
 extern NSString *const kEmergencyNumberCategory;
+extern NSString *const kEmergencyNumberFirstLetter;
 
 // EmergencyFile model's constants
 

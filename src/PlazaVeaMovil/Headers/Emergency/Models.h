@@ -30,6 +30,8 @@
    resultsController:(NSFetchedResultsController *)resultsController;
 
 + (NSPredicate *)predicateForEntriesLike:(NSString *)seasrchText;
+
+- (NSString *)uppercaseFirstLetterOfName;
 @end
 
 @interface EmergencyFile: ManagedObject
