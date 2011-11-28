@@ -254,6 +254,19 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
      
 }
+
+- (NSString *)uppercaseFirstLetterOfName {
+    [self willAccessValueForKey:kEmergencyNumberFirstLetter];
+    NSString *aString = [[self valueForKey:@"name"] uppercaseString];
+
+    NSString *stringToReturn = [aString substringWithRange:
+            [aString rangeOfComposedCharacterSequenceAtIndex:0]];
+
+    [self didAccessValueForKey:kEmergencyNumberFirstLetter];
+    return stringToReturn;
+
+}
+
 @end
 
 @implementation EmergencyFile
