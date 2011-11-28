@@ -109,6 +109,7 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 - (void)scheduleAutoscrolling;
 - (void)unscheduleAutoscrolling;
 - (void)cancelAutoscrolling;
+- (void)animateToShowEntryIndex:(NSInteger)index;
 - (void)animateAutoscrolling;
 - (void)autoscrollingDidStop:(NSString *)animationId
                     finished:(NSNumber *)finished
@@ -512,12 +513,16 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 
 - (void)refreshPageControlHandler:(UIPageControl *)pageControl
 {
+    if ([self isAnimating])
+        return;
     [self unscheduleAutoscrolling];
 
-    TTImageView *imageView =
-            [[self loadedImageViews] objectAtIndex:[self currentIndex]];
+    // Decide the direction in which we'll be animating the scrollView
+    NSUInteger newShownIndex =
+            [[self pageControl] currentPage] > [self currentIndex] ?
+                [self nextIndex] : [self previousIndex];
 
-    [[self scrollView] setContentOffset:[imageView frame].origin animated:YES];
+    [self animateToShowEntryIndex:newShownIndex];
     [self scheduleAutoscrolling];
 }
 
@@ -547,15 +552,14 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
                 kCarouselAutoscrollKey];
 }
 
-- (void)animateAutoscrolling
+- (void)animateToShowEntryIndex:(NSInteger)index
 {
     NSArray *shownEntries = [self shownEntries];
 
     if ([shownEntries count] < 2)
         return;
 
-    TTImageView *imageView =
-            [[self loadedImageViews] objectAtIndex:[self nextIndex]];
+    TTImageView *imageView = [[self loadedImageViews] objectAtIndex:index];
 
     [self setAnimating:YES];
     [UIView beginAnimations:kCarouselAutoscrollKey context:NULL];
@@ -565,6 +569,11 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
             @selector(autoscrollingDidStop:finished:context:)];
     [[self scrollView] setContentOffset:[imageView frame].origin];
     [UIView commitAnimations];
+}
+
+- (void)animateAutoscrolling
+{
+    [self animateToShowEntryIndex:[self nextIndex]];
 }
 
 - (void)autoscrollingDidStop:(NSString *)animationId
