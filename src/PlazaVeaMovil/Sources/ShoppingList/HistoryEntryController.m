@@ -53,10 +53,6 @@ static NSString *kNameVariableKey = @"NAME";
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    // TODO We should use titleView instead of title in the navigationItem
-    // Conf the titleView
-    UIImageView *logoTypeView = [[UIImageView alloc] initWithImage:LOGOTYPE];
-
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
         // Conf a spacer
@@ -75,7 +71,6 @@ static NSString *kNameVariableKey = @"NAME";
         [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
-        [navItem setTitleView:logoTypeView];
     }
     return navItem;
 }

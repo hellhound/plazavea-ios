@@ -39,11 +39,6 @@
         [NSString stringWithFormat:IMAGE_QUERY_STRING, [url absoluteString], \
             (NSUInteger)width, (NSUInteger)height]]
 
-//Define the colors for the navigation bar and toolbar
-#define BAR_COLOR [UIColor colorWithRed:1 green:0.867 blue:0 alpha:1]
-//Define the UIImage for the banner
-#define LOGOTYPE [UIImage imageNamed:@"plazaVeaLogo.png"]
-
 // Error messages and codes
 #define SEVERE_ERROR \
         @"Ocurrió un error. Espere un momento, estamos trabajando para " \

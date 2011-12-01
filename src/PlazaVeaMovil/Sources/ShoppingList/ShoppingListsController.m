@@ -44,8 +44,6 @@
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
-    // Conf the titleView
-    UIImageView *logoTypeView = [[UIImageView alloc] initWithImage:LOGOTYPE];
 
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
@@ -64,7 +62,6 @@
         [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
-        [navItem setTitleView:logoTypeView];
     }
     return navItem;
 }
