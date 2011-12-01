@@ -67,9 +67,6 @@ static const NSInteger kListDateLabelTag = 101;
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
-        // Conf the titleView
-        UIImageView *logoTypeView =
-                [[UIImageView alloc] initWithImage:LOGOTYPE];
         // Conf the back button
         _previousItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
@@ -95,7 +92,6 @@ static const NSInteger kListDateLabelTag = 101;
                 initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                 target:self action:@selector(delete:)] autorelease];
 
-        [navItem setTitleView:logoTypeView];
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,

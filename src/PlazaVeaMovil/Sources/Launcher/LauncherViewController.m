@@ -41,21 +41,6 @@
     return self;
 }
 
-- (UINavigationItem *)navigationItem
-{
-    UINavigationItem *navItem = [super navigationItem];
-    UINavigationController *navController = [self navigationController];
-
-    if ([navItem titleView] == nil){
-        UIImageView *logoTypeView = 
-                [[[UIImageView alloc] initWithImage:LOGOTYPE] autorelease];
-        [navItem setTitleView:logoTypeView];
-    }
-    [[navController navigationBar] setTintColor:BAR_COLOR];
-    [[navController toolbar] setTintColor:BAR_COLOR];
-    return navItem;
-}
-
 - (void)loadView
 {
     [super loadView];
@@ -64,7 +49,6 @@
 
     _launcherView = [[TTLauncherView alloc] initWithFrame:[superView bounds]];
     // Configuring the launcher
-    [_launcherView setBackgroundColor:[UIColor whiteColor]];
     [_launcherView setDelegate:self];
     [_launcherView setColumnCount:3];
     [_launcherView setPages:[NSArray arrayWithObjects:
