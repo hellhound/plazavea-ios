@@ -33,6 +33,7 @@
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodDetailController.h"
+#import "Application/StyleSheet.h"
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
@@ -79,6 +80,8 @@
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    [TTStyleSheet setGlobalStyleSheet: [[[StyleSheet alloc] init] autorelease]];
+
     // Set the maxContentLength to auto
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
 
