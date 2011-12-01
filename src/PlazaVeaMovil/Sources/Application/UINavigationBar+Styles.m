@@ -10,12 +10,12 @@
 
 @implementation UINavigationBar(Styles)
 
-- (void)layoutSubViews
+- (void)setNeedsDisplay
 {
     INVOKE_SUPERSEQUENT_NO_PARAMETERS();
     if ([TTStyleSheet
                 hasStyleSheetForSelector:@selector(textColor)])
-        [self setTitleColor:(UIColor *)TTSTYLE(textColor)
+        [self setTitleColor:[UIColor blackColor]
                 forState:UIControlStateNormal];
 }
 @end
