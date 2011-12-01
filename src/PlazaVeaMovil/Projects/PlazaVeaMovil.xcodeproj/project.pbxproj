@@ -157,6 +157,7 @@
 		CC10ED83146A270C0004CA1B /* EmergencyNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */; };
 		CC1947BC1455E4940004C283 /* StoreDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1947BA1455E4940004C283 /* StoreDetailController.m */; };
 		CC2083801469A32E00F81BE1 /* EmergencyCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */; };
+		CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */; };
 		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
 		CC5F8524146F558300414D33 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F8523146F558300414D33 /* Constants.m */; };
@@ -741,6 +742,7 @@
 		CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyNumberController.m; sourceTree = "<group>"; };
 		CC1947BA1455E4940004C283 /* StoreDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailController.m; sourceTree = "<group>"; };
 		CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyCategoryController.m; sourceTree = "<group>"; };
+		CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyleSheet+Additions.m"; sourceTree = "<group>"; };
 		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
 		CC5F8523146F558300414D33 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 		2CD9933913E65DA400879980 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */,
 				2CEA22081466F91300391721 /* CLLocation+Additions.m */,
 				2C15B8A714032A2E0060D8AD /* TTImageView+ETag.m */,
 				2C15B8A814032A2E0060D8AD /* TTStyledImageNode+ETag.m */,
@@ -1855,6 +1858,7 @@
 				2F13CC021475D2CC00A1A95F /* FoodListController.m in Sources */,
 				2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */,
 				2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */,
+				CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
