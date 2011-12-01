@@ -137,6 +137,7 @@
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
+		2FCBD0E514881D9F004ECB66 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBD0E414881D9F004ECB66 /* StyleSheet.m */; };
 		2FDAE83F1476C5620050E87E /* composition.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDAE83E1476C5620050E87E /* composition.png */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
@@ -722,6 +723,7 @@
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2FCBD0E414881D9F004ECB66 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
 		2FDAE83E1476C5620050E87E /* composition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = composition.png; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
@@ -1069,6 +1071,7 @@
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2FCBD0E414881D9F004ECB66 /* StyleSheet.m */,
 				CC5F8523146F558300414D33 /* Constants.m */,
 				2C0DBE9213E8C1C000F705C1 /* AppDelegate+Defaults.m */,
 				2C6C5E6F13E66CF8000B0E10 /* AppDelegate+CoreData.m */,
@@ -1858,6 +1861,7 @@
 				2F13CC021475D2CC00A1A95F /* FoodListController.m in Sources */,
 				2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */,
 				2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */,
+				2FCBD0E514881D9F004ECB66 /* StyleSheet.m in Sources */,
 				CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
