@@ -58,8 +58,15 @@
         [(UINavigationController *)
                 [[self parentViewController] performSelector:
                         @selector(presentingViewController)]
+                    setToolbarHidden:YES animated:NO];
+        [(UINavigationController *)
+                [[self parentViewController] performSelector:
+                        @selector(presentingViewController)]
                     popToRootViewControllerAnimated:NO];
     } else {
+        [(UINavigationController *)
+                [[self parentViewController] parentViewController]
+                    setToolbarHidden:YES animated:NO];
         [(UINavigationController *)
                 [[self parentViewController] parentViewController]
                     popToRootViewControllerAnimated:NO];

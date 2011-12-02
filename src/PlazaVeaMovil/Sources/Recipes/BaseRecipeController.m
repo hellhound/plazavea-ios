@@ -17,4 +17,5 @@
         [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     return self;
 }
+
 @end
