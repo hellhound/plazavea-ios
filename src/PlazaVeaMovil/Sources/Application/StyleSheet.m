@@ -7,7 +7,9 @@
 #import "Application/StyleSheet.h"
 
 //launcher
-#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://launcher-background.png")
+#define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
+#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://logo.png")
+#define NAVIGATION_BAR_COLOR RGBCOLOR(255, 208, 0)
 
 @implementation StyleSheet
 
@@ -16,6 +18,16 @@
 
 - (UIImageView *)launcherBackgroundImage
 {
+    return [[UIImageView alloc] initWithImage:LAUNCHER_BACKGROUND];
+}
+
+- (UIImageView *)navigationBarLogo
+{
     return [[UIImageView alloc] initWithImage:NAVIGATION_BAR_LOGO];
+}
+    
+- (UIColor *)navigationBarTintColor
+{
+    return NAVIGATION_BAR_COLOR;
 }
 @end
