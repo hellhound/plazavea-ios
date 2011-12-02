@@ -4,6 +4,8 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Application/StyleSheet.h"
 #import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
@@ -56,31 +58,54 @@
                 [[[TTLauncherItem alloc] initWithTitle:kShoppingListTitle
                     image:kURLShoppingListIcon
                     URL:kURLShoppingListsCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
-                    image:kURLRecipesIcon
-                    URL:kURLRecipeCategoriesCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
-                    image:kURLOffersIcon 
-                    URL:kURLOfferListCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRegionLauncherTitle
                     image:kURLStoresIcon
                     URL:kURLRegionListCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
-                    image:kURLStoresIcon
-                    URL:kURLEmergencyCategory] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
-                    image:kURLSomelierIcon URL:kURLStrainListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
+                    image:kURLOffersIcon 
+                    URL:kURLOfferListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
+                    image:kURLRecipesIcon
+                    URL:kURLRecipeCategoriesCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kFoodCategoryTitle
-                    image:kURLCompositionIcon URL:kURLFoodCategory]
-                    autorelease],
+                    image:kURLCompositionIcon
+                    URL:kURLFoodCategory] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
+                    image:kURLSomelierIcon
+                    URL:kURLStrainListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
+                    image:kURLPhonesIcon
+                    URL:kURLEmergencyCategory] autorelease],
                 nil],
             nil]];
+    //styles
+    [_launcherView setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(launcherBackgroundImage)]){
+        UIImageView *backgroundView = 
+                (UIImageView *)TTSTYLE(launcherBackgroundImage);
+
+        [superView addSubview:backgroundView];
+        [superView sendSubviewToBack:backgroundView];
+    }
+
     [superView addSubview:_launcherView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(navigationBarTintColor)]) {
+        [[[self navigationController] navigationBar]
+                setTintColor:(UIColor *)TTSTYLE(navigationBarTintColor)];
+        [[[self navigationController] toolbar]
+                setTintColor:(UIColor *)TTSTYLE(navigationBarTintColor)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+        [[self navigationItem]
+                setTitleView:(UIImageView *)TTSTYLE(navigationBarLogo)];
+    }
     if ([self toolbarItems] == nil) {
         [self performSelector:@selector(hideToolbar:)
                 withObject:[NSNumber numberWithBool:animated]

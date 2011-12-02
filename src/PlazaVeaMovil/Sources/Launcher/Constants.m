@@ -17,11 +17,12 @@ NSString *const kURLLauncher = @"tt://launcher/";
 
 NSString *const kURLLauncherCall = @"tt://launcher/";
 
-// Launcher item's icons
 
-NSString *const kURLShoppingListIcon = @"bundle://basket.png";
-NSString *const kURLRecipesIcon = @"bundle://recipeBook.png";
-NSString *const kURLOffersIcon = @"bundle://offers.png";
-NSString *const kURLStoresIcon = @"bundle://Stores.png";
-NSString *const kURLSomelierIcon = @"bundle://Somelier.png";
-NSString *const kURLCompositionIcon = @"bundle://composition.png";
+// Launcher item's icons
+NSString *const kURLShoppingListIcon = @"bundle://launcher-icon-lists.png";
+NSString *const kURLRecipesIcon = @"bundle://launcher-icon-recipes.png";
+NSString *const kURLOffersIcon = @"bundle://launcher-icon-offers.png";
+NSString *const kURLStoresIcon = @"bundle://launcher-icon-stores.png";
+NSString *const kURLSomelierIcon = @"bundle://launcher-icon-somelier.png";
+NSString *const kURLCompositionIcon = @"bundle://launcher-icon-composition.png";
+NSString *const kURLPhonesIcon = @"bundle://launcher-icon-phones.png";

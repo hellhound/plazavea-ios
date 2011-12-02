@@ -5,4 +5,5 @@
 
 @interface StyleSheet: TTDefaultStyleSheet
 
+- (UIImageView *)launcherBackgroundImage;
 @end

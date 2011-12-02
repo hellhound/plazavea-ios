@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import <Three20/Three20.h>
+
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Controllers/EditableTableViewController.h"
 
@@ -11,8 +13,8 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 @interface EditableTableViewController (Private)
 
 - (void)initializeResultsControllerWithEntityName:(NSString *)entityName
-                                       predicate:(NSPredicate *)predicate
-                                 sortDescriptors:(NSArray *)sortDescriptors;
+                                        predicate:(NSPredicate *)predicate
+                                  sortDescriptors:(NSArray *)sortDescriptors;
 - (BOOL)shouldHideReadonlyToolbar;
 - (BOOL)shouldHideEditingToolbar;
 - (BOOL)shouldShowReadonlyToolbar;
@@ -27,7 +29,6 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 
 - (void)dealloc
 {
-    //[_resultsController release];
     _resultsController = nil;
     [_context release];
     [_cancelItem release];
@@ -82,6 +83,11 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 {
     [super viewDidLoad];
     //change the colors
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
