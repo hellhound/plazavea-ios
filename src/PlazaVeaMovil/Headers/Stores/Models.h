@@ -80,7 +80,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSString *pictureURL;
-@property (nonatomic, copy) NSNumber *storeId;
+@property (nonatomic, retain) NSNumber *storeId;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 @end

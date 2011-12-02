@@ -122,7 +122,6 @@
             }
         }
     } else if ([[self model] isKindOfClass:[Store class]]) {
-        //[_segControl setTitle:kStoreDetailButtonLabel forSegmentAtIndex:0];
         Store *store = (Store *)[self model];
         
         CLLocationCoordinate2D coordinate;
@@ -182,7 +181,7 @@
 #pragma mark -
 #pragma mark StoreMapController
 
-@synthesize mapView = _mapView, region = _region, buttonTitle =_buttonTitle;
+@synthesize mapView = _mapView, region = _region, buttonTitle = _buttonTitle;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
@@ -361,6 +360,8 @@
         TTImageView *image = [[[TTImageView alloc] initWithFrame:
                 CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
                     autorelease];
+        [image performSelector:@selector(stopLoading) withObject:nil
+                afterDelay:10];
         [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
         [annotationView setLeftCalloutAccessoryView:image];
         [annotationView setAnimatesDrop:YES];
