@@ -4,6 +4,8 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Application/StyleSheet.h"
 #import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
 #import "ShoppingList/Constants.h"
@@ -75,6 +77,18 @@
                     autorelease],
                 nil],
             nil]];
+    //styles
+    [_launcherView setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(launcherBackgroundImage)]){
+        NSLog(@"nyaaa");
+        UIImageView *backgroundView = 
+                (UIImageView *)TTSTYLE(launcherBackgroundImage);
+
+        [superView addSubview:backgroundView];
+        [superView sendSubviewToBack:backgroundView];
+    }
+
     [superView addSubview:_launcherView];
 }
 
