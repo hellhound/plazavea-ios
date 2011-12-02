@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Launcher
 
-+ (UIImageView *)launcherBackgroundImage
+- (UIImageView *)launcherBackgroundImage
 {
     return [[UIImageView alloc] initWithImage:NAVIGATION_BAR_LOGO];
 }

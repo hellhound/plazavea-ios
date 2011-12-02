@@ -81,7 +81,6 @@
     [_launcherView setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(launcherBackgroundImage)]){
-        NSLog(@"nyaaa");
         UIImageView *backgroundView = 
                 (UIImageView *)TTSTYLE(launcherBackgroundImage);
 
