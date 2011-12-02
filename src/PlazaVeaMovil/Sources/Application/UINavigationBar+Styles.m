@@ -14,8 +14,13 @@
 {
     INVOKE_SUPERSEQUENT_NO_PARAMETERS();
     if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(textColor)])
-        [self setTitleColor:[UIColor blackColor]
+                hasStyleSheetForSelector:@selector(navigationTextColor)])
+        [self setTitleColor:(UIColor *)TTSTYLE(navigationTextColor)
                 forState:UIControlStateNormal];
+
+    if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(navigationBackgroundColor)])
+        [self setTintColor:(UIColor *)TTSTYLE(navigationBackgroundColor)];
+
 }
 @end

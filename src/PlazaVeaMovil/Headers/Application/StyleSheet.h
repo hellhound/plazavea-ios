@@ -5,5 +5,8 @@
 
 @interface StyleSheet: TTDefaultStyleSheet
 
+- (UIColor *)navigationBackgroundColor;
+- (UIColor*)navigationTextColor;
+
 - (UIImageView *)launcherBackgroundImage;
 @end
