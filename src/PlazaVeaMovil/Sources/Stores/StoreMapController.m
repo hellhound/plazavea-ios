@@ -337,13 +337,14 @@
     if ([[annotation title] isEqualToString:kStoreMapCurrentLocation]) {
         MKPinAnnotationView *pin = (MKPinAnnotationView *)[_mapView
                 dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationId];
+        
         if (pin == nil) {
             pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
                     reuseIdentifier:kPinAnnotationId] autorelease];
-            [pin setPinColor:MKPinAnnotationColorGreen];
-            [pin setCanShowCallout:YES];
-            [pin setAnimatesDrop:YES];
         }
+        [pin setPinColor:MKPinAnnotationColorGreen];
+        [pin setCanShowCallout:YES];
+        [pin setAnimatesDrop:YES];
         return pin;
     }
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[_mapView
@@ -352,20 +353,21 @@
         annotationView = [[[MKPinAnnotationView alloc]
                 initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
                     autorelease];
-        [annotationView setCanShowCallout:YES];
-        if ([(MapAnnotation *)annotation storeId] != nil) {
-            [annotationView setRightCalloutAccessoryView:
-                    [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
-        }
-        TTImageView *image = [[[TTImageView alloc] initWithFrame:
-                CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
-                    autorelease];
-        [image performSelector:@selector(stopLoading) withObject:nil
-                afterDelay:10];
-        [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
-        [annotationView setLeftCalloutAccessoryView:image];
-        [annotationView setAnimatesDrop:YES];
     }
+    [annotationView setCanShowCallout:YES];
+    if ([(MapAnnotation *)annotation storeId] != nil) {
+        [annotationView setRightCalloutAccessoryView:
+                [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+    }
+    TTImageView *image = [[[TTImageView alloc] initWithFrame:
+            CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
+                autorelease];
+    
+    [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
+    [image performSelector:@selector(stopLoading) withObject:nil
+            afterDelay:10];
+    [annotationView setLeftCalloutAccessoryView:image];
+    [annotationView setAnimatesDrop:YES];
     return annotationView;
 }
 
