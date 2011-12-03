@@ -95,13 +95,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([TTStyleSheet
-            hasStyleSheetForSelector:@selector(navigationBarTintColor)]) {
-        [[[self navigationController] navigationBar]
-                setTintColor:(UIColor *)TTSTYLE(navigationBarTintColor)];
-        [[[self navigationController] toolbar]
-                setTintColor:(UIColor *)TTSTYLE(navigationBarTintColor)];
-    }
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
         [[self navigationItem]
                 setTitleView:(UIImageView *)TTSTYLE(navigationBarLogo)];

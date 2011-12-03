@@ -175,8 +175,9 @@
 		CC332E7614889B8A00E37953 /* launcher-icon-somelier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC332E6D14889B8A00E37953 /* launcher-icon-somelier@2x.png */; };
 		CC332E7714889B8A00E37953 /* launcher-icon-stores@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC332E6E14889B8A00E37953 /* launcher-icon-stores@2x.png */; };
 		CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */; };
-		CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
+		CC5556E91488A65E0034F7AB /* launcher-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC5556E81488A65E0034F7AB /* launcher-background@2x.png */; };
+		CC5556EB1488A66C0034F7AB /* general-customer-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC5556EA1488A66C0034F7AB /* general-customer-logo.png */; };
 		CC5F8524146F558300414D33 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F8523146F558300414D33 /* Constants.m */; };
 		CC6B5C2B1469DF8D00407DAA /* emergency-initial-data-11-8.csv in Resources */ = {isa = PBXBuildFile; fileRef = CC6B5C2A1469DF8D00407DAA /* emergency-initial-data-11-8.csv */; };
 		CC6C20371459F39E0032C921 /* StoreDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */; };
@@ -777,8 +778,9 @@
 		CC332E6D14889B8A00E37953 /* launcher-icon-somelier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-somelier@2x.png"; sourceTree = "<group>"; };
 		CC332E6E14889B8A00E37953 /* launcher-icon-stores@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-stores@2x.png"; sourceTree = "<group>"; };
 		CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyleSheet+Additions.m"; sourceTree = "<group>"; };
-		CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plazaVeaLogo.png; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
+		CC5556E81488A65E0034F7AB /* launcher-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-background@2x.png"; sourceTree = "<group>"; };
+		CC5556EA1488A66C0034F7AB /* general-customer-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "general-customer-logo.png"; sourceTree = "<group>"; };
 		CC5F8523146F558300414D33 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CC6B5C2A1469DF8D00407DAA /* emergency-initial-data-11-8.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emergency-initial-data-11-8.csv"; sourceTree = "<group>"; };
 		CC6C20361459F39E0032C921 /* StoreDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailDataSource.m; sourceTree = "<group>"; };
@@ -899,6 +901,8 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CC5556EA1488A66C0034F7AB /* general-customer-logo.png */,
+				CC5556E81488A65E0034F7AB /* launcher-background@2x.png */,
 				2FF8EF86148980380069AAE3 /* logo.png */,
 				2FF8EF87148980380069AAE3 /* logo@2x.png */,
 				2FF8EF82148979B30069AAE3 /* launcher-icon-phones.png */,
@@ -930,7 +934,6 @@
 				2C556B4D1446695E00B27C3B /* default-list.png */,
 				CCE4548814468381000CED89 /* Default.png */,
 				CC538FB3143C2425003C03BA /* default-recipe-detail.png */,
-				CC4A8E3F140F56E000EC725A /* plazaVeaLogo.png */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				2C691ECA13F04BB900E1EFA5 /* TSAlertViewBackground.png */,
 				2C691ECB13F04BB900E1EFA5 /* TSAlertViewBackground2.png */,
@@ -1763,7 +1766,6 @@
 				2C691ED313F04BB900E1EFA5 /* TSAlertViewButtonBackground.png in Resources */,
 				2C691ED413F04BB900E1EFA5 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				2C691ED513F04BB900E1EFA5 /* TSAlertViewMessageListViewShadow.png in Resources */,
-				CC4A8E40140F56E000EC725A /* plazaVeaLogo.png in Resources */,
 				CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */,
 				2C556B4E1446695E00B27C3B /* default-list.png in Resources */,
 				CCE4548914468381000CED89 /* Default.png in Resources */,
@@ -1791,6 +1793,8 @@
 				CC332E7514889B8A00E37953 /* launcher-icon-recipes@2x.png in Resources */,
 				CC332E7614889B8A00E37953 /* launcher-icon-somelier@2x.png in Resources */,
 				CC332E7714889B8A00E37953 /* launcher-icon-stores@2x.png in Resources */,
+				CC5556E91488A65E0034F7AB /* launcher-background@2x.png in Resources */,
+				CC5556EB1488A66C0034F7AB /* general-customer-logo.png in Resources */,
 				2FF8EF84148979B30069AAE3 /* launcher-icon-phones.png in Resources */,
 				2FF8EF85148979B30069AAE3 /* launcher-icon-phones@2x.png in Resources */,
 				2FF8EF88148980380069AAE3 /* logo.png in Resources */,
