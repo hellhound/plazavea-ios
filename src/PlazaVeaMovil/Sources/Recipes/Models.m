@@ -860,6 +860,7 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     [_sections release];
     [_sectionTitles release];
+    [_collectionId release];
     [super dealloc];
 }
 
@@ -916,8 +917,6 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     if ((self = [self init]) != nil) {
         _collectionId = [categoryId copy];
-        _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
-                _collectionId);
         _isFromMeat = NO;
     }
     return self;
@@ -927,8 +926,6 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     if ((self = [self init]) != nil) {
         _collectionId = [meatId copy];
-        _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
-                _collectionId);
         _isFromMeat = YES;
     }
     return self;
@@ -945,6 +942,13 @@ static NSString *const kRecipeMiscYes = @"YES";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
+        if (_isFromMeat) {
+            _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
+                    _collectionId);
+        } else {
+            _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
+                    _collectionId);
+        }
         TTURLRequest *request =
                 [TTURLRequest requestWithURL: _collectionEndpointURL 
                     delegate:self];

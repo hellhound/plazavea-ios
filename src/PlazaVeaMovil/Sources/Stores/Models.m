@@ -432,6 +432,8 @@ static NSString *const kMutableServicesKey = @"services";
 {
     [_title release];
     [_subtitle release];
+    [_pictureURL release];
+    [_storeId release];
     [super dealloc];
 }
 

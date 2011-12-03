@@ -58,23 +58,24 @@
                 [[[TTLauncherItem alloc] initWithTitle:kShoppingListTitle
                     image:kURLShoppingListIcon
                     URL:kURLShoppingListsCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
-                    image:kURLRecipesIcon
-                    URL:kURLRecipeCategoriesCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
-                    image:kURLOffersIcon 
-                    URL:kURLOfferListCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRegionLauncherTitle
                     image:kURLStoresIcon
                     URL:kURLRegionListCall] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
-                    image:kURLStoresIcon
-                    URL:kURLEmergencyCategory] autorelease],
-                [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
-                    image:kURLSomelierIcon URL:kURLStrainListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
+                    image:kURLOffersIcon 
+                    URL:kURLOfferListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
+                    image:kURLRecipesIcon
+                    URL:kURLRecipeCategoriesCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kFoodCategoryTitle
-                    image:kURLCompositionIcon URL:kURLFoodCategory]
-                    autorelease],
+                    image:kURLCompositionIcon
+                    URL:kURLFoodCategory] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
+                    image:kURLSomelierIcon
+                    URL:kURLStrainListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
+                    image:kURLPhonesIcon
+                    URL:kURLEmergencyCategory] autorelease],
                 nil],
             nil]];
     //styles
@@ -94,6 +95,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+        [[self navigationItem]
+                setTitleView:(UIImageView *)TTSTYLE(navigationBarLogo)];
+    }
     if ([self toolbarItems] == nil) {
         [self performSelector:@selector(hideToolbar:)
                 withObject:[NSNumber numberWithBool:animated]
