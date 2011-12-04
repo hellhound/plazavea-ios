@@ -96,6 +96,12 @@
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
 
+    UIButton *createButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [createButton setFrame:CGRectMake((bounds.size.width - 100.), 5., 80., 
+            30.)];
+
+    [headerView addSubview:createButton];
     [headerView addSubview:titleLabel];
     [[self tableView] setTableHeaderView:headerView];
 }
