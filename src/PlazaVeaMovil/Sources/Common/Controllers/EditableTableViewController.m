@@ -5,6 +5,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
 #import "Common/Controllers/EditableTableViewController.h"
 
@@ -75,6 +76,13 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         [[self editingToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
     //Conf the color
+    if ([navItem titleView] == nil){
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(navigationBarLogo)])
+            [navItem setTitleView:[[[UIImageView alloc]
+                        initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+    }
     [self updateUndoRedo];
     return navItem;
 }

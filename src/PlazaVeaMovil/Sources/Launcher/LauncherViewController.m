@@ -96,8 +96,9 @@
 {
     [super viewWillAppear:animated];
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
-        [[self navigationItem]
-                setTitleView:(UIImageView *)TTSTYLE(navigationBarLogo)];
+        [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                autorelease]];
     }
     if ([self toolbarItems] == nil) {
         [self performSelector:@selector(hideToolbar:)

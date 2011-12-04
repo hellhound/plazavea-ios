@@ -49,12 +49,13 @@
 
 - (UIImageView *)launcherBackgroundImage
 {
-    return [[UIImageView alloc] initWithImage:LAUNCHER_BACKGROUND];
+    return [[[UIImageView alloc] 
+        initWithImage:LAUNCHER_BACKGROUND] autorelease];
 }
 
-- (UIImageView *)navigationBarLogo
+- (UIImage *)navigationBarLogo
 {
-    return [[UIImageView alloc] initWithImage:NAVIGATION_BAR_LOGO];
+    return NAVIGATION_BAR_LOGO;
 }
 
 @end
