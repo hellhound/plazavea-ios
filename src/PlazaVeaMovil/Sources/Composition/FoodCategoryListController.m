@@ -90,9 +90,9 @@ static CGFloat margin = 5.;
 #pragma mark -
 #pragma mark UIView
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
     UITableView *tableView = [self tableView];
     // Configuring the header view
