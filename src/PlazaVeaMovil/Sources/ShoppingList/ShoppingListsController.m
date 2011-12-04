@@ -6,6 +6,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSString+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
@@ -46,24 +47,42 @@
     UINavigationItem *navItem = [super navigationItem];
 
     // Conf the toolbars
-    if ([self toolbarItems] == nil) {
-        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil action:NULL] autorelease];
-        // Conf the add-item button
-        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:self action:
-                    @selector(addShoppingListHandler:)] autorelease];
-        NSArray *toolbarItems =
-                [NSArray arrayWithObjects:spacerItem, addItem, nil];
+    //if ([self toolbarItems] == nil) {
+    //    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+    //            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+    //                target:nil action:NULL] autorelease];
+    //    // Conf the add-item button
+    //    UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
+    //            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    //            target:self action:
+    //                @selector(addShoppingListHandler:)] autorelease];
+    //    NSArray *toolbarItems =
+    //            [NSArray arrayWithObjects:spacerItem, addItem, nil];
 
-        [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
-        [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
-        [self setToolbarItems:[self readonlyToolbarItems]];
-        [[self navigationController] setToolbarHidden:NO];
-    }
+    //    [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
+    //    [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
+    //    [self setToolbarItems:[self readonlyToolbarItems]];
+    //    [[self navigationController] setToolbarHidden:NO];
+    //}
     return navItem;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    CGRect bounds = [[self tableView] bounds];
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
+            bounds.size.width, 40.)] autorelease];
+
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
+        UIImageView *backgroundView = 
+                (UIImageView *)TTSTYLE(shopingListBackgroundHeader);
+
+        [headerView addSubview:backgroundView];
+        [headerView sendSubviewToBack:backgroundView];
+    }
+    [[self tableView] setTableHeaderView:headerView];
 }
 
 #pragma mark -

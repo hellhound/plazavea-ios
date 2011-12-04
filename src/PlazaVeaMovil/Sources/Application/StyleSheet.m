@@ -14,10 +14,14 @@
 
 //launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
-#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://logo.png")
+#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
 #define NAVIGATION_BAR_COLOR RGBCOLOR(255, 208, 0)
 #define LAUNCHER_FONT_COLOR RGBCOLOR(255, 180, 0)
 #define LAUNCHER_FONT_SHADOW RGBCOLOR(153, 25, 28)
+
+//shopping list
+#define SHOPPING_LIST_BACKGROUND \
+    TTIMAGE(@"bundle://shopping-list-background.png")
 
 @implementation StyleSheet
 
@@ -58,4 +62,12 @@
     return NAVIGATION_BAR_LOGO;
 }
 
+#pragma mark -
+#pragma mark ShoppingLists
+
+- (UIImageView *)shopingListBackgroundHeader
+{
+    return [[[UIImageView alloc] 
+        initWithImage:SHOPPING_LIST_BACKGROUND] autorelease];
+}
 @end

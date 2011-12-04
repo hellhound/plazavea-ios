@@ -9,4 +9,6 @@
 - (UIColor*)navigationTextColor;
 
 - (UIImageView *)launcherBackgroundImage;
+
+- (UIImageView *)shopingListBackgroundHeader;
 @end
