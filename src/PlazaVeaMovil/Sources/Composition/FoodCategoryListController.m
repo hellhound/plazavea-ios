@@ -4,6 +4,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
@@ -15,6 +16,7 @@
 #import "Composition/FoodCategoryListController.h"
 
 static NSString *kPredicateNameVariableKey = @"NAME";
+static CGFloat margin = 5.;
 
 @interface FoodCategoryListController ()
 
@@ -103,6 +105,12 @@ static NSString *kPredicateNameVariableKey = @"NAME";
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
     [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFont)]) {
+        [_titleLabel setFont:(UIFont *)TTSTYLE(headerFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFontColor)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerFontColor)];
+    }
     
     NSString *title = kFoodCategoryHeader;
     UIFont *font = [_titleLabel font];
@@ -111,16 +119,26 @@ static NSString *kPredicateNameVariableKey = @"NAME";
     CGFloat titleHeight = [title sizeWithFont:font
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
-    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
+    // Conf the background
+    if ([TTStyleSheet hasStyleSheetForSelector:
+            @selector(compositionHeaderBackgroundImage)]) {
+        [_headerView addSubview:
+                (UIImageView *)TTSTYLE(compositionHeaderBackgroundImage)];
+    }
     // Adding the subviews to the header view
     [_headerView addSubview:_titleLabel];
     // Conf search
     UISearchBar *searchBar =
-    [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+            [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
     
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(compositionSearchBarColor)]) {
+        [searchBar setTintColor:(UIColor *)TTSTYLE(compositionSearchBarColor)];
+    }
     [searchBar sizeToFit];
     [searchBar setTag:100];
     [searchBar setDelegate:self];
@@ -132,11 +150,11 @@ static NSString *kPredicateNameVariableKey = @"NAME";
     [_headerView addSubview:searchBar];
     
     CGRect searchFrame = [searchBar frame];
-    searchFrame.origin.y += titleHeight;
+    searchFrame.origin.y += titleHeight + (2 * margin);
     [searchBar setFrame:searchFrame];
     CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+    CGRect headerFrame = CGRectMake(.0, .0 + (2 * margin), boundsWidth,
             titleHeight + searchHeight);
     
     [_headerView setFrame:headerFrame];
