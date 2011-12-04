@@ -10,7 +10,10 @@
 #define BAR_TINT_COLOR RGBCOLOR(255, 208, 0)
 
 //color for texts in tables
-#define TABLE_TEXT_COLOR RGBCOLOR(208, 21, 26)
+#define TABLE_TEXT_COLOR RGBCOLOR(0, 0, 0)
+
+//color for Headers
+#define HEADER_COLOR_YELLOW RGBCOLOR(255, 255, 0)
 
 //launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
@@ -36,6 +39,11 @@
 - (UIColor*)navigationTextColor
 {
     return TABLE_TEXT_COLOR;
+}
+
+- (UIColor*)headerColorYellow
+{
+    return HEADER_COLOR_YELLOW;
 }
 
 #pragma mark -

@@ -8,6 +8,8 @@
 - (UIColor *)navigationBackgroundColor;
 - (UIColor*)navigationTextColor;
 
+- (UIColor*)headerColorYellow;
+
 - (UIImageView *)launcherBackgroundImage;
 
 - (UIImageView *)shopingListBackgroundHeader;

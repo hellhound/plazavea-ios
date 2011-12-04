@@ -82,6 +82,21 @@
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];
     }
+
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
+            (bounds.size.width - 100.), 20.)] autorelease];
+
+    [titleLabel setAdjustsFontSizeToFitWidth:YES];
+    [titleLabel setNumberOfLines:1];
+    [titleLabel setMinimumFontSize:10];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setText:NSLocalizedString(kShoppingListTitle, nil)];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(headerColorYellow)])
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+
+    [headerView addSubview:titleLabel];
     [[self tableView] setTableHeaderView:headerView];
 }
 
@@ -109,7 +124,7 @@
             [[UIApplication sharedApplication] delegate] dateFormatter];
     NSDate *date = [list lastModificationDate];
 
-    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[list name]];
     [[cell detailTextLabel] setText:date == nil ||
             [date isEqual:[NSNull null]] ?
