@@ -10,6 +10,9 @@
 
 - (UIColor*)headerColorYellow;
 
+- (UIFont *)tableTextHeaderFont;
+- (UIFont *)tableTextFont;
+
 - (UIImageView *)launcherBackgroundImage;
 
 - (UIImageView *)shopingListBackgroundHeader;

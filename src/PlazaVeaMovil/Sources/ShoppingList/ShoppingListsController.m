@@ -47,23 +47,8 @@
     UINavigationItem *navItem = [super navigationItem];
 
     // Conf the toolbars
-    //if ([self toolbarItems] == nil) {
-    //    UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
-    //            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-    //                target:nil action:NULL] autorelease];
-    //    // Conf the add-item button
-    //    UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-    //            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-    //            target:self action:
-    //                @selector(addShoppingListHandler:)] autorelease];
-    //    NSArray *toolbarItems =
-    //            [NSArray arrayWithObjects:spacerItem, addItem, nil];
-
-    //    [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
-    //    [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
-    //    [self setToolbarItems:[self readonlyToolbarItems]];
-    //    [[self navigationController] setToolbarHidden:NO];
-    //}
+    if ([self toolbarItems] == nil) {
+    }
     return navItem;
 }
 
@@ -89,21 +74,40 @@
     [titleLabel setAdjustsFontSizeToFitWidth:YES];
     [titleLabel setNumberOfLines:1];
     [titleLabel setMinimumFontSize:10];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setText:NSLocalizedString(kShoppingListTitle, nil)];
+
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
 
     UIButton *createButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
+    [createButton addTarget:self action:@selector(addShoppingListHandler:)
+            forControlEvents:UIControlEventTouchUpInside];
+
     [createButton setFrame:CGRectMake((bounds.size.width - 100.), 5., 80., 
             30.)];
+    [createButton setTitle:NSLocalizedString(kShoppingCreateList, nil)
+            forState:UIControlStateNormal];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(navigationTextColor)])
+        [createButton setTitleColor:(UIColor *)TTSTYLE(navigationTextColor)
+            forState:UIControlStateNormal];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(tableTextFont)])
+        [[createButton titleLabel] setFont:(UIFont *)TTSTYLE(tableTextFont)];
 
     [headerView addSubview:createButton];
     [headerView addSubview:titleLabel];
     [[self tableView] setTableHeaderView:headerView];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 
 #pragma mark -
@@ -126,16 +130,16 @@
           atIndexPath:(NSIndexPath *)indexPath
 {
     ShoppingList *list = (ShoppingList *)object;
-    NSDateFormatter *dateFormatter = [(AppDelegate *)
-            [[UIApplication sharedApplication] delegate] dateFormatter];
-    NSDate *date = [list lastModificationDate];
+    //NSDateFormatter *dateFormatter = [(AppDelegate *)
+    //        [[UIApplication sharedApplication] delegate] dateFormatter];
+    //NSDate *date = [list lastModificationDate];
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[list name]];
-    [[cell detailTextLabel] setText:date == nil ||
-            [date isEqual:[NSNull null]] ?
-            kShoppingListDefaultDetailText :
-            [dateFormatter stringFromDate:date]];
+    //[[cell detailTextLabel] setText:date == nil ||
+    //        [date isEqual:[NSNull null]] ?
+    //        kShoppingListDefaultDetailText :
+    //        [dateFormatter stringFromDate:date]];
 }
 
 #pragma mark -

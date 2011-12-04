@@ -30,6 +30,7 @@ extern NSString *const kShoppingHistoryEntryName;
 
 // Administration of shopping lists
 extern NSString *const kShoppingListTitle;
+extern NSString *const kShoppingCreateList;
 // Fetch-request controller cache's file name
 extern NSString *const kShoppingListCacheName;
 // Default detail text

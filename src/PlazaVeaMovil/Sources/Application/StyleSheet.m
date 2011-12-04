@@ -15,6 +15,10 @@
 //color for Headers
 #define HEADER_COLOR_YELLOW RGBCOLOR(255, 255, 0)
 
+//size for text in tables
+#define TABLE_TEXT_HEADER_SIZE 16
+#define TABLE_TEXT_SIZE 13
+
 //launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
 #define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
@@ -44,6 +48,16 @@
 - (UIColor*)headerColorYellow
 {
     return HEADER_COLOR_YELLOW;
+}
+
+- (UIFont *)tableTextHeaderFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
+- (UIFont *)tableTextFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_SIZE];
 }
 
 #pragma mark -
