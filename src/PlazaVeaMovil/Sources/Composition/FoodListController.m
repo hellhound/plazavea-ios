@@ -82,11 +82,12 @@ static CGFloat margin = 5.;
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
     [_titleLabel setBackgroundColor:[UIColor clearColor]]; 
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFont)]) {
-        [_titleLabel setFont:(UIFont *)TTSTYLE(headerFont)];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     }
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFontColor)]) {
-        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerFontColor)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     // Conf search
     UISearchBar *searchBar =
@@ -175,10 +176,10 @@ static CGFloat margin = 5.;
         [_titleLabel setFrame:titleFrame];
         // Adding the subviews to the header view
         if ([TTStyleSheet hasStyleSheetForSelector:
-                @selector(compositionHeaderBackgroundImage)]) {
-            [_headerView insertSubview:
-                    (UIImageView *)TTSTYLE(compositionHeaderBackgroundImage)
-                        atIndex:0];
+                @selector(compositionBackgroundHeader)]) {
+            UIImageView *back = [[[UIImageView alloc] initWithImage:
+                    (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+            [_headerView insertSubview:back atIndex:0];
         }
         [_headerView addSubview:_titleLabel];
         
