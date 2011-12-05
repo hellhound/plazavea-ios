@@ -80,6 +80,11 @@
     return [UIFont boldSystemFontOfSize:PICTURE_HEADER_SIZE];
 }
 
+- (UIFont *)tableSummaryFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
 #pragma mark -
 #pragma mark Launcher
 

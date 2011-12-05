@@ -217,6 +217,7 @@ static CGFloat sectionHeight = 24.;
                     cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [self setTitle:[_foodCategory name]];
     }
     return self;
 }

@@ -36,26 +36,19 @@ static CGFloat categoryWidth = 120.;
 #pragma mark -
 #pragma mark UIView
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-}
-
 - (void)loadView
 {
     [super loadView];
-    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 
     UITableView *tableView = [self tableView];
     
     // Configuring the header view
     [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
-                         autorelease]];
+            autorelease]];
     // Configuring the image view
     [self setImageView:[[[TTImageView alloc] initWithFrame:
-                         CGRectMake(.0, .0, kFoodDetailImageWidth,
-                                    kFoodDetailImageHeight)] autorelease]];
+            CGRectMake(.0, .0, kFoodDetailImageWidth,
+                kFoodDetailImageHeight)] autorelease]];
     [_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
     [_imageView setAutoresizingMask:UIViewAutoresizingNone];
     [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
@@ -83,10 +76,7 @@ static CGFloat categoryWidth = 120.;
     CGFloat titleHeight = [title sizeWithFont:font
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
-    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
     
-    [_titleLabel setText:title];
-    [_titleLabel setFrame:titleFrame];
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(compositionBackgroundHeader)]) {
@@ -96,13 +86,14 @@ static CGFloat categoryWidth = 120.;
     }
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(compositionPictureBackground)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
+        UIImageView *pictureBack = [[[UIImageView alloc] initWithImage:
                 (UIImage *)TTSTYLE(compositionPictureBackground)] autorelease];
-        CGRect backFrame = [back frame];
-        backFrame.origin.y = titleHeight + (2 * margin);
-        [back setFrame:backFrame];
-        [_headerView insertSubview:back atIndex:1];
+        CGRect backFrame = [pictureBack frame];
+        backFrame.origin.y = MAX(titleHeight + (2 * margin), 40.);
+        [pictureBack setFrame:backFrame];
+        [_headerView insertSubview:pictureBack atIndex:1];
     }
+    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
@@ -177,6 +168,13 @@ static CGFloat categoryWidth = 120.;
         [self setTableViewStyle:UITableViewStylePlain];
         [self setVariableHeightRows:YES];
         _food = food;
+        [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        if ([TTStyleSheet hasStyleSheetForSelector:
+                @selector(navigationBarLogo)]) {
+            [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                    initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+        }
     }
     return self;
 }
