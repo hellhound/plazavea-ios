@@ -61,8 +61,9 @@
 
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
-        UIImageView *backgroundView = 
-                (UIImageView *)TTSTYLE(shopingListBackgroundHeader);
+        UIImageView *backgroundView = [[[UIImageView alloc] 
+                initWithImage:(UIImage *)TTSTYLE(shopingListBackgroundHeader)]
+                autorelease];
 
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];

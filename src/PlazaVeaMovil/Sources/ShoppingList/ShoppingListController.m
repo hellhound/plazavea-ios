@@ -7,6 +7,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Application/AppDelegate.h"
@@ -101,6 +102,10 @@ static const NSInteger kListDateLabelTag = 101;
                     spacerItem, trashItem, nil]];
         [self setToolbarItems:[self readonlyToolbarItems]];
         [[self navigationController] setToolbarHidden:NO];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(navigationBackgroundColor)])
+            [[[self navigationController] toolbar]
+                    setTintColor:(UIColor *)TTSTYLE(navigationBackgroundColor)];
         [self updatePreviousNextButtons];
     }
     return navItem;
@@ -190,31 +195,54 @@ static const NSInteger kListDateLabelTag = 101;
     UITableView *tableView = [self tableView];
     CGRect bounds = [tableView bounds];
     
-    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5., .0,
-            (bounds.size.width - 10.), 20.)] autorelease];
+    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
+            (bounds.size.width - 150.), 20.)] autorelease];
     
     [nameLabel setAdjustsFontSizeToFitWidth:YES];
     [nameLabel setNumberOfLines:1];
     [nameLabel setMinimumFontSize:10];
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
     [nameLabel setText:[_shoppingList name]];
     [nameLabel setTag:kListNameLabelTag];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [nameLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(headerColorYellow)])
+        [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5,
-            20., (bounds.size.width - 10), 20.)] autorelease];
+    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10,
+            10., (bounds.size.width - 10), 20.)] autorelease];
     
     [dateLabel setAdjustsFontSizeToFitWidth:YES];
     [dateLabel setTextAlignment:UITextAlignmentRight];
     [dateLabel setNumberOfLines:1];
     [dateLabel setMinimumFontSize:10];
+    [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTag:kListDateLabelTag];
     [dateLabel setText:[dateFormatter stringFromDate:[_shoppingList
             lastModificationDate]]];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(tableTextFont)])
+        [dateLabel setFont:(UIFont *)TTSTYLE(tableTextFont)];
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(headerColorYellow)])
+        [dateLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
             bounds.size.width, 40.)] autorelease];
     
+    if ([TTStyleSheet 
+            hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
+        UIImageView *backgroundView = [[[UIImageView alloc] 
+                initWithImage:(UIImage *)TTSTYLE(shopingListBackgroundHeader)]
+                autorelease];
+
+        [headerView addSubview:backgroundView];
+        [headerView sendSubviewToBack:backgroundView];
+    }
     [headerView addSubview:nameLabel];
     [headerView addSubview:dateLabel];
     [tableView setTableHeaderView:headerView];

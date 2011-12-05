@@ -15,5 +15,5 @@
 
 - (UIImageView *)launcherBackgroundImage;
 
-- (UIImageView *)shopingListBackgroundHeader;
+- (UIImage *)shopingListBackgroundHeader;
 @end

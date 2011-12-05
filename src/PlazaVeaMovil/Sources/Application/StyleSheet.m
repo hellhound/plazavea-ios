@@ -87,9 +87,8 @@
 #pragma mark -
 #pragma mark ShoppingLists
 
-- (UIImageView *)shopingListBackgroundHeader
+- (UIImage *)shopingListBackgroundHeader
 {
-    return [[[UIImageView alloc] 
-        initWithImage:SHOPPING_LIST_BACKGROUND] autorelease];
+    return SHOPPING_LIST_BACKGROUND;
 }
 @end
