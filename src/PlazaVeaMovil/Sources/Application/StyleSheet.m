@@ -6,6 +6,9 @@
 #import "Application/Constants.h"
 #import "Application/StyleSheet.h"
 
+// default status bar style
+#define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
+
 //color for navigation bar
 #define BAR_TINT_COLOR RGBCOLOR(255, 208, 0)
 
@@ -40,14 +43,19 @@
 #pragma mark -
 #pragma mark General styles
 
-- (UIColor *)navigationBackgroundColor
+- (UIStatusBarStyle)statusBarStyle
+{
+    return STATUS_BAR_STYLE;
+}
+
+- (UIColor *)navigationBarTintColor
 {
     return BAR_TINT_COLOR;
 }
 
-- (UIColor*)navigationTextColor
+- (UIColor *)toolbarTintColor
 {
-    return TABLE_TEXT_COLOR;
+    return BAR_TINT_COLOR;
 }
 
 - (UIColor*)headerColorYellow

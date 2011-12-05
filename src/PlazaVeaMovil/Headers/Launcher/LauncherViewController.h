@@ -3,7 +3,7 @@
 
 #import <Three20/Three20.h>
 
-@interface LauncherViewController: UIViewController <TTLauncherViewDelegate>
+@interface LauncherViewController: TTViewController <TTLauncherViewDelegate>
 {
     TTLauncherView *_launcherView;
 }
