@@ -4,9 +4,12 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodDetailDataSource.h"
 #import "Composition/FoodDetailController.h"
+
+static CGFloat margin = 5.;
 
 @interface FoodDetailController ()
 
@@ -57,6 +60,12 @@
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
     [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFont)]) {
+        [_titleLabel setFont:(UIFont *)TTSTYLE(headerFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFontColor)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerFontColor)];
+    }
     
     NSString *title = [_food name];
     UIFont *font = [_titleLabel font];
@@ -65,17 +74,23 @@
     CGFloat titleHeight = [title sizeWithFont:font
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
-    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
     // Adding the subviews to the header view
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(compositionHeaderBackgroundImage)]) {
+        [_headerView insertSubview:
+         (UIImageView *)TTSTYLE(compositionHeaderBackgroundImage)
+                           atIndex:0];
+    }
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
-            + titleHeight);
+            + titleHeight + (2 * margin));
     CGRect imageFrame = CGRectMake((boundsWidth - kFoodDetailImageWidth) / 2.,
             .0, kFoodDetailImageWidth, kFoodDetailImageHeight);
     

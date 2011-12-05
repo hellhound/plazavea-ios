@@ -10,20 +10,25 @@
 #define BAR_TINT_COLOR RGBCOLOR(255, 208, 0)
 
 //color for texts in tables
-#define TABLE_TEXT_COLOR RGBCOLOR(208, 21, 26)
-#define HEADER_FONT_SIZE 20
-#define HEADER_FONT_COLOR [UIColor whiteColor]
+#define TABLE_TEXT_COLOR RGBCOLOR(0, 0, 0)
+
+//color for Headers
+#define HEADER_COLOR_YELLOW RGBCOLOR(255, 255, 0)
+
+//size for text in tables
+#define TABLE_TEXT_HEADER_SIZE 16
+#define TABLE_TEXT_SIZE 13
 
 //launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
-#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://logo.png")
+#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
 #define NAVIGATION_BAR_COLOR RGBCOLOR(255, 208, 0)
 #define LAUNCHER_FONT_COLOR RGBCOLOR(255, 180, 0)
 #define LAUNCHER_FONT_SHADOW RGBCOLOR(153, 25, 28)
 
-// nutritional composition
-#define COMPOSITION_COLOR RGBCOLOR(247, 128, 31)
-#define COMPOSITION_HEADER_BACKGROUND TTIMAGE(@"bundle://composition-header-background.png")
+//shopping list
+#define SHOPPING_LIST_BACKGROUND \
+TTIMAGE(@"bundle://shopping-list-background.png")
 
 @implementation StyleSheet
 
@@ -35,9 +40,24 @@
     return BAR_TINT_COLOR;
 }
 
-- (UIColor *)navigationTextColor
+- (UIColor*)navigationTextColor
 {
     return TABLE_TEXT_COLOR;
+}
+
+- (UIColor*)headerColorYellow
+{
+    return HEADER_COLOR_YELLOW;
+}
+
+- (UIFont *)tableTextHeaderFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
+- (UIFont *)tableTextFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_SIZE];
 }
 
 #pragma mark -
@@ -55,38 +75,20 @@
 
 - (UIImageView *)launcherBackgroundImage
 {
-    return [[[UIImageView alloc] initWithImage:LAUNCHER_BACKGROUND]
-            autorelease];
+    return [[[UIImageView alloc] 
+            initWithImage:LAUNCHER_BACKGROUND] autorelease];
 }
 
-- (UIImageView *)navigationBarLogo
+- (UIImage *)navigationBarLogo
 {
-    return [[[UIImageView alloc] initWithImage:NAVIGATION_BAR_LOGO]
-            autorelease];
+    return NAVIGATION_BAR_LOGO;
 }
 
 #pragma mark -
-#pragma mark Composition
+#pragma mark ShoppingLists
 
-- (UIImageView *)compositionHeaderBackgroundImage
+- (UIImage *)shopingListBackgroundHeader
 {
-    return [[[UIImageView alloc] initWithImage:COMPOSITION_HEADER_BACKGROUND]
-            autorelease];
+    return SHOPPING_LIST_BACKGROUND;
 }
-
-- (UIFont *)headerFont
-{
-    return [UIFont boldSystemFontOfSize:HEADER_FONT_SIZE];
-}
-
-- (UIColor *)headerFontColor
-{
-    return HEADER_FONT_COLOR;
-}
-
-- (UIColor *)compositionSearchBarColor
-{
-    return COMPOSITION_COLOR;
-}
-
 @end
