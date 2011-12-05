@@ -14,6 +14,7 @@
 
 //color for Headers
 #define HEADER_COLOR_YELLOW RGBCOLOR(255, 255, 0)
+#define HEADER_COLOR_WHITE [UIColor whiteColor]
 
 //size for text in tables
 #define TABLE_TEXT_HEADER_SIZE 16
@@ -28,7 +29,11 @@
 
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
-TTIMAGE(@"bundle://shopping-list-background.png")
+    TTIMAGE(@"bundle://shopping-list-background.png")
+
+// nutritional composition
+#define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
+#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
 
 @implementation StyleSheet
 
@@ -50,6 +55,11 @@ TTIMAGE(@"bundle://shopping-list-background.png")
     return HEADER_COLOR_YELLOW;
 }
 
+- (UIColor*)headerColorWhite
+{
+    return HEADER_COLOR_WHITE;
+}
+
 - (UIFont *)tableTextHeaderFont
 {
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
@@ -63,7 +73,7 @@ TTIMAGE(@"bundle://shopping-list-background.png")
 #pragma mark -
 #pragma mark Launcher
 
-- (TTStyle*)launcherButton:(UIControlState)state
+- (TTStyle *)launcherButton:(UIControlState)state
 {
     return [TTPartStyle styleWithName:@"image" 
             style:TTSTYLESTATE(launcherButtonImage:, state) next:
@@ -77,6 +87,7 @@ TTIMAGE(@"bundle://shopping-list-background.png")
 {
     return [[[UIImageView alloc] 
             initWithImage:LAUNCHER_BACKGROUND] autorelease];
+
 }
 
 - (UIImage *)navigationBarLogo
@@ -90,5 +101,18 @@ TTIMAGE(@"bundle://shopping-list-background.png")
 - (UIImage *)shopingListBackgroundHeader
 {
     return SHOPPING_LIST_BACKGROUND;
+}
+
+#pragma mark -
+#pragma mark Composition
+
+- (UIImage *)compositionBackgroundHeader
+{
+    return COMPOSITION_BACKGROUND;
+}
+
+- (UIColor *)compositionSearchBarColor
+{
+    return COMPOSITION_SEARCHBAR_COLOR;
 }
 @end

@@ -105,11 +105,12 @@ static CGFloat margin = 5.;
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
     [_titleLabel setBackgroundColor:[UIColor clearColor]];
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFont)]) {
-        [_titleLabel setFont:(UIFont *)TTSTYLE(headerFont)];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     }
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerFontColor)]) {
-        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerFontColor)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
     NSString *title = kFoodCategoryHeader;
@@ -125,9 +126,10 @@ static CGFloat margin = 5.;
     [_titleLabel setFrame:titleFrame];
     // Conf the background
     if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(compositionHeaderBackgroundImage)]) {
-        [_headerView addSubview:
-                (UIImageView *)TTSTYLE(compositionHeaderBackgroundImage)];
+            @selector(compositionBackgroundHeader)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+        [_headerView insertSubview:back atIndex:0];
     }
     // Adding the subviews to the header view
     [_headerView addSubview:_titleLabel];

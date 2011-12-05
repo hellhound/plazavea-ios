@@ -29,8 +29,10 @@ NSString *const kShoppingHistoryEntryName = @"name";
 // ShoppingListController's constants
 
 // Administration of shopping lists
-NSString *const kShoppingListTitle = @"Mis listas";
+NSString *const kShoppingListTitle = @"Mis Listas";
 // NSLocalizedString(@"Mis listas", nil)
+NSString *const kShoppingCreateList = @"Crear Lista";
+// NSLocalizedString(@"Crear Lista", nil)
 // Fetch-request controller cache's file name
 NSString *const kShoppingListCacheName = @"ShoppingListController.cache";
 // Default detail text

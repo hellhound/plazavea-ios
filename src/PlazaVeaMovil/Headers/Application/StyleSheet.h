@@ -8,5 +8,12 @@
 - (UIColor *)navigationBackgroundColor;
 - (UIColor*)navigationTextColor;
 
+- (UIColor*)headerColorYellow;
+
+- (UIFont *)tableTextHeaderFont;
+- (UIFont *)tableTextFont;
+
 - (UIImageView *)launcherBackgroundImage;
+
+- (UIImage *)shopingListBackgroundHeader;
 @end
