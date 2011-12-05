@@ -18,6 +18,7 @@ static NSPredicate *kFoodsPredicateTemplate;
 static NSString *const kFoodVariableKey = @"FOOD";
 static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
+static CGFloat sectionHeight = 24.;
 
 @interface FoodListController ()
 
@@ -170,15 +171,16 @@ static CGFloat margin = 5.;
         CGFloat titleHeight = [title sizeWithFont:font
                 constrainedToSize:constrainedTitleSize
                     lineBreakMode:UILineBreakModeWordWrap].height;
-        CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
+        CGRect titleFrame =
+                CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
         
         [_titleLabel setText:title];
         [_titleLabel setFrame:titleFrame];
         // Adding the subviews to the header view
         if ([TTStyleSheet hasStyleSheetForSelector:
                 @selector(compositionBackgroundHeader)]) {
-            UIImageView *back = [[[UIImageView alloc] initWithImage:
-                    (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+            UIImageView *back = [[[UIImageView alloc] initWithImage:(UIImage *)
+                    TTSTYLE(compositionBackgroundHeader)] autorelease];
             [_headerView insertSubview:back atIndex:0];
         }
         [_headerView addSubview:_titleLabel];
@@ -225,6 +227,7 @@ static CGFloat margin = 5.;
 {
     Food *food = (Food *)object;
     
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
 }
 
@@ -291,6 +294,7 @@ titleForHeaderInSection:(NSInteger)section
     UITableViewCell *cell;
     if (tableView == [self tableView]){
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         NSManagedObject *object =
         [_filteredController objectAtIndexPath:indexPath];
@@ -303,6 +307,7 @@ titleForHeaderInSection:(NSInteger)section
                          reuseCell:cell reuseIdentifier:reuseIdentifier
                        atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
 }
@@ -347,6 +352,57 @@ titleForHeaderInSection:(NSInteger)section
                 [[[FoodDetailController alloc] initWithFood:food] autorelease]
                     animated:YES];
     }
+}
+
+- (CGFloat)     tableView:(UITableView *)tableView
+ heightForHeaderInSection:(NSInteger)section
+{
+    return sectionHeight;
+}
+
+- (UIView *)    tableView:(UITableView *)tableView
+   viewForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle;
+    if (tableView == [self tableView]) {
+        sectionTitle =
+                [[_resultsController sectionIndexTitles] objectAtIndex:section];
+    } else {
+        id<NSFetchedResultsSectionInfo> sectionInfo =
+                [[_filteredController sections] objectAtIndex:section];
+    
+        sectionTitle = [sectionInfo name];
+    }
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectZero];
+    [title setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+         hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [title setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [title setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    UIFont *font = [title font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [sectionTitle sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake((margin * 2),
+            .0 + ((sectionHeight - titleHeight) / 2), titleWidth, titleHeight);
+    
+    [title setText:sectionTitle];
+    [title setFrame:titleFrame];
+    
+    UIImageView *back = [[[UIImageView alloc] initWithImage:(UIImage *)
+            TTSTYLE(compositionSectionHeaderBackground)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    CGRect viewFrame = CGRectMake(0, 0, titleWidth, sectionHeight);
+    [view setFrame:viewFrame];
+    [view addSubview:back];
+    [view addSubview:title];
+    return view;
 }
 
 #pragma mark -

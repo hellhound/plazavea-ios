@@ -17,6 +17,7 @@
 
 static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
+static CGFloat sectionHeight = 24.;
 
 @interface FoodCategoryListController ()
 
@@ -301,6 +302,55 @@ titleForHeaderInSection:(NSInteger)section
                     animated:YES];
 
     }
+}
+
+- (CGFloat)     tableView:(UITableView *)tableView
+ heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return 0;
+    return sectionHeight;
+}
+
+- (UIView *)    tableView:(UITableView *)tableView
+   viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return nil;
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    NSString *sectionTitle = [sectionInfo name];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [title setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+         hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [title setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [title setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    UIFont *font = [title font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [sectionTitle sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake((margin * 2),
+            .0 + ((sectionHeight - titleHeight) / 2), titleWidth, titleHeight);
+    
+    [title setText:sectionTitle];
+    [title setFrame:titleFrame];
+    
+    UIImageView *back = [[[UIImageView alloc] initWithImage:(UIImage *)
+            TTSTYLE(compositionSectionHeaderBackground)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    CGRect viewFrame = CGRectMake(0, 0, titleWidth, sectionHeight);
+    [view setFrame:viewFrame];
+    [view addSubview:back];
+    [view addSubview:title];
+    return view;
 }
 
 #pragma mark -

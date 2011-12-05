@@ -36,6 +36,8 @@
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
 #define COMPOSITION_PICTURE_BACKGROUND \
         TTIMAGE(@"bundle://composition-picture-background.png")
+#define COMPOSITION_SECTION_HEADER_BACKGROUND \
+        TTIMAGE(@"bundle://composition-section-header.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
 
 @implementation StyleSheet
@@ -48,17 +50,17 @@
     return BAR_TINT_COLOR;
 }
 
-- (UIColor*)navigationTextColor
+- (UIColor *)navigationTextColor
 {
     return TABLE_TEXT_COLOR;
 }
 
-- (UIColor*)headerColorYellow
+- (UIColor *)headerColorYellow
 {
     return HEADER_COLOR_YELLOW;
 }
 
-- (UIColor*)headerColorWhite
+- (UIColor *)headerColorWhite
 {
     return HEADER_COLOR_WHITE;
 }
@@ -121,6 +123,11 @@
 - (UIImage *)compositionPictureBackground
 {
     return COMPOSITION_PICTURE_BACKGROUND;
+}
+
+- (UIImage *)compositionSectionHeaderBackground
+{
+    return COMPOSITION_SECTION_HEADER_BACKGROUND;
 }
 
 - (UIColor *)compositionSearchBarColor

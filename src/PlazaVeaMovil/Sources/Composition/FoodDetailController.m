@@ -113,14 +113,14 @@ static CGFloat categoryWidth = 120.;
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
             + titleHeight + (2 * margin));
-    CGRect imageFrame = CGRectMake(.0, .0, kFoodDetailImageWidth,
+    CGRect imageFrame = CGRectMake(.0, 1., kFoodDetailImageWidth,
             kFoodDetailImageHeight);
     
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:
             CGRectOffset(imageFrame, .0, titleHeight + (2 * margin))];
     UILabel *categoryLabel =
-    [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     
     [categoryLabel setNumberOfLines:0];
     [categoryLabel setLineBreakMode:UILineBreakModeWordWrap];
