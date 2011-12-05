@@ -18,6 +18,7 @@
 
 //size for text in tables
 #define TABLE_TEXT_HEADER_SIZE 16
+#define PICTURE_HEADER_SIZE 14
 #define TABLE_TEXT_SIZE 13
 
 //launcher
@@ -29,10 +30,12 @@
 
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
-    TTIMAGE(@"bundle://shopping-list-background.png")
+        TTIMAGE(@"bundle://shopping-list-background.png")
 
 // nutritional composition
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
+#define COMPOSITION_PICTURE_BACKGROUND \
+        TTIMAGE(@"bundle://composition-picture-background.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
 
 @implementation StyleSheet
@@ -70,6 +73,11 @@
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_SIZE];
 }
 
+- (UIFont *)pictureHeaderFont
+{
+    return [UIFont boldSystemFontOfSize:PICTURE_HEADER_SIZE];
+}
+
 #pragma mark -
 #pragma mark Launcher
 
@@ -87,7 +95,6 @@
 {
     return [[[UIImageView alloc] 
             initWithImage:LAUNCHER_BACKGROUND] autorelease];
-
 }
 
 - (UIImage *)navigationBarLogo
@@ -109,6 +116,11 @@
 - (UIImage *)compositionBackgroundHeader
 {
     return COMPOSITION_BACKGROUND;
+}
+
+- (UIImage *)compositionPictureBackground
+{
+    return COMPOSITION_PICTURE_BACKGROUND;
 }
 
 - (UIColor *)compositionSearchBarColor

@@ -61,7 +61,7 @@
                         [food vitaminC]] caption:kFoodDetailVitaminC];
             [tempItems addObject:vitaminC];
         }
-        [sections addObject:kFoodDetailHeader];
+        [sections addObject:[food name]];
         [self setSections:sections];
         [items addObject:tempItems];
         [self setItems:items];

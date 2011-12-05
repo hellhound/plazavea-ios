@@ -10,6 +10,7 @@
 #import "Composition/FoodDetailController.h"
 
 static CGFloat margin = 5.;
+static CGFloat categoryWidth = 120.;
 
 @interface FoodDetailController ()
 
@@ -35,10 +36,17 @@ static CGFloat margin = 5.;
 #pragma mark -
 #pragma mark UIView
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+}
+
 - (void)loadView
 {
     [super loadView];
-    
+    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+
     UITableView *tableView = [self tableView];
     
     // Configuring the header view
@@ -86,18 +94,59 @@ static CGFloat margin = 5.;
                 (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
         [_headerView insertSubview:back atIndex:0];
     }
-    [_headerView addSubview:_titleLabel];
+    if ([TTStyleSheet hasStyleSheetForSelector:
+            @selector(compositionPictureBackground)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionPictureBackground)] autorelease];
+        CGRect backFrame = [back frame];
+        backFrame.origin.y = titleHeight + (2 * margin);
+        [back setFrame:backFrame];
+        [_headerView insertSubview:back atIndex:1];
+    }
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
+    
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
             + titleHeight + (2 * margin));
-    CGRect imageFrame = CGRectMake((boundsWidth - kFoodDetailImageWidth) / 2.,
-            .0, kFoodDetailImageWidth, kFoodDetailImageHeight);
+    CGRect imageFrame = CGRectMake(.0, .0, kFoodDetailImageWidth,
+            kFoodDetailImageHeight);
     
     [_headerView setFrame:headerFrame];
-    [_imageView setFrame:CGRectOffset(imageFrame, .0, titleHeight)];
+    [_imageView setFrame:
+            CGRectOffset(imageFrame, .0, titleHeight + (2 * margin))];
+    UILabel *categoryLabel =
+    [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    [categoryLabel setNumberOfLines:0];
+    [categoryLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [categoryLabel setTextAlignment:UITextAlignmentRight];
+    [categoryLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+         hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
+        [categoryLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [categoryLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    NSString *category = [[_food category] name];
+    UIFont *categoryFont = [categoryLabel font];
+    CGSize constrainedCategorySize = CGSizeMake(categoryWidth, MAXFLOAT);
+    CGFloat categoryHeight = [category sizeWithFont:categoryFont
+            constrainedToSize:constrainedCategorySize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGFloat categoryY = headerFrame.size.height - categoryHeight - margin;
+    CGRect categoryFrame = CGRectMake((boundsWidth - categoryWidth - margin),
+            categoryY, categoryWidth, categoryHeight);
+    
+    [categoryLabel setText:category];
+    [categoryLabel setFrame:categoryFrame];
+    [_headerView addSubview:categoryLabel];
     /*if (imageURL != nil)
         [_imageView setUrlPath:[imageURL absoluteString]];*/
     [tableView setTableHeaderView:_headerView];

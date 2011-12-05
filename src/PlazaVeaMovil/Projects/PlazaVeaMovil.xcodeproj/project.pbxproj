@@ -133,6 +133,7 @@
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
+		2FCB25C2148D07C600C61E3B /* composition-picture-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB25C1148D07C600C61E3B /* composition-picture-background.png */; };
 		2FCBD0E514881D9F004ECB66 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBD0E414881D9F004ECB66 /* StyleSheet.m */; };
 		2FCBD33D148826DD004ECB66 /* UINavigationBar+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBD33C148826DD004ECB66 /* UINavigationBar+Additions.m */; };
 		2FCBD33F148826EA004ECB66 /* UINavigationBar+Styles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBD33E148826EA004ECB66 /* UINavigationBar+Styles.m */; };
@@ -740,6 +741,7 @@
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2FCB25C1148D07C600C61E3B /* composition-picture-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-picture-background.png"; sourceTree = "<group>"; };
 		2FCBD0E414881D9F004ECB66 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
 		2FCBD33C148826DD004ECB66 /* UINavigationBar+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Additions.m"; sourceTree = "<group>"; };
 		2FCBD33E148826EA004ECB66 /* UINavigationBar+Styles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Styles.m"; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FCB25C1148D07C600C61E3B /* composition-picture-background.png */,
 				2F4875B0148C017A0027C2F0 /* composition-background.png */,
 				CC745BE1148B00A700DAD3D9 /* es.lproj */,
 				CC745BE4148B00A700DAD3D9 /* foods.csv */,
@@ -1823,6 +1826,7 @@
 				CC745BE6148B00A700DAD3D9 /* Localizable.strings in Resources */,
 				CC745BE7148B00A700DAD3D9 /* foods.csv in Resources */,
 				CC745BE8148B00A700DAD3D9 /* shopping-list-background@2x.png in Resources */,
+				2FCB25C2148D07C600C61E3B /* composition-picture-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
