@@ -35,6 +35,12 @@
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
 
+// emergency phones
+#define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
+#define EMERGENCY_SECTION_HEADER \
+        TTIMAGE(@"bundle://emergency-section-header.png");
+#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227, 13, 23)
+
 @implementation StyleSheet
 
 #pragma mark -
@@ -114,5 +120,23 @@
 - (UIColor *)compositionSearchBarColor
 {
     return COMPOSITION_SEARCHBAR_COLOR;
+}
+
+#pragma mark -
+#pragma mark Emergency
+
+- (UIImage *)emergencyBackgroundHeader
+{
+    return EMERGENCY_BACKGROUND;
+}
+
+- (UIImage *)emergencySectionHeaderBackground
+{
+    return EMERGENCY_SECTION_HEADER;
+}
+
+- (UIColor *)emergencySearchBarColor
+{
+    return EMERGENCY_SEARCHBAR_COLOR;
 }
 @end
