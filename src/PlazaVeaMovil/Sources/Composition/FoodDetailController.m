@@ -11,6 +11,7 @@
 
 static CGFloat margin = 5.;
 static CGFloat categoryWidth = 120.;
+static CGFloat headerMinHeight = 40.;
 
 @interface FoodDetailController ()
 
@@ -76,6 +77,17 @@ static CGFloat categoryWidth = 120.;
     CGFloat titleHeight = [title sizeWithFont:font
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
+        titleHeight = headerMinHeight - (margin * 2);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
     
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
@@ -93,10 +105,6 @@ static CGFloat categoryWidth = 120.;
         [pictureBack setFrame:backFrame];
         [_headerView insertSubview:pictureBack atIndex:1];
     }
-    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
-    
-    [_titleLabel setText:title];
-    [_titleLabel setFrame:titleFrame];
     
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
@@ -104,7 +112,7 @@ static CGFloat categoryWidth = 120.;
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
             + titleHeight + (2 * margin));
-    CGRect imageFrame = CGRectMake(.0, 1., kFoodDetailImageWidth,
+    CGRect imageFrame = CGRectMake(1.0, .0, kFoodDetailImageWidth,
             kFoodDetailImageHeight);
     
     [_headerView setFrame:headerFrame];

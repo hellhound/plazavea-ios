@@ -19,6 +19,7 @@ static NSString *const kFoodVariableKey = @"FOOD";
 static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
+static CGFloat headerMinHeight = 40.;
 
 @interface FoodListController ()
 
@@ -171,8 +172,14 @@ static CGFloat sectionHeight = 24.;
         CGFloat titleHeight = [title sizeWithFont:font
                 constrainedToSize:constrainedTitleSize
                     lineBreakMode:UILineBreakModeWordWrap].height;
-        CGRect titleFrame =
-                CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
+        CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+        
+        if ((titleHeight + (margin * 2)) <= headerMinHeight) {
+            titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
+            titleHeight = headerMinHeight - (margin * 2);
+        } else {
+            titleFrame.origin.y += margin;
+        }
         
         [_titleLabel setText:title];
         [_titleLabel setFrame:titleFrame];
