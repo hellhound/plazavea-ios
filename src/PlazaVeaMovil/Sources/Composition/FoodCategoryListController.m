@@ -17,6 +17,8 @@
 
 static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
+static CGFloat sectionHeight = 24.;
+static CGFloat headerMinHeight = 40.;
 
 @interface FoodCategoryListController ()
 
@@ -62,6 +64,7 @@ static CGFloat margin = 5.;
                     cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [self setTitle:kFoodCategoryHeader];
     }
     return self;
 }
@@ -120,19 +123,18 @@ static CGFloat margin = 5.;
     CGFloat titleHeight = [title sizeWithFont:font
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
-    CGRect titleFrame = CGRectMake(.0, .0 + margin, titleWidth, titleHeight);
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
+        titleHeight = headerMinHeight - (margin * 2);
+    } else {
+        titleFrame.origin.y += margin;
+    }
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
-    // Conf the background
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(compositionBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
-    }
-    // Adding the subviews to the header view
-    [_headerView addSubview:_titleLabel];
+    
     // Conf search
     UISearchBar *searchBar =
             [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
@@ -149,17 +151,25 @@ static CGFloat margin = 5.;
     [_searchController setDelegate:self];
     [_searchController setSearchResultsDataSource:self];
     [_searchController setSearchResultsDelegate:self];
-    [_headerView addSubview:searchBar];
     
     CGRect searchFrame = [searchBar frame];
     searchFrame.origin.y += titleHeight + (2 * margin);
     [searchBar setFrame:searchFrame];
     CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0 + (2 * margin), boundsWidth,
-            titleHeight + searchHeight);
-    
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            titleHeight + searchHeight + (2 * margin));
+    // Adding the subviews to the header view
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(compositionBackgroundHeader)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+        [_headerView insertSubview:back atIndex:0];
+    }
+    [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:searchBar];
     [_headerView setFrame:headerFrame];
+    [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
 }
 
@@ -301,6 +311,55 @@ titleForHeaderInSection:(NSInteger)section
                     animated:YES];
 
     }
+}
+
+- (CGFloat)     tableView:(UITableView *)tableView
+ heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return 0;
+    return sectionHeight;
+}
+
+- (UIView *)    tableView:(UITableView *)tableView
+   viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return nil;
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    NSString *sectionTitle = [sectionInfo name];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [title setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+         hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [title setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [title setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    UIFont *font = [title font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [sectionTitle sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake((margin * 2),
+            .0 + ((sectionHeight - titleHeight) / 2), titleWidth, titleHeight);
+    
+    [title setText:sectionTitle];
+    [title setFrame:titleFrame];
+    
+    UIImageView *back = [[[UIImageView alloc] initWithImage:(UIImage *)
+            TTSTYLE(compositionSectionHeaderBackground)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    CGRect viewFrame = CGRectMake(0, 0, titleWidth, sectionHeight);
+    [view setFrame:viewFrame];
+    [view addSubview:back];
+    [view addSubview:title];
+    return view;
 }
 
 #pragma mark -
