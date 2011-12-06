@@ -157,8 +157,8 @@ static CGFloat headerMinHeight = 40.;
     [searchBar setFrame:searchFrame];
     CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0 + (2 * margin), boundsWidth,
-            titleHeight + searchHeight);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            titleHeight + searchHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
@@ -169,6 +169,7 @@ static CGFloat headerMinHeight = 40.;
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:searchBar];
     [_headerView setFrame:headerFrame];
+    [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
 }
 

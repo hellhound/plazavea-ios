@@ -117,6 +117,7 @@
 		2F6C6E98144F673A0012E787 /* RegionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C6E97144F673A0012E787 /* RegionListController.m */; };
 		2F6DA8E4146C30A100FCEF87 /* WineDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6DA8E3146C30A100FCEF87 /* WineDetailDataSource.m */; };
 		2F6DA8F3146C488000FCEF87 /* WineDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6DA8F2146C488000FCEF87 /* WineDetailController.m */; };
+		2F712A43148E741100668D78 /* composition-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F712A42148E741100668D78 /* composition-background@2x.png */; };
 		2F75AF14144FCF2700153145 /* SubregionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F75AF13144FCF2700153145 /* SubregionDataSource.m */; };
 		2F78FF9C144F2F91007F9ACD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9A144F2F91007F9ACD /* Constants.m */; };
 		2F78FF9D144F2F91007F9ACD /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9B144F2F91007F9ACD /* Models.m */; };
@@ -727,6 +728,7 @@
 		2F6C6E97144F673A0012E787 /* RegionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionListController.m; sourceTree = "<group>"; };
 		2F6DA8E3146C30A100FCEF87 /* WineDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineDetailDataSource.m; sourceTree = "<group>"; };
 		2F6DA8F2146C488000FCEF87 /* WineDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineDetailController.m; sourceTree = "<group>"; };
+		2F712A42148E741100668D78 /* composition-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background@2x.png"; sourceTree = "<group>"; };
 		2F75AF13144FCF2700153145 /* SubregionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubregionDataSource.m; sourceTree = "<group>"; };
 		2F78FF9A144F2F91007F9ACD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F78FF9B144F2F91007F9ACD /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F712A42148E741100668D78 /* composition-background@2x.png */,
 				2FCB2887148D7FE900C61E3B /* composition-section-header@2x.png */,
 				2FCB2822148D555100C61E3B /* composition-section-header.png */,
 				2FCB25C1148D07C600C61E3B /* composition-picture-background.png */,
@@ -1835,6 +1838,7 @@
 				2FCB25C2148D07C600C61E3B /* composition-picture-background.png in Resources */,
 				2FCB2823148D555100C61E3B /* composition-section-header.png in Resources */,
 				2FCB2888148D7FE900C61E3B /* composition-section-header@2x.png in Resources */,
+				2F712A43148E741100668D78 /* composition-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

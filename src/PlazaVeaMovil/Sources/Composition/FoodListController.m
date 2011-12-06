@@ -116,6 +116,7 @@ static CGFloat headerMinHeight = 40.;
     }
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:searchBar];
+    [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
 }
 

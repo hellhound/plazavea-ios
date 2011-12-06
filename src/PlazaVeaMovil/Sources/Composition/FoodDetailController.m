@@ -146,6 +146,7 @@ static CGFloat headerMinHeight = 40.;
         [pictureBack setFrame:backFrame];
         [_headerView insertSubview:pictureBack atIndex:1];
     }
+    [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
     [self refresh];
 }
