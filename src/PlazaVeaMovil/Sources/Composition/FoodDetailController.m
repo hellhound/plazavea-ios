@@ -85,29 +85,8 @@ static CGFloat headerMinHeight = 40.;
     } else {
         titleFrame.origin.y += margin;
     }
-    
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
-    
-    // Adding the subviews to the header view
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(compositionBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
-    }
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(compositionPictureBackground)]) {
-        UIImageView *pictureBack = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(compositionPictureBackground)] autorelease];
-        CGRect backFrame = [pictureBack frame];
-        backFrame.origin.y = MAX(titleHeight + (2 * margin), 40.);
-        [pictureBack setFrame:backFrame];
-        [_headerView insertSubview:pictureBack atIndex:1];
-    }
-    
-    [_headerView addSubview:_titleLabel];
-    [_headerView addSubview:_imageView];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
@@ -118,6 +97,9 @@ static CGFloat headerMinHeight = 40.;
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:
             CGRectOffset(imageFrame, .0, titleHeight + (2 * margin))];
+    /*if (imageURL != nil)
+     [_imageView setUrlPath:[imageURL absoluteString]];*/
+    
     UILabel *categoryLabel =
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     
@@ -145,9 +127,25 @@ static CGFloat headerMinHeight = 40.;
     
     [categoryLabel setText:category];
     [categoryLabel setFrame:categoryFrame];
+    // Adding the subviews to the header view
+    [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:_imageView];
     [_headerView addSubview:categoryLabel];
-    /*if (imageURL != nil)
-        [_imageView setUrlPath:[imageURL absoluteString]];*/
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(compositionBackgroundHeader)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+        [_headerView insertSubview:back atIndex:0];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(compositionPictureBackground)]) {
+        UIImageView *pictureBack = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionPictureBackground)] autorelease];
+        CGRect backFrame = [pictureBack frame];
+        backFrame.origin.y = MAX(titleHeight + (2 * margin), 40.);
+        [pictureBack setFrame:backFrame];
+        [_headerView insertSubview:pictureBack atIndex:1];
+    }
     [tableView setTableHeaderView:_headerView];
     [self refresh];
 }

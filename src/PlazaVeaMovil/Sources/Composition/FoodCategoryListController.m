@@ -134,15 +134,7 @@ static CGFloat headerMinHeight = 40.;
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
-    // Conf the background
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(compositionBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
-    }
-    // Adding the subviews to the header view
-    [_headerView addSubview:_titleLabel];
+    
     // Conf search
     UISearchBar *searchBar =
             [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
@@ -159,7 +151,6 @@ static CGFloat headerMinHeight = 40.;
     [_searchController setDelegate:self];
     [_searchController setSearchResultsDataSource:self];
     [_searchController setSearchResultsDelegate:self];
-    [_headerView addSubview:searchBar];
     
     CGRect searchFrame = [searchBar frame];
     searchFrame.origin.y += titleHeight + (2 * margin);
@@ -168,7 +159,15 @@ static CGFloat headerMinHeight = 40.;
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0 + (2 * margin), boundsWidth,
             titleHeight + searchHeight);
-    
+    // Adding the subviews to the header view
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(compositionBackgroundHeader)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
+        [_headerView insertSubview:back atIndex:0];
+    }
+    [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:searchBar];
     [_headerView setFrame:headerFrame];
     [tableView setTableHeaderView:_headerView];
 }
