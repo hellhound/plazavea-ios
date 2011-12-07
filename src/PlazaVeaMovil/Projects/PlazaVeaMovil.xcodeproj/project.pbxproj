@@ -174,6 +174,7 @@
 		CC332E7614889B8A00E37953 /* launcher-icon-somelier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC332E6D14889B8A00E37953 /* launcher-icon-somelier@2x.png */; };
 		CC332E7714889B8A00E37953 /* launcher-icon-stores@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC332E6E14889B8A00E37953 /* launcher-icon-stores@2x.png */; };
 		CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */; };
+		CC4B72A1148EE9640053E1E3 /* UIToolbar+Styles.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4B72A0148EE9640053E1E3 /* UIToolbar+Styles.m */; };
 		CC538FB4143C2425003C03BA /* default-recipe-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = CC538FB3143C2425003C03BA /* default-recipe-detail.png */; };
 		CC5556E91488A65E0034F7AB /* launcher-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC5556E81488A65E0034F7AB /* launcher-background@2x.png */; };
 		CC5556EB1488A66C0034F7AB /* general-customer-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC5556EA1488A66C0034F7AB /* general-customer-logo.png */; };
@@ -781,6 +782,7 @@
 		CC332E6D14889B8A00E37953 /* launcher-icon-somelier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-somelier@2x.png"; sourceTree = "<group>"; };
 		CC332E6E14889B8A00E37953 /* launcher-icon-stores@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-stores@2x.png"; sourceTree = "<group>"; };
 		CC411C3214881B54001C3607 /* TTStyleSheet+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTStyleSheet+Additions.m"; sourceTree = "<group>"; };
+		CC4B72A0148EE9640053E1E3 /* UIToolbar+Styles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+Styles.m"; sourceTree = "<group>"; };
 		CC538FB3143C2425003C03BA /* default-recipe-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-recipe-detail.png"; sourceTree = "<group>"; };
 		CC5556E81488A65E0034F7AB /* launcher-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-background@2x.png"; sourceTree = "<group>"; };
 		CC5556EA1488A66C0034F7AB /* general-customer-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "general-customer-logo.png"; sourceTree = "<group>"; };
@@ -1133,6 +1135,7 @@
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				CC4B72A0148EE9640053E1E3 /* UIToolbar+Styles.m */,
 				2CED1012148D772C002BEBDF /* TTBaseViewController+Style.m */,
 				2FCBD0E414881D9F004ECB66 /* StyleSheet.m */,
 				CC5F8523146F558300414D33 /* Constants.m */,
@@ -1955,6 +1958,7 @@
 				CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */,
 				2FCBD33D148826DD004ECB66 /* UINavigationBar+Additions.m in Sources */,
 				2CED1013148D772C002BEBDF /* TTBaseViewController+Style.m in Sources */,
+				CC4B72A1148EE9640053E1E3 /* UIToolbar+Styles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
