@@ -6,6 +6,8 @@
 @interface RegionListController: ReconnectableTableViewController
 {
     NSString *_regionId;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, copy) NSString *regionId;
 
