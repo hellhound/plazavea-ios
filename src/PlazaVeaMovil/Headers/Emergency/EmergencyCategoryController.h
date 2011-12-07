@@ -13,5 +13,4 @@
     UIView *_headerView;
     UILabel *_titleLabel;
 }
-
 @end
