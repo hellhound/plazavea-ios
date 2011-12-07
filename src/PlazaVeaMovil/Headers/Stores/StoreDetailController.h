@@ -11,9 +11,9 @@
         <StoreDetailDataSourceDelegate>
 {
     NSString *_storeId;
+    TTImageView *_imageView;
     UIView *_headerView;
     UILabel *_titleLabel;
-    TTImageView *_imageView;
 }
 
 - (id)initWithStoreId:(NSString *)storeId;

@@ -91,6 +91,16 @@
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
 }
 
+- (UIColor *)tableHeaderTintColor
+{
+    return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+- (UIColor *)tableHeaderTextColor
+{
+    return HEADER_COLOR_WHITE;
+}
+
 #pragma mark -
 #pragma mark Launcher
 
