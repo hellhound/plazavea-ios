@@ -43,8 +43,12 @@
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
 #define EMERGENCY_SECTION_HEADER \
-        TTIMAGE(@"bundle://emergency-section-header.png");
+        TTIMAGE(@"bundle://emergency-section-header.png")
 #define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227, 13, 23)
+
+// stores
+#define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
+#define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 
 @implementation StyleSheet
 
@@ -98,7 +102,7 @@
 
 - (UIColor *)tableHeaderTextColor
 {
-    return HEADER_COLOR_WHITE;
+    return HEADER_COLOR_YELLOW;
 }
 
 #pragma mark -
@@ -172,5 +176,18 @@
 - (UIColor *)emergencySearchBarColor
 {
     return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+#pragma mark -
+#pragma mark Stores
+
+- (UIImage *)storesBackgroundHeader
+{
+    return STORES_BACKGROUND;
+}
+
+- (TTStyle *)storesSectionHeader
+{
+    return [TTImageStyle styleWithImage:STORES_SECTION_HEADER next:nil];
 }
 @end

@@ -3,6 +3,7 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Constants.h"
 #import "Stores/Constants.h"
+#import "Stores/StoresTableViewDelegate.h"
 #import "Stores/StoreListDataSource.h"
 #import "Stores/StoreListController.h"
 
@@ -97,7 +98,7 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(emergencyBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(emergencyBackgroundHeader)] autorelease];
+                (UIImage *)TTSTYLE(storesBackgroundHeader)] autorelease];
         [_headerView insertSubview:back atIndex:0];
     }
     [_headerView addSubview:_titleLabel];
@@ -130,6 +131,12 @@ static CGFloat headerMinHeight = 40.;
     [self setDataSource:[[[StoreListDataSource alloc]
             initWithSubregionId:_subregionId andRegionId:_regionId]
                 autorelease]];
+}
+
+
+- (id<UITableViewDelegate>)createDelegate {
+    return [[[StoresTableViewDelegate alloc] initWithController:self]
+            autorelease];
 }
 
 #pragma mark -

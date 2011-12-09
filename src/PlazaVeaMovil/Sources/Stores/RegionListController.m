@@ -87,7 +87,7 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(emergencyBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(emergencyBackgroundHeader)] autorelease];
+                (UIImage *)TTSTYLE(storesBackgroundHeader)] autorelease];
         [_headerView insertSubview:back atIndex:0];
     }
     [_headerView addSubview:_titleLabel];
@@ -121,7 +121,6 @@ static CGFloat headerMinHeight = 40.;
         [self setDataSource:[[[RegionListDataSource alloc] init] autorelease]];
     }
 }
-
 
 #pragma mark -
 #pragma mark RegionListController (Public)
