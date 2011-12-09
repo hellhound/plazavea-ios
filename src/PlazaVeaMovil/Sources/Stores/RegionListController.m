@@ -76,16 +76,14 @@ static CGFloat headerMinHeight = 40.;
     } else {
         titleFrame.origin.y += margin;
     }
-    
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
-    
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
             titleHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(emergencyBackgroundHeader)]) {
+            @selector(storesBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
                 (UIImage *)TTSTYLE(storesBackgroundHeader)] autorelease];
         [_headerView insertSubview:back atIndex:0];
