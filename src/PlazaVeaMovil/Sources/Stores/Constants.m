@@ -133,7 +133,7 @@ NSString *const kStoreDetailPhones = @"Teléfonos: %@";
 
 // Messages
 NSString *const kRegionListTitle = @"Tiendas";
-// NSLocalizedString(@"Departamentos", nil)
+// NSLocalizedString(@"Tiendas", nil)
 NSString *const kSubregionListTitle = @"Provincias";
 // NSLocalizedString(@"Provincias", nil)
 NSString *const kRegionLauncherTitle = @"Tiendas";

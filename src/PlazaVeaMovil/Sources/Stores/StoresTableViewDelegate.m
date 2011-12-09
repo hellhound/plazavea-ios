@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Stores/StoresTableViewDelegate.h"
 
 @implementation StoresTableViewDelegate
@@ -15,7 +16,10 @@
 {
     TTView *header = (TTView *)[super tableView:tableView
             viewForHeaderInSection:section];
-    [header setStyle:TTSTYLE(storesSectionHeader)];
+    if ([TTStyleSheet hasStyleSheetForSelector:
+         @selector(storesSectionHeader)]) {
+        [header setStyle:TTSTYLE(storesSectionHeader)];
+    }
     return header;
 }
 
