@@ -64,35 +64,78 @@ static const NSInteger kListDateLabelTag = 101;
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
+    UIBarButtonItem *addItem;
+    UIBarButtonItem *actionItem;
+    UIBarButtonItem *trashItem;
 
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
         // Conf the back button
-        _previousItem = [[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
-                target:self action:@selector(previousList:)];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonPreviousIcon)]){
+            _previousItem = [[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonPreviousIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(previousList:)];
+        } else {
+            _previousItem = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                    target:self action:@selector(previousList:)];
+        }
         // Conf the rewind button
-        _nextItem = [[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                target:self action:@selector(nextList:)];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonNextIcon)]){
+            _nextItem = [[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonNextIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(nextList:)];
+        } else {
+            _nextItem = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                    target:self action:@selector(nextList:)];
+        }
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                 target:nil action:NULL] autorelease];
         // Conf the add button
-        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:self action:@selector(addItem:)] autorelease];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonAddIcon)]){
+            addItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonAddIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(addItem:)] autorelease];
+        } else {
+            addItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                    target:self action:@selector(addItem:)] autorelease];
+        }
         // Conf the action button
-        UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                target:self action:@selector(displayActionSheet:)] autorelease];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonActionIcon)]){
+            actionItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonActionIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(displayActionSheet:)] autorelease];
+        } else {
+            actionItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                    target:self action:@selector(displayActionSheet:)]
+                    autorelease];
+        }
         // Conf the rewind trash button
-        UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                target:self action:@selector(delete:)] autorelease];
-
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonTrashIcon)]){
+            trashItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonTrashIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(delete:)] autorelease];
+        } else {
+            trashItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                    target:self action:@selector(delete:)] autorelease];
+        }
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,

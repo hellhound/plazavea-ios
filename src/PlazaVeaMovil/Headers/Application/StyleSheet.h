@@ -13,7 +13,9 @@
 - (UIFont *)tableTextHeaderFont;
 - (UIFont *)tableTextFont;
 
+//Launcher
 - (UIImageView *)launcherBackgroundImage;
 
+//ShoppingLists
 - (UIImage *)shopingListBackgroundHeader;
 @end
