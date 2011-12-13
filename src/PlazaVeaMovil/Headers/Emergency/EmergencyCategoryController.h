@@ -10,6 +10,7 @@
     UINavigationItem *_navItem;
     NSFetchedResultsController *_filteredController;
     UISearchDisplayController *_searchController;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
-
 @end

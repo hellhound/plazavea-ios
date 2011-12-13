@@ -4,7 +4,7 @@
 
 #import "Composition/Models.h"
 
-@interface FoodDetailDataSource: TTSectionedDataSource
+@interface FoodDetailDataSource: TTListDataSource
 
 - (id)initWithFood:(Food *)food;
 @end

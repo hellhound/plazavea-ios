@@ -11,6 +11,8 @@
     NSFetchedResultsController *_filteredController;
     UISearchDisplayController *_searchController;
     EmergencyCategory *_emergencyCategory;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, retain) EmergencyCategory *emergencyCategory;
 

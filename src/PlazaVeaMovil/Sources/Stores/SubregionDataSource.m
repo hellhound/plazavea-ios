@@ -48,25 +48,13 @@
     NSMutableArray *items =
             [NSMutableArray arrayWithCapacity:[subregions count]];
     
-    if ([subregions count] == 1) {
-        //jump to store list controller
-        Subregion *subregion = [subregions objectAtIndex:0];
-        TTNavigator *navigator = [TTNavigator navigator];
-        UINavigationController *navController =
-                [[navigator visibleViewController] navigationController];
-        [navController popViewControllerAnimated:NO];
-        [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
-                URL(kURLStoreListCall, [subregion subregionId], _regionId)]
-                applyAnimated:YES]];
-    } else {
-        for (Subregion *subregion in subregions) {
-            NSString *name = [subregion name];
-            
-            TableImageSubtitleItem *item = [TableImageSubtitleItem
-                    itemWithText:name subtitle:nil URL:URL(kURLStoreListCall,
-                        [subregion subregionId], _regionId)];
-            [items addObject:item];
-        }
+    for (Subregion *subregion in subregions) {
+        NSString *name = [subregion name];
+        
+        TableImageSubtitleItem *item = [TableImageSubtitleItem
+                itemWithText:name subtitle:nil URL:URL(kURLStoreListCall,
+                    [subregion subregionId], _regionId)];
+        [items addObject:item];
     }
     [self setItems:items];
 }

@@ -77,7 +77,7 @@
             
             for (Store *store in section) {
                 TableImageSubtitleItem *item = [TableImageSubtitleItem
-                        itemWithText:[store name] subtitle:nil
+                        itemWithText:[store name] subtitle:[store storeAddress]
                             URL:URL(kURLStoreDetailCall, [store storeId])];
                 
                 [sectionItems addObject:item];

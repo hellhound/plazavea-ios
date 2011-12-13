@@ -4,6 +4,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
@@ -14,11 +15,15 @@
 
 static NSPredicate *kEmergencyNumbersPredicateTemplate;
 static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
+static CGFloat margin = 5.;
+static CGFloat sectionHeight = 24.;
+static CGFloat headerMinHeight = 40.;
 
 @interface EmergencyNumberController ()
 
-@property (nonatomic, readonly)
-    NSFetchedResultsController *filteredController;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UILabel *titleLabel;
+@property (nonatomic, readonly) NSFetchedResultsController *filteredController;
 @property (nonatomic, retain) UISearchDisplayController *searchController;
 
 + (void)initializePredicateTemplates;
@@ -57,22 +62,82 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
     return _navItem;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
+    UITableView *tableView = [self tableView];
+    // Configuring the header view
+    [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
+            autorelease]];
+    // Configuring the label
+    [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease]];
+    [_titleLabel setNumberOfLines:0];
+    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [_titleLabel setTextAlignment:UITextAlignmentCenter];
+    [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    NSString *title = [_emergencyCategory name];
+    UIFont *font = [_titleLabel font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
+        titleHeight = headerMinHeight - (margin * 2);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    
+    [_titleLabel setText:title];
+    [_titleLabel setFrame:titleFrame];
     // Setup searchBar and searchDisplayController
     UISearchBar *searchBar =
-            [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
-
+    [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+    
     [searchBar sizeToFit];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(emergencySearchBarColor)]) {
+        [searchBar setTintColor:(UIColor *)TTSTYLE(emergencySearchBarColor)];
+    }
     [searchBar setDelegate:self];
     [self setSearchController:
-            [[[UISearchDisplayController alloc] initWithSearchBar:searchBar
-                contentsController:self] autorelease]];
+     [[[UISearchDisplayController alloc] initWithSearchBar:searchBar
+            contentsController:self] autorelease]];
     [_searchController setDelegate:self];
     [_searchController setSearchResultsDataSource:self];
     [_searchController setSearchResultsDelegate:self];
-    [[self tableView] setTableHeaderView:searchBar];
+    
+    CGRect searchFrame = [searchBar frame];
+    searchFrame.origin.y += titleHeight + (2 * margin);
+    [searchBar setFrame:searchFrame];
+    CGFloat searchHeight = CGRectGetHeight(searchFrame);
+    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            titleHeight + searchHeight + (2 * margin));
+    // Adding the subviews to the header view
+    if ([TTStyleSheet hasStyleSheetForSelector:
+            @selector(emergencyBackgroundHeader)]) {
+        UIImageView *back = [[[UIImageView alloc] initWithImage:
+                (UIImage *)TTSTYLE(emergencyBackgroundHeader)] autorelease];
+        [_headerView insertSubview:back atIndex:0];
+    }
+    [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:searchBar];
+    [_headerView setFrame:headerFrame];
+    [_headerView setClipsToBounds:YES];
+    [tableView setTableHeaderView:_headerView];
 }
 
 - (void)viewDidUnload
@@ -83,8 +148,9 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 #pragma mark -
 #pragma mark EmergencyNumberController (Private)
 
-@synthesize searchController = _searchController,
-    filteredController = _filteredController;
+@synthesize headerView = _headerView, titleLabel = _titleLabel,
+        searchController = _searchController,
+            filteredController = _filteredController;
 
 + (void)initializePredicateTemplates
 {
@@ -342,5 +408,54 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
     } else {
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
+}
+
+- (CGFloat)     tableView:(UITableView *)tableView
+ heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return 0;
+    return sectionHeight;
+}
+
+- (UIView *)    tableView:(UITableView *)tableView
+   viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return nil;
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    NSString *sectionTitle = [sectionInfo name];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [title setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [title setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [title setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    
+    UIFont *font = [title font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [sectionTitle sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake((margin * 2),
+            .0 + ((sectionHeight - titleHeight) / 2), titleWidth, titleHeight);
+    
+    [title setText:sectionTitle];
+    [title setFrame:titleFrame];
+    
+    UIImageView *back = [[[UIImageView alloc] initWithImage:(UIImage *)
+            TTSTYLE(emergencySectionHeaderBackground)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    CGRect viewFrame = CGRectMake(0, 0, titleWidth, sectionHeight);
+    [view setFrame:viewFrame];
+    [view addSubview:back];
+    [view addSubview:title];
+    return view;
 }
 @end

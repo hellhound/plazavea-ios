@@ -21,6 +21,7 @@
 
 //size for text in tables
 #define TABLE_TEXT_HEADER_SIZE 16
+#define PICTURE_HEADER_SIZE 14
 #define TABLE_TEXT_SIZE 13
 
 //launcher
@@ -32,11 +33,25 @@
 
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
-    TTIMAGE(@"bundle://shopping-list-background.png")
+        TTIMAGE(@"bundle://shopping-list-background.png")
 
 // nutritional composition
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
+#define COMPOSITION_PICTURE_BACKGROUND \
+        TTIMAGE(@"bundle://composition-picture-background.png")
+#define COMPOSITION_SECTION_HEADER_BACKGROUND \
+        TTIMAGE(@"bundle://composition-section-header.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
+
+// emergency phones
+#define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
+#define EMERGENCY_SECTION_HEADER \
+        TTIMAGE(@"bundle://emergency-section-header.png")
+#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227, 13, 23)
+
+// stores
+#define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
+#define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 
 @implementation StyleSheet
 
@@ -58,12 +73,12 @@
     return BAR_TINT_COLOR;
 }
 
-- (UIColor*)headerColorYellow
+- (UIColor *)headerColorYellow
 {
     return HEADER_COLOR_YELLOW;
 }
 
-- (UIColor*)headerColorWhite
+- (UIColor *)headerColorWhite
 {
     return HEADER_COLOR_WHITE;
 }
@@ -76,6 +91,26 @@
 - (UIFont *)tableTextFont
 {
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_SIZE];
+}
+
+- (UIFont *)pictureHeaderFont
+{
+    return [UIFont boldSystemFontOfSize:PICTURE_HEADER_SIZE];
+}
+
+- (UIFont *)tableSummaryFont
+{
+    return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
+- (UIColor *)tableHeaderTintColor
+{
+    return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+- (UIColor *)tableHeaderTextColor
+{
+    return HEADER_COLOR_YELLOW;
 }
 
 #pragma mark -
@@ -95,7 +130,6 @@
 {
     return [[[UIImageView alloc] 
             initWithImage:LAUNCHER_BACKGROUND] autorelease];
-
 }
 
 - (UIImage *)navigationBarLogo
@@ -119,8 +153,49 @@
     return COMPOSITION_BACKGROUND;
 }
 
+- (UIImage *)compositionPictureBackground
+{
+    return COMPOSITION_PICTURE_BACKGROUND;
+}
+
+- (UIImage *)compositionSectionHeaderBackground
+{
+    return COMPOSITION_SECTION_HEADER_BACKGROUND;
+}
+
 - (UIColor *)compositionSearchBarColor
 {
     return COMPOSITION_SEARCHBAR_COLOR;
+}
+
+#pragma mark -
+#pragma mark Emergency
+
+- (UIImage *)emergencyBackgroundHeader
+{
+    return EMERGENCY_BACKGROUND;
+}
+
+- (UIImage *)emergencySectionHeaderBackground
+{
+    return EMERGENCY_SECTION_HEADER;
+}
+
+- (UIColor *)emergencySearchBarColor
+{
+    return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+#pragma mark -
+#pragma mark Stores
+
+- (UIImage *)storesBackgroundHeader
+{
+    return STORES_BACKGROUND;
+}
+
+- (TTStyle *)storesSectionHeader
+{
+    return [TTImageStyle styleWithImage:STORES_SECTION_HEADER next:nil];
 }
 @end

@@ -3,6 +3,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Stores/Constants.h"
 #import "Stores/StoreMapTogglingController.h"
 
@@ -49,6 +50,11 @@
         
         [self setToolbarItems:[NSArray arrayWithObjects:
                 spacerItem, segItem, spacerItem, nil]];
+        if ([TTStyleSheet hasStyleSheetForSelector:
+                @selector(navigationBackgroundColor)]) {
+            [[[self navigationController] toolbar]
+                    setTintColor:(UIColor *)TTSTYLE(navigationBackgroundColor)];
+        }
         [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;
@@ -70,6 +76,11 @@
                 kStoreMapButtonLabel, nil]];
     [_segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segControl setSelectedSegmentIndex:kStoreSegmentedControlIndexDefault];
+    if ([TTStyleSheet hasStyleSheetForSelector:
+            @selector(navigationBackgroundColor)]) {
+        [_segControl setTintColor:
+            (UIColor *)TTSTYLE(navigationBackgroundColor)];
+    }
     return _segControl;
 }
 
