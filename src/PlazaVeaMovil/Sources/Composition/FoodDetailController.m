@@ -108,7 +108,7 @@ static CGFloat headerMinHeight = 40.;
     [categoryLabel setTextAlignment:UITextAlignmentRight];
     [categoryLabel setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet
-         hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
+            hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
         [categoryLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
     }
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
