@@ -5,6 +5,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Common/Views/NonEditableLauncherView.h"
 #import "Application/StyleSheet.h"
 #import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
@@ -49,7 +50,7 @@
 
     UIView *superView = [self view];
 
-    _launcherView = [[TTLauncherView alloc] initWithFrame:[superView bounds]];
+    _launcherView = [[NonEditableLauncherView alloc] initWithFrame:[superView bounds]];
     // Configuring the launcher
     [_launcherView setDelegate:self];
     [_launcherView setColumnCount:3];

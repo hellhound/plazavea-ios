@@ -3,8 +3,10 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Views/NonEditableLauncherView.h"
+
 @interface LauncherViewController: TTViewController <TTLauncherViewDelegate>
 {
-    TTLauncherView *_launcherView;
+    NonEditableLauncherView *_launcherView;
 }
 @end

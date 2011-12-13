@@ -37,6 +37,7 @@
 		2C2F07FB13DE661B009F60DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F07FA13DE661B009F60DB /* CoreData.framework */; };
 		2C317F5A13F0C07700BDC645 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C317F5913F0C07700BDC645 /* ShoppingListController.m */; };
 		2C3A326914479572007F1076 /* PromotionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3A326814479572007F1076 /* PromotionListController.m */; };
+		2C437EEC1497E37100A11FB1 /* NonEditableLauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C437EEB1497E37100A11FB1 /* NonEditableLauncherView.m */; };
 		2C49B5261444FF9C00C03CCB /* BaseMeatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5241444FF9C00C03CCB /* BaseMeatController.m */; };
 		2C49B5271444FF9C00C03CCB /* BaseRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */; };
 		2C4F5BE213F2E616007B3ADE /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F5BE013F2E616007B3ADE /* ManagedObject.m */; };
@@ -655,6 +656,7 @@
 		2C2F07FA13DE661B009F60DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C317F5913F0C07700BDC645 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListController.m; sourceTree = "<group>"; };
 		2C3A326814479572007F1076 /* PromotionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionListController.m; sourceTree = "<group>"; };
+		2C437EEB1497E37100A11FB1 /* NonEditableLauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditableLauncherView.m; sourceTree = "<group>"; };
 		2C49B5241444FF9C00C03CCB /* BaseMeatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMeatController.m; sourceTree = "<group>"; };
 		2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeController.m; sourceTree = "<group>"; };
 		2C4A0FFB13DEA3A9001E7BD0 /* PlazaVeaMovil-Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaVeaMovil-Debug-Info.plist"; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 		2C25BD3313E8F88F00A4311B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C437EEB1497E37100A11FB1 /* NonEditableLauncherView.m */,
 				2F14234C146D615700CB10A9 /* TableCaptionItem.m */,
 				2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */,
 				2C146F181456220100E5EAFC /* ImageCarouselItem.m */,
@@ -2012,6 +2015,7 @@
 				2FCBD33F148826EA004ECB66 /* UINavigationBar+Styles.m in Sources */,
 				2F8FA1611492746500780AB9 /* StoresTableViewDelegate.m in Sources */,
 				CC4B72A1148EE9640053E1E3 /* UIToolbar+Styles.m in Sources */,
+				2C437EEC1497E37100A11FB1 /* NonEditableLauncherView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
