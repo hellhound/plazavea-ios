@@ -4,8 +4,8 @@
 
 // LauncherViewController's constants
 
-NSString *const kLauncherTitle = @"Plaza Vea Móvil";
-// NSLocalizedString(@"Plaza Vea Móvil :)", nil)
+NSString *const kLauncherTitle = @"Menú";
+// NSLocalizedString(@"Menú)", nil)
 // toolbar delay
 const NSTimeInterval kLauncherToolbarDelay = .25;
 
