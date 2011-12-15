@@ -93,9 +93,10 @@
     }
 
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
-            (bounds.size.width - 100.), 20.)] autorelease];
+            bounds.size.width, 20.)] autorelease];
 
     [titleLabel setAdjustsFontSizeToFitWidth:YES];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
     [titleLabel setNumberOfLines:1];
     [titleLabel setMinimumFontSize:10];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
