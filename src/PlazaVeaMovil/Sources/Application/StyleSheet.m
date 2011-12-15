@@ -29,6 +29,8 @@
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
     TTIMAGE(@"bundle://shopping-list-background.png")
+#define SHOPPING_LIST_ICON_ADD \
+    TTIMAGE(@"bundle://shopping-list-add.png")
 
 @implementation StyleSheet
 
@@ -91,5 +93,16 @@
 {
     return [[[UIImageView alloc] 
         initWithImage:SHOPPING_LIST_BACKGROUND] autorelease];
+}
+
+- (UIButton *)shopingListButtonAdd
+{
+    UIButton *button = 
+        [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
+    UIImage *buttonImage = SHOPPING_LIST_ICON_ADD;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
+            buttonImage.size.height)];
+    return button;
 }
 @end
