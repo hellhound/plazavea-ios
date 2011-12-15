@@ -78,7 +78,7 @@
                             imageURL:[IMAGE_URL(bannerURL,
                                 kPromotionListImageWidth,
                                 kPromotionListImageHeight) absoluteString]
-                            defaultImage:defaultImage URL:URL];
+                                defaultImage:defaultImage URL:URL];
                 [imageItems addObject:imageItem];
             }
         }
