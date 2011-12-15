@@ -5,11 +5,8 @@
 
 @interface StyleSheet: TTDefaultStyleSheet
 
-- (UIColor *)navigationBackgroundColor;
-- (UIColor*)navigationTextColor;
-
+- (UIStatusBarStyle)statusBarStyle;
 - (UIColor*)headerColorYellow;
-
 - (UIFont *)tableTextHeaderFont;
 - (UIFont *)tableTextFont;
 
@@ -17,5 +14,6 @@
 - (UIImageView *)launcherBackgroundImage;
 
 //ShoppingLists
+- (UIImageView *)launcherBackgroundImage;
 - (UIImage *)shopingListBackgroundHeader;
 @end

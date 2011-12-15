@@ -132,8 +132,8 @@ NSString *const kStoreDetailPhones = @"Teléfonos: %@";
 // RegionListController's constants
 
 // Messages
-NSString *const kRegionListTitle = @"Departamentos";
-// NSLocalizedString(@"Departamentos", nil)
+NSString *const kRegionListTitle = @"Tiendas";
+// NSLocalizedString(@"Tiendas", nil)
 NSString *const kSubregionListTitle = @"Provincias";
 // NSLocalizedString(@"Provincias", nil)
 NSString *const kRegionLauncherTitle = @"Tiendas";

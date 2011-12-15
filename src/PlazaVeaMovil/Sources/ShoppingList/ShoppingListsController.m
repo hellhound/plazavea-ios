@@ -48,6 +48,28 @@
 
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
+        UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil action:NULL] autorelease];
+        // Conf the add-item button
+        UIButton *addButton;
+
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:
+                    @selector(shopingListButtonAdd)])
+            addButton = (UIButton *)TTSTYLE(shopingListButtonAdd);
+        [addButton addTarget:self action:@selector(addShoppingListHandler:)
+                forControlEvents:UIControlEventTouchUpInside];
+
+        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
+                initWithCustomView:addButton] autorelease];
+        NSArray *toolbarItems =
+                [NSArray arrayWithObjects:spacerItem, addItem, nil];
+
+        [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
+        [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
+        [self setToolbarItems:[self readonlyToolbarItems]];
+        [[self navigationController] setToolbarHidden:NO];
     }
     return navItem;
 }
@@ -65,14 +87,16 @@
                 initWithImage:(UIImage *)TTSTYLE(shopingListBackgroundHeader)]
                 autorelease];
 
+        [headerView setClipsToBounds:YES];
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];
     }
 
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
-            (bounds.size.width - 100.), 20.)] autorelease];
+            bounds.size.width, 20.)] autorelease];
 
     [titleLabel setAdjustsFontSizeToFitWidth:YES];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
     [titleLabel setNumberOfLines:1];
     [titleLabel setMinimumFontSize:10];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -85,30 +109,13 @@
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
 
-    UIButton *createButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [createButton addTarget:self action:@selector(addShoppingListHandler:)
-            forControlEvents:UIControlEventTouchUpInside];
-
-    [createButton setFrame:CGRectMake((bounds.size.width - 100.), 5., 80., 
-            30.)];
-    [createButton setTitle:NSLocalizedString(kShoppingCreateList, nil)
-            forState:UIControlStateNormal];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(navigationTextColor)])
-        [createButton setTitleColor:(UIColor *)TTSTYLE(navigationTextColor)
-            forState:UIControlStateNormal];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(tableTextFont)])
-        [[createButton titleLabel] setFont:(UIFont *)TTSTYLE(tableTextFont)];
-
-    [headerView addSubview:createButton];
     [headerView addSubview:titleLabel];
     [[self tableView] setTableHeaderView:headerView];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[self navigationController] setToolbarHidden:YES animated:YES];
+    [super viewDidAppear:animated];
 }
 
 #pragma mark -

@@ -9,6 +9,8 @@
 {
     NSString *_subregionId;
     NSString *_regionId;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, copy) NSString *subregionId;
 @property (nonatomic, copy) NSString *regionId;

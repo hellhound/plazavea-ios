@@ -6,6 +6,9 @@
 #import "Application/Constants.h"
 #import "Application/StyleSheet.h"
 
+// default status bar style
+#define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
+
 //color for navigation bar
 #define BAR_TINT_COLOR RGBCOLOR(255, 208, 0)
 
@@ -30,7 +33,9 @@
 
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
-        TTIMAGE(@"bundle://shopping-list-background.png")
+    TTIMAGE(@"bundle://shopping-list-background.png")
+#define SHOPPING_LIST_ICON_ADD \
+    TTIMAGE(@"bundle://shopping-list-add.png")
 
 #define TOOLBAR_PREVIOUS_ICON TTIMAGE(@"bundle://toolbar-previous-icon.png") 
 #define TOOLBAR_NEXT_ICON TTIMAGE(@"bundle://toolbar-next-icon.png") 
@@ -49,22 +54,31 @@
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
 #define EMERGENCY_SECTION_HEADER \
-        TTIMAGE(@"bundle://emergency-section-header.png");
+        TTIMAGE(@"bundle://emergency-section-header.png")
 #define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227, 13, 23)
+
+// stores
+#define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
+#define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 
 @implementation StyleSheet
 
 #pragma mark -
 #pragma mark General styles
 
-- (UIColor *)navigationBackgroundColor
+- (UIStatusBarStyle)statusBarStyle
+{
+    return STATUS_BAR_STYLE;
+}
+
+- (UIColor *)navigationBarTintColor
 {
     return BAR_TINT_COLOR;
 }
 
-- (UIColor *)navigationTextColor
+- (UIColor *)toolbarTintColor
 {
-    return TABLE_TEXT_COLOR;
+    return BAR_TINT_COLOR;
 }
 
 - (UIColor *)headerColorYellow
@@ -95,6 +109,16 @@
 - (UIFont *)tableSummaryFont
 {
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
+- (UIColor *)tableHeaderTintColor
+{
+    return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+- (UIColor *)tableHeaderTextColor
+{
+    return HEADER_COLOR_YELLOW;
 }
 
 #pragma mark -
@@ -129,22 +153,36 @@
     return SHOPPING_LIST_BACKGROUND;
 }
 
+- (UIButton *)shopingListButtonAdd
+{
+    UIButton *button = 
+        [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
+    UIImage *buttonImage = SHOPPING_LIST_ICON_ADD;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
+            buttonImage.size.height)];
+    return button;
+
 - (UIImage *)barButtonPreviousIcon
 {
     return TOOLBAR_PREVIOUS_ICON;
 }
+
 - (UIImage *)barButtonNextIcon
 {
     return TOOLBAR_NEXT_ICON;
 }
+
 - (UIImage *)barButtonAddIcon
 {
     return TOOLBAR_ADD_ICON;
 }
+
 - (UIImage *)barButtonActionIcon
 {
     return TOOLBAR_ACTION_ICON;
 }
+
 - (UIImage *)barButtonTrashIcon
 {
     return TOOLBAR_TRASH_ICON;
@@ -189,5 +227,18 @@
 - (UIColor *)emergencySearchBarColor
 {
     return EMERGENCY_SEARCHBAR_COLOR;
+}
+
+#pragma mark -
+#pragma mark Stores
+
+- (UIImage *)storesBackgroundHeader
+{
+    return STORES_BACKGROUND;
+}
+
+- (TTStyle *)storesSectionHeader
+{
+    return [TTImageStyle styleWithImage:STORES_SECTION_HEADER next:nil];
 }
 @end
