@@ -30,6 +30,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 
 - (void)dealloc
 {
+    [_resultsController setDelegate:nil];
     _resultsController = nil;
     [_context release];
     [_cancelItem release];
