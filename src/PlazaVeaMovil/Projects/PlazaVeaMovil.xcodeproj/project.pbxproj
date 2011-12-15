@@ -2016,7 +2016,6 @@
 				CC411C3314881B54001C3607 /* TTStyleSheet+Additions.m in Sources */,
 				2FCBD33D148826DD004ECB66 /* UINavigationBar+Additions.m in Sources */,
 				2CED1013148D772C002BEBDF /* TTBaseViewController+Style.m in Sources */,
-				2FCBD33F148826EA004ECB66 /* UINavigationBar+Styles.m in Sources */,
 				2F8FA1611492746500780AB9 /* StoresTableViewDelegate.m in Sources */,
 				CC4B72A1148EE9640053E1E3 /* UIToolbar+Styles.m in Sources */,
 				2C437EEC1497E37100A11FB1 /* NonEditableLauncherView.m in Sources */,
