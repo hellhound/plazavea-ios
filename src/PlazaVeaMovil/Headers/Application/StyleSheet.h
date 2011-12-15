@@ -5,15 +5,10 @@
 
 @interface StyleSheet: TTDefaultStyleSheet
 
-- (UIColor *)navigationBackgroundColor;
-- (UIColor*)navigationTextColor;
-
+- (UIStatusBarStyle)statusBarStyle;
 - (UIColor*)headerColorYellow;
-
 - (UIFont *)tableTextHeaderFont;
 - (UIFont *)tableTextFont;
-
 - (UIImageView *)launcherBackgroundImage;
-
-- (UIImageView *)shopingListBackgroundHeader;
+- (UIImage *)shopingListBackgroundHeader;
 @end

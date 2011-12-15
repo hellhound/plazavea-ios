@@ -80,7 +80,7 @@
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
-    [TTStyleSheet setGlobalStyleSheet: [[[StyleSheet alloc] init] autorelease]];
+    [TTStyleSheet setGlobalStyleSheet:[[[StyleSheet alloc] init] autorelease]];
 
     // Set the maxContentLength to auto
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
