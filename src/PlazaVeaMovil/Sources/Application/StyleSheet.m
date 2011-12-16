@@ -162,6 +162,7 @@
     [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
             buttonImage.size.height)];
     return button;
+}
 
 - (UIImage *)barButtonPreviousIcon
 {

@@ -25,6 +25,8 @@ static NSPredicate *kShoppingItemsPredicateTemplate;
 static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 static const NSInteger kListNameLabelTag = 100;
 static const NSInteger kListDateLabelTag = 101;
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
 
 @interface ShoppingListController (Private)
 
@@ -236,47 +238,78 @@ static const NSInteger kListDateLabelTag = 101;
 - (void)initializeHeader
 {
     UITableView *tableView = [self tableView];
-    CGRect bounds = [tableView bounds];
-    
-    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
-            (bounds.size.width - 150.), 20.)] autorelease];
-    
-    [nameLabel setAdjustsFontSizeToFitWidth:YES];
-    [nameLabel setNumberOfLines:1];
-    [nameLabel setMinimumFontSize:10];
+    UIView *headerView = 
+            [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    //configure the name
+    UILabel *nameLabel =
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    NSString *nameText = [_shoppingList name];
+
+    [nameLabel setNumberOfLines:0];
+    [nameLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [nameLabel setTextAlignment:UITextAlignmentCenter];
     [nameLabel setBackgroundColor:[UIColor clearColor]];
-    [nameLabel setText:[_shoppingList name]];
     [nameLabel setTag:kListNameLabelTag];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
-        [nameLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(headerColorYellow)])
-        [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-    
+    //configure the date
+    UILabel *dateLabel =
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10,
-            10., (bounds.size.width - 10), 20.)] autorelease];
-    
-    [dateLabel setAdjustsFontSizeToFitWidth:YES];
+    NSString *dateText = [dateFormatter stringFromDate:[_shoppingList
+            lastModificationDate]];
+
+    [dateLabel setNumberOfLines:0];
+    [dateLabel setLineBreakMode:UILineBreakModeWordWrap];
     [dateLabel setTextAlignment:UITextAlignmentRight];
-    [dateLabel setNumberOfLines:1];
-    [dateLabel setMinimumFontSize:10];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTag:kListDateLabelTag];
-    [dateLabel setText:[dateFormatter stringFromDate:[_shoppingList
-            lastModificationDate]]];
+
+    //three20 styles for name and date
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [nameLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
+        [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+    }
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(tableTextFont)])
         [dateLabel setFont:(UIFont *)TTSTYLE(tableTextFont)];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [dateLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-    
-    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
-            bounds.size.width, 40.)] autorelease];
-    
+
+    //conent sizes
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+
+    UIFont *nameFont = [nameLabel font];
+    UIFont *dateFont = [dateLabel font];
+    CGFloat nameHeight = [nameText sizeWithFont:nameFont
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGFloat dateHeight = [dateText sizeWithFont:dateFont
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect nameFrame = CGRectMake(.0, .0, titleWidth, nameHeight);
+    CGRect dateFrame = CGRectMake(.0, nameHeight, titleWidth, dateHeight);
+
+    if ((nameHeight + dateHeight + (margin * 2)) <= headerMinHeight) {
+        nameFrame.origin.y = (headerMinHeight - nameHeight - dateHeight) / 2;
+        dateFrame.origin.y = (nameFrame.origin.y + nameHeight);
+    } else {
+        nameFrame.origin.y += margin;
+        dateFrame.origin.y += margin;
+    }
+    //adding texts and frames
+    [nameLabel setText:nameText];
+    [dateLabel setText:dateText];
+    [nameLabel setFrame:nameFrame];
+    [dateLabel setFrame:dateFrame];
+
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth,
+            nameHeight + dateHeight + (2 * margin));
+
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
         UIImageView *backgroundView = [[[UIImageView alloc] 
@@ -288,6 +321,8 @@ static const NSInteger kListDateLabelTag = 101;
     }
     [headerView addSubview:nameLabel];
     [headerView addSubview:dateLabel];
+    [headerView setFrame:headerFrame];
+    [headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:headerView];
 }
 
