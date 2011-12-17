@@ -7,6 +7,7 @@
 
 #import "Common/Additions/UIDevice+Additions.h"
 #import "Common/Additions/CLLocation+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
@@ -72,14 +73,21 @@
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
     // Conf GPS
+    UIButton *GPSbutton;
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(GPSButton)])
+        GPSbutton = (UIButton *)TTSTYLE(GPSButton);
+    [GPSbutton addTarget:self action:@selector(updateUserAnnotation:)
+            forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
-            initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
-                target:self action:@selector(updateUserAnnotation:)]
-                autorelease];
+            initWithCustomView:GPSbutton] autorelease];
     // Conf CurlButton
+    UIButton *button;
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(OptionsButton)])
+        button = (UIButton *)TTSTYLE(OptionsButton);
+    [button addTarget:self action:NULL
+            forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                target:self action:NULL] autorelease];
+            initWithCustomView:button] autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -347,13 +355,14 @@
         [pin setAnimatesDrop:YES];
         return pin;
     }
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[_mapView
+    MKAnnotationView *annotationView = (MKAnnotationView *)[_mapView
             dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
     if (annotationView == nil) {
-        annotationView = [[[MKPinAnnotationView alloc]
+        annotationView = [[[MKAnnotationView alloc]
                 initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
                     autorelease];
     }
+    [annotationView setImage:[UIImage imageNamed:kStoreMapAnnotationImage]];
     [annotationView setCanShowCallout:YES];
     if ([(MapAnnotation *)annotation storeId] != nil) {
         [annotationView setRightCalloutAccessoryView:
@@ -367,7 +376,7 @@
     [image performSelector:@selector(stopLoading) withObject:nil
             afterDelay:10];
     [annotationView setLeftCalloutAccessoryView:image];
-    [annotationView setAnimatesDrop:YES];
+    //[annotationView setAnimatesDrop:YES];
     return annotationView;
 }
 

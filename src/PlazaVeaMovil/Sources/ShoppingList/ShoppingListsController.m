@@ -54,9 +54,8 @@
         // Conf the add-item button
         UIButton *addButton;
 
-        if ([TTStyleSheet 
-                hasStyleSheetForSelector:
-                    @selector(shopingListButtonAdd)])
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(shopingListButtonAdd)])
             addButton = (UIButton *)TTSTYLE(shopingListButtonAdd);
         [addButton addTarget:self action:@selector(addShoppingListHandler:)
                 forControlEvents:UIControlEventTouchUpInside];

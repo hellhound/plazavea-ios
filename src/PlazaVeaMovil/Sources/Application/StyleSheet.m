@@ -54,6 +54,8 @@
 // stores
 #define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
 #define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
+#define MAP_GPS_BUTTON TTIMAGE(@"bundle://bullseye.png")
+#define MAP_OPTIONS_BUTTON TTIMAGE(@"bundle://pagecurl.png")
 
 @implementation StyleSheet
 
@@ -210,5 +212,27 @@
 - (TTStyle *)storesSectionHeader
 {
     return [TTImageStyle styleWithImage:STORES_SECTION_HEADER next:nil];
+}
+
+- (UIButton *)GPSButton
+{
+    UIButton *button = 
+    [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
+    UIImage *buttonImage = MAP_GPS_BUTTON;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
+                                 buttonImage.size.height)];
+    return button;
+}
+
+- (UIButton *)OptionsButton
+{
+    UIButton *button = 
+    [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
+    UIImage *buttonImage = MAP_OPTIONS_BUTTON;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
+                                 buttonImage.size.height)];
+    return button;
 }
 @end

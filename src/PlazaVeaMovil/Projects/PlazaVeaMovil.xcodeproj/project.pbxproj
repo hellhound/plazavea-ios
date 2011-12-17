@@ -135,6 +135,8 @@
 		2F95F3D0149CE28400909B23 /* pagecurl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CB149CE28400909B23 /* pagecurl.png */; };
 		2F95F3D1149CE28400909B23 /* pagecurl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CC149CE28400909B23 /* pagecurl@2x.png */; };
 		2F95F3D2149CE28400909B23 /* shopping-list-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */; };
+		2F95F3D5149CEA4200909B23 /* annotation-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3D3149CEA4200909B23 /* annotation-pin.png */; };
+		2F95F3D6149CEA4200909B23 /* annotation-pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */; };
 		2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0F79147AC25B0047901D /* FoodDetailController.m */; };
 		2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */; };
 		2F9E1037147AF4770047901D /* default-food-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E1036147AF4770047901D /* default-food-detail.png */; };
@@ -763,6 +765,8 @@
 		2F95F3CB149CE28400909B23 /* pagecurl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagecurl.png; sourceTree = "<group>"; };
 		2F95F3CC149CE28400909B23 /* pagecurl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pagecurl@2x.png"; sourceTree = "<group>"; };
 		2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-list-add@2x.png"; sourceTree = "<group>"; };
+		2F95F3D3149CEA4200909B23 /* annotation-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-pin.png"; sourceTree = "<group>"; };
+		2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-pin@2x.png"; sourceTree = "<group>"; };
 		2F9E0F79147AC25B0047901D /* FoodDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailController.m; sourceTree = "<group>"; };
 		2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailDataSource.m; sourceTree = "<group>"; };
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
@@ -952,6 +956,8 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F95F3D3149CEA4200909B23 /* annotation-pin.png */,
+				2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */,
 				2F95F3C9149CE28400909B23 /* bullseye.png */,
 				2F95F3CA149CE28400909B23 /* bullseye@2x.png */,
 				2F95F3CB149CE28400909B23 /* pagecurl.png */,
@@ -1904,6 +1910,8 @@
 				2F95F3D0149CE28400909B23 /* pagecurl.png in Resources */,
 				2F95F3D1149CE28400909B23 /* pagecurl@2x.png in Resources */,
 				2F95F3D2149CE28400909B23 /* shopping-list-add@2x.png in Resources */,
+				2F95F3D5149CEA4200909B23 /* annotation-pin.png in Resources */,
+				2F95F3D6149CEA4200909B23 /* annotation-pin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

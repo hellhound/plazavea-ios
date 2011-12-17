@@ -159,7 +159,7 @@ NSString *const kStoreMapGPSButton = @"GPS";
 // NSLocalizedString(@"GPS", nil)
 NSString *const kStoreMapCurrentLocation = @"Ubicación actual";
 // NSLocalizedString(@"Ubicación actual", nil)
-NSString *const kStoreMapAnnotationImage = @"Icon-Small.png";
+NSString *const kStoreMapAnnotationImage = @"annotation-pin.png";
 const float minRegion = 500.;
 NSString *const kAnnotationId = @"AnnotationView";
 NSString *const kPinAnnotationId = @"PinAnnotationView";
