@@ -155,8 +155,8 @@ NSString *const kStoreDetailButtonLabel = @"Detalles";
 // StoreMapController's constants
 NSString *const kStoreMapTitle = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
-NSString *const kStoreMapGPSButton = @"GPS";
-// NSLocalizedString(@"GPS", nil)
+NSString *const kStoreMapGPSButton = @"bullseye.png";
+NSString *const kStoreMapOptionButton = @"pagecurl.png";
 NSString *const kStoreMapCurrentLocation = @"Ubicación actual";
 // NSLocalizedString(@"Ubicación actual", nil)
 NSString *const kStoreMapAnnotationImage = @"annotation-pin.png";

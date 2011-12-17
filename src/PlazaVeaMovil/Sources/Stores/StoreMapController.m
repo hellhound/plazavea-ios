@@ -21,6 +21,7 @@
 @property (nonatomic, assign) MKCoordinateRegion region;
 
 - (void)switchControllers:(UISegmentedControl *)segControl;
+- (UIButton *)buttonWithImage:(NSString *)imageName action:(SEL)action;
 @end
 
 @implementation StoreMapController
@@ -49,6 +50,12 @@
 {
     [super viewWillAppear:animated];
     [[self navigationController] setToolbarHidden:NO animated:YES];
+    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+        [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                    autorelease]];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -61,7 +68,7 @@
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    [self setToolbarItems:nil];
+    //[self setToolbarItems:nil];
     if (_backButton == nil) {
         _backButton = [[UIBarButtonItem alloc] initWithTitle:_buttonTitle
                 style:UIBarButtonItemStylePlain target:self
@@ -73,21 +80,13 @@
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
     // Conf GPS
-    UIButton *GPSbutton;
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(GPSButton)])
-        GPSbutton = (UIButton *)TTSTYLE(GPSButton);
-    [GPSbutton addTarget:self action:@selector(updateUserAnnotation:)
-            forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
-            initWithCustomView:GPSbutton] autorelease];
+    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc] initWithCustomView:
+            [self buttonWithImage:kStoreMapGPSButton
+                action:@selector(updateUserAnnotation:)]] autorelease];
     // Conf CurlButton
-    UIButton *button;
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(OptionsButton)])
-        button = (UIButton *)TTSTYLE(OptionsButton);
-    [button addTarget:self action:NULL
-            forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-            initWithCustomView:button] autorelease];
+    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc] initWithCustomView:
+            [self buttonWithImage:kStoreMapOptionButton action:NULL]]
+                autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -249,6 +248,17 @@
     [_segControl addTarget:self action:@selector(switchControllers:)
           forControlEvents:UIControlEventValueChanged];
     return _segControl;
+}
+
+- (UIButton *)buttonWithImage:(NSString *)imageName action:(SEL)action
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake
+            (.0, .0, image.size.width, image.size.height)] autorelease];
+    [button setImage:image forState:UIControlStateNormal];
+    [button addTarget:self action:action
+            forControlEvents:UIControlEventTouchUpInside];
+    return button;
 }
 
 - (void)switchControllers:(UISegmentedControl *)segControl

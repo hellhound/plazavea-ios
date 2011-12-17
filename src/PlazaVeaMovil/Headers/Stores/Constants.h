@@ -124,6 +124,7 @@ extern NSString *const kStoreDetailButtonLabel;
 
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;
+extern NSString *const kStoreMapOptionButton;
 extern NSString *const kStoreMapCurrentLocation;
 extern NSString *const kStoreMapAnnotationImage;
 extern const float minRegion;
