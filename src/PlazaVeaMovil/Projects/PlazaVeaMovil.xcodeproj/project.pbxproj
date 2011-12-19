@@ -130,6 +130,13 @@
 		2F79C978145F041B002161B2 /* StoreMapTogglingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C977145F041B002161B2 /* StoreMapTogglingController.m */; };
 		2F79C97A145F11D9002161B2 /* StoreMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C979145F11D9002161B2 /* StoreMapController.m */; };
 		2F8FA1611492746500780AB9 /* StoresTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8FA1601492746500780AB9 /* StoresTableViewDelegate.m */; };
+		2F95F3CE149CE28400909B23 /* bullseye.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3C9149CE28400909B23 /* bullseye.png */; };
+		2F95F3CF149CE28400909B23 /* bullseye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CA149CE28400909B23 /* bullseye@2x.png */; };
+		2F95F3D0149CE28400909B23 /* pagecurl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CB149CE28400909B23 /* pagecurl.png */; };
+		2F95F3D1149CE28400909B23 /* pagecurl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CC149CE28400909B23 /* pagecurl@2x.png */; };
+		2F95F3D2149CE28400909B23 /* shopping-list-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */; };
+		2F95F3D5149CEA4200909B23 /* annotation-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3D3149CEA4200909B23 /* annotation-pin.png */; };
+		2F95F3D6149CEA4200909B23 /* annotation-pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */; };
 		2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0F79147AC25B0047901D /* FoodDetailController.m */; };
 		2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */; };
 		2F9E1037147AF4770047901D /* default-food-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E1036147AF4770047901D /* default-food-detail.png */; };
@@ -753,6 +760,13 @@
 		2F79C977145F041B002161B2 /* StoreMapTogglingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMapTogglingController.m; sourceTree = "<group>"; };
 		2F79C979145F11D9002161B2 /* StoreMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMapController.m; sourceTree = "<group>"; };
 		2F8FA1601492746500780AB9 /* StoresTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresTableViewDelegate.m; sourceTree = "<group>"; };
+		2F95F3C9149CE28400909B23 /* bullseye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullseye.png; sourceTree = "<group>"; };
+		2F95F3CA149CE28400909B23 /* bullseye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullseye@2x.png"; sourceTree = "<group>"; };
+		2F95F3CB149CE28400909B23 /* pagecurl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagecurl.png; sourceTree = "<group>"; };
+		2F95F3CC149CE28400909B23 /* pagecurl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pagecurl@2x.png"; sourceTree = "<group>"; };
+		2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-list-add@2x.png"; sourceTree = "<group>"; };
+		2F95F3D3149CEA4200909B23 /* annotation-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-pin.png"; sourceTree = "<group>"; };
+		2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-pin@2x.png"; sourceTree = "<group>"; };
 		2F9E0F79147AC25B0047901D /* FoodDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailController.m; sourceTree = "<group>"; };
 		2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailDataSource.m; sourceTree = "<group>"; };
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
@@ -942,6 +956,13 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F95F3D3149CEA4200909B23 /* annotation-pin.png */,
+				2F95F3D4149CEA4200909B23 /* annotation-pin@2x.png */,
+				2F95F3C9149CE28400909B23 /* bullseye.png */,
+				2F95F3CA149CE28400909B23 /* bullseye@2x.png */,
+				2F95F3CB149CE28400909B23 /* pagecurl.png */,
+				2F95F3CC149CE28400909B23 /* pagecurl@2x.png */,
+				2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */,
 				CCC6196A14995B3600F0E744 /* shopping-list-add.png */,
 				2FAC754F148FE453007757F9 /* stores-background.png */,
 				2FAC7550148FE453007757F9 /* stores-background@2x.png */,
@@ -1884,6 +1905,13 @@
 				2FAC7554148FE453007757F9 /* stores-background@2x.png in Resources */,
 				2FAC7555148FE453007757F9 /* stores-section-header.png in Resources */,
 				2FAC7556148FE453007757F9 /* stores-section-header@2x.png in Resources */,
+				2F95F3CE149CE28400909B23 /* bullseye.png in Resources */,
+				2F95F3CF149CE28400909B23 /* bullseye@2x.png in Resources */,
+				2F95F3D0149CE28400909B23 /* pagecurl.png in Resources */,
+				2F95F3D1149CE28400909B23 /* pagecurl@2x.png in Resources */,
+				2F95F3D2149CE28400909B23 /* shopping-list-add@2x.png in Resources */,
+				2F95F3D5149CEA4200909B23 /* annotation-pin.png in Resources */,
+				2F95F3D6149CEA4200909B23 /* annotation-pin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2153,8 +2181,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = ../Resources/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Jean-Pierre Chauvel (PKGKGWFB24)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2168,8 +2196,8 @@
 				INFOPLIST_FILE = "../Resources/PlazaVeaMovil-Debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4151A695-84DE-458F-9214-21D40289C8AD";
-				"PROVISIONING_PROFILE[sdk=*]" = "D7C12395-C3E8-4D16-A88E-6F53040AE3B3";
+				PROVISIONING_PROFILE = "F938C653-0320-494B-B782-E3935B49EEF0";
+				"PROVISIONING_PROFILE[sdk=*]" = "E6DD5FA1-E8F4-4E2C-874D-89C7FAE343B2";
 				SYMROOT = ../build;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = ../Headers;
@@ -2182,8 +2210,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2195,8 +2223,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE = "F938C653-0320-494B-B782-E3935B49EEF0";
+				"PROVISIONING_PROFILE[sdk=*]" = "F938C653-0320-494B-B782-E3935B49EEF0";
 				SYMROOT = ../build;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = ../Headers;

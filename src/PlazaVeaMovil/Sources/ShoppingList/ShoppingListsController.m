@@ -54,9 +54,8 @@
         // Conf the add-item button
         UIButton *addButton;
 
-        if ([TTStyleSheet 
-                hasStyleSheetForSelector:
-                    @selector(shopingListButtonAdd)])
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(shopingListButtonAdd)])
             addButton = (UIButton *)TTSTYLE(shopingListButtonAdd);
         [addButton addTarget:self action:@selector(addShoppingListHandler:)
                 forControlEvents:UIControlEventTouchUpInside];
@@ -85,14 +84,14 @@
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
         UIImageView *backgroundView = [[[UIImageView alloc] 
                 initWithImage:(UIImage *)TTSTYLE(shopingListBackgroundHeader)]
-                autorelease];
+                    autorelease];
 
         [headerView setClipsToBounds:YES];
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];
     }
 
-    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0., 10.,
             bounds.size.width, 20.)] autorelease];
 
     [titleLabel setAdjustsFontSizeToFitWidth:YES];

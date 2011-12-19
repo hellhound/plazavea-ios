@@ -7,6 +7,7 @@
 
 #import "Common/Additions/UIDevice+Additions.h"
 #import "Common/Additions/CLLocation+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
@@ -20,6 +21,7 @@
 @property (nonatomic, assign) MKCoordinateRegion region;
 
 - (void)switchControllers:(UISegmentedControl *)segControl;
+- (UIButton *)buttonWithImage:(NSString *)imageName action:(SEL)action;
 @end
 
 @implementation StoreMapController
@@ -48,6 +50,12 @@
 {
     [super viewWillAppear:animated];
     [[self navigationController] setToolbarHidden:NO animated:YES];
+    [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+        [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                    autorelease]];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -60,7 +68,7 @@
 {
     UINavigationItem *navItem = [super navigationItem];
 
-    [self setToolbarItems:nil];
+    //[self setToolbarItems:nil];
     if (_backButton == nil) {
         _backButton = [[UIBarButtonItem alloc] initWithTitle:_buttonTitle
                 style:UIBarButtonItemStylePlain target:self
@@ -72,14 +80,13 @@
     UIBarButtonItem *segItem = [[[UIBarButtonItem alloc]
             initWithCustomView:[self segControl]] autorelease];
     // Conf GPS
-    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc]
-            initWithTitle:kStoreMapGPSButton style:UIBarButtonItemStyleBordered
-                target:self action:@selector(updateUserAnnotation:)]
-                autorelease];
+    UIBarButtonItem *GPSItem = [[[UIBarButtonItem alloc] initWithCustomView:
+            [self buttonWithImage:kStoreMapGPSButton
+                action:@selector(updateUserAnnotation:)]] autorelease];
     // Conf CurlButton
-    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
-            initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                target:self action:NULL] autorelease];
+    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc] initWithCustomView:
+            [self buttonWithImage:kStoreMapOptionButton action:NULL]]
+                autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -243,6 +250,17 @@
     return _segControl;
 }
 
+- (UIButton *)buttonWithImage:(NSString *)imageName action:(SEL)action
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake
+            (.0, .0, image.size.width, image.size.height)] autorelease];
+    [button setImage:image forState:UIControlStateNormal];
+    [button addTarget:self action:action
+            forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
 - (void)switchControllers:(UISegmentedControl *)segControl
 {
     switch ([segControl selectedSegmentIndex]) {
@@ -347,13 +365,14 @@
         [pin setAnimatesDrop:YES];
         return pin;
     }
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[_mapView
+    MKAnnotationView *annotationView = (MKAnnotationView *)[_mapView
             dequeueReusableAnnotationViewWithIdentifier:kAnnotationId];
     if (annotationView == nil) {
-        annotationView = [[[MKPinAnnotationView alloc]
+        annotationView = [[[MKAnnotationView alloc]
                 initWithAnnotation:annotation reuseIdentifier:kAnnotationId]
                     autorelease];
     }
+    [annotationView setImage:[UIImage imageNamed:kStoreMapAnnotationImage]];
     [annotationView setCanShowCallout:YES];
     if ([(MapAnnotation *)annotation storeId] != nil) {
         [annotationView setRightCalloutAccessoryView:
@@ -367,7 +386,7 @@
     [image performSelector:@selector(stopLoading) withObject:nil
             afterDelay:10];
     [annotationView setLeftCalloutAccessoryView:image];
-    [annotationView setAnimatesDrop:YES];
+    //[annotationView setAnimatesDrop:YES];
     return annotationView;
 }
 

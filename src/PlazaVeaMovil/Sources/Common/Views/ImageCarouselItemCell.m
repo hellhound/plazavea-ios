@@ -96,6 +96,7 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
                      style:(TTStyle *)globalStyle;
 
 - (void)cleanScrollView;
+- (void)cleanImageViews;
 - (void)createCircularIllusion;
 @end
 
@@ -123,6 +124,7 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
 
 - (void)dealloc
 {
+    [self cleanImageViews];
     [self unscheduleAutoscrolling];
     [_imageViews release];
     [_loadedImageViews release];
@@ -164,6 +166,12 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
             kCarouselPageControlHeight);
     [scrollView setFrame:scrollFrame];
     [pageControl setFrame:pageFrame];
+}
+
+- (void)removeFromSuperview
+{
+    [self cleanImageViews];
+    [super removeFromSuperview];
 }
 
 #pragma mark -
@@ -403,6 +411,12 @@ static NSString *const kCarouselAutoscrollKey = @"carouselAutoscrollKey";
     if (loadedCount == 0)
         return 0;
     return currentIndex == loadedCount - 1 ? 0 : currentIndex + 1;
+}
+
+- (void)cleanImageViews
+{
+    for (TTImageView *imageView in _imageViews)
+        [imageView setDelegate:nil];
 }
 
 - (void)cleanScrollView
