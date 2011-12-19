@@ -143,7 +143,7 @@ static NSString *kTextKeyPath = @"text";
     CGRect frame = CGRectZero;
     CGRect bounds = [[self contentView] bounds];
     UIView *textLabel = [self textLabel];
-    UIView *detailTextLabel = [self detailTextLabel];
+    //UIView *detailTextLabel = [self detailTextLabel];
     UIView *accessoryView = [self accessoryView];
     UIView *editingAccessoryView = [self editingAccessoryView];
 
@@ -163,9 +163,12 @@ static NSString *kTextKeyPath = @"text";
     // detailTextLabel (for the lower bound) and accessoryView, 
     // editingAccessoryView or contentView's bounds, in that order, for the
     // right bound.
+    /*
     frame.size.height = (detailTextLabel == nil ? bounds.size.height :
             fabsf([detailTextLabel frame].origin.y - frame.origin.y)) -
             kVerticalMargin + 1;
+    */
+    frame.size.height = [textLabel frame].size.height;
     frame.size.width = (accessoryView == nil ?
             (editingAccessoryView == nil ?
             bounds.size.width :
