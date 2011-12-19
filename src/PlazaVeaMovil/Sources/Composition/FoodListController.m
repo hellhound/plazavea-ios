@@ -152,9 +152,10 @@ static CGFloat headerMinHeight = 40.;
             predicateWithSubstitutionVariables: [NSDictionary
                 dictionaryWithObject:[NSNull nullOrObject:foodCategory]
                 forKey:kFoodVariableKey]];
-    if ((self = [self initWithStyle:UITableViewStylePlain entityName:kFoodEntity
-            predicate:predicate sortDescriptors:sortDescriptors
-                inContext:context]) != nil) {
+    if ((self = [super initWithStyle:UITableViewStylePlain
+            entityName:kFoodEntity predicate:predicate
+                sortDescriptors:sortDescriptors inContext:context
+                sectionNameKeyPath:kFoodInitial]) != nil) {
         [self setFoodCategory:foodCategory];
         // Conf table header
         UITableView *tableView = [self tableView];
@@ -308,39 +309,6 @@ titleForHeaderInSection:(NSInteger)section
 
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
-
-- (id)initWithStyle:(UITableViewStyle)style
-         entityName:(NSString *)entityName
-          predicate:(NSPredicate *)predicate
-    sortDescriptors:(NSArray *)sortDescriptors
-          inContext:(NSManagedObjectContext *)context
-{
-    if ((self = [super initWithStyle:style]) != nil) {
-        _context = [context retain];
-        if (entityName != nil) {
-            // Conf the fetch request
-            NSFetchRequest *request = 
-            [[[NSFetchRequest alloc] init] autorelease];
-            
-            [request setEntity:[NSEntityDescription entityForName:entityName
-                                           inManagedObjectContext:_context]];
-            [request setPredicate:predicate];
-            [request setSortDescriptors:sortDescriptors];
-            // Conf fetch-request controller
-            _resultsController = [[NSFetchedResultsController alloc]
-                    initWithFetchRequest:request
-                        managedObjectContext:_context
-                        sectionNameKeyPath:kFoodInitial
-                        cacheName:nil];
-            [_resultsController setDelegate:self];
-            [self performFetch];
-        }
-        // Allow row deselection
-        [self setAllowsRowDeselection:YES];
-        [self setPerformsSelectionAction:YES];
-    }
-    return self;
-}
 
 - (UITableViewCell *)cellForObject:(NSManagedObject *)object
                      withCellClass:(Class)cellClass

@@ -15,7 +15,8 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 
 - (void)initializeResultsControllerWithEntityName:(NSString *)entityName
                                         predicate:(NSPredicate *)predicate
-                                  sortDescriptors:(NSArray *)sortDescriptors;
+                                  sortDescriptors:(NSArray *)sortDescriptors
+                              sectionNameKeyPath:(NSString *)sectionNameKeyPath;
 - (BOOL)shouldHideReadonlyToolbar;
 - (BOOL)shouldHideEditingToolbar;
 - (BOOL)shouldShowReadonlyToolbar;
@@ -151,8 +152,9 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 
 
 - (void)initializeResultsControllerWithEntityName:(NSString *)entityName
-                                       predicate:(NSPredicate *)predicate
-                                 sortDescriptors:(NSArray *)sortDescriptors
+                                        predicate:(NSPredicate *)predicate
+                                  sortDescriptors:(NSArray *)sortDescriptors
+                               sectionNameKeyPath:(NSString *)sectionNameKeyPath
 {
     if (entityName != nil) {
         // Conf the fetch request
@@ -166,7 +168,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         _resultsController = [[NSFetchedResultsController alloc]
                 initWithFetchRequest:request
                 managedObjectContext:_context
-                sectionNameKeyPath:nil 
+                sectionNameKeyPath:sectionNameKeyPath 
                 //cacheName:withCache??????];
                 cacheName:nil];
         // Set this controller as the delegate of the fetch-request controller.
@@ -223,7 +225,27 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
     if ((self = [super initWithStyle:style]) != nil) {
         _context = [context retain];
         [self initializeResultsControllerWithEntityName:entityName
-                predicate:predicate sortDescriptors:sortDescriptors];
+                predicate:predicate sortDescriptors:sortDescriptors
+                    sectionNameKeyPath:nil];
+        // Allow row deselection
+        [self setAllowsRowDeselection:YES];
+        [self setPerformsSelectionAction:YES];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+         entityName:(NSString *)entityName
+          predicate:(NSPredicate *)predicate
+    sortDescriptors:(NSArray *)sortDescriptors
+          inContext:(NSManagedObjectContext *)context
+ sectionNameKeyPath:(NSString *)sectionNameKeyPath
+{
+    if ((self = [super initWithStyle:style]) != nil) {
+        _context = [context retain];
+        [self initializeResultsControllerWithEntityName:entityName
+                predicate:predicate sortDescriptors:sortDescriptors
+                    sectionNameKeyPath:sectionNameKeyPath];
         // Allow row deselection
         [self setAllowsRowDeselection:YES];
         [self setPerformsSelectionAction:YES];

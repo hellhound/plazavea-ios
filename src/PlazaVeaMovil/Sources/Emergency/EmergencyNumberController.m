@@ -186,9 +186,10 @@ static CGFloat headerMinHeight = 40.;
                     [NSNull nullOrObject:emergencyCategory]
                 forKey:kEmergencyNumberVariableKey]];
 
-    if ((self = [self initWithStyle:UITableViewStylePlain
+    if ((self = [super initWithStyle:UITableViewStylePlain
             entityName:kEmergencyNumberEntity predicate:predicate
-            sortDescriptors:sortDescriptors inContext:context]) != nil) {
+                sortDescriptors:sortDescriptors inContext:context
+                sectionNameKeyPath:kEmergencyNumberFirstLetter]) != nil) {
         [self setTitle:NSLocalizedString(kEmergencyNumberTitle, nil)];
         [self setEmergencyCategory:emergencyCategory];
         [self setCellStyle:UITableViewCellStyleSubtitle];
@@ -229,39 +230,6 @@ static CGFloat headerMinHeight = 40.;
 
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
-
-- (id)initWithStyle:(UITableViewStyle)style
-         entityName:(NSString *)entityName
-          predicate:(NSPredicate *)predicate
-    sortDescriptors:(NSArray *)sortDescriptors
-          inContext:(NSManagedObjectContext *)context
-{
-    if ((self = [super initWithStyle:style]) != nil) {
-        _context = [context retain];
-        if (entityName != nil) {
-            // Conf the fetch request
-            NSFetchRequest *request = 
-                    [[[NSFetchRequest alloc] init] autorelease];
-
-            [request setEntity:[NSEntityDescription entityForName:entityName
-               inManagedObjectContext:_context]];
-            [request setPredicate:predicate];
-            [request setSortDescriptors:sortDescriptors];
-            // Conf fetch-request controller
-            _resultsController = [[NSFetchedResultsController alloc]
-                    initWithFetchRequest:request
-                    managedObjectContext:_context
-                    sectionNameKeyPath:kEmergencyNumberFirstLetter
-                    cacheName:nil];
-            [_resultsController setDelegate:self];
-            [self performFetch];
-        }
-        // Allow row deselection
-        [self setAllowsRowDeselection:YES];
-        [self setPerformsSelectionAction:YES];
-    }
-    return self;
-}
 
 - (UITableViewCell *)cellForObject:
         (NSManagedObject *)object

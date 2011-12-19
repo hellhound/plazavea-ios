@@ -35,6 +35,12 @@
           predicate:(NSPredicate *)predicate
     sortDescriptors:(NSArray *)sortDescriptors
           inContext:(NSManagedObjectContext *)context;
+- (id)initWithStyle:(UITableViewStyle)style
+         entityName:(NSString *)entityName
+          predicate:(NSPredicate *)predicate
+    sortDescriptors:(NSArray *)sortDescriptors
+          inContext:(NSManagedObjectContext *)context
+ sectionNameKeyPath:(NSString *)sectionNameKeyPath;
 - (void)scrollToTop;
 @end
 
