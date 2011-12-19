@@ -103,7 +103,6 @@ static NSRelationshipDescription *kCategoryRelationship;
     [initial setAttributeType:NSStringAttributeType];
     [initial setOptional:NO];
     [initial setIndexed:YES];
-    [initial setTransient:YES];
     
     NSAttributeDescription *name =
             [[[NSAttributeDescription alloc] init] autorelease];
