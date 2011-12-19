@@ -10,26 +10,27 @@
 #define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
 
 //color for navigation bar
-#define BAR_TINT_COLOR RGBCOLOR(255, 208, 0)
+#define BAR_TINT_COLOR RGBCOLOR(255., 208., .0)
 
 //color for texts in tables
-#define TABLE_TEXT_COLOR RGBCOLOR(0, 0, 0)
+#define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
 
 //color for Headers
-#define HEADER_COLOR_YELLOW RGBCOLOR(255, 255, 0)
+#define HEADER_COLOR_YELLOW RGBCOLOR(255., 255., .0)
 #define HEADER_COLOR_WHITE [UIColor whiteColor]
 
 //size for text in tables
-#define TABLE_TEXT_HEADER_SIZE 16
-#define PICTURE_HEADER_SIZE 14
-#define TABLE_TEXT_SIZE 13
+#define TABLE_TEXT_HEADER_SIZE 16.
+#define TABLE_SECTION_HEADER_HEIGHT 24.
+#define PICTURE_HEADER_SIZE 14.
+#define TABLE_TEXT_SIZE 13.
 
 //launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
 #define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
-#define NAVIGATION_BAR_COLOR RGBCOLOR(255, 208, 0)
-#define LAUNCHER_FONT_COLOR RGBCOLOR(255, 180, 0)
-#define LAUNCHER_FONT_SHADOW RGBCOLOR(153, 25, 28)
+#define NAVIGATION_BAR_COLOR RGBCOLOR(255., 208., .0)
+#define LAUNCHER_FONT_COLOR RGBCOLOR(255., 180., .0)
+#define LAUNCHER_FONT_SHADOW RGBCOLOR(153., 25., 28.)
 
 //shopping list
 #define SHOPPING_LIST_BACKGROUND \
@@ -43,13 +44,13 @@
         TTIMAGE(@"bundle://composition-picture-background.png")
 #define COMPOSITION_SECTION_HEADER_BACKGROUND \
         TTIMAGE(@"bundle://composition-section-header.png")
-#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247, 128, 31)
+#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247., 128., 31.)
 
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
 #define EMERGENCY_SECTION_HEADER \
         TTIMAGE(@"bundle://emergency-section-header.png")
-#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227, 13, 23)
+#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
 
 // stores
 #define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
@@ -88,6 +89,11 @@
 - (UIFont *)tableTextHeaderFont
 {
     return [UIFont boldSystemFontOfSize:TABLE_TEXT_HEADER_SIZE];
+}
+
+- (CGFloat)heightForTableSectionHeaderView
+{
+    return TABLE_SECTION_HEADER_HEIGHT;
 }
 
 - (UIFont *)tableTextFont

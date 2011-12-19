@@ -8,6 +8,7 @@
 - (UIStatusBarStyle)statusBarStyle;
 - (UIColor*)headerColorYellow;
 - (UIFont *)tableTextHeaderFont;
+- (CGFloat)heightForTableSectionHeaderView;
 - (UIFont *)tableTextFont;
 - (UIImageView *)launcherBackgroundImage;
 - (UIImage *)shopingListBackgroundHeader;

@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Application/StyleSheet.h"
 #import "Stores/StoresTableViewDelegate.h"
 
 @implementation StoresTableViewDelegate
@@ -11,8 +12,16 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+- (CGFloat)     tableView:(UITableView *)tableView
+ heightForHeaderInSection:(NSInteger)section
+{
+    return [TTStyleSheet hasStyleSheetForSelector:
+        @selector(heightForTableSectionHeaderView)] ?
+        TTSTYLEVAR(heightForTableSectionHeaderView) : .0;
+}
+
 - (UIView *)    tableView:(UITableView *)tableView
-    viewForHeaderInSection:(NSInteger)section
+   viewForHeaderInSection:(NSInteger)section
 {
     TTView *header = (TTView *)[super tableView:tableView
             viewForHeaderInSection:section];
@@ -22,5 +31,4 @@
     }
     return header;
 }
-
 @end
