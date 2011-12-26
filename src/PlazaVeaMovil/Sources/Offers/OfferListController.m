@@ -22,6 +22,8 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)dealloc
 {
+    [_headerView release];
+    [_titleLabel release];
     [_bannerId release];
     [super dealloc];
 }
