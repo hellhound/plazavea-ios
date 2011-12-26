@@ -5,6 +5,7 @@
 #import "Offers/Constants.h"
 #import "Offers/OfferListDataSource.h"
 #import "Offers/OfferListController.h"
+
 static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
 

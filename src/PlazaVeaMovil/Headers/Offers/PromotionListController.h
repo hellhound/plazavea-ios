@@ -8,6 +8,8 @@
 @interface PromotionListController: BasePromotionController
 {
     UIBarButtonItem *_backButton;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 
 - (void)popToNavigationWindow;
