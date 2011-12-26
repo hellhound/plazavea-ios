@@ -56,6 +56,9 @@
 #define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
 #define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 
+// offers
+#define OFFER_BACKGROUND TTIMAGE(@"bundle://offer-background.png")
+
 @implementation StyleSheet
 
 #pragma mark -
@@ -216,5 +219,13 @@
 - (TTStyle *)storesSectionHeader
 {
     return [TTImageStyle styleWithImage:STORES_SECTION_HEADER next:nil];
+}
+
+#pragma mark -
+#pragma mark Offer
+
+- (UIImage *)offerBackgroundHeader
+{
+    return OFFER_BACKGROUND;
 }
 @end

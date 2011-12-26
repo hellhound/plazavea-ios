@@ -7,5 +7,7 @@
         <OfferListDataSourceDelegate>
 {
     NSNumber *_bannerId;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @end
