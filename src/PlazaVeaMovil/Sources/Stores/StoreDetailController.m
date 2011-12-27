@@ -17,7 +17,6 @@ static CGFloat headerMinHeight = 40.;
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) TTImageView *imageView;
-
 @end
 
 @implementation StoreDetailController
@@ -35,7 +34,7 @@ static CGFloat headerMinHeight = 40.;
 }
 
 #pragma mark -
-#pragma mark UIView
+#pragma mark UIViewController
 
 - (void)loadView
 {
