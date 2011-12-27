@@ -5,6 +5,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Common/Additions/UIDevice+Additions.h"
 #import "Offers/Constants.h"
 #import "Offers/Models.h"
 #import "Offers/PromotionDetailDataSource.h"
@@ -33,6 +34,7 @@ static CGFloat headerMinHeight = 40.;
     [_imageView release];
     [super dealloc];
 }
+
 #pragma mark -
 #pragma mark UIViewController
 
@@ -42,45 +44,18 @@ static CGFloat headerMinHeight = 40.;
     [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
         [[self navigationItem] setTitleView:[[[UIImageView alloc]
-                initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
-                    autorelease]];
+                                              initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                                             autorelease]];
     }
     UITableView *tableView = [self tableView];
-    _headerView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-    // Configuring the image view
-    _imageView = [[[TTImageView alloc] initWithFrame:CGRectZero] autorelease];
-    
-    [_imageView setDefaultImage:TTIMAGE(kBannerDefaultImage)];
-    [_imageView setAutoresizingMask:UIViewAutoresizingNone];
-    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-     UIViewAutoresizingFlexibleRightMargin];
-    [_imageView setBackgroundColor:[UIColor clearColor]];
-    // Configuring the label
-    _titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    
-    [_titleLabel setNumberOfLines:0];
-    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_titleLabel setTextAlignment:UITextAlignmentCenter];
-    [_titleLabel setBackgroundColor:[UIColor clearColor]];
-    // Adding the subviews to the header view
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(offerBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(offerBackgroundHeader)] autorelease];
-        
-        [_headerView insertSubview:back atIndex:0];
-    }    
-    [_headerView addSubview:_titleLabel];
-    [_headerView addSubview:_imageView];
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0,
-            boundsWidth, kPromotionDetailImageHeight);
-    CGRect imageFrame = CGRectMake((boundsWidth - kPromotionDetailImageWidth) /
-            2., .0, kPromotionDetailImageWidth, kPromotionDetailImageHeight);
+                                    boundsWidth, kPromotionDetailImageHeight);
+    CGRect imageFrame = CGRectMake(.0, .0, kPromotionDetailImageWidth,
+                                   kPromotionDetailImageHeight);
     
     [_headerView setFrame:headerFrame];
     [_imageView setFrame:imageFrame];
-    [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
     [self refresh];
 }
@@ -91,14 +66,13 @@ static CGFloat headerMinHeight = 40.;
 - (void)createModel
 {
     [self setDataSource:[[[PromotionDetailDataSource alloc]
-            initWithPromotionId:_promotionId delegate:self] autorelease]];
+                          initWithPromotionId:_promotionId delegate:self] autorelease]];
 }
 
 #pragma mark -
 #pragma PromotionDetailController (Private)
 
 @synthesize headerView = _headerView, titleLabel = _titleLabel,
-        
 imageView = _imageView;
 
 #pragma mark -
@@ -112,11 +86,11 @@ imageView = _imageView;
         _promotionId = [promotionId copy];
         // Configuring the headerView
         [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
-                autorelease]];
+                             autorelease]];
         // Configuring the image view
         [self setImageView:[[[TTImageView alloc] initWithFrame:
-                CGRectMake(.0, .0, kPromotionDetailImageWidth,
-                    kPromotionDetailImageHeight)] autorelease]];
+                             CGRectMake(.0, .0, kPromotionDetailImageWidth,
+                                        kPromotionDetailImageHeight)] autorelease]];
         [_imageView setDefaultImage:TTIMAGE(kBannerDefaultImage)];
         [_imageView setAutoresizingMask:UIViewAutoresizingNone];
         [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
@@ -124,14 +98,30 @@ imageView = _imageView;
         [_imageView setBackgroundColor:[UIColor clearColor]];
         // Configuring the title label
         [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
-                autorelease]];
+                             autorelease]];
         [_titleLabel setNumberOfLines:0];
         [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
         [_titleLabel setTextAlignment:UITextAlignmentCenter];
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
-        // Adding the title label to the header
+        if ([TTStyleSheet
+             hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+            [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+        }
+        if ([TTStyleSheet
+             hasStyleSheetForSelector:@selector(headerColorYellow)]) {
+            [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+        }
+        // Adding the subviews to the header view
+        if ([TTStyleSheet hasStyleSheetForSelector:
+             @selector(offerBackgroundHeader)]) {
+            UIImageView *back = [[[UIImageView alloc] initWithImage:
+                                  (UIImage *)TTSTYLE(offerBackgroundHeader)] autorelease];
+            
+            [_headerView insertSubview:back atIndex:0];
+        }        
         [_headerView addSubview:_titleLabel];
         [_headerView addSubview:_imageView];
+        [_headerView setClipsToBounds:YES];
     }
     return self;
 }
@@ -143,26 +133,17 @@ imageView = _imageView;
    needsDetailImageWithURL:(NSURL *)imageURL
                   andTitle:(NSString *)title
 {
-    if (title != nil) {
+    if (imageURL != nil) {
         // First we deal with the title
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
-            [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
-        }
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(headerColorYellow)]) {
-            [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-        }
         UITableView *tableView = [self tableView];
         UIFont *font = [_titleLabel font];
         CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
         CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
         CGFloat titleHeight = [title sizeWithFont:font
-                constrainedToSize:constrainedTitleSize
-                    lineBreakMode:UILineBreakModeWordWrap].height;
+                                constrainedToSize:constrainedTitleSize
+                                    lineBreakMode:UILineBreakModeWordWrap].height;
         CGRect headerFrame = [_headerView frame];
         CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
-        CGRect imageFrame = [_imageView frame];
         
         if ((titleHeight + (margin * 2)) <= headerMinHeight) {
             titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
@@ -170,22 +151,16 @@ imageView = _imageView;
         } else {
             titleFrame.origin.y += margin;
         }
+        CGRect imageFrame = [_imageView frame];
+        
         [_titleLabel setText:title];
         [_titleLabel setFrame:titleFrame];
         [_imageView setFrame:
-                CGRectOffset(imageFrame, .0, titleHeight + (margin * 2))];
+         CGRectOffset(imageFrame, .0, titleHeight + (margin * 2))];
         if (imageURL != nil)
             [_imageView setUrlPath:[imageURL absoluteString]];
         headerFrame.size.height += titleHeight + (margin * 2); 
-                [_headerView setFrame:headerFrame];
-        UIView *whiteBackground =
-                [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-        
-        [whiteBackground setBackgroundColor:[UIColor whiteColor]];
-        [whiteBackground setFrame:
-                CGRectMake(.0, titleHeight + (margin * 2), 320.,
-                    imageFrame.size.height)];
-        [_headerView insertSubview:whiteBackground atIndex:1];
+        [_headerView setFrame:headerFrame];
         [tableView setTableHeaderView:_headerView];
     }
 }
