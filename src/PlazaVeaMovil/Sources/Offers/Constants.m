@@ -161,7 +161,7 @@ const CGFloat kOfferDetailLabelWidth = 320.;
 NSString *const kOfferDetailDefaultImage =
         @"bundle://default-offer-detail.png";
 
-NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
+NSString *const kBannerDefaultImage = @"bundle://offer-banner.png";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 100.;
 const CGFloat kOfferListImageWidth = 50.;
