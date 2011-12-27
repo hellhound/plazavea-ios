@@ -80,7 +80,7 @@
         
         TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
                 [bannerImageURL absoluteString] defaultImage:
-                    TTIMAGE(kBannerDefaultImage) URL:nil];
+                    TTIMAGE(kOfferBannerDefaultImage) URL:nil];
 
         [items addObject:banner];
     }

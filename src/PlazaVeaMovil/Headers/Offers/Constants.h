@@ -116,6 +116,7 @@ extern NSString *const kOfferButtonLabel;
 
 extern NSString *const kOfferListTitle;
 extern NSString *const kBannerDefaultImage;
+extern NSString *const kOfferBannerDefaultImage;
 extern const CGFloat kBannerImageWidth;
 extern const CGFloat kBannerImageHeight;
 extern const CGFloat kOfferListImageWidth;
