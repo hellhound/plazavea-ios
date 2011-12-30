@@ -43,6 +43,7 @@
 #define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://shopping-list-add.png") 
 #define TOOLBAR_ACTION_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
 #define TOOLBAR_TRASH_ICON TTIMAGE(@"bundle://toolbar-trash-icon.png") 
+#define SHOPPINGLISTS_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
 
 // nutritional composition
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
@@ -196,6 +197,11 @@
 - (UIImage *)barButtonTrashIcon
 {
     return TOOLBAR_TRASH_ICON;
+}
+
+- (UIColor *)shoppingListsSearchBarColor
+{
+    return SHOPPINGLISTS_SEARCHBAR_COLOR;
 }
 
 #pragma mark -

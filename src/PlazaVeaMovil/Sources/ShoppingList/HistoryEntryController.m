@@ -5,6 +5,7 @@
 #import "Common/Constants.h"
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Additions/NSError+Additions.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
@@ -60,10 +61,21 @@ static NSString *kNameVariableKey = @"NAME";
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                 target:nil action:NULL] autorelease];
         // Conf the add button
+        UIButton *addButton;
+        
+        if ([TTStyleSheet
+             hasStyleSheetForSelector:@selector(barButtonAddIcon)]) {
+            UIImage *plusSign = (UIImage *)TTSTYLE(barButtonAddIcon);
+            addButton = [[[UIButton alloc] initWithFrame:
+                    CGRectMake(.0, .0, plusSign.size.width,
+                        plusSign.size.height)] autorelease];
+            
+            [addButton setImage:plusSign forState:UIControlStateNormal];
+            [addButton addTarget:self action:@selector(addHistoryEntry:)
+                    forControlEvents:UIControlEventTouchUpInside];
+        }
         UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:self action:@selector(addHistoryEntry:)] autorelease];
-
+                initWithCustomView:addButton] autorelease];
         NSArray *toolbarItems =
                 [NSArray arrayWithObjects:spacerItem, addItem, nil];
 
@@ -82,6 +94,12 @@ static NSString *kNameVariableKey = @"NAME";
     
     UISearchBar *searchBar =
             [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+    
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(shoppingListsSearchBarColor)]) {
+        [searchBar setTintColor:
+                (UIColor *)TTSTYLE(shoppingListsSearchBarColor)];
+    }
     [searchBar sizeToFit];
     [searchBar setDelegate:self];
     // When initWithSearchBar:contentsController: is sent to an instance of
