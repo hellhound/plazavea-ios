@@ -40,7 +40,7 @@
 
 #define TOOLBAR_PREVIOUS_ICON TTIMAGE(@"bundle://toolbar-previous-icon.png") 
 #define TOOLBAR_NEXT_ICON TTIMAGE(@"bundle://toolbar-next-icon.png") 
-#define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
+#define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://shopping-list-add.png") 
 #define TOOLBAR_ACTION_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
 #define TOOLBAR_TRASH_ICON TTIMAGE(@"bundle://toolbar-trash-icon.png") 
 

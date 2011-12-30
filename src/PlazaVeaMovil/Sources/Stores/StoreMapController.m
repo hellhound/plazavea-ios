@@ -255,6 +255,7 @@
     UIImage *image = [UIImage imageNamed:imageName];
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake
             (.0, .0, image.size.width, image.size.height)] autorelease];
+    
     [button setImage:image forState:UIControlStateNormal];
     [button addTarget:self action:action
             forControlEvents:UIControlEventTouchUpInside];

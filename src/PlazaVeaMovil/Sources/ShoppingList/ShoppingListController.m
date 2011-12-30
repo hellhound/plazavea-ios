@@ -38,6 +38,7 @@ static CGFloat headerMinHeight = 40.;
 - (void)showAlertViewForShoppingListDeletion:(TSAlertView *)alertView;
 - (void)initializeHeader;
 - (void)updateHeader;
+- (UIButton *)buttonWithImage:(UIImage *)image action:(SEL)action;
 @end
 
 @implementation ShoppingListController
@@ -76,10 +77,9 @@ static CGFloat headerMinHeight = 40.;
         // Conf the back button
         if ([TTStyleSheet 
                 hasStyleSheetForSelector:@selector(barButtonPreviousIcon)]){
-            _previousItem = [[UIBarButtonItem alloc]
-                    initWithImage:(UIImage *)TTSTYLE(barButtonPreviousIcon)
-                    style:UIBarButtonItemStylePlain target:self
-                    action:@selector(previousList:)];
+            _previousItem = [[UIBarButtonItem alloc] initWithCustomView:[self
+                    buttonWithImage:(UIImage *)TTSTYLE(barButtonPreviousIcon)
+                        action:@selector(previousList:)]];
         } else {
             _previousItem = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
@@ -88,10 +88,9 @@ static CGFloat headerMinHeight = 40.;
         // Conf the rewind button
         if ([TTStyleSheet 
                 hasStyleSheetForSelector:@selector(barButtonNextIcon)]){
-            _nextItem = [[UIBarButtonItem alloc]
-                    initWithImage:(UIImage *)TTSTYLE(barButtonNextIcon)
-                    style:UIBarButtonItemStylePlain target:self
-                    action:@selector(nextList:)];
+            _nextItem = [[UIBarButtonItem alloc] initWithCustomView:[self
+                    buttonWithImage:(UIImage *)TTSTYLE(barButtonNextIcon)
+                        action:@selector(nextList:)]];
         } else {
             _nextItem = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
@@ -104,10 +103,9 @@ static CGFloat headerMinHeight = 40.;
         // Conf the add button
         if ([TTStyleSheet 
                 hasStyleSheetForSelector:@selector(barButtonAddIcon)]){
-            addItem = [[[UIBarButtonItem alloc]
-                    initWithImage:(UIImage *)TTSTYLE(barButtonAddIcon)
-                    style:UIBarButtonItemStylePlain target:self
-                    action:@selector(addItem:)] autorelease];
+            addItem = [[[UIBarButtonItem alloc] initWithCustomView:[self
+                    buttonWithImage:(UIImage *)TTSTYLE(barButtonAddIcon)
+                        action:@selector(addItem:)]] autorelease];
         } else {
             addItem = [[[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -116,10 +114,9 @@ static CGFloat headerMinHeight = 40.;
         // Conf the action button
         if ([TTStyleSheet 
                 hasStyleSheetForSelector:@selector(barButtonActionIcon)]){
-            actionItem = [[[UIBarButtonItem alloc]
-                    initWithImage:(UIImage *)TTSTYLE(barButtonActionIcon)
-                    style:UIBarButtonItemStylePlain target:self
-                    action:@selector(displayActionSheet:)] autorelease];
+            actionItem = [[[UIBarButtonItem alloc] initWithCustomView:[self
+                    buttonWithImage:(UIImage *)TTSTYLE(barButtonActionIcon)
+                        action:@selector(displayActionSheet:)]] autorelease];
         } else {
             actionItem = [[[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -129,10 +126,9 @@ static CGFloat headerMinHeight = 40.;
         // Conf the rewind trash button
         if ([TTStyleSheet 
                 hasStyleSheetForSelector:@selector(barButtonTrashIcon)]){
-            trashItem = [[[UIBarButtonItem alloc]
-                    initWithImage:(UIImage *)TTSTYLE(barButtonTrashIcon)
-                    style:UIBarButtonItemStylePlain target:self
-                    action:@selector(delete:)] autorelease];
+            trashItem = [[[UIBarButtonItem alloc] initWithCustomView:[self
+                    buttonWithImage:(UIImage *)TTSTYLE(barButtonTrashIcon)
+                        action:@selector(delete:)]] autorelease];
         } else {
             trashItem = [[[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
@@ -345,6 +341,17 @@ static CGFloat headerMinHeight = 40.;
                 lastModificationDate]]];
     }
 
+}
+
+- (UIButton *)buttonWithImage:(UIImage *)image action:(SEL)action
+{
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake
+            (.0, .0, image.size.width, image.size.height)] autorelease];
+    
+    [button setImage:image forState:UIControlStateNormal];
+    [button addTarget:self action:action
+            forControlEvents:UIControlEventTouchUpInside];
+    return button;
 }
 
 #pragma mark -
