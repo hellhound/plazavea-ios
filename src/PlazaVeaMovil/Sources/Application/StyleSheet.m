@@ -38,6 +38,12 @@
 #define SHOPPING_LIST_ICON_ADD \
     TTIMAGE(@"bundle://shopping-list-add.png")
 
+#define TOOLBAR_PREVIOUS_ICON TTIMAGE(@"bundle://toolbar-previous-icon.png") 
+#define TOOLBAR_NEXT_ICON TTIMAGE(@"bundle://toolbar-next-icon.png") 
+#define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
+#define TOOLBAR_ACTION_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
+#define TOOLBAR_TRASH_ICON TTIMAGE(@"bundle://toolbar-trash-icon.png") 
+
 // nutritional composition
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
 #define COMPOSITION_PICTURE_BACKGROUND \
@@ -165,6 +171,31 @@
     [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
             buttonImage.size.height)];
     return button;
+}
+
+- (UIImage *)barButtonPreviousIcon
+{
+    return TOOLBAR_PREVIOUS_ICON;
+}
+
+- (UIImage *)barButtonNextIcon
+{
+    return TOOLBAR_NEXT_ICON;
+}
+
+- (UIImage *)barButtonAddIcon
+{
+    return TOOLBAR_ADD_ICON;
+}
+
+- (UIImage *)barButtonActionIcon
+{
+    return TOOLBAR_ACTION_ICON;
+}
+
+- (UIImage *)barButtonTrashIcon
+{
+    return TOOLBAR_TRASH_ICON;
 }
 
 #pragma mark -

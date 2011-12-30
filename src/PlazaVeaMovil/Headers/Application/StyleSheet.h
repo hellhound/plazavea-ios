@@ -10,6 +10,11 @@
 - (UIFont *)tableTextHeaderFont;
 - (CGFloat)heightForTableSectionHeaderView;
 - (UIFont *)tableTextFont;
+
+//Launcher
+- (UIImageView *)launcherBackgroundImage;
+
+//ShoppingLists
 - (UIImageView *)launcherBackgroundImage;
 - (UIImage *)shopingListBackgroundHeader;
 @end

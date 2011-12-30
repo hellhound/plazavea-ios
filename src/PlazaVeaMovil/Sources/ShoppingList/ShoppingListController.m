@@ -25,6 +25,8 @@ static NSPredicate *kShoppingItemsPredicateTemplate;
 static NSString *const kShoppingListVariableKey = @"SHOPPING_LIST";
 static const NSInteger kListNameLabelTag = 100;
 static const NSInteger kListDateLabelTag = 101;
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
 
 @interface ShoppingListController (Private)
 
@@ -64,35 +66,78 @@ static const NSInteger kListDateLabelTag = 101;
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];
+    UIBarButtonItem *addItem;
+    UIBarButtonItem *actionItem;
+    UIBarButtonItem *trashItem;
 
     // TODO We should use titleView instead of title in the navigationItem
     // Conf the toolbars
     if ([self toolbarItems] == nil) {
         // Conf the back button
-        _previousItem = [[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
-                target:self action:@selector(previousList:)];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonPreviousIcon)]){
+            _previousItem = [[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonPreviousIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(previousList:)];
+        } else {
+            _previousItem = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                    target:self action:@selector(previousList:)];
+        }
         // Conf the rewind button
-        _nextItem = [[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                target:self action:@selector(nextList:)];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonNextIcon)]){
+            _nextItem = [[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonNextIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(nextList:)];
+        } else {
+            _nextItem = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                    target:self action:@selector(nextList:)];
+        }
         // Conf a spacer
         UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                 target:nil action:NULL] autorelease];
         // Conf the add button
-        UIBarButtonItem *addItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                target:self action:@selector(addItem:)] autorelease];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonAddIcon)]){
+            addItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonAddIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(addItem:)] autorelease];
+        } else {
+            addItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                    target:self action:@selector(addItem:)] autorelease];
+        }
         // Conf the action button
-        UIBarButtonItem *actionItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                target:self action:@selector(displayActionSheet:)] autorelease];
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonActionIcon)]){
+            actionItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonActionIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(displayActionSheet:)] autorelease];
+        } else {
+            actionItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                    target:self action:@selector(displayActionSheet:)]
+                    autorelease];
+        }
         // Conf the rewind trash button
-        UIBarButtonItem *trashItem = [[[UIBarButtonItem alloc]
-                initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                target:self action:@selector(delete:)] autorelease];
-
+        if ([TTStyleSheet 
+                hasStyleSheetForSelector:@selector(barButtonTrashIcon)]){
+            trashItem = [[[UIBarButtonItem alloc]
+                    initWithImage:(UIImage *)TTSTYLE(barButtonTrashIcon)
+                    style:UIBarButtonItemStylePlain target:self
+                    action:@selector(delete:)] autorelease];
+        } else {
+            trashItem = [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                    target:self action:@selector(delete:)] autorelease];
+        }
         [[self readonlyToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_previousItem, spacerItem, addItem,
                     spacerItem, actionItem, spacerItem, trashItem, spacerItem,
@@ -193,47 +238,78 @@ static const NSInteger kListDateLabelTag = 101;
 - (void)initializeHeader
 {
     UITableView *tableView = [self tableView];
-    CGRect bounds = [tableView bounds];
-    
-    UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10., 10.,
-            (bounds.size.width - 150.), 20.)] autorelease];
-    
-    [nameLabel setAdjustsFontSizeToFitWidth:YES];
-    [nameLabel setNumberOfLines:1];
-    [nameLabel setMinimumFontSize:10];
+    UIView *headerView = 
+            [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    //configure the name
+    UILabel *nameLabel =
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    NSString *nameText = [_shoppingList name];
+
+    [nameLabel setNumberOfLines:0];
+    [nameLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [nameLabel setTextAlignment:UITextAlignmentCenter];
     [nameLabel setBackgroundColor:[UIColor clearColor]];
-    [nameLabel setText:[_shoppingList name]];
     [nameLabel setTag:kListNameLabelTag];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
-        [nameLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
-    if ([TTStyleSheet 
-            hasStyleSheetForSelector:@selector(headerColorYellow)])
-        [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-    
+    //configure the date
+    UILabel *dateLabel =
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10,
-            10., (bounds.size.width - 10), 20.)] autorelease];
-    
-    [dateLabel setAdjustsFontSizeToFitWidth:YES];
+    NSString *dateText = [dateFormatter stringFromDate:[_shoppingList
+            lastModificationDate]];
+
+    [dateLabel setNumberOfLines:0];
+    [dateLabel setLineBreakMode:UILineBreakModeWordWrap];
     [dateLabel setTextAlignment:UITextAlignmentRight];
-    [dateLabel setNumberOfLines:1];
-    [dateLabel setMinimumFontSize:10];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTag:kListDateLabelTag];
-    [dateLabel setText:[dateFormatter stringFromDate:[_shoppingList
-            lastModificationDate]]];
+
+    //three20 styles for name and date
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
+        [nameLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
+        [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+    }
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(tableTextFont)])
         [dateLabel setFont:(UIFont *)TTSTYLE(tableTextFont)];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [dateLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-    
-    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
-            bounds.size.width, 40.)] autorelease];
-    
+
+    //conent sizes
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+
+    UIFont *nameFont = [nameLabel font];
+    UIFont *dateFont = [dateLabel font];
+    CGFloat nameHeight = [nameText sizeWithFont:nameFont
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGFloat dateHeight = [dateText sizeWithFont:dateFont
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect nameFrame = CGRectMake(.0, .0, titleWidth, nameHeight);
+    CGRect dateFrame = CGRectMake(.0, nameHeight, titleWidth, dateHeight);
+
+    if ((nameHeight + dateHeight + (margin * 2)) <= headerMinHeight) {
+        nameFrame.origin.y = (headerMinHeight - nameHeight - dateHeight) / 2;
+        dateFrame.origin.y = (nameFrame.origin.y + nameHeight);
+    } else {
+        nameFrame.origin.y += margin;
+        dateFrame.origin.y += margin;
+    }
+    //adding texts and frames
+    [nameLabel setText:nameText];
+    [dateLabel setText:dateText];
+    [nameLabel setFrame:nameFrame];
+    [dateLabel setFrame:dateFrame];
+
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth,
+            nameHeight + dateHeight + (2 * margin));
+
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
         UIImageView *backgroundView = [[[UIImageView alloc] 
@@ -245,6 +321,8 @@ static const NSInteger kListDateLabelTag = 101;
     }
     [headerView addSubview:nameLabel];
     [headerView addSubview:dateLabel];
+    [headerView setFrame:headerFrame];
+    [headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:headerView];
 }
 

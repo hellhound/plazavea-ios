@@ -179,6 +179,10 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CC0274C714918E28003B1FF3 /* toolbar-action-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0274C314918E28003B1FF3 /* toolbar-action-icon.png */; };
+		CC0274C814918E28003B1FF3 /* toolbar-next-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0274C414918E28003B1FF3 /* toolbar-next-icon.png */; };
+		CC0274C914918E28003B1FF3 /* toolbar-previous-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0274C514918E28003B1FF3 /* toolbar-previous-icon.png */; };
+		CC0274CA14918E28003B1FF3 /* toolbar-trash-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0274C614918E28003B1FF3 /* toolbar-trash-icon.png */; };
 		CC10ED83146A270C0004CA1B /* EmergencyNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */; };
 		CC1947BC1455E4940004C283 /* StoreDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1947BA1455E4940004C283 /* StoreDetailController.m */; };
 		CC2083801469A32E00F81BE1 /* EmergencyCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */; };
@@ -813,6 +817,10 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../../Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CC0274C314918E28003B1FF3 /* toolbar-action-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-action-icon.png"; sourceTree = "<group>"; };
+		CC0274C414918E28003B1FF3 /* toolbar-next-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-next-icon.png"; sourceTree = "<group>"; };
+		CC0274C514918E28003B1FF3 /* toolbar-previous-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-previous-icon.png"; sourceTree = "<group>"; };
+		CC0274C614918E28003B1FF3 /* toolbar-trash-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-trash-icon.png"; sourceTree = "<group>"; };
 		CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyNumberController.m; sourceTree = "<group>"; };
 		CC1947BA1455E4940004C283 /* StoreDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailController.m; sourceTree = "<group>"; };
 		CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyCategoryController.m; sourceTree = "<group>"; };
@@ -975,6 +983,10 @@
 				2F95F3CB149CE28400909B23 /* pagecurl.png */,
 				2F95F3CC149CE28400909B23 /* pagecurl@2x.png */,
 				2F95F3CD149CE28400909B23 /* shopping-list-add@2x.png */,
+				CC0274C314918E28003B1FF3 /* toolbar-action-icon.png */,
+				CC0274C414918E28003B1FF3 /* toolbar-next-icon.png */,
+				CC0274C514918E28003B1FF3 /* toolbar-previous-icon.png */,
+				CC0274C614918E28003B1FF3 /* toolbar-trash-icon.png */,
 				CCC6196A14995B3600F0E744 /* shopping-list-add.png */,
 				2FAC754F148FE453007757F9 /* stores-background.png */,
 				2FAC7550148FE453007757F9 /* stores-background@2x.png */,
@@ -1913,6 +1925,10 @@
 				2FCB2823148D555100C61E3B /* composition-section-header.png in Resources */,
 				2FCB2888148D7FE900C61E3B /* composition-section-header@2x.png in Resources */,
 				2F712A43148E741100668D78 /* composition-background@2x.png in Resources */,
+				CC0274C714918E28003B1FF3 /* toolbar-action-icon.png in Resources */,
+				CC0274C814918E28003B1FF3 /* toolbar-next-icon.png in Resources */,
+				CC0274C914918E28003B1FF3 /* toolbar-previous-icon.png in Resources */,
+				CC0274CA14918E28003B1FF3 /* toolbar-trash-icon.png in Resources */,
 				2FAC7553148FE453007757F9 /* stores-background.png in Resources */,
 				2FAC7554148FE453007757F9 /* stores-background@2x.png in Resources */,
 				2FAC7555148FE453007757F9 /* stores-section-header.png in Resources */,
