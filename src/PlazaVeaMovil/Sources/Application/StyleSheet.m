@@ -163,17 +163,6 @@
     return SHOPPING_LIST_BACKGROUND;
 }
 
-- (UIButton *)shopingListButtonAdd
-{
-    UIButton *button = 
-        [[UIButton buttonWithType:UIButtonTypeCustom] autorelease];
-    UIImage *buttonImage = SHOPPING_LIST_ICON_ADD;
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    [button setFrame: CGRectMake(0.0, 0.0, buttonImage.size.width, 
-            buttonImage.size.height)];
-    return button;
-}
-
 - (UIImage *)barButtonPreviousIcon
 {
     return TOOLBAR_PREVIOUS_ICON;

@@ -52,11 +52,14 @@
                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil action:NULL] autorelease];
         // Conf the add-item button
-        UIButton *addButton;
-
+        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(shopingListButtonAdd)])
-            addButton = (UIButton *)TTSTYLE(shopingListButtonAdd);
+                hasStyleSheetForSelector:@selector(barButtonAddIcon)]){
+            UIImage *buttonImage = (UIImage *)TTSTYLE(barButtonAddIcon);
+            [addButton setImage:buttonImage forState:UIControlStateNormal];
+            [addButton setFrame:CGRectMake(0.0, 0.0, buttonImage.size.width, 
+                    buttonImage.size.height)];
+        }
         [addButton addTarget:self action:@selector(addShoppingListHandler:)
                 forControlEvents:UIControlEventTouchUpInside];
 
