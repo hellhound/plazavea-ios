@@ -8,6 +8,8 @@
 {
     NSString *_collectionId;
     BOOL _isMeat;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, readonly) NSString *collectionId;
 @property (nonatomic, readonly) BOOL isMeat;

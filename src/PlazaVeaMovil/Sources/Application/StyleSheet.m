@@ -68,6 +68,7 @@
 
 // recipes
 #define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
+#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
 
 @implementation StyleSheet
 
@@ -131,7 +132,7 @@
 
 - (UIColor *)tableHeaderTextColor
 {
-    return HEADER_COLOR_YELLOW;
+    return HEADER_COLOR_WHITE;
 }
 
 #pragma mark -
@@ -264,5 +265,10 @@
 - (UIImage *)recipesBackgroundHeader
 {
     return RECIPES_BACKGROUND;
+}
+
+- (TTStyle *)recipesSectionHeader
+{
+    return  [TTImageStyle styleWithImage:RECIPES_SECTION_HEADER next:nil];
 }
 @end
