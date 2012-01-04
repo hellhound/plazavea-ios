@@ -142,7 +142,7 @@ NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
 // NSLocalizedString(@"Tipos de carne", nil)
 
 // RecipeCategoryController's constants
-NSString *const kRecipeCategoryTitle = @"Categorías";
+NSString *const kRecipeCategoryTitle = @"Recetas";
 // NSLocalizedString(@"Categorías", nil)
 NSString *const kRecipeSubcategoryTitle = @"Subcategorías";
 // NSLocalizedString(@"Subcategorías", nil)

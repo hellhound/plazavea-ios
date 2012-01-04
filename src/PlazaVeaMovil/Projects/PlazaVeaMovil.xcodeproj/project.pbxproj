@@ -112,6 +112,26 @@
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
 		2F19B8B2147FF6EE00582D7E /* foods_01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2F19B8B1147FF6EE00582D7E /* foods_01.csv */; };
+		2F2B2B2514B4EA9C000C0F26 /* chicken-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */; };
+		2F2B2B2614B4EA9C000C0F26 /* chicken-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */; };
+		2F2B2B2714B4EA9C000C0F26 /* fish-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */; };
+		2F2B2B2814B4EA9C000C0F26 /* fish-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1414B4EA9C000C0F26 /* fish-icon@2x.png */; };
+		2F2B2B2914B4EA9C000C0F26 /* meat-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1514B4EA9C000C0F26 /* meat-icon.png */; };
+		2F2B2B2A14B4EA9C000C0F26 /* meat-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1614B4EA9C000C0F26 /* meat-icon@2x.png */; };
+		2F2B2B2B14B4EA9C000C0F26 /* meats-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1714B4EA9C000C0F26 /* meats-background.png */; };
+		2F2B2B2C14B4EA9C000C0F26 /* meats-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1814B4EA9C000C0F26 /* meats-background@2x.png */; };
+		2F2B2B2D14B4EA9C000C0F26 /* other-meats-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1914B4EA9C000C0F26 /* other-meats-icon.png */; };
+		2F2B2B2E14B4EA9C000C0F26 /* other-meats-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1A14B4EA9C000C0F26 /* other-meats-icon@2x.png */; };
+		2F2B2B2F14B4EA9C000C0F26 /* pork-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1B14B4EA9C000C0F26 /* pork-icon.png */; };
+		2F2B2B3014B4EA9C000C0F26 /* pork-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1C14B4EA9C000C0F26 /* pork-icon@2x.png */; };
+		2F2B2B3114B4EA9C000C0F26 /* recipes-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1D14B4EA9C000C0F26 /* recipes-background.png */; };
+		2F2B2B3214B4EA9C000C0F26 /* recipes-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1E14B4EA9C000C0F26 /* recipes-background@2x.png */; };
+		2F2B2B3314B4EA9D000C0F26 /* recipes-picture-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1F14B4EA9C000C0F26 /* recipes-picture-background.png */; };
+		2F2B2B3414B4EA9D000C0F26 /* recipes-picture-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2014B4EA9C000C0F26 /* recipes-picture-background@2x.png */; };
+		2F2B2B3514B4EA9D000C0F26 /* recipes-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2114B4EA9C000C0F26 /* recipes-section-header.png */; };
+		2F2B2B3614B4EA9D000C0F26 /* recipes-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2214B4EA9C000C0F26 /* recipes-section-header@2x.png */; };
+		2F2B2B3714B4EA9D000C0F26 /* snacks-backgrounds.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */; };
+		2F2B2B3814B4EA9D000C0F26 /* snacks-backgrounds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */; };
 		2F4875B1148C017A0027C2F0 /* composition-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4875B0148C017A0027C2F0 /* composition-background.png */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
 		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
@@ -750,6 +770,26 @@
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
 		2F19B8B1147FF6EE00582D7E /* foods_01.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foods_01.csv; sourceTree = "<group>"; };
+		2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon.png"; sourceTree = "<group>"; };
+		2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fish-icon.png"; sourceTree = "<group>"; };
+		2F2B2B1414B4EA9C000C0F26 /* fish-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fish-icon@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1514B4EA9C000C0F26 /* meat-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meat-icon.png"; sourceTree = "<group>"; };
+		2F2B2B1614B4EA9C000C0F26 /* meat-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meat-icon@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1714B4EA9C000C0F26 /* meats-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-background.png"; sourceTree = "<group>"; };
+		2F2B2B1814B4EA9C000C0F26 /* meats-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-background@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1914B4EA9C000C0F26 /* other-meats-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "other-meats-icon.png"; sourceTree = "<group>"; };
+		2F2B2B1A14B4EA9C000C0F26 /* other-meats-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "other-meats-icon@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1B14B4EA9C000C0F26 /* pork-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pork-icon.png"; sourceTree = "<group>"; };
+		2F2B2B1C14B4EA9C000C0F26 /* pork-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pork-icon@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1D14B4EA9C000C0F26 /* recipes-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-background.png"; sourceTree = "<group>"; };
+		2F2B2B1E14B4EA9C000C0F26 /* recipes-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-background@2x.png"; sourceTree = "<group>"; };
+		2F2B2B1F14B4EA9C000C0F26 /* recipes-picture-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-picture-background.png"; sourceTree = "<group>"; };
+		2F2B2B2014B4EA9C000C0F26 /* recipes-picture-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-picture-background@2x.png"; sourceTree = "<group>"; };
+		2F2B2B2114B4EA9C000C0F26 /* recipes-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-section-header.png"; sourceTree = "<group>"; };
+		2F2B2B2214B4EA9C000C0F26 /* recipes-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-section-header@2x.png"; sourceTree = "<group>"; };
+		2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds.png"; sourceTree = "<group>"; };
+		2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds@2x.png"; sourceTree = "<group>"; };
 		2F4875B0148C017A0027C2F0 /* composition-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background.png"; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -972,6 +1012,26 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */,
+				2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */,
+				2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */,
+				2F2B2B1414B4EA9C000C0F26 /* fish-icon@2x.png */,
+				2F2B2B1514B4EA9C000C0F26 /* meat-icon.png */,
+				2F2B2B1614B4EA9C000C0F26 /* meat-icon@2x.png */,
+				2F2B2B1714B4EA9C000C0F26 /* meats-background.png */,
+				2F2B2B1814B4EA9C000C0F26 /* meats-background@2x.png */,
+				2F2B2B1914B4EA9C000C0F26 /* other-meats-icon.png */,
+				2F2B2B1A14B4EA9C000C0F26 /* other-meats-icon@2x.png */,
+				2F2B2B1B14B4EA9C000C0F26 /* pork-icon.png */,
+				2F2B2B1C14B4EA9C000C0F26 /* pork-icon@2x.png */,
+				2F2B2B1D14B4EA9C000C0F26 /* recipes-background.png */,
+				2F2B2B1E14B4EA9C000C0F26 /* recipes-background@2x.png */,
+				2F2B2B1F14B4EA9C000C0F26 /* recipes-picture-background.png */,
+				2F2B2B2014B4EA9C000C0F26 /* recipes-picture-background@2x.png */,
+				2F2B2B2114B4EA9C000C0F26 /* recipes-section-header.png */,
+				2F2B2B2214B4EA9C000C0F26 /* recipes-section-header@2x.png */,
+				2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */,
+				2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */,
 				2F8768FA14AA144A0032ADB9 /* offer-banner.png */,
 				2F8768FB14AA144A0032ADB9 /* offer-banner@2x.png */,
 				2F87657B14A8D95F0032ADB9 /* offer-background.png */,
@@ -1944,6 +2004,26 @@
 				2F87657E14A8D95F0032ADB9 /* offer-background@2x.png in Resources */,
 				2F8768FC14AA144A0032ADB9 /* offer-banner.png in Resources */,
 				2F8768FD14AA144A0032ADB9 /* offer-banner@2x.png in Resources */,
+				2F2B2B2514B4EA9C000C0F26 /* chicken-icon.png in Resources */,
+				2F2B2B2614B4EA9C000C0F26 /* chicken-icon@2x.png in Resources */,
+				2F2B2B2714B4EA9C000C0F26 /* fish-icon.png in Resources */,
+				2F2B2B2814B4EA9C000C0F26 /* fish-icon@2x.png in Resources */,
+				2F2B2B2914B4EA9C000C0F26 /* meat-icon.png in Resources */,
+				2F2B2B2A14B4EA9C000C0F26 /* meat-icon@2x.png in Resources */,
+				2F2B2B2B14B4EA9C000C0F26 /* meats-background.png in Resources */,
+				2F2B2B2C14B4EA9C000C0F26 /* meats-background@2x.png in Resources */,
+				2F2B2B2D14B4EA9C000C0F26 /* other-meats-icon.png in Resources */,
+				2F2B2B2E14B4EA9C000C0F26 /* other-meats-icon@2x.png in Resources */,
+				2F2B2B2F14B4EA9C000C0F26 /* pork-icon.png in Resources */,
+				2F2B2B3014B4EA9C000C0F26 /* pork-icon@2x.png in Resources */,
+				2F2B2B3114B4EA9C000C0F26 /* recipes-background.png in Resources */,
+				2F2B2B3214B4EA9C000C0F26 /* recipes-background@2x.png in Resources */,
+				2F2B2B3314B4EA9D000C0F26 /* recipes-picture-background.png in Resources */,
+				2F2B2B3414B4EA9D000C0F26 /* recipes-picture-background@2x.png in Resources */,
+				2F2B2B3514B4EA9D000C0F26 /* recipes-section-header.png in Resources */,
+				2F2B2B3614B4EA9D000C0F26 /* recipes-section-header@2x.png in Resources */,
+				2F2B2B3714B4EA9D000C0F26 /* snacks-backgrounds.png in Resources */,
+				2F2B2B3814B4EA9D000C0F26 /* snacks-backgrounds@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

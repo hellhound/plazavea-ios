@@ -9,30 +9,30 @@
 // default status bar style
 #define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
 
-//color for navigation bar
+// color for navigation bar
 #define BAR_TINT_COLOR RGBCOLOR(255., 208., .0)
 
-//color for texts in tables
+//vcolor for texts in tables
 #define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
 
-//color for Headers
+// color for Headers
 #define HEADER_COLOR_YELLOW RGBCOLOR(255., 255., .0)
 #define HEADER_COLOR_WHITE [UIColor whiteColor]
 
-//size for text in tables
+// size for text in tables
 #define TABLE_TEXT_HEADER_SIZE 16.
 #define TABLE_SECTION_HEADER_HEIGHT 24.
 #define PICTURE_HEADER_SIZE 14.
 #define TABLE_TEXT_SIZE 13.
 
-//launcher
+// launcher
 #define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
 #define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
 #define NAVIGATION_BAR_COLOR RGBCOLOR(255., 208., .0)
 #define LAUNCHER_FONT_COLOR RGBCOLOR(255., 180., .0)
 #define LAUNCHER_FONT_SHADOW RGBCOLOR(153., 25., 28.)
 
-//shopping list
+// shopping list
 #define SHOPPING_LIST_BACKGROUND \
     TTIMAGE(@"bundle://shopping-list-background.png")
 #define SHOPPING_LIST_ICON_ADD \
@@ -65,6 +65,9 @@
 
 // offers
 #define OFFER_BACKGROUND TTIMAGE(@"bundle://offer-background.png")
+
+// recipes
+#define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
 
 @implementation StyleSheet
 
@@ -253,5 +256,13 @@
 - (UIImage *)offerBackgroundHeader
 {
     return OFFER_BACKGROUND;
+}
+
+#pragma mark -
+#pragma mark Recipes
+
+- (UIImage *)recipesBackgroundHeader
+{
+    return RECIPES_BACKGROUND;
 }
 @end

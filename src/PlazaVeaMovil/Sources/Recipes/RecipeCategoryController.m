@@ -56,8 +56,8 @@ static CGFloat headerMinHeight = 40.;
             hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
         [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     }
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
-        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
     NSString *title = [self title];
@@ -82,9 +82,9 @@ static CGFloat headerMinHeight = 40.;
             titleHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(storesBackgroundHeader)]) {
+            @selector(recipesBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(storesBackgroundHeader)] autorelease];
+                (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
         [_headerView insertSubview:back atIndex:0];
     }
     [_headerView addSubview:_titleLabel];
