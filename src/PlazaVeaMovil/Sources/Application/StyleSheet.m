@@ -69,6 +69,7 @@
 // recipes
 #define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
 #define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
+#define MEATS_BACKGROUND TTIMAGE(@"bundle://meats-background.png")
 
 @implementation StyleSheet
 
@@ -270,5 +271,10 @@
 - (TTStyle *)recipesSectionHeader
 {
     return  [TTImageStyle styleWithImage:RECIPES_SECTION_HEADER next:nil];
+}
+
+- (UIImage *)meatsBackgroundHeader
+{
+    return MEATS_BACKGROUND;
 }
 @end

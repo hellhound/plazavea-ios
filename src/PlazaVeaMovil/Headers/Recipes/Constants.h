@@ -56,6 +56,11 @@ extern NSString *const kMeatsListTitleForError;
 extern NSString *const kMeatsListSubtitleForError;
 extern const CGFloat kMeatsListImageWidth;
 extern const CGFloat kMeatsListImageHeight;
+extern NSString *const kChickenIcon;
+extern NSString *const kFishIcon;
+extern NSString *const kMeatIcon;
+extern NSString *const kPorkIcon;
+extern NSString *const kOtherMeatsIcon;
 
 // RecipeCategoryDataSource's messages
 
