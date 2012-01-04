@@ -288,7 +288,8 @@ static CGFloat headerMinHeight = 40.;
             constrainedToSize:constrainedTitleSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
     CGRect nameFrame = CGRectMake(.0, .0, titleWidth, nameHeight);
-    CGRect dateFrame = CGRectMake(.0, nameHeight, titleWidth, dateHeight);
+    CGRect dateFrame =
+            CGRectMake(.0, nameHeight, (titleWidth - margin), dateHeight);
 
     if ((nameHeight + dateHeight + (margin * 2)) <= headerMinHeight) {
         nameFrame.origin.y = (headerMinHeight - nameHeight - dateHeight) / 2;
