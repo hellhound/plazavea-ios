@@ -5,6 +5,8 @@
 @interface RecipeCategoryController: BaseRecipeController
 {
     NSString *_categoryId;
+    UIView *_headerView;
+    UILabel *_titleLabel;
 }
 @property (nonatomic, copy) NSString *categoryId;
 

@@ -22,7 +22,7 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark NSObject
 
-- (void) dealloc
+- (void)dealloc
 {
     [_headerView release];
     [_titleLabel release];

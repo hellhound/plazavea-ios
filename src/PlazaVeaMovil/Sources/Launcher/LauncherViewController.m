@@ -49,8 +49,8 @@
     [super loadView];
 
     UIView *superView = [self view];
-
-    _launcherView = [[NonEditableLauncherView alloc] initWithFrame:[superView bounds]];
+    _launcherView = [[NonEditableLauncherView alloc]
+            initWithFrame:[superView bounds]];
     // Configuring the launcher
     [_launcherView setDelegate:self];
     [_launcherView setColumnCount:3];
