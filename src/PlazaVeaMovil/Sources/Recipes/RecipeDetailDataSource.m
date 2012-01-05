@@ -87,7 +87,7 @@
     NSMutableArray *items = [NSMutableArray array];
     NSMutableArray *sections = [NSMutableArray array];
     NSString *recipeName = [recipe name];
-    NSString *rations = [NSString stringWithFormat:kRecipeRations,
+    NSString *title = [NSString stringWithFormat:kRecipeRations, recipeName,
             [[recipe rations] stringValue]];
     NSURL *pictureURL = [recipe pictureURL];
 
@@ -96,25 +96,24 @@
                 kRecipeDetailImageHeigth);
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
-        andTitle:recipeName];
+        title:title andCategory:[[recipe category] name]];
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0){
-        NSMutableArray *subitems = [NSMutableArray array];
+        /*NSMutableArray *subitems = [NSMutableArray array];
 
         [sections addObject:
-                NSLocalizedString(kRecipeDetailSectionFeatures, nil)];
+                NSLocalizedString(kRecipeDetailSectionFeatures, nil)];*/
         for (NSString *feature in [recipe features]) {
             TTTableTextItem *item = [TTTableTextItem itemWithText: feature];
 
-            [subitems addObject:item];
+            [items addObject:item];
         }
-        [items addObject:subitems];
-    } 
-    else {
-        [sections addObject:@""];
-        [items addObject:[NSArray arrayWithObject:
-                          [TTTableTextItem itemWithText:rations]]];
+        //[items addObject:subitems];
+    } else {
+        /*[sections addObject:@""];
+        [items addObject:[NSArray arrayWithObject:[TTTableTextItem
+                itemWithText:[[recipe rations] stringValue]]]];
         if ([[recipe ingredients] count] > 0) {
             NSMutableArray *subitems = [NSMutableArray array];
 
@@ -167,9 +166,13 @@
                 [subitems addObject:item];
             }
             [items addObject:subitems];
-        }
+        }*/
+        TTTableTextItem *ingredients = [TTTableTextItem
+                itemWithText:kRecipeDetailSectionIngredients URL:nil];
+        
+        [items addObjectsFromArray:[NSArray arrayWithObjects:ingredients, nil]];
     }
-    [self setSections:sections];
+    //[self setSections:sections];
     [self setItems:items];
 }
 

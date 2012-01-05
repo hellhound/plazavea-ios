@@ -35,7 +35,7 @@ static CGFloat headerMinHeight = 40.;
 }
 
 #pragma mark -
-#pragma mark UIView
+#pragma mark UIViewController
 
 - (void)loadView
 {
@@ -53,11 +53,11 @@ static CGFloat headerMinHeight = 40.;
     [_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
     [_imageView setAutoresizingMask:UIViewAutoresizingNone];
     [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-     UIViewAutoresizingFlexibleRightMargin];
+            UIViewAutoresizingFlexibleRightMargin];
     [_imageView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
     [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
-                         autorelease]];
+            autorelease]];
     [_titleLabel setNumberOfLines:0];
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];

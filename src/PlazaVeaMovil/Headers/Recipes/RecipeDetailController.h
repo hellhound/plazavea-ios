@@ -12,6 +12,7 @@
     TTImageView *_imageView;
     UIView *_headerView;
     UILabel *_titleLabel;
+    UILabel *_categoryLabel;
     UIBarButtonItem *_toListButton;
 }
 

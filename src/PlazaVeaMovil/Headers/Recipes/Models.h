@@ -36,6 +36,7 @@
 @property (nonatomic, retain) NSNumber *recipeCount;
 @property (nonatomic, retain) NSNumber *subcategoriesCount;
 
++ (id)shortRecipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory;
 + (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory;
 @end
 
@@ -68,6 +69,7 @@
 {
     NSNumber *_recipeId;
     NSString *_code;
+    RecipeCategory *_category;
     NSString *_name;
     NSURL *_pictureURL;
     NSMutableArray *_extraPictureURLs;
@@ -82,6 +84,7 @@
 }
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, copy) NSString *code;
+@property (nonatomic, retain)RecipeCategory *category;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSURL *pictureURL;
 @property (nonatomic, readonly) NSArray *extraPictureURLs;

@@ -31,6 +31,7 @@ NSString *const kRecipeCollectionRecipesKey = @"recipes";
 NSString *const kRecipeIdKey = @"id";
 NSString *const kRecipeCodeKey = @"code";
 NSString *const kRecipeNameKey = @"name";
+NSString *const kRecipeCategoryKey = @"category";
 NSString *const kRecipePictureURLKey = @"picture";
 NSString *const kRecipeExtraPictureURLsKey = @"extra_pictures";
 NSString *const kRecipePriceKey = @"price";
@@ -126,7 +127,7 @@ NSString *const kRecipeDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kRecipeDetailSectionFeatures = @"Características";
 // NSLocalizedString(@"Características", nil)
-NSString *const kRecipeDetailSectionIngredients = @"Ingredients";
+NSString *const kRecipeDetailSectionIngredients = @"Ingredientes";
 // NSLocalizedString(@"Ingredients", nil)
 NSString *const kRecipeDetailSectionProcedures = @"Preparación";
 // NSLocalizedString(@"Preparación", nil)
@@ -164,7 +165,7 @@ const CGFloat kRecipeListImageHeigth = 50.;
 
 NSString *const kRecipeDetailTitle = @"Detalle de una receta";
 // NSLocalizedString(@"Detalle de una receta", nil);
-NSString *const kRecipeRations = @"%@ personas";
+NSString *const kRecipeRations = @"%@\n(%@ personas)";
 // NSLocalizedString(@"%@ personas", nil);
 NSString *const kRecipeDetailDefaultImage =
         @"bundle://default-recipe-detail.png";

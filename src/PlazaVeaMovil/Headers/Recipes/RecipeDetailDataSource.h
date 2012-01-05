@@ -4,7 +4,7 @@
 
 @protocol RecipeDetailDataSourceDelegate;
 
-@interface RecipeDetailDataSource: TTSectionedDataSource
+@interface RecipeDetailDataSource: TTListDataSource
 {
     id<RecipeDetailDataSourceDelegate> _delegate;
 }
@@ -18,5 +18,6 @@
 
 - (void)        dataSource:(RecipeDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
-                  andTitle:(NSString *)title;
+                     title:(NSString *)title
+               andCategory:(NSString *)category;
 @end

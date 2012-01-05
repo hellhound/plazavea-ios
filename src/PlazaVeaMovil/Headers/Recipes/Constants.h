@@ -28,6 +28,7 @@ extern NSString *const kRecipeCollectionRecipesKey;
 extern NSString *const kRecipeIdKey;
 extern NSString *const kRecipeCodeKey;
 extern NSString *const kRecipeNameKey;
+extern NSString *const kRecipeCategoryKey;
 extern NSString *const kRecipePictureURLKey;
 extern NSString *const kRecipeExtraPictureURLsKey;
 extern NSString *const kRecipePriceKey;

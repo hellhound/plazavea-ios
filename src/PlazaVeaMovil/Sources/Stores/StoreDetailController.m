@@ -86,9 +86,6 @@ static CGFloat headerMinHeight = 40.;
     [self refresh];
 }
 
-#pragma mark -
-#pragma mark UITableViewController
-
 - (UINavigationItem *)navigationItem
 {
     UINavigationItem *navItem = [super navigationItem];

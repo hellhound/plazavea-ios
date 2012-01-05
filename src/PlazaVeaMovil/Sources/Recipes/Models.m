@@ -200,6 +200,30 @@ static NSString *const kRecipeMiscYes = @"YES";
 @synthesize categoryId = _categoryId, name = _name, recipeCount = _recipeCount,
         subcategoriesCount = _subcategoriesCount;
 
++ (id)shortRecipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory
+{
+    NSNumber *categoryId;
+    NSString *name;
+    
+    if (![rawRecipeCategory isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((categoryId =
+         [rawRecipeCategory objectForKey:kRecipeCategoryIdKey]) == nil)
+        return nil;
+    if (![categoryId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawRecipeCategory objectForKey:kRecipeCategoryNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    RecipeCategory *category = [[[RecipeCategory alloc] init] autorelease];
+    
+    [category setCategoryId:categoryId];
+    [category setName:name];
+    return category;
+}
+
 + (id)recipeCategoryFromDictionary:(NSDictionary *)rawRecipeCategory
 {
     NSNumber *categoryId, *recipeCount, *subcategoriesCount;
@@ -562,7 +586,7 @@ static NSString *const kRecipeMiscYes = @"YES";
 
 @synthesize recipeId = _recipeId, code = _code, name = _name,
         pictureURL = _pictureURL, price = _price, rations = _rations,
-            strains = _strains;
+            strains = _strains, category = _category;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe
 {
@@ -607,6 +631,8 @@ static NSString *const kRecipeMiscYes = @"YES";
     NSNumber *price, *rations;
     NSDictionary *rawStrains;
     StrainCollection *strains;
+    NSDictionary *rawCategory;
+    RecipeCategory *category;
     NSArray *extraPictureURLs, *ingredients, *procedures, *features, *tips;
     NSMutableArray *mutableExtraPictureURLs =
             [recipe mutableArrayValueForKey:kMutableExtraPictureURLsKey]; 
@@ -660,10 +686,13 @@ static NSString *const kRecipeMiscYes = @"YES";
     strains = [StrainCollection strainCollectionFromDictionary:rawStrains];
     //if (strains == nil)
     //    return nil;
+    rawCategory = [rawRecipe objectForKey:kRecipeCategoryKey];
+    category = [RecipeCategory shortRecipeCategoryFromDictionary:rawCategory];
     [recipe setCode:code];
     [recipe setPrice:price];
     [recipe setRations:rations];
     [recipe setStrains:strains];
+    [recipe setCategory:category];
     for (NSString *extraPictureURL in extraPictureURLs) {
         if (!([extraPictureURL isKindOfClass:[NSString class]] &&
                 [NSURL validateURL:extraPictureURL]))
@@ -722,6 +751,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [self setPrice:[recipe price]];
     [self setRations:[recipe rations]];
     [self setStrains:[recipe strains]];
+    [self setCategory:[recipe category]];
 
     NSMutableArray *extraPictureURLs =
             [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
