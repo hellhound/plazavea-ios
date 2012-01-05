@@ -59,17 +59,30 @@
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[meats count]];
     
     for (Meat *meat in meats) {
-        NSURL *pictureURL = [meat pictureURL];
+        UIImage *icon;
+        NSString *name = [meat name];
+        NSStringCompareOptions options =
+                NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
         
-        if (pictureURL != nil) {
-            pictureURL = IMAGE_URL([meat pictureURL], kMeatsListImageWidth,
-                kMeatsListImageHeight);
+        if ([name rangeOfString:@"res" options:options].location
+                != NSNotFound) {
+            icon = TTIMAGE(kMeatIcon);
+        } else if ([name rangeOfString:@"ave" options:options].location
+                != NSNotFound) {
+            icon = TTIMAGE(kChickenIcon);
+        } else if ([name rangeOfString:@"cerdo" options:options].location
+                != NSNotFound) {
+            icon = TTIMAGE(kPorkIcon);
+        } else if (([name rangeOfString:@"pescado" options:options].location
+                != NSNotFound) || ([name rangeOfString:@"marisco"
+                    options:options].location != NSNotFound)) {
+            icon = TTIMAGE(kFishIcon);
+        } else {
+            icon = TTIMAGE(kOtherMeatsIcon);
         }
+        
         TableImageSubtitleItem *item = [TableImageSubtitleItem
-                itemWithText:[meat name] subtitle:nil
-                    //imageURL:[pictureURL absoluteString]
-                    imageURL:nil
-                    defaultImage:TTIMAGE(kOtherMeatsIcon)
+                itemWithText:name subtitle:nil imageURL:nil defaultImage:icon
                     URL:URL(kURLRecipeMeatListCall, [meat meatId])];
         
         [items addObject:item];

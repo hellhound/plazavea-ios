@@ -102,7 +102,7 @@ NSString *const kMeatsListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 const CGFloat kMeatsListImageWidth = 41.;
 const CGFloat kMeatsListImageHeight = 41.;
-NSString *const kChickenIcon = @"bundle://chiken-icon.png";
+NSString *const kChickenIcon = @"bundle://chicken-icon.png";
 NSString *const kFishIcon = @"bundle://fish-icon.png";
 NSString *const kMeatIcon = @"bundle://meat-icon.png";
 NSString *const kPorkIcon = @"bundle://pork-icon.png";
