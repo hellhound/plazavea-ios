@@ -1,0 +1,24 @@
+#import <Foundation/Foundation.h>
+
+#import <Three20/Three20.h>
+
+#import "Recipes/BaseRecipeController.h"
+
+@interface BaseRecipeDetailController: BaseRecipeController
+{
+    NSString *_recipeId;
+    TTImageView *_imageView;
+    UIView *_headerView;
+    UIView *_pictureBack;
+    UILabel *_titleLabel;
+    UILabel *_categoryLabel;
+    UIBarButtonItem *_toListButton;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId;
+- (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat;
+- (void)createShoppingListFormRecipe;
+- (void)sizeTheHeaderWithImageURL:(NSURL *)imageURL
+                         category:(NSString *)category
+                         andTitle:(NSString *)title;
+@end

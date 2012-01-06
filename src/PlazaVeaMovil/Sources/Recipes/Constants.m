@@ -149,9 +149,9 @@ NSString *const kRecipesMeatTypesButton = @"Tipos de carne";
 
 // RecipeCategoryController's constants
 NSString *const kRecipeCategoryTitle = @"Recetas";
-// NSLocalizedString(@"Categorías", nil)
-NSString *const kRecipeSubcategoryTitle = @"Subcategorías";
-// NSLocalizedString(@"Subcategorías", nil)
+// NSLocalizedString(@"Recetas", nil)
+NSString *const kRecipeSubcategoryTitle = @"Recetas";
+// NSLocalizedString(@"Recetas", nil)
 
 // RecipeListController's constants
 
@@ -163,8 +163,8 @@ const CGFloat kRecipeListImageHeigth = 50.;
 
 // RecipeDetailController's constants
 
-NSString *const kRecipeDetailTitle = @"Detalle de una receta";
-// NSLocalizedString(@"Detalle de una receta", nil);
+NSString *const kRecipeDetailTitle = @"Receta";
+// NSLocalizedString(@"Receta", nil);
 NSString *const kRecipeRations = @"%@\n(%@ personas)";
 // NSLocalizedString(@"%@ personas", nil);
 NSString *const kRecipeDetailDefaultImage =
@@ -188,6 +188,21 @@ NSString *const kURLRecipeMeatList =
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 NSString *const kURLRecipeMeatsDetail =
         @"tt://launcher/meats/recipe/(initWithRecipeId:)/(hasMeat:)/";
+NSString *const kURLIngredientRecipeDetail =
+        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/";
+NSString *const kURLProceduresRecipeDetail =
+        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/";
+NSString *const kURLTipsRecipeDetail =
+        @"tt://launcher/recipe/tips/(initWithRecipeId:)/";
+NSString *const kURLIngredientRecipeMeatsDetail =
+        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/(hasMeat:)/";
+NSString *const kURLProceduresRecipeMeatsDetail =
+        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/(hasMeat:)/";
+NSString *const kURLTipsRecipeMeatsDetail =
+        @"tt://launcher/recipe/tips/(initWithRecipeId:)/(hasMeat:)/";
+NSString *const kURLRecipeStrainList =
+        @"tt://launcher/wines/strains/(initWithRecipeId:)/";
+
 
 // Controllers' URL calls
 NSString *const kURLMeatsCall = @"tt://launcher/recipes/meats/";
@@ -201,6 +216,20 @@ NSString *const kURLRecipeMeatListCall =
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 NSString *const kURLRecipeMeatsDetailCall =
         @"tt://launcher/meats/recipe/%@/%@/";
+NSString *const kURLIngredientRecipeDetailCall =
+        @"tt://launcher/recipe/ingredients/%@/";
+NSString *const kURLProceduresRecipeDetailCall =
+        @"tt://launcher/recipe/procedures/%@/";
+NSString *const kURLTipsRecipeDetailCall =
+        @"tt://launcher/recipe/tips/%@/";
+NSString *const kURLIngredientRecipeMeatsDetailCall =
+        @"tt://launcher/recipe/ingredients/%@/%@/";
+NSString *const kURLProceduresRecipeMeatsDetailCall = 
+        @"tt://launcher/recipe/procedures/%@/%@/";
+NSString *const kURLTipsRecipeMeatsDetailCall =
+        @"tt://launcher/recipe/tips/%@/%@/";
+NSString *const kURLRecipeStrainListCall =
+        @"tt://launcher/wines/strains/%@/";
 
 // Endpoint URLs
 

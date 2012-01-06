@@ -14,6 +14,9 @@
 #import "Recipes/RecipeCategoryController.h"
 #import "Recipes/RecipeListController.h"
 #import "Recipes/RecipeDetailController.h"
+#import "Recipes/IngredientRecipeDetailController.h"
+#import "Recipes/ProcedureRecipeDetailController.h"
+#import "Recipes/TipsRecipeDetailController.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferListController.h"
 #import "Offers/PromotionListController.h"
@@ -92,59 +95,90 @@
     TTURLMap *map = [navigator URLMap];
 
     // Launcher
-    [map from:kURLLauncher toViewController:[LauncherViewController class]];
+    [map from:kURLLauncher
+            toViewController:[LauncherViewController class]];
     // Shopping lists
     // ShoppingListsController isn't a TTViewController so we MUST provide a
     // custom selector for initialization
     [map from:kURLShoppingLists
             toViewController:[ShoppingListsController class]
-            selector:@selector(init)];
+                selector:@selector(init)];
     // Recipes
-    [map from:kURLMeats toModalViewController:[MeatListController class]
-            transition:UIModalTransitionStyleFlipHorizontal];
+    [map from:kURLMeats
+            toModalViewController:[MeatListController class]
+                transition:UIModalTransitionStyleFlipHorizontal];
     [map from:kURLRecipeCategories
             toViewController:[RecipeCategoryController class]];
     [map from:kURLRecipeSubcategories
             toViewController:[RecipeCategoryController class]];
-    [map from:kURLRecipeList toViewController:[RecipeListController class]];
-    [map from:kURLRecipeMeatList toViewController:[RecipeListController class]];
-    [map from:kURLRecipeDetail toViewController:[RecipeDetailController class]];
+    [map from:kURLRecipeList
+            toViewController:[RecipeListController class]];
+    [map from:kURLRecipeMeatList
+            toViewController:[RecipeListController class]];
+    [map from:kURLRecipeDetail
+            toViewController:[RecipeDetailController class]];
     [map from:kURLRecipeMeatsDetail
             toViewController:[RecipeDetailController class]];
+    [map from:kURLIngredientRecipeDetail
+            toViewController:[IngredientRecipeDetailController class]];
+    [map from:kURLProceduresRecipeDetail
+            toViewController:[ProcedureRecipeDetailController class]];
+    [map from:kURLTipsRecipeDetail
+            toViewController:[TipsRecipeDetailController class]];
+    [map from:kURLIngredientRecipeMeatsDetail
+            toViewController:[IngredientRecipeDetailController class]];
+    [map from:kURLProceduresRecipeMeatsDetail
+            toViewController:[ProcedureRecipeDetailController class]];
+    [map from:kURLTipsRecipeMeatsDetail
+            toViewController:[TipsRecipeDetailController class]];
     // Offers
-    [map from:kURLOfferList toViewController:[OfferListController class]];
+    [map from:kURLOfferList
+            toViewController:[OfferListController class]];
     [map from:kURLPromotionList
             toModalViewController:[PromotionListController class]
-            transition:UIModalTransitionStyleFlipHorizontal];
-    [map from:kURLOfferDetail toViewController:[OfferDetailController class]];
+                transition:UIModalTransitionStyleFlipHorizontal];
+    [map from:kURLOfferDetail
+            toViewController:[OfferDetailController class]];
     [map from:kURLPromotionDetail
             toViewController:[PromotionDetailController class]];
     // Stores
-    [map from:kURLRegionList toViewController:[RegionListController class]];
-    [map from:kURLSubregionList toViewController:[RegionListController class]];
-    [map from:kURLStoreList toViewController:[StoreListController class]];
-    [map from:kURLStoreDetail toViewController:[StoreDetailController class]];
-    [map from:kURLStoreMap toModalViewController:[StoreMapController class]
-            transition:UIModalTransitionStyleFlipHorizontal];
-    [map from:kURLStoreDetailMap toModalViewController:
-            [StoreMapController class]
+    [map from:kURLRegionList
+            toViewController:[RegionListController class]];
+    [map from:kURLSubregionList
+            toViewController:[RegionListController class]];
+    [map from:kURLStoreList
+            toViewController:[StoreListController class]];
+    [map from:kURLStoreDetail
+            toViewController:[StoreDetailController class]];
+    [map from:kURLStoreMap
+            toModalViewController:[StoreMapController class]
+                transition:UIModalTransitionStyleFlipHorizontal];
+    [map from:kURLStoreDetailMap
+            toModalViewController:[StoreMapController class]
                 transition:UIModalTransitionStyleFlipHorizontal];
     // Emergency numbers
     [map from:kURLEmergencyCategory
             toViewController:[EmergencyCategoryController class]
-            selector:@selector(init)];
+                selector:@selector(init)];
     // Somelier
-    [map from:kURLStrainList toViewController:[StrainListController class]];
-    [map from:kURLWineList toViewController:[WineListController class]];
-    [map from:kURLWineDetail toViewController:[WineDetailController class]];
+    [map from:kURLStrainList
+            toViewController:[StrainListController class]];
+    [map from:kURLRecipeStrainList
+            toViewController:[StrainListController class]];
+    [map from:kURLWineList
+            toViewController:[WineListController class]];
+    [map from:kURLWineDetail
+            toViewController:[WineDetailController class]];
     // Nutritional composition
-    [map from:kURLFoodCategory toViewController:
-            [FoodCategoryListController class] selector:@selector(init)];
-    [map from:kURLFoodDetail toViewController:[FoodDetailController class]];
+    [map from:kURLFoodCategory
+            toViewController:[FoodCategoryListController class]
+                selector:@selector(init)];
+    [map from:kURLFoodDetail
+            toViewController:[FoodDetailController class]];
     // Open root view controller
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
-            applyAnimated:YES]];
+             applyAnimated:YES]];
     [_window makeKeyAndVisible];
     return YES;
 }

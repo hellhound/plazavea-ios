@@ -48,7 +48,19 @@
         [self setModel:[[[Recipe alloc]
                 initWithRecipeId:recipeId] autorelease]];
         [self setDelegate:delegate];
-        
+    }
+    return self;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId
+              delegate:(id<RecipeDetailDataSourceDelegate>)delegate
+               hasMeat:(BOOL)hasMeat
+{
+    if ((self = [super init]) != nil){
+        [self setModel:[[[Recipe alloc]
+                         initWithRecipeId:recipeId] autorelease]];
+        [self setDelegate:delegate];
+        _hasMeat = hasMeat;
     }
     return self;
 }
@@ -85,7 +97,6 @@
 {
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
-    NSMutableArray *sections = [NSMutableArray array];
     NSString *recipeName = [recipe name];
     NSString *title = [NSString stringWithFormat:kRecipeRations, recipeName,
             [[recipe rations] stringValue]];
@@ -100,79 +111,69 @@
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0){
-        /*NSMutableArray *subitems = [NSMutableArray array];
-
-        [sections addObject:
-                NSLocalizedString(kRecipeDetailSectionFeatures, nil)];*/
         for (NSString *feature in [recipe features]) {
             TTTableTextItem *item = [TTTableTextItem itemWithText: feature];
 
             [items addObject:item];
         }
-        //[items addObject:subitems];
     } else {
-        /*[sections addObject:@""];
-        [items addObject:[NSArray arrayWithObject:[TTTableTextItem
-                itemWithText:[[recipe rations] stringValue]]]];
-        if ([[recipe ingredients] count] > 0) {
-            NSMutableArray *subitems = [NSMutableArray array];
-
-            [sections addObject:
-                    NSLocalizedString(kRecipeDetailSectionIngredients, nil)];
-            for (Ingredient *ingredient in [recipe ingredients]) {
-                TTTableTextItem *item = [TTTableTextItem 
-                        itemWithText: [ingredient formattedIngredientString]];
-
-                [subitems addObject:item];
-            }
-            [items addObject:subitems];
-        }
-        if ([[recipe procedures] count] > 0) {
-            NSMutableArray *subitems = [NSMutableArray array];
-
-            [sections addObject:
-                    NSLocalizedString(kRecipeDetailSectionProcedures, nil)];
-            for (NSString *procedure in [recipe procedures]) {
-                TTTableTextItem *item = [TTTableTextItem 
-                        itemWithText: procedure];
-
-                [subitems addObject:item];
-            }
-            [items addObject:subitems];
-        }
-        if ([[recipe tips] count] > 0) {
-            NSMutableArray *subitems = [NSMutableArray array];
-
-            [sections addObject:
-                    NSLocalizedString(kRecipeDetailSectionTips, nil)];
-            for (NSString *procedure in [recipe tips]) {
-                TTTableTextItem *item = [TTTableTextItem 
-                        itemWithText: procedure];
-
-                [subitems addObject:item];
-            }
-            [items addObject:subitems];
-        }
-        if ([[[recipe strains] strains] count] > 0) {
-            NSMutableArray *subitems = [NSMutableArray array];
-            
-            [sections addObject:
-                    NSLocalizedString(kRecipeDetailSectionStrains, nil)];
-            for (Strain *strain in [[recipe strains] strains]) {
-                TTTableTextItem *item = [TTTableTextItem
-                        itemWithText:[strain name]
-                            URL:URL(kURLWineListCall, [strain strainId])];
+        if (_hasMeat){
+            if ([[recipe ingredients] count] > 0) {
+                TTTableTextItem *ingredients = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionIngredients
+                            URL:URL(kURLIngredientRecipeMeatsDetailCall,
+                            [recipe recipeId], @"1")];
                 
-                [subitems addObject:item];
+                [items addObject:ingredients];
             }
-            [items addObject:subitems];
-        }*/
-        TTTableTextItem *ingredients = [TTTableTextItem
-                itemWithText:kRecipeDetailSectionIngredients URL:nil];
+            if ([[recipe procedures] count] > 0) {
+                TTTableTextItem *procedures = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionProcedures
+                            URL:URL(kURLProceduresRecipeMeatsDetailCall,
+                            [recipe recipeId], @"1")];
+                
+                [items addObject:procedures];
+            }
+            if ([[recipe tips] count] > 0) {
+                TTTableTextItem *tips = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionTips
+                            URL:URL(kURLTipsRecipeMeatsDetailCall,
+                            [recipe recipeId], @"1")];
+                
+                [items addObject:tips];
+            }
+        } else {
+            if ([[recipe ingredients] count] > 0) {
+                TTTableTextItem *ingredients = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionIngredients
+                            URL:URL(kURLIngredientRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:ingredients];
+            }
+            if ([[recipe procedures] count] > 0) {
+                TTTableTextItem *procedures = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionProcedures
+                            URL:URL(kURLProceduresRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:procedures];
+            }
+            if ([[recipe tips] count] > 0) {
+                TTTableTextItem *tips = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionTips
+                            URL:URL(kURLTipsRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:tips];
+        }
+        }
+        TTTableTextItem *strains = [TTTableTextItem
+                itemWithText:kRecipeDetailSectionStrains
+                URL:URL(kURLRecipeStrainListCall, [recipe recipeId])];
         
-        [items addObjectsFromArray:[NSArray arrayWithObjects:ingredients, nil]];
+        [items addObject:strains];
     }
-    //[self setSections:sections];
     [self setItems:items];
 }
 

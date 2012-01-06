@@ -169,6 +169,7 @@ NSString *const kSomelierTitle = @"Somelier";
 
 // Controllers' URLs
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
+
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
 NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
@@ -185,4 +186,4 @@ NSString *const kURLWineCollectionEndPoint =
 NSString *const kURLStrainCollectionEndPoint =
         ENDPOINT(@"/wines/categories.json");
 NSString *const kURLRecipeStrainCollectionEndPoint =
-        ENDPOINT(@"recipes/%@/wines/categories.json");
+        ENDPOINT(@"/recipes/%@/wines/categories.json");

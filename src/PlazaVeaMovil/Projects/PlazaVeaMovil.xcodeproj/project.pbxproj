@@ -133,6 +133,8 @@
 		2F2B2B3714B4EA9D000C0F26 /* snacks-backgrounds.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */; };
 		2F2B2B3814B4EA9D000C0F26 /* snacks-backgrounds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */; };
 		2F2B2B9D14B4F4F8000C0F26 /* RecipesTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B2B9C14B4F4F8000C0F26 /* RecipesTableViewDelegate.m */; };
+		2F32FF4114B689FD00F8112C /* BaseRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */; };
+		2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */; };
 		2F4875B1148C017A0027C2F0 /* composition-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4875B0148C017A0027C2F0 /* composition-background.png */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
 		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
@@ -177,6 +179,11 @@
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
+		2FC9A91914B7423200B7747F /* IngredientRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */; };
+		2FC9A91B14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */; };
+		2FC9A91D14B7519C00B7747F /* ProcedureRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */; };
+		2FC9A92014B758E300B7747F /* TipsRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */; };
+		2FC9A92114B758E300B7747F /* TipsRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91F14B758E300B7747F /* TipsRecipeDetailDataSource.m */; };
 		2FCB25C2148D07C600C61E3B /* composition-picture-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB25C1148D07C600C61E3B /* composition-picture-background.png */; };
 		2FCB2823148D555100C61E3B /* composition-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB2822148D555100C61E3B /* composition-section-header.png */; };
 		2FCB2888148D7FE900C61E3B /* composition-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB2887148D7FE900C61E3B /* composition-section-header@2x.png */; };
@@ -792,6 +799,8 @@
 		2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds.png"; sourceTree = "<group>"; };
 		2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds@2x.png"; sourceTree = "<group>"; };
 		2F2B2B9C14B4F4F8000C0F26 /* RecipesTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesTableViewDelegate.m; sourceTree = "<group>"; };
+		2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeDetailController.m; sourceTree = "<group>"; };
+		2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailController.m; sourceTree = "<group>"; };
 		2F4875B0148C017A0027C2F0 /* composition-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background.png"; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -836,6 +845,11 @@
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailDataSource.m; sourceTree = "<group>"; };
+		2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailDataSource.m; sourceTree = "<group>"; };
+		2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailController.m; sourceTree = "<group>"; };
+		2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsRecipeDetailController.m; sourceTree = "<group>"; };
+		2FC9A91F14B758E300B7747F /* TipsRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsRecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2FCB25C1148D07C600C61E3B /* composition-picture-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-picture-background.png"; sourceTree = "<group>"; };
 		2FCB2822148D555100C61E3B /* composition-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-section-header.png"; sourceTree = "<group>"; };
 		2FCB2887148D7FE900C61E3B /* composition-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-section-header@2x.png"; sourceTree = "<group>"; };
@@ -1189,6 +1203,10 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */,
+				2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */,
+				2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */,
+				2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */,
 				2F2B2B9C14B4F4F8000C0F26 /* RecipesTableViewDelegate.m */,
 				2FE363F61443DE38003B233E /* MeatListController.m */,
 				2CAA3442140E9BF00053170B /* RecipeDetailController.m */,
@@ -1197,6 +1215,9 @@
 				2C49B5241444FF9C00C03CCB /* BaseMeatController.m */,
 				2C49B5251444FF9C00C03CCB /* BaseRecipeController.m */,
 				2C89B090141563EC00E12055 /* RecipeDrillDownController.m */,
+				2FC9A91F14B758E300B7747F /* TipsRecipeDetailDataSource.m */,
+				2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */,
+				2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */,
 				2C133FE9140E967600B7F7EC /* RecipeDetailDataSource.m */,
 				2C59E2DF140554800061676D /* AlphabeticalRecipesDataSource.m */,
 				2CC13B7C1415589C004A17EE /* RecipeCategoryDataSource.m */,
@@ -2163,6 +2184,13 @@
 				CC4B72A1148EE9640053E1E3 /* UIToolbar+Styles.m in Sources */,
 				2C437EEC1497E37100A11FB1 /* NonEditableLauncherView.m in Sources */,
 				2F2B2B9D14B4F4F8000C0F26 /* RecipesTableViewDelegate.m in Sources */,
+				2F32FF4114B689FD00F8112C /* BaseRecipeDetailController.m in Sources */,
+				2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */,
+				2FC9A91914B7423200B7747F /* IngredientRecipeDetailDataSource.m in Sources */,
+				2FC9A91B14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m in Sources */,
+				2FC9A91D14B7519C00B7747F /* ProcedureRecipeDetailController.m in Sources */,
+				2FC9A92014B758E300B7747F /* TipsRecipeDetailController.m in Sources */,
+				2FC9A92114B758E300B7747F /* TipsRecipeDetailDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

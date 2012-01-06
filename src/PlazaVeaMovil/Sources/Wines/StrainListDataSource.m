@@ -14,12 +14,23 @@
 @implementation StrainListDataSource
 
 #pragma mark -
-#pragma mark StrainListDataSource
+#pragma mark NSObject
 
 - (id)init
 {
     if ((self = [super init]) != nil)
         [self setModel:[[[StrainCollection alloc] init] autorelease]];
+    return self;
+}
+
+#pragma mark -
+#pragma mark StrainListDataSource
+
+- (id)initWithRecipeId:(NSString *)recipeId
+{
+    if ((self = [super init]) != nil)
+        [self setModel:[[[StrainCollection alloc] initWithRecipeId:recipeId]
+                autorelease]];
     return self;
 }
 

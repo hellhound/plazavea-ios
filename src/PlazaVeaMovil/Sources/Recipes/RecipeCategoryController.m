@@ -113,9 +113,8 @@ static CGFloat headerMinHeight = 40.;
                 [[[RecipeCategoryDataSource alloc] init] autorelease]];
     }
     else {
-        [self setDataSource:
-                [[[RecipeCategoryDataSource alloc]
-                        initWithCategoryId:_categoryId] autorelease]];
+        [self setDataSource:[[[RecipeCategoryDataSource alloc]
+                initWithCategoryId:_categoryId] autorelease]];
     }
 }
 
