@@ -98,7 +98,7 @@
             title:title andCategory:kRecipeDetailSectionTips];
     if ([[recipe tips] count] > 0) {
         for (NSString *tip in [recipe tips]) {
-            TTTableTextItem *item = [TTTableTextItem itemWithText:tip];
+            TTTableLongTextItem *item = [TTTableLongTextItem itemWithText:tip];
             
             [items addObject:item];
         }
