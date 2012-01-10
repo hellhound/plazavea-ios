@@ -30,6 +30,10 @@ NSString *const kFoodVitaminA = @"vitaminA";
 NSString *const kFoodVitaminC = @"vitaminC";
 NSString *const kFoodCategory = @"category";
 NSString *const kFoodProperties = @"properties";
+NSString *const kFoodQuantity = @"quantity";
+NSString *const kFoodFiber = @"fiber";
+NSString *const kFoodCalcium = @"calcium";
+NSString *const kFoodIron = @"iron";
 
 // FoodFile model's constants
 NSString *const kFoodFileName = @"name";
@@ -40,10 +44,10 @@ NSString *const kFoodCSVFile = @"food.csv";
 // messages
 NSString *const kFoodDetailHeader = @"Composición";
 // NSLocalizedString(@"Composición", nil)
-NSString *const kFoodDetailCalories = @"Calorías";
-// NSLocalizedString(@"Calorías", nil)
-NSString *const kFoodDetailCarbohidrates = @"Carbohidratos disponibles";
-// NSLocalizedString(@"Carbohidratos disponibles", nil)
+NSString *const kFoodDetailCalories = @"Energía";
+// NSLocalizedString(@"Energía", nil)
+NSString *const kFoodDetailCarbohidrates = @"Carbohidratos";
+// NSLocalizedString(@"Carbohidratos", nil)
 NSString *const kFoodDetailFat = @"Grasas";
 // NSLocalizedString(@"Grasas", nil)
 NSString *const kFoodDetailProteins = @"Proteínas";
@@ -52,6 +56,14 @@ NSString *const kFoodDetailVitaminA = @"Vitamina A";
 // NSLocalizedString(@"Vitamina A", nil)
 NSString *const kFoodDetailVitaminC = @"Vitamina C";
 // NSLocalizedString(@"Vitamina C", nil)
+NSString *const kFoodDetailQuantity = @"Cantidad por ración";
+// NSLocalizedString(@"Cantidad por ración", nil)
+NSString *const kFoodDetailFiber = @"Fibra dietaria";
+// NSLocalizedString(@"Fibra dietaria", nil)
+NSString *const kFoodDetailCalcium = @"Calcio";
+// NSLocalizedString(@"Calcio", nil)
+NSString *const kFoodDetailIron = @"Hierro";
+// NSLocalizedString(@"Hierro", nil)
 NSString *const kFoodDetailTitle = @"";
 // NSLocalizedString(@"", nil)
 NSString *const kFoodDetailCaloriesSufix = @"%@ kcal";
@@ -66,7 +78,14 @@ NSString *const kFoodDetailVitaminASufix = @"%@ µg";
 // NSLocalizedString(@"%@ µg", nil)
 NSString *const kFoodDetailVitaminCSufix = @"%@ mg";
 // NSLocalizedString(@"%@ mg", nil)
-
+NSString *const kFoodDetailQuantitySufix = @"%@ g";
+// NSLocalizedString(@"%@ g", nil)
+NSString *const kFoodDetailFiberSufix = @"%@ g";
+// NSLocalizedString(@"%@ g", nil)
+NSString *const kFoodDetailCalciumSufix = @"%@ mg";
+// NSLocalizedString(@"%@ mg", nil)
+NSString *const kFoodDetailIronSufix = @"%@ mg";
+// NSLocalizedString(@"%@ mg", nil)
 NSString *const kFoodDetailDefaultImage = @"bundle://default-food-detail.png";
 const CGFloat kFoodDetailImageWidth = 140.;
 const CGFloat kFoodDetailImageHeight = 140.;

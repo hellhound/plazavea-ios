@@ -70,7 +70,7 @@ static CGFloat headerMinHeight = 40.;
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
-    NSString *title = kFoodCategoryHeader;
+    NSString *title = [[_food category] name];
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
@@ -115,7 +115,7 @@ static CGFloat headerMinHeight = 40.;
         [categoryLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
-    NSString *category = [[_food category] name];
+    NSString *category = [_food name];
     UIFont *categoryFont = [categoryLabel font];
     CGSize constrainedCategorySize = CGSizeMake(categoryWidth, MAXFLOAT);
     CGFloat categoryHeight = [category sizeWithFont:categoryFont

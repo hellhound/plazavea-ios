@@ -208,7 +208,7 @@ static NSRelationshipDescription *kCategoryRelationship;
 
 // KVO properties
 @dynamic initial, name, calories, carbohidrates, fat, proteins, vitaminA,
-        vitaminC, category, properties;
+        vitaminC, category, properties, quantity, fiber, calcium, iron;
 
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
@@ -247,6 +247,24 @@ static NSRelationshipDescription *kCategoryRelationship;
     [food setVitaminC:vitaminC];
     [food setProperties:properties];
     return food;
+}
+
++(id)foodWithName:(NSString *)name 
+         category:(FoodCategory *)category
+         calories:(NSString *)calories
+    carbohidrates:(NSString *)carbohidrates
+              fat:(NSString *)fat
+         proteins:(NSString *)proteins
+         vitaminA:(NSString *)vitaminA
+         vitaminC:(NSString *)vitaminC
+       properties:(NSString *)properties
+         quantity:(NSString *)quantity
+            fiber:(NSString *)fiber
+          calcium:(NSString *)calcium
+             iron:(NSString *)iron
+          context:(NSManagedObjectContext *)context
+{
+    return nil;
 }
 
 + (id)foodWithName:(NSString *)name
@@ -363,49 +381,77 @@ static NSRelationshipDescription *kCategoryRelationship;
     for (NSArray *parsedRow in pasredCSV){
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
-        NSString *parsedCalories = [parsedRow objectAtIndex:2];
+        NSString *parsedCalories = [parsedRow objectAtIndex:3];
         if (fabs([parsedCalories floatValue]) < (.0 + FLT_EPSILON)) {
             parsedCalories = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailCalories];
         }
-        NSString *parsedCarbohidrates = [parsedRow objectAtIndex:3];
+        NSString *parsedCarbohidrates = [parsedRow objectAtIndex:6];
         if (fabs([parsedCarbohidrates floatValue]) < (.0 + FLT_EPSILON)) {
             parsedCarbohidrates = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailCarbohidrates];
         }
-        NSString *parsedFat = [parsedRow objectAtIndex:4];
+        NSString *parsedFat = [parsedRow objectAtIndex:5];
         if (fabs([parsedFat floatValue]) < (.0 + FLT_EPSILON)) {
             parsedFat = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailFat];
         }
-        NSString *parsedProteins = [parsedRow objectAtIndex:5];
+        NSString *parsedProteins = [parsedRow objectAtIndex:4];
         if (fabs([parsedProteins floatValue]) < (.0 + FLT_EPSILON)) {
             parsedProteins = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailProteins];
         }
-        NSString *parsedVitaminA = [parsedRow objectAtIndex:6];
+        NSString *parsedVitaminA = [parsedRow objectAtIndex:10];
         if (fabs([parsedVitaminA doubleValue]) < (.0 + FLT_EPSILON)) {
             parsedVitaminA = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailVitaminA];
         }
-        NSString *parsedVitaminC = [parsedRow objectAtIndex:7];
+        NSString *parsedVitaminC = [parsedRow objectAtIndex:11];
         if (fabs([parsedVitaminC floatValue]) < (.0 + FLT_EPSILON)) {
             parsedVitaminC = @"";
         } else {
             parsedProperties = [parsedProperties
                     stringByAppendingString:kFoodDetailVitaminC];
         }
-
+        NSString *parsedQuantity = [parsedRow objectAtIndex:2];
+        if (fabs([parsedQuantity floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedQuantity = @"";
+        /*} else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailVitaminC];*/
+        }
+        NSString *parsedFiber = [parsedRow objectAtIndex:7];
+        if (fabs([parsedFiber floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedFiber = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailFiber];
+        }
+        NSString *parsedCalcium = [parsedRow objectAtIndex:8];
+        if (fabs([parsedCalcium floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedCalcium = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailCalcium];
+        }
+        NSString *parsedIron = [parsedRow objectAtIndex:9];
+        if (fabs([parsedIron floatValue]) < (.0 + FLT_EPSILON)) {
+            parsedIron = @"";
+        } else {
+            parsedProperties = [parsedProperties
+                    stringByAppendingString:kFoodDetailIron];
+        }
+        
         NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         

@@ -23,10 +23,6 @@
     if ((self = [super init]) != nil) {        
         NSMutableArray *items = [NSMutableArray array];
         
-        TTTableSummaryItem *name =
-                [TTTableSummaryItem itemWithText:[food name]];
-        
-        [items addObject:name];
         if ([[food calories] length] > 0) {
             TableCaptionItem *calories = [TableCaptionItem itemWithText:
                     [NSString stringWithFormat:kFoodDetailCaloriesSufix,

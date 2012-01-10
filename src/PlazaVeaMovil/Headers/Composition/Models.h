@@ -26,6 +26,10 @@
 @property (nonatomic, retain) NSString *vitaminC;
 @property (nonatomic, retain) FoodCategory *category;
 @property (nonatomic, retain) NSString *properties;
+@property (nonatomic, retain) NSString *quantity;
+@property (nonatomic, retain) NSString *fiber;
+@property (nonatomic, retain) NSString *calcium;
+@property (nonatomic, retain) NSString *iron;
 
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
@@ -39,6 +43,20 @@
           vitaminA:(NSString *)vitaminA
           vitaminC:(NSString *)vitaminC
         properties:(NSString *)properties
+           context:(NSManagedObjectContext *)context;
++ (id)foodWithName:(NSString *)name
+          category:(FoodCategory *)category
+          calories:(NSString *)calories
+     carbohidrates:(NSString *)carbohidrates
+               fat:(NSString *)fat
+          proteins:(NSString *)proteins
+          vitaminA:(NSString *)vitaminA
+          vitaminC:(NSString *)vitaminC
+        properties:(NSString *)properties
+          quantity:(NSString *)quantity
+             fiber:(NSString *)fiber
+           calcium:(NSString *)calcium
+              iron:(NSString *)iron
            context:(NSManagedObjectContext *)context;
 + (id)foodWithName:(NSString *)name
           category:(FoodCategory *)category
