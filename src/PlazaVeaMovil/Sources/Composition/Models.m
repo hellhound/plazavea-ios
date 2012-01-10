@@ -167,9 +167,42 @@ static NSRelationshipDescription *kCategoryRelationship;
     [properties setAttributeType:NSStringAttributeType];
     [properties setOptional:NO];
     [properties setIndexed:YES];
+    
+    NSAttributeDescription *quantity =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [quantity setName:kFoodQuantity];
+    [quantity setAttributeType:NSStringAttributeType];
+    [quantity setOptional:NO];
+    [quantity setIndexed:YES];
+    
+    NSAttributeDescription *fiber =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [fiber setName:kFoodFiber];
+    [fiber setAttributeType:NSStringAttributeType];
+    [fiber setOptional:NO];
+    [fiber setIndexed:YES];
+    
+    NSAttributeDescription *calcium =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [calcium setName:kFoodCalcium];
+    [calcium setAttributeType:NSStringAttributeType];
+    [calcium setOptional:NO];
+    [calcium setIndexed:YES];
+    
+    NSAttributeDescription *iron =
+            [[[NSAttributeDescription alloc] init] autorelease];
+    
+    [iron setName:kFoodIron];
+    [iron setAttributeType:NSStringAttributeType];
+    [iron setOptional:NO];
+    [iron setIndexed:YES];
     return [attributes setByAddingObjectsFromSet:
             [NSSet setWithObjects:initial, name, calories, carbohidrates,
-                fat, proteins, vitaminA, vitaminC, properties, nil]];
+                fat, proteins, vitaminA, vitaminC, properties, quantity,
+                fiber, calcium, iron, nil]];
 }
 
 + (NSSet *)relationships
@@ -264,7 +297,24 @@ static NSRelationshipDescription *kCategoryRelationship;
              iron:(NSString *)iron
           context:(NSManagedObjectContext *)context
 {
-    return nil;
+    Food *food = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:context] autorelease];
+    
+    [food setInitial:[name substringToIndex:1]];
+    [food setName:name];
+    [food setCategory:category];
+    [food setCalories:calories];
+    [food setCarbohidrates:carbohidrates];
+    [food setFat:fat];
+    [food setProteins:proteins];
+    [food setVitaminA:vitaminA];
+    [food setVitaminC:vitaminC];
+    [food setProperties:properties];
+    [food setQuantity:quantity];
+    [food setFiber:fiber];
+    [food setCalcium:calcium];
+    [food setIron:iron];
+    return food;
 }
 
 + (id)foodWithName:(NSString *)name
@@ -460,13 +510,21 @@ static NSRelationshipDescription *kCategoryRelationship;
             [foodThree setObject: parsedCollectionFoods
                     forKey:parsedRowCategory];
         }
-        [parsedCollectionFoods addObject:[NSDictionary 
-                dictionaryWithObjectsAndKeys:parsedName, kFoodName,
-                    parsedCalories, kFoodCalories, parsedCarbohidrates,
-                    kFoodCarbohidrates, parsedFat, kFoodFat, parsedProteins,
-                    kFoodProteins, parsedVitaminA, kFoodVitaminA,
-                    parsedVitaminC, kFoodVitaminC, parsedProperties,
-                    kFoodProperties, nil]];
+        [parsedCollectionFoods addObject:
+                [NSDictionary dictionaryWithObjectsAndKeys:
+                    parsedName, kFoodName,
+                    parsedCalories, kFoodCalories,
+                    parsedCarbohidrates, kFoodCarbohidrates,
+                    parsedFat, kFoodFat,
+                    parsedProteins, kFoodProteins,
+                    parsedVitaminA, kFoodVitaminA,
+                    parsedVitaminC, kFoodVitaminC,
+                    parsedProperties, kFoodProperties,
+                    parsedQuantity, kFoodQuantity,
+                    parsedFiber, kFoodFiber,
+                    parsedCalcium, kFoodCalcium,
+                    parsedIron, kFoodIron,
+                    nil]];
     }
     for (NSString *categoryname in [foodThree allKeys]){
         FoodCategory *foodCategory =
@@ -482,10 +540,28 @@ static NSRelationshipDescription *kCategoryRelationship;
             NSString *vitaminA = [food objectForKey:kFoodVitaminA];
             NSString *vitaminC = [food objectForKey:kFoodVitaminC];
             NSString *properties = [food objectForKey:kFoodProperties];
-            [Food foodWithName:name category:foodCategory calories:calories
+            NSString *quantity = [food objectForKey:kFoodQuantity];
+            NSString *fiber = [food objectForKey:kFoodFiber];
+            NSString *calcium = [food objectForKey:kFoodCalcium];
+            NSString *iron = [food objectForKey:kFoodIron];
+            /*[Food foodWithName:name category:foodCategory calories:calories
                     carbohidrates:carbohidrates fat:fat proteins:proteins
                         vitaminA:vitaminA vitaminC:vitaminC
-                        properties:properties context:context];
+                        properties:properties context:context];*/
+            [Food foodWithName:name
+                      category:foodCategory
+                      calories:calories
+                 carbohidrates:carbohidrates
+                           fat:fat
+                      proteins:proteins
+                      vitaminA:vitaminA
+                      vitaminC:vitaminC
+                    properties:properties
+                      quantity:quantity
+                         fiber:fiber
+                       calcium:calcium
+                          iron:iron
+                       context:context];
             [context save:nil];
         }
     }

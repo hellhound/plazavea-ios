@@ -23,6 +23,12 @@
     if ((self = [super init]) != nil) {        
         NSMutableArray *items = [NSMutableArray array];
         
+        if ([[food quantity] length] > 0) {
+            TableCaptionItem *quantity = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailQuantitySufix,
+                        [food quantity]] caption:kFoodDetailQuantity];
+            [items addObject:quantity];
+        }
         if ([[food calories] length] > 0) {
             TableCaptionItem *calories = [TableCaptionItem itemWithText:
                     [NSString stringWithFormat:kFoodDetailCaloriesSufix,
@@ -46,6 +52,24 @@
                     [NSString stringWithFormat:kFoodDetailProteinsSufix,
                         [food proteins]] caption:kFoodDetailProteins];
             [items addObject:proteins];
+        }
+        if ([[food fiber] length] > 0) {
+            TableCaptionItem *fiber = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailFiberSufix,
+                        [food fiber]] caption:kFoodDetailFiber];
+            [items addObject:fiber];
+        }
+        if ([[food calcium] length] > 0) {
+            TableCaptionItem *calcium = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailCalciumSufix,
+                        [food calcium]] caption:kFoodDetailVitaminA];
+            [items addObject:calcium];
+        }
+        if ([[food iron] length] > 0) {
+            TableCaptionItem *iron = [TableCaptionItem itemWithText:
+                    [NSString stringWithFormat:kFoodDetailIronSufix,
+                        [food iron]] caption:kFoodDetailIron];
+            [items addObject:iron];
         }
         if ([[food vitaminA] length] > 0) {
             TableCaptionItem *vitaminA = [TableCaptionItem itemWithText:
