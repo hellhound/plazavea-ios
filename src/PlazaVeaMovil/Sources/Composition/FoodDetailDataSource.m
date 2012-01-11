@@ -62,7 +62,7 @@
         if ([[food calcium] length] > 0) {
             TableCaptionItem *calcium = [TableCaptionItem itemWithText:
                     [NSString stringWithFormat:kFoodDetailCalciumSufix,
-                        [food calcium]] caption:kFoodDetailVitaminA];
+                        [food calcium]] caption:kFoodDetailCalcium];
             [items addObject:calcium];
         }
         if ([[food iron] length] > 0) {
