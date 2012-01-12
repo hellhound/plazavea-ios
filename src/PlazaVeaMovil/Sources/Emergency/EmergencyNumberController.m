@@ -374,10 +374,10 @@ titleForHeaderInSection:(NSInteger)section
     
     if (tableView == [self tableView]) {
         label = [(EmergencyNumber *)[_resultsController
-                                     objectAtIndexPath:indexPath] name];
+                objectAtIndexPath:indexPath] name];
     } else {
         label = [(EmergencyNumber *)[_filteredController
-                                     objectAtIndexPath:indexPath] name];
+                objectAtIndexPath:indexPath] name];
     }
     CGSize constrainedSize = [tableView frame].size;
     constrainedSize.width -= (margin * 4) + indexWitdh;
