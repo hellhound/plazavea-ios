@@ -197,6 +197,7 @@ static CGFloat phoneHeight = 10.;
         [[cell textLabel] setText:[category name]];
         [[cell textLabel] setNumberOfLines:0];
         [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         EmergencyNumber *emergencyNumber = (EmergencyNumber *)object;
         
@@ -204,7 +205,7 @@ static CGFloat phoneHeight = 10.;
         [[cell detailTextLabel] setText:[emergencyNumber phone]];
         [[cell textLabel] setNumberOfLines:0];
         [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
 
 }
@@ -275,11 +276,11 @@ static CGFloat phoneHeight = 10.;
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView == [self tableView]) &&
-            ([[_resultsController sections] count] > 3)) {
+            ([[_resultsController sections] count] > 4)) {
         return [_resultsController sectionIndexTitles];
     }
     if ((tableView != [self tableView]) &&
-            ([[_filteredController sections] count] > 3)) {
+            ([[_filteredController sections] count] > 4)) {
         return [_filteredController sectionIndexTitles];
     }
     return nil;
@@ -316,7 +317,6 @@ static CGFloat phoneHeight = 10.;
     UITableViewCell *cell;
     if (tableView == [self tableView]){
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         NSManagedObject *object =
                 [_filteredController objectAtIndexPath:indexPath];
@@ -362,13 +362,12 @@ static CGFloat phoneHeight = 10.;
     if (tableView == [self tableView]) {
         label = [(EmergencyNumber *)[_resultsController
                 objectAtIndexPath:indexPath] name];
-        accessoryWidth = ([[_resultsController sections] count] > 3) ?
+        accessoryWidth = ([[_resultsController sections] count] > 4) ?
                 indexWitdh : disclousureWidth;
     } else {
         label = [(EmergencyNumber *)[_filteredController
                 objectAtIndexPath:indexPath] name];
-        accessoryWidth = ([[_filteredController sections] count] > 3) ?
-                indexWitdh : disclousureWidth;
+        accessoryWidth = indexWitdh - accessoryWidth;
         extraHeight = phoneHeight;
     }
     CGSize constrainedSize = [tableView frame].size;

@@ -18,8 +18,7 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
 static CGFloat headerMinHeight = 40.;
-static CGFloat disclousureWidth = 20.;
-static CGFloat indexWitdh = 50.;
+static CGFloat indexWitdh = 30.;
 static CGFloat phoneHeight = 10.;
 
 @interface EmergencyNumberController ()
@@ -231,7 +230,7 @@ static CGFloat phoneHeight = 10.;
     [[cell detailTextLabel] setText:[emergencyNumber phone]];
     [[cell textLabel] setNumberOfLines:0];
     [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
 
 #pragma mark -
@@ -293,11 +292,11 @@ static CGFloat phoneHeight = 10.;
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView == [self tableView]) &&
-            ([[_resultsController sections] count] > 3)) {
+            ([[_resultsController sections] count] > 4)) {
         return [_resultsController sectionIndexTitles];
     }
     if ((tableView != [self tableView]) &&
-            ([[_filteredController sections] count] > 3)) {
+            ([[_filteredController sections] count] > 4)) {
         return [_filteredController sectionIndexTitles];
     }
     return nil;
@@ -372,21 +371,16 @@ titleForHeaderInSection:(NSInteger)section
   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *label;
-    CGFloat accessoryWidth = disclousureWidth;
     
     if (tableView == [self tableView]) {
         label = [(EmergencyNumber *)[_resultsController
                                      objectAtIndexPath:indexPath] name];
-        accessoryWidth = ([[_resultsController sections] count] > 3) ?
-        indexWitdh : disclousureWidth;
     } else {
         label = [(EmergencyNumber *)[_filteredController
                                      objectAtIndexPath:indexPath] name];
-        accessoryWidth = ([[_filteredController sections] count] > 3) ?
-        indexWitdh : disclousureWidth;
     }
     CGSize constrainedSize = [tableView frame].size;
-    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    constrainedSize.width -= (margin * 4) + indexWitdh;
     CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
             constrainedToSize:constrainedSize lineBreakMode:
                 UILineBreakModeWordWrap].height + (margin * 4) + phoneHeight;
