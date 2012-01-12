@@ -241,11 +241,11 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView == [self tableView]) &&
-            ([[_resultsController sections] count] > 3)) {
+            ([[_resultsController sections] count] > 4)) {
         return [_resultsController sectionIndexTitles];
     }
     if ((tableView != [self tableView]) &&
-            ([[_filteredController sections] count] > 3)) {
+            ([[_filteredController sections] count] > 4)) {
         return [_filteredController sectionIndexTitles];
     }
     return nil;
@@ -355,12 +355,12 @@ titleForHeaderInSection:(NSInteger)section
     if (tableView == [self tableView]) {
         label = [(Food *)[_resultsController objectAtIndexPath:indexPath]
                 name];
-        accessoryWidth = ([[_resultsController sections] count] > 3) ?
+        accessoryWidth = ([[_resultsController sections] count] > 4) ?
                 indexWitdh : disclousureWidth;
     } else {
         label = [(Food *)[_filteredController objectAtIndexPath:indexPath]
                 name];
-        accessoryWidth = ([[_filteredController sections] count] > 3) ?
+        accessoryWidth = ([[_filteredController sections] count] > 4) ?
                 indexWitdh : disclousureWidth;
     }
     CGSize constrainedSize = [tableView frame].size;
