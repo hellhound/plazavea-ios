@@ -19,6 +19,7 @@ static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
 static CGFloat headerMinHeight = 40.;
+static CGFloat accessoryWidth = 30.;
 
 @interface FoodCategoryListController ()
 
@@ -90,12 +91,9 @@ static CGFloat headerMinHeight = 40.;
     return _navItem;
 }
 
-#pragma mark -
-#pragma mark UIView
-
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     
     UITableView *tableView = [self tableView];
     // Configuring the header view
@@ -171,6 +169,7 @@ static CGFloat headerMinHeight = 40.;
     [_headerView setFrame:headerFrame];
     [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
+    [tableView reloadData];
 }
 
 #pragma mark -
@@ -187,6 +186,7 @@ static CGFloat headerMinHeight = 40.;
     FoodCategory *category = (FoodCategory *)object;
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [[cell textLabel] setNumberOfLines:0];
     [[cell textLabel] setText:[category name]];
 }
 
@@ -267,6 +267,7 @@ titleForHeaderInSection:(NSInteger)section
 {
     if (tableView == [self tableView])
         return nil;
+    
     id<NSFetchedResultsSectionInfo> sectionInfo =
             [[_filteredController sections] objectAtIndex:section];
     
@@ -281,23 +282,44 @@ titleForHeaderInSection:(NSInteger)section
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     } else {
         NSManagedObject *object =
-        [_filteredController objectAtIndexPath:indexPath];
+                [_filteredController objectAtIndexPath:indexPath];
         Class cellClass =
-        [self cellClassForObject:object atIndexPath:indexPath];
+                [self cellClassForObject:object atIndexPath:indexPath];
         NSString *reuseIdentifier = NSStringFromClass(cellClass);
         
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         cell = [self cellForObject:object withCellClass:cellClass
-                         reuseCell:cell reuseIdentifier:reuseIdentifier
-                       atIndexPath:indexPath];
+                reuseCell:cell reuseIdentifier:reuseIdentifier
+                    atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [[cell textLabel] setNumberOfLines:0];
     }
     return cell;
 }
 
 #pragma mark -
 #pragma mark <UITableViewDelegate>
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *label;
+    if (tableView == [self tableView]) {
+        label = [(FoodCategory *)[_resultsController
+                objectAtIndexPath:indexPath] name];
+    } else {
+        label = [(Food *)[_filteredController objectAtIndexPath:indexPath]
+                name];
+    }
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
+            constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
+    
+    return cellHeight;
+}
 
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath

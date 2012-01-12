@@ -20,6 +20,8 @@ static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
 static CGFloat headerMinHeight = 40.;
+static CGFloat accessoryWidth = 30.;
+
 
 @interface FoodListController ()
 
@@ -224,6 +226,7 @@ static CGFloat headerMinHeight = 40.;
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[food name]];
+    [[cell textLabel] setNumberOfLines:0];
 }
 
 #pragma mark -
@@ -302,7 +305,8 @@ titleForHeaderInSection:(NSInteger)section
                          reuseCell:cell reuseIdentifier:reuseIdentifier
                        atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [[cell textLabel] setNumberOfLines:0];
     }
     return cell;
 }
@@ -335,6 +339,26 @@ titleForHeaderInSection:(NSInteger)section
 
 #pragma mark -
 #pragma mark <UITableViewDelegate>
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *label;
+    if (tableView == [self tableView]) {
+        label = [(Food *)[_resultsController objectAtIndexPath:indexPath]
+                name];
+    } else {
+        label = [(Food *)[_filteredController objectAtIndexPath:indexPath]
+                name];
+    }
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
+            constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
+    
+    return cellHeight;
+}
 
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
