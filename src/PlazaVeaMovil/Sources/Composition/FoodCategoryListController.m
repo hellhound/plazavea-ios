@@ -183,11 +183,23 @@ static CGFloat indexWitdh = 50.;
             forObject:(NSManagedObject *)object
           atIndexPath:(NSIndexPath *)indexPath
 {
-    FoodCategory *category = (FoodCategory *)object;
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [[cell textLabel] setNumberOfLines:0];
-    [[cell textLabel] setText:[category name]];
+    if ([object isKindOfClass:[FoodCategory class]]) {
+        FoodCategory *category = (FoodCategory *)object;
+        
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [[cell textLabel] setNumberOfLines:0];
+        [[cell textLabel] setText:[category name]];
+        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:20.]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    } else {
+        Food *food = (Food *)object;
+        
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [[cell textLabel] setNumberOfLines:0];
+        [[cell textLabel] setText:[food name]];
+        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:20.]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
 }
 
 #pragma mark -
@@ -239,9 +251,6 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    /*if (tableView == [self tableView])
-        return [_resultsController sectionIndexTitles];
-    return [_filteredController sectionIndexTitles];*/
     if ((tableView != [self tableView]) &&
             ([[_filteredController sections] count] > 3)) {
         return [_filteredController sectionIndexTitles];
@@ -297,8 +306,6 @@ titleForHeaderInSection:(NSInteger)section
                 reuseCell:cell reuseIdentifier:reuseIdentifier
                     atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [[cell textLabel] setNumberOfLines:0];
     }
     return cell;
 }
