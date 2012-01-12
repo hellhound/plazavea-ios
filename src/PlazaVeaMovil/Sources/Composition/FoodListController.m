@@ -20,8 +20,8 @@ static NSString *kPredicateNameVariableKey = @"NAME";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
 static CGFloat headerMinHeight = 40.;
-static CGFloat accessoryWidth = 30.;
-
+static CGFloat disclousureWidth = 20.;
+static CGFloat indexWitdh = 50.;
 
 @interface FoodListController ()
 
@@ -240,9 +240,15 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if (tableView == [self tableView])
+    if ((tableView == [self tableView]) &&
+            ([[_resultsController sections] count] > 3)) {
         return [_resultsController sectionIndexTitles];
-    return [_filteredController sectionIndexTitles];
+    }
+    if ((tableView != [self tableView]) &&
+            ([[_filteredController sections] count] > 3)) {
+        return [_filteredController sectionIndexTitles];
+    }
+    return nil;
 }
 
 -       (NSInteger)tableView:(UITableView *)tableView 
@@ -305,7 +311,7 @@ titleForHeaderInSection:(NSInteger)section
                          reuseCell:cell reuseIdentifier:reuseIdentifier
                        atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell textLabel] setNumberOfLines:0];
     }
     return cell;
@@ -344,12 +350,18 @@ titleForHeaderInSection:(NSInteger)section
   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *label;
+    CGFloat accessoryWidth = disclousureWidth;
+
     if (tableView == [self tableView]) {
         label = [(Food *)[_resultsController objectAtIndexPath:indexPath]
                 name];
+        accessoryWidth = ([[_resultsController sections] count] > 3) ?
+                indexWitdh : disclousureWidth;
     } else {
         label = [(Food *)[_filteredController objectAtIndexPath:indexPath]
                 name];
+        accessoryWidth = ([[_filteredController sections] count] > 3) ?
+                indexWitdh : disclousureWidth;
     }
     CGSize constrainedSize = [tableView frame].size;
     constrainedSize.width -= (margin * 4) + accessoryWidth;
