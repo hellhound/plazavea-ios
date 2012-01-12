@@ -18,6 +18,9 @@ static NSString *const kEmergencyNumberVariableKey = @"EMERGENCY_NUMBER";
 static CGFloat margin = 5.;
 static CGFloat sectionHeight = 24.;
 static CGFloat headerMinHeight = 40.;
+static CGFloat disclousureWidth = 20.;
+static CGFloat indexWitdh = 50.;
+static CGFloat phoneHeight = 10.;
 
 @interface EmergencyNumberController ()
 
@@ -226,6 +229,9 @@ static CGFloat headerMinHeight = 40.;
 
     [[cell textLabel] setText:[emergencyNumber name]];
     [[cell detailTextLabel] setText:[emergencyNumber phone]];
+    [[cell textLabel] setNumberOfLines:0];
+    [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 #pragma mark -
@@ -265,7 +271,8 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark EmergencyNumberController<UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+ numberOfRowsInSection:(NSInteger)section
+{
     if (tableView == [self tableView]){
         id <NSFetchedResultsSectionInfo> sectionInfo = 
             [[_resultsController sections] objectAtIndex:section];
@@ -276,20 +283,30 @@ static CGFloat headerMinHeight = 40.;
     return [sectionInfo numberOfObjects];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     if (tableView == [self tableView])
         return [[_resultsController sections] count];
     return [[_filteredController sections] count];
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if (tableView == [self tableView])
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    if ((tableView == [self tableView]) &&
+            ([[_resultsController sections] count] > 3)) {
         return [_resultsController sectionIndexTitles];
-    return [_filteredController sectionIndexTitles];
+    }
+    if ((tableView != [self tableView]) &&
+            ([[_filteredController sections] count] > 3)) {
+        return [_filteredController sectionIndexTitles];
+    }
+    return nil;
 }
 
--       (NSInteger)tableView:(UITableView *)tableView 
- sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+- (NSInteger)      tableView:(UITableView *)tableView 
+ sectionForSectionIndexTitle:(NSString *)title 
+                     atIndex:(NSInteger)index
+{
     if (tableView == [self tableView])
         return [_resultsController sectionForSectionIndexTitle:title
                 atIndex:index];
@@ -298,7 +315,8 @@ static CGFloat headerMinHeight = 40.;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
-    titleForHeaderInSection:(NSInteger)section {
+titleForHeaderInSection:(NSInteger)section
+{
     id <NSFetchedResultsSectionInfo> sectionInfo;
     if (tableView == [self tableView]){
         sectionInfo = 
@@ -349,6 +367,32 @@ static CGFloat headerMinHeight = 40.;
 
 #pragma mark -
 #pragma mark <UITableViewDelegate>
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *label;
+    CGFloat accessoryWidth = disclousureWidth;
+    
+    if (tableView == [self tableView]) {
+        label = [(EmergencyNumber *)[_resultsController
+                                     objectAtIndexPath:indexPath] name];
+        accessoryWidth = ([[_resultsController sections] count] > 3) ?
+        indexWitdh : disclousureWidth;
+    } else {
+        label = [(EmergencyNumber *)[_filteredController
+                                     objectAtIndexPath:indexPath] name];
+        accessoryWidth = ([[_filteredController sections] count] > 3) ?
+        indexWitdh : disclousureWidth;
+    }
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
+            constrainedToSize:constrainedSize lineBreakMode:
+                UILineBreakModeWordWrap].height + (margin * 4) + phoneHeight;
+    
+    return cellHeight;
+}
 
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
