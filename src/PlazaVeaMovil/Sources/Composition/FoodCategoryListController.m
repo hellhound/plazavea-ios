@@ -299,7 +299,6 @@ titleForHeaderInSection:(NSInteger)section
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell textLabel] setNumberOfLines:0];
-        [[cell contentView] setBackgroundColor:[UIColor darkGrayColor]];
     }
     return cell;
 }
