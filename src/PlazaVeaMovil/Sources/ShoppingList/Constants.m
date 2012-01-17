@@ -105,6 +105,9 @@ NSString *const kShoppingListActionSheetMailButtonTitle = @"Enviar vía email";
 // NSLocalizedString(@"Enviar vía email", nil)
 NSString *const kShoppingListActionSheetCancelButtonTitle = @"Cancelar";
 // NSLocalizedString(@"Cancelar", nil)
+NSString *const kShoppingListActionSheetNewButton = @"new-list.png";
+NSString *const kShoppingListActionSheetCloneButton = @"clone-list.png";
+NSString *const kShoppingListActionSheetMailButton = @"mail-list.png";
 
 // ShoppingListController's constants
 

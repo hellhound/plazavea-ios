@@ -13,6 +13,7 @@
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/BZActionSheet.h"
 #import "ShoppingList/TSAlertView+NewShoppingListAlertView.h"
 #import "ShoppingList/TSAlertView+NewShoppingItemAlertView.h"
 #import "ShoppingList/TSAlertView+ModifyingShoppingItemAlertView.h"
@@ -528,10 +529,21 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)displayActionSheet:(UIControl *)control
 {
-    UIActionSheet *actionSheet =
+    /*UIActionSheet *actionSheet =
             [UIActionSheet actionSheetForShoppingListMenu:self];
 
-    [actionSheet showFromToolbar:[[self navigationController] toolbar]];
+    [actionSheet showFromToolbar:[[self navigationController] toolbar]];*/
+    UIImage *newList = [UIImage imageNamed:kShoppingListActionSheetNewButton];
+    UIImage *cloneList =
+            [UIImage imageNamed:kShoppingListActionSheetCloneButton];
+    UIImage *mailList = [UIImage imageNamed:kShoppingListActionSheetMailButton];
+    NSArray *buttons =
+            [NSArray arrayWithObjects:newList, cloneList, mailList, nil];
+    BZActionSheet *actionSheet = [[[BZActionSheet alloc] initWithTitle:nil
+            delegate:self
+                cancelButtonTitle:kShoppingListActionSheetCancelButtonTitle
+                otherButtons:buttons] autorelease];
+    [actionSheet show];
 }
 
 - (void)cloneShoppingList

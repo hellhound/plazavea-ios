@@ -6,6 +6,7 @@
 
 #import "Common/Controllers/EditableTableViewController.h"
 #import "ShoppingList/Models.h"
+#import "ShoppingList/BZActionSheet.h"
 #import "ShoppingList/HistoryEntryController.h"
 
 @class ShoppingListController;
@@ -24,7 +25,7 @@
 
 @interface ShoppingListController: EditableTableViewController
     <UIActionSheetDelegate, MFMailComposeViewControllerDelegate,
-    TSAlertViewDelegate, HistoryEntryControllerDelegate>
+    TSAlertViewDelegate, HistoryEntryControllerDelegate, BZActionSheetDelegate>
 {
     UIViewController<ShoppingListControllerDelegate> *_delegate;
     ShoppingList *_shoppingList;

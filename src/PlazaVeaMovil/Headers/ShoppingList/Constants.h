@@ -86,6 +86,9 @@ extern NSString *const kShoppingListActionSheetNewButtonTitle;
 extern NSString *const kShoppingListActionSheetCloneButtonTitle;
 extern NSString *const kShoppingListActionSheetMailButtonTitle;
 extern NSString *const kShoppingListActionSheetCancelButtonTitle;
+extern NSString *const kShoppingListActionSheetNewButton;
+extern NSString *const kShoppingListActionSheetCloneButton;
+extern NSString *const kShoppingListActionSheetMailButton;
 
 // ShoppingListController's constants
 
