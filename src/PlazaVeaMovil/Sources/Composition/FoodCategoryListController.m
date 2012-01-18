@@ -189,7 +189,7 @@ static CGFloat indexWitdh = 50.;
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell textLabel] setNumberOfLines:0];
         [[cell textLabel] setText:[category name]];
-        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:20.]];
+        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:18.]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         Food *food = (Food *)object;
@@ -197,7 +197,7 @@ static CGFloat indexWitdh = 50.;
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell textLabel] setNumberOfLines:0];
         [[cell textLabel] setText:[food name]];
-        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:20.]];
+        [[cell textLabel] setFont: [UIFont boldSystemFontOfSize:18.]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
 }
@@ -330,7 +330,7 @@ titleForHeaderInSection:(NSInteger)section
     }
     CGSize constrainedSize = [tableView frame].size;
     constrainedSize.width -= (margin * 4) + accessoryWidth;
-    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:18.]
             constrainedToSize:constrainedSize
                 lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
     
