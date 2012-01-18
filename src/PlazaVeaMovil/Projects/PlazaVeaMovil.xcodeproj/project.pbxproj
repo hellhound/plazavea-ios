@@ -2319,7 +2319,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = ../Resources/Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
@@ -2349,7 +2352,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: LUIS CARLOS LARRA/AGA (PHFU3W4294)";
 				COPY_PHASE_STRIP = YES;

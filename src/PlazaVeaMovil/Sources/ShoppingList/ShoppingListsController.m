@@ -146,6 +146,7 @@
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[list name]];
+    [[cell detailTextLabel] setText:nil];
     //[[cell detailTextLabel] setText:date == nil ||
     //        [date isEqual:[NSNull null]] ?
     //        kShoppingListDefaultDetailText :
