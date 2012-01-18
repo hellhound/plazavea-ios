@@ -16,6 +16,9 @@
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
+static CGFloat margin = 5.;
+static CGFloat disclousureWidth = 20.;
+
 @implementation ShoppingListsController
 
 #pragma mark -
@@ -146,6 +149,8 @@
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[list name]];
+    [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:18.]];
+    [[cell textLabel] setNumberOfLines:0];
     //[[cell detailTextLabel] setText:date == nil ||
     //        [date isEqual:[NSNull null]] ?
     //        kShoppingListDefaultDetailText :
@@ -217,5 +222,23 @@
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
             shoppingList name]]];
     [self fetchUpdateAndReload];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat accessoryWidth = disclousureWidth;
+    NSString *label = [(ShoppingList *)[_resultsController
+            objectAtIndexPath:indexPath] name];    
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:18.]
+            constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
+    
+    return cellHeight;
 }
 @end
