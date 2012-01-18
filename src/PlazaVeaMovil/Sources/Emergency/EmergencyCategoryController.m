@@ -195,6 +195,7 @@ static CGFloat phoneHeight = 10.;
         EmergencyCategory *category = (EmergencyCategory *)object;
         
         [[cell textLabel] setText:[category name]];
+        [[cell detailTextLabel] setText:nil];
         [[cell textLabel] setNumberOfLines:0];
         [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
