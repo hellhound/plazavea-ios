@@ -45,6 +45,16 @@ NSString *const kShoppingListCloningRepetitionPattern =
 // NSLocalizedString(@"%@\\s*\\(\\s*%@\\s*\\d+\\s*\\)", nil)
 NSString *const kShoppingListCloningRepetitionSuffix = @"%@ (%@ %li)";
 // NSLocalizedString(@" (%@)", nil)
+NSString *const kShoppingListsAlertTitle = @"No tienes ninguna lista";
+// NSLocalizedString(@"No tienes ninguna lista", nil)
+NSString *const kShoppingListsAlertMessage = @"Para empezar a crear una lista "\
+        @"solo debes presionar el símbolo + en la parte inferior";
+// NSLocalizedString(@"Para empezar a crear una lista "\
+        @"solo debes presionar el símbolo + en la parte inferior", nil)
+NSString *const kShoppingListsAlertCancel = @"OK";
+// NSLocalizedString(@"OK", nil)
+NSString *const kShoppingListsAlertCreate = @"Crear lista";
+// NSLocalizedString(@"Crear", nil)
 
 // TSAlertView's constants for shopping list creation
 NSString *const kShoppingListNewTitle = @"Nueva lista";
@@ -109,8 +119,28 @@ NSString *const kShoppingListActionSheetCancelButtonTitle = @"Cancelar";
 // ShoppingListController's constants
 
 const NSTimeInterval kShoppingListAlertViewDelay = .25;
+NSString *const kShoppingListAlertTitle = @"Lista vacía";
+// NSLocalizedString(@"Lista vacía", nil)
+NSString *const kShoppingListAlertMessage = @"Empieza a agregar ítems "\
+        @"a tu lista presionando el símbolo + de la parte inferior";
+// NSLocalizedString(@"Empieza a agregar ítems "\
+        @"a tu lista presionando el símbolo + de la parte inferior", nil)
+NSString *const kShoppingListAlertCancel = @"OK";
+// NSLocalizedString(@"OK", nil)
+NSString *const kShoppingListAlertCreate = @"Agregar ítems";
+// NSLocalizedString(@"Agregar ítems", nil)
 
 // HistoryEntryControlller's contstants
+NSString *const kHistoryEntryAlertTitle = @"Lista vacía";
+// NSLocalizedString(@"Lista vacía", nil)
+NSString *const kHistoryEntryAlertMessage = @"Empieza a agregar ítems "\
+        @"presionando el símbolo + de la parte inferior";
+// NSLocalizedString(@"Empieza a agregar ítems "\
+        @"presionando el símbolo + de la parte inferior", nil)
+NSString *const kHistoryEntryAlertCancel = @"OK";
+// NSLocalizedString(@"OK", nil)
+NSString *const kHistoryEntryAlertCreate = @"Agregar ítems";
+// NSLocalizedString(@"Agregar ítems", nil)
 
 // Administration of history entries
 NSString *const kHistoryEntryTitle = @"Historial de ítems";

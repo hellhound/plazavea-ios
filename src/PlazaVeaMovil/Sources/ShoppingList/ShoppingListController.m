@@ -29,8 +29,9 @@ static CGFloat margin = 5.;
 static CGFloat disclousureWidth = 20.;
 static CGFloat headerMinHeight = 40.;
 
-@interface ShoppingListController (Private)
+@interface ShoppingListController ()
 
+@property (nonatomic, assign) BOOL noLists;
 + (void)initializePredicateTemplates;
 
 - (void)updatePreviousNextButtons;
@@ -43,6 +44,8 @@ static CGFloat headerMinHeight = 40.;
 @end
 
 @implementation ShoppingListController
+
+@synthesize noLists;
 
 #pragma mark -
 #pragma mark NSObject
@@ -394,8 +397,10 @@ static CGFloat headerMinHeight = 40.;
         [self setShoppingList:shoppingList];
         if (shoppingList == nil) {
             [self createNewShoppingListFromActionSheet:NO];
+            noLists = YES;
         } else {
             [self initializeHeader];
+            noLists = YES;
         }
     }
     return self;
@@ -589,6 +594,30 @@ static CGFloat headerMinHeight = 40.;
     // delay for 0.1 seconds
     [self performSelector:@selector(showAlertViewForNewShoppingItem:)
             withObject:alertView afterDelay:kShoppingListAlertViewDelay];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger numberOfRows =
+    [super tableView:tableView numberOfRowsInSection:section];
+    
+    if (numberOfRows == 0 && !noLists) {
+        TSAlertView *alertView = [[[TSAlertView alloc]
+                initWithTitle:kShoppingListAlertTitle
+                    message:kShoppingListAlertMessage delegate:self
+                    cancelButtonTitle:kShoppingListAlertCancel
+                    otherButtonTitles:kShoppingListAlertCreate, nil]
+                    autorelease];
+        
+        [alertView setTag:kShoppingListAlertViewNoItems];
+        [alertView show];
+        noLists = YES;
+    }
+    return numberOfRows;
 }
 
 #pragma mark -

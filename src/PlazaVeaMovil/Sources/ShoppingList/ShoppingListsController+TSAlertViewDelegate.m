@@ -5,6 +5,7 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "ShoppingList/Models.h"
+#import "ShoppingList/Constants.h"
 #import "ShoppingList/ShoppingListsController.h"
 
 @interface ShoppingListsController (TSAlertViewDelegate)
@@ -18,7 +19,13 @@
 - (void)            alertView:(TSAlertView *)alertView
     didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != [alertView cancelButtonIndex])
-        [self addShoppingList:[[alertView inputTextField] text]];
+    if ([[alertView title] isEqualToString:kShoppingListsAlertTitle]) {
+        if (buttonIndex == [alertView firstOtherButtonIndex]) {
+            [self addShoppingListHandler:nil];
+        }
+    } else {
+        if (buttonIndex != [alertView cancelButtonIndex])
+            [self addShoppingList:[[alertView inputTextField] text]];
+    }
 }
 @end
