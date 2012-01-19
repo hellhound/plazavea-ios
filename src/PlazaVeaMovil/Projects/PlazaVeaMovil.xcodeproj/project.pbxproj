@@ -2258,7 +2258,10 @@
 		2C2F07F513DE61B4009F60DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				HEADER_SEARCH_PATHS = (
 					../../Three20/Build/Products/three20,
 					../../TSAlertView,
@@ -2288,7 +2291,10 @@
 		2C2F07F613DE61B4009F60DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				HEADER_SEARCH_PATHS = (
 					../../Three20/Build/Products/three20,
 					../../TSAlertView,

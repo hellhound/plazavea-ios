@@ -141,6 +141,8 @@ static NSString *kNameVariableKey = @"NAME";
           atIndexPath:(NSIndexPath *)indexPath
 {
     [[cell textLabel] setText:[historyEntry name]];
+    [[cell textLabel] setNumberOfLines:0];
+    [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:18.]];
 }
 
 #pragma mark -

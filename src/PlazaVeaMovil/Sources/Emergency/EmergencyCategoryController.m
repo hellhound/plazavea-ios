@@ -197,7 +197,7 @@ static CGFloat phoneHeight = 10.;
         [[cell textLabel] setText:[category name]];
         [[cell detailTextLabel] setText:nil];
         [[cell textLabel] setNumberOfLines:0];
-        [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
+        [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:18.]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         EmergencyNumber *emergencyNumber = (EmergencyNumber *)object;
@@ -205,7 +205,7 @@ static CGFloat phoneHeight = 10.;
         [[cell textLabel] setText:[emergencyNumber name]];
         [[cell detailTextLabel] setText:[emergencyNumber phone]];
         [[cell textLabel] setNumberOfLines:0];
-        [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:20.]];
+        [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:18.]];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
 
@@ -373,7 +373,7 @@ static CGFloat phoneHeight = 10.;
     }
     CGSize constrainedSize = [tableView frame].size;
     constrainedSize.width -= (margin * 4) + accessoryWidth;
-    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:20.]
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:18.]
             constrainedToSize:constrainedSize lineBreakMode:
                 UILineBreakModeWordWrap].height + (margin * 4) + extraHeight;
     
