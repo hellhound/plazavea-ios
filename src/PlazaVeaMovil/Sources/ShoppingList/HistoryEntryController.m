@@ -22,11 +22,14 @@ static NSString *kNameVariableKey = @"NAME";
 @property (nonatomic, readonly)
     NSFetchedResultsController *filteredController;
 @property (nonatomic, retain) UISearchDisplayController *searchController;
+@property (nonatomic, assign) BOOL noLists;
 
 + (void)initializePredicateTemplates;
 @end
 
 @implementation HistoryEntryController
+
+@synthesize noLists;
 
 #pragma mark -
 #pragma mark NSObject
@@ -89,6 +92,7 @@ static NSString *kNameVariableKey = @"NAME";
 
 - (void)viewDidLoad
 {
+    noLists = YES;
     [super viewDidLoad];
     // Setup searchBar and searchDisplayController
     
@@ -252,5 +256,28 @@ static NSString *kNameVariableKey = @"NAME";
     if (![_filteredController performFetch:&error])
         [error log];
     return YES;
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger numberOfRows =
+            [super tableView:tableView numberOfRowsInSection:section];
+    
+    if (numberOfRows == 0 && noLists) {
+        UIAlertView *alertView = [[[UIAlertView alloc]
+                initWithTitle:kHistoryEntryAlertTitle
+                    message:kHistoryEntryAlertMessage delegate:nil
+                    cancelButtonTitle:kHistoryEntryAlertCancel
+                    otherButtonTitles:kHistoryEntryAlertCreate, nil]
+                    autorelease];
+        
+        [alertView show];
+        noLists = NO;
+    }
+    return numberOfRows;
 }
 @end

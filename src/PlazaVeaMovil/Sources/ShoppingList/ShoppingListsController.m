@@ -19,7 +19,14 @@
 static CGFloat margin = 5.;
 static CGFloat disclousureWidth = 20.;
 
+@interface ShoppingListsController ()
+
+@property (nonatomic, assign) BOOL noLists;
+@end
+
 @implementation ShoppingListsController
+
+@synthesize noLists;
 
 #pragma mark -
 #pragma mark NSObject
@@ -38,6 +45,7 @@ static CGFloat disclousureWidth = 20.;
         [self setTitle:NSLocalizedString(kShoppingListTitle, nil)];
         [self setAllowsMovableCells:YES];
         [self setCellStyle:UITableViewCellStyleSubtitle];
+        noLists = YES;
     }
     return self;
 }
@@ -222,6 +230,29 @@ static CGFloat disclousureWidth = 20.;
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
             shoppingList name]]];
     [self fetchUpdateAndReload];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger numberOfRows =
+            [super tableView:tableView numberOfRowsInSection:section];
+    
+    if (numberOfRows == 0 && !noLists) {
+        UIAlertView *alertView = [[[UIAlertView alloc]
+                initWithTitle:kShoppingListsAlertTitle
+                    message:kShoppingListsAlertMessage delegate:nil
+                    cancelButtonTitle:kShoppingListsAlertCancel
+                    otherButtonTitles:kShoppingListsAlertCreate, nil]
+                    autorelease];
+        
+        [alertView show];
+        noLists = NO;
+    }
+    return numberOfRows;
 }
 
 #pragma mark -
