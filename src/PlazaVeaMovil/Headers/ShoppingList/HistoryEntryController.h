@@ -20,7 +20,7 @@
 @end
 
 @interface HistoryEntryController: EditableTableViewController
-    <UISearchBarDelegate, UISearchDisplayDelegate>
+    <UISearchBarDelegate, UISearchDisplayDelegate, UIAlertViewDelegate>
 {
     id<HistoryEntryControllerDelegate> _delegate;
     NSFetchedResultsController *_filteredController;

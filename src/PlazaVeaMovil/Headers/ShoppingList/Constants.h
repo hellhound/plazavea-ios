@@ -48,7 +48,8 @@ typedef enum {
     kShoppingListAlertViewNewItem,
     kShoppingListAlertViewModifyingItem,
     kShoppingListAlertViewListDeletion,
-    kShoppingListAlertViewActionSheetNewList
+    kShoppingListAlertViewActionSheetNewList,
+    kShoppingListAlertViewNoItems
 } ShoppingListAlertViewType;
 
 // TSAlertView's constants for shopping list creation

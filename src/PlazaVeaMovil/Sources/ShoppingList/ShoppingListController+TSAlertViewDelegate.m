@@ -59,6 +59,10 @@
                 [self addShoppingList:[[alertView firstTextField] text]
                         fromActionSheet:YES];
             break;
+        case kShoppingListAlertViewNoItems:
+            if (buttonIndex !=cancelButtonIndex)
+                [self addItem:nil];
+            break;
     }
 }
 @end

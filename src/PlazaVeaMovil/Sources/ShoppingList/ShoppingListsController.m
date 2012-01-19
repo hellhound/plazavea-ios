@@ -44,7 +44,7 @@ static CGFloat disclousureWidth = 20.;
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kShoppingListTitle, nil)];
         [self setAllowsMovableCells:YES];
-        [self setCellStyle:UITableViewCellStyleSubtitle];
+        //[self setCellStyle:UITableViewCellStyleSubtitle];
         noLists = YES;
     }
     return self;
@@ -242,9 +242,9 @@ static CGFloat disclousureWidth = 20.;
             [super tableView:tableView numberOfRowsInSection:section];
     
     if (numberOfRows == 0 && !noLists) {
-        UIAlertView *alertView = [[[UIAlertView alloc]
+        TSAlertView *alertView = [[[TSAlertView alloc]
                 initWithTitle:kShoppingListsAlertTitle
-                    message:kShoppingListsAlertMessage delegate:nil
+                    message:kShoppingListsAlertMessage delegate:self
                     cancelButtonTitle:kShoppingListsAlertCancel
                     otherButtonTitles:kShoppingListsAlertCreate, nil]
                     autorelease];

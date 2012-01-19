@@ -395,11 +395,12 @@ static CGFloat headerMinHeight = 40.;
         [self setAllowsMovableCells:YES];
         [self setAllowsRowDeselectionOnEditing:YES];
         [self setShoppingList:shoppingList];
-        //noLists = NO;
         if (shoppingList == nil) {
             [self createNewShoppingListFromActionSheet:NO];
+            noLists = YES;
         } else {
             [self initializeHeader];
+            noLists = YES;
         }
     }
     return self;
@@ -605,13 +606,14 @@ static CGFloat headerMinHeight = 40.;
     [super tableView:tableView numberOfRowsInSection:section];
     
     if (numberOfRows == 0 && !noLists) {
-        UIAlertView *alertView = [[[UIAlertView alloc]
+        TSAlertView *alertView = [[[TSAlertView alloc]
                 initWithTitle:kShoppingListAlertTitle
-                    message:kShoppingListAlertMessage delegate:nil
+                    message:kShoppingListAlertMessage delegate:self
                     cancelButtonTitle:kShoppingListAlertCancel
                     otherButtonTitles:kShoppingListAlertCreate, nil]
                     autorelease];
         
+        [alertView setTag:kShoppingListAlertViewNoItems];
         [alertView show];
         noLists = YES;
     }

@@ -270,7 +270,7 @@ static NSString *kNameVariableKey = @"NAME";
     if (numberOfRows == 0 && noLists) {
         UIAlertView *alertView = [[[UIAlertView alloc]
                 initWithTitle:kHistoryEntryAlertTitle
-                    message:kHistoryEntryAlertMessage delegate:nil
+                    message:kHistoryEntryAlertMessage delegate:self
                     cancelButtonTitle:kHistoryEntryAlertCancel
                     otherButtonTitles:kHistoryEntryAlertCreate, nil]
                     autorelease];
@@ -279,5 +279,16 @@ static NSString *kNameVariableKey = @"NAME";
         noLists = NO;
     }
     return numberOfRows;
+}
+
+#pragma mark -
+#pragma mark <UIAlertViewDelegate>
+
+- (void)        alertView:(UIAlertView *)alertView
+didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView title] isEqualToString:kHistoryEntryAlertTitle] &&
+            buttonIndex == [alertView firstOtherButtonIndex])
+        [self addHistoryEntry:nil];
 }
 @end
