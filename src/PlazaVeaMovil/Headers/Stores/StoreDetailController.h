@@ -14,6 +14,7 @@
     TTImageView *_imageView;
     UIView *_headerView;
     UILabel *_titleLabel;
+    UILabel *_storeLabel;
 }
 
 - (id)initWithStoreId:(NSString *)storeId;

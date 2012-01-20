@@ -10,7 +10,7 @@
 #import "Composition/FoodDetailController.h"
 
 static CGFloat margin = 5.;
-static CGFloat categoryWidth = 120.;
+static CGFloat categoryWidth = 150.;
 static CGFloat headerMinHeight = 40.;
 
 @interface FoodDetailController ()
@@ -91,7 +91,7 @@ static CGFloat headerMinHeight = 40.;
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
             + titleHeight + (2 * margin));
-    CGRect imageFrame = CGRectMake(1.0, .0, kFoodDetailImageWidth,
+    CGRect imageFrame = CGRectMake(.0, .0, kFoodDetailImageWidth,
             kFoodDetailImageHeight);
     
     [_headerView setFrame:headerFrame];

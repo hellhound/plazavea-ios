@@ -18,6 +18,7 @@
 
 - (void)        dataSource:(StoreDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
+                  district:(NSString *)district
                   andTitle:(NSString *)title;
 @end
 
