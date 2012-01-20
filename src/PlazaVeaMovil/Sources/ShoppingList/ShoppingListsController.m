@@ -18,6 +18,7 @@
 
 static CGFloat margin = 5.;
 static CGFloat disclousureWidth = 20.;
+static CGFloat headerHeight = 40.;
 
 @interface ShoppingListsController ()
 
@@ -90,9 +91,11 @@ static CGFloat disclousureWidth = 20.;
 - (void)loadView
 {
     [super loadView];
+    
     CGRect bounds = [[self tableView] bounds];
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
-            bounds.size.width, 40.)] autorelease];
+            bounds.size.width, (headerHeight + kShoppingListsBannerHeight))]
+                autorelease];
 
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
@@ -104,6 +107,15 @@ static CGFloat disclousureWidth = 20.;
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];
     }
+    UIImageView *imageView =[[[UIImageView alloc] initWithFrame:
+            CGRectMake(.0, headerHeight, kShoppingListsBannerWidth,
+                kShoppingListsBannerHeight)] autorelease];
+    
+    [imageView setImage:[UIImage imageNamed:kShoppingListsDefaultBanner]];
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
 
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0., 10.,
             bounds.size.width, 20.)] autorelease];
@@ -123,6 +135,7 @@ static CGFloat disclousureWidth = 20.;
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
 
     [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
     [[self tableView] setTableHeaderView:headerView];
 }
 

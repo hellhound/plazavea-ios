@@ -1,5 +1,6 @@
 // Shopping-list module's constants
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "ShoppingList/Constants.h"
 
@@ -55,6 +56,10 @@ NSString *const kShoppingListsAlertCancel = @"OK";
 // NSLocalizedString(@"OK", nil)
 NSString *const kShoppingListsAlertCreate = @"Crear lista";
 // NSLocalizedString(@"Crear", nil)
+NSString *const kShoppingListsDefaultBanner =
+        @"default-banner-shopping-list.png";
+const CGFloat kShoppingListsBannerHeight = 140.;
+const CGFloat kShoppingListsBannerWidth = 320.;
 
 // TSAlertView's constants for shopping list creation
 NSString *const kShoppingListNewTitle = @"Nueva lista";

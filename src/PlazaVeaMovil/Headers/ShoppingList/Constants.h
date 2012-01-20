@@ -42,6 +42,9 @@ extern NSString *const kShoppingListsAlertTitle;
 extern NSString *const kShoppingListsAlertMessage;
 extern NSString *const kShoppingListsAlertCancel;
 extern NSString *const kShoppingListsAlertCreate;
+extern NSString *const kShoppingListsDefaultBanner;
+extern const CGFloat kShoppingListsBannerHeight;
+extern const CGFloat kShoppingListsBannerWidth;
 
 typedef enum {
     kShoppingListAlertViewNewList,
