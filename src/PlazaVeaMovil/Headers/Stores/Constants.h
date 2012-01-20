@@ -95,6 +95,9 @@ extern const CGFloat kStoreDetailImageWidth;
 extern const CGFloat kStoreDetailImageHeight;
 extern const CGFloat kStoreDetailLabelWidth;
 extern NSString *const kStoreDetailDefaultImage;
+extern const CGFloat kRegionListImageWidth;
+extern const CGFloat kRegionListImageHeight;
+extern NSString *const kRegionListDefaultImage;
 
 // RegionListController's constants
 

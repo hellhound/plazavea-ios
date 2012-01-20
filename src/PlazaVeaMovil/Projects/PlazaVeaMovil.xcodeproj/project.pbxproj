@@ -179,6 +179,7 @@
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
 		2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */; };
+		2FC0936F14C9D854003D77B7 /* default-banner-region-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0936E14C9D854003D77B7 /* default-banner-region-list.png */; };
 		2FC9A91914B7423200B7747F /* IngredientRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */; };
 		2FC9A91B14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */; };
 		2FC9A91D14B7519C00B7747F /* ProcedureRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */; };
@@ -845,6 +846,7 @@
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-shopping-list.png"; sourceTree = "<group>"; };
+		2FC0936E14C9D854003D77B7 /* default-banner-region-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-region-list.png"; sourceTree = "<group>"; };
 		2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailController.m; sourceTree = "<group>"; };
@@ -1028,6 +1030,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FC0936E14C9D854003D77B7 /* default-banner-region-list.png */,
 				2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */,
 				2FF3BE6614BCAAB000619363 /* foods.csv */,
 				2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */,
@@ -2048,6 +2051,7 @@
 				2F2B2B3814B4EA9D000C0F26 /* snacks-backgrounds@2x.png in Resources */,
 				2FF3BE6714BCAAB000619363 /* foods.csv in Resources */,
 				2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */,
+				2FC0936F14C9D854003D77B7 /* default-banner-region-list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
