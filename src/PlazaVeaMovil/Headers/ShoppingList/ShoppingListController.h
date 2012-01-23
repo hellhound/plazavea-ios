@@ -5,8 +5,8 @@
 #import <TSAlertView/TSAlertView.h>
 
 #import "Common/Controllers/EditableTableViewController.h"
+#import "Common/Views/BZActionSheet.h"
 #import "ShoppingList/Models.h"
-#import "ShoppingList/BZActionSheet.h"
 #import "ShoppingList/HistoryEntryController.h"
 
 @class ShoppingListController;
