@@ -125,6 +125,14 @@ extern NSString *const kStoreDetailButtonLabel;
 
 // StoreMapController's constants
 
+typedef enum {
+    kMapStyleSegmentedControlIndexStandard,
+    kMapStyleSegmentedControlIndexSatellite,
+    kMapStyleSegmentedControlIndexHybrid,
+    kMapStyleSegmentedControlIndexDefault =
+            kMapStyleSegmentedControlIndexStandard
+}MapStyleSegmentedControlIndexTypes;
+
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;
 extern NSString *const kStoreMapOptionButton;
@@ -135,6 +143,10 @@ extern NSString *const kAnnotationId;
 extern NSString *const kPinAnnotationId;
 extern const CGFloat kStoreMapImageWidth;
 extern const CGFloat kStoreMapImageHeight;
+extern NSString *const kStoreMapTypeStandard;
+extern NSString *const kStoreMapTypeSatellite;
+extern NSString *const kStoreMapTypeHybrid;
+extern NSString *const kStoreMapTypeLabel;
 
 // Controllers' URLs
 extern NSString *const kURLRegionList;

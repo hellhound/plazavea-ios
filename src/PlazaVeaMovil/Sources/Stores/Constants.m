@@ -169,6 +169,14 @@ NSString *const kAnnotationId = @"AnnotationView";
 NSString *const kPinAnnotationId = @"PinAnnotationView";
 const CGFloat kStoreMapImageWidth = 32.;
 const CGFloat kStoreMapImageHeight = 32.;
+NSString *const kStoreMapTypeStandard = @"Estándar";
+// NSLocalizedString(@"Estándar", nil)
+NSString *const kStoreMapTypeSatellite = @"Satélite";
+// NSLocalizedString(@"Satélite", nil)
+NSString *const kStoreMapTypeHybrid = @"Híbrido";
+// NSLocalizedString(@"Híbrido", nil)
+NSString *const kStoreMapTypeLabel = @"Seleccione el tipo de mapa:";
+// NSLocalizedString(@"Seleccione el tipo de mapa:", nil)
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";

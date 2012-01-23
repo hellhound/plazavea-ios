@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "PageCurlButton.h"
+#import "Common/Views/PageCurlButton.h"
 
 static NSString *const kCurlUpAndDownAnimationID = @"kCurlUpAndDownAnimationID";
 static CGFloat const kCurlAnimationDuration = 0.8;
@@ -56,16 +56,16 @@ static CGFloat const kCurlAnimationShouldStopAfter = 0.44;
 		self.curlAnimationShouldStopAfter = kCurlAnimationShouldStopAfter;
 		self.hidesWhenAnimating = NO;
 		self.hidesTargetViewWhileCurled = YES;
-        UIImage *buttonImage = [UIImage imageNamed:@"pageCurl.png"];
+        /*UIImage *buttonImage = [UIImage imageNamed:@"pageCurl.png"];
         
         [self setImage: buttonImage forState:UIControlStateNormal];
         [self setFrame:CGRectMake(frame.origin.x, frame.origin.y,
-                25., 25.)];
+                buttonImage.size.width, buttonImage.size.height)];*/
 		[self addTarget:self action:@selector(touched)
                 forControlEvents:UIControlEventTouchUpInside];
         
-		self.backgroundColor = [UIColor colorWithRed:0.9 green:0.5
-                blue:0.5 alpha:0.8];
+		/*self.backgroundColor = [UIColor colorWithRed:0.9 green:0.5
+                blue:0.5 alpha:0.8];*/
         
 		[[NSNotificationCenter defaultCenter] addObserver:self
                 selector:@selector(curlViewDown)
