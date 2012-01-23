@@ -59,11 +59,15 @@ NSString *const kStoreCollectionStoresKey = @"stores";
 // RegionListDataSource's constants
 
 // Generic sizes and images
-const CGFloat kStoreDetailImageWidth = 320.;
-const CGFloat kStoreDetailImageHeight = 100.;
+const CGFloat kStoreDetailImageWidth = 140.;
+const CGFloat kStoreDetailImageHeight = 140.;
 const CGFloat kStoreDetailLabelWidth = 320.;
 NSString *const kStoreDetailDefaultImage =
-        @"bundle://default-banner.png";
+        @"bundle://default-store-detail.png";
+const CGFloat kRegionListImageWidth = 320.;
+const CGFloat kRegionListImageHeight = 140.;
+NSString *const kRegionListDefaultImage =
+        @"bundle://default-banner-region-list.png";
 
 // Messages
 NSString *const kRegionListTitleForLoading = @"Obteniendo la lista";
@@ -165,6 +169,14 @@ NSString *const kAnnotationId = @"AnnotationView";
 NSString *const kPinAnnotationId = @"PinAnnotationView";
 const CGFloat kStoreMapImageWidth = 32.;
 const CGFloat kStoreMapImageHeight = 32.;
+NSString *const kStoreMapTypeStandard = @"Estándar";
+// NSLocalizedString(@"Estándar", nil)
+NSString *const kStoreMapTypeSatellite = @"Satélite";
+// NSLocalizedString(@"Satélite", nil)
+NSString *const kStoreMapTypeHybrid = @"Híbrido";
+// NSLocalizedString(@"Híbrido", nil)
+NSString *const kStoreMapTypeLabel = @"Seleccione el tipo de mapa:";
+// NSLocalizedString(@"Seleccione el tipo de mapa:", nil)
 
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";

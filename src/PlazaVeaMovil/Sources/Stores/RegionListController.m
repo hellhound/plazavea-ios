@@ -78,9 +78,26 @@ static CGFloat headerMinHeight = 40.;
     }
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
+    // Configuring the banner
+    if (_regionId == nil) {
+        TTImageView *imageView = [[[TTImageView alloc] initWithFrame:
+                CGRectMake(.0, (titleHeight + (margin * 2)),
+                    kRegionListImageWidth, kRegionListImageHeight)]
+                    autorelease];
+    
+        [imageView setDefaultImage:TTIMAGE(kRegionListDefaultImage)];
+        [imageView setAutoresizingMask:UIViewAnimationTransitionNone];
+        [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+                UIViewAutoresizingFlexibleRightMargin];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+    
+        titleHeight += kRegionListImageHeight;
+        [_headerView addSubview:imageView];
+    }
+    
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-            titleHeight + (2 * margin));
+                titleHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(storesBackgroundHeader)]) {

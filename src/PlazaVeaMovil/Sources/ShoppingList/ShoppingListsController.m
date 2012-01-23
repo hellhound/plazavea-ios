@@ -16,7 +16,18 @@
 #import "ShoppingList/ShoppingListController.h"
 #import "ShoppingList/ShoppingListsController.h"
 
+static CGFloat margin = 5.;
+static CGFloat disclousureWidth = 20.;
+static CGFloat headerHeight = 40.;
+
+@interface ShoppingListsController ()
+
+@property (nonatomic, assign) BOOL noLists;
+@end
+
 @implementation ShoppingListsController
+
+@synthesize noLists;
 
 #pragma mark -
 #pragma mark NSObject
@@ -34,7 +45,8 @@
                 sortDescriptors:sortDescriptors inContext:context]) != nil) {
         [self setTitle:NSLocalizedString(kShoppingListTitle, nil)];
         [self setAllowsMovableCells:YES];
-        [self setCellStyle:UITableViewCellStyleSubtitle];
+        //[self setCellStyle:UITableViewCellStyleSubtitle];
+        noLists = YES;
     }
     return self;
 }
@@ -79,9 +91,11 @@
 - (void)loadView
 {
     [super loadView];
+    
     CGRect bounds = [[self tableView] bounds];
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
-            bounds.size.width, 40.)] autorelease];
+            bounds.size.width, (headerHeight + kShoppingListsBannerHeight))]
+                autorelease];
 
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(shopingListBackgroundHeader)]){
@@ -93,6 +107,15 @@
         [headerView addSubview:backgroundView];
         [headerView sendSubviewToBack:backgroundView];
     }
+    UIImageView *imageView =[[[UIImageView alloc] initWithFrame:
+            CGRectMake(.0, headerHeight, kShoppingListsBannerWidth,
+                kShoppingListsBannerHeight)] autorelease];
+    
+    [imageView setImage:[UIImage imageNamed:kShoppingListsDefaultBanner]];
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
 
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0., 10.,
             bounds.size.width, 20.)] autorelease];
@@ -112,6 +135,7 @@
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
 
     [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
     [[self tableView] setTableHeaderView:headerView];
 }
 
@@ -146,6 +170,9 @@
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [[cell textLabel] setText:[list name]];
+    [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:18.]];
+    [[cell textLabel] setNumberOfLines:0];
+    [[cell detailTextLabel] setText:nil];
     //[[cell detailTextLabel] setText:date == nil ||
     //        [date isEqual:[NSNull null]] ?
     //        kShoppingListDefaultDetailText :
@@ -217,5 +244,46 @@
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
             shoppingList name]]];
     [self fetchUpdateAndReload];
+}
+
+#pragma mark -
+#pragma mark <UITableViewDataSource>
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger numberOfRows =
+            [super tableView:tableView numberOfRowsInSection:section];
+    
+    if (numberOfRows == 0 && !noLists) {
+        TSAlertView *alertView = [[[TSAlertView alloc]
+                initWithTitle:kShoppingListsAlertTitle
+                    message:kShoppingListsAlertMessage delegate:self
+                    cancelButtonTitle:kShoppingListsAlertCancel
+                    otherButtonTitles:kShoppingListsAlertCreate, nil]
+                    autorelease];
+        
+        [alertView show];
+        noLists = NO;
+    }
+    return numberOfRows;
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat accessoryWidth = disclousureWidth;
+    NSString *label = [(ShoppingList *)[_resultsController
+            objectAtIndexPath:indexPath] name];    
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4) + accessoryWidth;
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:18.]
+            constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
+    
+    return cellHeight;
 }
 @end

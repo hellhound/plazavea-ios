@@ -38,13 +38,21 @@ extern NSString *const kShoppingListDefaultDetailText;
 extern NSString *const kShoppingListCloningRepetitionName;
 extern NSString *const kShoppingListCloningRepetitionPattern;
 extern NSString *const kShoppingListCloningRepetitionSuffix;
+extern NSString *const kShoppingListsAlertTitle;
+extern NSString *const kShoppingListsAlertMessage;
+extern NSString *const kShoppingListsAlertCancel;
+extern NSString *const kShoppingListsAlertCreate;
+extern NSString *const kShoppingListsDefaultBanner;
+extern const CGFloat kShoppingListsBannerHeight;
+extern const CGFloat kShoppingListsBannerWidth;
 
 typedef enum {
     kShoppingListAlertViewNewList,
     kShoppingListAlertViewNewItem,
     kShoppingListAlertViewModifyingItem,
     kShoppingListAlertViewListDeletion,
-    kShoppingListAlertViewActionSheetNewList
+    kShoppingListAlertViewActionSheetNewList,
+    kShoppingListAlertViewNoItems
 } ShoppingListAlertViewType;
 
 // TSAlertView's constants for shopping list creation
@@ -93,8 +101,16 @@ extern NSString *const kShoppingListActionSheetMailButton;
 // ShoppingListController's constants
 
 extern const NSTimeInterval kShoppingListAlertViewDelay;
+extern NSString *const kShoppingListAlertTitle;
+extern NSString *const kShoppingListAlertMessage;
+extern NSString *const kShoppingListAlertCancel;
+extern NSString *const kShoppingListAlertCreate;
 
 // HistoryEntryControlller's contstants
+extern NSString *const kHistoryEntryAlertTitle;
+extern NSString *const kHistoryEntryAlertMessage;
+extern NSString *const kHistoryEntryAlertCancel;
+extern NSString *const kHistoryEntryAlertCreate;
 
 // Administration of history entries
 extern NSString *const kHistoryEntryTitle;

@@ -1,11 +1,13 @@
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
 #import <Three20/Three20.h>
 
-@interface StoreMapController: TTModelViewController <MKMapViewDelegate>
+#import "Common/Views/PageCurlButton.h"
+
+@interface StoreMapController: TTModelViewController
+        <MKMapViewDelegate, PageCurlButtonDelegate>
 {
     UIBarButtonItem *_backButton;
     NSInteger _segmentIndex;
@@ -13,6 +15,8 @@
     MKMapView *_mapView;
     MKCoordinateRegion _region;
     NSString *_buttonTitle;
+    UISegmentedControl *_mapTypeControl;
+    UILabel *_mapTypeLabel;
 }
 @property (nonatomic, assign) NSInteger segmentIndex;
 @property (nonatomic, copy) NSString *buttonTitle;

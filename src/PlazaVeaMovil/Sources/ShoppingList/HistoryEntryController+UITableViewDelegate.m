@@ -3,6 +3,8 @@
 
 #import "ShoppingList/HistoryEntryController.h"
 
+static CGFloat margin = 5.;
+
 @interface HistoryEntryController (UITableViewDelegate)
 
 - (void)historyTableView:(UITableView *)tableView
@@ -48,5 +50,20 @@
     } else {
         [self historyTableView:tableView indexPath:indexPath];
     }
+}
+
+- (CGFloat)     tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShoppingHistoryEntry *item = (ShoppingHistoryEntry *)[_resultsController
+            objectAtIndexPath:indexPath];
+    NSString *label = [item name];    
+    CGSize constrainedSize = [tableView frame].size;
+    constrainedSize.width -= (margin * 4);
+    CGFloat cellHeight = [label sizeWithFont:[UIFont boldSystemFontOfSize:18.]
+            constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
+    
+    return cellHeight;
 }
 @end

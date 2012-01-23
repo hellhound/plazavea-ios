@@ -9,6 +9,7 @@
 #import "Common/Additions/CLLocation+Additions.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Constants.h"
+#import "Common/Views/PageCurlButton.h"
 #import "Launcher/Constants.h"
 #import "Stores/Constants.h"
 #import "Stores/Models.h"
@@ -19,8 +20,11 @@
 @property (nonatomic, retain) MKMapView *mapView;
 @property (nonatomic, readonly) UISegmentedControl *segControl;
 @property (nonatomic, assign) MKCoordinateRegion region;
+@property (nonatomic, retain) UISegmentedControl *mapTypeControl;
+@property (nonatomic, retain) UILabel *mapTypeLabel;
 
 - (void)switchControllers:(UISegmentedControl *)segControl;
+- (void)switchMapType:(UISegmentedControl *)segControl;
 - (UIButton *)buttonWithImage:(NSString *)imageName action:(SEL)action;
 @end
 
@@ -84,9 +88,17 @@
             [self buttonWithImage:kStoreMapGPSButton
                 action:@selector(updateUserAnnotation:)]] autorelease];
     // Conf CurlButton
-    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc] initWithCustomView:
-            [self buttonWithImage:kStoreMapOptionButton action:NULL]]
-                autorelease];
+    PageCurlButton *pageCurlButton = [[[PageCurlButton alloc]
+            initWithFrame:CGRectZero] autorelease];
+    UIImage *pageCurl = [UIImage imageNamed:@"pagecurl.png"];
+    
+    [pageCurlButton setImage:pageCurl forState:UIControlStateNormal];
+    [pageCurlButton setFrame:CGRectMake(.0, .0, pageCurl.size.width,
+            pageCurl.size.height)];
+    [pageCurlButton setDelegate:self];
+    
+    UIBarButtonItem *curlItem = [[[UIBarButtonItem alloc]
+            initWithCustomView:pageCurlButton] autorelease];
     // Conf a spacer
     UIBarButtonItem *spacerItem = [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -107,6 +119,9 @@
     NSArray *stores;
         
     [self setMapView:[[MKMapView alloc] initWithFrame:viewBounds]];
+    
+    [(PageCurlButton *)[[[self toolbarItems] objectAtIndex:4] customView]
+            setTargetView:_mapView];
         
     if ([[self model] isKindOfClass:[StoreCollection class]]) {
         stores = [(StoreCollection *)[self model] stores];
@@ -232,7 +247,8 @@
 #pragma mark -
 #pragma mark StoreMapController (Private)
 
-@synthesize segControl = _segControl;
+@synthesize segControl = _segControl, mapTypeControl = _mapTypeControl,
+        mapTypeLabel = _mapTypeLabel;
 
 - (UISegmentedControl *)segControl
 {
@@ -274,6 +290,26 @@
             [self dismissModalViewControllerAnimated:YES];
             break;
     }
+}
+
+- (void)switchMapType:(UISegmentedControl *)segControl
+{
+    switch ([segControl selectedSegmentIndex]) {
+        case kMapStyleSegmentedControlIndexStandard:
+            [_mapView setMapType:MKMapTypeStandard];
+            break;
+        case kMapStyleSegmentedControlIndexSatellite:
+            [_mapView setMapType:MKMapTypeSatellite];
+            break;
+        case kMapStyleSegmentedControlIndexHybrid:
+            [_mapView setMapType:MKMapTypeHybrid];
+            break;
+        default:
+            [_mapView setMapType:MKMapTypeStandard];
+            break;
+    }
+    [(PageCurlButton *)[[[self toolbarItems] objectAtIndex:4] customView]
+            curlViewDown];
 }
 
 - (void)updateUserAnnotation:(id)sender
@@ -399,5 +435,60 @@
     [[TTNavigator navigator] openURLAction:
      [[TTURLAction actionWithURLPath:URL(kURLStoreDetailCall, storeId)]
         applyAnimated:YES]];
+}
+
+#pragma mark -
+#pragma mark <PageCurlButtonDelegate>
+
+- (void)pageCurlButtonWillCurlViewUp:(PageCurlButton *)control
+{
+    [[self view] setBackgroundColor:[UIColor lightGrayColor]];
+    if (_mapTypeLabel == nil) {
+        _mapTypeLabel = [[[UILabel alloc] init] autorelease];
+        
+        [_mapTypeLabel setFrame:CGRectMake(20., 260., 280., 40.)];
+        [_mapTypeLabel setFont:[UIFont boldSystemFontOfSize:14.]];
+        [_mapTypeLabel setText:kStoreMapTypeLabel];
+        [_mapTypeLabel setTextColor:[UIColor darkGrayColor]];
+        [_mapTypeLabel setShadowColor:[UIColor whiteColor]];
+        [_mapTypeLabel setShadowOffset:CGSizeMake(.0, 1.)];
+        [_mapTypeLabel setBackgroundColor:[UIColor clearColor]];
+        [_mapTypeLabel setTextAlignment:UITextAlignmentCenter];
+        [[self view] insertSubview:_mapTypeLabel atIndex:0];
+    }
+    if (_mapTypeControl == nil) {
+        _mapTypeControl = [[[UISegmentedControl alloc] initWithItems:
+                [NSArray arrayWithObjects:kStoreMapTypeStandard,
+                    kStoreMapTypeSatellite, kStoreMapTypeHybrid, nil]]
+                    autorelease];
+        
+        switch ([_mapView mapType]) {
+            case MKMapTypeStandard:
+                [_mapTypeControl setSelectedSegmentIndex:0];
+                break;
+            case MKMapTypeSatellite:
+                [_mapTypeControl setSelectedSegmentIndex:1];
+                break;
+            case MKMapTypeHybrid:
+                [_mapTypeControl setSelectedSegmentIndex:2];
+                break;
+            default:
+                [_mapTypeControl setSelectedSegmentIndex:0];
+                break;
+        }
+        [_mapTypeControl setFrame:CGRectMake(20., 300., 280., 50.)];
+        [_mapTypeControl addTarget:self action:@selector(switchMapType:)
+                forControlEvents:UIControlEventValueChanged];
+        [[self view] insertSubview:_mapTypeControl atIndex:0];
+    }
+}
+
+- (void)pageCurlButtonDidCurlViewDown:(PageCurlButton *)control
+{
+    [_mapTypeControl removeFromSuperview];
+    [_mapTypeLabel removeFromSuperview];
+    
+    _mapTypeControl = nil;
+    _mapTypeLabel = nil;
 }
 @end

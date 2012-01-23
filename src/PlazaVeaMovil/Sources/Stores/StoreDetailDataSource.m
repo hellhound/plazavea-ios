@@ -74,30 +74,34 @@
     
     [sections addObject:kStoreDetailData];
     TableImageSubtitleItem *address = [TableImageSubtitleItem itemWithText:
-            [NSString stringWithFormat:kStoreDetailAddress,
-                [store storeAddress]]];
-    TableImageSubtitleItem *district = [TableImageSubtitleItem itemWithText:
-            [NSString stringWithFormat:kStoreDetailDistrict,
-                [[store district] name]]];
+            [store storeAddress]];
     TableImageSubtitleItem *attendance = [TableImageSubtitleItem itemWithText:
-            [NSString stringWithFormat:kStoreDetailAttendance,
-                [store attendance]]];
+            [store attendance]];
     TableImageSubtitleItem *phones = [TableImageSubtitleItem itemWithText:
-            [NSString stringWithFormat:kStoreDetailPhones,[store phones]]];
-    [items addObject:[NSArray arrayWithObjects:address, district, attendance,
+            [store phones]];
+    [items addObject:[NSArray arrayWithObjects:address, attendance,
             phones, nil]];
     
     [sections addObject:kStoreDetailServices];
     
     NSMutableArray *services = [NSMutableArray array];
+    NSString *serviceString = @"";
     
-    for (Service *service in [store services]) {
-        TableImageSubtitleItem *item =
-                [TableImageSubtitleItem itemWithText:[service name]];
-        [services addObject:item];
+    for (int i = 0; i < [[store services] count]; i++) {
+        Service *service = [[store services] objectAtIndex:i];
+        serviceString = [serviceString stringByAppendingString:[service name]];
+        
+        if (i != ([[store services] count] - 1)) {
+            serviceString = [serviceString stringByAppendingString:@", "];
+        } else {
+            serviceString = [serviceString stringByAppendingString:@"."];
+        }
     }
+    TableImageSubtitleItem *item =
+            [TableImageSubtitleItem itemWithText:serviceString];
+    [services addObject:item];
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
-            andTitle:[store name]];
+            district:[[store district] name] andTitle:[store name]];
     [items addObject:services];
     [self setSections:sections];
     [self setItems:items];

@@ -12,18 +12,6 @@
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-{
-    if (tableView == [self tableView])
-        return [super tableView:tableView numberOfRowsInSection:section];
-
-    id<NSFetchedResultsSectionInfo> sectionInfo =
-            [[_filteredController sections] objectAtIndex:section];
-    
-    return [sectionInfo numberOfObjects];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

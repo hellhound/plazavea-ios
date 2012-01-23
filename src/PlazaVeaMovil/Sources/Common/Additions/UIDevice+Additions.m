@@ -36,7 +36,7 @@ static NSCharacterSet *kPunctuationCharacterSet;
             [[versionComponents objectAtIndex:0] integerValue] -
                 UIDEVICE_BASE_MAJOR_SYSTEM_VERSION;
 
-    if (majorVersion < kSystemVersion3)
+    if (majorVersion <= kSystemVersion3)
         // fallback to kSystemVersion3
         return kSystemVersion3;
     if (majorVersion == kSystemVersion3) {
