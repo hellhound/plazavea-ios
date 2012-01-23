@@ -110,7 +110,7 @@ NSString *const kPromotionListSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 
 const CGFloat kPromotionListImageWidth = 320.;
-const CGFloat kPromotionListImageHeight = 100.;
+const CGFloat kPromotionListImageHeight = 140.;
 NSString *const kPromotionListDefaultBanner = @"bundle://default-banner.png";
 //UISegmentedControl item's label for the toolbar: promo button
 NSString *const kOfferPromotionButtonLabel = @"Promociones";
@@ -161,10 +161,12 @@ const CGFloat kOfferDetailLabelWidth = 320.;
 NSString *const kOfferDetailDefaultImage =
         @"bundle://default-offer-detail.png";
 
-NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
-NSString *const kOfferBannerDefaultImage = @"bundle://offer-banner.png";
+NSString *const kBannerDefaultImage =
+        @"bundle://default-banner-offers-list.png";
+NSString *const kOfferBannerDefaultImage =
+        @"bundle://default-banner-offers-list.png";
 const CGFloat kBannerImageWidth = 320.;
-const CGFloat kBannerImageHeight = 100.;
+const CGFloat kBannerImageHeight = 140.;
 const CGFloat kOfferListImageWidth = 50.;
 const CGFloat kOfferListImageHeight = 50.;
 
@@ -172,7 +174,7 @@ const CGFloat kOfferListImageHeight = 50.;
 NSString *const kPromotionDetailTitle = @"Detalle de la promoción";
 // NSLocalizedString(@"Detalle de la promoción", nil)
 const CGFloat kPromotionDetailImageWidth = 320.;
-const CGFloat kPromotionDetailImageHeight = 100.;
+const CGFloat kPromotionDetailImageHeight = 140.;
 
 //Controllers' URL
 NSString *const kURLOfferList = @"tt://launcher/offers/offers/";
