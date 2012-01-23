@@ -73,6 +73,11 @@ extern NSString *const kOfferDetailTitleForLoading;
 extern NSString *const kOfferDetailTitleForEmpty;
 extern NSString *const kOfferDetailSubtitleForEmpty;
 extern NSString *const kOfferDetailTitleForError;
+extern NSString *const kOfferDetailOldPriceLabel;
+extern NSString *const kOfferDetailPriceLabel;
+extern NSString *const kOfferDetailValidLabel;
+extern NSString *const kOfferDetailPriceSufix;
+extern NSString *const kOfferDetailValidSufix;
 
 // PromotionListDataSource's constants
 

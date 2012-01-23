@@ -7,6 +7,8 @@
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
+#import "Common/Views/TableCaptionItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
 #import "Offers/Models.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferDetailDataSource.h"
@@ -68,6 +70,10 @@
 {
     Offer *offer = (Offer *)[self model];
     NSString *longDescription = [offer longDescription];
+    NSString *oldPriceLabel = [NSString stringWithFormat:kOfferDetailPriceSufix,
+            [[offer oldPrice] floatValue]];
+    NSString *priceLabel = [NSString stringWithFormat:kOfferDetailPriceSufix,
+            [[offer price] floatValue]];
     NSURL *pictureURL = [offer pictureURL];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
@@ -78,10 +84,20 @@
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
             andTitle:[offer name]];
 
-    TableImageSubtitleItem *item = [TableImageSubtitleItem
+    TableCaptionItem *oldPrice = [TableCaptionItem
+            itemWithText:oldPriceLabel caption:kOfferDetailOldPriceLabel];
+    
+    [items addObject:oldPrice];
+    
+    TableCaptionItem *price = [TableCaptionItem
+            itemWithText:priceLabel caption:kOfferDetailPriceLabel];
+    
+    [items addObject:price];
+    
+    TableImageSubtitleItem *description = [TableImageSubtitleItem
             itemWithText:longDescription subtitle:nil];
 
-    [items addObject:item];
+    [items addObject:description];
     [self setItems:items];
 }
 
@@ -89,6 +105,8 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]])
         return [TableImageSubtitleItemCell class];
+    if ([object isKindOfClass:[TableCaptionItem class]])
+        return [TableCaptionItemCell class];
     return [super tableView:tableView cellClassForObject:object];
 }
 @end

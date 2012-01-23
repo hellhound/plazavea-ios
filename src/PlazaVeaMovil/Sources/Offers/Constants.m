@@ -137,6 +137,11 @@ NSString *const kPromotionDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kPromotionDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
+NSString *const kOfferDetailOldPriceLabel = @"Precio Original";
+NSString *const kOfferDetailPriceLabel = @"Precio de la Oferta";
+NSString *const kOfferDetailValidLabel = @"Vigencia";
+NSString *const kOfferDetailPriceSufix = @"S/. %.2f";
+NSString *const kOfferDetailValidSufix = @"%@ al %@";
 
 // PromotionListController's constants
 
