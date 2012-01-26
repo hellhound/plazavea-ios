@@ -11,6 +11,7 @@ NSString *const kOfferIdKey = @"id";
 NSString *const kOfferCodeKey = @"code";
 NSString *const kOfferNameKey = @"name";
 NSString *const kOfferDescriptionKey = @"description";
+NSString *const kOfferLegaleseKey = @"legalese";
 NSString *const kOfferPriceKey = @"price";
 NSString *const kOfferOldPriceKey = @"old_price";
 NSString *const kOfferDiscountKey = @"discount";
@@ -90,6 +91,16 @@ NSString *const kOfferDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información para esta oferta", nil)
 NSString *const kOfferDetailTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
+NSString *const kOfferDetailOldPriceCaption = @"Precio original";
+//NSLocalizedString(@"Precio original", nil)
+NSString *const kOfferDetailPriceCaption = @"Precio de la oferta";
+//NSLocalizedString(@"Precio de la oferta", nil)
+NSString *const kOfferDetailValidCaption = @"Vigencia";
+//NSLocalizedString(@"Vigencia", nil)
+NSString *const kOfferDetailPricePrefix = @"S/. %.2f";
+//NSLocalizedString(@"S/. %.2f", nil)
+NSString *const kOfferDetailValidPrefix = @"%@ al %@";
+//NSLocalizedString(@"%@ al %@", nil)
 
 // PromotionListDataSource's constants
 

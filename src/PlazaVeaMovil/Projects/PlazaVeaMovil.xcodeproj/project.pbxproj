@@ -153,6 +153,11 @@
 		2F78FF9D144F2F91007F9ACD /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78FF9B144F2F91007F9ACD /* Models.m */; };
 		2F79C978145F041B002161B2 /* StoreMapTogglingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C977145F041B002161B2 /* StoreMapTogglingController.m */; };
 		2F79C97A145F11D9002161B2 /* StoreMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C979145F11D9002161B2 /* StoreMapController.m */; };
+		2F7A62E014D1FD4800303150 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62C514D1FD4800303150 /* Facebook.m */; };
+		2F7A62E114D1FD4800303150 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F7A62C814D1FD4800303150 /* FBDialog.bundle */; };
+		2F7A62E214D1FD4800303150 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CA14D1FD4800303150 /* FBDialog.m */; };
+		2F7A62E314D1FD4800303150 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CC14D1FD4800303150 /* FBLoginDialog.m */; };
+		2F7A62E414D1FD4800303150 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CE14D1FD4800303150 /* FBRequest.m */; };
 		2F87657D14A8D95F0032ADB9 /* offer-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F87657B14A8D95F0032ADB9 /* offer-background.png */; };
 		2F87657E14A8D95F0032ADB9 /* offer-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F87657C14A8D95F0032ADB9 /* offer-background@2x.png */; };
 		2F8768FC14AA144A0032ADB9 /* offer-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F8768FA14AA144A0032ADB9 /* offer-banner.png */; };
@@ -823,6 +828,16 @@
 		2F78FF9B144F2F91007F9ACD /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F79C977145F041B002161B2 /* StoreMapTogglingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMapTogglingController.m; sourceTree = "<group>"; };
 		2F79C979145F11D9002161B2 /* StoreMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMapController.m; sourceTree = "<group>"; };
+		2F7A62C414D1FD4800303150 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		2F7A62C514D1FD4800303150 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
+		2F7A62C714D1FD4800303150 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		2F7A62C814D1FD4800303150 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		2F7A62C914D1FD4800303150 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		2F7A62CA14D1FD4800303150 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
+		2F7A62CB14D1FD4800303150 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		2F7A62CC14D1FD4800303150 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
+		2F7A62CD14D1FD4800303150 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		2F7A62CE14D1FD4800303150 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
 		2F87657B14A8D95F0032ADB9 /* offer-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-background.png"; sourceTree = "<group>"; };
 		2F87657C14A8D95F0032ADB9 /* offer-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-background@2x.png"; sourceTree = "<group>"; };
 		2F8768FA14AA144A0032ADB9 /* offer-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-banner.png"; sourceTree = "<group>"; };
@@ -1173,6 +1188,7 @@
 		2C691ED613F04BEC00E1EFA5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2F7A62C014D1FD4800303150 /* Facebook SDK */,
 				2C691ED713F04C4E00E1EFA5 /* TSAlertView */,
 			);
 			name = Dependencies;
@@ -1377,6 +1393,24 @@
 				2F78FF9B144F2F91007F9ACD /* Models.m */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		2F7A62C014D1FD4800303150 /* Facebook SDK */ = {
+			isa = PBXGroup;
+			children = (
+				2F7A62C414D1FD4800303150 /* Facebook.h */,
+				2F7A62C514D1FD4800303150 /* Facebook.m */,
+				2F7A62C714D1FD4800303150 /* FBConnect.h */,
+				2F7A62C814D1FD4800303150 /* FBDialog.bundle */,
+				2F7A62C914D1FD4800303150 /* FBDialog.h */,
+				2F7A62CA14D1FD4800303150 /* FBDialog.m */,
+				2F7A62CB14D1FD4800303150 /* FBLoginDialog.h */,
+				2F7A62CC14D1FD4800303150 /* FBLoginDialog.m */,
+				2F7A62CD14D1FD4800303150 /* FBRequest.h */,
+				2F7A62CE14D1FD4800303150 /* FBRequest.m */,
+			);
+			name = "Facebook SDK";
+			path = "facebook-ios-sdk/src";
 			sourceTree = "<group>";
 		};
 		2FA7FB6F1446204700211215 /* Offers */ = {
@@ -2063,6 +2097,7 @@
 				2FC0936F14C9D854003D77B7 /* default-banner-region-list.png in Resources */,
 				2FC0953414CA1849003D77B7 /* default-store-detail.png in Resources */,
 				2F3B7D8814CE03F7004CE20A /* default-banner-offers-list.png in Resources */,
+				2F7A62E114D1FD4800303150 /* FBDialog.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2207,6 +2242,10 @@
 				2FC9A92014B758E300B7747F /* TipsRecipeDetailController.m in Sources */,
 				2FC9A92114B758E300B7747F /* TipsRecipeDetailDataSource.m in Sources */,
 				2F3B7BF414CDB096004CE20A /* PageCurlButton.m in Sources */,
+				2F7A62E014D1FD4800303150 /* Facebook.m in Sources */,
+				2F7A62E214D1FD4800303150 /* FBDialog.m in Sources */,
+				2F7A62E314D1FD4800303150 /* FBLoginDialog.m in Sources */,
+				2F7A62E414D1FD4800303150 /* FBRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
+#import "Common/Views/TableCaptionItem.h"
 #import "Offers/Models.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferDetailDataSource.h"
@@ -67,9 +69,7 @@
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     Offer *offer = (Offer *)[self model];
-    NSString *longDescription = [offer longDescription];
     NSURL *pictureURL = [offer pictureURL];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
     if (pictureURL != nil) {
         pictureURL = IMAGE_URL(pictureURL, kOfferDetailImageWidth,
@@ -77,11 +77,51 @@
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
             andTitle:[offer name]];
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
+    
+    if ([offer oldPrice] != nil) {
+        TableCaptionItem *oldPrice = [TableCaptionItem itemWithText:
+                [NSString stringWithFormat:kOfferDetailPricePrefix,
+                    [[offer oldPrice] floatValue]]
+                    caption:kOfferDetailOldPriceCaption];
+        
+        [items addObject:oldPrice];
+    }
+    if ([offer price] != nil) {
+        TableCaptionItem *price = [TableCaptionItem itemWithText:
+                [NSString stringWithFormat:kOfferDetailPricePrefix,
+                    [[offer price] floatValue]]
+                    caption:kOfferDetailPriceCaption];
+        
+        [items addObject:price];
+    }
+    if (([offer validFrom] != nil) && ([offer validTo] != nil)) {
+        NSDateFormatter *dateFormatter =
+                [[[NSDateFormatter alloc] init] autorelease];
+        
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        
+        NSString *validString = [NSString stringWithFormat:
+                kOfferDetailValidPrefix,
+                    [dateFormatter stringFromDate:[offer validFrom]],
+                    [dateFormatter stringFromDate:[offer validTo]]];
+        TableCaptionItem *valid = [TableCaptionItem itemWithText:validString
+                caption:kOfferDetailValidCaption];
+                                   
+        [items addObject:valid];
+    }
+    if ([offer longDescription] != nil) {
+        TableImageSubtitleItem *longDescription = [TableImageSubtitleItem
+                itemWithText:[offer longDescription] subtitle:nil];
 
-    TableImageSubtitleItem *item = [TableImageSubtitleItem
-            itemWithText:longDescription subtitle:nil];
-
-    [items addObject:item];
+        [items addObject:longDescription];
+    }
+    if ([offer legalese] != nil) {
+        TTTableLongTextItem *legalese =
+                [TTTableLongTextItem itemWithText:[offer legalese]];
+        
+        [items addObject:legalese];
+    }
     [self setItems:items];
 }
 
@@ -89,6 +129,8 @@
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]])
         return [TableImageSubtitleItemCell class];
+    if ([object isKindOfClass:[TableCaptionItem class]])
+        return [TableCaptionItemCell class];
     return [super tableView:tableView cellClassForObject:object];
 }
 @end
