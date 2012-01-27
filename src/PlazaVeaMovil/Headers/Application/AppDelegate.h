@@ -3,6 +3,7 @@
 #import <CoreData/CoreData.h>
 
 #import <Three20/Three20.h>
+#import "FBConnect.h"
 
 @interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate>
 {
@@ -13,11 +14,14 @@
     NSPersistentStoreCoordinator *_coordinator;
     // Defaults
     NSDateFormatter *_dateFormatter;
+    Facebook *_facebook;
+    
 }
 // Unfortunately we have to declare the property window to work on pre-iOS 5
 // devices because theres a new property window on <UIApplicationDelegate> in
 // SDK 5.0
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) Facebook *facebook;
 
 - (NSString *)getUUID;
 @end

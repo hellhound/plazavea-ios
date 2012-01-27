@@ -1,10 +1,15 @@
 #import "math.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 #import <Three20/Three20.h>
+#import "FBConnect.h"
+#import "FBDialog.h"
 
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Application/Constants.h"
+#import "Application/AppDelegate.h"
 #import "Offers/Constants.h"
 #import "Offers/Models.h"
 #import "Offers/OfferDetailDataSource.h"
@@ -14,12 +19,17 @@ static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
 static CGFloat kShareLabelFont = 14.;
 static CGFloat kButtonHeight = 40.;
+static CGFloat kShareTag = 100;
 
 @interface OfferDetailController ()
 
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) TTImageView *imageView;
+@property (nonatomic, retain) Facebook *facebook;
+- (void)mailOffer;
+- (void)likeOffer;
+- (void)tweetOffer;
 @end
 
 @implementation OfferDetailController
@@ -74,7 +84,35 @@ static CGFloat kButtonHeight = 40.;
 #pragma mark OfferDetailController (Private)
 
 @synthesize headerView = _headerView, titleLabel = _titleLabel,
-imageView = _imageView;
+imageView = _imageView, facebook = _facebook;
+
+- (void)mailOffer
+{
+    MFMailComposeViewController *controller = 
+            [[[MFMailComposeViewController alloc] init] autorelease];
+    
+    [controller setMailComposeDelegate:self];
+    /*[picker setSubject:nil];
+    [picker setMessageBody:nil isHTML:NO];*/
+    [self presentModalViewController:controller animated:YES];
+}
+
+- (void)likeOffer
+{
+    _facebook = [(AppDelegate *)[[UIApplication sharedApplication]
+            delegate] facebook];
+    
+    [_facebook setSessionDelegate:self];
+    if (![_facebook isSessionValid])
+        [_facebook authorize:nil];
+    
+    [_facebook dialog:@"feed" andDelegate:nil];
+}
+
+- (void)tweetOffer
+{
+    
+}
 
 #pragma mark -
 #pragma mark OfferDetailController (Public)
@@ -119,6 +157,7 @@ imageView = _imageView;
         
         [shareLabel setFont:[UIFont boldSystemFontOfSize:kShareLabelFont]];
         [shareLabel setText:kOfferDetailShare];
+        [shareLabel setBackgroundColor:[UIColor clearColor]];
         
         CGFloat shareLabelWidth =
                 [[shareLabel text] sizeWithFont:[shareLabel font]].width;
@@ -126,9 +165,52 @@ imageView = _imageView;
         [shareLabel setFrame:CGRectMake(.0, .0,
                 shareLabelWidth, kButtonHeight)];
         
-        UIButton *mailButton;
-        UIButton *facebookButton;
-        UIButton *twitterButton;
+        UIButton *mailButton = [[[UIButton alloc] initWithFrame:
+                CGRectMake(.0, .0, kButtonHeight, kButtonHeight)] autorelease];
+        
+        [mailButton setImage:TTIMAGE(kOfferDetailMailImage)
+                forState:UIControlStateNormal];
+        [mailButton addTarget:self action:@selector(mailOffer)
+                forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *facebookButton = [[[UIButton alloc] initWithFrame:
+                CGRectMake(.0, .0, kButtonHeight, kButtonHeight)] autorelease];
+        
+        [facebookButton setImage:TTIMAGE(kOfferDetailFacebookImage)
+                forState:UIControlStateNormal];
+        [facebookButton addTarget:self action:@selector(likeOffer)
+                forControlEvents:UIControlEventTouchUpInside]
+        ;
+        UIButton *twitterButton = [[[UIButton alloc] initWithFrame:
+                CGRectMake(.0, .0, kButtonHeight, kButtonHeight)] autorelease];
+        
+        [twitterButton setImage:TTIMAGE(kOfferDetailTwitterImage)
+                forState:UIControlStateNormal];
+        [twitterButton addTarget:self action:@selector(tweetOffer)
+                forControlEvents:UIControlEventTouchUpInside];
+        
+        CGFloat x = [shareLabel frame].size.width + margin;
+        
+        [mailButton setFrame:CGRectOffset([mailButton frame], x, .0)];
+        
+        x += [mailButton frame].size.width + margin;
+        
+        [facebookButton setFrame:CGRectOffset([facebookButton frame], x, .0)];
+        
+        x += [facebookButton frame].size.width + margin;
+        
+        [twitterButton setFrame:CGRectOffset([twitterButton frame], x, .0)];
+        
+        x += [twitterButton frame].size.width;
+        CGFloat leftMargin = ([[self tableView] bounds].size.width - x) / 2;
+        UIView *share = [[[UIView alloc] initWithFrame:
+                CGRectMake(leftMargin, .0, x, kButtonHeight)] autorelease];
+        
+        [share setTag:kShareTag];
+        [share addSubview:shareLabel];
+        [share addSubview:mailButton];
+        [share addSubview:facebookButton];
+        [share addSubview:twitterButton];
         // Adding the subviews to the header view
         if ([TTStyleSheet hasStyleSheetForSelector:
                 @selector(offerBackgroundHeader)]) {
@@ -139,6 +221,7 @@ imageView = _imageView;
         }
         [_headerView addSubview:_titleLabel];
         [_headerView addSubview:_imageView];
+        [_headerView addSubview:share];
         [_headerView setClipsToBounds:YES];
     }
     return self;
@@ -175,9 +258,15 @@ imageView = _imageView;
         [_titleLabel setFrame:titleFrame];
         [_imageView setFrame:
                 CGRectOffset(imageFrame, .0, titleHeight + (margin * 2))];
+        
+        UIView *share = [_headerView viewWithTag:kShareTag];
+        
+        [share setFrame:CGRectOffset([share frame], .0,
+                titleHeight + [_imageView frame].size.height + (margin * 2))];
         if (imageURL != nil)
             [_imageView setUrlPath:[imageURL absoluteString]];
-        headerFrame.size.height += titleHeight + (margin * 2);
+        headerFrame.size.height += titleHeight + [share frame].size.height +
+                (margin * 2);
         
         UIView *whiteBackground =
                 [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
@@ -187,11 +276,34 @@ imageView = _imageView;
         CGRect frame = _imageView.frame;
         frame.origin.x = 0.;
         frame.size.width = 320.;
+        frame.size.height += [share frame].size.height;
         
         [whiteBackground setFrame:frame];
         [_headerView insertSubview:whiteBackground atIndex:1];
         [_headerView setFrame:headerFrame];
         [tableView setTableHeaderView:_headerView];
     }
+}
+
+#pragma mark -
+#pragma mark <MFMailComposerControllerDelegate>
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma <FBSessionDelegate>
+
+- (void)fbDidLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[_facebook accessToken] forKey:kAccessTokenKey];
+    [defaults setObject:[_facebook expirationDate] forKey:kExpirationDateKey];
+    [defaults synchronize];
 }
 @end

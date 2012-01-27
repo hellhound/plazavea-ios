@@ -135,6 +135,9 @@ extern const CGFloat kOfferDetailImageWidth;
 extern const CGFloat kOfferDetailImageHeight;
 extern NSString *const kOfferDetailDefaultImage;
 extern NSString *const kOfferDetailShare;
+extern NSString *const kOfferDetailMailImage;
+extern NSString *const kOfferDetailFacebookImage;
+extern NSString *const kOfferDetailTwitterImage;
 
 // PromotionListController's constants
 

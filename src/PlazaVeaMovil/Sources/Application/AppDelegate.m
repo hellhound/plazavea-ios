@@ -48,6 +48,7 @@
 - (void)dealloc
 {
     [_window release];
+    [_facebook release];
     [_context release];
     [_model release];
     [_coordinator release];
@@ -58,7 +59,7 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize window = _window;
+@synthesize window = _window, facebook = _facebook;
 
 - (NSString *)getUUID{
     //get a UUID value from UserDefaults
@@ -83,6 +84,17 @@
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    // Conf Facebook
+    _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:kAccessTokenKey] &&
+            [defaults objectForKey:kExpirationDateKey]) {
+        [_facebook setAccessToken:[defaults objectForKey:kAccessTokenKey]];
+        [_facebook setExpirationDate:
+                [defaults objectForKey:kExpirationDateKey]];
+    }
+    
     [TTStyleSheet setGlobalStyleSheet:[[[StyleSheet alloc] init] autorelease]];
 
     // Set the maxContentLength to auto
@@ -185,10 +197,19 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)URL
 {
-    [[TTNavigator navigator] openURLAction:
+    /*[[TTNavigator navigator] openURLAction:
             [[TTURLAction actionWithURLPath:
                 [URL absoluteString]] applyAnimated:YES]];
-    return YES;
+    return YES;*/
+    return [_facebook handleOpenURL:URL];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [_facebook handleOpenURL:url];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
