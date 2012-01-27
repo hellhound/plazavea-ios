@@ -171,6 +171,8 @@ const CGFloat kOfferDetailImageHeight = 140.;
 const CGFloat kOfferDetailLabelWidth = 320.;
 NSString *const kOfferDetailDefaultImage =
         @"bundle://default-offer-detail.png";
+NSString *const kOfferDetailShare = @"Compartir vía";
+// NSLocalizedString(@"Compartir vía", nil)
 
 NSString *const kBannerDefaultImage =
         @"bundle://default-banner-offers-list.png";

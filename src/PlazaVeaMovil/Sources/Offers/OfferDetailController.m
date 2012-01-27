@@ -12,6 +12,8 @@
 
 static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
+static CGFloat kShareLabelFont = 14.;
+static CGFloat kButtonHeight = 40.;
 
 @interface OfferDetailController ()
 
@@ -111,6 +113,22 @@ imageView = _imageView;
                 hasStyleSheetForSelector:@selector(headerColorYellow)]) {
             [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
         }
+        // Conf the buttons
+        UILabel *shareLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+                autorelease];
+        
+        [shareLabel setFont:[UIFont boldSystemFontOfSize:kShareLabelFont]];
+        [shareLabel setText:kOfferDetailShare];
+        
+        CGFloat shareLabelWidth =
+                [[shareLabel text] sizeWithFont:[shareLabel font]].width;
+        
+        [shareLabel setFrame:CGRectMake(.0, .0,
+                shareLabelWidth, kButtonHeight)];
+        
+        UIButton *mailButton;
+        UIButton *facebookButton;
+        UIButton *twitterButton;
         // Adding the subviews to the header view
         if ([TTStyleSheet hasStyleSheetForSelector:
                 @selector(offerBackgroundHeader)]) {
