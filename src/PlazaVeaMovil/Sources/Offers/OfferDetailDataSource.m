@@ -77,6 +77,8 @@
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
             andTitle:[offer name]];
+    [_delegate dataSource:self needsOffer:offer];
+    
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
     if ([offer oldPrice] != nil) {

@@ -43,6 +43,7 @@ static CGFloat kShareTag = 100;
     [_headerView release];
     [_titleLabel release];
     [_imageView release];
+    [_offer release];
     [super dealloc];
 }
 
@@ -92,8 +93,8 @@ imageView = _imageView, facebook = _facebook;
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
-    /*[picker setSubject:nil];
-    [picker setMessageBody:nil isHTML:NO];*/
+    [controller setSubject:[_offer name]];
+    [controller setMessageBody:[_offer longDescription] isHTML:NO];
     [self presentModalViewController:controller animated:YES];
 }
 
@@ -106,7 +107,15 @@ imageView = _imageView, facebook = _facebook;
     if (![_facebook isSessionValid])
         [_facebook authorize:nil];
     
-    [_facebook dialog:@"feed" andDelegate:nil];
+    NSMutableDictionary *params = [NSMutableDictionary
+            dictionaryWithObjectsAndKeys:
+                [[_offer facebookURL] absoluteString], @"link",
+                [[_offer pictureURL] absoluteString], @"picture",
+                [_offer name], @"caption",
+                [_offer longDescription], @"description",
+                nil];
+    
+    [_facebook dialog:@"feed" andParams:params andDelegate:nil];
 }
 
 - (void)tweetOffer
@@ -116,6 +125,8 @@ imageView = _imageView, facebook = _facebook;
 
 #pragma mark -
 #pragma mark OfferDetailController (Public)
+
+@synthesize offer = _offer;
 
 - (id)initWithOfferId:(NSString *)offerId
 {
@@ -282,6 +293,13 @@ imageView = _imageView, facebook = _facebook;
         [_headerView insertSubview:whiteBackground atIndex:1];
         [_headerView setFrame:headerFrame];
         [tableView setTableHeaderView:_headerView];
+    }
+}
+
+- (void)dataSource:(OfferDetailDataSource *)dataSource needsOffer:(Offer *)offer
+{
+    if ([offer pictureURL] != nil) {
+        _offer = [offer retain];
     }
 }
 

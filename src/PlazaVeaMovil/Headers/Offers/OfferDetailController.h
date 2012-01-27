@@ -6,6 +6,7 @@
 #import "FBConnect.h"
 #import "FBDialog.h"
 
+#import "Offers/Models.h"
 #import "Offers/BaseOfferController.h"
 #import "Offers/OfferDetailDataSource.h"
 
@@ -18,7 +19,8 @@
     UILabel *_titleLabel;
     TTImageView *_imageView;
     Facebook *_facebook;
+    Offer *_offer;
 }
-
+@property (nonatomic, retain) Offer *offer;
 - (id)initWithOfferId:(NSString *)offerId;
 @end
