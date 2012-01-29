@@ -6,3 +6,6 @@ extern NSString *const kApplicationUUIDKey;
 extern NSString *const kAppId;
 extern NSString *const kAccessTokenKey;
 extern NSString *const kExpirationDateKey;
+extern NSString *const kOAuthConsumerKey;
+extern NSString *const kOAuthConsumerSecret;
+extern NSString *const kOAuthData;
