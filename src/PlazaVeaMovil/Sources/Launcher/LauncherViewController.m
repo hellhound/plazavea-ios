@@ -65,6 +65,9 @@
                 [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
                     image:kURLOffersIcon 
                     URL:kURLOfferListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:@"Medidor corporal"
+                    image:kURLBodyMeterIcon 
+                    URL:nil] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
                     image:kURLRecipesIcon
                     URL:kURLRecipeCategoriesCall] autorelease],

@@ -136,6 +136,13 @@
 		2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */; };
 		2F3B7BF414CDB096004CE20A /* PageCurlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B7BF314CDB096004CE20A /* PageCurlButton.m */; };
 		2F3B7D8814CE03F7004CE20A /* default-banner-offers-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3B7D8714CE03F7004CE20A /* default-banner-offers-list.png */; };
+		2F3FF92314D74CAD0039D1F6 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92114D74CAD0039D1F6 /* Constants.m */; };
+		2F3FF92414D74CAD0039D1F6 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92214D74CAD0039D1F6 /* Model.m */; };
+		2F3FF92A14D74F900039D1F6 /* ConsumptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92514D74F900039D1F6 /* ConsumptionController.m */; };
+		2F3FF92B14D74F900039D1F6 /* DiagosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92614D74F900039D1F6 /* DiagosisController.m */; };
+		2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92714D74F900039D1F6 /* MealsController.m */; };
+		2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92814D74F900039D1F6 /* ProfileController.m */; };
+		2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92914D74F900039D1F6 /* RecomendationsController.m */; };
 		2F4875B1148C017A0027C2F0 /* composition-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4875B0148C017A0027C2F0 /* composition-background.png */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
 		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
@@ -838,6 +845,13 @@
 		2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailController.m; sourceTree = "<group>"; };
 		2F3B7BF314CDB096004CE20A /* PageCurlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCurlButton.m; sourceTree = "<group>"; };
 		2F3B7D8714CE03F7004CE20A /* default-banner-offers-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-offers-list.png"; sourceTree = "<group>"; };
+		2F3FF92114D74CAD0039D1F6 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2F3FF92214D74CAD0039D1F6 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		2F3FF92514D74F900039D1F6 /* ConsumptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumptionController.m; sourceTree = "<group>"; };
+		2F3FF92614D74F900039D1F6 /* DiagosisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagosisController.m; sourceTree = "<group>"; };
+		2F3FF92714D74F900039D1F6 /* MealsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealsController.m; sourceTree = "<group>"; };
+		2F3FF92814D74F900039D1F6 /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
+		2F3FF92914D74F900039D1F6 /* RecomendationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecomendationsController.m; sourceTree = "<group>"; };
 		2F4875B0148C017A0027C2F0 /* composition-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background.png"; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -1257,6 +1271,7 @@
 		2C2F07FD13DE6692009F60DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2F3FF92014D74CAD0039D1F6 /* BodyMeter */,
 				2F13CBFA1475726600A1A95F /* Composition */,
 				2F5B2A4414699E38008CFB6A /* Wines */,
 				2C291C10145CD08B002B7F78 /* Emergency */,
@@ -1458,6 +1473,20 @@
 				2F13CBFC1475726600A1A95F /* Models.m */,
 			);
 			path = Composition;
+			sourceTree = "<group>";
+		};
+		2F3FF92014D74CAD0039D1F6 /* BodyMeter */ = {
+			isa = PBXGroup;
+			children = (
+				2F3FF92514D74F900039D1F6 /* ConsumptionController.m */,
+				2F3FF92614D74F900039D1F6 /* DiagosisController.m */,
+				2F3FF92714D74F900039D1F6 /* MealsController.m */,
+				2F3FF92814D74F900039D1F6 /* ProfileController.m */,
+				2F3FF92914D74F900039D1F6 /* RecomendationsController.m */,
+				2F3FF92114D74CAD0039D1F6 /* Constants.m */,
+				2F3FF92214D74CAD0039D1F6 /* Model.m */,
+			);
+			path = BodyMeter;
 			sourceTree = "<group>";
 		};
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
@@ -2464,6 +2493,13 @@
 				2FCF7C1314D359EC007C083B /* NSString+UUID.m in Sources */,
 				2FCF7C1414D359EC007C083B /* SA_OAuthTwitterController.m in Sources */,
 				2FCF7C1514D359EC007C083B /* SA_OAuthTwitterEngine.m in Sources */,
+				2F3FF92314D74CAD0039D1F6 /* Constants.m in Sources */,
+				2F3FF92414D74CAD0039D1F6 /* Model.m in Sources */,
+				2F3FF92A14D74F900039D1F6 /* ConsumptionController.m in Sources */,
+				2F3FF92B14D74F900039D1F6 /* DiagosisController.m in Sources */,
+				2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */,
+				2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */,
+				2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
