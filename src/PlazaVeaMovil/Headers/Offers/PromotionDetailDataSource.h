@@ -2,6 +2,8 @@
 
 #import <Three20/Three20.h>
 
+#import "Offers/Models.h"
+
 @protocol PromotionDetailDataSourceDelegate;
 
 @interface PromotionDetailDataSource: TTListDataSource
@@ -18,4 +20,6 @@
 - (void)        dataSource:(PromotionDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
                   andTitle:(NSString *)title;
+- (void) dataSource:(PromotionDetailDataSource *)dataSource
+     needsPromotion:(Promotion *)promotion;
 @end

@@ -6,6 +6,7 @@
 #import <Three20/Three20.h>
 #import "FBConnect.h"
 #import "FBDialog.h"
+#import "SA_OAuthTwitterController.h"
 
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Application/Constants.h"
@@ -27,9 +28,11 @@ static CGFloat kShareTag = 100;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) Facebook *facebook;
+@property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
+- (void)showTwitterAlert;
 - (void)mailOffer;
 - (void)likeOffer;
-- (void)tweetOffer;
+- (void)tweetOffer:(NSString *)tweet;
 @end
 
 @implementation OfferDetailController
@@ -85,7 +88,19 @@ static CGFloat kShareTag = 100;
 #pragma mark OfferDetailController (Private)
 
 @synthesize headerView = _headerView, titleLabel = _titleLabel,
-imageView = _imageView, facebook = _facebook;
+        imageView = _imageView, facebook = _facebook, twitter = _twitter;
+
+- (void) showTwitterAlert
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+            initWithTitle:kTwitterAlertTitle
+                message:nil delegate:self cancelButtonTitle:kTwitterAlertCancel
+                otherButtonTitles:kTwitterAlertSend, nil];
+    
+    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+            [_offer name], [[_offer twitterURL] absoluteString]]];
+    [alertView show];
+}
 
 - (void)mailOffer
 {
@@ -103,24 +118,33 @@ imageView = _imageView, facebook = _facebook;
     _facebook = [(AppDelegate *)[[UIApplication sharedApplication]
             delegate] facebook];
     
-    [_facebook setSessionDelegate:self];
     if (![_facebook isSessionValid])
         [_facebook authorize:nil];
     
     NSMutableDictionary *params = [NSMutableDictionary
             dictionaryWithObjectsAndKeys:
-                [[_offer facebookURL] absoluteString], @"link",
-                [[_offer pictureURL] absoluteString], @"picture",
-                [_offer name], @"caption",
-                [_offer longDescription], @"description",
+                [[_offer facebookURL] absoluteString], kFBLink,
+                [[_offer pictureURL] absoluteString], kFBPicture,
+                [_offer name], kFBCaption,
+                [_offer longDescription], kFBDescription,
                 nil];
     
-    [_facebook dialog:@"feed" andParams:params andDelegate:nil];
+    [_facebook dialog:kFBFeedDialog andParams:params andDelegate:nil];
 }
 
-- (void)tweetOffer
+- (void)tweetOffer:(NSString *)tweet
 {
+    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+            twitter];
     
+    if (![_twitter isAuthorized]) {
+        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
+                controllerToEnterCredentialsWithTwitterEngine:_twitter
+                    delegate:self];
+    
+        [self presentModalViewController:controller animated:YES];
+    }
+    [_twitter sendUpdate:tweet];
 }
 
 #pragma mark -
@@ -197,7 +221,7 @@ imageView = _imageView, facebook = _facebook;
         
         [twitterButton setImage:TTIMAGE(kOfferDetailTwitterImage)
                 forState:UIControlStateNormal];
-        [twitterButton addTarget:self action:@selector(tweetOffer)
+        [twitterButton addTarget:self action:@selector(showTwitterAlert)
                 forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat x = [shareLabel frame].size.width + margin;
@@ -323,5 +347,16 @@ imageView = _imageView, facebook = _facebook;
     [defaults setObject:[_facebook accessToken] forKey:kAccessTokenKey];
     [defaults setObject:[_facebook expirationDate] forKey:kExpirationDateKey];
     [defaults synchronize];
+}
+
+#pragma mark -
+#pragma mark <UIAlertView>
+
+- (void)    alertView:(UIAlertView *)alertView
+ clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [alertView cancelButtonIndex]) 
+        [self tweetOffer:[alertView message]];
+    [alertView release];
 }
 @end

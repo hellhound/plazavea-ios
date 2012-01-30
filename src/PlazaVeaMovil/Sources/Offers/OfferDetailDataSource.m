@@ -101,6 +101,7 @@
         NSDateFormatter *dateFormatter =
                 [[[NSDateFormatter alloc] init] autorelease];
         
+        [dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
         
         NSString *validString = [NSString stringWithFormat:
@@ -119,8 +120,9 @@
         [items addObject:longDescription];
     }
     if ([offer legalese] != nil) {
-        TTTableLongTextItem *legalese =
-                [TTTableLongTextItem itemWithText:[offer legalese]];
+        TTTableSubtextItem *legalese =
+                [TTTableSubtextItem itemWithText:kOfferDetailLegaleseCaption
+                        caption:[offer legalese]];
         
         [items addObject:legalese];
     }

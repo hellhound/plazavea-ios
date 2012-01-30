@@ -79,6 +79,7 @@ extern NSString *const kOfferDetailPriceCaption;
 extern NSString *const kOfferDetailValidCaption;
 extern NSString *const kOfferDetailPricePrefix;
 extern NSString *const kOfferDetailValidPrefix;
+extern NSString *const kOfferDetailLegaleseCaption;
 
 // PromotionListDataSource's constants
 
@@ -103,6 +104,7 @@ extern NSString *const kPromotionDetailTitleForEmpty;
 extern NSString *const kPromotionDetailSubtitleForEmpty;
 extern NSString *const kPromotionDetailTitleForError;
 extern NSString *const kPromotionDetailSubtitleForError;
+extern NSString *const kPromotionDetailLegaleseCaption;
 
 // OfferDrillDownController's constants
 
@@ -138,6 +140,15 @@ extern NSString *const kOfferDetailShare;
 extern NSString *const kOfferDetailMailImage;
 extern NSString *const kOfferDetailFacebookImage;
 extern NSString *const kOfferDetailTwitterImage;
+extern NSString *const kTwitterAlertTitle;
+extern NSString *const kTwitterAlertCancel;
+extern NSString *const kTwitterAlertSend;
+extern NSString *const kTwitterAlertMessage;
+extern NSString *const kFBLink;
+extern NSString *const kFBPicture;
+extern NSString *const kFBCaption;
+extern NSString *const kFBDescription;
+extern NSString *const kFBFeedDialog;
 
 // PromotionListController's constants
 

@@ -7,6 +7,8 @@
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
+#import "Common/Views/TableCaptionItem.h"
 #import "Offers/Models.h"
 #import "Offers/Constants.h"
 #import "Offers/PromotionDetailDataSource.h"
@@ -80,23 +82,42 @@
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
             andTitle:[promotion name]];
+    [_delegate dataSource:self needsPromotion:promotion];
+    if (([promotion validFrom] != nil) && ([promotion validTo] != nil)) {
+        NSDateFormatter *dateFormatter =
+                [[[NSDateFormatter alloc] init] autorelease];
+        
+        [dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        
+        NSString *validString = [NSString stringWithFormat:
+                kOfferDetailValidPrefix,
+                    [dateFormatter stringFromDate:[promotion validFrom]],
+                    [dateFormatter stringFromDate:[promotion validTo]]];
+        TableCaptionItem *valid = [TableCaptionItem itemWithText:validString
+                caption:kOfferDetailValidCaption];
+        
+        [items addObject:valid];
+    }
     
-    TableImageSubtitleItem *legaleseItem = [TableImageSubtitleItem
-            itemWithText:legalese subtitle:nil];
     TableImageSubtitleItem *descriptionItem = [TableImageSubtitleItem
             itemWithText:longDescription subtitle:nil];
+    TTTableSubtextItem *legaleseItem = [TTTableSubtextItem
+            itemWithText:kPromotionDetailLegaleseCaption caption:legalese];
     
-    [items addObject:legaleseItem];
     [items addObject:descriptionItem];
+    [items addObject:legaleseItem];
     [self setItems:items];
 }
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {
-    if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
+    if ([object isKindOfClass:[TableImageSubtitleItem class]])
         return [TableImageSubtitleItemCell class];
-    } else if ([object isKindOfClass:[TTTableImageItem class]])
+    if ([object isKindOfClass:[TTTableImageItem class]])
         return [OnlyImageItemCell class];
+    if ([object isKindOfClass:[TableCaptionItem class]])
+        return [TableCaptionItemCell class];
     return [super tableView:tableView cellClassForObject:object];
 }
 @end

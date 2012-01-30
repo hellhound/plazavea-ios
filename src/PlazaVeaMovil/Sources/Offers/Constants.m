@@ -101,6 +101,8 @@ NSString *const kOfferDetailPricePrefix = @"S/. %.2f";
 //NSLocalizedString(@"S/. %.2f", nil)
 NSString *const kOfferDetailValidPrefix = @"%@ al %@";
 //NSLocalizedString(@"%@ al %@", nil)
+NSString *const kOfferDetailLegaleseCaption = @"Legales";
+//NSLocalizedString(@"Legales", nil)
 
 // PromotionListDataSource's constants
 
@@ -148,6 +150,8 @@ NSString *const kPromotionDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kPromotionDetailSubtitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
+NSString *const kPromotionDetailLegaleseCaption = @"Legales";
+//NSLocalizedString(@"Legales", nil)
 
 // PromotionListController's constants
 
@@ -186,6 +190,24 @@ const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 140.;
 const CGFloat kOfferListImageWidth = 50.;
 const CGFloat kOfferListImageHeight = 50.;
+NSString *const kTwitterAlertTitle = @"Enviar tweet";
+// NSLocalizedString(@"Enviar tweet", nil)
+NSString *const kTwitterAlertCancel = @"Cancelar";
+// NSLocalizedString(@"Cancelar", nil)
+NSString *const kTwitterAlertSend = @"Enviar";
+// NSLocalizedString(@"Enviar", nil)
+NSString *const kTwitterAlertMessage = @"%@ %@";
+// NSLocalizedString(@"%@ %@", nil)
+NSString *const kFBLink = @"link";
+// NSLocalizedString(@"link", nil)
+NSString *const kFBPicture = @"picture";
+// NSLocalizedString(@"picture", nil)
+NSString *const kFBCaption = @"caption";
+// NSLocalizedString(@"caption", nil)
+NSString *const kFBDescription = @"description";
+// NSLocalizedString(@"description", nil)
+NSString *const kFBFeedDialog = @"feed";
+// NSLocalizedString(@"feed", nil)
 
 // PromotionDetailController's constants
 NSString *const kPromotionDetailTitle = @"Detalle de la promoción";

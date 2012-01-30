@@ -5,6 +5,8 @@
 #import <Three20/Three20.h>
 #import "FBConnect.h"
 #import "FBDialog.h"
+#import "SA_OAuthTwitterEngine.h"
+#import "SA_OAuthTwitterController.h"
 
 #import "Offers/Models.h"
 #import "Offers/BaseOfferController.h"
@@ -12,7 +14,8 @@
 
 @interface OfferDetailController: BaseOfferController
         <OfferDetailDataSourceDelegate, MFMailComposeViewControllerDelegate,
-            FBSessionDelegate, FBDialogDelegate>
+            FBDialogDelegate, UIAlertViewDelegate,
+            SA_OAuthTwitterControllerDelegate>
 {
     NSString *_offerId;
     UIView *_headerView;
@@ -20,6 +23,7 @@
     TTImageView *_imageView;
     Facebook *_facebook;
     Offer *_offer;
+    SA_OAuthTwitterEngine *_twitter;
 }
 @property (nonatomic, retain) Offer *offer;
 - (id)initWithOfferId:(NSString *)offerId;

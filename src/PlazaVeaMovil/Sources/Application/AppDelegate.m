@@ -49,6 +49,7 @@
 {
     [_window release];
     [_facebook release];
+    [_twitter release];
     [_context release];
     [_model release];
     [_coordinator release];
@@ -59,7 +60,7 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize window = _window, facebook = _facebook;
+@synthesize window = _window, facebook = _facebook, twitter = _twitter;
 
 - (NSString *)getUUID{
     //get a UUID value from UserDefaults
@@ -85,7 +86,7 @@
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
     // Conf Facebook
-    _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:nil];
+    _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ([defaults objectForKey:kAccessTokenKey] &&
@@ -94,9 +95,13 @@
         [_facebook setExpirationDate:
                 [defaults objectForKey:kExpirationDateKey]];
     }
+    // Conf Twitter
+    _twitter = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
     
+    [_twitter setConsumerKey:kOAuthConsumerKey];
+    [_twitter setConsumerSecret:kOAuthConsumerSecret];
+    // Style sheet
     [TTStyleSheet setGlobalStyleSheet:[[[StyleSheet alloc] init] autorelease]];
-
     // Set the maxContentLength to auto
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
 
@@ -226,5 +231,36 @@
 {
     // FIXME: Opens URLs systematically!!!
     return YES;
+}
+
+#pragma mark -
+#pragma <FBSessionDelegate>
+
+- (void)fbDidLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[_facebook accessToken] forKey:kAccessTokenKey];
+    [defaults setObject:[_facebook expirationDate] forKey:kExpirationDateKey];
+    [defaults synchronize];
+}
+
+#pragma mark -
+#pragma mark <SA_OAuthTwitterEngineDelegate>
+
+- (void)storeCachedTwitterOAuthData:(NSString *)data
+                        forUsername:(NSString *)username
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:data forKey:kOAuthData];
+    [defaults synchronize];
+}
+
+- (NSString *)cachedTwitterOAuthDataForUsername:(NSString *)username
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    return [defaults objectForKey:kOAuthData];
 }
 @end
