@@ -2,19 +2,14 @@
 #import <UIKit/UIKit.h>
 
 #import "BodyMeter/Constants.h"
+#import "BodyMeter/Models.h"
 
 @interface ProfileController: UITableViewController
 {
     NSUserDefaults *_defaults;
-    NSNumber *_age;
-    kBodyMeterGenderType _gender;
-    NSNumber *_height;
-    NSNumber *_weight;
-    kBodyMeterActivityType _activity;
+    Profile *_profile;
+    NSNumber *_idealWeight;
 }
-@property (nonatomic, retain) NSNumber *age;
-@property (nonatomic, assign) kBodyMeterGenderType gender;
-@property (nonatomic, retain) NSNumber *height;
-@property (nonatomic, retain) NSNumber *weight;
-@property (nonatomic, assign) kBodyMeterActivityType activity;
+@property (nonatomic, retain) Profile *profile;
+@property (nonatomic, retain) NSNumber *idealWeight;
 @end
