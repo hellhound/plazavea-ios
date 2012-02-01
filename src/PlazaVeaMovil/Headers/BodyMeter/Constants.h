@@ -1,6 +1,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+struct pickerIndex {
+    NSInteger row;
+    NSInteger component;
+    
+};
+typedef struct pickerIndex pickerIndex;
+
 typedef enum {
     kBodyMeterActivityUndefined,
     kBodyMeterActivityMinimal,
@@ -19,6 +26,18 @@ typedef enum {
     kBodyMeterProfileSection,
     kBodyMeterWeightSection
 }kBodyMeterSectionType;
+
+typedef enum {
+    kBodyMeterAgeRow,
+    kBodyMeterGenderRow,
+    kBodyMeterHeightRow,
+    kBodyMeterWeightRow,
+    kBodyMeterActivityRow
+}kBodyMeterProfileRowType;
+
+typedef enum {
+    kBodyMeterIdealWeightRow
+}kBodyMeterWeightRowType;
 
 // ProfileController defaults keys
 extern NSString *const kBodyMeterAgeKey;
@@ -49,6 +68,16 @@ extern NSString *const kBodyMeterProfileHeaderLabel;
 extern NSString *const kBodyMeterWeightHeaderLabel;
 extern NSString *const kBodyMeterProfileFooterLabel;
 extern NSString *const kBodyMeterWeightFooterLabel;
+extern NSString *const kBodyMeterProfileAlertTitle;
+extern NSString *const kBodyMeterProfileAlertMessage;
+extern NSString *const kBodyMeterProfileAlertButton;
+extern NSString *const kBodyMeterAgeEntry;
+extern NSString *const kBodyMeterHeightEntry;
+extern NSString *const kBodyMeterWeightEntry;
+extern NSString *const kBodyMeterIdealWeightEntry;
+extern NSString *const kBodyMeterEntryAlertCancel;
+extern NSString *const kBodyMeterEntryAlertOK;
+extern NSString *const kBodyMeterProfileRightButton;
 
 // Launcher Title
 extern NSString *const kBodyMeterTitle;
