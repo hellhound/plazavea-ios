@@ -12,6 +12,8 @@ NSString *const kBodyMeterActivityKey = @"BodyMeterActivityKey";
 NSString *const kBodyMeterIdealWeightKey = @"BodyMeterIdealWeightKey";
 
 // ProfileController constants
+NSString *const kBodyMeterProfileBackButton = @"Perfil";
+//NSLocalizedString(@"Perfil", nil)
 NSString *const kBodyMeterUndefinedLabel = @"No hay información";
 //NSLocalizedString(@"No hay información", nil)
 NSString *const kBodyMeterAgeLabel = @"Edad";
@@ -92,8 +94,26 @@ NSString *const kBodyMeterEntryAlertCancel = @"Cancelar";
 //NSLocalizedString(@"Cancelar", nil);
 NSString *const kBodyMeterEntryAlertOK = @"OK";
 //NSLocalizedString(@"OK", nil);
-NSString *const kBodyMeterProfileRightButton = @"Ver diagnóstico";
-//NSLocalizedString(@"Ver diagnóstico", nil);
+
+// DiagnosisController constants
+NSString *const kBodyMeterDiagnosisBackButton = @"Diagnóstico";
+//NSLocalizedString(@"Diagnóstico", nil);
+NSString *const kBodyMeterRangeLabel = @"Rango normal de peso";
+//NSLocalizedString(@"Rango normal de peso", nil);
+NSString *const kBodyMeterCMILabel = @"Índice de masa corporal";
+//NSLocalizedString(@"Índice de masa corporal", nil);
+NSString *const kBodyMeterResultLabel = @"Resultado";
+//NSLocalizedString(@"Resultado", nil);
+NSString *const kBodyMeterCalorieConsumptionLabel = @"Consumo de calorías";
+//NSLocalizedString(@"Consumo de calorías", nil);
+NSString *const kBodyMeterTimeLabel = @"Tiempo";
+//NSLocalizedString(@"Tiempo", nil);
+NSString *const kBodyMeterEnergyConsumptionLabel = @"Consumo energético";
+//NSLocalizedString(@"Consumo energético", nil);
+NSString *const kBodyMeterRecomendationsLabel = @"Recomendaciones";
+//NSLocalizedString(@"Recomendaciones", nil);
+NSString *const kBodyMeterDiagnosisLabel = @"Diagnóstico actual";
+NSString *const kBodyMeterGoalLabel = @"Meta del usuario (%i kg)";
 
 // Launcher title
 NSString *const kBodyMeterTitle = @"Medidor corporal";

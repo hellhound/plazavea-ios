@@ -3,6 +3,7 @@
 
 #import "BodyMeter/Constants.h"
 #import "BodyMeter/Models.h"
+#import "BodyMeter/DiagnosisController.h"
 #import "BodyMeter/ProfileController.h"
 
 typedef enum {
@@ -23,6 +24,7 @@ static NSString *cellId = @"cellId";
 @property (nonatomic, retain) NSMutableArray *pickerItems;
 - (void)updateProfile;
 - (void)dismissPicker:(id)sender;
+- (void)pushDiagnosis;
 @end
 
 @implementation ProfileController
@@ -32,6 +34,7 @@ static NSString *cellId = @"cellId";
 
 - (void)dealloc
 {
+    [_profile release];
     [super dealloc];
 }
 
@@ -48,10 +51,11 @@ static NSString *cellId = @"cellId";
 
 - (void)viewDidLoad
 {
-    [self setTitle:kBodyMeterTitle];
+    [self setTitle:kBodyMeterProfileBackButton];
     [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
-            initWithTitle:kBodyMeterProfileRightButton
-                style:UIBarButtonItemStyleDone target:self action:NULL]];
+            initWithTitle:kBodyMeterDiagnosisBackButton
+                style:UIBarButtonItemStyleDone target:self 
+                action:@selector(pushDiagnosis)]];
     // Load profile
     if (_defaults == nil) {
         _defaults = [NSUserDefaults standardUserDefaults];
@@ -80,6 +84,7 @@ static NSString *cellId = @"cellId";
     _idealWeight = [_defaults objectForKey:kBodyMeterIdealWeightKey];
     
     if (!profileIsFull) {
+        [[[self navigationItem] rightBarButtonItem] setEnabled:NO];
         UIAlertView *alertView = [[[UIAlertView alloc]
                 initWithTitle:kBodyMeterProfileAlertTitle
                     message:kBodyMeterProfileAlertMessage delegate:nil
@@ -87,7 +92,9 @@ static NSString *cellId = @"cellId";
                     otherButtonTitles:nil] autorelease];
         
         [alertView show];
-    }   
+    } else {
+        
+    }
 }
 
 #pragma mark -
@@ -103,14 +110,42 @@ static NSString *cellId = @"cellId";
 
 - (void)updateProfile
 {
-    [_defaults setObject:[_profile age] forKey:kBodyMeterAgeKey];
-    [_defaults setObject:[NSNumber numberWithInt:[_profile gender]]
-            forKey:kBodyMeterGenderKey];
-    [_defaults setObject:[_profile height] forKey:kBodyMeterHeightKey];
-    [_defaults setObject:[_profile weight] forKey:kBodyMeterWeightKey];
-    [_defaults setObject:[NSNumber numberWithInt:[_profile activity]]
-            forKey:kBodyMeterActivityKey];
-    [_defaults setObject:_idealWeight forKey:kBodyMeterIdealWeightKey];
+    BOOL profileIsFull = YES;
+    
+    if (![_profile age]) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:[_profile age] forKey:kBodyMeterAgeKey];
+    }
+    if (![_profile gender]) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:[NSNumber numberWithInt:[_profile gender]]
+                forKey:kBodyMeterGenderKey];
+    }
+    if (![_profile height]) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:[_profile height] forKey:kBodyMeterHeightKey];
+    }
+    if (![_profile weight]) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:[_profile weight] forKey:kBodyMeterWeightKey];
+    }
+    if (![_profile activity]) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:[NSNumber numberWithInt:[_profile activity]]
+                forKey:kBodyMeterActivityKey];
+    }
+    if (!_idealWeight) {
+        profileIsFull = NO;
+    } else {
+        [_defaults setObject:_idealWeight forKey:kBodyMeterIdealWeightKey];
+    }
+    if (profileIsFull)
+        [[[self navigationItem] rightBarButtonItem] setEnabled:YES];
     [_defaults synchronize];
 }
 
@@ -133,6 +168,14 @@ static NSString *cellId = @"cellId";
         default:
             break;
     }
+}
+
+- (void)pushDiagnosis
+{
+    DiagnosisController *controller = [[DiagnosisController alloc] init];
+    
+    [[self navigationController] pushViewController:controller animated:YES];
+    [controller release];
 }
 
 #pragma mark -

@@ -139,7 +139,7 @@
 		2F3FF92314D74CAD0039D1F6 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92114D74CAD0039D1F6 /* Constants.m */; };
 		2F3FF92414D74CAD0039D1F6 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92214D74CAD0039D1F6 /* Models.m */; };
 		2F3FF92A14D74F900039D1F6 /* ConsumptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92514D74F900039D1F6 /* ConsumptionController.m */; };
-		2F3FF92B14D74F900039D1F6 /* DiagosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92614D74F900039D1F6 /* DiagosisController.m */; };
+		2F3FF92B14D74F900039D1F6 /* DiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92614D74F900039D1F6 /* DiagnosisController.m */; };
 		2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92714D74F900039D1F6 /* MealsController.m */; };
 		2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92814D74F900039D1F6 /* ProfileController.m */; };
 		2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92914D74F900039D1F6 /* RecomendationsController.m */; };
@@ -848,7 +848,7 @@
 		2F3FF92114D74CAD0039D1F6 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F3FF92214D74CAD0039D1F6 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F3FF92514D74F900039D1F6 /* ConsumptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumptionController.m; sourceTree = "<group>"; };
-		2F3FF92614D74F900039D1F6 /* DiagosisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagosisController.m; sourceTree = "<group>"; };
+		2F3FF92614D74F900039D1F6 /* DiagnosisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosisController.m; sourceTree = "<group>"; };
 		2F3FF92714D74F900039D1F6 /* MealsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealsController.m; sourceTree = "<group>"; };
 		2F3FF92814D74F900039D1F6 /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		2F3FF92914D74F900039D1F6 /* RecomendationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecomendationsController.m; sourceTree = "<group>"; };
@@ -1479,7 +1479,7 @@
 			isa = PBXGroup;
 			children = (
 				2F3FF92514D74F900039D1F6 /* ConsumptionController.m */,
-				2F3FF92614D74F900039D1F6 /* DiagosisController.m */,
+				2F3FF92614D74F900039D1F6 /* DiagnosisController.m */,
 				2F3FF92714D74F900039D1F6 /* MealsController.m */,
 				2F3FF92814D74F900039D1F6 /* ProfileController.m */,
 				2F3FF92914D74F900039D1F6 /* RecomendationsController.m */,
@@ -2496,7 +2496,7 @@
 				2F3FF92314D74CAD0039D1F6 /* Constants.m in Sources */,
 				2F3FF92414D74CAD0039D1F6 /* Models.m in Sources */,
 				2F3FF92A14D74F900039D1F6 /* ConsumptionController.m in Sources */,
-				2F3FF92B14D74F900039D1F6 /* DiagosisController.m in Sources */,
+				2F3FF92B14D74F900039D1F6 /* DiagnosisController.m in Sources */,
 				2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */,
 				2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */,
 				2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */,

@@ -25,7 +25,7 @@ typedef enum {
 typedef enum {
     kBodyMeterProfileSection,
     kBodyMeterWeightSection
-}kBodyMeterSectionType;
+}kBodyMeterProfileSectionType;
 
 typedef enum {
     kBodyMeterAgeRow,
@@ -39,6 +39,24 @@ typedef enum {
     kBodyMeterIdealWeightRow
 }kBodyMeterWeightRowType;
 
+typedef enum {
+    kBodyMeterDiagnosisSection,
+    kBodyMeterGoalSection
+}kBodyMeterDiagnosisSectionType;
+
+typedef enum {
+    kBodyMeterRangeRow,
+    kBodyMeterCMIRow,
+    kBodyMeterResultRow
+}kBodyMeterDiagnosisRowType;
+
+typedef enum {
+    kBodyMeterCalorieComsuptionRow,
+    kBodyMeterTimeRow,
+    kBodyMeterEnergyConsumptionRow,
+    kBodyMeterRecomendationsRow
+}kBodyMeterGoalRowType;
+
 // ProfileController defaults keys
 extern NSString *const kBodyMeterAgeKey;
 extern NSString *const kBodyMeterGenderKey;
@@ -48,6 +66,7 @@ extern NSString *const kBodyMeterActivityKey;
 extern NSString *const kBodyMeterIdealWeightKey;
 
 //ProfileController constants
+extern NSString *const kBodyMeterProfileBackButton;
 extern NSString *const kBodyMeterUndefinedLabel;
 extern NSString *const kBodyMeterAgeLabel;
 extern NSString *const kBodyMeterAgeSufix;
@@ -77,7 +96,18 @@ extern NSString *const kBodyMeterWeightEntry;
 extern NSString *const kBodyMeterIdealWeightEntry;
 extern NSString *const kBodyMeterEntryAlertCancel;
 extern NSString *const kBodyMeterEntryAlertOK;
-extern NSString *const kBodyMeterProfileRightButton;
+
+//DiagnosisController constants
+extern NSString *const kBodyMeterDiagnosisBackButton;
+extern NSString *const kBodyMeterRangeLabel;
+extern NSString *const kBodyMeterCMILabel;
+extern NSString *const kBodyMeterResultLabel;
+extern NSString *const kBodyMeterCalorieConsumptionLabel;
+extern NSString *const kBodyMeterTimeLabel;
+extern NSString *const kBodyMeterEnergyConsumptionLabel;
+extern NSString *const kBodyMeterRecomendationsLabel;
+extern NSString *const kBodyMeterDiagnosisLabel;
+extern NSString *const kBodyMeterGoalLabel;
 
 // Launcher Title
 extern NSString *const kBodyMeterTitle;
