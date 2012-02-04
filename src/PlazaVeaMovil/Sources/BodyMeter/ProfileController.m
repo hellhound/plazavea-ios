@@ -80,9 +80,7 @@ static NSString *cellId = @"cellId";
             [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
     if (![_profile activity])
         profileIsFull = NO;
-    
-    _idealWeight = [_defaults objectForKey:kBodyMeterIdealWeightKey];
-    
+    [_profile setIdealWeight:[_defaults objectForKey:kBodyMeterIdealWeightKey]];
     if (!profileIsFull) {
         [[[self navigationItem] rightBarButtonItem] setEnabled:NO];
         UIAlertView *alertView = [[[UIAlertView alloc]
@@ -100,7 +98,7 @@ static NSString *cellId = @"cellId";
 #pragma mark -
 #pragma mark ProfileController (Public)
 
-@synthesize profile = _profile, idealWeight = _idealWeight;
+@synthesize profile = _profile;
 
 #pragma mark -
 #pragma mark ProfileController (Private)
@@ -139,10 +137,9 @@ static NSString *cellId = @"cellId";
         [_defaults setObject:[NSNumber numberWithInt:[_profile activity]]
                 forKey:kBodyMeterActivityKey];
     }
-    if (!_idealWeight) {
-        profileIsFull = NO;
-    } else {
-        [_defaults setObject:_idealWeight forKey:kBodyMeterIdealWeightKey];
+    if ([_profile idealWeight]) {
+        [_defaults setObject:[_profile idealWeight]
+                forKey:kBodyMeterIdealWeightKey];
     }
     if (profileIsFull)
         [[[self navigationItem] rightBarButtonItem] setEnabled:YES];
@@ -285,9 +282,9 @@ static NSString *cellId = @"cellId";
             switch ([indexPath row]) {
                 case kBodyMeterIdealWeightRow:
                     textLabel = kBodyMeterIdealWeightLabel;
-                    detailTextLabel = _idealWeight ? [NSString
+                    detailTextLabel = [_profile idealWeight] ? [NSString
                             stringWithFormat:kBodyMeterWeightSufix,
-                                [_idealWeight intValue]] :
+                                [[_profile idealWeight] intValue]] :
                                 kBodyMeterUndefinedLabel;
                     break;
                 default:
@@ -489,7 +486,7 @@ titleForFooterInSection:(NSInteger)section
                 [_profile setHeight:value];
             } else if (([alertView tag] == kWeightTagPrefix +
                     kBodyMeterIdealWeightRow) && value != 0) {
-                _idealWeight = [[NSNumber alloc] initWithInt:[value intValue]];
+                [_profile setIdealWeight:value];
             }
         }
     }

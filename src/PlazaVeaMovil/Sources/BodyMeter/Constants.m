@@ -3,6 +3,62 @@
 
 #import "BodyMeter/Constants.h"
 
+// Diagnosis model constants
+const float kDiagnosisThinnessIIIndex = 17.;
+const float kDiagnosisThinnessIndex = 18.5;
+const float kDiagnosisNormalIndex = 25.;
+const float kDiagnosisOverWeightIndex = 30.;
+const float kDiagnosisObesityIndex = 35.;
+const float kDiagnosisObesityIIIndex = 40.;
+
+const float kDiagnosisMaleMBRConstant = 664.;
+const float kDiagnosisMaleMBRWeightFactor = 13.75;
+const float kDiagnosisMaleMBRHeightFactor = 5.003;
+const float kDiagnosisMaleMBRAgeFactor = 6.77;
+
+const float kDiagnosisFemaleMBRConstant = 655.1;
+const float kDiagnosisFemaleMBRWeightFactor = 9.6;
+const float kDiagnosisFemaleMBRHeightFactor = 1.85;
+const float kDiagnosisFemaleMBRAgeFactor = 4.676;
+
+const float kDiagnosisMinimalActivityFactor = 1.2;
+const float kDiagnosisLightActivityFactor = 1.55;
+const float kDiagnosisModerateActivityFactor = 1.78;
+const float kDiagnosisIntenseActivityFactor = 2.1;
+
+const float kDiagnosisEnergyConstant = 7000.;
+const float kDiagnosisWeightGainFactor = 0.05;
+const float kDiagnosisWeightLossFactor = 0.035;
+const float kDiagnosisDaysOfMonth = 30.;
+
+const float kDiagnosis1of5MealsFactor = 0.2;
+const float kDiagnosis2of5MealsFactor = 0.1;
+const float kDiagnosis3of5MealsFactor = 0.4;
+const float kDiagnosis4of5MealsFactor = 0.1;
+const float kDiagnosis5of5MealsFactor = 0.2;
+
+const float kDiagnosis1of3MealsFactor = 0.3;
+const float kDiagnosis2of3MealsFactor = 0.5;
+const float kDiagnosis3of3MealsFactor = 0.2;
+
+const float kDiagnosisCarbsFactor = 0.15;
+const float kDiagnosisProteinsFactor = 0.03;
+const float kDiagnosisFatFactor = 0.03;
+
+NSString *const kDiagnosisThinnessIILabel = @"Delgadez II";
+NSString *const kDiagnosisThinnessLabel = @"Delgadez";
+NSString *const kDiagnosisNormalLabel = @"Normal";
+NSString *const kDiagnosisOverWeightLabel = @"Sobrepeso";
+NSString *const kDiagnosisObesityLabel = @"Obesidad";
+NSString *const kDiagnosisObesityIILabel = @"Obesidad II";
+NSString *const kDiagnosisObesityIIILabel = @"Obesidad III";
+
+NSString *const kDiagnosis1of5MealsLabel = @"Desayuno";
+NSString *const kDiagnosis2of5MealsLabel = @"Media mañana";
+NSString *const kDiagnosis3of5MealsLabel = @"Almuerzo";
+NSString *const kDiagnosis4of5MealsLabel = @"Media tarde";
+NSString *const kDiagnosis5of5MealsLabel = @"Cena";
+
 // ProfileController defaults keys
 NSString *const kBodyMeterAgeKey = @"BodyMeterAgeKey";
 NSString *const kBodyMeterGenderKey = @"BodyMeterGenderKey";
@@ -112,8 +168,10 @@ NSString *const kBodyMeterEnergyConsumptionLabel = @"Consumo energético";
 //NSLocalizedString(@"Consumo energético", nil);
 NSString *const kBodyMeterRecomendationsLabel = @"Recomendaciones";
 //NSLocalizedString(@"Recomendaciones", nil);
-NSString *const kBodyMeterDiagnosisLabel = @"Diagnóstico actual";
+NSString *const kBodyMeterDiagnosisLabel = @"Diagnóstico actual (%i kg)";
+//NSLocalizedString(@"Diagnóstico actual (%i kg)", nil);
 NSString *const kBodyMeterGoalLabel = @"Meta del usuario (%i kg)";
+//NSLocalizedString(@"Meta del usuario (%i kg)", nil);
 
 // Launcher title
 NSString *const kBodyMeterTitle = @"Medidor corporal";

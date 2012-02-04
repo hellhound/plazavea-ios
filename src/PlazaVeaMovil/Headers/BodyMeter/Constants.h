@@ -57,6 +57,62 @@ typedef enum {
     kBodyMeterRecomendationsRow
 }kBodyMeterGoalRowType;
 
+// Diagnosis model constants
+extern const float kDiagnosisThinnessIIIndex;
+extern const float kDiagnosisThinnessIndex;
+extern const float kDiagnosisNormalIndex;
+extern const float kDiagnosisOverWeightIndex;
+extern const float kDiagnosisObesityIndex;
+extern const float kDiagnosisObesityIIIndex;
+
+extern const float kDiagnosisMaleMBRConstant;
+extern const float kDiagnosisMaleMBRWeightFactor;
+extern const float kDiagnosisMaleMBRHeightFactor;
+extern const float kDiagnosisMaleMBRAgeFactor;
+
+extern const float kDiagnosisFemaleMBRConstant;
+extern const float kDiagnosisFemaleMBRWeightFactor;
+extern const float kDiagnosisFemaleMBRHeightFactor;
+extern const float kDiagnosisFemaleMBRAgeFactor;
+
+extern const float kDiagnosisMinimalActivityFactor;
+extern const float kDiagnosisLightActivityFactor;
+extern const float kDiagnosisModerateActivityFactor;
+extern const float kDiagnosisIntenseActivityFactor;
+
+extern const float kDiagnosisEnergyConstant;
+extern const float kDiagnosisWeightGainFactor;
+extern const float kDiagnosisWeightLossFactor;
+extern const float kDiagnosisDaysOfMonth;
+
+extern const float kDiagnosis1of5MealsFactor;
+extern const float kDiagnosis2of5MealsFactor;
+extern const float kDiagnosis3of5MealsFactor;
+extern const float kDiagnosis4of5MealsFactor;
+extern const float kDiagnosis5of5MealsFactor;
+
+extern const float kDiagnosis1of3MealsFactor;
+extern const float kDiagnosis2of3MealsFactor;
+extern const float kDiagnosis3of3MealsFactor;
+
+extern const float kDiagnosisCarbsFactor;
+extern const float kDiagnosisProteinsFactor;
+extern const float kDiagnosisFatFactor;
+
+extern NSString *const kDiagnosisThinnessIILabel;
+extern NSString *const kDiagnosisThinnessLabel;
+extern NSString *const kDiagnosisNormalLabel;
+extern NSString *const kDiagnosisOverWeightLabel;
+extern NSString *const kDiagnosisObesityLabel;
+extern NSString *const kDiagnosisObesityIILabel;
+extern NSString *const kDiagnosisObesityIIILabel;
+
+extern NSString *const kDiagnosis1of5MealsLabel;
+extern NSString *const kDiagnosis2of5MealsLabel;
+extern NSString *const kDiagnosis3of5MealsLabel;
+extern NSString *const kDiagnosis4of5MealsLabel;
+extern NSString *const kDiagnosis5of5MealsLabel;
+
 // ProfileController defaults keys
 extern NSString *const kBodyMeterAgeKey;
 extern NSString *const kBodyMeterGenderKey;

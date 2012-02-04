@@ -17,6 +17,13 @@ static NSString *cellId = @"cellId";
 #pragma mark -
 #pragma mark NSObject
 
+- (void) dealloc
+{
+    [_profile release];
+    [_diagnosis release];
+    [super dealloc];
+}
+
 - (id)init
 {
     if ((self = [super init]) != nil) {
@@ -48,14 +55,15 @@ static NSString *cellId = @"cellId";
     [_profile setWeight:[_defaults objectForKey:kBodyMeterWeightKey]];
     [_profile setActivity:(kBodyMeterActivityType)
             [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
+    [_profile setIdealWeight:[_defaults objectForKey:kBodyMeterIdealWeightKey]];
     
-    _idealWeight = [_defaults objectForKey:kBodyMeterIdealWeightKey];
+    _diagnosis = [[Diagnosis alloc] initWithProfile:_profile];
 }
 
 #pragma mark -
 #pragma mark DiagnosisController (Public)
 
-@synthesize profile = _profile, idealWeight = _idealWeight;
+@synthesize profile = _profile, diagnosis = _diagnosis;
 
 #pragma mark -
 #pragma mark DiagnosisController (Private)
@@ -106,14 +114,18 @@ static NSString *cellId = @"cellId";
             switch ([indexPath row]) {
                 case kBodyMeterRangeRow:
                     textLabel = kBodyMeterRangeLabel;
+                    detailTextLabel = [_diagnosis weightRange];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterCMIRow:
                     textLabel = kBodyMeterCMILabel;
+                    detailTextLabel = [NSString stringWithFormat:@"%.1f",
+                            [[_diagnosis bodyMassIndex] floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterResultRow:
                     textLabel = kBodyMeterResultLabel;
+                    detailTextLabel = [_diagnosis result];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 default:
@@ -124,10 +136,15 @@ static NSString *cellId = @"cellId";
             switch ([indexPath row]) {
                 case kBodyMeterCalorieComsuptionRow:
                     textLabel = kBodyMeterCalorieConsumptionLabel;
+                    detailTextLabel = [NSString 
+                            stringWithFormat:@"%.0f Kcal/día", 
+                                [[_diagnosis energyConsumption] floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterTimeRow:
                     textLabel = kBodyMeterTimeLabel;
+                    detailTextLabel = [NSString stringWithFormat:@"%.0f días",
+                            [[_diagnosis time] floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterEnergyConsumptionRow:
@@ -151,6 +168,7 @@ static NSString *cellId = @"cellId";
     }
     [[cell textLabel] setText:textLabel];
     [[cell detailTextLabel] setText:detailTextLabel];
+    [[cell detailTextLabel] setAdjustsFontSizeToFitWidth:YES];
     return cell;
 }
 
@@ -159,11 +177,12 @@ titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
         case kBodyMeterDiagnosisSection:
-            return kBodyMeterDiagnosisLabel;
+            return [NSString stringWithFormat:
+                    kBodyMeterDiagnosisLabel, [[_profile weight] intValue]];
             break;
         case kBodyMeterGoalSection:
             return [NSString stringWithFormat:
-                    kBodyMeterGoalLabel , [_idealWeight intValue]];
+                    kBodyMeterGoalLabel , [[_profile idealWeight] intValue]];
             break;
         default:
             return nil;

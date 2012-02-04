@@ -7,12 +7,14 @@
     NSNumber *_height;
     NSNumber *_weight;
     kBodyMeterActivityType _activity;
+    NSNumber *_idealWeight;
 }
 @property (nonatomic, retain) NSNumber *age;
 @property (nonatomic, assign) kBodyMeterGenderType gender;
 @property (nonatomic, retain) NSNumber *height;
 @property (nonatomic, retain) NSNumber *weight;
 @property (nonatomic, assign) kBodyMeterActivityType activity;
+@property (nonatomic, retain) NSNumber *idealWeight;
 @end
 
 @interface Diagnosis: NSObject
@@ -26,7 +28,6 @@
     NSNumber *_requieredEnergy;
     NSNumber *_energyConsumption;
     NSNumber *_time;
-    
 }
 @property (nonatomic, retain) Profile *profile;
 @property (nonatomic, readonly) NSString *weightRange;
@@ -37,4 +38,26 @@
 @property (nonatomic, readonly) NSNumber *requieredEnergy;
 @property (nonatomic, readonly) NSNumber *energyConsumption;
 @property (nonatomic, readonly) NSNumber *time;
+- (id)initWithProfile:(Profile *)profile;
+@end
+
+@interface Meal: NSObject
+{
+    NSNumber *_carbohidrates;
+    NSNumber *_proteins;
+    NSNumber *_fat;
+}
+@property (nonatomic, readonly) NSNumber *carbohidrates;
+@property (nonatomic, readonly) NSNumber *proteins;
+@property (nonatomic, readonly) NSNumber *fat;
+- (id)initWithEnergyRequirement:(NSNumber *)energy;
+@end
+
+@interface Meals: NSObject
+{
+    NSDictionary *_meals;
+    BOOL _snacks;
+}
+@property (nonatomic, readonly) NSDictionary *meals;
+- (id)initWithEnergyRequirement:(NSNumber *)energy snacks:(BOOL)snacks;
 @end

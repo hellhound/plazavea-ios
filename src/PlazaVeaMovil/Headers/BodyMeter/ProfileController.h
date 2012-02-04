@@ -11,10 +11,8 @@
 {
     NSUserDefaults *_defaults;
     Profile *_profile;
-    NSNumber *_idealWeight;
     pickerIndex _pickerIndex;
     NSMutableArray *_pickerItems;
 }
 @property (nonatomic, retain) Profile *profile;
-@property (nonatomic, retain) NSNumber *idealWeight;
 @end

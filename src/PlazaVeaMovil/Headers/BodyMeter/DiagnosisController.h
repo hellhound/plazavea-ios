@@ -7,9 +7,9 @@
 @interface DiagnosisController: UITableViewController
 {
     Profile *_profile;
-    NSNumber *_idealWeight;
+    Diagnosis *_diagnosis;
     NSUserDefaults *_defaults;
 }
 @property (nonatomic, retain) Profile *profile;
-@property (nonatomic, retain) NSNumber *idealWeight;
+@property (nonatomic, retain) Diagnosis *diagnosis;
 @end
