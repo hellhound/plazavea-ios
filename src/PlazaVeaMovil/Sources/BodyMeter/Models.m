@@ -73,7 +73,7 @@
         } else if ([_bodyMassIndex floatValue] < kDiagnosisNormalIndex) {
             _result = kDiagnosisNormalLabel;
         } else if ([_bodyMassIndex floatValue] < kDiagnosisOverWeightIndex) {
-            _result = kDiagnosisObesityLabel;
+            _result = kDiagnosisOverWeightLabel;
         } else if ([_bodyMassIndex floatValue] < kDiagnosisObesityIndex) {
             _result = kDiagnosisObesityLabel;
         } else if ([_bodyMassIndex floatValue] < kDiagnosisObesityIIIndex) {
@@ -225,6 +225,8 @@
 
 - (void)dealloc
 {
+    [_name release];
+    [_calories release];
     [_carbohidrates release];
     [_proteins release];
     [_fat release];
@@ -234,11 +236,14 @@
 #pragma mark -
 #pragma mark Meal
 
-@synthesize carbohidrates = _carbohidrates, proteins = _proteins, fat = _fat;
+@synthesize carbohidrates = _carbohidrates, proteins = _proteins, fat = _fat,
+        calories = _calories, name = _name;
 
-- (id)initWithEnergyRequirement:(NSNumber *)energy
+- (id)initWithName:(NSString *)name energyRequirement:(NSNumber *)energy
 {
     if ((self = [super init]) != nil) {
+        _name = [name retain];
+        _calories = [energy retain];
         _carbohidrates = [[NSNumber alloc] initWithFloat:
                 ([energy floatValue] * kDiagnosisCarbsFactor)];
         _proteins = [[NSNumber alloc] initWithFloat:
@@ -261,24 +266,61 @@
 #pragma mark -
 #pragma mark Meals (Public)
 
-@synthesize meals = _meals;
+@synthesize meals = _meals, energy = _energy;
 
 - (id)initWithEnergyRequirement:(NSNumber *)energy snacks:(BOOL)snacks
 {
     if ((self = [super init]) != nil) {
+        _energy = [energy retain];
         _snacks = snacks;
     }
     return self;
 }
 
-- (NSDictionary *)meals
+- (NSArray *)meals
 {
     if (_meals == nil) {
+        NSMutableArray *mutableMeals = [[NSMutableArray alloc] init];
         if (_snacks) {
+            Meal *breakfast = [[Meal alloc]
+                    initWithName:kDiagnosis1of5MealsLabel 
+                        energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis1of5MealsFactor)]];
+            Meal *snack1 = [[Meal alloc] initWithName:kDiagnosis2of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis2of5MealsFactor)]];
+            Meal *lunch = [[Meal alloc] initWithName:kDiagnosis3of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis3of5MealsFactor)]];
+            Meal *snack2 = [[Meal alloc] initWithName:kDiagnosis4of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis4of5MealsFactor)]];
+            Meal *dinner = [[Meal alloc] initWithName:kDiagnosis5of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis5of5MealsFactor)]];
             
+            [mutableMeals addObject:breakfast];
+            [mutableMeals addObject:snack1];
+            [mutableMeals addObject:lunch];
+            [mutableMeals addObject:snack2];
+            [mutableMeals addObject:dinner];
         } else {
+            Meal *breakfast = [[Meal alloc]
+                    initWithName:kDiagnosis1of5MealsLabel 
+                        energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis1of3MealsFactor)]];
+            Meal *lunch = [[Meal alloc] initWithName:kDiagnosis3of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis2of3MealsFactor)]];
+            Meal *dinner = [[Meal alloc] initWithName:kDiagnosis5of5MealsLabel
+                    energyRequirement:[NSNumber numberWithFloat:
+                        ([_energy floatValue] * kDiagnosis3of3MealsFactor)]];
             
+            [mutableMeals addObject:breakfast];
+            [mutableMeals addObject:lunch];
+            [mutableMeals addObject:dinner];
         }
+        _meals = [[NSArray alloc] initWithArray:mutableMeals];
     }
     return _meals;
 }

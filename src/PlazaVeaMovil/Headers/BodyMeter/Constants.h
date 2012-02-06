@@ -165,6 +165,29 @@ extern NSString *const kBodyMeterRecomendationsLabel;
 extern NSString *const kBodyMeterDiagnosisLabel;
 extern NSString *const kBodyMeterGoalLabel;
 
+// ConsumptionController constants
+extern NSString *const kBodyMeterConsumptionBackButton;
+extern NSString *const kBodyMeterMealsADay;
+
+// MealsController constants
+extern NSString *const kBodyMeterMealsBackButton;
+extern NSString *const kBodyMeterCaloriesLabel;
+extern NSString *const kBodyMeterCarbohidratesLabel;
+extern NSString *const kBodyMeterProteinsLabel;
+extern NSString *const kBodyMeterFatLabel;
+extern NSString *const kBodyMeterCaloriesSufix;
+extern NSString *const kBodyMeterGramsSufix;
+
+// RecomendationsController constants
+extern NSString *const kBodyMeterRecomendationsBackButton;
+extern NSString *const kRecomendationsThinnessII;
+extern NSString *const kRecomendationsThinness;
+extern NSString *const kRecomendationsNormal;
+extern NSString *const kRecomendationsOverWeight;
+extern NSString *const kRecomendationsObesity;
+extern NSString *const kRecomendationsObesityII;
+extern NSString *const kRecomendationsObesityIII;
+
 // Launcher Title
 extern NSString *const kBodyMeterTitle;
 

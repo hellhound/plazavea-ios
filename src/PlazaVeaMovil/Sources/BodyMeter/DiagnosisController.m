@@ -3,6 +3,8 @@
 
 #import "BodyMeter/Constants.h"
 #import "BodyMeter/Models.h"
+#import "BodyMeter/ConsumptionController.h"
+#import "BodyMeter/RecomendationsController.h"
 #import "BodyMeter/DiagnosisController.h"
 
 static NSString *cellId = @"cellId";
@@ -39,9 +41,6 @@ static NSString *cellId = @"cellId";
 - (void)viewDidLoad
 {
     [self setTitle:kBodyMeterDiagnosisBackButton];
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
-            initWithTitle:kBodyMeterDiagnosisBackButton
-                style:UIBarButtonItemStyleDone target:self action:NULL]];
     // Load profile
     if (_defaults == nil) {
         _defaults = [NSUserDefaults standardUserDefaults];
@@ -169,6 +168,7 @@ static NSString *cellId = @"cellId";
     [[cell textLabel] setText:textLabel];
     [[cell detailTextLabel] setText:detailTextLabel];
     [[cell detailTextLabel] setAdjustsFontSizeToFitWidth:YES];
+    [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
     return cell;
 }
 
@@ -182,7 +182,7 @@ titleForHeaderInSection:(NSInteger)section
             break;
         case kBodyMeterGoalSection:
             return [NSString stringWithFormat:
-                    kBodyMeterGoalLabel , [[_profile idealWeight] intValue]];
+                    kBodyMeterGoalLabel, [[_profile idealWeight] intValue]];
             break;
         default:
             return nil;
@@ -198,5 +198,21 @@ titleForHeaderInSection:(NSInteger)section
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([indexPath section] == 1) {
+        if ([indexPath row] == 2) {
+            ConsumptionController *controller = [[ConsumptionController alloc]
+                    initWithEnergyConsumption:[_diagnosis energyConsumption]];
+            
+            [[self navigationController] pushViewController:controller
+                    animated:YES];
+        } else if ([indexPath row] == 3) {
+            RecomendationsController *controller =
+                    [[RecomendationsController alloc]
+                        initWithResult:[_diagnosis result]];
+            
+            [[self navigationController] pushViewController:controller
+                    animated:YES];
+        }
+    }
 }
 @end

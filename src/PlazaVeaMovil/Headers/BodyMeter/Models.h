@@ -43,21 +43,27 @@
 
 @interface Meal: NSObject
 {
+    NSString *_name;
+    NSNumber *_calories;
     NSNumber *_carbohidrates;
     NSNumber *_proteins;
     NSNumber *_fat;
 }
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSNumber *calories;
 @property (nonatomic, readonly) NSNumber *carbohidrates;
 @property (nonatomic, readonly) NSNumber *proteins;
 @property (nonatomic, readonly) NSNumber *fat;
-- (id)initWithEnergyRequirement:(NSNumber *)energy;
+- (id)initWithName:(NSString *)name energyRequirement:(NSNumber *)energy;
 @end
 
 @interface Meals: NSObject
 {
-    NSDictionary *_meals;
+    NSArray *_meals;
     BOOL _snacks;
+    NSNumber *_energy;
 }
-@property (nonatomic, readonly) NSDictionary *meals;
+@property (nonatomic, readonly) NSArray *meals;
+@property (nonatomic, retain) NSNumber *energy;
 - (id)initWithEnergyRequirement:(NSNumber *)energy snacks:(BOOL)snacks;
 @end
