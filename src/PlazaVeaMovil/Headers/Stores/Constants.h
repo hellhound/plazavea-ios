@@ -133,6 +133,9 @@ typedef enum {
             kMapStyleSegmentedControlIndexStandard
 }MapStyleSegmentedControlIndexTypes;
 
+// StoreMapController's constants
+extern const CGFloat kStoreDetailBackground;
+
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;
 extern NSString *const kStoreMapOptionButton;

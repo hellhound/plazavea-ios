@@ -129,8 +129,10 @@ static CGFloat headerMinHeight = 40.;
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         _storeId = [storeId copy];
 
-        [self setTableViewStyle:UITableViewStylePlain];
+        [self setTableViewStyle:UITableViewStyleGrouped];
         [self setVariableHeightRows:YES];
+        [[self tableView] setBackgroundColor:[UIColor
+                colorWithWhite:kStoreDetailBackground alpha:1.]];
     }
     return self;
 }
