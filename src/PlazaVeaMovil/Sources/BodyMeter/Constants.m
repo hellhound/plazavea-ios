@@ -193,6 +193,12 @@ NSString *const kBodyMeterConsumptionSufix = @"%.0f Kcal/día";
 //NSLocalizedString(@"%.0f Kcal/día", nil);
 NSString *const kBodyMeterTimeSufix = @"%.0f días";
 //NSLocalizedString(@"%.0f días", nil);
+const CGFloat kBodyMeterBannerWidth = 320.;
+const CGFloat kBodyMeterBannerHeight = 140.;
+NSString *const kBodyMeterBannerImage =
+        @"bundle://default-banner-bodymeter.png";
+NSString *const kBodyMeterBackgroundImage = 
+        @"bundle://bodymeter-background.png";
 
 // ConsumptionController constants
 NSString *const kBodyMeterConsumptionBackButton = @"Consumo";

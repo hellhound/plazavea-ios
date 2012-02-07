@@ -1,11 +1,15 @@
 #import <Foundation/Foundation.h>
 #import <UIkit/UIKit.h>
 
+#import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "BodyMeter/Constants.h"
 #import "BodyMeter/Models.h"
 #import "BodyMeter/MealsController.h"
 
 static NSString *cellId = @"cellId";
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
 
 @implementation MealsController
 
@@ -17,6 +21,78 @@ static NSString *cellId = @"cellId";
     [_meals release];
     [_energyConsumption release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (void)loadView
+{
+    [super loadView];
+    // Conf nav bar
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+        [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                    autorelease]];
+    }
+    
+    UITableView *tableView = [self tableView];
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectZero]
+            autorelease];
+    // Conf the image
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kBodyMeterBannerImage)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+     UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
+    // Conf the label
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    
+    NSString *title = kBodyMeterTitle;
+    UIFont *font = [titleLabel font];
+    CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2.)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2.;
+        titleHeight = headerMinHeight - (margin * 2.);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
+    
+    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
+            kBodyMeterBannerHeight + titleHeight + (margin * 2.));
+    
+    [headerView setFrame:headerFrame];
+    [imageView setFrame:CGRectOffset([imageView frame], .0,
+            titleHeight + (margin * 2.))];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    // Conf background
+    UIImageView *background = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kBodyMeterBackgroundImage)] autorelease];
+    [headerView insertSubview:background atIndex:0];
+    [headerView setClipsToBounds:YES];
+    [tableView setTableHeaderView:headerView];
 }
 
 #pragma mark -

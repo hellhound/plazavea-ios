@@ -170,6 +170,10 @@ extern NSString *const kBodyMeterGoalLabel;
 extern NSString *const kBodyMeterCMISufix;
 extern NSString *const kBodyMeterConsumptionSufix;
 extern NSString *const kBodyMeterTimeSufix;
+extern const CGFloat kBodyMeterBannerWidth;
+extern const CGFloat kBodyMeterBannerHeight;
+extern NSString *const kBodyMeterBannerImage;
+extern NSString *const kBodyMeterBackgroundImage;
 
 // ConsumptionController constants
 extern NSString *const kBodyMeterConsumptionBackButton;

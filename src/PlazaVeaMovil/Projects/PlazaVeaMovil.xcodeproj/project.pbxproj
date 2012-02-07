@@ -234,6 +234,7 @@
 		2FCF7C1814D35A37007C083B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCF7C1714D35A37007C083B /* libxml2.dylib */; };
 		2FD3516D14E18ABF004903B2 /* bodymeter-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516B14E18ABF004903B2 /* bodymeter-background.png */; };
 		2FD3516E14E18ABF004903B2 /* bodymeter-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516C14E18ABF004903B2 /* bodymeter-background@2x.png */; };
+		2FD3517114E18F60004903B2 /* default-banner-bodymeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */; };
 		2FE27E731446558F00EE4EB3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE27E721446558F00EE4EB3 /* Constants.m */; };
 		2FE363F51443C489003B233E /* MeatListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F41443C489003B233E /* MeatListDataSource.m */; };
 		2FE363F71443DE38003B233E /* MeatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE363F61443DE38003B233E /* MeatListController.m */; };
@@ -985,6 +986,7 @@
 		2FCF7C1714D35A37007C083B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		2FD3516B14E18ABF004903B2 /* bodymeter-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bodymeter-background.png"; sourceTree = "<group>"; };
 		2FD3516C14E18ABF004903B2 /* bodymeter-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bodymeter-background@2x.png"; sourceTree = "<group>"; };
+		2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-bodymeter.png"; sourceTree = "<group>"; };
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
@@ -1162,6 +1164,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */,
 				2FD3516B14E18ABF004903B2 /* bodymeter-background.png */,
 				2FD3516C14E18ABF004903B2 /* bodymeter-background@2x.png */,
 				2F661D2714D2F67600901995 /* facebook-icon.png */,
@@ -2337,6 +2340,7 @@
 				2FCF7C1614D359EC007C083B /* twitter_load.png in Resources */,
 				2FD3516D14E18ABF004903B2 /* bodymeter-background.png in Resources */,
 				2FD3516E14E18ABF004903B2 /* bodymeter-background@2x.png in Resources */,
+				2FD3517114E18F60004903B2 /* default-banner-bodymeter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
