@@ -6,7 +6,7 @@
 #import "BodyMeter/RecomendationsController.h"
 
 static NSString *cellId = @"cellId";
-static float kfontSize = 14.;
+static float kfontSize = 16.;
 
 @implementation RecomendationsController
 
@@ -48,6 +48,8 @@ static float kfontSize = 14.;
         }
         [self setTitle:kBodyMeterRecomendationsBackButton];
         [[self tableView] setAllowsSelection:NO];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
+                alpha:1.]];
     }
     return self;
 }

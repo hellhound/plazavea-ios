@@ -13,6 +13,7 @@
     Profile *_profile;
     pickerIndex _pickerIndex;
     NSMutableArray *_pickerItems;
+    BOOL _showProfile;
 }
 @property (nonatomic, retain) Profile *profile;
 @end

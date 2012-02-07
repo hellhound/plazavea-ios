@@ -3,6 +3,7 @@
 
 #import "BodyMeter/Constants.h"
 #import "BodyMeter/Models.h"
+#import "BodyMeter/ProfileController.h"
 #import "BodyMeter/ConsumptionController.h"
 #import "BodyMeter/RecomendationsController.h"
 #import "BodyMeter/DiagnosisController.h"
@@ -12,6 +13,9 @@ static NSString *cellId = @"cellId";
 @interface DiagnosisController ()
 
 @property (nonatomic, retain) NSUserDefaults *defaults;
+- (void)dismissProfile;
+- (void)dismissBodyMeter;
+- (void)showProfile;
 @end
 
 @implementation DiagnosisController
@@ -30,6 +34,15 @@ static NSString *cellId = @"cellId";
 {
     if ((self = [super init]) != nil) {
         [self initWithStyle:UITableViewStyleGrouped];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
+                alpha:1.]];
+        
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        
+        [center addObserver:self selector:@selector(dismissProfile)
+                name:kBodyMeterShowDiagnosisNotification object:nil];
+        [center addObserver:self selector:@selector(dismissBodyMeter)
+                name:kbodyMeterGoToLauncherNotification object:nil];
     }
     return self;
 }
@@ -41,22 +54,50 @@ static NSString *cellId = @"cellId";
 - (void)viewDidLoad
 {
     [self setTitle:kBodyMeterDiagnosisBackButton];
+    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
+            initWithTitle:kBodyMeterProfileBackButton
+                style:UIBarButtonItemStyleDone target:self 
+                action:@selector(showProfile)]];
     // Load profile
-    if (_defaults == nil) {
+    if (_defaults == nil)
         _defaults = [NSUserDefaults standardUserDefaults];
-    }
-    _profile = [[Profile alloc] init];
+    if (_profile == nil)
+        _profile = [[Profile alloc] init];
+    if (_diagnosis == nil)
+        _diagnosis = [[Diagnosis alloc] initWithProfile:_profile];
+    // Conf header
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     
-    [_profile setAge:[_defaults objectForKey:kBodyMeterAgeKey]];
-    [_profile setGender:(kBodyMeterGenderType)
-            [[_defaults objectForKey:kBodyMeterGenderKey] intValue]];
-    [_profile setHeight:[_defaults objectForKey:kBodyMeterHeightKey]];
-    [_profile setWeight:[_defaults objectForKey:kBodyMeterWeightKey]];
-    [_profile setActivity:(kBodyMeterActivityType)
-            [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
     [_profile setIdealWeight:[_defaults objectForKey:kBodyMeterIdealWeightKey]];
     
     _diagnosis = [[Diagnosis alloc] initWithProfile:_profile];
+    BOOL profileIsFull = YES;
+    [_profile setAge:[_defaults objectForKey:kBodyMeterAgeKey]];
+    if (![_profile age])
+        profileIsFull = NO;
+    [_profile setGender:(kBodyMeterGenderType)
+            [[_defaults objectForKey:kBodyMeterGenderKey] intValue]];
+    if (![_profile gender])
+        profileIsFull = NO;
+    [_profile setHeight:[_defaults objectForKey:kBodyMeterHeightKey]];
+    if (![_profile height])
+        profileIsFull = NO;
+    [_profile setWeight:[_defaults objectForKey:kBodyMeterWeightKey]];
+    if (![_profile weight])
+        profileIsFull = NO;
+    [_profile setActivity:(kBodyMeterActivityType)
+            [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
+    if (![_profile activity])
+        profileIsFull = NO;
+    if (profileIsFull) {        
+        [super viewDidAppear:animated];
+        [[self tableView] reloadData];
+    } else {
+        [self showProfile];
+    }
 }
 
 #pragma mark -
@@ -68,6 +109,26 @@ static NSString *cellId = @"cellId";
 #pragma mark DiagnosisController (Private)
 
 @synthesize defaults = _defaults;
+         
+- (void)dismissProfile
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)dismissBodyMeter
+{
+    [self dismissModalViewControllerAnimated:YES];
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)showProfile
+{
+    ProfileController *controller = [[ProfileController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc]
+            initWithRootViewController:controller];
+    
+    [self presentModalViewController:navController animated:YES];
+}
 
 #pragma mark -
 #pragma mark <UITableViewDataSource>
@@ -105,8 +166,8 @@ static NSString *cellId = @"cellId";
                  initWithStyle:UITableViewCellStyleValue1
                     reuseIdentifier:cellId] autorelease];
     }
-    NSString *textLabel;
-    NSString *detailTextLabel = @"detail text label";
+    NSString *textLabel = kBodyMeterUndefinedLabel;
+    NSString *detailTextLabel = kBodyMeterUndefinedLabel;
     
     switch ([indexPath section]) {
         case kBodyMeterDiagnosisSection:
@@ -118,8 +179,9 @@ static NSString *cellId = @"cellId";
                     break;
                 case kBodyMeterCMIRow:
                     textLabel = kBodyMeterCMILabel;
-                    detailTextLabel = [NSString stringWithFormat:@"%.1f",
-                            [[_diagnosis bodyMassIndex] floatValue]];
+                    detailTextLabel = [NSString stringWithFormat:
+                            kBodyMeterCMISufix, [[_diagnosis bodyMassIndex]
+                                floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterResultRow:
@@ -135,15 +197,16 @@ static NSString *cellId = @"cellId";
             switch ([indexPath row]) {
                 case kBodyMeterCalorieComsuptionRow:
                     textLabel = kBodyMeterCalorieConsumptionLabel;
-                    detailTextLabel = [NSString 
-                            stringWithFormat:@"%.0f Kcal/día", 
+                    detailTextLabel = [NSString stringWithFormat:
+                            kBodyMeterConsumptionSufix, 
                                 [[_diagnosis energyConsumption] floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterTimeRow:
                     textLabel = kBodyMeterTimeLabel;
-                    detailTextLabel = [NSString stringWithFormat:@"%.0f días",
-                            [[_diagnosis time] floatValue]];
+                    detailTextLabel = [NSString stringWithFormat:
+                            kBodyMeterTimeSufix,
+                                [[_diagnosis time] floatValue]];
                     [cell setAccessoryType:UITableViewCellAccessoryNone];
                     break;
                 case kBodyMeterEnergyConsumptionRow:

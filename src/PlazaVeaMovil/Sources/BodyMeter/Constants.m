@@ -162,6 +162,9 @@ NSString *const kBodyMeterEntryAlertCancel = @"Cancelar";
 //NSLocalizedString(@"Cancelar", nil);
 NSString *const kBodyMeterEntryAlertOK = @"OK";
 //NSLocalizedString(@"OK", nil);
+const CGFloat kBodyMeterColor = .85;
+NSString *const kBodyMeterShowDiagnosisNotification = @"showDiagnosis";
+NSString *const kbodyMeterGoToLauncherNotification = @"goToLauncher";
 
 // DiagnosisController constants
 NSString *const kBodyMeterDiagnosisBackButton = @"Diagnóstico";
@@ -184,6 +187,12 @@ NSString *const kBodyMeterDiagnosisLabel = @"Diagnóstico actual (%i kg)";
 //NSLocalizedString(@"Diagnóstico actual (%i kg)", nil);
 NSString *const kBodyMeterGoalLabel = @"Meta del usuario (%i kg)";
 //NSLocalizedString(@"Meta del usuario (%i kg)", nil);
+NSString *const kBodyMeterCMISufix = @"%.1f";
+//NSLocalizedString(@"%.1f", nil);
+NSString *const kBodyMeterConsumptionSufix = @"%.0f Kcal/día";
+//NSLocalizedString(@"%.0f Kcal/día", nil);
+NSString *const kBodyMeterTimeSufix = @"%.0f días";
+//NSLocalizedString(@"%.0f días", nil);
 
 // ConsumptionController constants
 NSString *const kBodyMeterConsumptionBackButton = @"Consumo";
@@ -431,7 +440,11 @@ NSString *const kBodyMeterTitle = @"Medidor corporal";
 
 // Controller URLs
 NSString *const kURLBodyMeterProfile = @"bundle://launcher/bodymeterprofile";
+NSString *const kURLBodyMeterDiagnosis =
+        @"bundle://launcher/bodymeterdiagnosis";
 
 // Controller URL's call
-NSString *const kURLBodyMeterProfileCall
-        = @"bundle://launcher/bodymeterprofile";
+NSString *const kURLBodyMeterProfileCall =
+        @"bundle://launcher/bodymeterprofile";
+NSString *const kURLBodyMeterDiagnosisCall =
+        @"bundle://launcher/bodymeterdiagnosis";

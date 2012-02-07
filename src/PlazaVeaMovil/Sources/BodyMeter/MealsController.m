@@ -34,6 +34,8 @@ static NSString *cellId = @"cellId";
         
         [self setTitle:kBodyMeterMealsBackButton];
         [[self tableView] setAllowsSelection:NO];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
+                alpha:1.]];
     }
     return self;
 }

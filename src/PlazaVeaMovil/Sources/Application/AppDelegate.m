@@ -28,7 +28,7 @@
 #import "Stores/StoreDetailController.h"
 #import "Stores/StoreMapController.h"
 #import "BodyMeter/Constants.h"
-#import "BodyMeter/ProfileController.h"
+#import "BodyMeter/DiagnosisController.h"
 #import "Emergency/Constants.h"
 #import "Emergency/EmergencyCategoryController.h"
 #import "Wines/Constants.h"
@@ -123,8 +123,8 @@
             toViewController:[ShoppingListsController class]
                 selector:@selector(init)];
     // BodyMeter
-    [map from:kURLBodyMeterProfile
-            toViewController:[ProfileController class]
+    [map from:kURLBodyMeterDiagnosis
+            toViewController:[DiagnosisController class]
                 selector:@selector(init)];
     // Recipes
     [map from:kURLMeats

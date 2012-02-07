@@ -68,7 +68,7 @@
                     URL:kURLOfferListCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kBodyMeterTitle
                     image:kURLBodyMeterIcon 
-                    URL:kURLBodyMeterProfileCall] autorelease],
+                    URL:kURLBodyMeterDiagnosisCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
                     image:kURLRecipesIcon
                     URL:kURLRecipeCategoriesCall] autorelease],

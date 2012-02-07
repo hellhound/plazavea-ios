@@ -152,6 +152,9 @@ extern NSString *const kBodyMeterWeightEntry;
 extern NSString *const kBodyMeterIdealWeightEntry;
 extern NSString *const kBodyMeterEntryAlertCancel;
 extern NSString *const kBodyMeterEntryAlertOK;
+extern const CGFloat kBodyMeterColor;
+extern NSString *const kBodyMeterShowDiagnosisNotification;
+extern NSString *const kbodyMeterGoToLauncherNotification;
 
 //DiagnosisController constants
 extern NSString *const kBodyMeterDiagnosisBackButton;
@@ -164,6 +167,9 @@ extern NSString *const kBodyMeterEnergyConsumptionLabel;
 extern NSString *const kBodyMeterRecomendationsLabel;
 extern NSString *const kBodyMeterDiagnosisLabel;
 extern NSString *const kBodyMeterGoalLabel;
+extern NSString *const kBodyMeterCMISufix;
+extern NSString *const kBodyMeterConsumptionSufix;
+extern NSString *const kBodyMeterTimeSufix;
 
 // ConsumptionController constants
 extern NSString *const kBodyMeterConsumptionBackButton;
@@ -193,6 +199,8 @@ extern NSString *const kBodyMeterTitle;
 
 // Controller URLs
 extern NSString *const kURLBodyMeterProfile;
+extern NSString *const kURLBodyMeterDiagnosis;
 
 // Controller URL's call
 extern NSString *const kURLBodyMeterProfileCall;
+extern NSString *const kURLBodyMeterDiagnosisCall;

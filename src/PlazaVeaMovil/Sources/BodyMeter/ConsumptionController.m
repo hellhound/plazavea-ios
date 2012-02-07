@@ -30,6 +30,8 @@ static NSString *cellId = @"cellId";
         _energyConsumption = [energy retain];
         
         [self setTitle:kBodyMeterConsumptionBackButton];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
+                alpha:1.]];
     }
     return self;
 }

@@ -25,6 +25,7 @@ static NSString *cellId = @"cellId";
 - (void)updateProfile;
 - (void)dismissPicker:(id)sender;
 - (void)pushDiagnosis;
+- (void)goToLauncher;
 @end
 
 @implementation ProfileController
@@ -42,6 +43,9 @@ static NSString *cellId = @"cellId";
 {
     if ((self = [super init]) != nil) {
         [self initWithStyle:UITableViewStyleGrouped];
+        [[self navigationController] setNavigationBarHidden:NO];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
+                alpha:1.]];
     }
     return self;
 }
@@ -51,11 +55,15 @@ static NSString *cellId = @"cellId";
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     [self setTitle:kBodyMeterProfileBackButton];
     [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
             initWithTitle:kBodyMeterDiagnosisBackButton
                 style:UIBarButtonItemStyleDone target:self 
                 action:@selector(pushDiagnosis)]];
+    [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc]
+            initWithTitle:@"Menú" style:UIBarButtonItemStyleBordered
+                target:self action:@selector(goToLauncher)]];
     // Load profile
     if (_defaults == nil) {
         _defaults = [NSUserDefaults standardUserDefaults];
@@ -91,9 +99,39 @@ static NSString *cellId = @"cellId";
         
         [alertView show];
     } else {
-        
+       // [self pushDiagnosis];
     }
 }
+
+/*- (void)viewDidAppear:(BOOL)animated
+{
+    BOOL profileIsFull = YES;
+    
+    if (![_profile age])
+        profileIsFull = NO;
+    [_profile setGender:(kBodyMeterGenderType)
+     [[_defaults objectForKey:kBodyMeterGenderKey] intValue]];
+    if (![_profile gender])
+        profileIsFull = NO;
+    [_profile setHeight:[_defaults objectForKey:kBodyMeterHeightKey]];
+    if (![_profile height])
+        profileIsFull = NO;
+    [_profile setWeight:[_defaults objectForKey:kBodyMeterWeightKey]];
+    if (![_profile weight])
+        profileIsFull = NO;
+    [_profile setActivity:(kBodyMeterActivityType)
+     [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
+    if (![_profile activity])
+        profileIsFull = NO;
+    [_profile setIdealWeight:[_defaults objectForKey:kBodyMeterIdealWeightKey]];
+    if (!profileIsFull && _showProfile) {
+        [super viewDidAppear:animated];
+        _showProfile = NO;
+    } else if (_showProfile) {
+        [self pushDiagnosis];
+        _showProfile = NO;
+    }
+}*/
 
 #pragma mark -
 #pragma mark ProfileController (Public)
@@ -169,10 +207,22 @@ static NSString *cellId = @"cellId";
 
 - (void)pushDiagnosis
 {
-    DiagnosisController *controller = [[DiagnosisController alloc] init];
+    /*DiagnosisController *controller = [[DiagnosisController alloc] init];
     
     [[self navigationController] pushViewController:controller animated:YES];
-    [controller release];
+    [controller release];*/
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center postNotificationName:kBodyMeterShowDiagnosisNotification
+            object:self];
+}
+     
+- (void)goToLauncher
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center postNotificationName:kbodyMeterGoToLauncherNotification
+            object:self];
 }
 
 #pragma mark -
