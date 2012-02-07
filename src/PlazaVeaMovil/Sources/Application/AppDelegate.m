@@ -27,6 +27,8 @@
 #import "Stores/StoreListController.h"
 #import "Stores/StoreDetailController.h"
 #import "Stores/StoreMapController.h"
+#import "BodyMeter/Constants.h"
+#import "BodyMeter/DiagnosisController.h"
 #import "Emergency/Constants.h"
 #import "Emergency/EmergencyCategoryController.h"
 #import "Wines/Constants.h"
@@ -119,6 +121,10 @@
     // custom selector for initialization
     [map from:kURLShoppingLists
             toViewController:[ShoppingListsController class]
+                selector:@selector(init)];
+    // BodyMeter
+    [map from:kURLBodyMeterDiagnosis
+            toViewController:[DiagnosisController class]
                 selector:@selector(init)];
     // Recipes
     [map from:kURLMeats
