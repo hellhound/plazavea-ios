@@ -10,7 +10,6 @@
 #import "Stores/StoreDetailController.h"
 
 static CGFloat margin = 5.;
-static CGFloat storeNameWidth = 150.;
 static CGFloat headerMinHeight = 40.;
 
 @interface StoreDetailController()
@@ -65,13 +64,6 @@ static CGFloat headerMinHeight = 40.;
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentCenter];
     [_titleLabel setBackgroundColor:[UIColor clearColor]];
-    // Configuring the store label
-    [self setStoreLabel:
-            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease]];
-    [_storeLabel setNumberOfLines:0];
-    [_storeLabel setTextAlignment:UITextAlignmentRight];
-    [_storeLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_storeLabel setBackgroundColor:[UIColor clearColor]];
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(storesBackgroundHeader)]) {
@@ -89,7 +81,6 @@ static CGFloat headerMinHeight = 40.;
     [_imageView setFrame:imageFrame];
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
-    [_headerView addSubview:_storeLabel];
     [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
     [self refresh];
@@ -202,7 +193,7 @@ static CGFloat headerMinHeight = 40.;
         } else {
             titleFrame.origin.y += margin;
         }
-        [_titleLabel setText:district];
+        [_titleLabel setText:title];
         [_titleLabel setFrame:titleFrame];
         [_imageView setFrame:
             CGRectOffset(imageFrame, .0, titleHeight + (margin *2))];
@@ -210,16 +201,6 @@ static CGFloat headerMinHeight = 40.;
             [_imageView setUrlPath:[imageURL absoluteString]];
         headerFrame.size.height += titleHeight + (margin *2); 
         
-        font = [_storeLabel font];
-        constrainedTitleSize = CGSizeMake(storeNameWidth, MAXFLOAT);
-        CGFloat storeHeight = [title sizeWithFont:font
-                constrainedToSize:constrainedTitleSize
-                    lineBreakMode:UILineBreakModeWordWrap].height;
-        CGRect storeFrame = CGRectMake((titleWidth - storeNameWidth -
-                (margin * 2)), (headerFrame.size.height - storeHeight - margin),
-                    storeNameWidth, storeHeight);
-        [_storeLabel setText:title];
-        [_storeLabel setFrame:storeFrame];
         [_headerView setFrame:headerFrame];
         [tableView setTableHeaderView:_headerView];
     }

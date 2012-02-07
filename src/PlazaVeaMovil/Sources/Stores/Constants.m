@@ -59,7 +59,7 @@ NSString *const kStoreCollectionStoresKey = @"stores";
 // RegionListDataSource's constants
 
 // Generic sizes and images
-const CGFloat kStoreDetailImageWidth = 140.;
+const CGFloat kStoreDetailImageWidth = 320.;
 const CGFloat kStoreDetailImageHeight = 140.;
 const CGFloat kStoreDetailLabelWidth = 320.;
 NSString *const kStoreDetailDefaultImage =
