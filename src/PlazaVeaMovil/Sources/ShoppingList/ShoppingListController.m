@@ -489,6 +489,16 @@ static CGFloat headerMinHeight = 40.;
             [self initializeHeader];
         }
         [self updatePreviousNextButtons];
+        TSAlertView *alertView = [[[TSAlertView alloc]
+                initWithTitle:kShoppingListAlertTitle
+                    message:kShoppingListAlertMessage delegate:self
+                    cancelButtonTitle:kShoppingListAlertCancel
+                    otherButtonTitles:kShoppingListAlertCreate, nil]
+                    autorelease];
+        
+        [alertView setTag:kShoppingListAlertViewNoItems];
+        [alertView show];
+        noLists = YES;
     }
 }
 
@@ -603,7 +613,7 @@ static CGFloat headerMinHeight = 40.;
  numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfRows =
-    [super tableView:tableView numberOfRowsInSection:section];
+            [super tableView:tableView numberOfRowsInSection:section];
     
     if (numberOfRows == 0 && !noLists) {
         TSAlertView *alertView = [[[TSAlertView alloc]
@@ -614,7 +624,8 @@ static CGFloat headerMinHeight = 40.;
                     autorelease];
         
         [alertView setTag:kShoppingListAlertViewNoItems];
-        [alertView show];
+        [alertView performSelector:@selector(show) withObject:nil
+                afterDelay:0.1];
         noLists = YES;
     }
     return numberOfRows;
