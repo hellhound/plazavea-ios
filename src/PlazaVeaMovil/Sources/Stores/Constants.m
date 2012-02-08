@@ -178,6 +178,9 @@ NSString *const kStoreMapTypeHybrid = @"Híbrido";
 NSString *const kStoreMapTypeLabel = @"Seleccione el tipo de mapa:";
 // NSLocalizedString(@"Seleccione el tipo de mapa:", nil)
 
+// StoreMapController's constants
+const CGFloat kStoreDetailBackground = 0.85;
+
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =
