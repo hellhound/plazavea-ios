@@ -98,8 +98,8 @@
             title:title andCategory:kRecipeDetailSectionProcedures];
     if ([[recipe procedures] count] > 0) {
         for (NSString *procedure in [recipe procedures]) {
-            TTTableLongTextItem *item =
-                    [TTTableLongTextItem itemWithText:procedure];
+            TTTableTextItem *item =
+                    [TTTableTextItem itemWithText:procedure];
             
             [items addObject:item];
         }

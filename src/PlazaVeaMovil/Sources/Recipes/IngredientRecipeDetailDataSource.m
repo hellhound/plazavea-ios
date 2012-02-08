@@ -98,7 +98,7 @@
             title:title andCategory:kRecipeDetailSectionIngredients];
     if ([[recipe ingredients] count] > 0) {
         for (Ingredient *ingredient in [recipe ingredients]) {
-            TTTableLongTextItem *item = [TTTableLongTextItem 
+            TTTableTextItem *item = [TTTableTextItem 
                     itemWithText: [ingredient formattedIngredientString]];
             
             [items addObject:item];
