@@ -18,6 +18,7 @@ static CGFloat headerMinHeight = 40.;
 @property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UILabel *titleLabel;
+- (UIImage *)banner;
 @end
 
 @implementation FoodDetailController
@@ -165,6 +166,16 @@ static CGFloat headerMinHeight = 40.;
 
 @synthesize imageView = _imageView, headerView = _headerView,
         titleLabel = _titleLabel;
+
+- (UIImage *)banner
+{
+    UIImage *banner;
+    NSString *category = [[_food category] name];
+    if ([category isEqualToString:kFoodCategoryDrinks]) {
+        banner = TTIMAGE(kFoodCategoryDrinksImage);
+    }
+    return banner;
+}
 
 #pragma mark -
 #pragma mark FoodDetailController
