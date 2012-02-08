@@ -190,7 +190,7 @@ static CGFloat headerMinHeight = 40.;
     UIFont *font = [_categoryLabel font];
     CGFloat labelWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedSize = CGSizeMake(labelWidth, MAXFLOAT);
-    CGFloat labelHeight = [category sizeWithFont:font
+    CGFloat labelHeight = [title sizeWithFont:font
             constrainedToSize:constrainedSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
     CGRect categoryFrame = CGRectMake(.0, .0, labelWidth, labelHeight);
@@ -201,7 +201,7 @@ static CGFloat headerMinHeight = 40.;
     } else {
         categoryFrame.origin.y += margin;
     }
-    [_categoryLabel setText:category];
+    [_categoryLabel setText:title];
     [_categoryLabel setFrame:categoryFrame];
     // Setting the image
     CGRect imageFrame = [_imageView frame];
