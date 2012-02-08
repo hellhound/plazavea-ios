@@ -133,6 +133,7 @@ extern const CGFloat kOfferListImageHeight;
 // OfferDetailController's constants
 
 extern NSString *const kOfferDetailTitle;
+extern const CGFloat kOfferDetailBackground;
 extern const CGFloat kOfferDetailImageWidth;
 extern const CGFloat kOfferDetailImageHeight;
 extern NSString *const kOfferDetailDefaultImage;

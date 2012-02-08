@@ -170,7 +170,8 @@ NSString *const kOfferListTitle = @"Ofertas";
 // Messages
 NSString *const kOfferDetailTitle = @"Detalle de oferta";
 // NSLocalizedString(@"Detalle de oferta", nil)
-const CGFloat kOfferDetailImageWidth = 140.;
+const CGFloat kOfferDetailBackground = .85;
+const CGFloat kOfferDetailImageWidth = 320.;
 const CGFloat kOfferDetailImageHeight = 140.;
 const CGFloat kOfferDetailLabelWidth = 320.;
 NSString *const kOfferDetailDefaultImage =

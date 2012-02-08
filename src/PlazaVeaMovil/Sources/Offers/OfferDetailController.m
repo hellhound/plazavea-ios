@@ -65,7 +65,7 @@ static CGFloat kShareTag = 100;
     UITableView *tableView = [self tableView];
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0,
-            boundsWidth, kOfferDetailImageWidth);
+            boundsWidth, kOfferDetailImageHeight);
     CGRect imageFrame = CGRectMake((boundsWidth - kOfferDetailImageWidth) / 2.,
             .0, kOfferDetailImageWidth, kOfferDetailImageHeight);
     
