@@ -75,7 +75,7 @@ static CGFloat headerMinHeight = 40.;
     
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-     UIViewAutoresizingFlexibleRightMargin];
+            UIViewAutoresizingFlexibleRightMargin];
     [imageView setBackgroundColor:[UIColor clearColor]];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]

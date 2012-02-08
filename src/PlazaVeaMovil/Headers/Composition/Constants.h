@@ -36,6 +36,9 @@ extern NSString *const kFoodIron;
 extern NSString *const kFoodFileName;
 extern NSString *const kFoodCSVFile;
 
+// FoodCategoryListController's constants
+extern NSString *const kFoodCategoryBanner;
+
 // FoodDetailController's constants
 
 // messages

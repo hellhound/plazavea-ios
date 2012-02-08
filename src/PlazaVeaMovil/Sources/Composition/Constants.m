@@ -39,6 +39,9 @@ NSString *const kFoodIron = @"iron";
 NSString *const kFoodFileName = @"name";
 NSString *const kFoodCSVFile = @"food.csv";
 
+// FoodCategoryList's constants
+NSString *const kFoodCategoryBanner = @"bundle://child-food-banner.jpg";
+
 // FoodDetailController's constants
 
 // messages
@@ -87,7 +90,7 @@ NSString *const kFoodDetailCalciumSufix = @"%@ mg";
 NSString *const kFoodDetailIronSufix = @"%@ mg";
 // NSLocalizedString(@"%@ mg", nil)
 NSString *const kFoodDetailDefaultImage = @"bundle://default-food-detail.png";
-const CGFloat kFoodDetailImageWidth = 140.;
+const CGFloat kFoodDetailImageWidth = 320.;
 const CGFloat kFoodDetailImageHeight = 140.;
 
 // Controller URLs
