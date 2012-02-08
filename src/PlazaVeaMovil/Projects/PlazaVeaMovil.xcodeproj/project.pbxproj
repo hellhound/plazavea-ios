@@ -197,6 +197,38 @@
 		2FADB6FE1448DAC400C9AB88 /* OfferDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */; };
 		2FADB7001448EBEA00C9AB88 /* default-offer-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */; };
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
+		2FAFC10D14E30AB100401B02 /* andean-tubercle-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */; };
+		2FAFC10E14E30AB100401B02 /* andean-tubercle-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */; };
+		2FAFC10F14E30AB100401B02 /* cereals-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0EF14E30AB100401B02 /* cereals-banner.jpg */; };
+		2FAFC11014E30AB100401B02 /* cereals-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F014E30AB100401B02 /* cereals-banner@2x.jpg */; };
+		2FAFC11114E30AB100401B02 /* child-food-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F114E30AB100401B02 /* child-food-banner.jpg */; };
+		2FAFC11214E30AB100401B02 /* child-food-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F214E30AB100401B02 /* child-food-banner@2x.jpg */; };
+		2FAFC11314E30AB100401B02 /* drinks-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F314E30AB100401B02 /* drinks-banner.jpg */; };
+		2FAFC11414E30AB100401B02 /* drinks-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F414E30AB100401B02 /* drinks-banner@2x.jpg */; };
+		2FAFC11514E30AB100401B02 /* eggs-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F514E30AB100401B02 /* eggs-banner.jpg */; };
+		2FAFC11614E30AB100401B02 /* eggs-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F614E30AB100401B02 /* eggs-banner@2x.jpg */; };
+		2FAFC11714E30AB100401B02 /* fish-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F714E30AB100401B02 /* fish-banner.jpg */; };
+		2FAFC11814E30AB100401B02 /* fish-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F814E30AB100401B02 /* fish-banner@2x.jpg */; };
+		2FAFC11914E30AB100401B02 /* fruits-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0F914E30AB100401B02 /* fruits-banner.jpg */; };
+		2FAFC11A14E30AB100401B02 /* fruits-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FA14E30AB100401B02 /* fruits-banner@2x.jpg */; };
+		2FAFC11B14E30AB100401B02 /* legumes-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FB14E30AB100401B02 /* legumes-banner.jpg */; };
+		2FAFC11C14E30AB100401B02 /* legumes-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FC14E30AB100401B02 /* legumes-banner@2x.jpg */; };
+		2FAFC11D14E30AB100401B02 /* meats-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FD14E30AB100401B02 /* meats-banner.jpg */; };
+		2FAFC11E14E30AB100401B02 /* meats-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FE14E30AB100401B02 /* meats-banner@2x.jpg */; };
+		2FAFC11F14E30AB100401B02 /* milk-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0FF14E30AB100401B02 /* milk-banner.jpg */; };
+		2FAFC12014E30AB100401B02 /* milk-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10014E30AB100401B02 /* milk-banner@2x.jpg */; };
+		2FAFC12114E30AB100401B02 /* misc-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10114E30AB100401B02 /* misc-banner.jpg */; };
+		2FAFC12214E30AB100401B02 /* misc-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10214E30AB100401B02 /* misc-banner@2x.jpg */; };
+		2FAFC12314E30AB100401B02 /* oils-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10314E30AB100401B02 /* oils-banner.jpg */; };
+		2FAFC12414E30AB100401B02 /* oils-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10414E30AB100401B02 /* oils-banner@2x.jpg */; };
+		2FAFC12514E30AB100401B02 /* other-foods-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10514E30AB100401B02 /* other-foods-banner.jpg */; };
+		2FAFC12614E30AB100401B02 /* other-foods-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10614E30AB100401B02 /* other-foods-banner@2x.jpg */; };
+		2FAFC12714E30AB100401B02 /* sugar-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10714E30AB100401B02 /* sugar-banner.jpg */; };
+		2FAFC12814E30AB100401B02 /* sugar-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10814E30AB100401B02 /* sugar-banner@2x.jpg */; };
+		2FAFC12914E30AB100401B02 /* tubercle-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10914E30AB100401B02 /* tubercle-banner.jpg */; };
+		2FAFC12A14E30AB100401B02 /* tubercle-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10A14E30AB100401B02 /* tubercle-banner@2x.jpg */; };
+		2FAFC12B14E30AB100401B02 /* vegetables-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10B14E30AB100401B02 /* vegetables-banner.jpg */; };
+		2FAFC12C14E30AB100401B02 /* vegetables-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
 		2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */; };
@@ -915,6 +947,38 @@
 		2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailDataSource.m; sourceTree = "<group>"; };
 		2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-offer-detail.png"; sourceTree = "<group>"; };
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
+		2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andean-tubercle-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andean-tubercle-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0EF14E30AB100401B02 /* cereals-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cereals-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0F014E30AB100401B02 /* cereals-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cereals-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0F114E30AB100401B02 /* child-food-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "child-food-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0F214E30AB100401B02 /* child-food-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "child-food-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0F314E30AB100401B02 /* drinks-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "drinks-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0F414E30AB100401B02 /* drinks-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "drinks-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0F514E30AB100401B02 /* eggs-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "eggs-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0F614E30AB100401B02 /* eggs-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "eggs-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0F714E30AB100401B02 /* fish-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fish-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0F814E30AB100401B02 /* fish-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fish-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0F914E30AB100401B02 /* fruits-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fruits-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0FA14E30AB100401B02 /* fruits-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fruits-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0FB14E30AB100401B02 /* legumes-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "legumes-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0FC14E30AB100401B02 /* legumes-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "legumes-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0FD14E30AB100401B02 /* meats-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "meats-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC0FE14E30AB100401B02 /* meats-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "meats-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC0FF14E30AB100401B02 /* milk-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "milk-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10014E30AB100401B02 /* milk-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "milk-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10114E30AB100401B02 /* misc-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "misc-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10214E30AB100401B02 /* misc-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "misc-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10314E30AB100401B02 /* oils-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "oils-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10414E30AB100401B02 /* oils-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "oils-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10514E30AB100401B02 /* other-foods-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "other-foods-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10614E30AB100401B02 /* other-foods-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "other-foods-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10714E30AB100401B02 /* sugar-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sugar-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10814E30AB100401B02 /* sugar-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sugar-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10914E30AB100401B02 /* tubercle-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tubercle-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10A14E30AB100401B02 /* tubercle-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tubercle-banner@2x.jpg"; sourceTree = "<group>"; };
+		2FAFC10B14E30AB100401B02 /* vegetables-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vegetables-banner.jpg"; sourceTree = "<group>"; };
+		2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vegetables-banner@2x.jpg"; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-shopping-list.png"; sourceTree = "<group>"; };
@@ -1166,6 +1230,38 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */,
+				2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */,
+				2FAFC0EF14E30AB100401B02 /* cereals-banner.jpg */,
+				2FAFC0F014E30AB100401B02 /* cereals-banner@2x.jpg */,
+				2FAFC0F114E30AB100401B02 /* child-food-banner.jpg */,
+				2FAFC0F214E30AB100401B02 /* child-food-banner@2x.jpg */,
+				2FAFC0F314E30AB100401B02 /* drinks-banner.jpg */,
+				2FAFC0F414E30AB100401B02 /* drinks-banner@2x.jpg */,
+				2FAFC0F514E30AB100401B02 /* eggs-banner.jpg */,
+				2FAFC0F614E30AB100401B02 /* eggs-banner@2x.jpg */,
+				2FAFC0F714E30AB100401B02 /* fish-banner.jpg */,
+				2FAFC0F814E30AB100401B02 /* fish-banner@2x.jpg */,
+				2FAFC0F914E30AB100401B02 /* fruits-banner.jpg */,
+				2FAFC0FA14E30AB100401B02 /* fruits-banner@2x.jpg */,
+				2FAFC0FB14E30AB100401B02 /* legumes-banner.jpg */,
+				2FAFC0FC14E30AB100401B02 /* legumes-banner@2x.jpg */,
+				2FAFC0FD14E30AB100401B02 /* meats-banner.jpg */,
+				2FAFC0FE14E30AB100401B02 /* meats-banner@2x.jpg */,
+				2FAFC0FF14E30AB100401B02 /* milk-banner.jpg */,
+				2FAFC10014E30AB100401B02 /* milk-banner@2x.jpg */,
+				2FAFC10114E30AB100401B02 /* misc-banner.jpg */,
+				2FAFC10214E30AB100401B02 /* misc-banner@2x.jpg */,
+				2FAFC10314E30AB100401B02 /* oils-banner.jpg */,
+				2FAFC10414E30AB100401B02 /* oils-banner@2x.jpg */,
+				2FAFC10514E30AB100401B02 /* other-foods-banner.jpg */,
+				2FAFC10614E30AB100401B02 /* other-foods-banner@2x.jpg */,
+				2FAFC10714E30AB100401B02 /* sugar-banner.jpg */,
+				2FAFC10814E30AB100401B02 /* sugar-banner@2x.jpg */,
+				2FAFC10914E30AB100401B02 /* tubercle-banner.jpg */,
+				2FAFC10A14E30AB100401B02 /* tubercle-banner@2x.jpg */,
+				2FAFC10B14E30AB100401B02 /* vegetables-banner.jpg */,
+				2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */,
 				2F88F1F414E1C6B900EA512B /* default-banner-shopping-list@2x.png */,
 				2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */,
 				2FD3516B14E18ABF004903B2 /* bodymeter-background.png */,
@@ -2345,6 +2441,38 @@
 				2FD3516D14E18ABF004903B2 /* bodymeter-background.png in Resources */,
 				2FD3516E14E18ABF004903B2 /* bodymeter-background@2x.png in Resources */,
 				2FD3517114E18F60004903B2 /* default-banner-bodymeter.png in Resources */,
+				2FAFC10D14E30AB100401B02 /* andean-tubercle-banner.jpg in Resources */,
+				2FAFC10E14E30AB100401B02 /* andean-tubercle-banner@2x.jpg in Resources */,
+				2FAFC10F14E30AB100401B02 /* cereals-banner.jpg in Resources */,
+				2FAFC11014E30AB100401B02 /* cereals-banner@2x.jpg in Resources */,
+				2FAFC11114E30AB100401B02 /* child-food-banner.jpg in Resources */,
+				2FAFC11214E30AB100401B02 /* child-food-banner@2x.jpg in Resources */,
+				2FAFC11314E30AB100401B02 /* drinks-banner.jpg in Resources */,
+				2FAFC11414E30AB100401B02 /* drinks-banner@2x.jpg in Resources */,
+				2FAFC11514E30AB100401B02 /* eggs-banner.jpg in Resources */,
+				2FAFC11614E30AB100401B02 /* eggs-banner@2x.jpg in Resources */,
+				2FAFC11714E30AB100401B02 /* fish-banner.jpg in Resources */,
+				2FAFC11814E30AB100401B02 /* fish-banner@2x.jpg in Resources */,
+				2FAFC11914E30AB100401B02 /* fruits-banner.jpg in Resources */,
+				2FAFC11A14E30AB100401B02 /* fruits-banner@2x.jpg in Resources */,
+				2FAFC11B14E30AB100401B02 /* legumes-banner.jpg in Resources */,
+				2FAFC11C14E30AB100401B02 /* legumes-banner@2x.jpg in Resources */,
+				2FAFC11D14E30AB100401B02 /* meats-banner.jpg in Resources */,
+				2FAFC11E14E30AB100401B02 /* meats-banner@2x.jpg in Resources */,
+				2FAFC11F14E30AB100401B02 /* milk-banner.jpg in Resources */,
+				2FAFC12014E30AB100401B02 /* milk-banner@2x.jpg in Resources */,
+				2FAFC12114E30AB100401B02 /* misc-banner.jpg in Resources */,
+				2FAFC12214E30AB100401B02 /* misc-banner@2x.jpg in Resources */,
+				2FAFC12314E30AB100401B02 /* oils-banner.jpg in Resources */,
+				2FAFC12414E30AB100401B02 /* oils-banner@2x.jpg in Resources */,
+				2FAFC12514E30AB100401B02 /* other-foods-banner.jpg in Resources */,
+				2FAFC12614E30AB100401B02 /* other-foods-banner@2x.jpg in Resources */,
+				2FAFC12714E30AB100401B02 /* sugar-banner.jpg in Resources */,
+				2FAFC12814E30AB100401B02 /* sugar-banner@2x.jpg in Resources */,
+				2FAFC12914E30AB100401B02 /* tubercle-banner.jpg in Resources */,
+				2FAFC12A14E30AB100401B02 /* tubercle-banner@2x.jpg in Resources */,
+				2FAFC12B14E30AB100401B02 /* vegetables-banner.jpg in Resources */,
+				2FAFC12C14E30AB100401B02 /* vegetables-banner@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
