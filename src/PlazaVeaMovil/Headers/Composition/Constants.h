@@ -88,6 +88,7 @@ extern NSString *const kFoodCategoryFishImage;
 extern NSString *const kFoodCategorySugarImage;
 extern NSString *const kFoodCategoryTuberclesImage;
 extern NSString *const kFoodCategoryVegetablesImage;
+extern NSString *const kFoodCategoryOtherImage;
 
 // image
 extern NSString *const kFoodDetailDefaultImage;

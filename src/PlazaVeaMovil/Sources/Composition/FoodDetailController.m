@@ -51,7 +51,8 @@ static CGFloat headerMinHeight = 40.;
     [self setImageView:[[[TTImageView alloc] initWithFrame:
             CGRectMake(.0, .0, kFoodDetailImageWidth,
                 kFoodDetailImageHeight)] autorelease]];
-    [_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
+    //[_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
+    [_imageView setDefaultImage:[self banner]];
     [_imageView setAutoresizingMask:UIViewAutoresizingNone];
     [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
@@ -71,7 +72,7 @@ static CGFloat headerMinHeight = 40.;
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
-    NSString *title = [[_food category] name];
+    NSString *title = [_food name];
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
@@ -131,7 +132,7 @@ static CGFloat headerMinHeight = 40.;
     // Adding the subviews to the header view
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
-    [_headerView addSubview:categoryLabel];
+    //[_headerView addSubview:categoryLabel];
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
@@ -173,6 +174,30 @@ static CGFloat headerMinHeight = 40.;
     NSString *category = [[_food category] name];
     if ([category isEqualToString:kFoodCategoryDrinks]) {
         banner = TTIMAGE(kFoodCategoryDrinksImage);
+    } else if ([category isEqualToString:kFoodCategoryMeats]) {
+        banner = TTIMAGE(kFoodCategoryMeatsImage);
+    } else if ([category isEqualToString:kFoodCategoryCereals]) {
+        banner = TTIMAGE(kFoodCategoryCerealsImage);
+    } else if ([category isEqualToString:kFoodCategoryFruits]) {
+        banner = TTIMAGE(kFoodCategoryFruitsImage);
+    } else if ([category isEqualToString:kFoodCategoryOils]) {
+        banner = TTIMAGE(kFoodCategoryOilsImage);
+    } else if ([category isEqualToString:kFoodCategoryEggs]) {
+        banner = TTIMAGE(kFoodCategoryEggsImage);
+    } else if ([category isEqualToString:kFoodCategoryMilks]) {
+        banner = TTIMAGE(kFoodCategoryMilksImage);
+    } else if ([category isEqualToString:kFoodCategoryLegumes]) {
+        banner = TTIMAGE(kFoodCategoryLegumesImage);
+    } else if ([category isEqualToString:kFoodCategoryFish]) {
+        banner = TTIMAGE(kFoodCategoryFishImage);
+    } else if ([category isEqualToString:kFoodCategorySugar]) {
+        banner = TTIMAGE(kFoodCategorySugarImage);
+    } else if ([category isEqualToString:kFoodCategoryTubercles]) {
+        banner = TTIMAGE(kFoodCategoryTuberclesImage);
+    } else if ([category isEqualToString:kFoodCategoryVegetables]) {
+        banner = TTIMAGE(kFoodCategoryVegetablesImage);
+    } else {
+        banner = TTIMAGE(kFoodCategoryOtherImage);
     }
     return banner;
 }
