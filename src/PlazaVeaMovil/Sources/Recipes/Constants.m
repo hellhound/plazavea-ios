@@ -152,6 +152,7 @@ NSString *const kRecipeCategoryTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
 NSString *const kRecipeSubcategoryTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
+NSString *const kRecipeCategoryImage = @"bundle://default-banner-recipes.jpg";
 
 // RecipeListController's constants
 

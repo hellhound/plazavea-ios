@@ -235,6 +235,7 @@
 		2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */; };
 		2FC0936F14C9D854003D77B7 /* default-banner-region-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0936E14C9D854003D77B7 /* default-banner-region-list.png */; };
 		2FC0953414CA1849003D77B7 /* default-store-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0953314CA1849003D77B7 /* default-store-detail.png */; };
+		2FC52DAA14E46938003689E6 /* default-banner-recipes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FC52DA914E46938003689E6 /* default-banner-recipes.jpg */; };
 		2FC9A91914B7423200B7747F /* IngredientRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */; };
 		2FC9A91B14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */; };
 		2FC9A91D14B7519C00B7747F /* ProcedureRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */; };
@@ -986,6 +987,7 @@
 		2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-shopping-list.png"; sourceTree = "<group>"; };
 		2FC0936E14C9D854003D77B7 /* default-banner-region-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-region-list.png"; sourceTree = "<group>"; };
 		2FC0953314CA1849003D77B7 /* default-store-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-store-detail.png"; sourceTree = "<group>"; };
+		2FC52DA914E46938003689E6 /* default-banner-recipes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-recipes.jpg"; sourceTree = "<group>"; };
 		2FC9A91814B7423200B7747F /* IngredientRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2FC9A91A14B74A8200B7747F /* ProcedureRecipeDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailDataSource.m; sourceTree = "<group>"; };
 		2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcedureRecipeDetailController.m; sourceTree = "<group>"; };
@@ -1232,6 +1234,7 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FC52DA914E46938003689E6 /* default-banner-recipes.jpg */,
 				2F5FB4F114E43D76003C2DC8 /* default-banner-emergency.png */,
 				2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */,
 				2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */,
@@ -2477,6 +2480,7 @@
 				2FAFC12B14E30AB100401B02 /* vegetables-banner.jpg in Resources */,
 				2FAFC12C14E30AB100401B02 /* vegetables-banner@2x.jpg in Resources */,
 				2F5FB4F214E43D76003C2DC8 /* default-banner-emergency.png in Resources */,
+				2FC52DAA14E46938003689E6 /* default-banner-recipes.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

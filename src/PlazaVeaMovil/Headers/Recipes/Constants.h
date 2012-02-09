@@ -114,6 +114,7 @@ extern NSString *const kRecipesMeatTypesButton;
 // RecipeCategoryController's constants
 extern NSString *const kRecipeCategoryTitle;
 extern NSString *const kRecipeSubcategoryTitle;
+extern NSString *const kRecipeCategoryImage;
 
 // RecipeListController's constants
 
