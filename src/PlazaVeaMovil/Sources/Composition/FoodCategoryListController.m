@@ -168,7 +168,7 @@ static CGFloat indexWitdh = 50.;
     CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-            titleHeight+ imageFrame.size.height + searchHeight + (2 * margin));
+            titleHeight + imageFrame.size.height + searchHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
