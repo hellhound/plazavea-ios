@@ -86,8 +86,8 @@
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSString *recipeName = [recipe name];
-    NSString *title = [NSString stringWithFormat:kRecipeRations, recipeName,
-            [[recipe rations] stringValue]];
+    /*NSString *title = [NSString stringWithFormat:kRecipeRations,
+            [[recipe rations] stringValue]];*/
     NSURL *pictureURL = [recipe pictureURL];
     
     if (pictureURL != nil) {
@@ -95,7 +95,7 @@
                 kRecipeDetailImageHeigth);
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
-            title:title andCategory:kRecipeDetailSectionIngredients];
+            title:recipeName andCategory:kRecipeDetailSectionIngredients];
     if ([[recipe ingredients] count] > 0) {
         for (Ingredient *ingredient in [recipe ingredients]) {
             TTTableTextItem *item = [TTTableTextItem 

@@ -94,14 +94,17 @@ static CGFloat headerMinHeight = 40.;
     [_titleLabel setNumberOfLines:0];
     [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [_titleLabel setTextAlignment:UITextAlignmentRight];
+    [_titleLabel setShadowColor:[UIColor whiteColor]];
+    [_titleLabel setShadowOffset:CGSizeMake(.0, 1.)];
     [_titleLabel setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet
             hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
         [_titleLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
     }
-    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+    /*if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
-    }
+    }*/
+    [_titleLabel setTextColor:[UIColor blackColor]];
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(recipesBackgroundHeader)]) {
@@ -117,9 +120,9 @@ static CGFloat headerMinHeight = 40.;
         
         [_headerView insertSubview:_pictureBack atIndex:1];
     }
+    [_headerView addSubview:_imageView];
     [_headerView addSubview:_categoryLabel];
     [_headerView addSubview:_titleLabel];
-    [_headerView addSubview:_imageView];
     // Placing the views
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect categoryFrame =
@@ -215,15 +218,21 @@ static CGFloat headerMinHeight = 40.;
     // Settings the title
     font = [_titleLabel font];
     constrainedSize = CGSizeMake(categoryWidth, MAXFLOAT);
-    labelHeight = [title sizeWithFont:font
+    CGFloat categoryHeight = [category sizeWithFont:font
             constrainedToSize:constrainedSize
                 lineBreakMode:UILineBreakModeWordWrap].height;
     CGRect titleFrame = [_titleLabel frame];
     titleFrame.origin.y = backFrame.size.height + backFrame.origin.y -
-            labelHeight - (margin * 2);
-    titleFrame.size.height = labelHeight;
+            categoryHeight - (margin * 2.);
+    titleFrame.size.height = categoryHeight;
     
-    [_titleLabel setText:title];
+    CGRect headerFrame = [_headerView frame];
+    headerFrame.size.height = labelHeight + imageFrame.size.height +
+            (margin * 2.);
+    
+    [_headerView setFrame:headerFrame];
+    [_titleLabel setText:category];
     [_titleLabel setFrame:titleFrame];
+    [_tableView setTableHeaderView:_headerView];
 }
 @end

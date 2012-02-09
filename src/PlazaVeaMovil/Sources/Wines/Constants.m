@@ -164,7 +164,7 @@ const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
 
 // Launcher
-NSString *const kSomelierTitle = @"Somelier";
+NSString *const kSomelierTitle = @"Sommelier";
 // NSLocalizedString(@""Somelier", nil) 
 
 // Controllers' URLs

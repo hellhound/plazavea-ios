@@ -98,7 +98,7 @@
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSString *recipeName = [recipe name];
-    NSString *title = [NSString stringWithFormat:kRecipeRations, recipeName,
+    NSString *rations = [NSString stringWithFormat:kRecipeRations,
             [[recipe rations] stringValue]];
     NSURL *pictureURL = [recipe pictureURL];
 
@@ -107,7 +107,7 @@
                 kRecipeDetailImageHeigth);
     }
     [_delegate dataSource:self needsDetailImageWithURL:pictureURL
-        title:title andCategory:[[recipe category] name]];
+        title:recipeName andCategory:rations];
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0){
