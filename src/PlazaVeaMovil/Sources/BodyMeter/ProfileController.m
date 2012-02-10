@@ -587,7 +587,7 @@ titleForFooterInSection:(NSInteger)section
         [toolbar setItems:[NSArray arrayWithObjects:cancel, spacer, done, nil]];
         
         UIPickerView *pickerView =
-                [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
+                [[UIPickerView alloc] initWithFrame:CGRectZero];
         
         [pickerView setDelegate:self];
         [pickerView setDataSource:self];
