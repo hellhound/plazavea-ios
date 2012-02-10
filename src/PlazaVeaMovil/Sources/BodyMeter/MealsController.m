@@ -107,6 +107,39 @@ static CGFloat headerMinHeight = 40.;
     
     [footerBackground setBackgroundColor:
             [UIColor colorWithWhite:kBodyMeterColor alpha:1.]];
+    //Conf the imageLabel
+    UILabel *imageLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [imageLabel setNumberOfLines:0];
+    [imageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    [imageLabel setTextAlignment:UITextAlignmentRight];
+    [imageLabel setTextColor:[UIColor whiteColor]];
+    [imageLabel setShadowColor:[UIColor blackColor]];
+    [imageLabel setShadowOffset:CGSizeMake(.0, 1.)];
+    [imageLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+         hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
+        [imageLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
+    }
+    
+    NSString *mealsADay;
+    if (_snacks) {
+        mealsADay = [NSString stringWithFormat:kBodyMeterMealsADay, 5];
+    } else {
+        mealsADay = [NSString stringWithFormat:kBodyMeterMealsADay, 3];
+    }
+    font = [imageLabel font];
+    CGSize imageLabelSize = CGSizeMake([tableView bounds].size.width, MAXFLOAT);
+    imageLabelSize = [mealsADay sizeWithFont:font constrainedToSize:
+            imageLabelSize lineBreakMode:UILineBreakModeCharacterWrap];
+    
+    [imageLabel setText:mealsADay];
+    [imageLabel setFrame:CGRectMake([tableView bounds].size.width - 
+            (imageLabelSize.width + (margin * 2.)),
+                titleHeight + kBodyMeterBannerHeight - imageLabelSize.height,
+                imageLabelSize.width, imageLabelSize.height)];
+
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kBodyMeterBannerHeight
@@ -117,6 +150,7 @@ static CGFloat headerMinHeight = 40.;
             titleHeight + (margin * 2.))];
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
+    [headerView addSubview:imageLabel];
     [headerView addSubview:footerBackground];
     [headerView addSubview:footer];
     // Conf background
