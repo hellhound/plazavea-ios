@@ -77,16 +77,48 @@ static CGFloat headerMinHeight = 40.;
     }
     [titleLabel setText:title];
     [titleLabel setFrame:titleFrame];
+    //Conf the footer
+    UILabel *footer = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    [footer setNumberOfLines:0];
+    [footer setLineBreakMode:UILineBreakModeWordWrap];
+    [footer setTextAlignment:UITextAlignmentLeft];
+    [footer setBackgroundColor:[UIColor clearColor]];
+    [footer setFont:[UIFont systemFontOfSize:kBodyMeterFooterFontSize]];
+    [footer setTextColor:[UIColor darkGrayColor]];
+    [footer setShadowColor:[UIColor whiteColor]];
+    [footer setShadowOffset:CGSizeMake(.0, 1.)];
+    
+    font = [footer font];
+    CGFloat footerWidth = CGRectGetWidth([tableView bounds]);
+    CGSize constrainedFooterSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat footerHeight = [kBodyMeterFooter sizeWithFont:font
+            constrainedToSize:constrainedFooterSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect footerFrame = CGRectMake(.0, .0, footerWidth, footerHeight);
+    
+    [footer setText:kBodyMeterFooter];
+    [footer setFrame:CGRectOffset(footerFrame, margin, kBodyMeterBannerHeight +
+            titleHeight + (margin * 2.))];
+    
+    UIView *footerBackground = [[[UIView alloc] initWithFrame:
+            CGRectOffset(footerFrame, .0, kBodyMeterBannerHeight + titleHeight +
+                (margin * 2.))] autorelease];
+    
+    [footerBackground setBackgroundColor:
+            [UIColor colorWithWhite:kBodyMeterColor alpha:1.]];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-            kBodyMeterBannerHeight + titleHeight + (margin * 2.));
+    CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kBodyMeterBannerHeight
+            + titleHeight + footerHeight + (margin * 2.));
     
     [headerView setFrame:headerFrame];
     [imageView setFrame:CGRectOffset([imageView frame], .0,
             titleHeight + (margin * 2.))];
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
+    [headerView addSubview:footerBackground];
+    [headerView addSubview:footer];
     // Conf background
     UIImageView *background = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kBodyMeterBackgroundImage)] autorelease];
