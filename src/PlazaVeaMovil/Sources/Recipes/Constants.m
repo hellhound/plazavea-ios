@@ -177,6 +177,9 @@ NSString *const kRecipeDetailCreateMessage = @"Lista %@ creada";
 NSString *const kRecipeDetailCreateButton = @"Ok";
 // NSLocalizedString(@"Ok", nil)
 
+// MeatListsController's constants
+NSString *const kMeatListImage = @"bundle://default-banner-emergency.png";
+
 // Controllers' URLs
 NSString *const kURLMeats = @"tt://launcher/recipes/meats/";
 NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";

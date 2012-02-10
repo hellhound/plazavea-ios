@@ -133,6 +133,9 @@ extern const CGFloat kRecipeDetailImageHeigth;
 extern NSString *const kRecipeDetailCreateMessage;
 extern NSString *const kRecipeDetailCreateButton;
 
+// MeatListsController's constants
+extern NSString *const kMeatListImage;
+
 // Controllers' URLs
 extern NSString *const kURLMeats;
 extern NSString *const kURLRecipeCategories;
