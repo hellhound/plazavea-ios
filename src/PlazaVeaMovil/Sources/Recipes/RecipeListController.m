@@ -82,12 +82,22 @@ static CGFloat headerMinHeight = 40.;
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
             titleHeight + (2 * margin));
     // Adding the subviews to the header view
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(recipesBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
+    UIImageView *back;
+    if (_isMeat) {
+        if ([TTStyleSheet hasStyleSheetForSelector:
+                @selector(meatsBackgroundHeader)]) {
+            back = [[[UIImageView alloc] initWithImage:
+                    (UIImage *)TTSTYLE(meatsBackgroundHeader)] autorelease];
+        }
+        
+    } else {
+        if ([TTStyleSheet hasStyleSheetForSelector:
+                @selector(recipesBackgroundHeader)]) {
+            back = [[[UIImageView alloc] initWithImage:
+                     (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
+        }
     }
+    [_headerView insertSubview:back atIndex:0];
     [_headerView addSubview:_titleLabel];
     [_headerView setFrame:headerFrame];
     [_headerView setClipsToBounds:YES];
@@ -109,8 +119,8 @@ static CGFloat headerMinHeight = 40.;
 }
 
 - (id<UITableViewDelegate>)createDelegate {
-    return [[[RecipesTableViewDelegate alloc] initWithController:self]
-            autorelease];
+    return [[[RecipesTableViewDelegate alloc] initWithController:self
+            isMeat:_isMeat] autorelease];
 }
 
 #pragma mark -

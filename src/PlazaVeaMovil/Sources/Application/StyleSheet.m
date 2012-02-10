@@ -68,8 +68,9 @@
 
 // recipes
 #define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
-#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
 #define MEATS_BACKGROUND TTIMAGE(@"bundle://meats-background.png")
+#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
+#define MEATS_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 #define RECIPE_DETAIL_BACKGROUND \
         TTIMAGE(@"bundle://recipes-picture-background.png")
 
@@ -278,6 +279,11 @@
 - (UIImage *)meatsBackgroundHeader
 {
     return MEATS_BACKGROUND;
+}
+
+- (TTStyle *)meatsSectionHeader
+{
+    return  [TTImageStyle styleWithImage:MEATS_SECTION_HEADER next:nil];
 }
 
 - (UIImage *)recipePictureBackground
