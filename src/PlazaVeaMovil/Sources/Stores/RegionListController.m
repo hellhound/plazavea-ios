@@ -60,8 +60,13 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     }
+    NSString *title;
     
-    NSString *title = [self title];
+    if ([[self title] isEqualToString:kRegionListTitle]) {
+        title = [self title];
+    } else {
+        title = [NSString stringWithFormat:kSubregionListName, [self title]];
+    }
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);

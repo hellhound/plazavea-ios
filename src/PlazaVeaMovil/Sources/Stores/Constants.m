@@ -142,6 +142,8 @@ NSString *const kSubregionListTitle = @"Provincias";
 // NSLocalizedString(@"Provincias", nil)
 NSString *const kRegionLauncherTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
+NSString *const kSubregionListName = @"Provincias de %@";
+// NSLocalizedString(@"Provincias de %@", nil)
 
 // StoreListController's constants
 
