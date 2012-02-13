@@ -14,6 +14,6 @@
 @property (nonatomic, readonly) NSString *collectionId;
 @property (nonatomic, readonly) BOOL isMeat;
 
-- (id)initWithCategoryId:(NSString *)categoryId;
-- (id)initWithMeatId:(NSString *)meatId;
+- (id)initWithCategoryId:(NSString *)categoryId name:(NSString *)name;
+- (id)initWithMeatId:(NSString *)meatId name:(NSString *)name;
 @end

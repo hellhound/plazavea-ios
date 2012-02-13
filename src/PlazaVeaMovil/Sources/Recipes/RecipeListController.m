@@ -129,23 +129,24 @@ static CGFloat headerMinHeight = 40.;
 @synthesize collectionId = _collectionId, isMeat = _isMeat,
         titleLabel = _titleLabel, headerView = _headerView;
 
-- (id)initWithCategoryId:(NSString *)categoryId
+- (id)initWithCategoryId:(NSString *)categoryId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [categoryId copy];
         _isMeat = NO;
-        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        [self setTitle:name];
         [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     }
     return self;
 }
 
-- (id)initWithMeatId:(NSString *)meatId
+- (id)initWithMeatId:(NSString *)meatId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [meatId copy];
         _isMeat = YES;
-        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                withString:@" "]];
         [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
     }
     return self;

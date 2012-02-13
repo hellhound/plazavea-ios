@@ -64,26 +64,28 @@
         NSStringCompareOptions options =
                 NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
         
-        if ([name rangeOfString:@"res" options:options].location
+        if ([name rangeOfString:kCowMeat options:options].location
                 != NSNotFound) {
             icon = TTIMAGE(kMeatIcon);
-        } else if ([name rangeOfString:@"ave" options:options].location
+        } else if ([name rangeOfString:kChikenMeat options:options].location
                 != NSNotFound) {
             icon = TTIMAGE(kChickenIcon);
-        } else if ([name rangeOfString:@"cerdo" options:options].location
+        } else if ([name rangeOfString:kPorkMeat options:options].location
                 != NSNotFound) {
             icon = TTIMAGE(kPorkIcon);
-        } else if (([name rangeOfString:@"pescado" options:options].location
-                != NSNotFound) || ([name rangeOfString:@"marisco"
+        } else if (([name rangeOfString:kFishMeat options:options].location
+                != NSNotFound) || ([name rangeOfString:kShellfishMeat
                     options:options].location != NSNotFound)) {
             icon = TTIMAGE(kFishIcon);
         } else {
             icon = TTIMAGE(kOtherMeatsIcon);
         }
-        
+        NSString *meatNoSpace = [[meat name]
+                stringByReplacingOccurrencesOfString:@" " withString:@"_"];
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:name subtitle:nil imageURL:nil defaultImage:icon
-                    URL:URL(kURLRecipeMeatListCall, [meat meatId])];
+                    URL:URL(kURLRecipeMeatListCall, [meat meatId],
+                    meatNoSpace)];
         
         [items addObject:item];
     }

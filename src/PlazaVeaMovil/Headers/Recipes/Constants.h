@@ -62,6 +62,11 @@ extern NSString *const kFishIcon;
 extern NSString *const kMeatIcon;
 extern NSString *const kPorkIcon;
 extern NSString *const kOtherMeatsIcon;
+extern NSString *const kCowMeat;
+extern NSString *const kChikenMeat;
+extern NSString *const kPorkMeat;
+extern NSString *const kFishMeat;
+extern NSString *const kShellfishMeat;
 
 // RecipeCategoryDataSource's messages
 

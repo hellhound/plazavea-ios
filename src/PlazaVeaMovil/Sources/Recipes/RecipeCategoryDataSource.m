@@ -62,7 +62,8 @@
             TTTableTextItem *item;
             if ([[category subcategoriesCount] integerValue] == 0) {
                 item = [TTTableTextItem itemWithText:[category name]
-                        URL:URL(kURLRecipeListCall, [category categoryId])];
+                        URL:URL(kURLRecipeListCall, [category categoryId],
+                            [category name])];
             } else {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeSubCategoriesCall, 

@@ -108,6 +108,11 @@ NSString *const kFishIcon = @"bundle://fish-icon.png";
 NSString *const kMeatIcon = @"bundle://meat-icon.png";
 NSString *const kPorkIcon = @"bundle://pork-icon.png";
 NSString *const kOtherMeatsIcon = @"bundle://other-meats-icon.png";
+NSString *const kCowMeat = @"res";
+NSString *const kChikenMeat = @"ave";
+NSString *const kPorkMeat = @"cerdo";
+NSString *const kFishMeat = @"pescado";
+NSString *const kShellfishMeat = @"marisco";
 
 // RecipeDetailDataSource's messages
 
@@ -186,9 +191,9 @@ NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubcategories =
         @"tt://launcher/recipes/categories/subcategory/(initWithCategoryId:)/";
 NSString *const kURLRecipeList =
-        @"tt://launcher/recipes/category/(initWithCategoryId:)/";
+        @"tt://launcher/recipes/category/(initWithCategoryId:)/(name:)/";
 NSString *const kURLRecipeMeatList =
-        @"tt://launcher/recipes/meat/(initWithMeatId:)/";
+        @"tt://launcher/recipes/meat/(initWithMeatId:)/(name:)/";
 NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
 NSString *const kURLRecipeMeatsDetail =
         @"tt://launcher/meats/recipe/(initWithRecipeId:)/(hasMeat:)/";
@@ -214,9 +219,9 @@ NSString *const kURLRecipeCategoriesCall = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubCategoriesCall =
         @"tt://launcher/recipes/categories/subcategory/%@/";
 NSString *const kURLRecipeListCall =
-        @"tt://launcher/recipes/category/%@/";
+        @"tt://launcher/recipes/category/%@/%@/";
 NSString *const kURLRecipeMeatListCall =
-        @"tt://launcher/recipes/meat/%@/";
+        @"tt://launcher/recipes/meat/%@/%@/";
 NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
 NSString *const kURLRecipeMeatsDetailCall =
         @"tt://launcher/meats/recipe/%@/%@/";
