@@ -53,7 +53,7 @@
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:name subtitle:nil URL:URL(kURLStoreListCall,
-                    [subregion subregionId], _regionId)];
+                    [subregion subregionId], _regionId, [subregion name])];
         [items addObject:item];
     }
     [self setItems:items];

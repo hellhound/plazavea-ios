@@ -143,14 +143,13 @@ NSString *const kSubregionListTitle = @"Provincias";
 NSString *const kRegionLauncherTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
 
-
 // StoreListController's constants
 
 // Messages
 NSString *const kStoreListTitle = @"Tiendas";
 // NSLocalizedString(@"Tiendas", nil)
 NSString *const kStoreListButtonLabel = @"Tiendas";
-// NSLocalizedString(@"Lista", nil)
+// NSLocalizedString(@"Tiendas", nil)
 NSString *const kStoreMapButtonLabel = @"Mapa";
 // NSLocalizedString(@"Mapa", nil)
 NSString *const kStoreDetailButtonLabel = @"Detalles";
@@ -184,9 +183,9 @@ const CGFloat kStoreDetailBackground = 0.85;
 // Controllers' URLs
 NSString *const kURLRegionList = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionList =
-        @"tt://launcher/stores/regions/subregions/(initWithRegionId:)/";
-NSString *const kURLStoreList =
-        @"tt://launcher/stores/stores/(initWithSubregionId:)/(andRegionId:)/";
+        @"tt://launcher/stores/regions/subregions/(initWithRegionId:)/(name:)/";
+NSString *const kURLStoreList = @"tt://launcher/stores/stores/" \
+        "(initWithSubregionId:)/(andRegionId:)/(name:)/";
 NSString *const kURLStoreDetail = @"tt://launcher/store/(initWithStoreId:)/";
 NSString *const kURLStoreMap = @"tt://launcher/stores/map/"
         @"(initWithSubregionId:)/(andRegionId:)/(andTitle:)";
@@ -196,9 +195,9 @@ NSString *const kURLStoreDetailMap =
 // Controllers' URL calls
 NSString *const kURLRegionListCall = @"tt://launcher/stores/regions/";
 NSString *const kURLSubregionListCall =
-        @"tt://launcher/stores/regions/subregions/%@/";
+        @"tt://launcher/stores/regions/subregions/%@/%@/";
 NSString *const kURLStoreListCall =
-        @"tt://launcher/stores/stores/%@/%@";
+        @"tt://launcher/stores/stores/%@/%@/%@/";
 NSString *const kURLStoreDetailCall = @"tt://launcher/store/%@/";
 NSString *const kURLStoreMapCall = @"tt://launcher/stores/map/%@/%@/%@/";
 NSString *const kURLStoreDetailMapCall = @"tt://launcher/store/map/%@/%@/";

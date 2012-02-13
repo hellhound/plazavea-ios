@@ -16,5 +16,6 @@
 @property (nonatomic, copy) NSString *regionId;
 
 - (id)initWithSubregionId:(NSString *)subregionId
-              andRegionId:(NSString *)regionId;
+              andRegionId:(NSString *)regionId
+                     name:(NSString *)name;
 @end

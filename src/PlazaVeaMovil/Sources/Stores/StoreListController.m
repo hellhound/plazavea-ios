@@ -146,9 +146,11 @@ static CGFloat headerMinHeight = 40.;
 
 - (id)initWithSubregionId:(NSString *)subregionId
               andRegionId:(NSString *)regionId
+                     name:(NSString *)name
 {
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        [self setTitle:name];
         _subregionId = [subregionId copy];
         _regionId = [regionId copy];
     }

@@ -105,6 +105,7 @@ extern NSString *const kRegionListDefaultImage;
 extern NSString *const kRegionListTitle;
 extern NSString *const kSubregionListTitle;
 extern NSString *const kRegionLauncherTitle;
+extern NSString *const kSubregionListName;
 
 // StoreListController's constants
 

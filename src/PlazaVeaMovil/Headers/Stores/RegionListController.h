@@ -11,5 +11,5 @@
 }
 @property (nonatomic, copy) NSString *regionId;
 
-- (id)initWithRegionId:(NSString *)regionId;
+- (id)initWithRegionId:(NSString *)regionId name:(NSString *)name;
 @end
