@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableCaptionItem.h"
@@ -12,6 +13,10 @@
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
 #import "Wines/WineDetailDataSource.h"
+
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
+static CGFloat titleWidth = 320.;
 
 @implementation WineDetailDataSource
 
@@ -47,6 +52,63 @@
     return self;
 }
 
+- (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
+{
+    UIView *headerView =
+            [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    // Conf the image
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
+    // Conf the label
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    
+    UIFont *font = [titleLabel font];
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2.)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2.;
+        titleHeight = headerMinHeight - (margin * 2.);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
+    
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth, kWineDetailImageHeight +
+            titleHeight + (margin * 2.));
+    
+    [headerView setFrame:headerFrame];
+    [imageView setFrame:CGRectOffset([imageView frame], .0,
+            titleHeight + (margin * 2.))];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    
+    UIImageView *background = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kWineBackgroundImage)] autorelease];
+    [headerView insertSubview:background atIndex:0];
+    [headerView setClipsToBounds:YES];
+    return headerView;
+}
+
 #pragma mark -
 #pragma mark <TTTableViewDataSource>
 
@@ -79,11 +141,26 @@
 {
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
-    NSMutableArray *sections = [NSMutableArray array];
-    [_delegate dataSource:self needsDetailImageWithURL:[wine pictureURL]
-            andTitle:[wine name]];
+
+    [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
+            [[wine pictureURL] absoluteString] title:[wine name]]];
     
-    // Info section
+    TTTableTextItem *info =
+            [TTTableTextItem itemWithText:@"Información" URL:nil];
+    
+    [items addObject:info];
+    
+    TTTableTextItem *taste =
+            [TTTableTextItem itemWithText:@"Nota de cata" URL:nil];
+    
+    [items addObject:taste];
+    
+    TTTableTextItem *marriage =
+            [TTTableTextItem itemWithText:@"Maridaje" URL:nil];
+    
+    [items addObject:marriage];
+    
+    /*// Info section
     [sections addObject:kWineInfoLabel];
     NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
             [[wine price] stringValue]];
@@ -134,7 +211,7 @@
     
     [items addObject:
             [NSArray arrayWithObjects:temp, cellaring, oxygenation, nil]];
-    [self setSections:sections];
+    [self setSections:sections];*/
     [self setItems:items];
 }
 

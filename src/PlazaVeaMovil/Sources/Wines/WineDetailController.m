@@ -34,7 +34,7 @@
 #pragma mark -
 #pragma mark UIView
 
-- (void)loadView
+/*- (void)loadView
 {
     [super loadView];
     
@@ -50,7 +50,7 @@
     [tableView setTableHeaderView:_headerView];
     [tableView setTableFooterView:_footerView];
     [self refresh];
-}
+}*/
 
 #pragma mark -
 #pragma mark TTTableViewController
@@ -119,10 +119,17 @@
     
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
-    if (imageURL != nil)
-        [_imageView setUrlPath:[imageURL absoluteString]];
+    /*if (imageURL != nil)
+        [_imageView setUrlPath:[imageURL absoluteString]];*/
     headerFrame.size.height += titleHeight; 
     [_headerView setFrame:headerFrame];
     [tableView setTableHeaderView:_headerView];
+}
+
+- (void) dataSource:(WineDetailDataSource *)dataSource
+      viewForHeader:(UIView *)view
+{
+    UITableView *tableView = [self tableView];
+    [tableView setTableHeaderView:view];
 }
 @end

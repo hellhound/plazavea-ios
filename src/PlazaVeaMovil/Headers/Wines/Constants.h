@@ -112,6 +112,8 @@ extern const CGFloat kWineDetailImageWidth;
 extern const CGFloat kWineDetailImageHeight;
 extern const CGFloat kWineDetailLabelWidth;
 extern NSString *const kWineDetailDefaultImage;
+extern NSString *const kWineBannerImage;
+extern NSString *const kWineBackgroundImage;
 
 // Launcher
 extern NSString *const kSomelierTitle;

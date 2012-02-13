@@ -106,7 +106,7 @@ static CGFloat headerMinHeight = 40.;
                 (margin * 2.))] autorelease];
     
     [footerBackground setBackgroundColor:
-     [UIColor colorWithWhite:kBodyMeterColor alpha:1.]];
+            [UIColor colorWithWhite:kBodyMeterColor alpha:1.]];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kBodyMeterBannerHeight

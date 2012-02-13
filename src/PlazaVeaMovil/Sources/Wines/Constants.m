@@ -158,10 +158,12 @@ NSString *const kWineOxygenationUnits = @"%@ minutos";
 // NSLocalizedString(@"%@ minutos", nil)
 
 // Generic sizes and images
-const CGFloat kWineDetailImageWidth = 100.;
-const CGFloat kWineDetailImageHeight = 150.;
+const CGFloat kWineDetailImageWidth = 320.;
+const CGFloat kWineDetailImageHeight = 140.;
 const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
+NSString *const kWineBannerImage = @"bundle://sommelier-banner.jpg";
+NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
 
 // Launcher
 NSString *const kSomelierTitle = @"Sommelier";
