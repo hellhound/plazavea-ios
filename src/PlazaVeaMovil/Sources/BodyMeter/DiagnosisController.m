@@ -59,10 +59,10 @@ static CGFloat headerMinHeight = 40.;
 {
     [super viewDidLoad];
     [self setTitle:kBodyMeterDiagnosisBackButton];
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
+    /*[[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
             initWithTitle:kBodyMeterProfileBackButton
                 style:UIBarButtonItemStyleBordered target:self 
-                action:@selector(showProfile)]];
+                action:@selector(showProfile)]];*/
     // Load profile
     if (_defaults == nil)
         _defaults = [NSUserDefaults standardUserDefaults];
@@ -246,13 +246,16 @@ static CGFloat headerMinHeight = 40.;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
+        case kBodyMeterUpdateSection:
+            return 1;
+            break;
         case kBodyMeterDiagnosisSection:
             return 3;
             break;
@@ -281,6 +284,16 @@ static CGFloat headerMinHeight = 40.;
     NSString *detailTextLabel = kBodyMeterUndefinedLabel;
     
     switch ([indexPath section]) {
+        case kBodyMeterUpdateSection:
+            switch ([indexPath row]) {
+                case 0:
+                    textLabel = kBodyMeterUpdateLabel;
+                    detailTextLabel = @"";
+                    break;
+                default:
+                    break;
+            }
+            break;
         case kBodyMeterDiagnosisSection:
             switch ([indexPath row]) {
                 case kBodyMeterRangeRow:
@@ -372,7 +385,11 @@ titleForHeaderInSection:(NSInteger)section
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([indexPath section] == 1) {
+    if ([indexPath section] == kBodyMeterUpdateSection) {
+        if ([indexPath row] == 0) {
+            [self showProfile];
+        }
+    } else if ([indexPath section] == kBodyMeterGoalSection) {
         if ([indexPath row] == 2) {
             ConsumptionController *controller = [[ConsumptionController alloc]
                     initWithEnergyConsumption:[_diagnosis energyConsumption]];

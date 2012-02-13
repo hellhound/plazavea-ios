@@ -383,7 +383,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         // Something shitty just happened, abort, abort, abort!
         [error log];
         // TODO should present a nice UIViewAlert informing the error
-        abort();
+        //abort();
     }
     [[_context undoManager] removeAllActions];
 }

@@ -172,6 +172,8 @@ const CGFloat kBodyMeterFooterFontSize = 12.;
 // DiagnosisController constants
 NSString *const kBodyMeterDiagnosisBackButton = @"Diagnóstico";
 //NSLocalizedString(@"Diagnóstico", nil);
+NSString *const kBodyMeterUpdateLabel = @"Actualiza tu perfil";
+//NSLocalizedString(@"Actualiza tu perfil", nil);
 NSString *const kBodyMeterRangeLabel = @"Rango normal de peso";
 //NSLocalizedString(@"Rango normal de peso", nil);
 NSString *const kBodyMeterCMILabel = @"Índice de masa corporal";

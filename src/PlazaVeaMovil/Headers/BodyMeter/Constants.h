@@ -40,6 +40,7 @@ typedef enum {
 }kBodyMeterWeightRowType;
 
 typedef enum {
+    kBodyMeterUpdateSection,
     kBodyMeterDiagnosisSection,
     kBodyMeterGoalSection
 }kBodyMeterDiagnosisSectionType;
@@ -160,6 +161,7 @@ extern const CGFloat kBodyMeterFooterFontSize;
 
 //DiagnosisController constants
 extern NSString *const kBodyMeterDiagnosisBackButton;
+extern NSString *const kBodyMeterUpdateLabel;
 extern NSString *const kBodyMeterRangeLabel;
 extern NSString *const kBodyMeterCMILabel;
 extern NSString *const kBodyMeterResultLabel;
