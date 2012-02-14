@@ -195,6 +195,8 @@
 		2FAC7554148FE453007757F9 /* stores-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FAC7550148FE453007757F9 /* stores-background@2x.png */; };
 		2FAC7555148FE453007757F9 /* stores-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FAC7551148FE453007757F9 /* stores-section-header.png */; };
 		2FAC7556148FE453007757F9 /* stores-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FAC7552148FE453007757F9 /* stores-section-header@2x.png */; };
+		2FADA26314E9CAB7000F6EF7 /* WineInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADA26114E9CAB7000F6EF7 /* WineInfoController.m */; };
+		2FADA26414E9CAB7000F6EF7 /* WineInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADA26214E9CAB7000F6EF7 /* WineInfoDataSource.m */; };
 		2FADB6FE1448DAC400C9AB88 /* OfferDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */; };
 		2FADB7001448EBEA00C9AB88 /* default-offer-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */; };
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
@@ -951,6 +953,8 @@
 		2FAC7550148FE453007757F9 /* stores-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stores-background@2x.png"; sourceTree = "<group>"; };
 		2FAC7551148FE453007757F9 /* stores-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stores-section-header.png"; sourceTree = "<group>"; };
 		2FAC7552148FE453007757F9 /* stores-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stores-section-header@2x.png"; sourceTree = "<group>"; };
+		2FADA26114E9CAB7000F6EF7 /* WineInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineInfoController.m; sourceTree = "<group>"; };
+		2FADA26214E9CAB7000F6EF7 /* WineInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineInfoDataSource.m; sourceTree = "<group>"; };
 		2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailDataSource.m; sourceTree = "<group>"; };
 		2FADB6FF1448EBEA00C9AB88 /* default-offer-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-offer-detail.png"; sourceTree = "<group>"; };
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
@@ -1618,6 +1622,8 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2FADA26114E9CAB7000F6EF7 /* WineInfoController.m */,
+				2FADA26214E9CAB7000F6EF7 /* WineInfoDataSource.m */,
 				2F6DA8E3146C30A100FCEF87 /* WineDetailDataSource.m */,
 				2F0A6877146B38F900380798 /* WineListDataSource.m */,
 				2F012A06146B1A8C006098EB /* StrainListDataSource.m */,
@@ -2668,6 +2674,8 @@
 				2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */,
 				2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */,
 				2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */,
+				2FADA26314E9CAB7000F6EF7 /* WineInfoController.m in Sources */,
+				2FADA26414E9CAB7000F6EF7 /* WineInfoDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

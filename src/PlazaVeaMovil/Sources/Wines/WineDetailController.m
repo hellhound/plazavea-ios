@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Wines/Constants.h"
 #import "Wines/WineDetailController.h"
 
@@ -73,7 +74,14 @@
         [self setTableViewStyle:UITableViewStylePlain];
         [self setVariableHeightRows:YES];
         _wineId = [wineId copy];
-        [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
+        // Conf nav bar
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+            [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                    initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+        }
+        /*[self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
                 autorelease]];
         [self setFooterView:[[[UIView alloc] initWithFrame:CGRectZero]
                 autorelease]];
@@ -94,7 +102,7 @@
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
         // Adding the subviews to the header view
         [_headerView addSubview:_titleLabel];
-        [_footerView addSubview:_imageView];
+        [_footerView addSubview:_imageView];*/
     }
     return self;
 }
