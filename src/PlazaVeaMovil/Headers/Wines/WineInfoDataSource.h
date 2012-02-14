@@ -14,11 +14,11 @@
 - (id)initWithWineId:(NSString *)wineId;
 - (id)initWithWineId:(NSString *)wineId
             delegate:(id<WineInfoDataSourceDelegate>)delegate;
-- (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
+
 @end
 
 @protocol WineInfoDataSourceDelegate <NSObject>
 
-- (void) dataSource:(WineInfoDataSource *)dataSource
-      viewForHeader:(UIView *)view;
+- (void)dataSource:(WineInfoDataSource *)dataSource
+     viewForHeader:(UIView *)view;
 @end

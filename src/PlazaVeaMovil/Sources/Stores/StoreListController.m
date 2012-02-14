@@ -133,7 +133,8 @@ static CGFloat headerMinHeight = 40.;
                 autorelease]];
 }
 
-- (id<UITableViewDelegate>)createDelegate {
+- (id<UITableViewDelegate>)createDelegate 
+{
     return [[[StoresTableViewDelegate alloc] initWithController:self]
             autorelease];
 }

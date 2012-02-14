@@ -3,5 +3,5 @@
 
 #import <Three20/Three20.h>
 
-@interface StoresTableViewDelegate : TTTableViewGroupedVarHeightDelegate
+@interface WineTableViewDelegate: TTTableViewGroupedVarHeightDelegate
 @end

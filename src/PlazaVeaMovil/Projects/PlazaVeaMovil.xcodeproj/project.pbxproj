@@ -147,6 +147,7 @@
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
 		2F5B2A4814699ED3008CFB6A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4714699ED3008CFB6A /* Constants.m */; };
 		2F5FB4F214E43D76003C2DC8 /* default-banner-emergency.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5FB4F114E43D76003C2DC8 /* default-banner-emergency.png */; };
+		2F60688E14EAFD6400493E3B /* WineTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */; };
 		2F661D2D14D2F67600901995 /* facebook-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F661D2714D2F67600901995 /* facebook-icon.png */; };
 		2F661D2E14D2F67600901995 /* facebook-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F661D2814D2F67600901995 /* facebook-icon@2x.png */; };
 		2F661D2F14D2F67600901995 /* mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F661D2914D2F67600901995 /* mail-icon.png */; };
@@ -188,6 +189,8 @@
 		2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0F79147AC25B0047901D /* FoodDetailController.m */; };
 		2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */; };
 		2F9E1037147AF4770047901D /* default-food-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E1036147AF4770047901D /* default-food-detail.png */; };
+		2FA4E2D214EAFB5B00B5F303 /* wine-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */; };
+		2FA4E2D314EAFB5B00B5F303 /* wine-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
 		2FA7FB781446361400211215 /* BaseOfferController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB761446361400211215 /* BaseOfferController.m */; };
 		2FA7FB791446361400211215 /* OfferDrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB771446361400211215 /* OfferDrillDownController.m */; };
@@ -904,6 +907,7 @@
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2F5B2A4714699ED3008CFB6A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F5FB4F114E43D76003C2DC8 /* default-banner-emergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-emergency.png"; sourceTree = "<group>"; };
+		2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTableViewDelegate.m; sourceTree = "<group>"; };
 		2F661D2714D2F67600901995 /* facebook-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-icon.png"; sourceTree = "<group>"; };
 		2F661D2814D2F67600901995 /* facebook-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-icon@2x.png"; sourceTree = "<group>"; };
 		2F661D2914D2F67600901995 /* mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail-icon.png"; sourceTree = "<group>"; };
@@ -950,6 +954,8 @@
 		2F9E0F79147AC25B0047901D /* FoodDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailController.m; sourceTree = "<group>"; };
 		2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailDataSource.m; sourceTree = "<group>"; };
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
+		2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header.png"; sourceTree = "<group>"; };
+		2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header@2x.png"; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		2FA7FB761446361400211215 /* BaseOfferController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOfferController.m; sourceTree = "<group>"; };
 		2FA7FB771446361400211215 /* OfferDrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDrillDownController.m; sourceTree = "<group>"; };
@@ -1254,6 +1260,8 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */,
+				2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */,
 				2FCBE7B914E9C1C9008FD936 /* wine-background.png */,
 				2FCBE7BA14E9C1C9008FD936 /* wine-background@2x.png */,
 				2FCBE7B514E9B399008FD936 /* sommelier-banner.jpg */,
@@ -1630,6 +1638,7 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */,
 				2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */,
 				2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */,
 				2FBA82DD14EAD0D5005C940E /* WineTasteController.m */,
@@ -2515,6 +2524,8 @@
 				2FCBE7B814E9B399008FD936 /* sommelier-banner@2x.jpg in Resources */,
 				2FCBE7BB14E9C1C9008FD936 /* wine-background.png in Resources */,
 				2FCBE7BC14E9C1C9008FD936 /* wine-background@2x.png in Resources */,
+				2FA4E2D214EAFB5B00B5F303 /* wine-section-header.png in Resources */,
+				2FA4E2D314EAFB5B00B5F303 /* wine-section-header@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2692,6 +2703,7 @@
 				2FBA82E014EAD0D5005C940E /* WineTasteDataSource.m in Sources */,
 				2FAEB17F14EAEC0F003E96E8 /* WineTipsController.m in Sources */,
 				2FAEB18014EAEC0F003E96E8 /* WineTipsDataSource.m in Sources */,
+				2F60688E14EAFD6400493E3B /* WineTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,14 +23,14 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark NSObject
 
-- (void) dealloc
+- (void)dealloc
 {
     [self setDelegate:nil];
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark StoreDetailDataSource (public)
+#pragma mark WineTipsDataSource (public)
 
 @synthesize  delegate = _delegate;
 
@@ -57,13 +57,19 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = [[[UIImageView alloc]
-            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    UIImageView *imageView;
     
-    [imageView setAutoresizingMask:UIViewAutoresizingNone];
-    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-            UIViewAutoresizingFlexibleRightMargin];
-    [imageView setBackgroundColor:[UIColor clearColor]];
+    if (imageURL != nil) {
+        imageView = [[[UIImageView alloc]
+                initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    
+        [imageView setAutoresizingMask:UIViewAutoresizingNone];
+        [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+                UIViewAutoresizingFlexibleRightMargin];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+    } else {
+        imageView = nil;
+    }
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];

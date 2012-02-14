@@ -74,6 +74,9 @@
 #define RECIPE_DETAIL_BACKGROUND \
         TTIMAGE(@"bundle://recipes-picture-background.png")
 
+// wines
+#define WINES_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
+
 @implementation StyleSheet
 
 #pragma mark -
@@ -289,5 +292,13 @@
 - (UIImage *)recipePictureBackground
 {
     return RECIPE_DETAIL_BACKGROUND;
+}
+
+#pragma mark -
+#pragma mark Wines
+
+- (TTStyle *)wineSectionHeader
+{
+    return [TTImageStyle styleWithImage:WINES_SECTION_HEADER next:nil];
 }
 @end

@@ -5,6 +5,7 @@
 #import "Wines/WineListDataSource.h"
 
 @interface WineListController: ReconnectableTableViewController
+        <WineListDataSourceDelegate>
 {
     NSString *_categoryId;
 }

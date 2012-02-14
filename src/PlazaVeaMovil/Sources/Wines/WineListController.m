@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Wines/Constants.h"
 #import "Wines/WineListDataSource.h"
+#import "Wines/WineTableViewDelegate.h"
 #import "Wines/WineListController.h"
 
 @implementation WineListController
@@ -34,7 +36,13 @@
 - (void)createModel
 {
     [self setDataSource:[[[WineListDataSource alloc]
-            initWithCategoryId:_categoryId] autorelease]];
+            initWithCategoryId:_categoryId delegate:self] autorelease]];
+}
+
+- (id<UITableViewDelegate>)createDelegate
+{
+    return [[[WineTableViewDelegate alloc] initWithController:self]
+            autorelease];
 }
 
 #pragma mark -
@@ -46,8 +54,23 @@
 {
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         _categoryId = [categoryId copy];
+        // Conf nav bar
+        if ([TTStyleSheet
+             hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+            [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                    initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+        }
     }
     return self;
 }
 
+#pragma mark -
+#pragma mark <WineListDataSourceDelegate>
+
+- (void)dataSource:(WineListDataSource *)dataSource
+     viewForHeader:(UIView *)view
+{
+    [[self tableView] setTableHeaderView:view];
+}
 @end
