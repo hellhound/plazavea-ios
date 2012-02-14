@@ -33,7 +33,7 @@ static CGFloat headerMinHeight = 40.;
     [_imageView release];
     [_headerView release];
     [_titleLabel release];
-    [_categoryLabel release];
+    //[_categoryLabel release];
     [super dealloc];
 }
 
@@ -138,7 +138,7 @@ static CGFloat headerMinHeight = 40.;
     // Adding the subviews to the header view
     [_headerView addSubview:_titleLabel];
     [_headerView addSubview:_imageView];
-    [_headerView addSubview:_categoryLabel];
+    //[_headerView addSubview:_categoryLabel];
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:

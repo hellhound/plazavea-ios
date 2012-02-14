@@ -260,8 +260,9 @@ static CGFloat headerMinHeight = 40.;
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    NSString *dateText = [dateFormatter stringFromDate:[_shoppingList
-            lastModificationDate]];
+    NSString *dateText = [_shoppingList lastModificationDate] ?
+            [dateFormatter stringFromDate:[_shoppingList lastModificationDate]]
+                : @"hoy";
 
     [dateLabel setNumberOfLines:0];
     [dateLabel setLineBreakMode:UILineBreakModeWordWrap];
@@ -347,8 +348,12 @@ static CGFloat headerMinHeight = 40.;
         NSDateFormatter *dateFormatter = [(AppDelegate *)
                 [[UIApplication sharedApplication] delegate] dateFormatter];
         
-        [listDateLabel setText:[dateFormatter stringFromDate:[_shoppingList
-                lastModificationDate]]];
+        if ([_shoppingList lastModificationDate] != nil) {
+            [listDateLabel setText:[dateFormatter stringFromDate:[_shoppingList
+                    lastModificationDate]]];
+        } else {
+            [listDateLabel setText:@"hoy"];
+        }
     }
 
 }
