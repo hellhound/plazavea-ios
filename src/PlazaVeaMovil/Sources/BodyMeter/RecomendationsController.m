@@ -193,6 +193,12 @@ static CGFloat headerMinHeight = 40.;
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return kBodyMeterRecomendationsLabel;
+}
+
 #pragma mark -
 #pragma mark <UITableViewDelegate>
 

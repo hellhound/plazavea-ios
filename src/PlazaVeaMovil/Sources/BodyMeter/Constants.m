@@ -151,8 +151,8 @@ NSString *const kBodyMeterProfileAlertButton = @"OK";
 NSString *const kBodyMeterAgeEntry = @"Ingresa tu edad";
 //NSLocalizedString(@"Ingresa tu edad", nil);
 NSString *const kBodyMeterHeightEntry =
-        @"Ingresa tu estutura\n(en centímetros)";
-//NSLocalizedString(@"Ingresa tu estutura\n(en centímetros)", nil);
+        @"Ingresa tu estatura\n(en centímetros)";
+//NSLocalizedString(@"Ingresa tu estatura\n(en centímetros)", nil);
 NSString *const kBodyMeterWeightEntry = @"Ingresa tu peso\n(en kilogramos)";
 //NSLocalizedString(@"Ingresa tu peso\n(en kilogramos)", nil);
 NSString *const kBodyMeterIdealWeightEntry =
