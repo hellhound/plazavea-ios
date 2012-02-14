@@ -102,6 +102,7 @@ extern NSString *const kWineOxygenationLabel;
 extern NSString *const kWineInfoLabel;
 extern NSString *const kWineTastingLabel;
 extern NSString *const kWineTipsLabel;
+extern NSString *const kWineMarriageLabel;
 extern NSString *const kWinePriceUnits;
 extern NSString *const kWineTemperatureUnits;
 extern NSString *const kWineCellaringUnits;
@@ -122,11 +123,17 @@ extern NSString *const kSomelierTitle;
 extern NSString *const kURLStrainList;
 extern NSString *const kURLWineList;
 extern NSString *const kURLWineDetail;
+extern NSString *const kURLWineInfo;
+extern NSString *const kURLWineTaste;
+extern NSString *const kURLWineTips;
 
 // Controllers' URL calls
 extern NSString *const kURLStrainListCall;
 extern NSString *const kURLWineListCall;
 extern NSString *const kURLWineDetailCall;
+extern NSString *const kURLWineInfoCall;
+extern NSString *const kURLWineTasteCall;
+extern NSString *const kURLWineTipsCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;

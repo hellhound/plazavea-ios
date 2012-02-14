@@ -12,13 +12,13 @@
 
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
-#import "Wines/WineDetailDataSource.h"
+#import "Wines/WineTipsDataSource.h"
 
 static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
 static CGFloat titleWidth = 320.;
 
-@implementation WineDetailDataSource
+@implementation WineTipsDataSource
 
 #pragma mark -
 #pragma mark NSObject
@@ -43,7 +43,7 @@ static CGFloat titleWidth = 320.;
     return self;
 }
 - (id)initWithWineId:(NSString *)wineId
-            delegate:(id<WineDetailDataSourceDelegate>)delegate
+            delegate:(id<WineTipsDataSourceDelegate>)delegate
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[Wine alloc] initWithWineId:wineId] autorelease]];
@@ -141,31 +141,34 @@ static CGFloat titleWidth = 320.;
 {
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
-
+    
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
     
-    TTTableTextItem *info = [TTTableTextItem itemWithText:kWineInfoLabel
-            URL:URL(kURLWineInfoCall, [wine wineId])];
+    NSString *tempLabel = [NSString stringWithFormat:kWineTemperatureUnits,
+            [[wine temperature] stringValue]];
+    NSString *cellLabel = [NSString stringWithFormat:kWineCellaringUnits,
+            [[wine cellaring] stringValue]];
+    NSString *oxyLabel = [NSString stringWithFormat:kWineOxygenationUnits,
+            [[wine oxygenation] stringValue]];
+    TableCaptionItem *temp = [TableCaptionItem itemWithText:tempLabel
+            caption:kWineTemperatureLabel];
     
-    [items addObject:info];
+    [items addObject:temp];
     
-    TTTableTextItem *taste = [TTTableTextItem itemWithText:kWineTastingLabel
-            URL:URL(kURLWineTasteCall, [wine wineId])];
+    TableCaptionItem *cellaring = [TableCaptionItem itemWithText:cellLabel
+            caption:kWineCellaringLabel];
     
-    [items addObject:taste];
+    [items addObject:cellaring];
     
-    TTTableTextItem *tips = [TTTableTextItem itemWithText:kWineTipsLabel
-            URL:URL(kURLWineTipsCall, [wine wineId])];
+    TableCaptionItem *oxygenation = [TableCaptionItem itemWithText:oxyLabel
+            caption:kWineOxygenationLabel];
     
-    [items addObject:tips];
+    [items addObject:oxygenation];
     
-    TTTableTextItem *marriage = [TTTableTextItem itemWithText:kWineMarriageLabel
-            URL:nil];
-    
-    [items addObject:marriage];
     [self setItems:items];
 }
+
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {

@@ -4,10 +4,10 @@
 #import <Three20/Three20.h>
 #import "Common/Controllers/Three20/ReconnectableTableViewController.h"
 
-#import "Wines/WineDetailDataSource.h"
+#import "Wines/WineTasteDataSource.h"
 
-@interface WineDetailController: ReconnectableTableViewController
-        <WineDetailDataSourceDelegate>
+@interface WineTasteController: ReconnectableTableViewController
+        <WineTasteDataSourceDelegate>
 {
     NSString *_wineId;
 }

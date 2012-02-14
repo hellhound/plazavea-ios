@@ -12,13 +12,13 @@
 
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
-#import "Wines/WineDetailDataSource.h"
+#import "Wines/WineTasteDataSource.h"
 
 static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
 static CGFloat titleWidth = 320.;
 
-@implementation WineDetailDataSource
+@implementation WineTasteDataSource
 
 #pragma mark -
 #pragma mark NSObject
@@ -43,7 +43,7 @@ static CGFloat titleWidth = 320.;
     return self;
 }
 - (id)initWithWineId:(NSString *)wineId
-            delegate:(id<WineDetailDataSourceDelegate>)delegate
+            delegate:(id<WineTasteDataSourceDelegate>)delegate
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[Wine alloc] initWithWineId:wineId] autorelease]];
@@ -141,31 +141,28 @@ static CGFloat titleWidth = 320.;
 {
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
-
+    
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
     
-    TTTableTextItem *info = [TTTableTextItem itemWithText:kWineInfoLabel
-            URL:URL(kURLWineInfoCall, [wine wineId])];
+    TableCaptionItem *look = [TableCaptionItem
+            itemWithText:[wine look] caption:kWineLookLabel];
     
-    [items addObject:info];
+    [items addObject:look];
     
-    TTTableTextItem *taste = [TTTableTextItem itemWithText:kWineTastingLabel
-            URL:URL(kURLWineTasteCall, [wine wineId])];
+    TableCaptionItem *taste = [TableCaptionItem
+            itemWithText:[wine taste] caption:kWineTasteLabel];
     
     [items addObject:taste];
     
-    TTTableTextItem *tips = [TTTableTextItem itemWithText:kWineTipsLabel
-            URL:URL(kURLWineTipsCall, [wine wineId])];
+    TableCaptionItem *smell = [TableCaptionItem
+            itemWithText:[wine smell] caption:kWineSmellLabel];
     
-    [items addObject:tips];
+    [items addObject:smell];
     
-    TTTableTextItem *marriage = [TTTableTextItem itemWithText:kWineMarriageLabel
-            URL:nil];
-    
-    [items addObject:marriage];
     [self setItems:items];
 }
+
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object
 {

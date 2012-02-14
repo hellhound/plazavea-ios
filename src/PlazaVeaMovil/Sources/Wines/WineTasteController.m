@@ -6,9 +6,10 @@
 #import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Wines/Constants.h"
-#import "Wines/WineDetailController.h"
+#import "Wines/WineTasteDataSource.h"
+#import "Wines/WineTasteController.h"
 
-@implementation WineDetailController
+@implementation WineTasteController
 
 #pragma mark -
 #pragma mark NSObject
@@ -24,12 +25,12 @@
 
 - (void)createModel
 {
-    [self setDataSource:[[[WineDetailDataSource alloc] initWithWineId:_wineId
+    [self setDataSource:[[[WineTasteDataSource alloc] initWithWineId:_wineId
             delegate:self] autorelease]];
 }
 
 #pragma mark -
-#pragma mark WineDetailController
+#pragma mark WIneTasteController
 
 - (id)initWithWineId:(NSString *)wineId
 {
@@ -49,9 +50,9 @@
 }
 
 #pragma mark -
-#pragma mark <WineDetailDataSourceDelegate>
+#pragma mark <WineTasteDataSourceDelegate>
 
-- (void) dataSource:(WineDetailDataSource *)dataSource
+- (void) dataSource:(WineTasteDataSource *)dataSource
       viewForHeader:(UIView *)view
 {
     [[self tableView] setTableHeaderView:view];

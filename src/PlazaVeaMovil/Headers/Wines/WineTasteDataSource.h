@@ -3,22 +3,22 @@
 
 #import <Three20/Three20.h>
 
-@protocol WineInfoDataSourceDelegate;
+@protocol WineTasteDataSourceDelegate;
 
-@interface WineInfoDataSource: TTListDataSource
+@interface WineTasteDataSource: TTListDataSource
 {
-    id<WineInfoDataSourceDelegate> _delegate;
+    id<WineTasteDataSourceDelegate> _delegate;
 }
 @property (nonatomic, assign) id delegate;
 
 - (id)initWithWineId:(NSString *)wineId;
 - (id)initWithWineId:(NSString *)wineId
-            delegate:(id<WineInfoDataSourceDelegate>)delegate;
+            delegate:(id<WineTasteDataSourceDelegate>)delegate;
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
 @end
 
-@protocol WineInfoDataSourceDelegate <NSObject>
+@protocol WineTasteDataSourceDelegate <NSObject>
 
-- (void) dataSource:(WineInfoDataSource *)dataSource
+- (void) dataSource:(WineTasteDataSource *)dataSource
       viewForHeader:(UIView *)view;
 @end
