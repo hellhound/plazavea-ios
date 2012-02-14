@@ -107,6 +107,7 @@ extern NSString *const kWinePriceUnits;
 extern NSString *const kWineTemperatureUnits;
 extern NSString *const kWineCellaringUnits;
 extern NSString *const kWineOxygenationUnits;
+extern NSString *const kWineRecommendedLabel;
 
 // Generic sizes and images
 extern const CGFloat kWineDetailImageWidth;

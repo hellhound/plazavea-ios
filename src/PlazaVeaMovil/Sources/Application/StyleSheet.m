@@ -75,7 +75,8 @@
         TTIMAGE(@"bundle://recipes-picture-background.png")
 
 // wines
-#define WINES_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
+#define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")
+#define WINE_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
 
 @implementation StyleSheet
 
@@ -297,8 +298,13 @@
 #pragma mark -
 #pragma mark Wines
 
+- (UIImage *)wineBackgroundHeader
+{
+    return WINE_BACKGROUND;
+}
+
 - (TTStyle *)wineSectionHeader
 {
-    return [TTImageStyle styleWithImage:WINES_SECTION_HEADER next:nil];
+    return [TTImageStyle styleWithImage:WINE_SECTION_HEADER next:nil];
 }
 @end

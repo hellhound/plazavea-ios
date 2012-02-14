@@ -101,9 +101,9 @@ static CGFloat headerMinHeight = 40.;
             break;
         case kRecipeFromWine:
             if ([TTStyleSheet hasStyleSheetForSelector:
-                    @selector(recipesBackgroundHeader)]) {
+                    @selector(wineBackgroundHeader)]) {
                 back = [[[UIImageView alloc] initWithImage:
-                         (UIImage *)TTSTYLE(recipesBackgroundHeader)]
+                         (UIImage *)TTSTYLE(wineBackgroundHeader)]
                             autorelease];
             }
             break;
@@ -141,8 +141,10 @@ static CGFloat headerMinHeight = 40.;
 }
 
 - (id<UITableViewDelegate>)createDelegate {
+    /*return [[[RecipesTableViewDelegate alloc] initWithController:self
+            isMeat:_isMeat] autorelease];*/
     return [[[RecipesTableViewDelegate alloc] initWithController:self
-            isMeat:_isMeat] autorelease];
+            from:_from] autorelease];
 }
 
 #pragma mark -
