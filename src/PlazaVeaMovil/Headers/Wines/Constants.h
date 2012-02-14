@@ -126,6 +126,7 @@ extern NSString *const kURLWineDetail;
 extern NSString *const kURLWineInfo;
 extern NSString *const kURLWineTaste;
 extern NSString *const kURLWineTips;
+extern NSString *const kURLWineRecipe;
 
 // Controllers' URL calls
 extern NSString *const kURLStrainListCall;
@@ -134,6 +135,7 @@ extern NSString *const kURLWineDetailCall;
 extern NSString *const kURLWineInfoCall;
 extern NSString *const kURLWineTasteCall;
 extern NSString *const kURLWineTipsCall;
+extern NSString *const kURLWineRecipeCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;

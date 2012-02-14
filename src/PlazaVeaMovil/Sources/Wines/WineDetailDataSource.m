@@ -161,7 +161,7 @@ static CGFloat titleWidth = 320.;
     [items addObject:tips];
     
     TTTableTextItem *marriage = [TTTableTextItem itemWithText:kWineMarriageLabel
-            URL:nil];
+            URL:URL(kURLWineRecipeCall, [wine wineId], @"Vinos_Recomendados")];
     
     [items addObject:marriage];
     [self setItems:items];

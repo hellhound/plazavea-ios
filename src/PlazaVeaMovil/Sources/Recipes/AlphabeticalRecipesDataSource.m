@@ -31,6 +31,14 @@
     return self;
 }
 
+- (id)initWithWineId:(NSString *)wineId
+{
+    if ((self = [super init]) != nil)
+        [self setModel:[[[RecipeCollection alloc]
+                initWithWineId:wineId] autorelease]];
+    return self;
+}
+
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 

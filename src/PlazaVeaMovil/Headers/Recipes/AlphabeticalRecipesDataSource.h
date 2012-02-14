@@ -6,4 +6,5 @@
 
 - (id)initWithCategoryId:(NSString *)categoryId;
 - (id)initWithMeatId:(NSString *)meatId;
+- (id)initWithWineId:(NSString *)wineId;
 @end

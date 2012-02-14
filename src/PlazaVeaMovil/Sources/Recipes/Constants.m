@@ -241,7 +241,6 @@ NSString *const kURLRecipeStrainListCall =
         @"tt://launcher/wines/strains/%@/";
 
 // Endpoint URLs
-
 NSString *const kURLRecipeCategoriesEndpoint =
         ENDPOINT(@"/recipes/categories.json");
 NSString *const kURLRecipeSubcategoryEndpoint =
@@ -254,3 +253,5 @@ NSString *const kURLRecipeMeatsEndpoint =
         ENDPOINT(@"/meats/listing.json");
 NSString *const kURLRecipeAlphabeticMeatEndpoint =
         ENDPOINT(@"/meats/%@/recipes.json");
+NSString *const kURLRecipeAlphabeticWineEndpoint =
+        ENDPOINT(@"/wines/%@/recipes.json");

@@ -83,19 +83,32 @@ static CGFloat headerMinHeight = 40.;
             titleHeight + (2 * margin));
     // Adding the subviews to the header view
     UIImageView *back;
-    if (_isMeat) {
-        if ([TTStyleSheet hasStyleSheetForSelector:
-                @selector(meatsBackgroundHeader)]) {
-            back = [[[UIImageView alloc] initWithImage:
-                    (UIImage *)TTSTYLE(meatsBackgroundHeader)] autorelease];
-        }
-        
-    } else {
-        if ([TTStyleSheet hasStyleSheetForSelector:
-                @selector(recipesBackgroundHeader)]) {
-            back = [[[UIImageView alloc] initWithImage:
-                     (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
-        }
+    switch (_from) {
+        case kRecipeFromCategory:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(recipesBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                        (UIImage *)TTSTYLE(recipesBackgroundHeader)]
+                            autorelease];
+            }
+            break;
+        case kRecipeFromMeat:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(meatsBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                        (UIImage *)TTSTYLE(meatsBackgroundHeader)] autorelease];
+            }
+            break;
+        case kRecipeFromWine:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(recipesBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                         (UIImage *)TTSTYLE(recipesBackgroundHeader)]
+                            autorelease];
+            }
+            break;
+        default:
+            break;
     }
     [_headerView insertSubview:back atIndex:0];
     [_headerView addSubview:_titleLabel];
@@ -109,12 +122,21 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)createModel
 {
-    if ([self isMeat]) {
-        [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
-                initWithMeatId:_collectionId] autorelease]];
-    } else {
-        [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
-                initWithCategoryId:_collectionId] autorelease]];
+    switch (_from) {
+        case kRecipeFromCategory:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithCategoryId:_collectionId] autorelease]];
+            break;
+        case kRecipeFromMeat:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithMeatId:_collectionId] autorelease]];
+            break;
+        case kRecipeFromWine:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithMeatId:_collectionId] autorelease]];
+            break;
+        default:
+            break;
     }
 }
 
@@ -126,15 +148,18 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark RecipeListController (Public)
 
-@synthesize collectionId = _collectionId, isMeat = _isMeat,
-        titleLabel = _titleLabel, headerView = _headerView;
+@synthesize collectionId = _collectionId, isMeat = _isMeat, isWine = _isWine,
+        titleLabel = _titleLabel, headerView = _headerView, from = _from;
 
 - (id)initWithCategoryId:(NSString *)categoryId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [categoryId copy];
         _isMeat = NO;
-        [self setTitle:name];
+        _from = kRecipeFromCategory;
+        
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                withString:@" "]];
         [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     }
     return self;
@@ -145,8 +170,25 @@ static CGFloat headerMinHeight = 40.;
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [meatId copy];
         _isMeat = YES;
+        _from = kRecipeFromMeat;
+        
         [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
                 withString:@" "]];
+        [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
+    }
+    return self;
+}
+
+- (id)initWithWineId:(NSString *)wineId name:(NSString *)name
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        _collectionId = [wineId copy];
+        _isMeat = NO;
+        _isWine = YES;
+        _from = kRecipeFromWine;
+        
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                    withString:@" "]];
         [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
     }
     return self;

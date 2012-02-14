@@ -201,6 +201,8 @@
             toViewController:[WineTasteController class]];
     [map from:kURLWineTips
             toViewController:[WineTipsController class]];
+    [map from:kURLWineRecipe
+            toViewController:[RecipeListController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]

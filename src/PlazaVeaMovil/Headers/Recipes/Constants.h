@@ -18,6 +18,13 @@ extern NSString *const kRecipeCategoryCountKey;
 extern NSString *const kRecipeSubcategoriesCountKey;
 
 // Recipe collection's constants
+
+typedef enum {
+    kRecipeFromCategory,
+    kRecipeFromMeat,
+    kRecipeFromWine
+}kRecipeFromType;
+
 extern NSString *const kRecipeCollectionLettersKey;
 extern NSString *const kRecipeCollectionLetterKey;
 extern NSString *const kRecipeCollectionRecipesKey;
@@ -181,3 +188,4 @@ extern NSString *const kURLRecipeAlphabeticEndpoint;
 extern NSString *const kURLRecipeDetailEndpoint;
 extern NSString *const kURLRecipeMeatsEndpoint;
 extern NSString *const kURLRecipeAlphabeticMeatEndpoint;
+extern NSString *const kURLRecipeAlphabeticWineEndpoint;
