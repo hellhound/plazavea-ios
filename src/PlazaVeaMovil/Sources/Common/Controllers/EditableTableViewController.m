@@ -377,7 +377,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
 
 - (void)saveContext
 {
-    NSError *error = nil;
+    /*NSError *error = nil;
 
     if (_context != nil && [_context hasChanges] && ![_context save:&error]) {
         // Something shitty just happened, abort, abort, abort!
@@ -385,7 +385,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         // TODO should present a nice UIViewAlert informing the error
         //abort();
     }
-    [[_context undoManager] removeAllActions];
+    [[_context undoManager] removeAllActions];*/
 }
 
 - (void)updateAndReload
