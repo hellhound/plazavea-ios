@@ -141,8 +141,6 @@ static CGFloat headerMinHeight = 40.;
 }
 
 - (id<UITableViewDelegate>)createDelegate {
-    /*return [[[RecipesTableViewDelegate alloc] initWithController:self
-            isMeat:_isMeat] autorelease];*/
     return [[[RecipesTableViewDelegate alloc] initWithController:self
             from:_from] autorelease];
 }
@@ -150,14 +148,13 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark RecipeListController (Public)
 
-@synthesize collectionId = _collectionId, isMeat = _isMeat, isWine = _isWine,
-        titleLabel = _titleLabel, headerView = _headerView, from = _from;
+@synthesize collectionId = _collectionId, titleLabel = _titleLabel,
+        headerView = _headerView, from = _from;
 
 - (id)initWithCategoryId:(NSString *)categoryId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [categoryId copy];
-        _isMeat = NO;
         _from = kRecipeFromCategory;
         
         [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
@@ -171,7 +168,6 @@ static CGFloat headerMinHeight = 40.;
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [meatId copy];
-        _isMeat = YES;
         _from = kRecipeFromMeat;
         
         [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
@@ -185,8 +181,6 @@ static CGFloat headerMinHeight = 40.;
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [wineId copy];
-        _isMeat = NO;
-        _isWine = YES;
         _from = kRecipeFromWine;
         
         [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"

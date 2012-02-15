@@ -12,14 +12,7 @@
 
 #pragma RecipeTableViewDelegate
 
-@synthesize isMeat = _isMeat, from = _from;
-
-- (id)initWithController:(TTTableViewController *)controller isMeat:(BOOL)isMeat
-{
-    if ((self = [self initWithController:controller]) != nil)
-        _isMeat = isMeat;
-    return self;
-}
+@synthesize from = _from;
 
 - (id)initWithController:(TTTableViewController *)controller
                     from:(kRecipeFromType)from
@@ -46,17 +39,6 @@
     TTView *header = (TTView *)[super tableView:tableView
             viewForHeaderInSection:section];
     
-    /*if (_isMeat) {
-        if ([TTStyleSheet hasStyleSheetForSelector:
-                @selector(meatsSectionHeader)]) {
-            [header setStyle:TTSTYLE(meatsSectionHeader)];
-        }
-    } else {
-        if ([TTStyleSheet hasStyleSheetForSelector:
-             @selector(recipesSectionHeader)]) {
-            [header setStyle:TTSTYLE(recipesSectionHeader)];
-        }
-    }*/
     switch (_from) {
         case kRecipeFromCategory:
             if ([TTStyleSheet hasStyleSheetForSelector:

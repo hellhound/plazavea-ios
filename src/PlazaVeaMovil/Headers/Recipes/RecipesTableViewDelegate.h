@@ -7,13 +7,10 @@
 
 @interface RecipesTableViewDelegate : TTTableViewGroupedVarHeightDelegate
 {
-    BOOL _isMeat;
     kRecipeFromType _from;
 }
-@property (nonatomic, assign) BOOL isMeat;
 @property (nonatomic, assign) kRecipeFromType from;
-- (id)initWithController:(TTTableViewController *)controller
-                  isMeat:(BOOL)isMeat;
+
 - (id)initWithController:(TTTableViewController *)controller
                     from:(kRecipeFromType)from;
 @end
