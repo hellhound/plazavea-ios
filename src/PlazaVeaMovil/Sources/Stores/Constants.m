@@ -82,8 +82,10 @@ NSString *const kRegionListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kRegionListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRegionListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kRegionListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 
 // StoreListDataSource's constants
 
@@ -100,8 +102,10 @@ NSString *const kStoreListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kStoreListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kStoreListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kStoreListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 
 // StoreDetailDataSource's constants
 
@@ -118,8 +122,10 @@ NSString *const kStoreDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kStoreDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kStoreDetailSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kStoreDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 NSString *const kStoreDetailData = @"Datos";
 // NSLocalizedString(@"Datos", nil)
 NSString *const kStoreDetailServices = @"Servicios";

@@ -64,8 +64,10 @@ NSString *const kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"categorías disponibles", nil)
 NSString *const kRecipeCategoryTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeCategorySubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeCategorySubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen categorías disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"categorías disponibles", nil)
 
 // AlphabeticalRecipesDataSource's messages
 
@@ -82,8 +84,9 @@ NSString *const kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más 
 //      @"recetas disponibles", nil)
 NSString *const kRecipeListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen recetas disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
 
 // MeatListDataSource's constants
 
@@ -99,8 +102,10 @@ NSString *const kMeatsListSubtitleForEmpty = @"Por favor intente de nuevo más "
 //      @"tipos de carnes disponibles", nil)
 NSString *const kMeatsListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kMeatsListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kMeatsListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen tipos de carnes disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"tipos de carnes disponibles", nil)
 const CGFloat kMeatsListImageWidth = 41.;
 const CGFloat kMeatsListImageHeight = 41.;
 NSString *const kChickenIcon = @"bundle://chicken-icon.png";
@@ -128,8 +133,10 @@ NSString *const kRecipeDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"información para esta receta", nil)
 NSString *const kRecipeDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeDetailSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta receta";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existe "
+//      @"información para esta receta", nil)
 NSString *const kRecipeDetailSectionFeatures = @"Características";
 // NSLocalizedString(@"Características", nil)
 NSString *const kRecipeDetailSectionIngredients = @"Ingredientes";

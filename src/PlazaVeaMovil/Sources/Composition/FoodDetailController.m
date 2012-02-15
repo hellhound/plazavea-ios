@@ -15,10 +15,6 @@ static CGFloat headerMinHeight = 40.;
 
 @interface FoodDetailController ()
 
-@property (nonatomic, retain) TTImageView *imageView;
-@property (nonatomic, retain) UIView *headerView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) UILabel *categoryLabel;
 - (UIImage *)banner;
 @end
 
@@ -30,10 +26,6 @@ static CGFloat headerMinHeight = 40.;
 - (void) dealloc
 {
     [_food release];
-    [_imageView release];
-    [_headerView release];
-    [_titleLabel release];
-    //[_categoryLabel release];
     [super dealloc];
 }
 
@@ -47,34 +39,34 @@ static CGFloat headerMinHeight = 40.;
     UITableView *tableView = [self tableView];
     
     // Configuring the header view
-    [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
-            autorelease]];
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectZero]
+            autorelease];
     // Configuring the image view
-    [self setImageView:[[[TTImageView alloc] initWithFrame:
+    TTImageView *imageView = [[[TTImageView alloc] initWithFrame:
             CGRectMake(.0, .0, kFoodDetailImageWidth,
-                kFoodDetailImageHeight)] autorelease]];
+                kFoodDetailImageHeight)] autorelease];
     //[_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
-    [_imageView setAutoresizingMask:UIViewAutoresizingNone];
-    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
-    [_imageView setBackgroundColor:[UIColor clearColor]];
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
-    [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
-            autorelease]];
-    [_titleLabel setNumberOfLines:0];
-    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_titleLabel setTextAlignment:UITextAlignmentCenter];
-    [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet
             hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
-        [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     }
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
-        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
     
     NSString *title = [_food name];
-    UIFont *font = [_titleLabel font];
+    UIFont *font = [titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
     CGFloat titleHeight = [title sizeWithFont:font
@@ -88,8 +80,8 @@ static CGFloat headerMinHeight = 40.;
     } else {
         titleFrame.origin.y += margin;
     }
-    [_titleLabel setText:title];
-    [_titleLabel setFrame:titleFrame];
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth, kFoodDetailImageHeight
@@ -97,33 +89,31 @@ static CGFloat headerMinHeight = 40.;
     CGRect imageFrame = CGRectMake(.0, .0, kFoodDetailImageWidth,
             kFoodDetailImageHeight);
     
-    [_headerView setFrame:headerFrame];
-    [_imageView setFrame:
+    [headerView setFrame:headerFrame];
+    [imageView setFrame:
             CGRectOffset(imageFrame, .0, titleHeight + (2 * margin))];
-    /*if (imageURL != nil)
-     [_imageView setUrlPath:[imageURL absoluteString]];*/
     
-    _categoryLabel =
+     UILabel *categoryLabel =
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     
-    [_categoryLabel setNumberOfLines:0];
-    [_categoryLabel setShadowColor:[UIColor blackColor]];
-    [_categoryLabel setShadowOffset:CGSizeMake(.0, 1.)];
-    [_categoryLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_categoryLabel setTextAlignment:UITextAlignmentRight];
-    [_categoryLabel setBackgroundColor:[UIColor clearColor]];
+    [categoryLabel setNumberOfLines:0];
+    [categoryLabel setShadowColor:[UIColor blackColor]];
+    [categoryLabel setShadowOffset:CGSizeMake(.0, 1.)];
+    [categoryLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [categoryLabel setTextAlignment:UITextAlignmentRight];
+    [categoryLabel setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet
             hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
-        [_categoryLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
+        [categoryLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
     }
 
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
-        [_categoryLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+        [categoryLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
-    [_categoryLabel setShadowColor:[UIColor blackColor]];
+    [categoryLabel setShadowColor:[UIColor blackColor]];
     
     NSString *category = [[_food category] name];
-    UIFont *categoryFont = [_categoryLabel font];
+    UIFont *categoryFont = [categoryLabel font];
     CGSize constrainedCategorySize = CGSizeMake(categoryWidth, MAXFLOAT);
     CGFloat categoryHeight = [category sizeWithFont:categoryFont
             constrainedToSize:constrainedCategorySize
@@ -132,18 +122,18 @@ static CGFloat headerMinHeight = 40.;
     CGRect categoryFrame = CGRectMake((boundsWidth - categoryWidth - margin),
             categoryY, categoryWidth, categoryHeight);
     
-    [_categoryLabel setText:category];
-    [_categoryLabel setFrame:categoryFrame];
-    [_imageView setDefaultImage:[self banner]];
+    [categoryLabel setText:category];
+    [categoryLabel setFrame:categoryFrame];
+    [imageView setDefaultImage:[self banner]];
     // Adding the subviews to the header view
-    [_headerView addSubview:_titleLabel];
-    [_headerView addSubview:_imageView];
-    //[_headerView addSubview:_categoryLabel];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    //[headerView addSubview:_categoryLabel];
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
                 (UIImage *)TTSTYLE(compositionBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
+        [headerView insertSubview:back atIndex:0];
     }
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionPictureBackground)]) {
@@ -152,10 +142,10 @@ static CGFloat headerMinHeight = 40.;
         CGRect backFrame = [pictureBack frame];
         backFrame.origin.y = MAX(titleHeight + (2 * margin), 40.);
         [pictureBack setFrame:backFrame];
-        [_headerView insertSubview:pictureBack atIndex:1];
+        [headerView insertSubview:pictureBack atIndex:1];
     }
-    [_headerView setClipsToBounds:YES];
-    [tableView setTableHeaderView:_headerView];
+    [headerView setClipsToBounds:YES];
+    [tableView setTableHeaderView:headerView];
     [self refresh];
 }
 
@@ -169,10 +159,7 @@ static CGFloat headerMinHeight = 40.;
 }
 
 #pragma mark -
-#pragma mark RecipeController (Private)
-
-@synthesize imageView = _imageView, headerView = _headerView,
-        titleLabel = _titleLabel, categoryLabel = _categoryLabel;
+#pragma mark FoodDetailController (Private)
 
 - (UIImage *)banner
 {
@@ -180,9 +167,6 @@ static CGFloat headerMinHeight = 40.;
     NSString *category = [[_food category] name];
     if ([category isEqualToString:kFoodCategoryDrinks]) {
         banner = TTIMAGE(kFoodCategoryDrinksImage);
-        [_categoryLabel setShadowColor:[UIColor whiteColor]];
-        [_categoryLabel setShadowOffset:CGSizeMake(.0, -1.)];
-        [_categoryLabel setTextColor:[UIColor blackColor]];
     } else if ([category isEqualToString:kFoodCategoryMeats]) {
         banner = TTIMAGE(kFoodCategoryMeatsImage);
     } else if ([category isEqualToString:kFoodCategoryCereals]) {
@@ -193,14 +177,8 @@ static CGFloat headerMinHeight = 40.;
         banner = TTIMAGE(kFoodCategoryOilsImage);
     } else if ([category isEqualToString:kFoodCategoryEggs]) {
         banner = TTIMAGE(kFoodCategoryEggsImage);
-        [_categoryLabel setShadowColor:[UIColor whiteColor]];
-        [_categoryLabel setShadowOffset:CGSizeMake(.0, -1.)];
-        [_categoryLabel setTextColor:[UIColor blackColor]];
     } else if ([category isEqualToString:kFoodCategoryMilks]) {
         banner = TTIMAGE(kFoodCategoryMilksImage);
-        [_categoryLabel setShadowColor:[UIColor whiteColor]];
-        [_categoryLabel setShadowOffset:CGSizeMake(.0, -1.)];
-        [_categoryLabel setTextColor:[UIColor blackColor]];
     } else if ([category isEqualToString:kFoodCategoryLegumes]) {
         banner = TTIMAGE(kFoodCategoryLegumesImage);
     } else if ([category isEqualToString:kFoodCategoryFish]) {
@@ -218,7 +196,9 @@ static CGFloat headerMinHeight = 40.;
 }
 
 #pragma mark -
-#pragma mark FoodDetailController
+#pragma mark FoodDetailController (Public)
+
+@synthesize food = _food;
 
 - (id) initWithFood:(Food *)food
 {

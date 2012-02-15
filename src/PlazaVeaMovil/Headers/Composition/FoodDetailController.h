@@ -9,10 +9,8 @@
 @interface FoodDetailController : ReconnectableTableViewController
 {
     Food *_food;
-    TTImageView *_imageView;
-    UIView *_headerView;
-    UILabel *_titleLabel;
-    UILabel *_categoryLabel;
 }
+@property (nonatomic, retain) Food *food;
+
 - (id)initWithFood:(Food *)food;
 @end

@@ -71,8 +71,10 @@ NSString *const kOfferListSubtitleForEmpty = @"Por favor intente de nuevo más "
 //      @"tarde, aún no existen ofertas disponible", nil)
 NSString *const kOfferListTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
-NSString *const kOfferListSubtitleForError = @"Error";
-//NSLocalizedString(@"Error", nil)
+NSString *const kOfferListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen ofertas disponible";
+//NSLocalizedString(@"Por favor intente de nuevo más "
+//      @"tarde, aún no existen ofertas disponible", nil)
 
 NSString *const kOfferListPriceTag = @" a S/.";
 //NSLocalizedString(@" a S/.", nil)
@@ -91,6 +93,10 @@ NSString *const kOfferDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información para esta oferta", nil)
 NSString *const kOfferDetailTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
+NSString *const kOfferDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta oferta";
+//NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información para esta oferta", nil)
 NSString *const kOfferDetailOldPriceCaption = @"Precio original";
 //NSLocalizedString(@"Precio original", nil)
 NSString *const kOfferDetailPriceCaption = @"Precio de la oferta";
@@ -119,8 +125,10 @@ NSString *const kPromotionListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"promociones disponibles", nil)
 NSString *const kPromotionListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kPromotionListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen promociones disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"promociones disponibles", nil)
 
 const CGFloat kPromotionListImageWidth = 320.;
 const CGFloat kPromotionListImageHeight = 140.;
@@ -148,8 +156,10 @@ NSString *const kPromotionDetailSubtitleForEmpty = @"Por favor intente de "
 //      @" nuevo más tarde, aún no existe información para esta oferta", nil)
 NSString *const kPromotionDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kPromotionDetailSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionDetailSubtitleForError = @"Por favor intente de "
+        @"nuevo más tarde, aún no existe información para esta oferta";
+// NSLocalizedString(@"Por favor intente de "
+//      @" nuevo más tarde, aún no existe información para esta oferta", nil)
 NSString *const kPromotionDetailLegaleseCaption = @"Legales";
 //NSLocalizedString(@"Legales", nil)
 

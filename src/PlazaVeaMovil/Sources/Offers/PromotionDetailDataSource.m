@@ -204,7 +204,8 @@ static CGFloat titleWidth = 320.;
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    //return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    return  NSLocalizedString(kPromotionDetailSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView

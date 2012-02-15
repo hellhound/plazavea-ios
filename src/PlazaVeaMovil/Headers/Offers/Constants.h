@@ -74,6 +74,7 @@ extern NSString *const kOfferDetailTitleForLoading;
 extern NSString *const kOfferDetailTitleForEmpty;
 extern NSString *const kOfferDetailSubtitleForEmpty;
 extern NSString *const kOfferDetailTitleForError;
+extern NSString *const kOfferDetailSubtitleForError;
 extern NSString *const kOfferDetailOldPriceCaption;
 extern NSString *const kOfferDetailPriceCaption;
 extern NSString *const kOfferDetailValidCaption;

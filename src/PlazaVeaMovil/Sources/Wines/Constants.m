@@ -57,14 +57,15 @@ NSString *const kStrainListTitleForReloading = @"Actualizando la lista";
 NSString *const kStrainListTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"@"Sin información", nil)
 NSString *const kStrainListSubtitleForEmpty = @"Por favor intente de nuevo "
-@"más tarde, aún no existe información disponible";
+        @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kStrainListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kStrainListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
-
+NSString *const kStrainListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 // StrainListController's constants
 
 // Messages
@@ -86,8 +87,10 @@ NSString *const kWineListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kWineListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kWineListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 
 // WineListController's constants
 
@@ -108,10 +111,14 @@ NSString *const kWineDetailSubtitleForEmpty = @"Por favor intente de nuevo "
         @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
-NSString *const kWineDetailTitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
-NSString *const kWineDetailSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kWineDetailTitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kWineDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 NSString *const kWineMillilitersLabel = @"Mililitros";
 // NSLocalizedString(@"Mililitros", nil)
 NSString *const kWineCountryLabel = @"País";
