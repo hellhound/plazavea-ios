@@ -159,8 +159,8 @@ static CGFloat kShareTag = 100;
         [self setTitle:NSLocalizedString(kOfferDetailTitle, nil)];
         _offerId = [offerId copy];
         // Configuring the header view
-        [self setHeaderView:
-         [[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
+        /*[self setHeaderView:
+                [[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
         // Configuring the image view
         [self setImageView:[[[TTImageView alloc] initWithFrame:
                 CGRectMake(.0, .0,
@@ -257,7 +257,7 @@ static CGFloat kShareTag = 100;
         [_headerView addSubview:_titleLabel];
         [_headerView addSubview:_imageView];
         [_headerView addSubview:share];
-        [_headerView setClipsToBounds:YES];
+        [_headerView setClipsToBounds:YES];*/
     }
     return self;
 }
@@ -265,7 +265,7 @@ static CGFloat kShareTag = 100;
 #pragma mark -
 #pragma mark <OfferDetailDataSourceDelegate>
 
-- (void)        dataSource:(OfferDetailDataSource *)dataSource
+/*- (void)        dataSource:(OfferDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
                   andTitle:(NSString *)title
 {
@@ -318,13 +318,19 @@ static CGFloat kShareTag = 100;
         [_headerView setFrame:headerFrame];
         [tableView setTableHeaderView:_headerView];
     }
-}
+}*/
 
 - (void)dataSource:(OfferDetailDataSource *)dataSource needsOffer:(Offer *)offer
 {
     if ([offer pictureURL] != nil) {
         _offer = [offer retain];
     }
+}
+
+- (void)dataSource:(OfferDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view
+{
+    [[self tableView] setTableHeaderView:view];
 }
 
 #pragma mark -
