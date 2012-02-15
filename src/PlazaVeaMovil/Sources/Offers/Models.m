@@ -244,7 +244,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     NSDateFormatter *dateFormatter =
             [[[NSDateFormatter alloc] init] autorelease];
     
-    [dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     [offer setLongDescription:longDescription];
     [offer setLegalese:legalese];
@@ -592,7 +592,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     NSDateFormatter *dateFormatter =
             [[[NSDateFormatter alloc] init] autorelease];
     
-    [dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     
     [promotion setLongDescription:description];

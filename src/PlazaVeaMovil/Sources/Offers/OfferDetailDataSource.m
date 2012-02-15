@@ -241,7 +241,7 @@ static CGFloat titleWidth = 320.;
         NSDateFormatter *dateFormatter =
                 [[[NSDateFormatter alloc] init] autorelease];
         
-        [dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+        //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
         
         NSString *validString = [NSString stringWithFormat:

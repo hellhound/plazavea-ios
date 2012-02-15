@@ -127,6 +127,7 @@
         [self setTableViewStyle:UITableViewStylePlain];
         [self setTitle:NSLocalizedString(kOfferDetailTitle, nil)];
         _offerId = [offerId copy];
+        
         [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
         if ([TTStyleSheet
                 hasStyleSheetForSelector:@selector(navigationBarLogo)]) {

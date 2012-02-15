@@ -123,6 +123,14 @@
         [self setTableViewStyle:UITableViewStylePlain];
         [self setTitle:NSLocalizedString(kPromotionDetailTitle, nil)];
         _promotionId = [promotionId copy];
+        
+        [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+            [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                    initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+        }
     }
     return self;
 }
