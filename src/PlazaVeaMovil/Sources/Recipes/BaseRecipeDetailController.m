@@ -73,6 +73,12 @@ static CGFloat headerMinHeight = 40.;
     [_imageView setDefaultImage:TTIMAGE(kRecipeDetailDefaultImage)];
     [_imageView setAutoresizingMask:UIViewAutoresizingNone];
     [_imageView setBackgroundColor:[UIColor clearColor]];
+    // Conf the Cordon Bleu Logo
+    TTImageView *logoView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [logoView setDefaultImage:(UIImage*)TTSTYLE(cordonBleuLogo)];
+    [logoView setBackgroundColor:[UIColor clearColor]];
     // Configuring the category label
     [self setCategoryLabel:
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease]];
@@ -123,6 +129,7 @@ static CGFloat headerMinHeight = 40.;
     [_headerView addSubview:_imageView];
     [_headerView addSubview:_categoryLabel];
     [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:logoView];
     // Placing the views
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect categoryFrame =
@@ -135,6 +142,8 @@ static CGFloat headerMinHeight = 40.;
             kRecipeDetailImageHeigth);
     CGRect titleFrame = CGRectMake(boundsWidth - categoryWidth - (margin * 2),
             headerMinHeight, categoryWidth, kRecipeDetailImageHeigth);
+    [logoView setFrame:CGRectOffset([logoView frame],
+            boundsWidth - [logoView frame].size.width - margin, 40.)];
     
     [_categoryLabel setFrame:categoryFrame];
     [_headerView setFrame:headerFrame];

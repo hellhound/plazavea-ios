@@ -45,11 +45,19 @@ static CGFloat headerMinHeight = 40.;
     TTImageView *imageView = [[[TTImageView alloc] initWithFrame:
             CGRectMake(.0, .0, kFoodDetailImageWidth,
                 kFoodDetailImageHeight)] autorelease];
+    
     //[_imageView setDefaultImage:TTIMAGE(kFoodDetailDefaultImage)];
+    [imageView setDefaultImage:[self banner]];
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
     [imageView setBackgroundColor:[UIColor clearColor]];
+    // Conf the Cordon Bleu Logo
+    TTImageView *logoView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [logoView setDefaultImage:(UIImage*)TTSTYLE(cordonBleuLogo)];
+    [logoView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
@@ -92,8 +100,11 @@ static CGFloat headerMinHeight = 40.;
     [headerView setFrame:headerFrame];
     [imageView setFrame:
             CGRectOffset(imageFrame, .0, titleHeight + (2 * margin))];
-    
-     UILabel *categoryLabel =
+    [logoView setFrame:CGRectOffset([logoView frame],
+            titleWidth - [logoView frame].size.width - margin,
+                titleHeight + (margin * 2.))];
+    // Conf category label
+    UILabel *categoryLabel =
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     
     [categoryLabel setNumberOfLines:0];
@@ -124,10 +135,10 @@ static CGFloat headerMinHeight = 40.;
     
     [categoryLabel setText:category];
     [categoryLabel setFrame:categoryFrame];
-    [imageView setDefaultImage:[self banner]];
     // Adding the subviews to the header view
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
+    [headerView addSubview:logoView];
     //[headerView addSubview:_categoryLabel];
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {

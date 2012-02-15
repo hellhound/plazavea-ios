@@ -52,6 +52,7 @@
 #define COMPOSITION_SECTION_HEADER_BACKGROUND \
         TTIMAGE(@"bundle://composition-section-header.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247., 128., 31.)
+#define CORDON_BLEU_LOGO TTIMAGE(@"bundle://logo-cordon-bleu.png")
 
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
@@ -226,6 +227,11 @@
 - (UIColor *)compositionSearchBarColor
 {
     return COMPOSITION_SEARCHBAR_COLOR;
+}
+
+- (UIImage *)cordonBleuLogo
+{
+    return CORDON_BLEU_LOGO;
 }
 
 #pragma mark -
