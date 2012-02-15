@@ -50,11 +50,13 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = nil;
+    TTImageView *imageView = nil;
     if (imageURL != nil) {
-        imageView = [[[UIImageView alloc] initWithImage:
-                TTIMAGE(kPromotionListDefaultBanner)] autorelease];
-    
+        imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+                autorelease];
+        
+        [imageView setDefaultImage:TTIMAGE(kPromotionListDefaultBanner)];
+        [imageView setUrlPath:imageURL];
         [imageView setAutoresizingMask:UIViewAutoresizingNone];
         [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
                 UIViewAutoresizingFlexibleRightMargin];
