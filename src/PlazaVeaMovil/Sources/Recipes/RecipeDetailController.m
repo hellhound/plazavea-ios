@@ -66,20 +66,9 @@
 #pragma mark -
 #pragma mark <RecipeDetailDataSourceDelegate>
 
-- (void)        dataSource:(RecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                     title:(NSString *)title
-               andCategory:(NSString *)category
-{
-    if (title != nil && category != nil) {
-        [self sizeTheHeaderWithImageURL:imageURL category:category
-                andTitle:title];
-    }
-}
-
 - (void)dataSource:(RecipeDetailDataSource *)dataSource
      viewForHeader:(UIView *)view
 {
-    
+    [[self tableView] setTableHeaderView:view];
 }
 @end

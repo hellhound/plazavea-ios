@@ -34,10 +34,6 @@
 
 @protocol RecipeDetailDataSourceDelegate <NSObject>
 
-- (void)        dataSource:(RecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                     title:(NSString *)title
-               andCategory:(NSString *)category;
 - (void)dataSource:(RecipeDetailDataSource *)dataSource
         viewForHeader:(UIView *)view;
 @end

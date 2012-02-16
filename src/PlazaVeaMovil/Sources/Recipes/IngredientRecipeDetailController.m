@@ -47,18 +47,4 @@
     [alertView show];
     [alertView release];
 }
-
-#pragma mark -
-#pragma mark <RecipeDetailDataSourceDelegate>
-
-- (void)        dataSource:(RecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                     title:(NSString *)title
-               andCategory:(NSString *)category
-{
-    if (title != nil && category != nil) {
-        [self sizeTheHeaderWithImageURL:imageURL category:category
-                andTitle:title];
-    }
-}
 @end

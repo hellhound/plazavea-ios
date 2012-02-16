@@ -89,9 +89,10 @@ static CGFloat titleWidth = 320.;
     TTImageView *imageView = nil;
     
     if (imageURL != nil) {
-        [[[TTImageView alloc] initWithFrame:CGRectZero]
+        imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
                 autorelease];
-    
+        
+        [imageView setDefaultImage:TTIMAGE(kRecipeDetailDefaultImage)];
         [imageView setUrlPath:imageURL];
         [imageView setAutoresizingMask:UIViewAutoresizingNone];
         [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
@@ -133,8 +134,8 @@ static CGFloat titleWidth = 320.;
     [titleLabel setText:title];
     [titleLabel setFrame:titleFrame];
     
-    CGRect headerFrame = CGRectMake(.0, .0, titleWidth, kWineDetailImageHeight +
-            titleHeight + (margin * 2.));
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth,
+            [imageView frame].size.height + titleHeight + (margin * 2.));
     
     [headerView setFrame:headerFrame];
     [imageView setFrame:CGRectOffset([imageView frame], .0,
@@ -229,8 +230,8 @@ static CGFloat titleWidth = 320.;
         pictureURL = IMAGE_URL(pictureURL, kRecipeDetailImageWidth,
                 kRecipeDetailImageHeigth);
     }
-    [_delegate dataSource:self needsDetailImageWithURL:pictureURL
-        title:recipeName andCategory:rations];
+    [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
+            [pictureURL absoluteString] title:recipeName detail:rations]];
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0) {

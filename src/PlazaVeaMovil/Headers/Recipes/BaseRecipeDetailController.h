@@ -21,7 +21,4 @@
 - (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat;
 - (id)initWithRecipeId:(NSString *)recipeId from:(NSString *)from;
 - (void)createShoppingListFormRecipe;
-- (void)sizeTheHeaderWithImageURL:(NSURL *)imageURL
-                         category:(NSString *)category
-                         andTitle:(NSString *)title;
 @end
