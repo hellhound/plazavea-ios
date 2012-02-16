@@ -201,15 +201,16 @@ NSString *const kURLRecipeList =
         @"tt://launcher/recipes/category/(initWithCategoryId:)/(name:)/";
 NSString *const kURLRecipeMeatList =
         @"tt://launcher/recipes/meat/(initWithMeatId:)/(name:)/";
-NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
+NSString *const kURLRecipeDetail =
+        @"tt://launcher/recipe/(initWithRecipeId:)/(from:)";
 NSString *const kURLRecipeMeatsDetail =
         @"tt://launcher/meats/recipe/(initWithRecipeId:)/(hasMeat:)/";
 NSString *const kURLIngredientRecipeDetail =
-        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/(from:)/";
 NSString *const kURLProceduresRecipeDetail =
-        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/(from:)/";
 NSString *const kURLTipsRecipeDetail =
-        @"tt://launcher/recipe/tips/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/tips/(initWithRecipeId:)/(from:)/";
 NSString *const kURLIngredientRecipeMeatsDetail =
         @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/(hasMeat:)/";
 NSString *const kURLProceduresRecipeMeatsDetail =
@@ -229,15 +230,15 @@ NSString *const kURLRecipeListCall =
         @"tt://launcher/recipes/category/%@/%@/";
 NSString *const kURLRecipeMeatListCall =
         @"tt://launcher/recipes/meat/%@/%@/";
-NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
+NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/%@/";
 NSString *const kURLRecipeMeatsDetailCall =
         @"tt://launcher/meats/recipe/%@/%@/";
 NSString *const kURLIngredientRecipeDetailCall =
-        @"tt://launcher/recipe/ingredients/%@/";
+        @"tt://launcher/recipe/ingredients/%@/%@/";
 NSString *const kURLProceduresRecipeDetailCall =
-        @"tt://launcher/recipe/procedures/%@/";
+        @"tt://launcher/recipe/procedures/%@/%@/";
 NSString *const kURLTipsRecipeDetailCall =
-        @"tt://launcher/recipe/tips/%@/";
+        @"tt://launcher/recipe/tips/%@/%@/";
 NSString *const kURLIngredientRecipeMeatsDetailCall =
         @"tt://launcher/recipe/ingredients/%@/%@/";
 NSString *const kURLProceduresRecipeMeatsDetailCall = 

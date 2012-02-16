@@ -95,6 +95,13 @@ extern NSString *const kRecipeListSubtitleForError;
 
 // RecipeDetailDataSource's messages
 
+typedef enum {
+    kRecipeDetailMainView,
+    kRecipeDetailIngredientsView,
+    kRecipeDetailProceduresView,
+    kRecipeDetailTipsView,
+}RecipeDetailViewType;
+
 extern NSString *const kRecipeDetailTitleForLoading;
 extern NSString *const kRecipeDetailTitleForReloading;
 extern NSString *const kRecipeDetailTitleForEmpty;

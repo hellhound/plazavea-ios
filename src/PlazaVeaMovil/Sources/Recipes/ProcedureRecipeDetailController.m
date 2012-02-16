@@ -8,18 +8,28 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Recipes/Models.h"
 #import "ShoppingList/Models.h"
-#import "Recipes/ProcedureRecipeDetailDataSource.h"
+#import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/ProcedureRecipeDetailController.h"
 
 @implementation ProcedureRecipeDetailController
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    [[self navigationController] setToolbarHidden:YES];
+    return [super navigationItem];
+}
 
 #pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
 {
-    [self setDataSource:[[[ProcedureRecipeDetailDataSource alloc]
-            initWithRecipeId:_recipeId delegate:self] autorelease]];
+    [self setDataSource:[[[RecipeDetailDataSource alloc]
+            initWithRecipeId:_recipeId delegate:self
+                section:kRecipeDetailProceduresView from:_from] autorelease]];
 }
 
 #pragma mark -
@@ -40,7 +50,7 @@
 #pragma mark -
 #pragma mark <RecipeDetailDataSourceDelegate>
 
-- (void)        dataSource:(ProcedureRecipeDetailDataSource *)dataSource
+- (void)        dataSource:(RecipeDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
                      title:(NSString *)title
                andCategory:(NSString *)category

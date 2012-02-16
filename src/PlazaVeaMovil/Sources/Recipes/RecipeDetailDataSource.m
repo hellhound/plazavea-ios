@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Wines/Models.h"
@@ -11,6 +12,11 @@
 #import "Recipes/Constants.h"
 #import "Recipes/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
+
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
+static CGFloat categoryWidth = 150.;
+static CGFloat titleWidth = 320.;
 
 @interface RecipeDetailDataSource (private)
 
@@ -39,12 +45,12 @@
 #pragma mark -
 #pragma mark RecipeDetailDataSource (public)
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, section = _section, from = _from;
 
 - (id)initWithRecipeId:(NSString *)recipeId
               delegate:(id<RecipeDetailDataSourceDelegate>)delegate
 {
-    if ((self = [super init]) != nil){
+    if ((self = [super init]) != nil) {
         [self setModel:[[[Recipe alloc]
                 initWithRecipeId:recipeId] autorelease]];
         [self setDelegate:delegate];
@@ -56,13 +62,129 @@
               delegate:(id<RecipeDetailDataSourceDelegate>)delegate
                hasMeat:(BOOL)hasMeat
 {
-    if ((self = [super init]) != nil){
-        [self setModel:[[[Recipe alloc]
-                         initWithRecipeId:recipeId] autorelease]];
-        [self setDelegate:delegate];
+    if ((self = [self initWithRecipeId:recipeId delegate:delegate]) != nil)
         _hasMeat = hasMeat;
+    return self;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId
+              delegate:(id<RecipeDetailDataSourceDelegate>)delegate
+               section:(RecipeDetailViewType)section
+                  from:(kRecipeFromType)from
+{
+    if ((self = [self initWithRecipeId:recipeId delegate:delegate]) != nil) {
+        _section = section;
+        _from = from;
     }
     return self;
+}
+
+- (UIView *)viewWithImageURL:(NSString *)imageURL
+                       title:(NSString *)title
+                      detail:(NSString *)detail
+{
+    UIView *headerView =
+            [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    // Conf the image
+    TTImageView *imageView = nil;
+    
+    if (imageURL != nil) {
+        [[[TTImageView alloc] initWithFrame:CGRectZero]
+                autorelease];
+    
+        [imageView setUrlPath:imageURL];
+        [imageView setAutoresizingMask:UIViewAutoresizingNone];
+        [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+                UIViewAutoresizingFlexibleRightMargin];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+    }
+    // Conf the Cordon Bleu logo
+    TTImageView *logoView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+                             autorelease];
+    
+    [logoView setDefaultImage:(UIImage*)TTSTYLE(cordonBleuLogo)];
+    [logoView setBackgroundColor:[UIColor clearColor]];
+    // Conf the label
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    
+    UIFont *font = [titleLabel font];
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+        constrainedToSize:constrainedTitleSize
+            lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2.)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2.;
+        titleHeight = headerMinHeight - (margin * 2.);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
+    
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth, kWineDetailImageHeight +
+            titleHeight + (margin * 2.));
+    
+    [headerView setFrame:headerFrame];
+    [imageView setFrame:CGRectOffset([imageView frame], .0,
+            titleHeight + (margin * 2.))];
+    [logoView setFrame:CGRectOffset([logoView frame],
+            titleWidth - [logoView frame].size.width - margin,
+                titleHeight + (margin * 2.))];
+    // Conf category label
+    UILabel *detailLabel =
+            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    [detailLabel setNumberOfLines:0];
+    [detailLabel setShadowColor:[UIColor blackColor]];
+    [detailLabel setShadowOffset:CGSizeMake(.0, 1.)];
+    [detailLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [detailLabel setTextAlignment:UITextAlignmentRight];
+    [detailLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet
+            hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
+        [detailLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
+    }
+    
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
+        [detailLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    [detailLabel setShadowColor:[UIColor blackColor]];
+    
+    UIFont *categoryFont = [detailLabel font];
+    CGSize constrainedCategorySize = CGSizeMake(categoryWidth, MAXFLOAT);
+    CGFloat categoryHeight = [detail sizeWithFont:categoryFont
+            constrainedToSize:constrainedCategorySize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGFloat categoryY = headerFrame.size.height - categoryHeight - margin;
+    CGRect categoryFrame = CGRectMake((titleWidth - categoryWidth - margin),
+            categoryY, categoryWidth, categoryHeight);
+    
+    [detailLabel setText:detail];
+    [detailLabel setFrame:categoryFrame];
+    // Adding the subviews to the header view
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    [headerView addSubview:logoView];
+    [headerView addSubview:detailLabel];
+    
+    UIImageView *background = [[[UIImageView alloc] initWithImage:
+            (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
+    [headerView insertSubview:background atIndex:0];
+    [headerView setClipsToBounds:YES];
+    return headerView;
+
 }
 
 #pragma mark -
@@ -111,69 +233,81 @@
         title:recipeName andCategory:rations];
     //if the features list have items doesnt show the ingredients n'
     //procedures
-    if ([[recipe features] count] > 0){
+    if ([[recipe features] count] > 0) {
         for (NSString *feature in [recipe features]) {
-            TTTableTextItem *item = [TTTableTextItem itemWithText: feature];
+            TTTableTextItem *item = [TTTableTextItem itemWithText:feature];
 
             [items addObject:item];
         }
     } else {
-        if (_hasMeat){
-            if ([[recipe ingredients] count] > 0) {
-                TTTableTextItem *ingredients = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionIngredients
-                            URL:URL(kURLIngredientRecipeMeatsDetailCall,
-                            [recipe recipeId], @"1")];
-                
-                [items addObject:ingredients];
-            }
-            if ([[recipe procedures] count] > 0) {
-                TTTableTextItem *procedures = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionProcedures
-                            URL:URL(kURLProceduresRecipeMeatsDetailCall,
-                            [recipe recipeId], @"1")];
-                
-                [items addObject:procedures];
-            }
-            if ([[recipe tips] count] > 0) {
-                TTTableTextItem *tips = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionTips
-                            URL:URL(kURLTipsRecipeMeatsDetailCall,
-                            [recipe recipeId], @"1")];
-                
-                [items addObject:tips];
-            }
-        } else {
-            if ([[recipe ingredients] count] > 0) {
-                TTTableTextItem *ingredients = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionIngredients
-                            URL:URL(kURLIngredientRecipeDetailCall,
-                            [recipe recipeId])];
-                
-                [items addObject:ingredients];
-            }
-            if ([[recipe procedures] count] > 0) {
-                TTTableTextItem *procedures = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionProcedures
-                            URL:URL(kURLProceduresRecipeDetailCall,
-                            [recipe recipeId])];
-                
-                [items addObject:procedures];
-            }
-            if ([[recipe tips] count] > 0) {
-                TTTableTextItem *tips = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionTips
-                            URL:URL(kURLTipsRecipeDetailCall,
-                            [recipe recipeId])];
-                
-                [items addObject:tips];
+        NSString *fromString = [NSString stringWithFormat:@"%i", _from];
+        switch (_section) {
+            case kRecipeDetailMainView:
+                if ([[recipe ingredients] count] > 0) {
+                    TTTableTextItem *ingredients = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionIngredients
+                                URL:URL(kURLIngredientRecipeDetailCall,
+                                [recipe recipeId], fromString)];
+                    
+                    [items addObject:ingredients];
+                }
+                if ([[recipe procedures] count] > 0) {
+                    TTTableTextItem *procedures = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionProcedures
+                                URL:URL(kURLProceduresRecipeDetailCall,
+                                        [recipe recipeId], fromString)];
+                    
+                    [items addObject:procedures];
+                }
+                if ([[recipe tips] count] > 0) {
+                    TTTableTextItem *tips = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionTips
+                                URL:URL(kURLTipsRecipeDetailCall,
+                                [recipe recipeId], fromString)];
+                    
+                    [items addObject:tips];
+                }
+                if (_from != kRecipeFromWine) {
+                    TTTableTextItem *strains = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionStrains
+                                URL:URL(kURLRecipeStrainListCall,
+                                [recipe recipeId])];
+                    
+                    [items addObject:strains];
+                }
+
+                break;
+            case kRecipeDetailIngredientsView:
+                if ([[recipe ingredients] count] > 0) {
+                    for (Ingredient *ingredient in [recipe ingredients]) {
+                        TTTableTextItem *item = [TTTableTextItem itemWithText:
+                                [ingredient formattedIngredientString]];
+                        
+                        [items addObject:item];
+                    }
+                }
+                break;
+            case kRecipeDetailProceduresView:
+                if ([[recipe procedures] count] > 0) {
+                    for (NSString *procedure in [recipe procedures]) {
+                        TTTableTextItem *item =
+                            [TTTableTextItem itemWithText:procedure];
+                        
+                        [items addObject:item];
+                    }
+                }
+                break;
+            case kRecipeDetailTipsView:
+                if ([[recipe tips] count] > 0) {
+                    for (NSString *tip in [recipe tips]) {
+                        TTTableTextItem *item = [TTTableTextItem
+                                itemWithText:tip];
+                        
+                        [items addObject:item];
+                    }
+                }
+                break;
         }
-        }
-        TTTableTextItem *strains = [TTTableTextItem
-                itemWithText:kRecipeDetailSectionStrains
-                URL:URL(kURLRecipeStrainListCall, [recipe recipeId])];
-        
-        [items addObject:strains];
     }
     [self setItems:items];
 }

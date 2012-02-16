@@ -160,7 +160,7 @@ static CGFloat headerMinHeight = 40.;
 
 @synthesize imageView = _imageView, headerView = _headerView,
         titleLabel = _titleLabel, categoryLabel = _categoryLabel,
-            pictureBack = _pictureBack;
+            pictureBack = _pictureBack, from = _from;
 
 #pragma mark -
 #pragma mark BaseRecipeDetailController (Public)
@@ -184,6 +184,14 @@ static CGFloat headerMinHeight = 40.;
         } else {
             [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
         }
+    }
+    return self;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId from:(NSString *)from
+{
+    if ((self = [self initWithRecipeId:recipeId]) != nil) {
+        _from = [from integerValue];
     }
     return self;
 }

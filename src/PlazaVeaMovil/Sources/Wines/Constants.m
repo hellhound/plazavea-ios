@@ -165,7 +165,7 @@ NSString *const kWineCellaringUnits = @"%@ meses";
 // NSLocalizedString(@"%@ meses", nil)
 NSString *const kWineOxygenationUnits = @"%@ minutos";
 // NSLocalizedString(@"%@ minutos", nil)
-NSString *const kWineRecommendedLabel = @"Vinos Recomendados";
+NSString *const kWineRecommendedLabel = @"Platos Recomendados";
 // NSLocalizedString(@"Vinos Recomendados", nil)
 
 // Generic sizes and images

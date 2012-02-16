@@ -32,6 +32,13 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark UIViewController
 
+- (UINavigationItem *)navigationItem
+{
+    if (_from == kRecipeFromWine)
+        [[self navigationController] setToolbarHidden:YES];
+    return [super navigationItem];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -133,7 +140,7 @@ static CGFloat headerMinHeight = 40.;
             break;
         case kRecipeFromWine:
             [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
-                    initWithMeatId:_collectionId] autorelease]];
+                    initWithWineId:_collectionId] autorelease]];
             break;
         default:
             break;

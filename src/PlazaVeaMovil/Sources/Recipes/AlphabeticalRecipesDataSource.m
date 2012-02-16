@@ -15,27 +15,35 @@
 #pragma mark -
 #pragma mark AlphabeticalRecipesDataSource
 
+@synthesize from = _from;
+
 - (id)initWithCategoryId:(NSString *)categoryId
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[RecipeCollection alloc]
                 initWithCategoryId:categoryId] autorelease]];
+        _from = kRecipeFromCategory;
+    } 
     return self;
 }
 
 - (id)initWithMeatId:(NSString *)meatId
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[RecipeCollection alloc]
                 initWithMeatId:meatId] autorelease]];
+        _from = kRecipeFromMeat;
+    }
     return self;
 }
 
 - (id)initWithWineId:(NSString *)wineId
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[RecipeCollection alloc]
                 initWithWineId:wineId] autorelease]];
+        _from = kRecipeFromWine;
+    }
     return self;
 }
 

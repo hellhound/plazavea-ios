@@ -3,9 +3,9 @@
 #import <Three20/Three20.h>
 
 #import "Recipes/BaseRecipeDetailController.h"
-#import "Recipes/ProcedureRecipeDetailDataSource.h"
+#import "Recipes/RecipeDetailDataSource.h"
 
 @interface ProcedureRecipeDetailController: BaseRecipeDetailController
-        <ProcedureRecipeDetailDataSourceDelegate>
+        <RecipeDetailDataSourceDelegate>
 
 @end

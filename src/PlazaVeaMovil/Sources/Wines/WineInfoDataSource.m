@@ -143,7 +143,7 @@ static CGFloat titleWidth = 320.;
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     
-    [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
+    [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
     
     NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,

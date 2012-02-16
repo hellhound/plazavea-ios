@@ -13,10 +13,13 @@
     UILabel *_titleLabel;
     UILabel *_categoryLabel;
     UIBarButtonItem *_toListButton;
+    kRecipeFromType _from;
 }
+@property (nonatomic, assign) kRecipeFromType from;
 
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat;
+- (id)initWithRecipeId:(NSString *)recipeId from:(NSString *)from;
 - (void)createShoppingListFormRecipe;
 - (void)sizeTheHeaderWithImageURL:(NSURL *)imageURL
                          category:(NSString *)category
