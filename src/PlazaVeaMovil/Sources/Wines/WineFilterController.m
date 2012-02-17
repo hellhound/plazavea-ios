@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Wines/WineFilterController.h"
+#import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Wines/WineFilterController.h"
 #import "Wines/Constants.h"
 
 static CGFloat margin = 5.;
@@ -180,6 +181,25 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch ([indexPath section]) {
         case kWineFilterSection:
+            switch ([indexPath row]) {
+                case kWineCountryRow:
+                    [[TTNavigator navigator] openURLAction:[[TTURLAction
+                            actionWithURLPath:URL(kURLFilteringCall, @"0")]
+                                applyAnimated:YES]];
+                    break;
+                case kWineCategoryRow:
+                    [[TTNavigator navigator] openURLAction:[[TTURLAction
+                            actionWithURLPath:URL(kURLFilteringCall, @"1")]
+                                applyAnimated:YES]];
+                    break;    
+                case kWineStrainRow:
+                    [[TTNavigator navigator] openURLAction:[[TTURLAction
+                            actionWithURLPath:URL(kURLFilteringCall, @"2")]
+                                applyAnimated:YES]];
+                    break;
+                default:
+                    break;
+            }
             break;
         case kWineGoSection:
             switch ([indexPath row]) {

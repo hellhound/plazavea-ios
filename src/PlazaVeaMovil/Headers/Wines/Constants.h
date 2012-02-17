@@ -70,6 +70,16 @@ extern NSString *const kWineListSubtitleForEmpty;
 extern NSString *const kWineListTitleForError;
 extern NSString *const kWineListSubtitleForError;
 
+// FilteringListDataSource's constants
+
+// Messages
+extern NSString *const kFilteringListTitleForLoading;
+extern NSString *const kFilteringListTitleForReloading;
+extern NSString *const kFilteringListTitleForEmpty;
+extern NSString *const kFilteringListSubtitleForEmpty;
+extern NSString *const kFilteringListTitleForError;
+extern NSString *const kFilteringListSubtitleForError;
+
 // WineListController's constants
 
 // Messages
@@ -133,6 +143,13 @@ extern NSString *const kWineStrainLabel;
 extern NSString *const kWineGoLabel;
 extern const CGFloat kWineColor;
 
+// FilteringListController's constants
+typedef enum {
+    kWineCountryFilter,
+    kWineCategoryFilter,
+    kWineStrainFilter
+} WineFilteringListType;
+
 // Generic sizes and images
 extern const CGFloat kWineDetailImageWidth;
 extern const CGFloat kWineDetailImageHeight;
@@ -153,6 +170,7 @@ extern NSString *const kURLWineInfo;
 extern NSString *const kURLWineTaste;
 extern NSString *const kURLWineTips;
 extern NSString *const kURLWineRecipe;
+extern NSString *const kURLFiltering;
 
 // Controllers' URL calls
 extern NSString *const kURLWineFilterCall;
@@ -163,6 +181,7 @@ extern NSString *const kURLWineInfoCall;
 extern NSString *const kURLWineTasteCall;
 extern NSString *const kURLWineTipsCall;
 extern NSString *const kURLWineRecipeCall;
+extern NSString *const kURLFilteringCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;

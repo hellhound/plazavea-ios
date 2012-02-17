@@ -28,9 +28,10 @@
 
 - (id)initWithRecipeId:(NSString *)recipeId
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[StrainCollection alloc] initWithRecipeId:recipeId]
                 autorelease]];
+    }
     return self;
 }
 
@@ -85,5 +86,4 @@
         return [TableImageSubtitleItemCell class];
     return [super tableView:tableView cellClassForObject:object];
 }
-
 @end

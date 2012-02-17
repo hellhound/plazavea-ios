@@ -175,6 +175,8 @@
 		2F7A62E214D1FD4800303150 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CA14D1FD4800303150 /* FBDialog.m */; };
 		2F7A62E314D1FD4800303150 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CC14D1FD4800303150 /* FBLoginDialog.m */; };
 		2F7A62E414D1FD4800303150 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A62CE14D1FD4800303150 /* FBRequest.m */; };
+		2F84395C14EEECE90068B13F /* FilteringListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84395A14EEECE90068B13F /* FilteringListController.m */; };
+		2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84395B14EEECE90068B13F /* FilteringListDataSource.m */; };
 		2F87657D14A8D95F0032ADB9 /* offer-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F87657B14A8D95F0032ADB9 /* offer-background.png */; };
 		2F87657E14A8D95F0032ADB9 /* offer-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F87657C14A8D95F0032ADB9 /* offer-background@2x.png */; };
 		2F8768FC14AA144A0032ADB9 /* offer-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F8768FA14AA144A0032ADB9 /* offer-banner.png */; };
@@ -940,6 +942,8 @@
 		2F7A62CC14D1FD4800303150 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
 		2F7A62CD14D1FD4800303150 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
 		2F7A62CE14D1FD4800303150 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
+		2F84395A14EEECE90068B13F /* FilteringListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteringListController.m; sourceTree = "<group>"; };
+		2F84395B14EEECE90068B13F /* FilteringListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteringListDataSource.m; sourceTree = "<group>"; };
 		2F87657B14A8D95F0032ADB9 /* offer-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-background.png"; sourceTree = "<group>"; };
 		2F87657C14A8D95F0032ADB9 /* offer-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-background@2x.png"; sourceTree = "<group>"; };
 		2F8768FA14AA144A0032ADB9 /* offer-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-banner.png"; sourceTree = "<group>"; };
@@ -1637,17 +1641,19 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
-				2FAF50CA14EEB53800E19C1A /* WineFilterController.m */,
 				2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */,
-				2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */,
 				2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */,
-				2FBA82DD14EAD0D5005C940E /* WineTasteController.m */,
+				2F84395B14EEECE90068B13F /* FilteringListDataSource.m */,
 				2FBA82DE14EAD0D5005C940E /* WineTasteDataSource.m */,
 				2FADA26114E9CAB7000F6EF7 /* WineInfoController.m */,
 				2FADA26214E9CAB7000F6EF7 /* WineInfoDataSource.m */,
 				2F6DA8E3146C30A100FCEF87 /* WineDetailDataSource.m */,
 				2F0A6877146B38F900380798 /* WineListDataSource.m */,
 				2F012A06146B1A8C006098EB /* StrainListDataSource.m */,
+				2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */,
+				2FAF50CA14EEB53800E19C1A /* WineFilterController.m */,
+				2F84395A14EEECE90068B13F /* FilteringListController.m */,
+				2FBA82DD14EAD0D5005C940E /* WineTasteController.m */,
 				2F6DA8F2146C488000FCEF87 /* WineDetailController.m */,
 				2F0A6879146B3E8100380798 /* WineListController.m */,
 				2F012A08146B1F11006098EB /* StrainListController.m */,
@@ -2704,6 +2710,8 @@
 				2FAEB18014EAEC0F003E96E8 /* WineTipsDataSource.m in Sources */,
 				2F60688E14EAFD6400493E3B /* WineTableViewDelegate.m in Sources */,
 				2FAF50CB14EEB53800E19C1A /* WineFilterController.m in Sources */,
+				2F84395C14EEECE90068B13F /* FilteringListController.m in Sources */,
+				2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

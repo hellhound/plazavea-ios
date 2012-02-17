@@ -92,6 +92,26 @@ NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 
+// FilteringListDataSource's constants
+
+// Messages
+NSString *const kFilteringListTitleForLoading = @"Obteniendo la lista";
+// NSLocalizedString(@"Obteniendo la lista", nil)
+NSString *const kFilteringListTitleForReloading = @"Actualizando la lista";
+// NSLocalizedString(@"Actualizando la lista", nil)
+NSString *const kFilteringListTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"@"Sin información", nil)
+NSString *const kFilteringListSubtitleForEmpty = @"Por favor intente de nuevo "
+    @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kFilteringListTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kFilteringListSubtitleForError = @"Por favor intente de nuevo "
+@"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+
 // WineListController's constants
 
 // Messages
@@ -202,6 +222,8 @@ NSString *const kURLWineTips =
         @"tt://launcher/wines/wine_tips/(initWithWineId:)/";
 NSString *const kURLWineRecipe =
         @"tt://launcher/wines/wine_recipe/(initWithWineId:)/(name:)/";
+NSString *const kURLFiltering =
+        @"tt://laucher/wines/filtering/(initWithList:)/";
 
 // Controllers' URL calls
 NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
@@ -212,6 +234,7 @@ NSString *const kURLWineInfoCall = @"tt://launcher/wines/wine_info/%@/";
 NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
 NSString *const kURLWineTipsCall = @"tt://launcher/wines/wine_tips/%@/";
 NSString *const kURLWineRecipeCall = @"tt://launcher/wines/wine_recipe/%@/%@";
+NSString *const kURLFilteringCall = @"tt://laucher/wines/filtering/%@/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");
