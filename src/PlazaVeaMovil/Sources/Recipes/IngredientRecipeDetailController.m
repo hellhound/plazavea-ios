@@ -8,18 +8,28 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Recipes/Models.h"
 #import "ShoppingList/Models.h"
-#import "Recipes/IngredientRecipeDetailDataSource.h"
+#import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/IngredientRecipeDetailController.h"
 
 @implementation IngredientRecipeDetailController
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    [[self navigationController] setToolbarHidden:YES];
+    return [super navigationItem];
+}
 
 #pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
 {
-    [self setDataSource:[[[IngredientRecipeDetailDataSource alloc]
-            initWithRecipeId:_recipeId delegate:self] autorelease]];
+    [self setDataSource:[[[RecipeDetailDataSource alloc]
+            initWithRecipeId:_recipeId delegate:self
+                section:kRecipeDetailIngredientsView from:_from] autorelease]];
 }
 
 #pragma mark -
@@ -33,21 +43,8 @@
                 [shopingList name]] delegate:self
                 cancelButtonTitle:kRecipeDetailCreateButton
                 otherButtonTitles:nil];
+    
     [alertView show];
     [alertView release];
-}
-
-#pragma mark -
-#pragma mark <RecipeDetailDataSourceDelegate>
-
-- (void)        dataSource:(IngredientRecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                     title:(NSString *)title
-               andCategory:(NSString *)category
-{
-    if (title != nil && category != nil) {
-        [self sizeTheHeaderWithImageURL:imageURL category:category
-                andTitle:title];
-    }
 }
 @end

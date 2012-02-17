@@ -3,8 +3,11 @@
 #import <CoreData/CoreData.h>
 
 #import <Three20/Three20.h>
+#import "FBConnect.h"
+#import "SA_OAuthTwitterEngine.h"
 
-@interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate>
+@interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate,
+        SA_OAuthTwitterEngineDelegate, FBSessionDelegate>
 {
     UIWindow *_window;
     // CoreData
@@ -13,12 +16,15 @@
     NSPersistentStoreCoordinator *_coordinator;
     // Defaults
     NSDateFormatter *_dateFormatter;
+    Facebook *_facebook;
+    SA_OAuthTwitterEngine *_twitter;
 }
 // Unfortunately we have to declare the property window to work on pre-iOS 5
 // devices because theres a new property window on <UIApplicationDelegate> in
 // SDK 5.0
 @property (nonatomic, retain) UIWindow *window;
-
+@property (nonatomic, retain) Facebook *facebook;
+@property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (NSString *)getUUID;
 @end
 

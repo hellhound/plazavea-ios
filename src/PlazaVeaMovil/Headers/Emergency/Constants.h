@@ -27,6 +27,10 @@ extern NSString *const kEmergencyNumberFirstLetter;
 
 extern NSString *const kEmergencyFileName;
 
+// EmergencyCategoryController's constants
+
+extern NSString *const kEmergencyCategoryBanner;
+
 // Controller URLs
 
 extern NSString *const kURLEmergencyCategory;

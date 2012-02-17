@@ -60,8 +60,13 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     }
+    NSString *title;
     
-    NSString *title = [self title];
+    if ([[self title] isEqualToString:kRegionListTitle]) {
+        title = [self title];
+    } else {
+        title = [NSString stringWithFormat:kSubregionListName, [self title]];
+    }
     UIFont *font = [_titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
@@ -143,12 +148,12 @@ static CGFloat headerMinHeight = 40.;
 @synthesize regionId = _regionId, headerView = _headerView,
         titleLabel = _titleLabel;
 
-- (id)initWithRegionId:(NSString *)regionId
+- (id)initWithRegionId:(NSString *)regionId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
         _regionId = [regionId copy];
-        [self setTitle:kSubregionListTitle];
+        [self setTitle:name];
         [self setVariableHeightRows:YES];
     }
     return self;

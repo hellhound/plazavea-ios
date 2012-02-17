@@ -100,6 +100,14 @@ static CGFloat indexWitdh = 50.;
     // Configuring the header view
     [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
             autorelease]];
+    // Conf the banner
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kFoodCategoryBanner)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
     [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease]];
@@ -130,7 +138,6 @@ static CGFloat indexWitdh = 50.;
     } else {
         titleFrame.origin.y += margin;
     }
-    
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
     
@@ -151,13 +158,17 @@ static CGFloat indexWitdh = 50.;
     [_searchController setSearchResultsDataSource:self];
     [_searchController setSearchResultsDelegate:self];
     
+    CGRect imageFrame = [imageView frame];
+    imageFrame.origin.y += titleHeight + (margin * 2.);
+    [imageView setFrame:imageFrame];
+    
     CGRect searchFrame = [searchBar frame];
-    searchFrame.origin.y += titleHeight + (2 * margin);
+    searchFrame.origin.y += titleHeight + imageFrame.size.height + (2 * margin);
     [searchBar setFrame:searchFrame];
     CGFloat searchHeight = CGRectGetHeight(searchFrame);
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-            titleHeight + searchHeight + (2 * margin));
+            titleHeight + imageFrame.size.height + searchHeight + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {
@@ -166,6 +177,7 @@ static CGFloat indexWitdh = 50.;
         [_headerView insertSubview:back atIndex:0];
     }
     [_headerView addSubview:_titleLabel];
+    [_headerView addSubview:imageView];
     [_headerView addSubview:searchBar];
     [_headerView setFrame:headerFrame];
     [_headerView setClipsToBounds:YES];

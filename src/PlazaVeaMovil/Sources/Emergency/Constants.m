@@ -32,6 +32,11 @@ NSString *const kEmergencyNumberFirstLetter = @"uppercaseFirstLetterOfName";
 
 NSString *const kEmergencyFileName = @"name";
 
+// EmergencyCategoryController's constants
+
+NSString *const kEmergencyCategoryBanner =
+        @"bundle://default-banner-emergency.png";
+
 // Controller URLs
 
 NSString *const kURLEmergencyCategory = @"tt://launcher/emergencycategories/";

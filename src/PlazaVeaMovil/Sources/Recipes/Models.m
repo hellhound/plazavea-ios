@@ -941,13 +941,13 @@ static NSString *const kRecipeMiscYes = @"YES";
 #pragma mark RecipeCollection (Public)
 
 @synthesize collectionId = _collectionId, sections = _sections,
-    sectionTitles = _sectionTitles;
+    sectionTitles = _sectionTitles, from = _from;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
     if ((self = [self init]) != nil) {
         _collectionId = [categoryId copy];
-        _isFromMeat = NO;
+        _from = kRecipeFromCategory;
     }
     return self;
 }
@@ -956,7 +956,16 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     if ((self = [self init]) != nil) {
         _collectionId = [meatId copy];
-        _isFromMeat = YES;
+        _from = kRecipeFromMeat;
+    }
+    return self;
+}
+
+- (id)initWithWineId:(NSString *)wineId
+{
+    if ((self = [self init]) != nil) {
+        _collectionId = [wineId copy];
+        _from = kRecipeFromWine;
     }
     return self;
 }
@@ -972,12 +981,21 @@ static NSString *const kRecipeMiscYes = @"YES";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        if (_isFromMeat) {
-            _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
-                    _collectionId);
-        } else {
-            _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
-                    _collectionId);
+        switch (_from) {
+            case kRecipeFromCategory:
+                _collectionEndpointURL = URL(kURLRecipeAlphabeticEndpoint,
+                        _collectionId);                
+                break;
+            case kRecipeFromMeat:
+                _collectionEndpointURL = URL(kURLRecipeAlphabeticMeatEndpoint,
+                        _collectionId);
+                break;
+            case kRecipeFromWine:
+                _collectionEndpointURL = URL(kURLRecipeAlphabeticWineEndpoint,
+                        _collectionId);
+                break;
+            default:
+                break;
         }
         TTURLRequest *request =
                 [TTURLRequest requestWithURL: _collectionEndpointURL 
@@ -1065,14 +1083,29 @@ static NSString *const kRecipeMiscYes = @"YES";
             }
 
             NSURL *pictureURL = [recipe pictureURL];
-            NSString *controllerURL = _isFromMeat ?
-                    URL(kURLRecipeMeatsDetailCall, [recipe recipeId],
-                        kRecipeMiscYes) :
-                    URL(kURLRecipeDetailCall, [recipe recipeId]);
+            NSString *controllerURL;
+            
+            /*switch (_from) {
+                case kRecipeFromCategory:
+                    controllerURL = URL(kURLRecipeMeatsDetailCall,
+                            [recipe recipeId], kRecipeMiscYes);
+                    break;
+                case kRecipeFromMeat:
+                case kRecipeFromWine:
+                    controllerURL = URL(kURLRecipeDetailCall,
+                            [recipe recipeId]);
+                    break;
+                default:
+                    break;
+            }*/
+            NSString *fromString = [NSString stringWithFormat:@"%i", _from];
+            controllerURL = URL(kURLRecipeDetailCall, [recipe recipeId],
+                    fromString);
 
-            if (pictureURL != nil)
+            if (pictureURL != nil) {
                 pictureURL = IMAGE_URL(pictureURL, kRecipeListImageWidth,
                         kRecipeListImageHeigth);
+            }
 
             TableImageSubtitleItem *item = 
                     [TableImageSubtitleItem itemWithText:[recipe name]

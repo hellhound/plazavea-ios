@@ -57,14 +57,15 @@ NSString *const kStrainListTitleForReloading = @"Actualizando la lista";
 NSString *const kStrainListTitleForEmpty = @"Sin información";
 // NSLocalizedString(@"@"Sin información", nil)
 NSString *const kStrainListSubtitleForEmpty = @"Por favor intente de nuevo "
-@"más tarde, aún no existe información disponible";
+        @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kStrainListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kStrainListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
-
+NSString *const kStrainListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 // StrainListController's constants
 
 // Messages
@@ -86,8 +87,10 @@ NSString *const kWineListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 NSString *const kWineListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kWineListSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 
 // WineListController's constants
 
@@ -108,10 +111,14 @@ NSString *const kWineDetailSubtitleForEmpty = @"Por favor intente de nuevo "
         @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
-NSString *const kWineDetailTitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
-NSString *const kWineDetailSubtitleForError = @"Error";
-// NSLocalizedString(@""Error", nil)
+NSString *const kWineDetailTitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kWineDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
 NSString *const kWineMillilitersLabel = @"Mililitros";
 // NSLocalizedString(@"Mililitros", nil)
 NSString *const kWineCountryLabel = @"País";
@@ -148,6 +155,8 @@ NSString *const kWineTastingLabel = @"Nota de cata";
 // NSLocalizedString(@"Nota de cata", nil)
 NSString *const kWineTipsLabel = @"Tips";
 // NSLocalizedString(@"Tips", nil)
+NSString *const kWineMarriageLabel = @"Maridaje";
+// NSLocalizedString(@"Maridaje", nil)
 NSString *const kWinePriceUnits = @"S/. %@";
 // NSLocalizedString(@"S/. %@", nil)
 NSString *const kWineTemperatureUnits = @"%@ ºC";
@@ -156,15 +165,19 @@ NSString *const kWineCellaringUnits = @"%@ meses";
 // NSLocalizedString(@"%@ meses", nil)
 NSString *const kWineOxygenationUnits = @"%@ minutos";
 // NSLocalizedString(@"%@ minutos", nil)
+NSString *const kWineRecommendedLabel = @"Platos Recomendados";
+// NSLocalizedString(@"Vinos Recomendados", nil)
 
 // Generic sizes and images
-const CGFloat kWineDetailImageWidth = 100.;
-const CGFloat kWineDetailImageHeight = 150.;
+const CGFloat kWineDetailImageWidth = 320.;
+const CGFloat kWineDetailImageHeight = 140.;
 const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
+NSString *const kWineBannerImage = @"bundle://sommelier-banner.jpg";
+NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
 
 // Launcher
-NSString *const kSomelierTitle = @"Somelier";
+NSString *const kSomelierTitle = @"Sommelier";
 // NSLocalizedString(@""Somelier", nil) 
 
 // Controllers' URLs
@@ -173,11 +186,23 @@ NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
 NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
+NSString *const kURLWineInfo =
+        @"tt://launcher/wines/wine_info/(initWithWineId:)/";
+NSString *const kURLWineTaste =
+        @"tt://launcher/wines/wine_taste/(initWithWineId:)/";
+NSString *const kURLWineTips =
+        @"tt://launcher/wines/wine_tips/(initWithWineId:)/";
+NSString *const kURLWineRecipe =
+        @"tt://launcher/wines/wine_recipe/(initWithWineId:)/(name:)/";
 
 // Controllers' URL calls
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
 NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/";
+NSString *const kURLWineInfoCall = @"tt://launcher/wines/wine_info/%@/";
+NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
+NSString *const kURLWineTipsCall = @"tt://launcher/wines/wine_tips/%@/";
+NSString *const kURLWineRecipeCall = @"tt://launcher/wines/wine_recipe/%@/%@";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");

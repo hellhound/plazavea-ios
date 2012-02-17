@@ -13,6 +13,7 @@
 #import "Recipes/Constants.h"
 #import "Offers/Constants.h"
 #import "Stores/Constants.h"
+#import "BodyMeter/Constants.h"
 #import "Emergency/Constants.h"
 #import "Wines/Constants.h"
 #import "Composition/Constants.h"
@@ -65,6 +66,9 @@
                 [[[TTLauncherItem alloc] initWithTitle:kOfferListTitle
                     image:kURLOffersIcon 
                     URL:kURLOfferListCall] autorelease],
+                [[[TTLauncherItem alloc] initWithTitle:kBodyMeterTitle
+                    image:kURLBodyMeterIcon 
+                    URL:kURLBodyMeterDiagnosisCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kRecipeListTitle
                     image:kURLRecipesIcon
                     URL:kURLRecipeCategoriesCall] autorelease],

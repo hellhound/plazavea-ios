@@ -38,7 +38,8 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    //return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    return NSLocalizedString(kRegionListSubtitleForError, nil);
 }
 
 - (NSString *)titleForEmpty
@@ -62,9 +63,10 @@
         NSString *URL;
         
         if ([[region count] integerValue] == 1) {  
-            URL = URL(kURLStoreListCall, [region suggested], [region regionId]);
+            URL = URL(kURLStoreListCall, [region suggested], [region regionId],
+                    [region name]);
         } else {
-            URL = URL(kURLSubregionListCall, [region regionId]);
+            URL = URL(kURLSubregionListCall, [region regionId], [region name]);
         }
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
                     subtitle:nil URL:URL];

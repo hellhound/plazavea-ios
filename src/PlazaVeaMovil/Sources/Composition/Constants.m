@@ -39,6 +39,9 @@ NSString *const kFoodIron = @"iron";
 NSString *const kFoodFileName = @"name";
 NSString *const kFoodCSVFile = @"food.csv";
 
+// FoodCategoryList's constants
+NSString *const kFoodCategoryBanner = @"bundle://child-food-banner.jpg";
+
 // FoodDetailController's constants
 
 // messages
@@ -87,8 +90,34 @@ NSString *const kFoodDetailCalciumSufix = @"%@ mg";
 NSString *const kFoodDetailIronSufix = @"%@ mg";
 // NSLocalizedString(@"%@ mg", nil)
 NSString *const kFoodDetailDefaultImage = @"bundle://default-food-detail.png";
-const CGFloat kFoodDetailImageWidth = 140.;
+const CGFloat kFoodDetailImageWidth = 320.;
 const CGFloat kFoodDetailImageHeight = 140.;
+NSString *const kFoodCategoryDrinks = @"Bebidas (alcohólicas y analcohólicas)";
+NSString *const kFoodCategoryMeats = @"Carnes y derivados";
+NSString *const kFoodCategoryCereals = @"Cereales y derivados";
+NSString *const kFoodCategoryFruits = @"Frutas y derivados";
+NSString *const kFoodCategoryOils = @"Grasas, aceites y oleaginosas";
+NSString *const kFoodCategoryEggs = @"Huevos y derivados";
+NSString *const kFoodCategoryMilks = @"Leches y derivados";
+NSString *const kFoodCategoryLegumes = @"Leguminosas y derivados";
+NSString *const kFoodCategoryFish = @"Pescados y mariscos";
+NSString *const kFoodCategorySugar = @"Productos azucarados";
+NSString *const kFoodCategoryTubercles = @"Tubérculos, raíces y derivados";
+NSString *const kFoodCategoryVegetables = @"Verduras, hortalizas y derivados";
+NSString *const kFoodCategoryDrinksImage = @"bundle://drinks-banner.jpg";
+NSString *const kFoodCategoryMeatsImage = @"bundle://meats-banner.jpg";
+NSString *const kFoodCategoryCerealsImage = @"bundle://cereals-banner.jpg";
+NSString *const kFoodCategoryFruitsImage = @"bundle://fruits-banner.jpg";
+NSString *const kFoodCategoryOilsImage = @"bundle://oils-banner.jpg";
+NSString *const kFoodCategoryEggsImage = @"bundle://eggs-banner.jpg";
+NSString *const kFoodCategoryMilksImage = @"bundle://milk-banner.jpg";
+NSString *const kFoodCategoryLegumesImage = @"bundle://legumes-banner.jpg";
+NSString *const kFoodCategoryFishImage = @"bundle://fish-banner.jpg";
+NSString *const kFoodCategorySugarImage = @"bundle://sugar-banner.jpg";
+NSString *const kFoodCategoryTuberclesImage = @"bundle://tubercle-banner.jpg";
+NSString *const kFoodCategoryVegetablesImage =
+        @"bundle://vegetables-banner.jpg";
+NSString *const kFoodCategoryOtherImage = @"bundle://other-foods-banner.jpg";
 
 // Controller URLs
 NSString *const kURLFoodCategory = @"tt://launcher/foodcategory/";

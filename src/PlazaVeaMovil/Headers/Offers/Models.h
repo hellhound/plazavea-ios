@@ -23,6 +23,7 @@
     NSString *_code;
     NSString *_name;
     NSString *_longDescription;
+    NSString *_legalese;
     NSNumber *_price;
     NSNumber *_oldPrice;
     NSString *_discount;
@@ -37,6 +38,7 @@
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *longDescription;
+@property (nonatomic, copy) NSString *legalese;
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSNumber *oldPrice;
 @property (nonatomic, copy) NSString *discount;
@@ -72,8 +74,8 @@
     NSURL *_bannerURL;
     NSString *_longDescription;
     NSString *_legalese;
-    NSString *_validFrom;
-    NSString *_validTo;
+    NSDate *_validFrom;
+    NSDate *_validTo;
     NSMutableArray *_extraPictureURLs;
     NSURL *_facebookURL;
     NSURL *_twitterURL;
@@ -84,8 +86,8 @@
 @property (nonatomic, retain) NSURL *bannerURL;
 @property (nonatomic, copy) NSString *longDescription;
 @property (nonatomic, copy) NSString *legalese;
-@property (nonatomic, copy) NSString *validFrom;
-@property (nonatomic, copy) NSString *validTo;
+@property (nonatomic, copy) NSDate *validFrom;
+@property (nonatomic, copy) NSDate *validTo;
 @property (nonatomic, readonly) NSArray *extraPictureURLs;
 @property (nonatomic, retain) NSURL *facebookURL;
 @property (nonatomic, retain) NSURL *twitterURL;

@@ -62,7 +62,8 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    //return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    return NSLocalizedString(kStoreDetailSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
@@ -74,11 +75,14 @@
     
     [sections addObject:kStoreDetailData];
     TableImageSubtitleItem *address = [TableImageSubtitleItem itemWithText:
-            [store storeAddress]];
+            [NSString stringWithFormat:kStoreDetailAddress,
+                [store storeAddress]]];
     TableImageSubtitleItem *attendance = [TableImageSubtitleItem itemWithText:
-            [store attendance]];
+            [NSString stringWithFormat:kStoreDetailAttendance,
+                [store attendance]]];
     TableImageSubtitleItem *phones = [TableImageSubtitleItem itemWithText:
-            [store phones]];
+            [NSString stringWithFormat:kStoreDetailPhones,
+                [store phones]]];
     [items addObject:[NSArray arrayWithObjects:address, attendance,
             phones, nil]];
     

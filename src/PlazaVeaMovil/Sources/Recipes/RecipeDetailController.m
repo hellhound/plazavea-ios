@@ -14,13 +14,22 @@
 @implementation RecipeDetailController
 
 #pragma mark -
+#pragma mark UIViewController
+
+- (UINavigationItem *)navigationItem
+{
+    [[self navigationController] setToolbarHidden:YES];
+    return [super navigationItem];
+}
+
+#pragma mark -
 #pragma mark TTTableViewController
 
 - (void)createModel
 {
     [self setDataSource:[[[RecipeDetailDataSource alloc]
-            initWithRecipeId:_recipeId delegate:self hasMeat:_hasMeat]
-                autorelease]];
+            initWithRecipeId:_recipeId delegate:self
+                section:kRecipeDetailMainView from:_from] autorelease]];
 }
 
 #pragma mark -
@@ -57,14 +66,9 @@
 #pragma mark -
 #pragma mark <RecipeDetailDataSourceDelegate>
 
-- (void)        dataSource:(RecipeDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                     title:(NSString *)title
-               andCategory:(NSString *)category
+- (void)dataSource:(RecipeDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view
 {
-    if (title != nil && category != nil) {
-        [self sizeTheHeaderWithImageURL:imageURL category:category
-                andTitle:title];
-    }
+    [[self tableView] setTableHeaderView:view];
 }
 @end

@@ -261,8 +261,9 @@ static CGFloat headerMinHeight = 40.;
             [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     NSDateFormatter *dateFormatter = [(AppDelegate *)
             [[UIApplication sharedApplication] delegate] dateFormatter];
-    NSString *dateText = [dateFormatter stringFromDate:[_shoppingList
-            lastModificationDate]];
+    NSString *dateText = [_shoppingList lastModificationDate] ?
+            [dateFormatter stringFromDate:[_shoppingList lastModificationDate]]
+                : @"hoy";
 
     [dateLabel setNumberOfLines:0];
     [dateLabel setLineBreakMode:UILineBreakModeWordWrap];
@@ -348,8 +349,12 @@ static CGFloat headerMinHeight = 40.;
         NSDateFormatter *dateFormatter = [(AppDelegate *)
                 [[UIApplication sharedApplication] delegate] dateFormatter];
         
-        [listDateLabel setText:[dateFormatter stringFromDate:[_shoppingList
-                lastModificationDate]]];
+        if ([_shoppingList lastModificationDate] != nil) {
+            [listDateLabel setText:[dateFormatter stringFromDate:[_shoppingList
+                    lastModificationDate]]];
+        } else {
+            [listDateLabel setText:@"hoy"];
+        }
     }
 
 }
@@ -490,6 +495,16 @@ static CGFloat headerMinHeight = 40.;
             [self initializeHeader];
         }
         [self updatePreviousNextButtons];
+        TSAlertView *alertView = [[[TSAlertView alloc]
+                initWithTitle:kShoppingListAlertTitle
+                    message:kShoppingListAlertMessage delegate:self
+                    cancelButtonTitle:kShoppingListAlertCancel
+                    otherButtonTitles:kShoppingListAlertCreate, nil]
+                    autorelease];
+        
+        [alertView setTag:kShoppingListAlertViewNoItems];
+        [alertView show];
+        noLists = YES;
     }
 }
 
@@ -615,7 +630,7 @@ static CGFloat headerMinHeight = 40.;
  numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfRows =
-    [super tableView:tableView numberOfRowsInSection:section];
+            [super tableView:tableView numberOfRowsInSection:section];
     
     if (numberOfRows == 0 && !noLists) {
         TSAlertView *alertView = [[[TSAlertView alloc]
@@ -626,7 +641,8 @@ static CGFloat headerMinHeight = 40.;
                     autorelease];
         
         [alertView setTag:kShoppingListAlertViewNoItems];
-        [alertView show];
+        [alertView performSelector:@selector(show) withObject:nil
+                afterDelay:0.1];
         noLists = YES;
     }
     return numberOfRows;

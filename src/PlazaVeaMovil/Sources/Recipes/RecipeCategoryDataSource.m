@@ -46,7 +46,8 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    //return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    return NSLocalizedString(kRecipeCategorySubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
@@ -62,7 +63,8 @@
             TTTableTextItem *item;
             if ([[category subcategoriesCount] integerValue] == 0) {
                 item = [TTTableTextItem itemWithText:[category name]
-                        URL:URL(kURLRecipeListCall, [category categoryId])];
+                        URL:URL(kURLRecipeListCall, [category categoryId],
+                            [category name])];
             } else {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeSubCategoriesCall, 

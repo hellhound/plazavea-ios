@@ -52,6 +52,7 @@
 #define COMPOSITION_SECTION_HEADER_BACKGROUND \
         TTIMAGE(@"bundle://composition-section-header.png")
 #define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247., 128., 31.)
+#define CORDON_BLEU_LOGO TTIMAGE(@"bundle://logo-cordon-bleu.png")
 
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
@@ -68,10 +69,18 @@
 
 // recipes
 #define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
-#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
 #define MEATS_BACKGROUND TTIMAGE(@"bundle://meats-background.png")
+#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
+#define MEATS_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
 #define RECIPE_DETAIL_BACKGROUND \
         TTIMAGE(@"bundle://recipes-picture-background.png")
+
+// wines
+#define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")
+#define WINE_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
+
+// body meter
+#define FOOTER_FONT_COLOR RGBCOLOR(60., 69., 87.)
 
 @implementation StyleSheet
 
@@ -223,6 +232,11 @@
     return COMPOSITION_SEARCHBAR_COLOR;
 }
 
+- (UIImage *)cordonBleuLogo
+{
+    return CORDON_BLEU_LOGO;
+}
+
 #pragma mark -
 #pragma mark Emergency
 
@@ -280,8 +294,34 @@
     return MEATS_BACKGROUND;
 }
 
+- (TTStyle *)meatsSectionHeader
+{
+    return  [TTImageStyle styleWithImage:MEATS_SECTION_HEADER next:nil];
+}
+
 - (UIImage *)recipePictureBackground
 {
     return RECIPE_DETAIL_BACKGROUND;
+}
+
+#pragma mark -
+#pragma mark Wines
+
+- (UIImage *)wineBackgroundHeader
+{
+    return WINE_BACKGROUND;
+}
+
+- (TTStyle *)wineSectionHeader
+{
+    return [TTImageStyle styleWithImage:WINE_SECTION_HEADER next:nil];
+}
+
+#pragma mark -
+#pragma mark BodyMeter
+
+- (UIColor *)footerFontColor
+{
+    return FOOTER_FONT_COLOR;
 }
 @end

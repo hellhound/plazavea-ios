@@ -1,10 +1,11 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import <Three20/Three20.h>
 
 @protocol WineDetailDataSourceDelegate;
 
-@interface WineDetailDataSource: TTSectionedDataSource
+@interface WineDetailDataSource: TTListDataSource
 {
     id<WineDetailDataSourceDelegate> _delegate;
 }
@@ -13,11 +14,11 @@
 - (id)initWithWineId:(NSString *)wineId;
 - (id)initWithWineId:(NSString *)wineId
             delegate:(id<WineDetailDataSourceDelegate>)delegate;
+- (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
 @end
 
 @protocol WineDetailDataSourceDelegate <NSObject>
 
-- (void)        dataSource:(WineDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                  andTitle:(NSString *)title;
+- (void) dataSource:(WineDetailDataSource *)dataSource
+      viewForHeader:(UIView *)view;
 @end

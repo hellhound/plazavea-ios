@@ -112,14 +112,16 @@
     NSString *_collectionId;
     NSMutableArray *_sections;
     NSMutableArray *_sectionTitles;
-    BOOL _isFromMeat;
+    kRecipeFromType _from;
 }
 @property (nonatomic, readonly) NSString *collectionId;
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) NSArray *sectionIndexTitles;
 @property (nonatomic, readonly) NSArray *sectionTitles;
+@property (nonatomic, assign) kRecipeFromType from;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
 - (id)initWithMeatId:(NSString *)meatId;
+- (id)initWithWineId:(NSString *)wineId;
 - (NSArray *)sectionIndexTitles;
 @end

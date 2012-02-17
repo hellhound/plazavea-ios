@@ -415,14 +415,14 @@
         [annotationView setRightCalloutAccessoryView:
                 [UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
     }
-    TTImageView *image = [[[TTImageView alloc] initWithFrame:
+    /*TTImageView *image = [[[TTImageView alloc] initWithFrame:
             CGRectMake(.0, .0, kStoreMapImageWidth, kStoreMapImageHeight)]
                 autorelease];
     
     [image setUrlPath:[(MapAnnotation *)annotation pictureURL]];
     [image performSelector:@selector(stopLoading) withObject:nil
             afterDelay:10];
-    [annotationView setLeftCalloutAccessoryView:image];
+    [annotationView setLeftCalloutAccessoryView:image];*/
     //[annotationView setAnimatesDrop:YES];
     return annotationView;
 }

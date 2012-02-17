@@ -9,6 +9,7 @@ extern NSString *const kOfferIdKey;
 extern NSString *const kOfferCodeKey;
 extern NSString *const kOfferNameKey;
 extern NSString *const kOfferDescriptionKey;
+extern NSString *const kOfferLegaleseKey;
 extern NSString *const kOfferPriceKey;
 extern NSString *const kOfferDiscountKey;
 extern NSString *const kOfferOldPriceKey;
@@ -73,6 +74,13 @@ extern NSString *const kOfferDetailTitleForLoading;
 extern NSString *const kOfferDetailTitleForEmpty;
 extern NSString *const kOfferDetailSubtitleForEmpty;
 extern NSString *const kOfferDetailTitleForError;
+extern NSString *const kOfferDetailSubtitleForError;
+extern NSString *const kOfferDetailOldPriceCaption;
+extern NSString *const kOfferDetailPriceCaption;
+extern NSString *const kOfferDetailValidCaption;
+extern NSString *const kOfferDetailPricePrefix;
+extern NSString *const kOfferDetailValidPrefix;
+extern NSString *const kOfferDetailLegaleseCaption;
 
 // PromotionListDataSource's constants
 
@@ -97,6 +105,7 @@ extern NSString *const kPromotionDetailTitleForEmpty;
 extern NSString *const kPromotionDetailSubtitleForEmpty;
 extern NSString *const kPromotionDetailTitleForError;
 extern NSString *const kPromotionDetailSubtitleForError;
+extern NSString *const kPromotionDetailLegaleseCaption;
 
 // OfferDrillDownController's constants
 
@@ -125,9 +134,23 @@ extern const CGFloat kOfferListImageHeight;
 // OfferDetailController's constants
 
 extern NSString *const kOfferDetailTitle;
+extern const CGFloat kOfferDetailBackground;
 extern const CGFloat kOfferDetailImageWidth;
 extern const CGFloat kOfferDetailImageHeight;
 extern NSString *const kOfferDetailDefaultImage;
+extern NSString *const kOfferDetailShare;
+extern NSString *const kOfferDetailMailImage;
+extern NSString *const kOfferDetailFacebookImage;
+extern NSString *const kOfferDetailTwitterImage;
+extern NSString *const kTwitterAlertTitle;
+extern NSString *const kTwitterAlertCancel;
+extern NSString *const kTwitterAlertSend;
+extern NSString *const kTwitterAlertMessage;
+extern NSString *const kFBLink;
+extern NSString *const kFBPicture;
+extern NSString *const kFBCaption;
+extern NSString *const kFBDescription;
+extern NSString *const kFBFeedDialog;
 
 // PromotionListController's constants
 

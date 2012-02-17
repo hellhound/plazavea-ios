@@ -105,6 +105,7 @@ extern NSString *const kRegionListDefaultImage;
 extern NSString *const kRegionListTitle;
 extern NSString *const kSubregionListTitle;
 extern NSString *const kRegionLauncherTitle;
+extern NSString *const kSubregionListName;
 
 // StoreListController's constants
 
@@ -132,6 +133,9 @@ typedef enum {
     kMapStyleSegmentedControlIndexDefault =
             kMapStyleSegmentedControlIndexStandard
 }MapStyleSegmentedControlIndexTypes;
+
+// StoreMapController's constants
+extern const CGFloat kStoreDetailBackground;
 
 extern NSString *const kStoreMapTitle;
 extern NSString *const kStoreMapGPSButton;

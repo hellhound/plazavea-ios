@@ -32,6 +32,13 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark UIViewController
 
+- (UINavigationItem *)navigationItem
+{
+    if (_from == kRecipeFromWine)
+        [[self navigationController] setToolbarHidden:YES];
+    return [super navigationItem];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -82,12 +89,35 @@ static CGFloat headerMinHeight = 40.;
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
             titleHeight + (2 * margin));
     // Adding the subviews to the header view
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(recipesBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(recipesBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
+    UIImageView *back;
+    switch (_from) {
+        case kRecipeFromCategory:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(recipesBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                        (UIImage *)TTSTYLE(recipesBackgroundHeader)]
+                            autorelease];
+            }
+            break;
+        case kRecipeFromMeat:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(meatsBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                        (UIImage *)TTSTYLE(meatsBackgroundHeader)] autorelease];
+            }
+            break;
+        case kRecipeFromWine:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(wineBackgroundHeader)]) {
+                back = [[[UIImageView alloc] initWithImage:
+                         (UIImage *)TTSTYLE(wineBackgroundHeader)]
+                            autorelease];
+            }
+            break;
+        default:
+            break;
     }
+    [_headerView insertSubview:back atIndex:0];
     [_headerView addSubview:_titleLabel];
     [_headerView setFrame:headerFrame];
     [_headerView setClipsToBounds:YES];
@@ -99,43 +129,69 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)createModel
 {
-    if ([self isMeat]) {
-        [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
-                initWithMeatId:_collectionId] autorelease]];
-    } else {
-        [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
-                initWithCategoryId:_collectionId] autorelease]];
+    switch (_from) {
+        case kRecipeFromCategory:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithCategoryId:_collectionId] autorelease]];
+            break;
+        case kRecipeFromMeat:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithMeatId:_collectionId] autorelease]];
+            break;
+        case kRecipeFromWine:
+            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+                    initWithWineId:_collectionId] autorelease]];
+            break;
+        default:
+            break;
     }
 }
 
 - (id<UITableViewDelegate>)createDelegate {
-    return [[[RecipesTableViewDelegate alloc] initWithController:self]
-            autorelease];
+    return [[[RecipesTableViewDelegate alloc] initWithController:self
+            from:_from] autorelease];
 }
 
 #pragma mark -
 #pragma mark RecipeListController (Public)
 
-@synthesize collectionId = _collectionId, isMeat = _isMeat,
-        titleLabel = _titleLabel, headerView = _headerView;
+@synthesize collectionId = _collectionId, titleLabel = _titleLabel,
+        headerView = _headerView, from = _from;
 
-- (id)initWithCategoryId:(NSString *)categoryId
+- (id)initWithCategoryId:(NSString *)categoryId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [categoryId copy];
-        _isMeat = NO;
-        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        _from = kRecipeFromCategory;
+        
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                withString:@" "]];
         [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];
     }
     return self;
 }
 
-- (id)initWithMeatId:(NSString *)meatId
+- (id)initWithMeatId:(NSString *)meatId name:(NSString *)name
 {
     if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _collectionId = [meatId copy];
-        _isMeat = YES;
-        [self setTitle:NSLocalizedString(kRecipeListTitle, nil)];
+        _from = kRecipeFromMeat;
+        
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                withString:@" "]];
+        [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
+    }
+    return self;
+}
+
+- (id)initWithWineId:(NSString *)wineId name:(NSString *)name
+{
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
+        _collectionId = [wineId copy];
+        _from = kRecipeFromWine;
+        
+        [self setTitle:[name stringByReplacingOccurrencesOfString:@"_"
+                    withString:@" "]];
         [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
     }
     return self;

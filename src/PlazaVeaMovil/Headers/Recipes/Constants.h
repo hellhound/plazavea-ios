@@ -18,6 +18,13 @@ extern NSString *const kRecipeCategoryCountKey;
 extern NSString *const kRecipeSubcategoriesCountKey;
 
 // Recipe collection's constants
+
+typedef enum {
+    kRecipeFromCategory,
+    kRecipeFromMeat,
+    kRecipeFromWine
+}kRecipeFromType;
+
 extern NSString *const kRecipeCollectionLettersKey;
 extern NSString *const kRecipeCollectionLetterKey;
 extern NSString *const kRecipeCollectionRecipesKey;
@@ -62,6 +69,11 @@ extern NSString *const kFishIcon;
 extern NSString *const kMeatIcon;
 extern NSString *const kPorkIcon;
 extern NSString *const kOtherMeatsIcon;
+extern NSString *const kCowMeat;
+extern NSString *const kChikenMeat;
+extern NSString *const kPorkMeat;
+extern NSString *const kFishMeat;
+extern NSString *const kShellfishMeat;
 
 // RecipeCategoryDataSource's messages
 
@@ -82,6 +94,13 @@ extern NSString *const kRecipeListTitleForError;
 extern NSString *const kRecipeListSubtitleForError;
 
 // RecipeDetailDataSource's messages
+
+typedef enum {
+    kRecipeDetailMainView,
+    kRecipeDetailIngredientsView,
+    kRecipeDetailProceduresView,
+    kRecipeDetailTipsView,
+}RecipeDetailViewType;
 
 extern NSString *const kRecipeDetailTitleForLoading;
 extern NSString *const kRecipeDetailTitleForReloading;
@@ -114,6 +133,7 @@ extern NSString *const kRecipesMeatTypesButton;
 // RecipeCategoryController's constants
 extern NSString *const kRecipeCategoryTitle;
 extern NSString *const kRecipeSubcategoryTitle;
+extern NSString *const kRecipeCategoryImage;
 
 // RecipeListController's constants
 
@@ -131,6 +151,9 @@ extern const CGFloat kRecipeDetailImageWidth;
 extern const CGFloat kRecipeDetailImageHeigth;
 extern NSString *const kRecipeDetailCreateMessage;
 extern NSString *const kRecipeDetailCreateButton;
+
+// MeatListsController's constants
+extern NSString *const kMeatListImage;
 
 // Controllers' URLs
 extern NSString *const kURLMeats;
@@ -172,3 +195,4 @@ extern NSString *const kURLRecipeAlphabeticEndpoint;
 extern NSString *const kURLRecipeDetailEndpoint;
 extern NSString *const kURLRecipeMeatsEndpoint;
 extern NSString *const kURLRecipeAlphabeticMeatEndpoint;
+extern NSString *const kURLRecipeAlphabeticWineEndpoint;

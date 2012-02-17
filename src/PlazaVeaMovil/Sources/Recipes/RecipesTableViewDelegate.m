@@ -5,9 +5,22 @@
 
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Application/StyleSheet.h"
+#import "Recipes/Constants.h"
 #import "Recipes/RecipesTableViewDelegate.h"
 
 @implementation RecipesTableViewDelegate
+
+#pragma RecipeTableViewDelegate
+
+@synthesize from = _from;
+
+- (id)initWithController:(TTTableViewController *)controller
+                    from:(kRecipeFromType)from
+{
+    if ((self = [self initWithController:controller]) != nil)
+        _from = from;
+    return self;
+}
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -26,10 +39,29 @@
     TTView *header = (TTView *)[super tableView:tableView
             viewForHeaderInSection:section];
     
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(recipesSectionHeader)]) {
-        [header setStyle:TTSTYLE(recipesSectionHeader)];
+    switch (_from) {
+        case kRecipeFromCategory:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(recipesSectionHeader)]) {
+                [header setStyle:TTSTYLE(recipesSectionHeader)];
+            }
+            break;
+        case kRecipeFromMeat:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(meatsSectionHeader)]) {
+                [header setStyle:TTSTYLE(meatsSectionHeader)];
+            }
+            break;
+        case kRecipeFromWine:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(wineSectionHeader)]) {
+                [header setStyle:TTSTYLE(wineSectionHeader)];
+            }
+            break;
+        default:
+            break;
     }
+    
     return header;
 }
 @end

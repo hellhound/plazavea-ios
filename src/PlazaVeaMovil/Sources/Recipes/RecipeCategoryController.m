@@ -45,6 +45,14 @@ static CGFloat headerMinHeight = 40.;
     // Configuring the header view
     [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
             autorelease]];
+    // Conf the banner
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kRecipeCategoryImage)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+     UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
     [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease]];
@@ -75,11 +83,14 @@ static CGFloat headerMinHeight = 40.;
     } else {
         titleFrame.origin.y += margin;
     }
+    CGRect imageFrame = [imageView frame];
+    imageFrame.origin.y += titleHeight + (margin * 2.);
+    [imageView setFrame:imageFrame];
     [_titleLabel setText:title];
     [_titleLabel setFrame:titleFrame];
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-            titleHeight + (2 * margin));
+            titleHeight + imageFrame.size.height + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(recipesBackgroundHeader)]) {
@@ -89,6 +100,7 @@ static CGFloat headerMinHeight = 40.;
     }
     [_headerView addSubview:_titleLabel];
     [_headerView setFrame:headerFrame];
+    [_headerView addSubview:imageView];
     [_headerView setClipsToBounds:YES];
     [tableView setTableHeaderView:_headerView];
 }

@@ -64,8 +64,10 @@ NSString *const kRecipeCategorySubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"categorías disponibles", nil)
 NSString *const kRecipeCategoryTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeCategorySubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeCategorySubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen categorías disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"categorías disponibles", nil)
 
 // AlphabeticalRecipesDataSource's messages
 
@@ -82,8 +84,9 @@ NSString *const kRecipeListSubtitleForEmpty = @"Por favor intente de nuevo más 
 //      @"recetas disponibles", nil)
 NSString *const kRecipeListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen recetas disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
 
 // MeatListDataSource's constants
 
@@ -99,8 +102,10 @@ NSString *const kMeatsListSubtitleForEmpty = @"Por favor intente de nuevo más "
 //      @"tipos de carnes disponibles", nil)
 NSString *const kMeatsListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kMeatsListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kMeatsListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen tipos de carnes disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"tipos de carnes disponibles", nil)
 const CGFloat kMeatsListImageWidth = 41.;
 const CGFloat kMeatsListImageHeight = 41.;
 NSString *const kChickenIcon = @"bundle://chicken-icon.png";
@@ -108,6 +113,11 @@ NSString *const kFishIcon = @"bundle://fish-icon.png";
 NSString *const kMeatIcon = @"bundle://meat-icon.png";
 NSString *const kPorkIcon = @"bundle://pork-icon.png";
 NSString *const kOtherMeatsIcon = @"bundle://other-meats-icon.png";
+NSString *const kCowMeat = @"res";
+NSString *const kChikenMeat = @"ave";
+NSString *const kPorkMeat = @"cerdo";
+NSString *const kFishMeat = @"pescado";
+NSString *const kShellfishMeat = @"marisco";
 
 // RecipeDetailDataSource's messages
 
@@ -123,8 +133,10 @@ NSString *const kRecipeDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"información para esta receta", nil)
 NSString *const kRecipeDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kRecipeDetailSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kRecipeDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta receta";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existe "
+//      @"información para esta receta", nil)
 NSString *const kRecipeDetailSectionFeatures = @"Características";
 // NSLocalizedString(@"Características", nil)
 NSString *const kRecipeDetailSectionIngredients = @"Ingredientes";
@@ -152,6 +164,7 @@ NSString *const kRecipeCategoryTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
 NSString *const kRecipeSubcategoryTitle = @"Recetas";
 // NSLocalizedString(@"Recetas", nil)
+NSString *const kRecipeCategoryImage = @"bundle://default-banner-recipes.jpg";
 
 // RecipeListController's constants
 
@@ -165,16 +178,19 @@ const CGFloat kRecipeListImageHeigth = 50.;
 
 NSString *const kRecipeDetailTitle = @"Receta";
 // NSLocalizedString(@"Receta", nil);
-NSString *const kRecipeRations = @"%@\n(%@ personas)";
+NSString *const kRecipeRations = @"(%@ personas)";
 // NSLocalizedString(@"%@ personas", nil);
 NSString *const kRecipeDetailDefaultImage =
         @"bundle://default-recipe-detail.png";
-const CGFloat kRecipeDetailImageWidth = 140.;
+const CGFloat kRecipeDetailImageWidth = 320.;
 const CGFloat kRecipeDetailImageHeigth = 140.;
 NSString *const kRecipeDetailCreateMessage = @"Lista %@ creada";
 // NSLocalizedString(@"Lista %@ creada", nil)
 NSString *const kRecipeDetailCreateButton = @"Ok";
 // NSLocalizedString(@"Ok", nil)
+
+// MeatListsController's constants
+NSString *const kMeatListImage = @"bundle://default-banner-emergency.png";
 
 // Controllers' URLs
 NSString *const kURLMeats = @"tt://launcher/recipes/meats/";
@@ -182,18 +198,19 @@ NSString *const kURLRecipeCategories = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubcategories =
         @"tt://launcher/recipes/categories/subcategory/(initWithCategoryId:)/";
 NSString *const kURLRecipeList =
-        @"tt://launcher/recipes/category/(initWithCategoryId:)/";
+        @"tt://launcher/recipes/category/(initWithCategoryId:)/(name:)/";
 NSString *const kURLRecipeMeatList =
-        @"tt://launcher/recipes/meat/(initWithMeatId:)/";
-NSString *const kURLRecipeDetail = @"tt://launcher/recipe/(initWithRecipeId:)/";
+        @"tt://launcher/recipes/meat/(initWithMeatId:)/(name:)/";
+NSString *const kURLRecipeDetail =
+        @"tt://launcher/recipe/(initWithRecipeId:)/(from:)";
 NSString *const kURLRecipeMeatsDetail =
         @"tt://launcher/meats/recipe/(initWithRecipeId:)/(hasMeat:)/";
 NSString *const kURLIngredientRecipeDetail =
-        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/(from:)/";
 NSString *const kURLProceduresRecipeDetail =
-        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/procedures/(initWithRecipeId:)/(from:)/";
 NSString *const kURLTipsRecipeDetail =
-        @"tt://launcher/recipe/tips/(initWithRecipeId:)/";
+        @"tt://launcher/recipe/tips/(initWithRecipeId:)/(from:)/";
 NSString *const kURLIngredientRecipeMeatsDetail =
         @"tt://launcher/recipe/ingredients/(initWithRecipeId:)/(hasMeat:)/";
 NSString *const kURLProceduresRecipeMeatsDetail =
@@ -210,18 +227,18 @@ NSString *const kURLRecipeCategoriesCall = @"tt://launcher/recipes/categories/";
 NSString *const kURLRecipeSubCategoriesCall =
         @"tt://launcher/recipes/categories/subcategory/%@/";
 NSString *const kURLRecipeListCall =
-        @"tt://launcher/recipes/category/%@/";
+        @"tt://launcher/recipes/category/%@/%@/";
 NSString *const kURLRecipeMeatListCall =
-        @"tt://launcher/recipes/meat/%@/";
-NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/";
+        @"tt://launcher/recipes/meat/%@/%@/";
+NSString *const kURLRecipeDetailCall = @"tt://launcher/recipe/%@/%@/";
 NSString *const kURLRecipeMeatsDetailCall =
         @"tt://launcher/meats/recipe/%@/%@/";
 NSString *const kURLIngredientRecipeDetailCall =
-        @"tt://launcher/recipe/ingredients/%@/";
+        @"tt://launcher/recipe/ingredients/%@/%@/";
 NSString *const kURLProceduresRecipeDetailCall =
-        @"tt://launcher/recipe/procedures/%@/";
+        @"tt://launcher/recipe/procedures/%@/%@/";
 NSString *const kURLTipsRecipeDetailCall =
-        @"tt://launcher/recipe/tips/%@/";
+        @"tt://launcher/recipe/tips/%@/%@/";
 NSString *const kURLIngredientRecipeMeatsDetailCall =
         @"tt://launcher/recipe/ingredients/%@/%@/";
 NSString *const kURLProceduresRecipeMeatsDetailCall = 
@@ -232,7 +249,6 @@ NSString *const kURLRecipeStrainListCall =
         @"tt://launcher/wines/strains/%@/";
 
 // Endpoint URLs
-
 NSString *const kURLRecipeCategoriesEndpoint =
         ENDPOINT(@"/recipes/categories.json");
 NSString *const kURLRecipeSubcategoryEndpoint =
@@ -245,3 +261,5 @@ NSString *const kURLRecipeMeatsEndpoint =
         ENDPOINT(@"/meats/listing.json");
 NSString *const kURLRecipeAlphabeticMeatEndpoint =
         ENDPOINT(@"/meats/%@/recipes.json");
+NSString *const kURLRecipeAlphabeticWineEndpoint =
+        ENDPOINT(@"/wines/%@/recipes.json");

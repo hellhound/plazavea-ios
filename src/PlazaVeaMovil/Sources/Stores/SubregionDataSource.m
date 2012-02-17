@@ -28,7 +28,8 @@
 
 - (NSString *)subtitleForError:(NSError *)error
 {
-    return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    //return LOCALIZED_HTTP_REQUEST_ERROR(error);
+    return NSLocalizedString(kRegionListSubtitleForError, nil);
 }
 
 - (NSString *)titleForEmpty
@@ -53,7 +54,7 @@
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:name subtitle:nil URL:URL(kURLStoreListCall,
-                    [subregion subregionId], _regionId)];
+                    [subregion subregionId], _regionId, [subregion name])];
         [items addObject:item];
     }
     [self setItems:items];

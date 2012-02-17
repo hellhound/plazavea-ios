@@ -27,12 +27,17 @@
 #import "Stores/StoreListController.h"
 #import "Stores/StoreDetailController.h"
 #import "Stores/StoreMapController.h"
+#import "BodyMeter/Constants.h"
+#import "BodyMeter/DiagnosisController.h"
 #import "Emergency/Constants.h"
 #import "Emergency/EmergencyCategoryController.h"
 #import "Wines/Constants.h"
 #import "Wines/StrainListController.h"
 #import "Wines/WineListController.h"
 #import "Wines/WineDetailController.h"
+#import "Wines/WineInfoController.h"
+#import "Wines/WineTasteController.h"
+#import "Wines/WineTipsController.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodDetailController.h"
@@ -48,6 +53,8 @@
 - (void)dealloc
 {
     [_window release];
+    [_facebook release];
+    [_twitter release];
     [_context release];
     [_model release];
     [_coordinator release];
@@ -58,7 +65,7 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize window = _window;
+@synthesize window = _window, facebook = _facebook, twitter = _twitter;
 
 - (NSString *)getUUID{
     //get a UUID value from UserDefaults
@@ -83,8 +90,23 @@
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    // Conf Facebook
+    _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:kAccessTokenKey] &&
+            [defaults objectForKey:kExpirationDateKey]) {
+        [_facebook setAccessToken:[defaults objectForKey:kAccessTokenKey]];
+        [_facebook setExpirationDate:
+                [defaults objectForKey:kExpirationDateKey]];
+    }
+    // Conf Twitter
+    _twitter = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
+    
+    [_twitter setConsumerKey:kOAuthConsumerKey];
+    [_twitter setConsumerSecret:kOAuthConsumerSecret];
+    // Style sheet
     [TTStyleSheet setGlobalStyleSheet:[[[StyleSheet alloc] init] autorelease]];
-
     // Set the maxContentLength to auto
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
 
@@ -102,6 +124,10 @@
     // custom selector for initialization
     [map from:kURLShoppingLists
             toViewController:[ShoppingListsController class]
+                selector:@selector(init)];
+    // BodyMeter
+    [map from:kURLBodyMeterDiagnosis
+            toViewController:[DiagnosisController class]
                 selector:@selector(init)];
     // Recipes
     [map from:kURLMeats
@@ -169,6 +195,14 @@
             toViewController:[WineListController class]];
     [map from:kURLWineDetail
             toViewController:[WineDetailController class]];
+    [map from:kURLWineInfo
+            toViewController:[WineInfoController class]];
+    [map from:kURLWineTaste
+            toViewController:[WineTasteController class]];
+    [map from:kURLWineTips
+            toViewController:[WineTipsController class]];
+    [map from:kURLWineRecipe
+            toViewController:[RecipeListController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]
@@ -185,10 +219,19 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)URL
 {
-    [[TTNavigator navigator] openURLAction:
+    /*[[TTNavigator navigator] openURLAction:
             [[TTURLAction actionWithURLPath:
                 [URL absoluteString]] applyAnimated:YES]];
-    return YES;
+    return YES;*/
+    return [_facebook handleOpenURL:URL];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [_facebook handleOpenURL:url];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -205,5 +248,36 @@
 {
     // FIXME: Opens URLs systematically!!!
     return YES;
+}
+
+#pragma mark -
+#pragma <FBSessionDelegate>
+
+- (void)fbDidLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[_facebook accessToken] forKey:kAccessTokenKey];
+    [defaults setObject:[_facebook expirationDate] forKey:kExpirationDateKey];
+    [defaults synchronize];
+}
+
+#pragma mark -
+#pragma mark <SA_OAuthTwitterEngineDelegate>
+
+- (void)storeCachedTwitterOAuthData:(NSString *)data
+                        forUsername:(NSString *)username
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:data forKey:kOAuthData];
+    [defaults synchronize];
+}
+
+- (NSString *)cachedTwitterOAuthDataForUsername:(NSString *)username
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    return [defaults objectForKey:kOAuthData];
 }
 @end

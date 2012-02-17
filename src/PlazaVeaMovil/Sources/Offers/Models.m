@@ -81,6 +81,7 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [_code release];
     [_name release];
     [_longDescription release];
+    [_legalese release];
     [_price release];
     [_oldPrice release];
     [_discount release];
@@ -127,7 +128,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
         longDescription = _longDescription, price = _price,
             oldPrice = _oldPrice, discount = _discount, validFrom = _validFrom,
             validTo = _validTo, pictureURL = _pictureURL,
-            facebookURL = _facebookURL, twitterURL = _twitterURL;
+            facebookURL = _facebookURL, twitterURL = _twitterURL,
+            legalese = _legalese;
             
 
 + (id)shortOfferFromDictionary:(NSDictionary *)rawOffer
@@ -182,7 +184,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if (offer == nil)
         return nil;
     
-    NSString *longDescription, *discount, *facebookURL, *twitterURL;
+    NSString *longDescription, *discount, *facebookURL, *twitterURL, *legalese,
+            *validFrom, *validTo;
     NSNumber *oldPrice;
     NSArray *extraPictureURLs;
     NSMutableArray *mutableExtraPictureURLs =
@@ -191,6 +194,10 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     if ((longDescription = [rawOffer objectForKey:kOfferDescriptionKey]) == nil)
         return nil;
     if (![longDescription isKindOfClass:[NSString class]])
+        return nil;
+    if ((legalese = [rawOffer objectForKey:kOfferLegaleseKey]) == nil)
+        return nil;
+    if (![legalese isKindOfClass:[NSString class]])
         return nil;
     if ((oldPrice = [rawOffer objectForKey:kOfferOldPriceKey]) == nil)
         return  nil;
@@ -225,9 +232,26 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             return nil;
         twitterURL = nil;
     }
+    if ((validFrom = [rawOffer objectForKey:kOfferValidFromKey]) == nil)
+        return nil;
+    if (![validFrom isKindOfClass:[NSString class]])
+        return  nil;
+    if ((validTo = [rawOffer objectForKey:kOfferValidToKey]) == nil)
+        return nil;
+    if (![validTo isKindOfClass:[NSString class]])
+        return  nil;
+    
+    NSDateFormatter *dateFormatter =
+            [[[NSDateFormatter alloc] init] autorelease];
+    
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     [offer setLongDescription:longDescription];
+    [offer setLegalese:legalese];
     [offer setOldPrice:oldPrice];
     [offer setDiscount:discount];
+    [offer setValidFrom:[dateFormatter dateFromString:validFrom]];
+    [offer setValidTo:[dateFormatter dateFromString:validTo]];
     if (facebookURL)
         [offer setFacebookURL:[NSURL URLWithString:facebookURL]];
     if (twitterURL)
@@ -258,12 +282,15 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     [self setCode:[[offer code] copy]];
     [self setName:[[offer name] copy]];
     [self setLongDescription:[[offer longDescription] copy]];
+    [self setLegalese:[[offer legalese] copy]];
     [self setPrice:[offer price]];
     [self setOldPrice:[offer oldPrice]];
     [self setDiscount:[[offer discount] copy]];
     [self setPictureURL:[offer pictureURL]];
     [self setFacebookURL:[offer facebookURL]];
     [self setTwitterURL:[offer twitterURL]];
+    [self setValidFrom:[offer validFrom]];
+    [self setValidTo:[offer validTo]];
     
     NSMutableArray *extraPictureURLs =
             [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
@@ -518,13 +545,12 @@ static NSString *const kMutablePromotionsKey = @"promotions";
     NSArray *extraPictureURLs;
     NSString *facebookURL, *twitterURL;
     Promotion *promotion =
-    [self shortPromotionFromDictionary:rawPromotion];
+            [self shortPromotionFromDictionary:rawPromotion];
     NSMutableArray *mutableExtraPictureURLs =
-    [promotion mutableArrayValueForKey:kMutableExtraPictureURLsKey];
+            [promotion mutableArrayValueForKey:kMutableExtraPictureURLsKey];
     
     if (promotion == nil)
         return nil;
-    
     if ((description =
          [rawPromotion objectForKey:kPromotionDescriptionKey]) == nil)
         return nil;
@@ -563,10 +589,16 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             return nil;
         twitterURL = nil;
     }
+    NSDateFormatter *dateFormatter =
+            [[[NSDateFormatter alloc] init] autorelease];
+    
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    
     [promotion setLongDescription:description];
     [promotion setLegalese:legalese];
-    [promotion setValidFrom:validFrom];
-    [promotion setValidTo:validTo];
+    [promotion setValidFrom:[dateFormatter dateFromString:validFrom]];
+    [promotion setValidTo:[dateFormatter dateFromString:validTo]];
     [mutableExtraPictureURLs addObjectsFromArray:extraPictureURLs];
     if (facebookURL)
         [promotion setFacebookURL:[NSURL URLWithString:facebookURL]];

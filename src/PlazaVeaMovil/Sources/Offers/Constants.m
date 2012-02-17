@@ -11,6 +11,7 @@ NSString *const kOfferIdKey = @"id";
 NSString *const kOfferCodeKey = @"code";
 NSString *const kOfferNameKey = @"name";
 NSString *const kOfferDescriptionKey = @"description";
+NSString *const kOfferLegaleseKey = @"legalese";
 NSString *const kOfferPriceKey = @"price";
 NSString *const kOfferOldPriceKey = @"old_price";
 NSString *const kOfferDiscountKey = @"discount";
@@ -70,8 +71,10 @@ NSString *const kOfferListSubtitleForEmpty = @"Por favor intente de nuevo más "
 //      @"tarde, aún no existen ofertas disponible", nil)
 NSString *const kOfferListTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
-NSString *const kOfferListSubtitleForError = @"Error";
-//NSLocalizedString(@"Error", nil)
+NSString *const kOfferListSubtitleForError = @"Por favor intente de nuevo más "
+        @"tarde, aún no existen ofertas disponible";
+//NSLocalizedString(@"Por favor intente de nuevo más "
+//      @"tarde, aún no existen ofertas disponible", nil)
 
 NSString *const kOfferListPriceTag = @" a S/.";
 //NSLocalizedString(@" a S/.", nil)
@@ -90,6 +93,22 @@ NSString *const kOfferDetailSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información para esta oferta", nil)
 NSString *const kOfferDetailTitleForError = @"Error";
 //NSLocalizedString(@"Error", nil)
+NSString *const kOfferDetailSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existe información para esta oferta";
+//NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información para esta oferta", nil)
+NSString *const kOfferDetailOldPriceCaption = @"Precio original";
+//NSLocalizedString(@"Precio original", nil)
+NSString *const kOfferDetailPriceCaption = @"Precio de la oferta";
+//NSLocalizedString(@"Precio de la oferta", nil)
+NSString *const kOfferDetailValidCaption = @"Vigencia";
+//NSLocalizedString(@"Vigencia", nil)
+NSString *const kOfferDetailPricePrefix = @"S/. %.2f";
+//NSLocalizedString(@"S/. %.2f", nil)
+NSString *const kOfferDetailValidPrefix = @"%@ al %@";
+//NSLocalizedString(@"%@ al %@", nil)
+NSString *const kOfferDetailLegaleseCaption = @"Legales";
+//NSLocalizedString(@"Legales", nil)
 
 // PromotionListDataSource's constants
 
@@ -106,11 +125,13 @@ NSString *const kPromotionListSubtitleForEmpty = @"Por favor intente de nuevo "
 //      @"promociones disponibles", nil)
 NSString *const kPromotionListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kPromotionListSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionListSubtitleForError = @"Por favor intente de nuevo "
+        @"más tarde, aún no existen promociones disponibles";
+// NSLocalizedString(@"Por favor intente de nuevo más tarde, aún no existen "
+//      @"promociones disponibles", nil)
 
 const CGFloat kPromotionListImageWidth = 320.;
-const CGFloat kPromotionListImageHeight = 100.;
+const CGFloat kPromotionListImageHeight = 140.;
 NSString *const kPromotionListDefaultBanner = @"bundle://default-banner.png";
 //UISegmentedControl item's label for the toolbar: promo button
 NSString *const kOfferPromotionButtonLabel = @"Promociones";
@@ -135,8 +156,12 @@ NSString *const kPromotionDetailSubtitleForEmpty = @"Por favor intente de "
 //      @" nuevo más tarde, aún no existe información para esta oferta", nil)
 NSString *const kPromotionDetailTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
-NSString *const kPromotionDetailSubtitleForError = @"Error";
-// NSLocalizedString(@"Error", nil)
+NSString *const kPromotionDetailSubtitleForError = @"Por favor intente de "
+        @"nuevo más tarde, aún no existe información para esta oferta";
+// NSLocalizedString(@"Por favor intente de "
+//      @" nuevo más tarde, aún no existe información para esta oferta", nil)
+NSString *const kPromotionDetailLegaleseCaption = @"Legales";
+//NSLocalizedString(@"Legales", nil)
 
 // PromotionListController's constants
 
@@ -155,24 +180,51 @@ NSString *const kOfferListTitle = @"Ofertas";
 // Messages
 NSString *const kOfferDetailTitle = @"Detalle de oferta";
 // NSLocalizedString(@"Detalle de oferta", nil)
-const CGFloat kOfferDetailImageWidth = 140.;
+const CGFloat kOfferDetailBackground = .85;
+const CGFloat kOfferDetailImageWidth = 320.;
 const CGFloat kOfferDetailImageHeight = 140.;
 const CGFloat kOfferDetailLabelWidth = 320.;
 NSString *const kOfferDetailDefaultImage =
         @"bundle://default-offer-detail.png";
+NSString *const kOfferDetailShare = @"Compartir vía";
+// NSLocalizedString(@"Compartir vía", nil)
+NSString *const kOfferDetailMailImage = @"bundle://mail-icon.png";
+NSString *const kOfferDetailFacebookImage = 
+        @"bundle://facebook-icon.png";
+NSString *const kOfferDetailTwitterImage = @"bundle://twitter-icon.png";
 
-NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
-NSString *const kOfferBannerDefaultImage = @"bundle://offer-banner.png";
+NSString *const kBannerDefaultImage =
+        @"bundle://default-banner-offers-list.png";
+NSString *const kOfferBannerDefaultImage =
+        @"bundle://default-banner-offers-list.png";
 const CGFloat kBannerImageWidth = 320.;
-const CGFloat kBannerImageHeight = 100.;
+const CGFloat kBannerImageHeight = 140.;
 const CGFloat kOfferListImageWidth = 50.;
 const CGFloat kOfferListImageHeight = 50.;
+NSString *const kTwitterAlertTitle = @"Enviar tweet";
+// NSLocalizedString(@"Enviar tweet", nil)
+NSString *const kTwitterAlertCancel = @"Cancelar";
+// NSLocalizedString(@"Cancelar", nil)
+NSString *const kTwitterAlertSend = @"Enviar";
+// NSLocalizedString(@"Enviar", nil)
+NSString *const kTwitterAlertMessage = @"%@ %@";
+// NSLocalizedString(@"%@ %@", nil)
+NSString *const kFBLink = @"link";
+// NSLocalizedString(@"link", nil)
+NSString *const kFBPicture = @"picture";
+// NSLocalizedString(@"picture", nil)
+NSString *const kFBCaption = @"caption";
+// NSLocalizedString(@"caption", nil)
+NSString *const kFBDescription = @"description";
+// NSLocalizedString(@"description", nil)
+NSString *const kFBFeedDialog = @"feed";
+// NSLocalizedString(@"feed", nil)
 
 // PromotionDetailController's constants
 NSString *const kPromotionDetailTitle = @"Detalle de la promoción";
 // NSLocalizedString(@"Detalle de la promoción", nil)
 const CGFloat kPromotionDetailImageWidth = 320.;
-const CGFloat kPromotionDetailImageHeight = 100.;
+const CGFloat kPromotionDetailImageHeight = 140.;
 
 //Controllers' URL
 NSString *const kURLOfferList = @"tt://launcher/offers/offers/";
