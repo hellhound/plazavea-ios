@@ -109,6 +109,29 @@ extern NSString *const kWineCellaringUnits;
 extern NSString *const kWineOxygenationUnits;
 extern NSString *const kWineRecommendedLabel;
 
+// WineFilterController's constants
+typedef enum {
+    kWineFilterSection,
+    kWineGoSection
+} WineFilterSectionType;
+
+typedef enum {
+    kWineCountryRow,
+    kWineCategoryRow,
+    kWineStrainRow,
+    kWinePriceRow
+} WineFilterRowType;
+
+typedef enum {
+    kWineGoRow
+} WineGoRowType;
+
+extern NSString *const cellId;
+extern NSString *const kWineUndefinedLabel;
+extern NSString *const kWineCategoryLabel;
+extern NSString *const kWineStrainLabel;
+extern NSString *const kWineGoLabel;
+
 // Generic sizes and images
 extern const CGFloat kWineDetailImageWidth;
 extern const CGFloat kWineDetailImageHeight;
@@ -121,6 +144,7 @@ extern NSString *const kWineBackgroundImage;
 extern NSString *const kSomelierTitle;
 
 // Controllers' URLs
+extern NSString *const kURLWineFilter;
 extern NSString *const kURLStrainList;
 extern NSString *const kURLWineList;
 extern NSString *const kURLWineDetail;
@@ -130,6 +154,7 @@ extern NSString *const kURLWineTips;
 extern NSString *const kURLWineRecipe;
 
 // Controllers' URL calls
+extern NSString *const kURLWineFilterCall;
 extern NSString *const kURLStrainListCall;
 extern NSString *const kURLWineListCall;
 extern NSString *const kURLWineDetailCall;

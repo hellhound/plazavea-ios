@@ -168,6 +168,10 @@ NSString *const kWineOxygenationUnits = @"%@ minutos";
 NSString *const kWineRecommendedLabel = @"Platos Recomendados";
 // NSLocalizedString(@"Vinos Recomendados", nil)
 
+// WineFilterController's constants
+NSString *const cellId = @"cellId";
+NSString *const kWineUndefinedLabel = @"No hay información";
+
 // Generic sizes and images
 const CGFloat kWineDetailImageWidth = 320.;
 const CGFloat kWineDetailImageHeight = 140.;
@@ -175,14 +179,17 @@ const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
 NSString *const kWineBannerImage = @"bundle://sommelier-banner.jpg";
 NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
+NSString *const kWineCategoryLabel = @"Categoría";
+NSString *const kWineStrainLabel = @"Cepa";
+NSString *const kWineGoLabel = @"Buscar vinos";
 
 // Launcher
 NSString *const kSomelierTitle = @"Sommelier";
 // NSLocalizedString(@""Somelier", nil) 
 
 // Controllers' URLs
+NSString *const kURLWineFilter = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
-
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
 NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
@@ -196,6 +203,7 @@ NSString *const kURLWineRecipe =
         @"tt://launcher/wines/wine_recipe/(initWithWineId:)/(name:)/";
 
 // Controllers' URL calls
+NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
 NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/";

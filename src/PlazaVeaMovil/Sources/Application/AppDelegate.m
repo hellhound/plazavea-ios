@@ -38,6 +38,7 @@
 #import "Wines/WineInfoController.h"
 #import "Wines/WineTasteController.h"
 #import "Wines/WineTipsController.h"
+#import "Wines/WineFilterController.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodDetailController.h"
@@ -203,6 +204,8 @@
             toViewController:[WineTipsController class]];
     [map from:kURLWineRecipe
             toViewController:[RecipeListController class]];
+    [map from:kURLWineFilter
+            toViewController:[WineFilterController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]

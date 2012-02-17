@@ -207,6 +207,7 @@
 		2FADB7021448F10F00C9AB88 /* OfferDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB7011448F10F00C9AB88 /* OfferDetailController.m */; };
 		2FAEB17F14EAEC0F003E96E8 /* WineTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */; };
 		2FAEB18014EAEC0F003E96E8 /* WineTipsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */; };
+		2FAF50CB14EEB53800E19C1A /* WineFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF50CA14EEB53800E19C1A /* WineFilterController.m */; };
 		2FAFC10D14E30AB100401B02 /* andean-tubercle-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */; };
 		2FAFC10E14E30AB100401B02 /* andean-tubercle-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */; };
 		2FAFC10F14E30AB100401B02 /* cereals-banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC0EF14E30AB100401B02 /* cereals-banner.jpg */; };
@@ -971,6 +972,7 @@
 		2FADB7011448F10F00C9AB88 /* OfferDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailController.m; sourceTree = "<group>"; };
 		2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTipsController.m; sourceTree = "<group>"; };
 		2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTipsDataSource.m; sourceTree = "<group>"; };
+		2FAF50CA14EEB53800E19C1A /* WineFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineFilterController.m; sourceTree = "<group>"; };
 		2FAFC0ED14E30AB100401B02 /* andean-tubercle-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andean-tubercle-banner.jpg"; sourceTree = "<group>"; };
 		2FAFC0EE14E30AB100401B02 /* andean-tubercle-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andean-tubercle-banner@2x.jpg"; sourceTree = "<group>"; };
 		2FAFC0EF14E30AB100401B02 /* cereals-banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cereals-banner.jpg"; sourceTree = "<group>"; };
@@ -1635,6 +1637,7 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2FAF50CA14EEB53800E19C1A /* WineFilterController.m */,
 				2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */,
 				2FAEB17D14EAEC0F003E96E8 /* WineTipsController.m */,
 				2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */,
@@ -2700,6 +2703,7 @@
 				2FAEB17F14EAEC0F003E96E8 /* WineTipsController.m in Sources */,
 				2FAEB18014EAEC0F003E96E8 /* WineTipsDataSource.m in Sources */,
 				2F60688E14EAFD6400493E3B /* WineTableViewDelegate.m in Sources */,
+				2FAF50CB14EEB53800E19C1A /* WineFilterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
