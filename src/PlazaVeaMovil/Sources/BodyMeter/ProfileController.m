@@ -26,6 +26,7 @@ static CGFloat headerMinHeight = 40.;
 @property (nonatomic, retain) NSUserDefaults *defaults;
 @property (nonatomic, assign) pickerIndex pickerIndex;
 @property (nonatomic, retain) NSMutableArray *pickerItems;
+@property (nonatomic, retain) UIFont *sectionFooterFont;
 - (void)updateProfile;
 - (void)dismissPicker:(id)sender;
 - (void)pushDiagnosis;
@@ -50,6 +51,8 @@ static CGFloat headerMinHeight = 40.;
         [[self navigationController] setNavigationBarHidden:NO];
         [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
                 alpha:1.]];
+        _sectionFoooterFont =
+                [UIFont systemFontOfSize:kBodyMeterSectionFooterFontSize];
     }
     return self;
 }
@@ -114,8 +117,10 @@ static CGFloat headerMinHeight = 40.;
     [footer setLineBreakMode:UILineBreakModeWordWrap];
     [footer setTextAlignment:UITextAlignmentLeft];
     [footer setBackgroundColor:[UIColor clearColor]];
-    [footer setFont:[UIFont systemFontOfSize:kBodyMeterFooterFontSize]];
-    [footer setTextColor:[UIColor darkGrayColor]];
+    [footer setFont:[UIFont systemFontOfSize:kBodyMeterImageFooterFontSize]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(footerFontColor)]) {
+        [footer setTextColor:(UIColor *)TTSTYLE(footerFontColor)];
+    }
     [footer setShadowColor:[UIColor whiteColor]];
     [footer setShadowOffset:CGSizeMake(.0, 1.)];
     
@@ -202,40 +207,8 @@ static CGFloat headerMinHeight = 40.;
                     otherButtonTitles:nil] autorelease];
         
         [alertView show];
-    } else {
-       // [self pushDiagnosis];
     }
 }
-
-/*- (void)viewDidAppear:(BOOL)animated
-{
-    BOOL profileIsFull = YES;
-    
-    if (![_profile age])
-        profileIsFull = NO;
-    [_profile setGender:(kBodyMeterGenderType)
-     [[_defaults objectForKey:kBodyMeterGenderKey] intValue]];
-    if (![_profile gender])
-        profileIsFull = NO;
-    [_profile setHeight:[_defaults objectForKey:kBodyMeterHeightKey]];
-    if (![_profile height])
-        profileIsFull = NO;
-    [_profile setWeight:[_defaults objectForKey:kBodyMeterWeightKey]];
-    if (![_profile weight])
-        profileIsFull = NO;
-    [_profile setActivity:(kBodyMeterActivityType)
-     [[_defaults objectForKey:kBodyMeterActivityKey] intValue]];
-    if (![_profile activity])
-        profileIsFull = NO;
-    [_profile setIdealWeight:[_defaults objectForKey:kBodyMeterIdealWeightKey]];
-    if (!profileIsFull && _showProfile) {
-        [super viewDidAppear:animated];
-        _showProfile = NO;
-    } else if (_showProfile) {
-        [self pushDiagnosis];
-        _showProfile = NO;
-    }
-}*/
 
 #pragma mark -
 #pragma mark ProfileController (Public)
@@ -246,7 +219,7 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark ProfileController (Private)
 
 @synthesize defaults = _defaults, pickerIndex = _pickerIndex,
-        pickerItems = _pickerItems;
+        pickerItems = _pickerItems, sectionFooterFont = _sectionFoooterFont;
 
 - (void)updateProfile
 {
@@ -311,10 +284,6 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)pushDiagnosis
 {
-    /*DiagnosisController *controller = [[DiagnosisController alloc] init];
-    
-    [[self navigationController] pushViewController:controller animated:YES];
-    [controller release];*/
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
     [center postNotificationName:kBodyMeterShowDiagnosisNotification
@@ -470,23 +439,6 @@ titleForHeaderInSection:(NSInteger)section
     return nil;
 }
 
-- (NSString *)tableView:(UITableView *)tableView
-titleForFooterInSection:(NSInteger)section
-{
-    switch (section) {
-        case kBodyMeterProfileSection:
-            return kBodyMeterProfileFooterLabel;
-            break;
-        case kBodyMeterWeightSection:
-            return kBodyMeterWeightFooterLabel;
-            break;
-        default:
-            return nil;
-            break;
-    }
-    return nil;
-}
-
 #pragma mark -
 #pragma mark <UITableViewDelegate>
 
@@ -610,6 +562,70 @@ titleForFooterInSection:(NSInteger)section
         [toolbar release];
         [pickerView release];
     }
+}
+
+- (CGFloat)    tableView:(UITableView *)tableView
+heightForFooterInSection:(NSInteger)section
+{
+    CGFloat footerHeight;
+    CGSize constrainedSize = CGSizeMake([self tableView].frame.size.width -
+            (margin * 4.), MAXFLOAT);
+                                        
+    switch (section) {
+        case kBodyMeterProfileSection:
+            footerHeight = [kBodyMeterProfileFooterLabel sizeWithFont:
+                    _sectionFoooterFont constrainedToSize:constrainedSize
+                        lineBreakMode:UILineBreakModeWordWrap].height;
+            break;
+        case kBodyMeterWeightSection:
+            footerHeight = [kBodyMeterWeightFooterLabel sizeWithFont:
+                    _sectionFoooterFont constrainedToSize:constrainedSize
+                        lineBreakMode:UILineBreakModeWordWrap].height;
+            break;
+        default:
+            footerHeight = .0;
+            break;
+    }
+    return footerHeight;
+}
+
+- (UIView *) tableView:(UITableView *)tableView
+viewForFooterInSection:(NSInteger)section
+{
+    CGSize constrainedSize = CGSizeMake([self tableView].frame.size.width -
+            (margin * 4.), MAXFLOAT);
+    UILabel *footerLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [footerLabel setFont:_sectionFoooterFont];
+    [footerLabel setNumberOfLines:.0];
+    [footerLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(footerFontColor)]) {
+        [footerLabel setTextColor:(UIColor *)TTSTYLE(footerFontColor)];
+    }
+    [footerLabel setShadowColor:[UIColor whiteColor]];
+    [footerLabel setShadowOffset:CGSizeMake(.0, 1.)];
+    switch (section) {
+        case kBodyMeterProfileSection:
+            [footerLabel setText:kBodyMeterProfileFooterLabel];
+            break;
+        case kBodyMeterWeightSection:
+            [footerLabel setText:kBodyMeterWeightFooterLabel];
+            break;
+        default:
+            break;
+    }
+    CGSize footerSize = [[footerLabel text] sizeWithFont:
+            _sectionFoooterFont constrainedToSize:constrainedSize
+                lineBreakMode:UILineBreakModeWordWrap];
+    UIView *footer = [[[UIView alloc] initWithFrame:CGRectMake(.0, .0,
+            footerSize.width + (margin * 4.), footerSize.height)]
+            autorelease];
+    
+    [footerLabel setFrame:CGRectMake((margin * 2.), .0, footerSize.width,
+            footerSize.height)];
+    [footer addSubview:footerLabel];
+    return footer;
 }
 
 #pragma mark -

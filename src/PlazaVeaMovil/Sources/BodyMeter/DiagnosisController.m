@@ -130,8 +130,10 @@ static CGFloat headerMinHeight = 40.;
     [footer setLineBreakMode:UILineBreakModeWordWrap];
     [footer setTextAlignment:UITextAlignmentLeft];
     [footer setBackgroundColor:[UIColor clearColor]];
-    [footer setFont:[UIFont systemFontOfSize:kBodyMeterFooterFontSize]];
-    [footer setTextColor:[UIColor darkGrayColor]];
+    [footer setFont:[UIFont systemFontOfSize:kBodyMeterImageFooterFontSize]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(footerFontColor)]) {
+        [footer setTextColor:(UIColor *)TTSTYLE(footerFontColor)];
+    }
     [footer setShadowColor:[UIColor whiteColor]];
     [footer setShadowOffset:CGSizeMake(.0, 1.)];
     

@@ -167,7 +167,8 @@ NSString *const kBodyMeterShowDiagnosisNotification = @"showDiagnosis";
 NSString *const kbodyMeterGoToLauncherNotification = @"goToLauncher";
 NSString *const kBodyMeterFooter = 
         @"Nutricionista: Rocio Magarino\nemail: rocio.magarino@sodexo.com";
-const CGFloat kBodyMeterFooterFontSize = 12.;
+const CGFloat kBodyMeterImageFooterFontSize = 12.;
+const CGFloat kBodyMeterSectionFooterFontSize = 14.;
 
 // DiagnosisController constants
 NSString *const kBodyMeterDiagnosisBackButton = @"Diagnóstico";

@@ -79,6 +79,9 @@
 #define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")
 #define WINE_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
 
+// body meter
+#define FOOTER_FONT_COLOR RGBCOLOR(60., 69., 87.)
+
 @implementation StyleSheet
 
 #pragma mark -
@@ -312,5 +315,13 @@
 - (TTStyle *)wineSectionHeader
 {
     return [TTImageStyle styleWithImage:WINE_SECTION_HEADER next:nil];
+}
+
+#pragma mark -
+#pragma mark BodyMeter
+
+- (UIColor *)footerFontColor
+{
+    return FOOTER_FONT_COLOR;
 }
 @end

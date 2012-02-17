@@ -14,6 +14,7 @@
     pickerIndex _pickerIndex;
     NSMutableArray *_pickerItems;
     BOOL _showProfile;
+    UIFont *_sectionFoooterFont;
 }
 @property (nonatomic, retain) Profile *profile;
 @end

@@ -157,7 +157,8 @@ extern const CGFloat kBodyMeterColor;
 extern NSString *const kBodyMeterShowDiagnosisNotification;
 extern NSString *const kbodyMeterGoToLauncherNotification;
 extern NSString *const kBodyMeterFooter;
-extern const CGFloat kBodyMeterFooterFontSize;
+extern const CGFloat kBodyMeterImageFooterFontSize;
+extern const CGFloat kBodyMeterSectionFooterFontSize;
 
 //DiagnosisController constants
 extern NSString *const kBodyMeterDiagnosisBackButton;
