@@ -171,6 +171,7 @@ NSString *const kWineRecommendedLabel = @"Platos Recomendados";
 // WineFilterController's constants
 NSString *const cellId = @"cellId";
 NSString *const kWineUndefinedLabel = @"No hay información";
+const CGFloat kWineColor = .85;
 
 // Generic sizes and images
 const CGFloat kWineDetailImageWidth = 320.;

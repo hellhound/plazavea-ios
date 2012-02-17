@@ -131,6 +131,7 @@ extern NSString *const kWineUndefinedLabel;
 extern NSString *const kWineCategoryLabel;
 extern NSString *const kWineStrainLabel;
 extern NSString *const kWineGoLabel;
+extern const CGFloat kWineColor;
 
 // Generic sizes and images
 extern const CGFloat kWineDetailImageWidth;

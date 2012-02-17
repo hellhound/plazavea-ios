@@ -2,9 +2,95 @@
 #import <UIKit/UIKit.h>
 
 #import "Wines/WineFilterController.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Wines/Constants.h"
 
+static CGFloat margin = 5.;
+static CGFloat headerMinHeight = 40.;
+static CGFloat titleWidth = 320.;
+
 @implementation WineFilterController
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id) init
+{
+    if ((self = [super initWithStyle:UITableViewStyleGrouped]) != nil) {
+        // Conf nav bar
+        if ([TTStyleSheet
+                hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+            [[self navigationItem] setTitleView:[[[UIImageView alloc]
+                    initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
+                        autorelease]];
+        }
+        [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
+                title:kSomelierTitle]];
+        [[self view] setBackgroundColor:[UIColor colorWithWhite:kWineColor
+                alpha:1.]];
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark WineFilterController
+
+- (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
+{
+    UIView *headerView =
+    [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    // Conf the image
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+     UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
+    // Conf the label
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(tableTextHeaderFont)])
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    
+    UIFont *font = [titleLabel font];
+    CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
+    CGFloat titleHeight = [title sizeWithFont:font
+            constrainedToSize:constrainedTitleSize
+                lineBreakMode:UILineBreakModeWordWrap].height;
+    CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
+    
+    if ((titleHeight + (margin * 2.)) <= headerMinHeight) {
+        titleFrame.origin.y = (headerMinHeight - titleHeight) / 2.;
+        titleHeight = headerMinHeight - (margin * 2.);
+    } else {
+        titleFrame.origin.y += margin;
+    }
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
+    
+    CGRect headerFrame = CGRectMake(.0, .0, titleWidth, kWineDetailImageHeight +
+            titleHeight + (margin * 2.));
+    
+    [headerView setFrame:headerFrame];
+    [imageView setFrame:CGRectOffset([imageView frame], .0,
+            titleHeight + (margin * 2.))];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    
+    UIImageView *background = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kWineBackgroundImage)] autorelease];
+    [headerView insertSubview:background atIndex:0];
+    [headerView setClipsToBounds:YES];
+    return headerView;
+}
 
 #pragma mark -
 #pragma mark <UITableViewDataSource>
@@ -68,6 +154,7 @@
             switch ([indexPath row]) {
                 case kWineGoRow:
                     textLabel = kWineGoLabel;
+                    detailTextLabel = @"";
                     break;
                 default:
                     break;
@@ -80,6 +167,33 @@
     [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
     [[cell detailTextLabel] setText:detailTextLabel];
     [[cell detailTextLabel] setAdjustsFontSizeToFitWidth:YES];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+#pragma mark -
+#pragma mark <UITableViewDelegate>
+
+- (void)      tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch ([indexPath section]) {
+        case kWineFilterSection:
+            break;
+        case kWineGoSection:
+            switch ([indexPath row]) {
+                case kWineGoRow:
+                    [[TTNavigator navigator] openURLAction:
+                            [[TTURLAction actionWithURLPath:kURLStrainListCall]
+                                applyAnimated:YES]];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
 }
 @end

@@ -7,4 +7,5 @@
 {
     
 }
+- (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
 @end
