@@ -71,7 +71,7 @@
 #define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
 #define MEATS_BACKGROUND TTIMAGE(@"bundle://meats-background.png")
 #define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
-#define MEATS_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
+#define MEATS_SECTION_HEADER TTIMAGE(@"bundle://meats-section-header.png")
 #define RECIPE_DETAIL_BACKGROUND \
         TTIMAGE(@"bundle://recipes-picture-background.png")
 
