@@ -12,5 +12,5 @@
 
 - (id)initWithList:(NSString *)list;
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
-- (void)back;
+- (void)back:(id)sender;
 @end

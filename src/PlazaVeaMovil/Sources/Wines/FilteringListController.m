@@ -94,12 +94,13 @@ static CGFloat titleWidth = 320.;
     
     UIImageView *background = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kWineBackgroundImage)] autorelease];
+    
     [headerView insertSubview:background atIndex:0];
     [headerView setClipsToBounds:YES];
     return headerView;
 }
 
-- (void)back
+- (void)back:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
 }

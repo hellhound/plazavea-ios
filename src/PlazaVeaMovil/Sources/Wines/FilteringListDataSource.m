@@ -62,7 +62,7 @@
     for (int i = 0; i < 10; i++) {
         TTTableTextItem *item = [TTTableTextItem itemWithText:[NSString
                 stringWithFormat:@"Ítem %i", i] delegate:_controller
-                    selector:@selector(back)];
+                    selector:@selector(back:)];
         
         [items addObject:item];
     }
