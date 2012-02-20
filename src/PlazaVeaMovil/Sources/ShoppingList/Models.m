@@ -338,6 +338,18 @@ static NSString *const kNSStringDescriptionKey = @"description";
     return [(NSArray *)[[[self items] allObjects] valueForKey:@"serialize"]
             componentsJoinedByString:@"\n"];
 }
+
+- (NSString *)serializeHTML
+{
+    NSString *serializeHTLM = @"<ul>";
+    
+    for (ShoppingItem *item in [self items]) {
+        serializeHTLM = [serializeHTLM stringByAppendingFormat:@"<li>%@</li>",
+                [item serialize]];
+    }
+    serializeHTLM = [serializeHTLM stringByAppendingString:@"</ul>"];
+    return serializeHTLM;
+}
 @end
 
 @implementation ShoppingItem

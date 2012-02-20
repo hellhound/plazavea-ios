@@ -102,6 +102,9 @@ extern NSString *const kShoppingListAlertTitle;
 extern NSString *const kShoppingListAlertMessage;
 extern NSString *const kShoppingListAlertCancel;
 extern NSString *const kShoppingListAlertCreate;
+extern NSString *const kShoppingListMailSubject;
+extern NSString *const kShoppingListMailHeader;
+extern NSString *const kShoppingListMailFooter;
 
 // HistoryEntryControlller's contstants
 extern NSString *const kHistoryEntryAlertTitle;
