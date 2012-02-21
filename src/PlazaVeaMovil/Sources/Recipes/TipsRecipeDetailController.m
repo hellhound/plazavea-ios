@@ -35,6 +35,14 @@
 #pragma mark -
 #pragma mark BaseRecipeDetailController
 
+- (id)initWithRecipeId:(NSString *)recipeId from:(NSString *)from
+{
+    if ((self = [super initWithRecipeId:recipeId from:from]) != nil) {
+        [[self tableView] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    }
+    return self;
+}
+
 - (void)createShoppingListFormRecipe
 {
     ShoppingList *shopingList = [(Recipe *)[self model] createShoppingList];
