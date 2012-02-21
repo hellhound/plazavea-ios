@@ -286,7 +286,6 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     [name setIndexed:YES]; // allows faster searching and sorting
     return [attributes setByAddingObjectsFromSet:
             [NSSet setWithObjects:name, nil]];
-
 }
 
 #pragma mark -
@@ -348,7 +347,7 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
     EmergencyFile *emergencyFile;
 
-    if ([[resultsController fetchedObjects] count] == 0){
+    if ([[resultsController fetchedObjects] count] == 0) {
         emergencyFile = [EmergencyFile fileWithName:csvFilePath
                 context:context];
         firstUpdate = YES;
@@ -357,9 +356,9 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
         emergencyFile = [[resultsController fetchedObjects]
             objectAtIndex:0];
     }
-    if (![[emergencyFile name] isEqualToString:csvFilePath]){
+    if (![[emergencyFile name] isEqualToString:csvFilePath]) {
         [emergencyFile setName:csvFilePath];
-    } else if(!firstUpdate) {
+    } else if (!firstUpdate) {
         return;
     }
     
@@ -400,9 +399,9 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
                     [emergencyNumber objectForKey:kEmergencyNumberPhone];
             [EmergencyNumber numberWithName:name phone:phone
                     category:emergencyCategory context:context];
-            [context save:nil];
         }
     }
+    [context save:nil];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

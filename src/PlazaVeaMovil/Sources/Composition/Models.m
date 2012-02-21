@@ -562,9 +562,9 @@ static NSRelationshipDescription *kCategoryRelationship;
                        calcium:calcium
                           iron:iron
                        context:context];
-            [context save:nil];
         }
     }
+    [context save:nil];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context
