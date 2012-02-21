@@ -262,6 +262,26 @@
     [defaults synchronize];
 }
 
+- (void)fbSessionInvalidated
+{
+    
+}
+
+- (void)fbDidLogout
+{
+    
+}
+
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+{
+    
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    
+}
+
 #pragma mark -
 #pragma mark <SA_OAuthTwitterEngineDelegate>
 
@@ -278,6 +298,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    return [defaults objectForKey:kOAuthData];
+    NSString *oaut = [defaults objectForKey:kOAuthData];
+    return oaut;
 }
 @end
