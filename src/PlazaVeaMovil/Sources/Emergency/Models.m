@@ -322,7 +322,7 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
 
-    if ([csvPathFiles count] == 0){
+    if ([csvPathFiles count] == 0) {
         return;
     }
 
@@ -371,14 +371,14 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     NSArray *pasredCSV = [csvString getParsedRows];
     NSMutableDictionary *emergencyThree = [NSMutableDictionary dictionary];
 
-    for (NSArray *parsedRow in pasredCSV){
+    for (NSArray *parsedRow in pasredCSV) {
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedNumber = [parsedRow objectAtIndex:2];
         NSMutableArray *parsedCollectionNumbers = [emergencyThree 
                 objectForKey:parsedRowCategory];
 
-        if (parsedCollectionNumbers == nil){
+        if (parsedCollectionNumbers == nil) {
             parsedCollectionNumbers = [NSMutableArray array];
             [emergencyThree setObject: parsedCollectionNumbers
                     forKey:parsedRowCategory];
@@ -387,13 +387,13 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
                 dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
                 parsedNumber, kEmergencyNumberPhone, nil]];
     }
-    for (NSString *categoryname in [emergencyThree allKeys]){
+    for (NSString *categoryname in [emergencyThree allKeys]) {
         EmergencyCategory *emergencyCategory = [EmergencyCategory
                 categoryWithName:categoryname context:context];
         NSArray *emergencyNumberCollection = [emergencyThree 
                 objectForKey:categoryname];
 
-        for (NSDictionary *emergencyNumber in emergencyNumberCollection){
+        for (NSDictionary *emergencyNumber in emergencyNumberCollection) {
             NSString *name =
                     [emergencyNumber objectForKey:kEmergencyNumberName];
             NSString *phone =

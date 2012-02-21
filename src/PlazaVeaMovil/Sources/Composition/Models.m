@@ -383,7 +383,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
     
-    if ([csvPathFiles count] == 0){
+    if ([csvPathFiles count] == 0) {
         return;
     }
     NSString *csvFilePath = [csvPathFiles objectAtIndex:1];
@@ -406,7 +406,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     
     FoodFile *foodFile;
     
-    if ([[resultsController fetchedObjects] count] == 0){
+    if ([[resultsController fetchedObjects] count] == 0) {
         foodFile = [FoodFile fileWithName:csvFilePath context:context];
         firstUpdate = YES;
         [context save:nil];
@@ -428,7 +428,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     NSMutableDictionary *foodThree = [NSMutableDictionary dictionary];
     NSString *parsedProperties = @"";
     
-    for (NSArray *parsedRow in pasredCSV){
+    for (NSArray *parsedRow in pasredCSV) {
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedCalories = [parsedRow objectAtIndex:3];

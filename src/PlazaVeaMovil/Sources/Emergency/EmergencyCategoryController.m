@@ -69,6 +69,7 @@ static CGFloat phoneHeight = 10.;
                 cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [EmergencyFile loadFromCSVinContext:context];
     }
     return self;
 }
