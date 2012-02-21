@@ -275,9 +275,7 @@
 }
 
 - (NSString *)cachedTwitterOAuthDataForUsername:(NSString *)username
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    return [defaults objectForKey:kOAuthData];
+{    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kOAuthData];
 }
 @end
