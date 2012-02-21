@@ -18,7 +18,7 @@
         // Something shitty just happened, abort, abort, abort!
         [error log];
         // TODO should present a nice UIViewAlert informing the error
-        //abort();
+        abort();
     }
 }
 

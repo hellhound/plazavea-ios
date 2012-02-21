@@ -26,6 +26,9 @@ extern NSString *const kShoppingHistoryEntryEntity;
 extern NSString *const kShoppingHistoryEntryClass;
 extern NSString *const kShoppingHistoryEntryName;
 
+// HistoryEntryFile model's constants
+extern NSString *const kHistoryEntryFileName;
+
 // ShoppingListsController's constants
 
 // Administration of shopping lists

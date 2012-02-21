@@ -50,3 +50,15 @@
 + (id)historyEntryWithName:(NSString *)name
          resultsController:(NSFetchedResultsController *)resultsController;
 @end
+
+@interface HistoryEntryFile: ManagedObject
+
+@property (nonatomic, retain) NSString *name;
+
++ (id)fileWithName:(NSString *)name
+           context:(NSManagedObjectContext *)context;
++ (id)fileWithName:(NSString *)name
+ resultsController:(NSFetchedResultsController *)resultsController;
++ (void)loadFromCSVinContext:(NSManagedObjectContext *)context;
++ (void)cleandata:(NSManagedObjectContext *)context;
+@end

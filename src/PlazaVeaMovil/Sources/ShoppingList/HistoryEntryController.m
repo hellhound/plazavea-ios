@@ -215,6 +215,7 @@ static NSString *kNameVariableKey = @"NAME";
                 cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [HistoryEntryFile loadFromCSVinContext:context];
     }
     return self;
 }
@@ -261,7 +262,7 @@ static NSString *kNameVariableKey = @"NAME";
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
-- (NSInteger)tableView:(UITableView *)tableView
+/*- (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfRows =
@@ -279,7 +280,7 @@ static NSString *kNameVariableKey = @"NAME";
         noLists = NO;
     }
     return numberOfRows;
-}
+}*/
 
 #pragma mark -
 #pragma mark <UIAlertViewDelegate>

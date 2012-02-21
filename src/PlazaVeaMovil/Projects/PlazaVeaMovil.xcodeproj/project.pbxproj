@@ -155,6 +155,8 @@
 		2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92814D74F900039D1F6 /* ProfileController.m */; };
 		2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92914D74F900039D1F6 /* RecomendationsController.m */; };
 		2F4875B1148C017A0027C2F0 /* composition-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4875B0148C017A0027C2F0 /* composition-background.png */; };
+		2F4D870714F29CAC00229012 /* meats-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D870514F29CAC00229012 /* meats-section-header.png */; };
+		2F4D870814F29CAC00229012 /* meats-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D870614F29CAC00229012 /* meats-section-header@2x.png */; };
 		2F55838214EC4EE50009E7C6 /* logo-cordon-bleu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F55838014EC4EE50009E7C6 /* logo-cordon-bleu.png */; };
 		2F55838314EC4EE50009E7C6 /* logo-cordon-bleu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F55838114EC4EE50009E7C6 /* logo-cordon-bleu@2x.png */; };
 		2F5B2A4614699E38008CFB6A /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B2A4514699E38008CFB6A /* Models.m */; };
@@ -299,6 +301,7 @@
 		2FECB2291447761600797365 /* default-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FECB2281447761600797365 /* default-banner.png */; };
 		2FEE401A1452238A00D516E8 /* StoreListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEE40181452238A00D516E8 /* StoreListController.m */; };
 		2FEE401B1452238A00D516E8 /* StoreListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEE40191452238A00D516E8 /* StoreListDataSource.m */; };
+		2FF1FBB914F3E8E300987234 /* history-entry.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2FF1FBB814F3E8E300987234 /* history-entry.csv */; };
 		2FF3BE6714BCAAB000619363 /* foods.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3BE6614BCAAB000619363 /* foods.csv */; };
 		2FF8EF84148979B30069AAE3 /* launcher-icon-phones.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8EF82148979B30069AAE3 /* launcher-icon-phones.png */; };
 		2FF8EF85148979B30069AAE3 /* launcher-icon-phones@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8EF83148979B30069AAE3 /* launcher-icon-phones@2x.png */; };
@@ -925,6 +928,8 @@
 		2F3FF92814D74F900039D1F6 /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		2F3FF92914D74F900039D1F6 /* RecomendationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecomendationsController.m; sourceTree = "<group>"; };
 		2F4875B0148C017A0027C2F0 /* composition-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background.png"; sourceTree = "<group>"; };
+		2F4D870514F29CAC00229012 /* meats-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-section-header.png"; sourceTree = "<group>"; };
+		2F4D870614F29CAC00229012 /* meats-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-section-header@2x.png"; sourceTree = "<group>"; };
 		2F55838014EC4EE50009E7C6 /* logo-cordon-bleu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-cordon-bleu.png"; sourceTree = "<group>"; };
 		2F55838114EC4EE50009E7C6 /* logo-cordon-bleu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-cordon-bleu@2x.png"; sourceTree = "<group>"; };
 		2F5B2A4514699E38008CFB6A /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -1109,6 +1114,7 @@
 		2FECB2281447761600797365 /* default-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner.png"; sourceTree = "<group>"; };
 		2FEE40181452238A00D516E8 /* StoreListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListController.m; sourceTree = "<group>"; };
 		2FEE40191452238A00D516E8 /* StoreListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListDataSource.m; sourceTree = "<group>"; };
+		2FF1FBB814F3E8E300987234 /* history-entry.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "history-entry.csv"; sourceTree = "<group>"; };
 		2FF3BE6614BCAAB000619363 /* foods.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foods.csv; sourceTree = "<group>"; };
 		2FF8EF82148979B30069AAE3 /* launcher-icon-phones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-phones.png"; sourceTree = "<group>"; };
 		2FF8EF83148979B30069AAE3 /* launcher-icon-phones@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher-icon-phones@2x.png"; sourceTree = "<group>"; };
@@ -1291,6 +1297,9 @@
 				2F3D61CF14C5D34300A8F9C8 /* buttonBackground_Highlighted.png */,
 				2F3D61D014C5D34300A8F9C8 /* buttonBackground.png */,
 				2F3D61D114C5D34300A8F9C8 /* cancelButtonBackground.png */,
+				2FF1FBB814F3E8E300987234 /* history-entry.csv */,
+				2F4D870514F29CAC00229012 /* meats-section-header.png */,
+				2F4D870614F29CAC00229012 /* meats-section-header@2x.png */,
 				2F55838014EC4EE50009E7C6 /* logo-cordon-bleu.png */,
 				2F55838114EC4EE50009E7C6 /* logo-cordon-bleu@2x.png */,
 				2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */,
@@ -2568,6 +2577,9 @@
 				2FA4E2D314EAFB5B00B5F303 /* wine-section-header@2x.png in Resources */,
 				2F55838214EC4EE50009E7C6 /* logo-cordon-bleu.png in Resources */,
 				2F55838314EC4EE50009E7C6 /* logo-cordon-bleu@2x.png in Resources */,
+				2F4D870714F29CAC00229012 /* meats-section-header.png in Resources */,
+				2F4D870814F29CAC00229012 /* meats-section-header@2x.png in Resources */,
+				2FF1FBB914F3E8E300987234 /* history-entry.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
