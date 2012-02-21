@@ -67,7 +67,7 @@
 
 @synthesize window = _window, facebook = _facebook, twitter = _twitter;
 
-- (NSString *)getUUID{
+- (NSString *)getUUID {
     //get a UUID value from UserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *uuidStr = [defaults stringForKey:kApplicationUUIDKey];
@@ -298,7 +298,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *oaut = [defaults objectForKey:kOAuthData];
-    return oaut;
+    return [defaults objectForKey:kOAuthData];
 }
 @end
