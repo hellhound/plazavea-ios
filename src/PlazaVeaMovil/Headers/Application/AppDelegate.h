@@ -10,6 +10,7 @@
         SA_OAuthTwitterEngineDelegate, FBSessionDelegate>
 {
     UIWindow *_window;
+    UIWindow *_overlay;
     // CoreData
     NSManagedObjectContext *_context;
     NSManagedObjectModel *_model;
@@ -26,7 +27,6 @@
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (NSString *)getUUID;
-- (void)showWorking;
 @end
 
 @interface AppDelegate (CoreData)

@@ -4,6 +4,7 @@
 #import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Application/Constants.h"
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
 
@@ -317,6 +318,9 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
@@ -359,6 +363,8 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     if (![[emergencyFile name] isEqualToString:csvFilePath]) {
         [emergencyFile setName:csvFilePath];
     } else if (!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
     
@@ -402,6 +408,8 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
         }
     }
     [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

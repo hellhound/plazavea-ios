@@ -595,6 +595,9 @@ static NSString *const kNSStringDescriptionKey = @"description";
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvFiles = [[NSBundle mainBundle] pathsForResourcesOfType:@"csv"
             inDirectory:nil];
@@ -634,6 +637,8 @@ static NSString *const kNSStringDescriptionKey = @"description";
     if (![[historyEntryFile name] isEqualToString:csvFilePath]) {
         [historyEntryFile setName:csvFilePath];
     } else if (!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin

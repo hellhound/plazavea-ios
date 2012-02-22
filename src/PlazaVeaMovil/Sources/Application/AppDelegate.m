@@ -45,6 +45,14 @@
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, retain) UIWindow *overlay;
+
+- (void)showWorking;
+- (void)hideWorking;
+@end
+
 @implementation AppDelegate
 
 #pragma mark -
@@ -66,7 +74,8 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize window = _window, facebook = _facebook, twitter = _twitter;
+@synthesize window = _window, facebook = _facebook, twitter = _twitter,
+        overlay = _overlay;
 
 - (NSString *)getUUID {
     //get a UUID value from UserDefaults
@@ -85,18 +94,58 @@
     return uuidStr;
 }
 
+#pragma mark -
+#pragma mark AppDelegate (Private)
+
 - (void)showWorking
 {
     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
             beforeDate:[NSDate date]];
     
-    UIWindow *overlay = [[UIWindow alloc] initWithFrame:
+    _overlay = [[UIWindow alloc] initWithFrame:
             [[UIScreen mainScreen] bounds]];
+    
+    /*UIView *background = [[[UIView alloc] initWithFrame:
+            [[UIScreen mainScreen] bounds]] autorelease];*/
+    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc]
+            initWithActivityIndicatorStyle:
+                UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+    
+    [indicator setFrame:CGRectOffset([indicator frame],
+            ([_overlay frame].size.width - [indicator frame].size.width) / 2.,
+                kIndicatorY)];
+    [indicator startAnimating];
+    
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    [label setText:kWorkingMessage];
+    [label setFont:[UIFont boldSystemFontOfSize:kLabelFontSize]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+    CGSize labelSize = [[label text] sizeWithFont:[label font]
+            constrainedToSize:CGSizeMake([_overlay bounds].size.width,
+                [_overlay bounds].size.height)
+                lineBreakMode:UILineBreakModeWordWrap];
+    
+    [label setFrame:CGRectMake(([_overlay frame].size.width - labelSize.width) /
+            2., kLabelY, labelSize.width, labelSize.height)];
+    [_overlay addSubview:indicator];
+    [_overlay addSubview:label];
+    [_overlay setBackgroundColor:[UIColor blackColor]];
+    [_overlay setAlpha:.0];
+    [_overlay makeKeyAndVisible];
+    //[_window addSubview:background];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:kAnimationDuration];
+    [_overlay setAlpha:kOverlayAlpha];
+    [UIView commitAnimations];
+}
 
-    [overlay setBackgroundColor:[UIColor blackColor]];
-    [overlay setAlpha:0.6];
-    [overlay setWindowLevel:UIWindowLevelAlert];
-    [overlay makeKeyAndVisible];
+- (void)hideWorking
+{
+    [_overlay release];
+    [_window makeKeyAndVisible];
 }
 
 #pragma mark -
@@ -107,6 +156,8 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
             selector:@selector(showWorking) name:kCoreDataDidBegin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(hideWorking) name:kCoreDataDidEnd object:nil];
     // Conf Facebook
     _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
