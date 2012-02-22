@@ -104,9 +104,6 @@
     
     _overlay = [[UIWindow alloc] initWithFrame:
             [[UIScreen mainScreen] bounds]];
-    
-    /*UIView *background = [[[UIView alloc] initWithFrame:
-            [[UIScreen mainScreen] bounds]] autorelease];*/
     UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc]
             initWithActivityIndicatorStyle:
                 UIActivityIndicatorViewStyleWhiteLarge] autorelease];
@@ -135,7 +132,6 @@
     [_overlay setBackgroundColor:[UIColor blackColor]];
     [_overlay setAlpha:.0];
     [_overlay makeKeyAndVisible];
-    //[_window addSubview:background];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:kAnimationDuration];
     [_overlay setAlpha:kOverlayAlpha];
