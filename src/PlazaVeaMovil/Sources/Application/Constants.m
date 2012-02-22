@@ -12,3 +12,6 @@ NSString *const kOAuthConsumerKey = @"RalVlTMQ0aQcHE7NWK6fg";
 NSString *const kOAuthConsumerSecret =
         @"nKFcyf9F7dCZ3GDQa4CkChtIU92mJud4Lxoeu3mpc";
 NSString *const kOAuthData = @"authData";
+
+NSString *const kCoreDataDidBegin = @"coreDataDidBegin";
+NSString *const kCoreDataDidEnd = @"coreDataDidEnd";

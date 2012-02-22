@@ -26,6 +26,7 @@
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (NSString *)getUUID;
+- (void)showWorking;
 @end
 
 @interface AppDelegate (CoreData)

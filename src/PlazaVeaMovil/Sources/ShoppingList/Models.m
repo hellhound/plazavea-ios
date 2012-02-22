@@ -8,6 +8,7 @@
 #import "Common/Models/ManagedObject.h"
 #import "Common/Models/ReorderingManagedObject.h"
 #import "Application/AppDelegate.h"
+#import "Application/Constants.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 
@@ -635,6 +636,8 @@ static NSString *const kNSStringDescriptionKey = @"description";
     } else if (!firstUpdate) {
         return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
     [self cleandata:context];
     
     NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
@@ -647,6 +650,8 @@ static NSString *const kNSStringDescriptionKey = @"description";
         [ShoppingHistoryEntry historyEntryWithName:parsedName context:context];
     }
     [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

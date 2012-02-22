@@ -9,3 +9,6 @@ extern NSString *const kExpirationDateKey;
 extern NSString *const kOAuthConsumerKey;
 extern NSString *const kOAuthConsumerSecret;
 extern NSString *const kOAuthData;
+
+extern NSString *const kCoreDataDidBegin;
+extern NSString *const kCoreDataDidEnd;

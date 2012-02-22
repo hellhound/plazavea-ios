@@ -52,6 +52,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_window release];
     [_facebook release];
     [_twitter release];
@@ -67,7 +68,7 @@
 
 @synthesize window = _window, facebook = _facebook, twitter = _twitter;
 
-- (NSString *)getUUID{
+- (NSString *)getUUID {
     //get a UUID value from UserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *uuidStr = [defaults stringForKey:kApplicationUUIDKey];
@@ -84,12 +85,28 @@
     return uuidStr;
 }
 
+- (void)showWorking
+{
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+            beforeDate:[NSDate date]];
+    
+    UIWindow *overlay = [[UIWindow alloc] initWithFrame:
+            [[UIScreen mainScreen] bounds]];
+
+    [overlay setBackgroundColor:[UIColor blackColor]];
+    [overlay setAlpha:0.6];
+    [overlay setWindowLevel:UIWindowLevelAlert];
+    [overlay makeKeyAndVisible];
+}
+
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
 
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(showWorking) name:kCoreDataDidBegin object:nil];
     // Conf Facebook
     _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
