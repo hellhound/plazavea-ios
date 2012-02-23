@@ -12,25 +12,38 @@
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == [self tableView])
+        return [super tableView:tableView numberOfRowsInSection:section];
+    
+    id<NSFetchedResultsSectionInfo> sectionInfo =
+            [[_filteredController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == [self tableView])
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-
-    // TODO we need to optimize the reuseIdentifier, it should be defined
-    // once
-    NSManagedObject *object =
-            [_filteredController objectAtIndexPath:indexPath];
-    Class cellClass = [self cellClassForObject:object atIndexPath:indexPath];
-    NSString *reuseIdentifier = NSStringFromClass(cellClass);
-    UITableViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-
-    cell = [self cellForObject:object withCellClass:cellClass
-            reuseCell:cell reuseIdentifier:reuseIdentifier
-            atIndexPath:indexPath];
-    [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+    UITableViewCell *cell;
+    if (tableView == [self tableView]) {
+        cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    } else {
+        // TODO we need to optimize the reuseIdentifier, it should be defined
+        // once
+        NSManagedObject *object = [_filteredController
+                objectAtIndexPath:indexPath];
+        Class cellClass = [self cellClassForObject:object atIndexPath:indexPath];
+        NSString *reuseIdentifier = NSStringFromClass(cellClass);
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [self cellForObject:object withCellClass:cellClass
+                reuseCell:cell reuseIdentifier:reuseIdentifier
+                    atIndexPath:indexPath];
+        
+        [self didCreateCell:cell forObject:object atIndexPath:indexPath];
+    }
     return cell;
 }
 

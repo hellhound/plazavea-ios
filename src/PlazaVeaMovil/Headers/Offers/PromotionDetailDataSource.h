@@ -19,11 +19,11 @@
 
 @protocol PromotionDetailDataSourceDelegate <NSObject>
 
-- (void)        dataSource:(PromotionDetailDataSource *)dataSource
+/*- (void)        dataSource:(PromotionDetailDataSource *)dataSource
    needsDetailImageWithURL:(NSURL *)imageURL
                   andTitle:(NSString *)title;
 - (void) dataSource:(PromotionDetailDataSource *)dataSource
-     needsPromotion:(Promotion *)promotion;
+     needsPromotion:(Promotion *)promotion;*/
 - (void)dataSource:(PromotionDetailDataSource *)dataSource
      viewForHeader:(UIView *)view;
 @end

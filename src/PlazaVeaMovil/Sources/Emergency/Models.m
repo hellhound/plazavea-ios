@@ -4,6 +4,7 @@
 #import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSNull+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Application/Constants.h"
 #import "Emergency/Constants.h"
 #import "Emergency/Models.h"
 
@@ -286,7 +287,6 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     [name setIndexed:YES]; // allows faster searching and sorting
     return [attributes setByAddingObjectsFromSet:
             [NSSet setWithObjects:name, nil]];
-
 }
 
 #pragma mark -
@@ -318,11 +318,14 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
 
-    if ([csvPathFiles count] == 0){
+    if ([csvPathFiles count] == 0) {
         return;
     }
 
@@ -348,7 +351,7 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
 
     EmergencyFile *emergencyFile;
 
-    if ([[resultsController fetchedObjects] count] == 0){
+    if ([[resultsController fetchedObjects] count] == 0) {
         emergencyFile = [EmergencyFile fileWithName:csvFilePath
                 context:context];
         firstUpdate = YES;
@@ -357,9 +360,11 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
         emergencyFile = [[resultsController fetchedObjects]
             objectAtIndex:0];
     }
-    if (![[emergencyFile name] isEqualToString:csvFilePath]){
+    if (![[emergencyFile name] isEqualToString:csvFilePath]) {
         [emergencyFile setName:csvFilePath];
-    } else if(!firstUpdate) {
+    } else if (!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
     
@@ -371,14 +376,14 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
     NSArray *pasredCSV = [csvString getParsedRows];
     NSMutableDictionary *emergencyThree = [NSMutableDictionary dictionary];
 
-    for (NSArray *parsedRow in pasredCSV){
+    for (NSArray *parsedRow in pasredCSV) {
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedNumber = [parsedRow objectAtIndex:2];
         NSMutableArray *parsedCollectionNumbers = [emergencyThree 
                 objectForKey:parsedRowCategory];
 
-        if (parsedCollectionNumbers == nil){
+        if (parsedCollectionNumbers == nil) {
             parsedCollectionNumbers = [NSMutableArray array];
             [emergencyThree setObject: parsedCollectionNumbers
                     forKey:parsedRowCategory];
@@ -387,22 +392,24 @@ static NSString *kPredicateCategoryVariableKey = @"PHONE";
                 dictionaryWithObjectsAndKeys:parsedName, kEmergencyNumberName,
                 parsedNumber, kEmergencyNumberPhone, nil]];
     }
-    for (NSString *categoryname in [emergencyThree allKeys]){
+    for (NSString *categoryname in [emergencyThree allKeys]) {
         EmergencyCategory *emergencyCategory = [EmergencyCategory
                 categoryWithName:categoryname context:context];
         NSArray *emergencyNumberCollection = [emergencyThree 
                 objectForKey:categoryname];
 
-        for (NSDictionary *emergencyNumber in emergencyNumberCollection){
+        for (NSDictionary *emergencyNumber in emergencyNumberCollection) {
             NSString *name =
                     [emergencyNumber objectForKey:kEmergencyNumberName];
             NSString *phone =
                     [emergencyNumber objectForKey:kEmergencyNumberPhone];
             [EmergencyNumber numberWithName:name phone:phone
                     category:emergencyCategory context:context];
-            [context save:nil];
         }
     }
+    [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

@@ -66,6 +66,7 @@ static CGFloat indexWitdh = 50.;
                     cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [FoodFile loadFromCSVinContext:context];
         [self setTitle:kFoodCategoryHeader];
     }
     return self;

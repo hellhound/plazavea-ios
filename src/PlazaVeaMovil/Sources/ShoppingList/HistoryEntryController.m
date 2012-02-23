@@ -208,13 +208,24 @@ static NSString *kNameVariableKey = @"NAME";
         [self setDelegate:delegate];
         [self setTitle:NSLocalizedString(kHistoryEntryTitle, nil)];
         // Configure the results controller for searches
+        NSArray *filteredSortDescriptors = [NSArray arrayWithObject:
+                [[[NSSortDescriptor alloc] initWithKey:kShoppingHistoryEntryName
+                    ascending:YES] autorelease]];
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        
+        [request setEntity:[NSEntityDescription 
+                entityForName:kShoppingHistoryEntryEntity
+                    inManagedObjectContext:_context]];
+        [request setSortDescriptors:filteredSortDescriptors];
+        
         _filteredController = [[NSFetchedResultsController alloc]
-                initWithFetchRequest:[[self resultsController] fetchRequest]
-                managedObjectContext:context
-                sectionNameKeyPath:nil
-                cacheName:nil];
+                initWithFetchRequest:request
+                    managedObjectContext:context
+                    sectionNameKeyPath:nil
+                    cacheName:nil];
         [_filteredController setDelegate:self];
         [_searchController setDelegate:self];
+        [HistoryEntryFile loadFromCSVinContext:context];
     }
     return self;
 }
@@ -231,7 +242,7 @@ static NSString *kNameVariableKey = @"NAME";
         NSString *searchText = 
                 [[[self searchDisplayController] searchBar] text];
         if (searchText != nil && [[_filteredController
-                fetchedObjects] count] == 0){
+                fetchedObjects] count] == 0) {
             [_delegate historyEntryController:self historyEntry:nil
                     withText:searchText];
         } else {
@@ -261,7 +272,7 @@ static NSString *kNameVariableKey = @"NAME";
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
-- (NSInteger)tableView:(UITableView *)tableView
+/*- (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfRows =
@@ -279,7 +290,7 @@ static NSString *kNameVariableKey = @"NAME";
         noLists = NO;
     }
     return numberOfRows;
-}
+}*/
 
 #pragma mark -
 #pragma mark <UIAlertViewDelegate>

@@ -47,8 +47,8 @@
     if ([allLocalizations count] > 0)
         [_model setLocalizationDictionary:allLocalizations];
     //load the emergencynumbers from CSV
-    [EmergencyFile loadFromCSVinContext:context];
-    [FoodFile loadFromCSVinContext:context];
+    //[EmergencyFile loadFromCSVinContext:context];
+    //[FoodFile loadFromCSVinContext:context];
 }
 
 #pragma mark -

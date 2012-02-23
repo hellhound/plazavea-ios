@@ -27,6 +27,9 @@ NSString *const kShoppingHistoryEntryEntity = @"ShoppingHistoryEntry";
 NSString *const kShoppingHistoryEntryClass = @"ShoppingHistoryEntry";
 NSString *const kShoppingHistoryEntryName = @"name";
 
+// HistoryEntryFile model's constants
+NSString *const kHistoryEntryFileName = @"name";
+
 // ShoppingListController's constants
 
 // Administration of shopping lists

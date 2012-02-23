@@ -8,6 +8,7 @@
 #import "Common/Models/ManagedObject.h"
 #import "Common/Models/ReorderingManagedObject.h"
 #import "Application/AppDelegate.h"
+#import "Application/Constants.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 
@@ -556,5 +557,141 @@ static NSString *const kNSStringDescriptionKey = @"description";
 
     [newHistoryEntry setName:name];
     return newHistoryEntry;
+}
+@end
+
+@implementation HistoryEntryFile
+
+#pragma mark -
+#pragma mark ManagedObject (Overridable)
+
++ (NSSet *)attributes
+{
+    NSSet *attibutes = [super attributes];
+    NSAttributeDescription *name = [[[NSAttributeDescription alloc] init]
+            autorelease];
+    
+    [name setName:kHistoryEntryFileName];
+    [name setAttributeType:NSStringAttributeType];
+    [name setOptional:NO];
+    [name setIndexed:YES];
+    return [attibutes setByAddingObjectsFromSet:
+            [NSSet setWithObjects:name, nil]];
+}
+
+#pragma mark -
+#pragma mark HistoryEntryFile
+
+// KVO properties
+@dynamic name;
+
++ (id)fileWithName:(NSString *)name context:(NSManagedObjectContext *)context
+{
+    HistoryEntryFile *file = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:context] autorelease];
+    
+    [file setName:name];
+    return file;
+}
+
++ (id)fileWithName:(NSString *)name
+ resultsController:(NSFetchedResultsController *)resultsController
+{
+    HistoryEntryFile *file = [[[self alloc] initWithEntity:[self entity]
+            insertIntoManagedObjectContext:
+                [resultsController managedObjectContext]] autorelease];
+    
+    [file setName:name];
+    return file;
+}
+
++ (void)loadFromCSVinContext:(NSManagedObjectContext *)context
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
+    BOOL firstUpdate = NO;
+    NSArray *csvFiles = [[NSBundle mainBundle] pathsForResourcesOfType:@"csv"
+            inDirectory:nil];
+    
+    if ([csvFiles count] == 0) {
+        return;
+    }
+    NSString *csvFilePath = [csvFiles objectAtIndex:2];
+    NSArray *sortFileNameDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kHistoryEntryFileName
+                ascending:YES] autorelease]];
+    NSFetchRequest *fileRequest = [[[NSFetchRequest alloc] init] autorelease];
+    
+    [fileRequest setEntity:[HistoryEntryFile entity]];
+    [fileRequest setPredicate:nil];
+    [fileRequest setSortDescriptors:sortFileNameDescriptors];
+    
+    NSFetchedResultsController *resultsController =
+            [[[NSFetchedResultsController alloc]
+                initWithFetchRequest:fileRequest
+                managedObjectContext:context
+                sectionNameKeyPath:nil cacheName:nil] autorelease];
+    NSError *fetchError = nil;
+    
+    [resultsController performFetch:&fetchError];
+    
+    HistoryEntryFile *historyEntryFile;
+    
+    if ([[resultsController fetchedObjects] count] == 0) {
+        historyEntryFile = [HistoryEntryFile fileWithName:csvFilePath
+                context:context];
+        firstUpdate = YES;
+        [context save:nil];
+    } else {
+        historyEntryFile = [[resultsController fetchedObjects] objectAtIndex:0];
+    }
+    if (![[historyEntryFile name] isEqualToString:csvFilePath]) {
+        [historyEntryFile setName:csvFilePath];
+    } else if (!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    [self cleandata:context];
+    
+    NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
+            encoding:NSUTF8StringEncoding error:nil];
+    NSArray *parsedCSV = [csvString getParsedRows];
+    
+    for (NSArray *parsedRow in parsedCSV) {
+        NSString *parsedName = [parsedRow objectAtIndex:0];
+        
+        [ShoppingHistoryEntry historyEntryWithName:parsedName context:context];
+    }
+    [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
+}
+
++ (void)cleandata:(NSManagedObjectContext *)context
+{
+    NSArray *sortCategoryDescriptors = [NSArray arrayWithObject:
+            [[[NSSortDescriptor alloc] initWithKey:kShoppingHistoryEntryName
+                ascending:YES] autorelease]];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    
+    [request setEntity:[ShoppingHistoryEntry entity]];
+    [request setPredicate:nil];
+    [request setSortDescriptors:sortCategoryDescriptors];
+    
+    NSFetchedResultsController *resultsController =
+            [[[NSFetchedResultsController alloc] initWithFetchRequest:request
+                managedObjectContext:context sectionNameKeyPath:nil
+                cacheName:nil] autorelease];
+    NSError *fetchError = nil;
+    
+    [resultsController performFetch:&fetchError];
+    for (NSManagedObject *managedObject in [resultsController fetchedObjects]) {
+        [context deleteObject:managedObject];
+    }
+    [context save:nil];
 }
 @end

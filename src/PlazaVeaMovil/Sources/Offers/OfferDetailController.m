@@ -105,7 +105,7 @@
 {
     _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
             twitter];
-    
+        
     if (![_twitter isAuthorized]) {
         SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
                 controllerToEnterCredentialsWithTwitterEngine:_twitter

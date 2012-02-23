@@ -5,6 +5,7 @@
 
 #import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Application/Constants.h"
 #import "Composition/Constants.h"
 #import "Composition/Models.h"
 
@@ -379,11 +380,14 @@ static NSRelationshipDescription *kCategoryRelationship;
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
     
-    if ([csvPathFiles count] == 0){
+    if ([csvPathFiles count] == 0) {
         return;
     }
     NSString *csvFilePath = [csvPathFiles objectAtIndex:1];
@@ -406,7 +410,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     
     FoodFile *foodFile;
     
-    if ([[resultsController fetchedObjects] count] == 0){
+    if ([[resultsController fetchedObjects] count] == 0) {
         foodFile = [FoodFile fileWithName:csvFilePath context:context];
         firstUpdate = YES;
         [context save:nil];
@@ -416,6 +420,8 @@ static NSRelationshipDescription *kCategoryRelationship;
     if (![[foodFile name] isEqualToString:csvFilePath]){
         [foodFile setName:csvFilePath];
     } else if(!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
     
@@ -428,7 +434,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     NSMutableDictionary *foodThree = [NSMutableDictionary dictionary];
     NSString *parsedProperties = @"";
     
-    for (NSArray *parsedRow in pasredCSV){
+    for (NSArray *parsedRow in pasredCSV) {
         NSString *parsedRowCategory = [parsedRow objectAtIndex:0];
         NSString *parsedName = [parsedRow objectAtIndex:1];
         NSString *parsedCalories = [parsedRow objectAtIndex:3];
@@ -562,9 +568,11 @@ static NSRelationshipDescription *kCategoryRelationship;
                        calcium:calcium
                           iron:iron
                        context:context];
-            [context save:nil];
         }
     }
+    [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

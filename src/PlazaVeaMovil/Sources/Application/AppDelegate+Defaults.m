@@ -21,7 +21,8 @@
     if ([[UIDevice currentDevice] deviceSystemVersion] >= kSystemVersion4) {
         [_dateFormatter setDoesRelativeDateFormatting:YES];
     
-        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es_PE"];
+        NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"es_PE"]
+                autorelease];
     
         [_dateFormatter setLocale:locale];
     }
