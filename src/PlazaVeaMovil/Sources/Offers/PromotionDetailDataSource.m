@@ -222,7 +222,7 @@ static CGFloat titleWidth = 320.;
     }
     /*[_delegate dataSource:self needsDetailImageWithURL:pictureURL
             andTitle:[promotion name]];*/
-    [_delegate dataSource:self needsPromotion:promotion];
+    //[_delegate dataSource:self needsPromotion:promotion];
     [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
             [pictureURL absoluteString] title:[promotion name]]];
     if (([promotion validFrom] != nil) && ([promotion validTo] != nil)) {

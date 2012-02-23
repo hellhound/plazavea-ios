@@ -326,6 +326,26 @@
     [defaults synchronize];
 }
 
+- (void)fbSessionInvalidated
+{
+    
+}
+
+- (void)fbDidLogout
+{
+    
+}
+
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+{
+    
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    
+}
+
 #pragma mark -
 #pragma mark <SA_OAuthTwitterEngineDelegate>
 
