@@ -4,6 +4,7 @@
 
 #import <Three20/Three20.h>
 
+#import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Additions/UIDevice+Additions.h"
 #import "Application/AppDelegate.h"
@@ -70,12 +71,28 @@
 
 - (void)mailPromotion
 {
-    MFMailComposeViewController *controller = 
+    /*MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
     [controller setSubject:[_promotion name]];
     [controller setMessageBody:[_promotion longDescription] isHTML:NO];
+    [self presentModalViewController:controller animated:YES];*/
+    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
+            kMailBanner], kMailBannerWidth, kMailBannerHeight);
+    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            bannerURL];
+    NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            [[_promotion bannerURL] absoluteString]];
+    MFMailComposeViewController *controller = 
+            [[[MFMailComposeViewController alloc] init] autorelease];
+    
+    [controller setMailComposeDelegate:self];
+    [controller setSubject:[_promotion name]];
+    [controller setMessageBody:[NSString stringWithFormat:
+            @"%@<br /><b>%@</b><br />%@<br />%@<br />%@", imageHTML,
+                [_promotion name], offerImageHTML, [_promotion longDescription],
+                [_promotion legalese]] isHTML:YES];
     [self presentModalViewController:controller animated:YES];
 }
 

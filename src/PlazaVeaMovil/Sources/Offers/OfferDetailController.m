@@ -8,6 +8,7 @@
 #import "FBDialog.h"
 #import "SA_OAuthTwitterController.h"
 
+#import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
@@ -73,12 +74,21 @@
 
 - (void)mailOffer
 {
+    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
+            kMailBanner], kMailBannerWidth, kMailBannerHeight);
+    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            bannerURL];
+    NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            [[_offer pictureURL] absoluteString]];
     MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
     [controller setSubject:[_offer name]];
-    [controller setMessageBody:[_offer longDescription] isHTML:NO];
+    [controller setMessageBody:[NSString stringWithFormat:
+            @"%@<br /><b>%@</b><br />%@<br />%@<br />%@", imageHTML,
+                [_offer name], offerImageHTML, [_offer longDescription],
+                [_offer legalese]] isHTML:YES];
     [self presentModalViewController:controller animated:YES];
 }
 

@@ -219,6 +219,10 @@ NSString *const kFBDescription = @"description";
 // NSLocalizedString(@"description", nil)
 NSString *const kFBFeedDialog = @"feed";
 // NSLocalizedString(@"feed", nil)
+NSString *const kMailBanner = @"";
+const CGFloat kMailBannerWidth = 300.;
+const CGFloat kMailBannerHeight = 140.;
+
 
 // PromotionDetailController's constants
 NSString *const kPromotionDetailTitle = @"Detalle de la promoción";

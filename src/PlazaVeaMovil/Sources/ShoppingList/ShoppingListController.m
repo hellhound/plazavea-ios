@@ -591,9 +591,9 @@ static CGFloat headerMinHeight = 40.;
                 kShoppingListMailBannerHeight);
     MFMailComposeViewController *picker = 
             [[[MFMailComposeViewController alloc] init] autorelease];
-    
     NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
             bannerURL];
+    
     [picker setMailComposeDelegate:self];
     [picker setSubject:[NSString stringWithFormat:kShoppingListMailSubject,
             [_shoppingList name]]];
