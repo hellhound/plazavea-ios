@@ -62,6 +62,16 @@
 
 - (void) showTwitterAlert
 {
+    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                 twitter];
+    
+    if (![_twitter isAuthorized]) {
+        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
+                controllerToEnterCredentialsWithTwitterEngine:_twitter
+                    delegate:self];
+        
+        [self presentModalViewController:controller animated:YES];
+    }
     UIAlertView *alertView = [[UIAlertView alloc]
             initWithTitle:kTwitterAlertTitle
                 message:nil delegate:self cancelButtonTitle:kTwitterAlertCancel
@@ -69,7 +79,9 @@
     
     [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
             [_offer name], [[_offer twitterURL] absoluteString]]];
-    [alertView show];
+    if ([_twitter isAuthorized]) {
+        [alertView show];
+    }
 }
 
 - (void)mailOffer
@@ -113,17 +125,8 @@
 
 - (void)tweetOffer:(NSString *)tweet
 {
-    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-            twitter];
-        
-    if (![_twitter isAuthorized]) {
-        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
-                controllerToEnterCredentialsWithTwitterEngine:_twitter
-                    delegate:self];
-    
-        [self presentModalViewController:controller animated:YES];
-    }
-    [_twitter sendUpdate:tweet];
+    if ([_twitter isAuthorized])
+        [_twitter sendUpdate:tweet];
 }
 
 #pragma mark -
@@ -194,7 +197,7 @@
  clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != [alertView cancelButtonIndex]) 
-        [self tweetOffer:[alertView message]];
+        [_twitter sendUpdate:[alertView message]];
     [alertView release];
 }
 @end
