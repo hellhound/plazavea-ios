@@ -23,7 +23,6 @@
 - (void)showTwitterAlert;
 - (void)mailPromotion;
 - (void)likePromotion;
-- (void)tweetPromotion:(NSString *)tweet;
 @end
 
 @implementation PromotionDetailController
@@ -59,25 +58,29 @@
 
 - (void) showTwitterAlert
 {
-    UIAlertView *alertView = [[UIAlertView alloc]
-            initWithTitle:kTwitterAlertTitle message:nil delegate:self
-                cancelButtonTitle:kTwitterAlertCancel
-                otherButtonTitles:kTwitterAlertSend, nil];
+    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+            twitter];
     
-    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
-            [_promotion name], [[_promotion twitterURL] absoluteString]]];
-    [alertView show];
+    if (![_twitter isAuthorized]) {
+        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
+                controllerToEnterCredentialsWithTwitterEngine:_twitter
+                    delegate:self];
+        
+        [self presentModalViewController:controller animated:YES];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                    cancelButtonTitle:kTwitterAlertCancel
+                    otherButtonTitles:kTwitterAlertSend, nil];
+    
+        [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+                [_promotion name], [[_promotion twitterURL] absoluteString]]];
+        [alertView show];
+    }
 }
 
 - (void)mailPromotion
 {
-    /*MFMailComposeViewController *controller = 
-            [[[MFMailComposeViewController alloc] init] autorelease];
-    
-    [controller setMailComposeDelegate:self];
-    [controller setSubject:[_promotion name]];
-    [controller setMessageBody:[_promotion longDescription] isHTML:NO];
-    [self presentModalViewController:controller animated:YES];*/
     NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
             kMailBanner], kMailBannerWidth, kMailBannerHeight);
     NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
@@ -114,22 +117,6 @@
     
     [_facebook dialog:kFBFeedDialog andParams:params andDelegate:nil];
 }
-
-- (void)tweetPromotion:(NSString *)tweet
-{
-    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-            twitter];
-    
-    if (![_twitter isAuthorized]) {
-        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
-                controllerToEnterCredentialsWithTwitterEngine:_twitter
-                    delegate:self];
-        
-        [self presentModalViewController:controller animated:YES];
-    }
-    [_twitter sendUpdate:tweet];
-}
-
 
 #pragma mark -
 #pragma mark PromotionDetailController (Public)
@@ -184,7 +171,23 @@
  clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != [alertView cancelButtonIndex]) 
-        [self tweetPromotion:[alertView message]];
+        [_twitter sendUpdate:[alertView message]];
     [alertView release];
+}
+
+#pragma mark -
+#pragma mark <SA_OAuthTwitterControllerDelegate>
+
+- (void)OAuthTwitterController:(SA_OAuthTwitterController *)controller
+     authenticatedWithUsername:(NSString *)username
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+            initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                cancelButtonTitle:kTwitterAlertCancel
+                otherButtonTitles:kTwitterAlertSend, nil];
+    
+    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+            [_promotion name], [[_promotion twitterURL] absoluteString]]];
+    [alertView show];
 }
 @end

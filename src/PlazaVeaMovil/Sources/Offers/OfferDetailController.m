@@ -27,7 +27,6 @@
 - (void)showTwitterAlert;
 - (void)mailOffer;
 - (void)likeOffer;
-- (void)tweetOffer:(NSString *)tweet;
 @end
 
 @implementation OfferDetailController
@@ -71,15 +70,14 @@
                     delegate:self];
         
         [self presentModalViewController:controller animated:YES];
-    }
-    UIAlertView *alertView = [[UIAlertView alloc]
-            initWithTitle:kTwitterAlertTitle
-                message:nil delegate:self cancelButtonTitle:kTwitterAlertCancel
-                otherButtonTitles:kTwitterAlertSend, nil];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                    cancelButtonTitle:kTwitterAlertCancel
+                    otherButtonTitles:kTwitterAlertSend, nil];
     
-    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
-            [_offer name], [[_offer twitterURL] absoluteString]]];
-    if ([_twitter isAuthorized]) {
+        [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+                [_offer name], [[_offer twitterURL] absoluteString]]];
         [alertView show];
     }
 }
@@ -121,12 +119,6 @@
                 nil];
     
     [_facebook dialog:kFBFeedDialog andParams:params andDelegate:nil];
-}
-
-- (void)tweetOffer:(NSString *)tweet
-{
-    if ([_twitter isAuthorized])
-        [_twitter sendUpdate:tweet];
 }
 
 #pragma mark -
@@ -199,5 +191,21 @@
     if (buttonIndex != [alertView cancelButtonIndex]) 
         [_twitter sendUpdate:[alertView message]];
     [alertView release];
+}
+
+#pragma mark -
+#pragma mark <SA_OAuthTwitterControllerDelegate>
+
+- (void)OAuthTwitterController:(SA_OAuthTwitterController *)controller
+     authenticatedWithUsername:(NSString *)username
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+            initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                cancelButtonTitle:kTwitterAlertCancel
+                otherButtonTitles:kTwitterAlertSend, nil];
+    
+    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+            [_offer name], [[_offer twitterURL] absoluteString]]];
+    [alertView show];
 }
 @end
