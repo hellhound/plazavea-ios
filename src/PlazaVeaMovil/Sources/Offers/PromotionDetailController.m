@@ -15,9 +15,6 @@
 
 @interface PromotionDetailController ()
 
-@property (nonatomic, retain) UIView *headerView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (void)showTwitterAlert;
@@ -33,9 +30,6 @@
 - (void)dealloc
 {
     [_promotionId release];
-    [_headerView release];
-    [_titleLabel release];
-    [_imageView release];
     [_promotion release];
     [super dealloc];
 }
@@ -52,9 +46,7 @@
 #pragma mark -
 #pragma PromotionDetailController (Private)
 
-@synthesize headerView = _headerView, titleLabel = _titleLabel,
-        imageView = _imageView, promotion = _promotion, facebook = _facebook,
-            twitter = _twitter;
+@synthesize facebook = _facebook, twitter = _twitter;
 
 - (void) showTwitterAlert
 {
@@ -120,6 +112,8 @@
 
 #pragma mark -
 #pragma mark PromotionDetailController (Public)
+
+@synthesize promotionId = _promotionId, promotion = _promotion;
 
 - (id)initWithPromotionId:(NSString *)promotionId
 {

@@ -18,13 +18,11 @@
             SA_OAuthTwitterControllerDelegate>
 {
     NSString *_promotionId;
-    UIView *_headerView;
-    UILabel *_titleLabel;
-    TTImageView *_imageView;
     Facebook *_facebook;
     Promotion *_promotion;
     SA_OAuthTwitterEngine *_twitter;
 }
 @property (nonatomic, retain) Promotion *promotion;
+@property (nonatomic, retain) NSString *promotionId;
 - (id)initWithPromotionId:(NSString *)promotionId;
 @end

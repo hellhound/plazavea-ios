@@ -19,9 +19,6 @@
 
 @interface OfferDetailController ()
 
-@property (nonatomic, retain) UIView *headerView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (void)showTwitterAlert;
@@ -37,9 +34,6 @@
 - (void) dealloc
 {
     [_offerId release];
-    [_headerView release];
-    [_titleLabel release];
-    [_imageView release];
     [_offer release];
     [super dealloc];
 }
@@ -56,8 +50,7 @@
 #pragma mark -
 #pragma mark OfferDetailController (Private)
 
-@synthesize headerView = _headerView, titleLabel = _titleLabel,
-        imageView = _imageView, facebook = _facebook, twitter = _twitter;
+@synthesize facebook = _facebook, twitter = _twitter;
 
 - (void) showTwitterAlert
 {
@@ -124,7 +117,7 @@
 #pragma mark -
 #pragma mark OfferDetailController (Public)
 
-@synthesize offer = _offer;
+@synthesize offerId = _offerId, offer = _offer;
 
 - (id)initWithOfferId:(NSString *)offerId
 {
