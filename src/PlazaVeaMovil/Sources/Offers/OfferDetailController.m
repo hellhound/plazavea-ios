@@ -8,6 +8,7 @@
 #import "FBDialog.h"
 #import "SA_OAuthTwitterController.h"
 
+#import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
@@ -18,15 +19,11 @@
 
 @interface OfferDetailController ()
 
-@property (nonatomic, retain) UIView *headerView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
 - (void)showTwitterAlert;
 - (void)mailOffer;
 - (void)likeOffer;
-- (void)tweetOffer:(NSString *)tweet;
 @end
 
 @implementation OfferDetailController
@@ -37,9 +34,6 @@
 - (void) dealloc
 {
     [_offerId release];
-    [_headerView release];
-    [_titleLabel release];
-    [_imageView release];
     [_offer release];
     [super dealloc];
 }
@@ -56,29 +50,48 @@
 #pragma mark -
 #pragma mark OfferDetailController (Private)
 
-@synthesize headerView = _headerView, titleLabel = _titleLabel,
-        imageView = _imageView, facebook = _facebook, twitter = _twitter;
+@synthesize facebook = _facebook, twitter = _twitter;
 
 - (void) showTwitterAlert
 {
-    UIAlertView *alertView = [[UIAlertView alloc]
-            initWithTitle:kTwitterAlertTitle
-                message:nil delegate:self cancelButtonTitle:kTwitterAlertCancel
-                otherButtonTitles:kTwitterAlertSend, nil];
+    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+                 twitter];
     
-    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
-            [_offer name], [[_offer twitterURL] absoluteString]]];
-    [alertView show];
+    if (![_twitter isAuthorized]) {
+        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
+                controllerToEnterCredentialsWithTwitterEngine:_twitter
+                    delegate:self];
+        
+        [self presentModalViewController:controller animated:YES];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                    cancelButtonTitle:kTwitterAlertCancel
+                    otherButtonTitles:kTwitterAlertSend, nil];
+    
+        [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+                [_offer name], [[_offer twitterURL] absoluteString]]];
+        [alertView show];
+    }
 }
 
 - (void)mailOffer
 {
+    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
+            kMailBanner], kMailBannerWidth, kMailBannerHeight);
+    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            bannerURL];
+    NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            [[_offer pictureURL] absoluteString]];
     MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
     [controller setSubject:[_offer name]];
-    [controller setMessageBody:[_offer longDescription] isHTML:NO];
+    [controller setMessageBody:[NSString stringWithFormat:
+            @"%@<br /><b>%@</b><br />%@<br />%@<br />%@", imageHTML,
+                [_offer name], offerImageHTML, [_offer longDescription],
+                [_offer legalese]] isHTML:YES];
     [self presentModalViewController:controller animated:YES];
 }
 
@@ -101,25 +114,10 @@
     [_facebook dialog:kFBFeedDialog andParams:params andDelegate:nil];
 }
 
-- (void)tweetOffer:(NSString *)tweet
-{
-    _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-            twitter];
-    
-    if (![_twitter isAuthorized]) {
-        SA_OAuthTwitterController *controller = [SA_OAuthTwitterController
-                controllerToEnterCredentialsWithTwitterEngine:_twitter
-                    delegate:self];
-    
-        [self presentModalViewController:controller animated:YES];
-    }
-    [_twitter sendUpdate:tweet];
-}
-
 #pragma mark -
 #pragma mark OfferDetailController (Public)
 
-@synthesize offer = _offer;
+@synthesize offerId = _offerId, offer = _offer;
 
 - (id)initWithOfferId:(NSString *)offerId
 {
@@ -184,7 +182,23 @@
  clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != [alertView cancelButtonIndex]) 
-        [self tweetOffer:[alertView message]];
+        [_twitter sendUpdate:[alertView message]];
     [alertView release];
+}
+
+#pragma mark -
+#pragma mark <SA_OAuthTwitterControllerDelegate>
+
+- (void)OAuthTwitterController:(SA_OAuthTwitterController *)controller
+     authenticatedWithUsername:(NSString *)username
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+            initWithTitle:kTwitterAlertTitle message:nil delegate:self
+                cancelButtonTitle:kTwitterAlertCancel
+                otherButtonTitles:kTwitterAlertSend, nil];
+    
+    [alertView setMessage:[NSString stringWithFormat:kTwitterAlertMessage,
+            [_offer name], [[_offer twitterURL] absoluteString]]];
+    [alertView show];
 }
 @end

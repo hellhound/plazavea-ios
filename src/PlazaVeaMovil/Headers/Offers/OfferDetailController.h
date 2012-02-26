@@ -18,13 +18,11 @@
             SA_OAuthTwitterControllerDelegate>
 {
     NSString *_offerId;
-    UIView *_headerView;
-    UILabel *_titleLabel;
-    TTImageView *_imageView;
     Facebook *_facebook;
     Offer *_offer;
     SA_OAuthTwitterEngine *_twitter;
 }
 @property (nonatomic, retain) Offer *offer;
+@property (nonatomic, retain) NSString *offerId;
 - (id)initWithOfferId:(NSString *)offerId;
 @end

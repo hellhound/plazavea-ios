@@ -5,6 +5,7 @@
 
 #import "Common/Additions/NSString+Additions.h"
 #import "Common/Additions/NSManagedObjectContext+Additions.h"
+#import "Application/Constants.h"
 #import "Composition/Constants.h"
 #import "Composition/Models.h"
 
@@ -379,6 +380,9 @@ static NSRelationshipDescription *kCategoryRelationship;
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvPathFiles = [[NSBundle mainBundle]
             pathsForResourcesOfType:@"csv" inDirectory:nil];
@@ -416,6 +420,8 @@ static NSRelationshipDescription *kCategoryRelationship;
     if (![[foodFile name] isEqualToString:csvFilePath]){
         [foodFile setName:csvFilePath];
     } else if(!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
     
@@ -565,6 +571,8 @@ static NSRelationshipDescription *kCategoryRelationship;
         }
     }
     [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

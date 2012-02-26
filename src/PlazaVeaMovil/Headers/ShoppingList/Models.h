@@ -20,6 +20,7 @@
 - (ShoppingList *)previous; // If there's no previous list, return the last one
 - (ShoppingList *)next; // If there's no next list, return the first one
 - (NSString *)serialize;
+- (NSString *)serializeHTML;
 @end
 
 @interface ShoppingItem: ReorderingManagedObject
