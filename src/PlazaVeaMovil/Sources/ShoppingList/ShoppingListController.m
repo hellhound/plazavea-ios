@@ -586,12 +586,22 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)mailShoppingList
 {
+    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
+            kShoppingListMailBanner], kShoppingListMailBannerWidth,
+                kShoppingListMailBannerHeight);
     MFMailComposeViewController *picker = 
             [[[MFMailComposeViewController alloc] init] autorelease];
-
+    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
+            bannerURL];
+    
     [picker setMailComposeDelegate:self];
-    [picker setSubject:[_shoppingList name]];
-    [picker setMessageBody:[_shoppingList serialize] isHTML:NO];
+    [picker setSubject:[NSString stringWithFormat:kShoppingListMailSubject,
+            [_shoppingList name]]];
+    [picker setMessageBody:[NSString stringWithFormat:
+            @"%@<br /><b>%@</b><br />%@<br />%@",imageHTML,
+                [_shoppingList name], [_shoppingList serializeHTML],
+                kShoppingListMailFooter]
+                isHTML:YES];
     [self presentModalViewController:picker animated:YES];
 }
 

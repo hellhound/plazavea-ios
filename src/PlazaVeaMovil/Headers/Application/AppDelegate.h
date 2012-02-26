@@ -10,6 +10,7 @@
         SA_OAuthTwitterEngineDelegate, FBSessionDelegate>
 {
     UIWindow *_window;
+    UIWindow *_overlay;
     // CoreData
     NSManagedObjectContext *_context;
     NSManagedObjectModel *_model;

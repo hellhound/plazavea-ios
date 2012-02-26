@@ -18,4 +18,12 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark <RecipeDetailDataSourceDelegate>
+
+- (void)dataSource:(RecipeDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view
+{
+    
+}
 @end

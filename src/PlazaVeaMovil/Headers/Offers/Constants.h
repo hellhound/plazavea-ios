@@ -151,6 +151,9 @@ extern NSString *const kFBPicture;
 extern NSString *const kFBCaption;
 extern NSString *const kFBDescription;
 extern NSString *const kFBFeedDialog;
+extern NSString *const kMailBanner;
+extern const CGFloat kMailBannerWidth;
+extern const CGFloat kMailBannerHeight;
 
 // PromotionListController's constants
 

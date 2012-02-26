@@ -19,9 +19,6 @@
 
 @protocol PromotionDetailDataSourceDelegate <NSObject>
 
-- (void)        dataSource:(PromotionDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                  andTitle:(NSString *)title;
 - (void) dataSource:(PromotionDetailDataSource *)dataSource
      needsPromotion:(Promotion *)promotion;
 - (void)dataSource:(PromotionDetailDataSource *)dataSource

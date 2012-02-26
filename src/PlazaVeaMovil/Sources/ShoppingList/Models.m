@@ -8,6 +8,7 @@
 #import "Common/Models/ManagedObject.h"
 #import "Common/Models/ReorderingManagedObject.h"
 #import "Application/AppDelegate.h"
+#import "Application/Constants.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
 
@@ -338,6 +339,18 @@ static NSString *const kNSStringDescriptionKey = @"description";
     return [(NSArray *)[[[self items] allObjects] valueForKey:@"serialize"]
             componentsJoinedByString:@"\n"];
 }
+
+- (NSString *)serializeHTML
+{
+    NSString *serializeHTLM = @"<ul>";
+    
+    for (ShoppingItem *item in [self items]) {
+        serializeHTLM = [serializeHTLM stringByAppendingFormat:@"<li>%@</li>",
+                [item serialize]];
+    }
+    serializeHTLM = [serializeHTLM stringByAppendingString:@"</ul>"];
+    return serializeHTLM;
+}
 @end
 
 @implementation ShoppingItem
@@ -594,6 +607,9 @@ static NSString *const kNSStringDescriptionKey = @"description";
 
 + (void)loadFromCSVinContext:(NSManagedObjectContext *)context
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
+    
     BOOL firstUpdate = NO;
     NSArray *csvFiles = [[NSBundle mainBundle] pathsForResourcesOfType:@"csv"
             inDirectory:nil];
@@ -633,8 +649,12 @@ static NSString *const kNSStringDescriptionKey = @"description";
     if (![[historyEntryFile name] isEqualToString:csvFilePath]) {
         [historyEntryFile setName:csvFilePath];
     } else if (!firstUpdate) {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:kCoreDataDidEnd object:self];
         return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidBegin
+            object:self];
     [self cleandata:context];
     
     NSString *csvString = [NSString stringWithContentsOfFile:csvFilePath
@@ -647,6 +667,8 @@ static NSString *const kNSStringDescriptionKey = @"description";
         [ShoppingHistoryEntry historyEntryWithName:parsedName context:context];
     }
     [context save:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataDidEnd
+            object:self];
 }
 
 + (void)cleandata:(NSManagedObjectContext *)context

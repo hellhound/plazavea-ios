@@ -47,6 +47,14 @@
 #import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, retain) UIWindow *overlay;
+
+- (void)showWorking;
+- (void)hideWorking;
+@end
+
 @implementation AppDelegate
 
 #pragma mark -
@@ -54,6 +62,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_window release];
     [_facebook release];
     [_twitter release];
@@ -67,9 +76,10 @@
 #pragma mark -
 #pragma mark AppDelegate (Public)
 
-@synthesize window = _window, facebook = _facebook, twitter = _twitter;
+@synthesize window = _window, facebook = _facebook, twitter = _twitter,
+        overlay = _overlay;
 
-- (NSString *)getUUID{
+- (NSString *)getUUID {
     //get a UUID value from UserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *uuidStr = [defaults stringForKey:kApplicationUUIDKey];
@@ -87,11 +97,65 @@
 }
 
 #pragma mark -
+#pragma mark AppDelegate (Private)
+
+- (void)showWorking
+{
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+            beforeDate:[NSDate date]];
+    
+    _overlay = [[UIWindow alloc] initWithFrame:
+            [[UIScreen mainScreen] bounds]];
+    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc]
+            initWithActivityIndicatorStyle:
+                UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+    
+    [indicator setFrame:CGRectOffset([indicator frame],
+            ([_overlay frame].size.width - [indicator frame].size.width) / 2.,
+                kIndicatorY)];
+    [indicator startAnimating];
+    
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    [label setText:kWorkingMessage];
+    [label setFont:[UIFont boldSystemFontOfSize:kLabelFontSize]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+    CGSize labelSize = [[label text] sizeWithFont:[label font]
+            constrainedToSize:CGSizeMake([_overlay bounds].size.width,
+                [_overlay bounds].size.height)
+                lineBreakMode:UILineBreakModeWordWrap];
+    
+    [label setFrame:CGRectMake(([_overlay frame].size.width - labelSize.width) /
+            2., kLabelY, labelSize.width, labelSize.height)];
+    [_overlay addSubview:indicator];
+    [_overlay addSubview:label];
+    [_overlay setBackgroundColor:[UIColor blackColor]];
+    [_overlay setAlpha:.0];
+    [_overlay makeKeyAndVisible];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:kAnimationDuration];
+    [_overlay setAlpha:kOverlayAlpha];
+    [UIView commitAnimations];
+}
+
+- (void)hideWorking
+{
+    [_overlay release];
+    [_window makeKeyAndVisible];
+}
+
+#pragma mark -
 #pragma mark <UIApplicationDelegate>
 
 - (BOOL)            application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)options
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(showWorking) name:kCoreDataDidBegin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(hideWorking) name:kCoreDataDidEnd object:nil];
     // Conf Facebook
     _facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -269,6 +333,26 @@
     [defaults synchronize];
 }
 
+- (void)fbSessionInvalidated
+{
+    
+}
+
+- (void)fbDidLogout
+{
+    
+}
+
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+{
+    
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    
+}
+
 #pragma mark -
 #pragma mark <SA_OAuthTwitterEngineDelegate>
 
@@ -282,9 +366,7 @@
 }
 
 - (NSString *)cachedTwitterOAuthDataForUsername:(NSString *)username
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    return [defaults objectForKey:kOAuthData];
+{    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kOAuthData];
 }
 @end
