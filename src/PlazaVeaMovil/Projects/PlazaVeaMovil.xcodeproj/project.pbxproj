@@ -132,6 +132,21 @@
 		2F2B2B3714B4EA9D000C0F26 /* snacks-backgrounds.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */; };
 		2F2B2B3814B4EA9D000C0F26 /* snacks-backgrounds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */; };
 		2F2B2B9D14B4F4F8000C0F26 /* RecipesTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B2B9C14B4F4F8000C0F26 /* RecipesTableViewDelegate.m */; };
+		2F2C9D5414FE70EE0024ABAE /* default-banner-body-meter.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4514FE70EE0024ABAE /* default-banner-body-meter.jpg */; };
+		2F2C9D5514FE70EE0024ABAE /* default-banner-body-meter@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4614FE70EE0024ABAE /* default-banner-body-meter@2x.jpg */; };
+		2F2C9D5614FE70EE0024ABAE /* default-banner-composition.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4714FE70EE0024ABAE /* default-banner-composition.jpg */; };
+		2F2C9D5714FE70EE0024ABAE /* default-banner-composition@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4814FE70EE0024ABAE /* default-banner-composition@2x.jpg */; };
+		2F2C9D5814FE70EE0024ABAE /* default-banner-emergency.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4914FE70EE0024ABAE /* default-banner-emergency.jpg */; };
+		2F2C9D5914FE70EE0024ABAE /* default-banner-emergency@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4A14FE70EE0024ABAE /* default-banner-emergency@2x.jpg */; };
+		2F2C9D5A14FE70EE0024ABAE /* default-banner-offers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4B14FE70EE0024ABAE /* default-banner-offers.jpg */; };
+		2F2C9D5B14FE70EE0024ABAE /* default-banner-offers@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4C14FE70EE0024ABAE /* default-banner-offers@2x.jpg */; };
+		2F2C9D5C14FE70EE0024ABAE /* default-banner-recipes@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4D14FE70EE0024ABAE /* default-banner-recipes@2x.jpg */; };
+		2F2C9D5D14FE70EE0024ABAE /* default-banner-shopping-lists.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4E14FE70EE0024ABAE /* default-banner-shopping-lists.jpg */; };
+		2F2C9D5E14FE70EE0024ABAE /* default-banner-shopping-lists@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D4F14FE70EE0024ABAE /* default-banner-shopping-lists@2x.jpg */; };
+		2F2C9D5F14FE70EE0024ABAE /* default-banner-sommelier.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5014FE70EE0024ABAE /* default-banner-sommelier.jpg */; };
+		2F2C9D6014FE70EE0024ABAE /* default-banner-sommelier@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */; };
+		2F2C9D6114FE70EE0024ABAE /* default-banner-stores.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */; };
+		2F2C9D6214FE70EE0024ABAE /* default-banner-stores@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */; };
 		2F32FF4114B689FD00F8112C /* BaseRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */; };
 		2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */; };
 		2F3B7BF414CDB096004CE20A /* PageCurlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B7BF314CDB096004CE20A /* PageCurlButton.m */; };
@@ -894,6 +909,21 @@
 		2F2B2B2314B4EA9C000C0F26 /* snacks-backgrounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds.png"; sourceTree = "<group>"; };
 		2F2B2B2414B4EA9C000C0F26 /* snacks-backgrounds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snacks-backgrounds@2x.png"; sourceTree = "<group>"; };
 		2F2B2B9C14B4F4F8000C0F26 /* RecipesTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesTableViewDelegate.m; sourceTree = "<group>"; };
+		2F2C9D4514FE70EE0024ABAE /* default-banner-body-meter.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-body-meter.jpg"; sourceTree = "<group>"; };
+		2F2C9D4614FE70EE0024ABAE /* default-banner-body-meter@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-body-meter@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D4714FE70EE0024ABAE /* default-banner-composition.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-composition.jpg"; sourceTree = "<group>"; };
+		2F2C9D4814FE70EE0024ABAE /* default-banner-composition@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-composition@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D4914FE70EE0024ABAE /* default-banner-emergency.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-emergency.jpg"; sourceTree = "<group>"; };
+		2F2C9D4A14FE70EE0024ABAE /* default-banner-emergency@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-emergency@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D4B14FE70EE0024ABAE /* default-banner-offers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-offers.jpg"; sourceTree = "<group>"; };
+		2F2C9D4C14FE70EE0024ABAE /* default-banner-offers@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-offers@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D4D14FE70EE0024ABAE /* default-banner-recipes@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-recipes@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D4E14FE70EE0024ABAE /* default-banner-shopping-lists.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-shopping-lists.jpg"; sourceTree = "<group>"; };
+		2F2C9D4F14FE70EE0024ABAE /* default-banner-shopping-lists@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-shopping-lists@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D5014FE70EE0024ABAE /* default-banner-sommelier.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-sommelier.jpg"; sourceTree = "<group>"; };
+		2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-sommelier@2x.jpg"; sourceTree = "<group>"; };
+		2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores.jpg"; sourceTree = "<group>"; };
+		2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores@2x.jpg"; sourceTree = "<group>"; };
 		2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeDetailController.m; sourceTree = "<group>"; };
 		2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailController.m; sourceTree = "<group>"; };
 		2F3B7BF314CDB096004CE20A /* PageCurlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCurlButton.m; sourceTree = "<group>"; };
@@ -1264,6 +1294,21 @@
 		2C2F07FC13DE6692009F60DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F2C9D4514FE70EE0024ABAE /* default-banner-body-meter.jpg */,
+				2F2C9D4614FE70EE0024ABAE /* default-banner-body-meter@2x.jpg */,
+				2F2C9D4714FE70EE0024ABAE /* default-banner-composition.jpg */,
+				2F2C9D4814FE70EE0024ABAE /* default-banner-composition@2x.jpg */,
+				2F2C9D4914FE70EE0024ABAE /* default-banner-emergency.jpg */,
+				2F2C9D4A14FE70EE0024ABAE /* default-banner-emergency@2x.jpg */,
+				2F2C9D4B14FE70EE0024ABAE /* default-banner-offers.jpg */,
+				2F2C9D4C14FE70EE0024ABAE /* default-banner-offers@2x.jpg */,
+				2F2C9D4D14FE70EE0024ABAE /* default-banner-recipes@2x.jpg */,
+				2F2C9D4E14FE70EE0024ABAE /* default-banner-shopping-lists.jpg */,
+				2F2C9D4F14FE70EE0024ABAE /* default-banner-shopping-lists@2x.jpg */,
+				2F2C9D5014FE70EE0024ABAE /* default-banner-sommelier.jpg */,
+				2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */,
+				2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */,
+				2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */,
 				2FF1FBB814F3E8E300987234 /* history-entry.csv */,
 				2F4D870514F29CAC00229012 /* meats-section-header.png */,
 				2F4D870614F29CAC00229012 /* meats-section-header@2x.png */,
@@ -2537,6 +2582,21 @@
 				2F4D870714F29CAC00229012 /* meats-section-header.png in Resources */,
 				2F4D870814F29CAC00229012 /* meats-section-header@2x.png in Resources */,
 				2FF1FBB914F3E8E300987234 /* history-entry.csv in Resources */,
+				2F2C9D5414FE70EE0024ABAE /* default-banner-body-meter.jpg in Resources */,
+				2F2C9D5514FE70EE0024ABAE /* default-banner-body-meter@2x.jpg in Resources */,
+				2F2C9D5614FE70EE0024ABAE /* default-banner-composition.jpg in Resources */,
+				2F2C9D5714FE70EE0024ABAE /* default-banner-composition@2x.jpg in Resources */,
+				2F2C9D5814FE70EE0024ABAE /* default-banner-emergency.jpg in Resources */,
+				2F2C9D5914FE70EE0024ABAE /* default-banner-emergency@2x.jpg in Resources */,
+				2F2C9D5A14FE70EE0024ABAE /* default-banner-offers.jpg in Resources */,
+				2F2C9D5B14FE70EE0024ABAE /* default-banner-offers@2x.jpg in Resources */,
+				2F2C9D5C14FE70EE0024ABAE /* default-banner-recipes@2x.jpg in Resources */,
+				2F2C9D5D14FE70EE0024ABAE /* default-banner-shopping-lists.jpg in Resources */,
+				2F2C9D5E14FE70EE0024ABAE /* default-banner-shopping-lists@2x.jpg in Resources */,
+				2F2C9D5F14FE70EE0024ABAE /* default-banner-sommelier.jpg in Resources */,
+				2F2C9D6014FE70EE0024ABAE /* default-banner-sommelier@2x.jpg in Resources */,
+				2F2C9D6114FE70EE0024ABAE /* default-banner-stores.jpg in Resources */,
+				2F2C9D6214FE70EE0024ABAE /* default-banner-stores@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
