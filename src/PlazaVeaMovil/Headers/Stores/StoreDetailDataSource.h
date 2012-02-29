@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import <Three20/Three20.h>
 
@@ -16,9 +17,7 @@
 
 @protocol StoreDetailDataSourceDelegate <NSObject>
 
-- (void)        dataSource:(StoreDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                  district:(NSString *)district
-                  andTitle:(NSString *)title;
+- (void)dataSource:(StoreDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view;
 @end
 
