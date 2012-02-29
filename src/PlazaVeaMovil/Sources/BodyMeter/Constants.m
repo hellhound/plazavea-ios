@@ -202,7 +202,7 @@ NSString *const kBodyMeterTimeSufix = @"%.0f días";
 const CGFloat kBodyMeterBannerWidth = 320.;
 const CGFloat kBodyMeterBannerHeight = 140.;
 NSString *const kBodyMeterBannerImage =
-        @"bundle://default-banner-bodymeter.png";
+        @"bundle://default-banner-body-meter.jpg";
 NSString *const kBodyMeterBackgroundImage = 
         @"bundle://bodymeter-background.png";
 

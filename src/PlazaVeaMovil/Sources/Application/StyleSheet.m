@@ -12,8 +12,10 @@
 // color for navigation bar
 #define BAR_TINT_COLOR RGBCOLOR(255., 208., .0)
 
-//vcolor for texts in tables
+// color for texts in tables
 #define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
+#define CAPTION_ALT_COLOR RGBCOLOR(227., 13., 23.)
+#define DETAIL_ALT_COLOR RGBCOLOR(.0, .0, .0)
 
 // color for Headers
 #define HEADER_COLOR_YELLOW RGBCOLOR(255., 255., .0)
@@ -100,6 +102,11 @@
 - (UIColor *)toolbarTintColor
 {
     return BAR_TINT_COLOR;
+}
+
+- (UIColor *)captionAltColor
+{
+    return CAPTION_ALT_COLOR;
 }
 
 - (UIColor *)headerColorYellow

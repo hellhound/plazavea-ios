@@ -35,7 +35,7 @@ NSString *const kEmergencyFileName = @"name";
 // EmergencyCategoryController's constants
 
 NSString *const kEmergencyCategoryBanner =
-        @"bundle://default-banner-emergency.png";
+        @"bundle://default-banner-emergency.jpg";
 
 // Controller URLs
 
