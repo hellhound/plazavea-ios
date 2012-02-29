@@ -215,6 +215,8 @@ willAppearAtIndexPath:(NSIndexPath *)indexPath
             [[[(TableCaptionItemCell *)cell captionLabel] text]
                 isEqualToString:kOfferDetailPriceCaption]) {
         [[cell textLabel] setTextColor:(UIColor *)TTSTYLE(captionAltColor)];
+        [[cell detailTextLabel] setTextColor:
+                (UIColor *)TTSTYLE(captionAltColor)];
     }
 }
 
