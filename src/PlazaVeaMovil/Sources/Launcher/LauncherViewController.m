@@ -85,6 +85,7 @@
             nil]];
     //styles
     [_launcherView setBackgroundColor:[UIColor clearColor]];
+    [superView setAlpha:.0];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(launcherBackgroundImage)]){
         UIImageView *backgroundView = 
@@ -95,6 +96,10 @@
     }
 
     [superView addSubview:_launcherView];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.8];
+    [superView setAlpha:1.];
+    [UIView commitAnimations]; 
 }
 
 - (void)viewWillAppear:(BOOL)animated

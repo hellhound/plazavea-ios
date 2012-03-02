@@ -53,6 +53,7 @@
 
 - (void)showWorking;
 - (void)hideWorking;
+- (void)fadeDefault;
 @end
 
 @implementation AppDelegate
@@ -144,6 +145,20 @@
 {
     [_overlay release];
     [_window makeKeyAndVisible];
+}
+
+- (void)fadeDefault
+{
+    UIImageView *splash = [[[UIImageView alloc] initWithImage:
+            [UIImage imageNamed:@"Default.png"]] autorelease];
+    
+    [splash setTag:100];
+    [_window insertSubview:splash atIndex:0];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.8];
+    [splash setAlpha:.0];
+    [UIView commitAnimations];
+    [splash removeFromSuperview];
 }
 
 #pragma mark -
@@ -281,6 +296,7 @@
     [map from:kURLFoodDetail
             toViewController:[FoodDetailController class]];
     // Open root view controller
+    [self fadeDefault];
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
              applyAnimated:YES]];
