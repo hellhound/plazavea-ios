@@ -23,6 +23,7 @@
     if ((self = [super init]) != nil) {
         _list = list;
         _controller = controller;
+        [self setModel:[[[FilterCollection alloc] init] autorelease]];
     }
     return self;
 }
@@ -37,7 +38,7 @@
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return NSLocalizedString(kFilteringListSubtitleForError, nil);
+    return NSLocalizedString(kFilteringListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
@@ -58,13 +59,16 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
-    for (int i = 0; i < 10; i++) {
-        TTTableTextItem *item = [TTTableTextItem itemWithText:[NSString
-                stringWithFormat:@"Ítem %i", i] delegate:_controller
+    NSMutableArray *items = [NSMutableArray array];
+    FilterCollection *collection = (FilterCollection *)[self model];
+    
+    for (Winery *rawItem in [collection list]) {
+        TableImageSubtitleItem *item = [TableImageSubtitleItem
+                itemWithText:[rawItem name] delegate:_controller
                     selector:@selector(back:)];
         
         [items addObject:item];
+        [item setItemId:[rawItem wineryId]];
     }
     [self setItems:items];
 }

@@ -3,6 +3,7 @@
 
 #import "Wines/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Common/Views/TableImageSubtitleItem.h"
 #import "Wines/FilteringListDataSource.h"
 #import "Wines/FilteringListController.h"
 
@@ -11,6 +12,15 @@ static CGFloat headerMinHeight = 40.;
 static CGFloat titleWidth = 320.;
 
 @implementation FilteringListController
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    _delegate = nil;
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark UITableViewController
@@ -25,8 +35,6 @@ static CGFloat titleWidth = 320.;
                     initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                         autorelease]];
         }
-        [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
-                title:kSomelierTitle]];
     }
     return self;
 }
@@ -43,12 +51,40 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark FilteringListController
 
-@synthesize list = _list;
+@synthesize list = _list, delegate = _delegate;
 
 - (id)initWithList:(NSString *)list
 {
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         _list = [list intValue];
+        NSString *title;
+        switch (_list) {
+            case kWineCountryFilter:
+                title = kWineCountriesLabel;
+                break;
+            case kWineWineryFilter:
+                title = kWineWineriesLabel;
+                break;
+            case kWineCategoryFilter:
+                title = kWineCategoriesLabel;
+                break;
+            case kWineStrainFilter:
+                title = kWineStrainsLabel;
+                break;
+            default:
+                break;
+        }
+        [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
+                    title:title]];
+    }
+    return self;
+}
+
+- (id)initWithList:(NSString *)list
+          delegate:(id<FilteringListControllerDelegate>)delegate
+{
+    if ((self = [self initWithList:list]) != nil) {
+        _delegate = delegate;
     }
     return self;
 }
@@ -102,6 +138,11 @@ static CGFloat titleWidth = 320.;
 
 - (void)back:(id)sender
 {
-    [[self navigationController] popViewControllerAnimated:YES];
+    UINavigationController *navController = [self navigationController];
+    NSArray *controllers = [navController viewControllers];
+    _delegate = [controllers objectAtIndex:[controllers count] - 2];
+    
+    [_delegate controller:self itemId:[sender itemId]];
+    [navController popViewControllerAnimated:YES];
 }
 @end

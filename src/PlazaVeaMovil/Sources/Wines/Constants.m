@@ -47,6 +47,11 @@ NSString *const kStrainWines = @"wines";
 // JSON keys
 NSString *const kStrainCollectionCategoriesKey = @"categories";
 
+// FilterCollection's constants
+
+// JSON keys
+NSString *const kFilterCollectionItemsKey = @"items";
+
 // StrainListDataSource's constants
 
 // Messages
@@ -193,6 +198,16 @@ NSString *const cellId = @"cellId";
 NSString *const kWineUndefinedLabel = @"No hay información";
 const CGFloat kWineColor = .85;
 
+//FilteringListController's constants
+NSString *const kWineCountriesLabel = @"Paises";
+// NSLocalizedString(@"Paises", nil)
+NSString *const kWineWineriesLabel = @"Bodegas";
+// NSLocalizedString(@"Bodegas", nil)
+NSString *const kWineCategoriesLabel = @"Categorías";
+// NSLocalizedString(@"Categorías", nil)
+NSString *const kWineStrainsLabel = @"Cepas";
+// NSLocalizedString(@"Cepas", nil)
+
 // Generic sizes and images
 const CGFloat kWineDetailImageWidth = 320.;
 const CGFloat kWineDetailImageHeight = 140.;
@@ -244,3 +259,4 @@ NSString *const kURLStrainCollectionEndPoint =
         ENDPOINT(@"/wines/categories.json");
 NSString *const kURLRecipeStrainCollectionEndPoint =
         ENDPOINT(@"/recipes/%@/wines/categories.json");
+NSString *const kURLFilterCollectionEndPoint = ENDPOINT(@"/wines/filter.json");

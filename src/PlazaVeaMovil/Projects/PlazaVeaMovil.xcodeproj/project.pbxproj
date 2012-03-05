@@ -158,6 +158,7 @@
 		2F3FF92C14D74F900039D1F6 /* MealsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92714D74F900039D1F6 /* MealsController.m */; };
 		2F3FF92D14D74F900039D1F6 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92814D74F900039D1F6 /* ProfileController.m */; };
 		2F3FF92E14D74F900039D1F6 /* RecomendationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FF92914D74F900039D1F6 /* RecomendationsController.m */; };
+		2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F47C7A915054CF400004A15 /* LocalFilteringListController.m */; };
 		2F4875B1148C017A0027C2F0 /* composition-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4875B0148C017A0027C2F0 /* composition-background.png */; };
 		2F4D870714F29CAC00229012 /* meats-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D870514F29CAC00229012 /* meats-section-header.png */; };
 		2F4D870814F29CAC00229012 /* meats-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D870614F29CAC00229012 /* meats-section-header@2x.png */; };
@@ -938,6 +939,26 @@
 		2F3FF92714D74F900039D1F6 /* MealsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealsController.m; sourceTree = "<group>"; };
 		2F3FF92814D74F900039D1F6 /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		2F3FF92914D74F900039D1F6 /* RecomendationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecomendationsController.m; sourceTree = "<group>"; };
+		2F47C7A915054CF400004A15 /* LocalFilteringListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFilteringListController.m; sourceTree = "<group>"; };
+		2F47C7AB15054D4800004A15 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Wines/Constants.h; sourceTree = "<group>"; };
+		2F47C7AC15054D4800004A15 /* FilteringListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteringListController.h; path = ../../Headers/Wines/FilteringListController.h; sourceTree = "<group>"; };
+		2F47C7AD15054D4800004A15 /* FilteringListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteringListDataSource.h; path = ../../Headers/Wines/FilteringListDataSource.h; sourceTree = "<group>"; };
+		2F47C7AE15054D4800004A15 /* LocalFilteringListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalFilteringListController.h; path = ../../Headers/Wines/LocalFilteringListController.h; sourceTree = "<group>"; };
+		2F47C7AF15054D4800004A15 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Wines/Models.h; sourceTree = "<group>"; };
+		2F47C7B015054D4800004A15 /* StrainListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StrainListController.h; path = ../../Headers/Wines/StrainListController.h; sourceTree = "<group>"; };
+		2F47C7B115054D4800004A15 /* StrainListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StrainListDataSource.h; path = ../../Headers/Wines/StrainListDataSource.h; sourceTree = "<group>"; };
+		2F47C7B215054D4800004A15 /* WineDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineDetailController.h; path = ../../Headers/Wines/WineDetailController.h; sourceTree = "<group>"; };
+		2F47C7B315054D4800004A15 /* WineDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineDetailDataSource.h; path = ../../Headers/Wines/WineDetailDataSource.h; sourceTree = "<group>"; };
+		2F47C7B415054D4800004A15 /* WineFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineFilterController.h; path = ../../Headers/Wines/WineFilterController.h; sourceTree = "<group>"; };
+		2F47C7B515054D4800004A15 /* WineInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineInfoController.h; path = ../../Headers/Wines/WineInfoController.h; sourceTree = "<group>"; };
+		2F47C7B615054D4800004A15 /* WineInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineInfoDataSource.h; path = ../../Headers/Wines/WineInfoDataSource.h; sourceTree = "<group>"; };
+		2F47C7B715054D4800004A15 /* WineListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineListController.h; path = ../../Headers/Wines/WineListController.h; sourceTree = "<group>"; };
+		2F47C7B815054D4800004A15 /* WineListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineListDataSource.h; path = ../../Headers/Wines/WineListDataSource.h; sourceTree = "<group>"; };
+		2F47C7B915054D4800004A15 /* WineTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineTableViewDelegate.h; path = ../../Headers/Wines/WineTableViewDelegate.h; sourceTree = "<group>"; };
+		2F47C7BA15054D4800004A15 /* WineTasteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineTasteController.h; path = ../../Headers/Wines/WineTasteController.h; sourceTree = "<group>"; };
+		2F47C7BB15054D4800004A15 /* WineTasteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineTasteDataSource.h; path = ../../Headers/Wines/WineTasteDataSource.h; sourceTree = "<group>"; };
+		2F47C7BC15054D4800004A15 /* WineTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineTipsController.h; path = ../../Headers/Wines/WineTipsController.h; sourceTree = "<group>"; };
+		2F47C7BD15054D4800004A15 /* WineTipsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WineTipsDataSource.h; path = ../../Headers/Wines/WineTipsDataSource.h; sourceTree = "<group>"; };
 		2F4875B0148C017A0027C2F0 /* composition-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composition-background.png"; sourceTree = "<group>"; };
 		2F4D870514F29CAC00229012 /* meats-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-section-header.png"; sourceTree = "<group>"; };
 		2F4D870614F29CAC00229012 /* meats-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meats-section-header@2x.png"; sourceTree = "<group>"; };
@@ -1695,6 +1716,26 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2F47C7AB15054D4800004A15 /* Constants.h */,
+				2F47C7AC15054D4800004A15 /* FilteringListController.h */,
+				2F47C7AD15054D4800004A15 /* FilteringListDataSource.h */,
+				2F47C7AE15054D4800004A15 /* LocalFilteringListController.h */,
+				2F47C7AF15054D4800004A15 /* Models.h */,
+				2F47C7B015054D4800004A15 /* StrainListController.h */,
+				2F47C7B115054D4800004A15 /* StrainListDataSource.h */,
+				2F47C7B215054D4800004A15 /* WineDetailController.h */,
+				2F47C7B315054D4800004A15 /* WineDetailDataSource.h */,
+				2F47C7B415054D4800004A15 /* WineFilterController.h */,
+				2F47C7B515054D4800004A15 /* WineInfoController.h */,
+				2F47C7B615054D4800004A15 /* WineInfoDataSource.h */,
+				2F47C7B715054D4800004A15 /* WineListController.h */,
+				2F47C7B815054D4800004A15 /* WineListDataSource.h */,
+				2F47C7B915054D4800004A15 /* WineTableViewDelegate.h */,
+				2F47C7BA15054D4800004A15 /* WineTasteController.h */,
+				2F47C7BB15054D4800004A15 /* WineTasteDataSource.h */,
+				2F47C7BC15054D4800004A15 /* WineTipsController.h */,
+				2F47C7BD15054D4800004A15 /* WineTipsDataSource.h */,
+				2F47C7A915054CF400004A15 /* LocalFilteringListController.m */,
 				2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */,
 				2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */,
 				2F84395B14EEECE90068B13F /* FilteringListDataSource.m */,
@@ -2784,6 +2825,7 @@
 				2FAF50CB14EEB53800E19C1A /* WineFilterController.m in Sources */,
 				2F84395C14EEECE90068B13F /* FilteringListController.m in Sources */,
 				2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */,
+				2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

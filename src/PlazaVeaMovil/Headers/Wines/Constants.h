@@ -45,6 +45,11 @@ extern NSString *const kStrainWines;
 // JSON keys
 extern NSString *const kStrainCollectionCategoriesKey;
 
+// FilterCollection's constants
+
+// JSON keys
+extern NSString *const kFilterCollectionItemsKey;
+
 // StrainListDataSource's constants
 
 // Messages
@@ -127,6 +132,7 @@ typedef enum {
 
 typedef enum {
     kWineCountryRow,
+    kWineWineryRow,
     kWineCategoryRow,
     kWineStrainRow,
     kWinePriceRow
@@ -146,9 +152,23 @@ extern const CGFloat kWineColor;
 // FilteringListController's constants
 typedef enum {
     kWineCountryFilter,
+    kWineWineryFilter,
     kWineCategoryFilter,
     kWineStrainFilter
 } WineFilteringListType;
+
+//FilteringListController's constants
+extern NSString *const kWineCountriesLabel;
+extern NSString *const kWineWineriesLabel;
+extern NSString *const kWineCategoriesLabel;
+extern NSString *const kWineStrainsLabel;
+
+//LocalFilteringListController's constants
+typedef enum {
+    kWineCategoryLocalFilter,
+    kWineWinesLocalFilter,
+    kWinePriceLocalFilter,
+} WineLocalFilteringListType;
 
 // Generic sizes and images
 extern const CGFloat kWineDetailImageWidth;
@@ -188,3 +208,4 @@ extern NSString *const kURLWineDetailEndPoint;
 extern NSString *const kURLWineCollectionEndPoint;
 extern NSString *const kURLStrainCollectionEndPoint;
 extern NSString *const kURLRecipeStrainCollectionEndPoint;
+extern NSString *const kURLFilterCollectionEndPoint;

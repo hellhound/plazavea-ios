@@ -154,3 +154,14 @@
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection;
 @end
+
+@interface FilterCollection: URLRequestModel
+{
+    NSMutableArray *_list;
+}
+@property (nonatomic, readonly) NSArray *list;
+
++ (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection;
+
+- (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection;
+@end

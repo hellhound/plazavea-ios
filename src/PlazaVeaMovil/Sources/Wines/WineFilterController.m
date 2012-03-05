@@ -3,6 +3,7 @@
 
 #import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
+#import "Wines/LocalFilteringListController.h"
 #import "Wines/WineFilterController.h"
 #import "Wines/Constants.h"
 
@@ -106,7 +107,7 @@ static CGFloat titleWidth = 320.;
 {
     switch (section) {
         case kWineFilterSection:
-            return 4;
+            return 5;
             break;
         case kWineGoSection:
             return 1;
@@ -137,6 +138,9 @@ static CGFloat titleWidth = 320.;
             switch ([indexPath row]) {
                 case kWineCountryRow:
                     textLabel = kWineCountryLabel;
+                    break;
+                case kWineWineryRow:
+                    textLabel = kWineWineryLabel;
                     break;
                 case kWineCategoryRow:
                     textLabel = kWineCategoryLabel;
@@ -179,6 +183,12 @@ static CGFloat titleWidth = 320.;
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LocalFilteringListController *controller =
+            [[[LocalFilteringListController alloc]
+                initWithStyle:UITableViewStylePlain] 
+                autorelease];
+    
     switch ([indexPath section]) {
         case kWineFilterSection:
             switch ([indexPath row]) {
@@ -187,15 +197,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                             actionWithURLPath:URL(kURLFilteringCall, @"0")]
                                 applyAnimated:YES]];
                     break;
-                case kWineCategoryRow:
+                case kWineWineryRow:
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:URL(kURLFilteringCall, @"1")]
                                 applyAnimated:YES]];
+                    break;
+                case kWineCategoryRow:
+                    /*[[TTNavigator navigator] openURLAction:[[TTURLAction
+                            actionWithURLPath:URL(kURLFilteringCall, @"2")]
+                                applyAnimated:YES]];*/
+                    [controller setList:kWineCategoryLocalFilter];
+                    [[self navigationController] pushViewController:controller
+                            animated:YES];
                     break;    
                 case kWineStrainRow:
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLFilteringCall, @"2")]
+                            actionWithURLPath:URL(kURLFilteringCall, @"3")]
                                 applyAnimated:YES]];
+                    break;
+                case kWinePriceRow:
+                    [controller setList:kWinePriceLocalFilter];
+                    [[self navigationController] pushViewController:controller
+                            animated:YES];
                     break;
                 default:
                     break;
@@ -215,5 +238,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         default:
             break;
     }
+}
+
+#pragma mark -
+#pragma mark <FilteringListControllerDelegate>
+
+- (void)controller:(FilteringListController *)controller
+            itemId:(NSNumber *)itemId
+{
+    NSLog(@"list: %i, item Id: %i", [controller list], [itemId intValue]); 
 }
 @end
