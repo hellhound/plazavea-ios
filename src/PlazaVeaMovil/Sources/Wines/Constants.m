@@ -203,10 +203,36 @@ NSString *const kWineCountriesLabel = @"Paises";
 // NSLocalizedString(@"Paises", nil)
 NSString *const kWineWineriesLabel = @"Bodegas";
 // NSLocalizedString(@"Bodegas", nil)
-NSString *const kWineCategoriesLabel = @"Categorías";
-// NSLocalizedString(@"Categorías", nil)
 NSString *const kWineStrainsLabel = @"Cepas";
 // NSLocalizedString(@"Cepas", nil)
+NSString *const kWineSparklingTypeLabel = @"Tipo de espumante";
+// NSLocalizedString(@"Tipo de espumante", nil)
+
+// LocalFilteringListController's constants
+NSString *const kWineCategoriesLabel = @"Categorías";
+// NSLocalizedString(@"Categorías", nil)
+NSString *const kWineWinesLabel = @"Vinos";
+// NSLocalizedString(@"Vinos", nil)
+NSString *const kWinePricesLabel = @"Precios";
+// NSLocalizedString(@"Precios", nil)
+NSString *const kWineWineLabel = @"Vino";
+// NSLocalizedString(@"Vino", nil)
+NSString *const kWineSparklingLabel = @"Espumante";
+// NSLocalizedString(@"Espumante", nil)
+NSString *const kWineWhiteLabel = @"Blanco";
+// NSLocalizedString(@"Blanco", nil)
+NSString *const kWineRoseLabel = @"Rosado";
+// NSLocalizedString(@"Rosado", nil)
+NSString *const kWineRedLabel = @"Tinto";
+// NSLocalizedString(@"Tinto", nil)
+NSString *const kWineAllLabel = @"Todos";
+// NSLocalizedString(@"Todos", nil)
+NSString *const kWineLessThanLabel = @"Menos de S/. 50";
+// NSLocalizedString(@"Menos de S/. 50", nil)
+NSString *const kWineBetweenLabel = @"Entre S/. 50 y S/. 100";
+// NSLocalizedString(@"Entre S/. 50 y S/. 100", nil)
+NSString *const kWineMoreThanLabel = @"Más de S/. 100";
+// NSLocalizedString(@"Más de S/. 100", nil)
 
 // Generic sizes and images
 const CGFloat kWineDetailImageWidth = 320.;
@@ -260,3 +286,9 @@ NSString *const kURLStrainCollectionEndPoint =
 NSString *const kURLRecipeStrainCollectionEndPoint =
         ENDPOINT(@"/recipes/%@/wines/categories.json");
 NSString *const kURLFilterCollectionEndPoint = ENDPOINT(@"/wines/filter.json");
+NSString *const kURLCountriesCollectionEndPoint =
+        ENDPOINT(@"/wines/countries.json");
+NSString *const kURLWineriesCollectionEndPoint =
+        ENDPOINT(@"/wines/wineries.json");
+NSString *const kURLStrainsCollectionEndPoint =
+        ENDPOINT(@"/wines/strains.json");

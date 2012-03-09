@@ -23,7 +23,8 @@
     if ((self = [super init]) != nil) {
         _list = list;
         _controller = controller;
-        [self setModel:[[[FilterCollection alloc] init] autorelease]];
+        [self setModel:[[[FilterCollection alloc] initWithCollectionId:_list]
+                autorelease]];
     }
     return self;
 }
@@ -68,7 +69,8 @@
                     selector:@selector(back:)];
         
         [items addObject:item];
-        [item setItemId:[rawItem wineryId]];
+        //[item setItemId:[rawItem wineryId]];
+        [item setExtra:rawItem];
     }
     [self setItems:items];
 }

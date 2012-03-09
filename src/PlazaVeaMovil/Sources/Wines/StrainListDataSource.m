@@ -45,7 +45,7 @@
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return NSLocalizedString(kStrainListSubtitleForError, nil);
+    return NSLocalizedString(kStrainListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error

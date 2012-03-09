@@ -4,6 +4,7 @@
 #import "Wines/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItem.h"
+#import "Wines/WineFilterController.h"
 #import "Wines/FilteringListDataSource.h"
 #import "Wines/FilteringListController.h"
 
@@ -139,10 +140,18 @@ static CGFloat titleWidth = 320.;
 - (void)back:(id)sender
 {
     UINavigationController *navController = [self navigationController];
-    NSArray *controllers = [navController viewControllers];
-    _delegate = [controllers objectAtIndex:[controllers count] - 2];
+    UIViewController *filterController;
     
-    [_delegate controller:self itemId:[sender itemId]];
-    [navController popViewControllerAnimated:YES];
+    for (UIViewController *controller in
+            [navController viewControllers]) {
+        if ([controller isKindOfClass:[WineFilterController class]]) {
+            filterController = controller;
+            _delegate = (id<FilteringListControllerDelegate>)controller;
+            break;
+        }
+    }    
+    //[_delegate controller:self itemId:[sender itemId]];
+    [_delegate controller:self didPickItem:[sender extra]];
+    [navController popToViewController:filterController animated:YES];
 }
 @end

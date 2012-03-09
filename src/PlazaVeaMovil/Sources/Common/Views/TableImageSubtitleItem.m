@@ -10,7 +10,7 @@
 #pragma mark -
 #pragma mark TableImageSubtitleItem
 
-@synthesize imageStyle, itemId;
+@synthesize imageStyle, extra;
 
 + (id)itemWithText:(NSString*)text 
           subtitle:(NSString*)subtitle 

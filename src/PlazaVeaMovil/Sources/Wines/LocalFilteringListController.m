@@ -14,6 +14,41 @@ static CGFloat titleWidth = 320.;
 
 @implementation LocalFilteringListController
 
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    _delegate = nil;
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSString *title = @"";
+    
+    switch (_list) {
+        case kWineCategoryLocalFilter:
+            title = kWineCategoriesLabel;
+            break;
+        case kWineWinesLocalFilter:
+            title = kWineWinesLabel;
+            break;
+        case kWinePriceLocalFilter:
+            title = kWinePricesLabel;
+            break;
+        default:
+            break;
+    }
+    [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
+            title:title]];
+}
+
 #pragma mark - 
 #pragma mark UITableViewController
 
@@ -25,8 +60,6 @@ static CGFloat titleWidth = 320.;
             [[self navigationItem] setTitleView:[[[UIImageView alloc]
                     initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                         autorelease]];
-            [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
-                    title:kSomelierTitle]];
         }
     }
     return self;
@@ -35,7 +68,7 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark LocalFilteringListController
 
-@synthesize list = _list;
+@synthesize list = _list, delegate = _delegate;
 
 - (id)initWithList:(WineLocalFilteringListType)list
 {
@@ -44,18 +77,26 @@ static CGFloat titleWidth = 320.;
     return self;
 }
 
+- (id)initWithList:(WineLocalFilteringListType)list
+          delegate:(id<LocalFilteringListControllerDelegate>)delegate
+{
+    if ((self = [self initWithList:list]) != nil)
+        _delegate = delegate;
+    return self;
+}
+
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
 {
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    /*UIImageView *imageView = [[[UIImageView alloc]
-            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:nil] autorelease];
     
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
-    [imageView setBackgroundColor:[UIColor clearColor]];*/
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
@@ -86,13 +127,13 @@ static CGFloat titleWidth = 320.;
     [titleLabel setFrame:titleFrame];
     
     CGRect headerFrame = CGRectMake(.0, .0, titleWidth,
-            titleHeight + (margin * 2.));
+            [imageView frame].size.height + titleHeight + (margin * 2.));
     
     [headerView setFrame:headerFrame];
-    /*[imageView setFrame:CGRectOffset([imageView frame], .0,
-            titleHeight + (margin * 2.))];*/
+    [imageView setFrame:CGRectOffset([imageView frame], .0,
+            titleHeight + (margin * 2.))];
     [headerView addSubview:titleLabel];
-    //[headerView addSubview:imageView];
+    [headerView addSubview:imageView];
     
     UIImageView *background = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kWineBackgroundImage)] autorelease];
@@ -146,14 +187,12 @@ static CGFloat titleWidth = 320.;
         case kWineCategoryLocalFilter:
             switch ([indexPath row]) {
                 case 0:
-                    textLabel = @"Vino";
+                    textLabel = kWineWineLabel;
                     [cell setAccessoryType:
                             UITableViewCellAccessoryDisclosureIndicator];
                     break;
                 case 1:
-                    textLabel = @"Espumante";
-                    /*[cell setAccessoryType:
-                            UITableViewCellAccessoryDisclosureIndicator];*/
+                    textLabel = kWineSparklingLabel;
                     break;
                 default:
                     break;
@@ -162,16 +201,16 @@ static CGFloat titleWidth = 320.;
         case kWineWinesLocalFilter:
             switch ([indexPath row]) {
                 case 0:
-                    textLabel = @"Blanco";
+                    textLabel = kWineWhiteLabel;
                     break;
                 case 1:
-                    textLabel = @"Rosado";
+                    textLabel = kWineRoseLabel;
                     break;
                 case 2:
-                    textLabel = @"Tinto";
+                    textLabel = kWineRedLabel;
                     break;
                 case 3:
-                    textLabel = @"Todos";
+                    textLabel = kWineAllLabel;
                     break;
                 default:
                     break;
@@ -180,13 +219,13 @@ static CGFloat titleWidth = 320.;
         case kWinePriceLocalFilter:
             switch ([indexPath row]) {
                 case 0:
-                    textLabel = @"Menos de S/. 50";
+                    textLabel = kWineLessThanLabel;
                     break;
                 case 1:
-                    textLabel = @"Entre S/. 50 y S/. 100";
+                    textLabel = kWineBetweenLabel;
                     break;
                 case 2:
-                    textLabel = @"Más de S/. 100";
+                    textLabel = kWineMoreThanLabel;
                     break;
                 default:
                     break;
@@ -210,42 +249,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UINavigationController *navController = [self navigationController];
-    switch (_list) {
-        case kWineCategoryLocalFilter:
-            switch ([indexPath row]) {
-                case 0: {
-                    LocalFilteringListController *controller =
-                            [[[LocalFilteringListController alloc]
-                               initWithList:kWineWinesLocalFilter] autorelease];
-                    
-                    [navController pushViewController:controller
-                            animated:YES];
-                    break;
-                }
-                case 1:
-                    [navController popViewControllerAnimated:YES];
-                default:
-                    break;
-            }
-            break;
-        case kWineWinesLocalFilter: {
-            UIViewController *filterController;
-            
-            for (UIViewController *controller in
-                    [navController viewControllers]) {
-                if ([controller isKindOfClass:[WineFilterController class]]) {
-                    filterController = controller;
-                    break;
-                }
-            }
-            [navController popToViewController:filterController animated:YES];
+    UIViewController *filterController;
+    
+    for (UIViewController *controller in
+            [navController viewControllers]) {
+        if ([controller isKindOfClass:[WineFilterController class]]) {
+            filterController = controller;
             break;
         }
-        case kWinePriceLocalFilter:
-            [navController popViewControllerAnimated:YES];
-            break;
-        default:
-            break;
+    }
+    if ((_list == kWineCategoryLocalFilter) && ([indexPath row] == 0)) {
+        LocalFilteringListController *controller =
+                [[[LocalFilteringListController alloc] 
+                    initWithList:kWineWinesLocalFilter delegate:
+                    (id<LocalFilteringListControllerDelegate>)filterController]
+                    autorelease];
+        
+        [navController pushViewController:controller animated:YES];
+    } else {
+        //[_delegate controller:self itemId:[NSNumber numberWithInt:100]];
+        [_delegate controller:self didPickLocalItemId:[indexPath row]];
+        [navController popToViewController:filterController animated:YES];
     }
 }
 @end

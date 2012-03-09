@@ -14,6 +14,55 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 static NSString *const kMutableStrainsKey = @"strains";
 static NSString *const kMutableListKey = @"list";
 
+@implementation GenericFeature
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_featureId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize featureId = _featureId, name = _name;
+
++ (id)featureFromDictionary:(NSDictionary *)rawData featureKey:(NSString *)key
+{
+    NSNumber *featureId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((featureId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![featureId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    GenericFeature *feature = [[[GenericFeature alloc] init] autorelease];
+    
+    [feature setFeatureId:featureId];
+    [feature setName:name];
+    return feature;
+}
+
++ (id)featureWithId:(NSNumber *)featureId name:(NSString *)name
+{
+    GenericFeature *feature = [[[GenericFeature alloc] init] autorelease];
+    
+    [feature setFeatureId:featureId];
+    [feature setName:name];
+    return feature;
+}
+@end
+
 @implementation Country
 
 #pragma mark -
@@ -900,7 +949,7 @@ static NSString *const kMutableListKey = @"list";
 #pragma mark -
 #pragma mark NSObject (NSKeyValueCoding)
 
-@synthesize list = _list;
+@synthesize list = _list, collectionId = _collectionId;
 
 - (void)insertObject:(id)object inListAtIndex:(NSUInteger)index
 {
@@ -949,6 +998,14 @@ static NSString *const kMutableListKey = @"list";
     return collection;
 }
 
+- (id)initWithCollectionId:(WineFilteringListType)collectionId
+{
+    if ((self = [self init]) != nil) {
+        _collectionId = collectionId;
+    }
+    return self;
+}
+
 - (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection
 {
     NSMutableArray *mutableList =
@@ -963,7 +1020,21 @@ static NSString *const kMutableListKey = @"list";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        NSString *url = kURLFilterCollectionEndPoint;
+        NSString *url;
+        
+        switch (_collectionId) {
+            case kWineCountryFilter:
+                url = kURLCountriesCollectionEndPoint;
+                break;
+            case kWineWineryFilter:
+                url = kURLWineriesCollectionEndPoint;
+                break;
+            case kWineStrainFilter:
+                url = kURLStrainsCollectionEndPoint;
+            default:
+                break;
+        }
+        
         TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
         
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);

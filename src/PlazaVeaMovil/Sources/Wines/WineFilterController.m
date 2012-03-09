@@ -37,6 +37,10 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark WineFilterController
 
+@synthesize country = _country, winery = _winery, category = _category,
+        strain = _strain, price = _price, selectedItemsIds = _selectedItemsIds,
+            selectedItemsNames = _selectedItemsNames;
+
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
 {
     UIView *headerView =
@@ -146,7 +150,12 @@ static CGFloat titleWidth = 320.;
                     textLabel = kWineCategoryLabel;
                     break;
                 case kWineStrainRow:
-                    textLabel = kWineStrainLabel;
+                    if ([_selectedItemsNames objectAtIndex:
+                            ([indexPath row] - 1)] == kWineSparklingLabel) {
+                        textLabel = kWineSparklingTypeLabel;
+                    } else {
+                        textLabel = kWineStrainLabel;
+                    }
                     break;
                 case kWinePriceRow:
                     textLabel = kWinePriceLabel;
@@ -154,6 +163,8 @@ static CGFloat titleWidth = 320.;
                 default:
                     break;
             }
+            [[cell detailTextLabel] setText:[_selectedItemsNames
+                    objectAtIndex:[indexPath row]]];
             break;
         case kWineGoSection:
             switch ([indexPath row]) {
@@ -170,7 +181,6 @@ static CGFloat titleWidth = 320.;
     }
     [[cell textLabel] setText:textLabel];
     [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
-    [[cell detailTextLabel] setText:detailTextLabel];
     [[cell detailTextLabel] setAdjustsFontSizeToFitWidth:YES];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
@@ -207,6 +217,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                             actionWithURLPath:URL(kURLFilteringCall, @"2")]
                                 applyAnimated:YES]];*/
                     [controller setList:kWineCategoryLocalFilter];
+                    [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
                     break;    
@@ -217,6 +228,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     break;
                 case kWinePriceRow:
                     [controller setList:kWinePriceLocalFilter];
+                    [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
                     break;
@@ -227,8 +239,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         case kWineGoSection:
             switch ([indexPath row]) {
                 case kWineGoRow:
-                    [[TTNavigator navigator] openURLAction:
-                            [[TTURLAction actionWithURLPath:kURLStrainListCall]
+                    [[TTNavigator navigator] openURLAction:[[TTURLAction
+                            actionWithURLPath:URL(kURLWineListCall, @"4")]
                                 applyAnimated:YES]];
                     break;
                 default:
@@ -244,8 +256,79 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark <FilteringListControllerDelegate>
 
 - (void)controller:(FilteringListController *)controller
+       didPickItem:(GenericFeature *)item
+{
+    if (!_selectedItemsNames) {
+        _selectedItemsNames = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 5; i ++) {
+            [_selectedItemsNames addObject:kWineUndefinedLabel];
+        }
+    }
+    [_selectedItemsNames replaceObjectAtIndex:[controller list]
+            withObject:[item name]];
+    [[self tableView] reloadData];
+}
+
+- (void)controller:(LocalFilteringListController *)controller
+didPickLocalItemId:(int)itemId
+{
+    if (!_selectedItemsNames) {
+        _selectedItemsNames = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 5; i ++) {
+            [_selectedItemsNames addObject:kWineUndefinedLabel];
+        }
+    }
+    NSString *label = [[NSString alloc] init];
+    
+    if ([controller list] == kWineCategoryLocalFilter) {
+        label = kWineSparklingLabel;
+        [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
+                withObject:label];
+    } else if ([controller list] == kWinePriceLocalFilter) {
+        switch (itemId) {
+            case 0:
+                label = kWineLessThanLabel;
+                break;
+            case 1:
+                label = kWineBetweenLabel;
+                break;
+            case 2:
+                label = kWineMoreThanLabel;
+                break;
+            default:
+                break;
+        }
+        [_selectedItemsNames replaceObjectAtIndex:kWinePriceRow
+                withObject:label];
+    } else if ([controller list] == kWineWinesLocalFilter) {
+        switch (itemId) {
+            case 0:
+                label = kWineWhiteLabel;
+                break;
+            case 1:
+                label = kWineRoseLabel;
+                break;
+            case 2:
+                label = kWineRedLabel;
+                break;
+            case 3:
+                label = kWineAllLabel;
+                break;
+            default:
+                break;
+        }
+        [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
+                withObject:label];
+    }
+    [[self tableView] reloadData];
+}
+
+- (void)controller:(FilteringListController *)controller
             itemId:(NSNumber *)itemId
 {
     NSLog(@"list: %i, item Id: %i", [controller list], [itemId intValue]); 
+    [[self tableView] reloadData];
 }
 @end
