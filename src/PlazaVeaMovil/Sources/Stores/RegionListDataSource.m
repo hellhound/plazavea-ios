@@ -33,7 +33,7 @@
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return NSLocalizedString(kRegionListSubtitleForError, nil);
+    return NSLocalizedString(kRegionListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
