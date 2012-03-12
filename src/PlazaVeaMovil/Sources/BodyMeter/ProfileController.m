@@ -596,7 +596,10 @@ viewForFooterInSection:(NSInteger)section
             (margin * 4.), MAXFLOAT);
     UILabel *footerLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
-    
+    if (!_sectionFoooterFont) {
+        _sectionFoooterFont =
+                [UIFont systemFontOfSize:kBodyMeterSectionFooterFontSize];
+    }
     [footerLabel setFont:_sectionFoooterFont];
     [footerLabel setNumberOfLines:.0];
     [footerLabel setBackgroundColor:[UIColor clearColor]];
