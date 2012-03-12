@@ -280,8 +280,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             index = 0;
             break;
     }
-    [_selectedItemsNames replaceObjectAtIndex:index
-            withObject:[item name]];
+    [_selectedItemsNames replaceObjectAtIndex:index withObject:[item name]];
     [[self tableView] reloadData];
 }
 
