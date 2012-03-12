@@ -132,10 +132,10 @@ typedef enum {
 
 typedef enum {
     kWineCountryRow,
-    kWineWineryRow,
     kWineCategoryRow,
     kWineStrainRow,
-    kWinePriceRow
+    kWinePriceRow,
+    kWineWineryRow
 } WineFilterRowType;
 
 typedef enum {

@@ -265,7 +265,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             [_selectedItemsNames addObject:kWineUndefinedLabel];
         }
     }
-    [_selectedItemsNames replaceObjectAtIndex:[controller list]
+    int index;
+    switch ([controller list]) {
+        case 0:
+            index = 0;
+            break;
+        case 3:
+            index = 2;
+            break;
+        case 1:
+            index = 4;
+            break;
+        default:
+            index = 0;
+            break;
+    }
+    [_selectedItemsNames replaceObjectAtIndex:index
             withObject:[item name]];
     [[self tableView] reloadData];
 }
