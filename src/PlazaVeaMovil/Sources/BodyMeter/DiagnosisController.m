@@ -36,8 +36,7 @@ static CGFloat headerMinHeight = 40.;
 
 - (id)init
 {
-    if ((self = [super init]) != nil) {
-        [self initWithStyle:UITableViewStyleGrouped];
+    if ((self = [super initWithStyle:UITableViewStyleGrouped]) != nil) {
         [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
                 alpha:1.]];
         

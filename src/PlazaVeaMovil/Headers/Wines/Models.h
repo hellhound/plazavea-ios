@@ -2,7 +2,20 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
+#import "Wines/Constants.h"
 #import "Common/Models/URLRequestModel.h"
+
+@interface GenericFeature: NSObject
+{
+    NSNumber *_featureId;
+    NSString *_name;
+}
+@property (nonatomic, retain) NSNumber *featureId;
+@property (nonatomic, retain) NSString *name;
+
++ (id)featureFromDictionary:(NSDictionary *)rawData;
++ (id)featureWithId:(NSNumber *)featureId name:(NSString *)name;
+@end
 
 @interface Country: NSObject
 {
@@ -153,4 +166,18 @@
 
 - (id)initWithRecipeId:(NSString *)recipeId;
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection;
+@end
+
+@interface FilterCollection: URLRequestModel
+{
+    NSMutableArray *_list;
+    WineFilteringListType _collectionId;
+}
+@property (nonatomic, readonly) NSArray *list;
+@property (nonatomic, assign) WineFilteringListType collectionId;
+
++ (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection;
+
+- (id)initWithCollectionId:(WineFilteringListType)collectionId;
+- (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection;
 @end

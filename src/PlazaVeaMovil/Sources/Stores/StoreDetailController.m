@@ -9,9 +9,6 @@
 #import "Stores/StoresTableViewDelegate.h"
 #import "Stores/StoreDetailController.h"
 
-static CGFloat margin = 5.;
-static CGFloat headerMinHeight = 40.;
-
 @interface StoreDetailController()
 
 @property (nonatomic, retain) UIView *headerView;

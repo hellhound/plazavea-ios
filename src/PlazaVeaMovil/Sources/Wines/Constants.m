@@ -47,6 +47,11 @@ NSString *const kStrainWines = @"wines";
 // JSON keys
 NSString *const kStrainCollectionCategoriesKey = @"categories";
 
+// FilterCollection's constants
+
+// JSON keys
+NSString *const kFilterCollectionItemsKey = @"items";
+
 // StrainListDataSource's constants
 
 // Messages
@@ -89,6 +94,26 @@ NSString *const kWineListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
         @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+
+// FilteringListDataSource's constants
+
+// Messages
+NSString *const kFilteringListTitleForLoading = @"Obteniendo la lista";
+// NSLocalizedString(@"Obteniendo la lista", nil)
+NSString *const kFilteringListTitleForReloading = @"Actualizando la lista";
+// NSLocalizedString(@"Actualizando la lista", nil)
+NSString *const kFilteringListTitleForEmpty = @"Sin información";
+// NSLocalizedString(@"@"Sin información", nil)
+NSString *const kFilteringListSubtitleForEmpty = @"Por favor intente de nuevo "
+    @"más tarde, aún no existe información disponible";
+// NSLocalizedString(@"Por favor intente de nuevo "
+//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kFilteringListTitleForError = @"Error";
+// NSLocalizedString(@"Error", nil)
+NSString *const kFilteringListSubtitleForError = @"Por favor intente de nuevo "
+@"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
 
@@ -168,21 +193,65 @@ NSString *const kWineOxygenationUnits = @"%@ minutos";
 NSString *const kWineRecommendedLabel = @"Platos Recomendados";
 // NSLocalizedString(@"Vinos Recomendados", nil)
 
+// WineFilterController's constants
+NSString *const cellId = @"cellId";
+NSString *const kWineUndefinedLabel = @"No hay información";
+const CGFloat kWineColor = .85;
+
+//FilteringListController's constants
+NSString *const kWineCountriesLabel = @"Paises";
+// NSLocalizedString(@"Paises", nil)
+NSString *const kWineWineriesLabel = @"Bodegas";
+// NSLocalizedString(@"Bodegas", nil)
+NSString *const kWineStrainsLabel = @"Cepas";
+// NSLocalizedString(@"Cepas", nil)
+NSString *const kWineSparklingTypeLabel = @"Tipo de espumante";
+// NSLocalizedString(@"Tipo de espumante", nil)
+
+// LocalFilteringListController's constants
+NSString *const kWineCategoriesLabel = @"Categorías";
+// NSLocalizedString(@"Categorías", nil)
+NSString *const kWineWinesLabel = @"Vinos";
+// NSLocalizedString(@"Vinos", nil)
+NSString *const kWinePricesLabel = @"Precios";
+// NSLocalizedString(@"Precios", nil)
+NSString *const kWineWineLabel = @"Vino";
+// NSLocalizedString(@"Vino", nil)
+NSString *const kWineSparklingLabel = @"Espumante";
+// NSLocalizedString(@"Espumante", nil)
+NSString *const kWineWhiteLabel = @"Blanco";
+// NSLocalizedString(@"Blanco", nil)
+NSString *const kWineRoseLabel = @"Rosado";
+// NSLocalizedString(@"Rosado", nil)
+NSString *const kWineRedLabel = @"Tinto";
+// NSLocalizedString(@"Tinto", nil)
+NSString *const kWineAllLabel = @"Todos";
+// NSLocalizedString(@"Todos", nil)
+NSString *const kWineLessThanLabel = @"Menos de S/. 50";
+// NSLocalizedString(@"Menos de S/. 50", nil)
+NSString *const kWineBetweenLabel = @"Entre S/. 50 y S/. 100";
+// NSLocalizedString(@"Entre S/. 50 y S/. 100", nil)
+NSString *const kWineMoreThanLabel = @"Más de S/. 100";
+// NSLocalizedString(@"Más de S/. 100", nil)
+
 // Generic sizes and images
 const CGFloat kWineDetailImageWidth = 320.;
 const CGFloat kWineDetailImageHeight = 140.;
 const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
-NSString *const kWineBannerImage = @"bundle://sommelier-banner.jpg";
+NSString *const kWineBannerImage = @"bundle://default-banner-sommelier.jpg";
 NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
+NSString *const kWineCategoryLabel = @"Categoría";
+NSString *const kWineStrainLabel = @"Cepa";
+NSString *const kWineGoLabel = @"Buscar vinos";
 
 // Launcher
 NSString *const kSomelierTitle = @"Sommelier";
 // NSLocalizedString(@""Somelier", nil) 
 
 // Controllers' URLs
+NSString *const kURLWineFilter = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
-
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
 NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
@@ -194,8 +263,11 @@ NSString *const kURLWineTips =
         @"tt://launcher/wines/wine_tips/(initWithWineId:)/";
 NSString *const kURLWineRecipe =
         @"tt://launcher/wines/wine_recipe/(initWithWineId:)/(name:)/";
+NSString *const kURLFiltering =
+        @"tt://laucher/wines/filtering/(initWithList:)/";
 
 // Controllers' URL calls
+NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
 NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/";
@@ -203,6 +275,7 @@ NSString *const kURLWineInfoCall = @"tt://launcher/wines/wine_info/%@/";
 NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
 NSString *const kURLWineTipsCall = @"tt://launcher/wines/wine_tips/%@/";
 NSString *const kURLWineRecipeCall = @"tt://launcher/wines/wine_recipe/%@/%@";
+NSString *const kURLFilteringCall = @"tt://laucher/wines/filtering/%@/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");
@@ -212,3 +285,10 @@ NSString *const kURLStrainCollectionEndPoint =
         ENDPOINT(@"/wines/categories.json");
 NSString *const kURLRecipeStrainCollectionEndPoint =
         ENDPOINT(@"/recipes/%@/wines/categories.json");
+NSString *const kURLFilterCollectionEndPoint = ENDPOINT(@"/wines/filter.json");
+NSString *const kURLCountriesCollectionEndPoint =
+        ENDPOINT(@"/wines/countries.json");
+NSString *const kURLWineriesCollectionEndPoint =
+        ENDPOINT(@"/wines/wineries.json");
+NSString *const kURLStrainsCollectionEndPoint =
+        ENDPOINT(@"/wines/strains.json");

@@ -77,7 +77,7 @@
                     URL:kURLFoodCategory] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kSomelierTitle
                     image:kURLSomelierIcon
-                    URL:kURLStrainListCall] autorelease],
+                    URL:kURLWineFilterCall] autorelease],
                 [[[TTLauncherItem alloc] initWithTitle:kEmergencyCategoryTitle
                     image:kURLPhonesIcon
                     URL:kURLEmergencyCategory] autorelease],

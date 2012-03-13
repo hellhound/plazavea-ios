@@ -9,27 +9,21 @@
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
-#import "Wines/StrainListDataSource.h"
+#import "Wines/FilteringListDataSource.h"
 
-@implementation StrainListDataSource
-
-#pragma mark -
-#pragma mark NSObject
-
-- (id)init
-{
-    if ((self = [super init]) != nil)
-        [self setModel:[[[StrainCollection alloc] init] autorelease]];
-    return self;
-}
+@implementation FilteringListDataSource
 
 #pragma mark -
-#pragma mark StrainListDataSource
+#pragma mark FilteringListDataSource
 
-- (id)initWithRecipeId:(NSString *)recipeId
+@synthesize list = _list, controller = _controller;
+
+- (id)initWithList:(WineFilteringListType)list controller:(id)controller
 {
     if ((self = [super init]) != nil) {
-        [self setModel:[[[StrainCollection alloc] initWithRecipeId:recipeId]
+        _list = list;
+        _controller = controller;
+        [self setModel:[[[FilterCollection alloc] initWithCollectionId:_list]
                 autorelease]];
     }
     return self;
@@ -40,42 +34,43 @@
 
 - (NSString *)titleForLoading:(BOOL)reloading
 {
-    return NSLocalizedString(kStrainListTitleForLoading, nil);
+    return NSLocalizedString(kFilteringListTitleForLoading, nil);
 }
 
 - (NSString *)titleForError:(NSError *)error
 {
-    return NSLocalizedString(kStrainListTitleForError, nil);
+    return NSLocalizedString(kFilteringListTitleForError, nil);
 }
 
 - (NSString *)subtitleForError:(NSError *)error
 {
     //return LOCALIZED_HTTP_REQUEST_ERROR(error);
-    return NSLocalizedString(kStrainListSubtitleForError, nil);
+    return NSLocalizedString(kFilteringListSubtitleForError, nil);
 }
 
 - (NSString *)titleForEmpty
 {
-    return NSLocalizedString(kStrainListTitleForEmpty, nil);
+    return NSLocalizedString(kFilteringListTitleForEmpty, nil);
 }
 
 - (NSString *)subtitleForEmpty
 {
-    return NSLocalizedString(kStrainListSubtitleForEmpty, nil);
+    return NSLocalizedString(kFilteringListSubtitleForEmpty, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
-    StrainCollection *collection = (StrainCollection *)[self model];
-    NSArray *strains = [collection strains];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:[strains count]];
+    NSMutableArray *items = [NSMutableArray array];
+    FilterCollection *collection = (FilterCollection *)[self model];
     
-    for (Strain *strain in strains) {
-        NSString *name = [strain name];
-        TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:URL(kURLWineListCall, [strain strainId])];
+    for (Winery *rawItem in [collection list]) {
+        TableImageSubtitleItem *item = [TableImageSubtitleItem
+                itemWithText:[rawItem name] delegate:_controller
+                    selector:@selector(back:)];
         
         [items addObject:item];
+        //[item setItemId:[rawItem wineryId]];
+        [item setExtra:rawItem];
     }
     [self setItems:items];
 }
