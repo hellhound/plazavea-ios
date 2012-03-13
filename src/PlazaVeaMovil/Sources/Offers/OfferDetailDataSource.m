@@ -207,6 +207,19 @@ static CGFloat titleWidth = 320.;
     return NSLocalizedString(kOfferDetailSubtitleForEmpty, nil);
 }
 
+- (void)    tableView:(UITableView *)tableView 
+                 cell:(UITableViewCell *)cell 
+willAppearAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[TableCaptionItemCell class]] &&
+            [[[(TableCaptionItemCell *)cell captionLabel] text]
+                isEqualToString:kOfferDetailPriceCaption]) {
+        [[cell textLabel] setTextColor:(UIColor *)TTSTYLE(captionAltColor)];
+        [[cell detailTextLabel] setTextColor:
+                (UIColor *)TTSTYLE(captionAltColor)];
+    }
+}
+
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
     Offer *offer = (Offer *)[self model];
@@ -222,14 +235,6 @@ static CGFloat titleWidth = 320.;
     
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
-    if ([offer oldPrice] != nil) {
-        TableCaptionItem *oldPrice = [TableCaptionItem itemWithText:
-                [NSString stringWithFormat:kOfferDetailPricePrefix,
-                    [[offer oldPrice] floatValue]]
-                    caption:kOfferDetailOldPriceCaption];
-        
-        [items addObject:oldPrice];
-    }
     if ([offer price] != nil) {
         TableCaptionItem *price = [TableCaptionItem itemWithText:
                 [NSString stringWithFormat:kOfferDetailPricePrefix,
@@ -237,6 +242,14 @@ static CGFloat titleWidth = 320.;
                     caption:kOfferDetailPriceCaption];
         
         [items addObject:price];
+    }
+    if ([offer oldPrice] != nil) {
+        TableCaptionItem *oldPrice = [TableCaptionItem itemWithText:
+                [NSString stringWithFormat:kOfferDetailPricePrefix,
+                    [[offer oldPrice] floatValue]]
+                    caption:kOfferDetailOldPriceCaption];
+        
+        [items addObject:oldPrice];
     }
     if (([offer validFrom] != nil) && ([offer validTo] != nil)) {
         NSDateFormatter *dateFormatter =

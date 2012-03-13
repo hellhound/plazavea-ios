@@ -11,7 +11,57 @@
 static NSString *const kMutableExtraPictureURLsKey = @"extraPictureURLs";
 static NSString *const kMutableSectionsKey = @"sections";
 static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
-static NSString *const kMutableStrainsKeys = @"strains";
+static NSString *const kMutableStrainsKey = @"strains";
+static NSString *const kMutableListKey = @"list";
+
+@implementation GenericFeature
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [_featureId release];
+    [_name release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Region (Public)
+
+@synthesize featureId = _featureId, name = _name;
+
++ (id)featureFromDictionary:(NSDictionary *)rawData featureKey:(NSString *)key
+{
+    NSNumber *featureId;
+    NSString *name;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((featureId = [rawData objectForKey:kWineIdKey]) == nil)
+        return nil;
+    if (![featureId isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((name = [rawData objectForKey:kWineNameKey]) == nil)
+        return nil;
+    if (![name isKindOfClass:[NSString class]])
+        return nil;
+    
+    GenericFeature *feature = [[[GenericFeature alloc] init] autorelease];
+    
+    [feature setFeatureId:featureId];
+    [feature setName:name];
+    return feature;
+}
+
++ (id)featureWithId:(NSNumber *)featureId name:(NSString *)name
+{
+    GenericFeature *feature = [[[GenericFeature alloc] init] autorelease];
+    
+    [feature setFeatureId:featureId];
+    [feature setName:name];
+    return feature;
+}
+@end
 
 @implementation Country
 
@@ -803,7 +853,7 @@ static NSString *const kMutableStrainsKeys = @"strains";
             [[[StrainCollection alloc] init] autorelease];
     NSArray *strains;
     NSMutableArray *mutableStrains =
-            [collection mutableArrayValueForKey:kMutableStrainsKeys];
+            [collection mutableArrayValueForKey:kMutableStrainsKey];
     
     if (![rawCollection isKindOfClass:[NSDictionary class]])
         return nil;
@@ -833,7 +883,7 @@ static NSString *const kMutableStrainsKeys = @"strains";
 - (void)copyPropertiesFromStrainCollection:(StrainCollection *)collection
 {
     NSMutableArray *mutableStrains =
-            [self mutableArrayValueForKey:kMutableStrainsKeys];
+            [self mutableArrayValueForKey:kMutableStrainsKey];
     
     [mutableStrains addObjectsFromArray:[collection strains]];
 }
@@ -874,6 +924,141 @@ static NSString *const kMutableStrainsKeys = @"strains";
         return;
     }
     [self copyPropertiesFromStrainCollection:collection];
+    [super requestDidFinishLoad:request];
+}
+@end
+
+@implementation FilterCollection
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil)
+        _list = [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_list release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+@synthesize list = _list, collectionId = _collectionId;
+
+- (void)insertObject:(id)object inListAtIndex:(NSUInteger)index
+{
+    [_list insertObject:object atIndex:index];
+}
+
+- (void)insertList:(NSArray *)list atIndexes:(NSIndexSet *)indexes
+{
+    [_list insertObjects:list atIndexes:indexes];
+}
+
+- (void)removeObjectFromListAtIndex:(NSUInteger)index
+{
+    [_list removeObjectAtIndex:index];
+}
+
+- (void)removeListAtIndexes:(NSIndexSet *)indexes
+{
+    [_list removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark FilterCollection (Public)
+
++ (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    FilterCollection *collection = [[[FilterCollection alloc] init]
+            autorelease];
+    NSArray *list;
+    NSMutableArray *mutableList = [collection
+            mutableArrayValueForKey:kMutableListKey];
+    
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((list = [rawCollection objectForKey:kFilterCollectionItemsKey]) == nil)
+        return nil;
+    if (![list isKindOfClass:[NSArray class]])
+        return nil;
+    for (NSDictionary *rawItem in list) {
+        Winery *item = [Winery wineryFromDictionary:rawItem];
+        
+        if (item == nil)
+            return nil;
+        [mutableList addObject:item];
+    }
+    return collection;
+}
+
+- (id)initWithCollectionId:(WineFilteringListType)collectionId
+{
+    if ((self = [self init]) != nil) {
+        _collectionId = collectionId;
+    }
+    return self;
+}
+
+- (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection
+{
+    NSMutableArray *mutableList =
+            [self mutableArrayValueForKey:kMutableListKey];
+    
+    [mutableList addObjectsFromArray:[collection list]];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        NSString *url;
+        
+        switch (_collectionId) {
+            case kWineCountryFilter:
+                url = kURLCountriesCollectionEndPoint;
+                break;
+            case kWineWineryFilter:
+                url = kURLWineriesCollectionEndPoint;
+                break;
+            case kWineStrainFilter:
+                url = kURLStrainsCollectionEndPoint;
+            default:
+                break;
+        }
+        
+        TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
+        
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
+            rootObject];
+    FilterCollection *collection = [FilterCollection
+            filterCollectionFromDictionary:rootObject];
+    
+    if (collection == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromFilterCollection:collection];
     [super requestDidFinishLoad:request];
 }
 @end

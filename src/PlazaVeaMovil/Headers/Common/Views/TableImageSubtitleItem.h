@@ -6,8 +6,9 @@
 @interface TableImageSubtitleItem: TTTableSubtitleItem
 {
     TTStyle *imageStyle;
+    id extra;
 }
-
+@property (nonatomic, assign) id extra;
 @property (nonatomic, retain) TTStyle *imageStyle;
 
 + (id)itemWithText:(NSString*)text 

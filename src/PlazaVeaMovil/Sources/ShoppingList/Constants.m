@@ -60,7 +60,7 @@ NSString *const kShoppingListsAlertCancel = @"OK";
 NSString *const kShoppingListsAlertCreate = @"Crear lista";
 // NSLocalizedString(@"Crear", nil)
 NSString *const kShoppingListsDefaultBanner =
-        @"default-banner-shopping-list.png";
+        @"default-banner-shopping-lists.jpg";
 const CGFloat kShoppingListsBannerHeight = 140.;
 const CGFloat kShoppingListsBannerWidth = 320.;
 

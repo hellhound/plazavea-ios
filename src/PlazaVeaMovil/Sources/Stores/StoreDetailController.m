@@ -9,9 +9,6 @@
 #import "Stores/StoresTableViewDelegate.h"
 #import "Stores/StoreDetailController.h"
 
-static CGFloat margin = 5.;
-static CGFloat headerMinHeight = 40.;
-
 @interface StoreDetailController()
 
 @property (nonatomic, retain) UIView *headerView;
@@ -47,43 +44,6 @@ static CGFloat headerMinHeight = 40.;
                 initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                     autorelease]];
     }
-
-    UITableView *tableView = [self tableView];
-    [self setHeaderView:
-            [[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
-    // Configuring the image view
-    [self setImageView:[[[TTImageView alloc] initWithFrame:CGRectZero]
-            autorelease]];
-    [_imageView setDefaultImage:TTIMAGE(kStoreDetailDefaultImage)];
-    [_imageView setAutoresizingMask:UIViewAutoresizingNone];
-    [_imageView setBackgroundColor:[UIColor clearColor]];
-    // Configuring the title label
-    [self setTitleLabel:
-            [[[UILabel alloc] initWithFrame:CGRectZero] autorelease]];
-    [_titleLabel setNumberOfLines:0];
-    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_titleLabel setTextAlignment:UITextAlignmentCenter];
-    [_titleLabel setBackgroundColor:[UIColor clearColor]];
-    // Adding the subviews to the header view
-    if ([TTStyleSheet hasStyleSheetForSelector:
-            @selector(storesBackgroundHeader)]) {
-        UIImageView *back = [[[UIImageView alloc] initWithImage:
-                (UIImage *)TTSTYLE(storesBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
-    }
-    CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
-    CGRect headerFrame = CGRectMake(.0, .0,
-            boundsWidth, kStoreDetailImageHeight);
-    CGRect imageFrame = CGRectMake(.0, .0, kStoreDetailImageWidth,
-            kStoreDetailImageHeight);
-    
-    [_headerView setFrame:headerFrame];
-    [_imageView setFrame:imageFrame];
-    [_headerView addSubview:_titleLabel];
-    [_headerView addSubview:_imageView];
-    [_headerView setClipsToBounds:YES];
-    [tableView setTableHeaderView:_headerView];
-    [self refresh];
 }
 
 - (UINavigationItem *)navigationItem
@@ -155,56 +115,9 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark <StoreDetailDataSourceDelegate>
 
-- (void)        dataSource:(StoreDetailDataSource *)dataSource
-   needsDetailImageWithURL:(NSURL *)imageURL
-                  district:(NSString *)district
-                  andTitle:(NSString *)title
+- (void)dataSource:(StoreDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view
 {
-    if (title != nil) {
-        // First we deal with the title
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
-            [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
-        }
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(headerColorYellow)]) {
-            [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-        }
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(pictureHeaderFont)]) {
-            [_storeLabel setFont:(UIFont *)TTSTYLE(pictureHeaderFont)];
-        }
-        if ([TTStyleSheet
-                hasStyleSheetForSelector:@selector(headerColorYellow)]) {
-            [_storeLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-        }
-        UITableView *tableView = [self tableView];
-        UIFont *font = [_titleLabel font];
-        CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
-        CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
-        CGFloat titleHeight = [district sizeWithFont:font
-                constrainedToSize:constrainedTitleSize
-                    lineBreakMode:UILineBreakModeWordWrap].height;
-        CGRect headerFrame = [_headerView frame];
-        CGRect titleFrame = CGRectMake(.0, .0, titleWidth, titleHeight);
-        CGRect imageFrame = [_imageView frame];
-        
-        if ((titleHeight + (margin * 2)) <= headerMinHeight) {
-            titleFrame.origin.y = (headerMinHeight - titleHeight) / 2;
-            titleHeight = headerMinHeight - (margin * 2);
-        } else {
-            titleFrame.origin.y += margin;
-        }
-        [_titleLabel setText:title];
-        [_titleLabel setFrame:titleFrame];
-        [_imageView setFrame:
-            CGRectOffset(imageFrame, .0, titleHeight + (margin *2))];
-        if (imageURL != nil)
-            [_imageView setUrlPath:[imageURL absoluteString]];
-        headerFrame.size.height += titleHeight + (margin *2); 
-        
-        [_headerView setFrame:headerFrame];
-        [tableView setTableHeaderView:_headerView];
-    }
+    [[self tableView] setTableHeaderView:view];
 }
 @end

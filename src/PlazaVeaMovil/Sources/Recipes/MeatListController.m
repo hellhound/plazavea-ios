@@ -154,11 +154,11 @@ static CGFloat headerMinHeight = 40.;
         [(UINavigationController *)
                 [[self parentViewController] performSelector:
                         @selector(presentingViewController)]
-                    setToolbarHidden:YES animated:NO];
+                            setToolbarHidden:YES animated:NO];
         [(UINavigationController *)
                 [[self parentViewController] performSelector:
                         @selector(presentingViewController)]
-                    popToRootViewControllerAnimated:NO];
+                            popToRootViewControllerAnimated:NO];
     } else {
         [(UINavigationController *)
                 [[self parentViewController] parentViewController]

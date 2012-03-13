@@ -67,7 +67,7 @@ NSString *const kStoreDetailDefaultImage =
 const CGFloat kRegionListImageWidth = 320.;
 const CGFloat kRegionListImageHeight = 140.;
 NSString *const kRegionListDefaultImage =
-        @"bundle://default-banner-region-list.png";
+        @"bundle://default-banner-stores.jpg";
 
 // Messages
 NSString *const kRegionListTitleForLoading = @"Obteniendo la lista";

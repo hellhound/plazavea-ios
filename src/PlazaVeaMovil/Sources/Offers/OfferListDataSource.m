@@ -62,7 +62,7 @@
 - (NSString *)subtitleForError:(NSError *)error
 {
     //return LOCALIZED_HTTP_REQUEST_ERROR(error);
-    return NSLocalizedString(kOfferListTitleForError, nil);
+    return NSLocalizedString(kOfferListSubtitleForError, nil);
 }
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView

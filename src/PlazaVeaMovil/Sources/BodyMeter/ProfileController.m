@@ -46,8 +46,7 @@ static CGFloat headerMinHeight = 40.;
 
 - (id)init
 {
-    if ((self = [super init]) != nil) {
-        [self initWithStyle:UITableViewStyleGrouped];
+    if ((self = [super initWithStyle:UITableViewStyleGrouped]) != nil) {
         [[self navigationController] setNavigationBarHidden:NO];
         [[self view] setBackgroundColor:[UIColor colorWithWhite:kBodyMeterColor
                 alpha:1.]];
@@ -596,7 +595,10 @@ viewForFooterInSection:(NSInteger)section
             (margin * 4.), MAXFLOAT);
     UILabel *footerLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
-    
+    if (!_sectionFoooterFont) {
+        _sectionFoooterFont =
+                [UIFont systemFontOfSize:kBodyMeterSectionFooterFontSize];
+    }
     [footerLabel setFont:_sectionFoooterFont];
     [footerLabel setNumberOfLines:.0];
     [footerLabel setBackgroundColor:[UIColor clearColor]];

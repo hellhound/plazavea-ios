@@ -40,7 +40,8 @@ NSString *const kFoodFileName = @"name";
 NSString *const kFoodCSVFile = @"food.csv";
 
 // FoodCategoryList's constants
-NSString *const kFoodCategoryBanner = @"bundle://child-food-banner.jpg";
+NSString *const kFoodCategoryBanner =
+        @"bundle://default-banner-composition.jpg";
 
 // FoodDetailController's constants
 

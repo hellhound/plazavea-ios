@@ -177,7 +177,7 @@ static CGFloat titleWidth = 320.;
     // Adding the subviews to the header view
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
-    [headerView addSubview:logoView];
+    //[headerView addSubview:logoView];
     [headerView addSubview:detailLabel];
     
     UIImageView *background = [[[UIImageView alloc] initWithImage:

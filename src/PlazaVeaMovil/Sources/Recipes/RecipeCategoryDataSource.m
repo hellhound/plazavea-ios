@@ -61,10 +61,12 @@
 
         for (RecipeCategory *category in categories) {
             TTTableTextItem *item;
+            NSString *name = [[category name]
+                    stringByReplacingOccurrencesOfString:@" " withString:@"_"];
             if ([[category subcategoriesCount] integerValue] == 0) {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeListCall, [category categoryId],
-                            [category name])];
+                            name)];
             } else {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeSubCategoriesCall, 
