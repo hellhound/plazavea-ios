@@ -3,11 +3,12 @@
 #import <CoreData/CoreData.h>
 
 #import <Three20/Three20.h>
+#import <TSAlertView/TSAlertView.h>
 #import "FBConnect.h"
 #import "SA_OAuthTwitterEngine.h"
 
 @interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate,
-        SA_OAuthTwitterEngineDelegate, FBSessionDelegate>
+        SA_OAuthTwitterEngineDelegate, FBSessionDelegate, TSAlertViewDelegate>
 {
     UIWindow *_window;
     UIWindow *_overlay;
