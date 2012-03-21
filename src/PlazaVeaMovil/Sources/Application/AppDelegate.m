@@ -315,7 +315,7 @@
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
              applyAnimated:YES]];
-    //if (![self loadDefaults]) {
+    if (![self loadDefaults]) {
         TSAlertView *alert = [[TSAlertView alloc]
                 initWithTitle:kRegistrationTitle message:nil delegate:self
                     cancelButtonTitle:nil otherButtonTitles:kRegsitrationButton,
@@ -331,7 +331,7 @@
         [[alert textFieldAtIndex:2] setAutocapitalizationType:
                 UITextAutocapitalizationTypeNone];
         [alert show];
-    //}
+    }
     [_window makeKeyAndVisible];
     return YES;
 }

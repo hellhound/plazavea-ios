@@ -894,6 +894,31 @@
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
+		2F1CCB50151A32C900A26CFE /* BaseOfferController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseOfferController.h; path = ../../Headers/Offers/BaseOfferController.h; sourceTree = "<group>"; };
+		2F1CCB51151A32C900A26CFE /* BasePromotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePromotionController.h; path = ../../Headers/Offers/BasePromotionController.h; sourceTree = "<group>"; };
+		2F1CCB52151A32C900A26CFE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Offers/Constants.h; sourceTree = "<group>"; };
+		2F1CCB53151A32C900A26CFE /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Offers/Models.h; sourceTree = "<group>"; };
+		2F1CCB54151A32C900A26CFE /* OfferDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDetailController.h; path = ../../Headers/Offers/OfferDetailController.h; sourceTree = "<group>"; };
+		2F1CCB55151A32C900A26CFE /* OfferDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDetailDataSource.h; path = ../../Headers/Offers/OfferDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB56151A32C900A26CFE /* OfferDrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDrillDownController.h; path = ../../Headers/Offers/OfferDrillDownController.h; sourceTree = "<group>"; };
+		2F1CCB57151A32CA00A26CFE /* OfferListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferListController.h; path = ../../Headers/Offers/OfferListController.h; sourceTree = "<group>"; };
+		2F1CCB58151A32CA00A26CFE /* OfferListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferListDataSource.h; path = ../../Headers/Offers/OfferListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB59151A32CA00A26CFE /* PromotionDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionDetailController.h; path = ../../Headers/Offers/PromotionDetailController.h; sourceTree = "<group>"; };
+		2F1CCB5A151A32CA00A26CFE /* PromotionDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionDetailDataSource.h; path = ../../Headers/Offers/PromotionDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB5B151A32CA00A26CFE /* PromotionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionListController.h; path = ../../Headers/Offers/PromotionListController.h; sourceTree = "<group>"; };
+		2F1CCB5C151A32CA00A26CFE /* PromotionListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionListDataSource.h; path = ../../Headers/Offers/PromotionListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB5D151A352D00A26CFE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Stores/Constants.h; sourceTree = "<group>"; };
+		2F1CCB5E151A352D00A26CFE /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Stores/Models.h; sourceTree = "<group>"; };
+		2F1CCB5F151A352D00A26CFE /* RegionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegionListController.h; path = ../../Headers/Stores/RegionListController.h; sourceTree = "<group>"; };
+		2F1CCB60151A352D00A26CFE /* RegionListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegionListDataSource.h; path = ../../Headers/Stores/RegionListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB61151A352D00A26CFE /* StoreDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDetailController.h; path = ../../Headers/Stores/StoreDetailController.h; sourceTree = "<group>"; };
+		2F1CCB62151A352D00A26CFE /* StoreDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDetailDataSource.h; path = ../../Headers/Stores/StoreDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB63151A352D00A26CFE /* StoreListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreListController.h; path = ../../Headers/Stores/StoreListController.h; sourceTree = "<group>"; };
+		2F1CCB64151A352D00A26CFE /* StoreListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreListDataSource.h; path = ../../Headers/Stores/StoreListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB65151A352D00A26CFE /* StoreMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreMapController.h; path = ../../Headers/Stores/StoreMapController.h; sourceTree = "<group>"; };
+		2F1CCB66151A352D00A26CFE /* StoreMapTogglingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreMapTogglingController.h; path = ../../Headers/Stores/StoreMapTogglingController.h; sourceTree = "<group>"; };
+		2F1CCB67151A352D00A26CFE /* StoresTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoresTableViewDelegate.h; path = ../../Headers/Stores/StoresTableViewDelegate.h; sourceTree = "<group>"; };
+		2F1CCB68151A352D00A26CFE /* SubregionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubregionDataSource.h; path = ../../Headers/Stores/SubregionDataSource.h; sourceTree = "<group>"; };
 		2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon.png"; sourceTree = "<group>"; };
 		2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon@2x.png"; sourceTree = "<group>"; };
 		2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fish-icon.png"; sourceTree = "<group>"; };
@@ -1801,6 +1826,18 @@
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CCB5D151A352D00A26CFE /* Constants.h */,
+				2F1CCB5E151A352D00A26CFE /* Models.h */,
+				2F1CCB5F151A352D00A26CFE /* RegionListController.h */,
+				2F1CCB60151A352D00A26CFE /* RegionListDataSource.h */,
+				2F1CCB61151A352D00A26CFE /* StoreDetailController.h */,
+				2F1CCB62151A352D00A26CFE /* StoreDetailDataSource.h */,
+				2F1CCB63151A352D00A26CFE /* StoreListController.h */,
+				2F1CCB64151A352D00A26CFE /* StoreListDataSource.h */,
+				2F1CCB65151A352D00A26CFE /* StoreMapController.h */,
+				2F1CCB66151A352D00A26CFE /* StoreMapTogglingController.h */,
+				2F1CCB67151A352D00A26CFE /* StoresTableViewDelegate.h */,
+				2F1CCB68151A352D00A26CFE /* SubregionDataSource.h */,
 				2F8FA1601492746500780AB9 /* StoresTableViewDelegate.m */,
 				2F79C979145F11D9002161B2 /* StoreMapController.m */,
 				2F79C977145F041B002161B2 /* StoreMapTogglingController.m */,
@@ -1838,6 +1875,19 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CCB50151A32C900A26CFE /* BaseOfferController.h */,
+				2F1CCB51151A32C900A26CFE /* BasePromotionController.h */,
+				2F1CCB52151A32C900A26CFE /* Constants.h */,
+				2F1CCB53151A32C900A26CFE /* Models.h */,
+				2F1CCB54151A32C900A26CFE /* OfferDetailController.h */,
+				2F1CCB55151A32C900A26CFE /* OfferDetailDataSource.h */,
+				2F1CCB56151A32C900A26CFE /* OfferDrillDownController.h */,
+				2F1CCB57151A32CA00A26CFE /* OfferListController.h */,
+				2F1CCB58151A32CA00A26CFE /* OfferListDataSource.h */,
+				2F1CCB59151A32CA00A26CFE /* PromotionDetailController.h */,
+				2F1CCB5A151A32CA00A26CFE /* PromotionDetailDataSource.h */,
+				2F1CCB5B151A32CA00A26CFE /* PromotionListController.h */,
+				2F1CCB5C151A32CA00A26CFE /* PromotionListDataSource.h */,
 				2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */,
 				2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */,
 				2C858E31144784020020A302 /* PromotionListDataSource.m */,

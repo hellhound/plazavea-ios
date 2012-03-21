@@ -119,7 +119,7 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && _bannerId != nil) {
         [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
                 URL(kURLOfferDetailCall, _bannerId)] applyAnimated:YES]];
     }
@@ -134,8 +134,8 @@ static CGFloat headerMinHeight = 40.;
 #pragma mark -
 #pragma mark <OfferListDataSourceDelegate>
 
-- (void)    dataSource:(OfferListDataSource *)dataSource
-         needsBannerId:(NSNumber *)bannerId
+- (void)dataSource:(OfferListDataSource *)dataSource
+     needsBannerId:(NSNumber *)bannerId
 {
     [self setBannerId:bannerId];
 }
