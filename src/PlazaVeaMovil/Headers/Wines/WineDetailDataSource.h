@@ -19,6 +19,9 @@
 
 @protocol WineDetailDataSourceDelegate <NSObject>
 
-- (void) dataSource:(WineDetailDataSource *)dataSource
-      viewForHeader:(UIView *)view;
+- (void)dataSource:(WineDetailDataSource *)dataSource
+    viewForHeader:(UIView *)view;
+- (void)dataSource:(WineDetailDataSource *)dataSource wineName:(NSString *)name;
+- (void)dataSource:(WineDetailDataSource *)dataSource
+      wineImageURL:(NSString *)imageURL;
 @end

@@ -11,12 +11,15 @@
 
 @implementation WineDetailController
 
+@synthesize wineId = _wineId, name = _name, imageURL = _imageURL;
+
 #pragma mark -
 #pragma mark NSObject
 
 - (void) dealloc
 {
     [_wineId release];
+    [_name release];
     [super dealloc];
 }
 
@@ -51,16 +54,29 @@
 
 - (void)showBigPicture
 {
-    [[TTNavigator navigator] openURLAction: [[TTURLAction
-            actionWithURLPath:URL(kURLWinePictureCall, @"http:--restmocker.bitzeppelin.com-media-attachments-IMG_2501.jpg")] applyAnimated:YES]];
+    [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
+            URL(kURLWinePictureCall, _imageURL, _name)]
+                applyAnimated:YES]];
 }
 
 #pragma mark -
 #pragma mark <WineDetailDataSourceDelegate>
 
-- (void) dataSource:(WineDetailDataSource *)dataSource
-      viewForHeader:(UIView *)view
+- (void)dataSource:(WineDetailDataSource *)dataSource
+     viewForHeader:(UIView *)view
 {
     [[self tableView] setTableHeaderView:view];
+}
+
+- (void)dataSource:(WineDetailDataSource *)dataSource
+      wineImageURL:(NSString *)imageURL
+{
+    _imageURL = imageURL;
+}
+
+- (void)dataSource:(WineDetailDataSource *)dataSource wineName:(NSString *)name
+{
+    _name = [[name stringByReplacingOccurrencesOfString:@" " withString:@"-"]
+            retain];
 }
 @end

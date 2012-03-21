@@ -148,6 +148,7 @@
 		2F2C9D6014FE70EE0024ABAE /* default-banner-sommelier@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */; };
 		2F2C9D6114FE70EE0024ABAE /* default-banner-stores.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */; };
 		2F2C9D6214FE70EE0024ABAE /* default-banner-stores@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */; };
+		2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F304804151A4EEE00A405B3 /* WinePhotoSource.m */; };
 		2F32FF4114B689FD00F8112C /* BaseRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */; };
 		2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */; };
 		2F3B7BF414CDB096004CE20A /* PageCurlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B7BF314CDB096004CE20A /* PageCurlButton.m */; };
@@ -958,6 +959,8 @@
 		2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-sommelier@2x.jpg"; sourceTree = "<group>"; };
 		2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores.jpg"; sourceTree = "<group>"; };
 		2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores@2x.jpg"; sourceTree = "<group>"; };
+		2F304803151A4EDC00A405B3 /* WinePhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinePhotoSource.h; path = ../../Headers/Wines/WinePhotoSource.h; sourceTree = "<group>"; };
+		2F304804151A4EEE00A405B3 /* WinePhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinePhotoSource.m; sourceTree = "<group>"; };
 		2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeDetailController.m; sourceTree = "<group>"; };
 		2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailController.m; sourceTree = "<group>"; };
 		2F3B7BF314CDB096004CE20A /* PageCurlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCurlButton.m; sourceTree = "<group>"; };
@@ -1784,6 +1787,8 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2F304804151A4EEE00A405B3 /* WinePhotoSource.m */,
+				2F304803151A4EDC00A405B3 /* WinePhotoSource.h */,
 				2F19F88B15123E4B00C97A29 /* WinePictureController.h */,
 				2F47C7AB15054D4800004A15 /* Constants.h */,
 				2F47C7AC15054D4800004A15 /* FilteringListController.h */,
@@ -2924,6 +2929,7 @@
 				2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */,
 				2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */,
 				2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */,
+				2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

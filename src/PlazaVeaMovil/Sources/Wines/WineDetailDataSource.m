@@ -149,6 +149,8 @@ static CGFloat titleWidth = 320.;
 
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
+    [_delegate dataSource:self wineName:[wine name]];
+    [_delegate dataSource:self wineImageURL:@"http:--restmocker.bitzeppelin.com-media-attachments-IMG_2501.jpg"];
     
     TTTableTextItem *info = [TTTableTextItem itemWithText:kWineInfoLabel
             URL:URL(kURLWineInfoCall, [wine wineId])];

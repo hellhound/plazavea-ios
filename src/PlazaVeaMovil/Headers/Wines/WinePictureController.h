@@ -8,4 +8,5 @@
     
 }
 - (id)initWithURL:(NSString *)pictureURL;
+- (id)initWithURL:(NSString *)pictureURL title:(NSString *)title;
 @end
