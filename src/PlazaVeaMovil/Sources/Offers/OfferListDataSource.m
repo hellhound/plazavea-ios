@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
@@ -74,17 +75,17 @@
     NSURL *bannerImageURL = [banner pictureURL];
     NSNumber *bannerId = [banner bannerId];
     
-    [_delegate dataSource:self needsBannerId:bannerId];
     if (bannerImageURL != nil) {
+        [_delegate dataSource:self needsBannerId:bannerId];
+
         bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,
                 kBannerImageHeight);
-        
-        TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
-                [bannerImageURL absoluteString] defaultImage:
-                    TTIMAGE(kOfferBannerDefaultImage) URL:nil];
-
-        [items addObject:banner];
     }
+    TTTableImageItem *bannerCell = [TTTableImageItem itemWithText:nil
+            imageURL:[bannerImageURL absoluteString] defaultImage:
+                TTIMAGE(kOfferBannerDefaultImage) URL:nil];
+
+    [items addObject:bannerCell];
     for (Offer *offer in offers) {
         NSURL *pictureURL = [offer pictureURL];
         

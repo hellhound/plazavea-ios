@@ -196,7 +196,7 @@ NSString *const kOfferDetailTwitterImage = @"bundle://twitter-icon.png";
 NSString *const kBannerDefaultImage =
         @"bundle://default-banner-offers-list.png";
 NSString *const kOfferBannerDefaultImage =
-        @"bundle://default-banner-offers-list.png";
+        @"bundle://default-banner-offers.jpg";
 const CGFloat kBannerImageWidth = 320.;
 const CGFloat kBannerImageHeight = 140.;
 const CGFloat kOfferListImageWidth = 50.;

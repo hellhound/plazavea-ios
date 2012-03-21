@@ -19,8 +19,8 @@
 
 @protocol PromotionDetailDataSourceDelegate <NSObject>
 
-- (void) dataSource:(PromotionDetailDataSource *)dataSource
-     needsPromotion:(Promotion *)promotion;
+- (void)dataSource:(PromotionDetailDataSource *)dataSource
+    needsPromotion:(Promotion *)promotion;
 - (void)dataSource:(PromotionDetailDataSource *)dataSource
      viewForHeader:(UIView *)view;
 @end
