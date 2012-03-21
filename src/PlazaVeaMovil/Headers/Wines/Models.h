@@ -13,7 +13,7 @@
 @property (nonatomic, retain) NSNumber *featureId;
 @property (nonatomic, retain) NSString *name;
 
-+ (id)featureFromDictionary:(NSDictionary *)rawData;
++ (id)featureFromDictionary:(NSDictionary *)rawData featureKey:(NSString *)key;
 + (id)featureWithId:(NSNumber *)featureId name:(NSString *)name;
 @end
 
@@ -180,4 +180,21 @@
 
 - (id)initWithCollectionId:(WineFilteringListType)collectionId;
 - (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection;
+@end
+
+@interface WineLargeImage: NSObject <TTPhoto>
+{
+    NSString *_caption;
+    NSString *_url;
+    CGSize _size;
+    id<TTPhotoSource> _photoSource;
+    NSInteger _index;
+}
+@property (nonatomic, copy) NSString *caption;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) id<TTPhotoSource> photoSource;
+@property (nonatomic, assign) NSInteger index;
+
+- (id)initWithPictureURL:(NSString *)pictureURL;
 @end

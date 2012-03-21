@@ -111,6 +111,7 @@
 		2F14234F146D615700CB10A9 /* TableCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
+		2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F19F88915123C6200C97A29 /* WinePictureController.m */; };
 		2F2B2B2514B4EA9C000C0F26 /* chicken-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */; };
 		2F2B2B2614B4EA9C000C0F26 /* chicken-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */; };
 		2F2B2B2714B4EA9C000C0F26 /* fish-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */; };
@@ -894,6 +895,8 @@
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
+		2F19F88915123C6200C97A29 /* WinePictureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinePictureController.m; sourceTree = "<group>"; };
+		2F19F88B15123E4B00C97A29 /* WinePictureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinePictureController.h; path = ../../Headers/Wines/WinePictureController.h; sourceTree = "<group>"; };
 		2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon.png"; sourceTree = "<group>"; };
 		2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon@2x.png"; sourceTree = "<group>"; };
 		2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fish-icon.png"; sourceTree = "<group>"; };
@@ -1756,6 +1759,7 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2F19F88B15123E4B00C97A29 /* WinePictureController.h */,
 				2F47C7AB15054D4800004A15 /* Constants.h */,
 				2F47C7AC15054D4800004A15 /* FilteringListController.h */,
 				2F47C7AD15054D4800004A15 /* FilteringListDataSource.h */,
@@ -1794,6 +1798,7 @@
 				2F012A08146B1F11006098EB /* StrainListController.m */,
 				2F5B2A4714699ED3008CFB6A /* Constants.m */,
 				2F5B2A4514699E38008CFB6A /* Models.m */,
+				2F19F88915123C6200C97A29 /* WinePictureController.m */,
 			);
 			path = Wines;
 			sourceTree = "<group>";
@@ -2868,6 +2873,7 @@
 				2F84395C14EEECE90068B13F /* FilteringListController.m in Sources */,
 				2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */,
 				2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */,
+				2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

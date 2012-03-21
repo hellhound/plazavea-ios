@@ -6,6 +6,7 @@
 #import "Common/Constants.h"
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Wines/Constants.h"
+#import "Wines/WinePictureController.h"
 #import "Wines/WineDetailController.h"
 
 @implementation WineDetailController
@@ -46,6 +47,12 @@
         }
     }
     return self;
+}
+
+- (void)showBigPicture
+{
+    [[TTNavigator navigator] openURLAction: [[TTURLAction
+            actionWithURLPath:URL(kURLWinePictureCall, @"http:--restmocker.bitzeppelin.com-media-attachments-IMG_2501.jpg")] applyAnimated:YES]];
 }
 
 #pragma mark -

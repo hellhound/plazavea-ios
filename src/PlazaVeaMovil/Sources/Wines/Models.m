@@ -1062,3 +1062,41 @@ static NSString *const kMutableListKey = @"list";
     [super requestDidFinishLoad:request];
 }
 @end
+
+@implementation WineLargeImage
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark WineLargeImage
+
+@synthesize caption = _caption, size = _size, photoSource = _photoSource,
+        index = _index, url = _url;
+
+- (id)initWithPictureURL:(NSString *)pictureURL
+{
+    if ((self = [super init]) != nil) {
+        _url = pictureURL;
+        _caption = @"";
+        _size = CGSizeMake(320., 480.);
+        _photoSource = nil;
+        _index = 0;
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark <TTPhoto>
+
+- (NSString *)URLForVersion:(TTPhotoVersion)version
+{
+    return _url;
+}
+
+@end

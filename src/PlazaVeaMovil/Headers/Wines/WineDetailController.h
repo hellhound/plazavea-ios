@@ -13,4 +13,5 @@
 }
 
 - (id)initWithWineId:(NSString *)wineId;
+- (void)showBigPicture;
 @end

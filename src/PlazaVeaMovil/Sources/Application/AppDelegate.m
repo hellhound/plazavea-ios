@@ -40,6 +40,7 @@
 #import "Wines/WineTipsController.h"
 #import "Wines/WineFilterController.h"
 #import "Wines/FilteringListController.h"
+#import "Wines/WinePictureController.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodDetailController.h"
@@ -304,6 +305,8 @@
                 selector:@selector(init)];
     [map from:kURLFiltering
             toViewController:[FilteringListController class]];
+    [map from:kURLWinePicture
+            toViewController:[WinePictureController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]
@@ -315,7 +318,7 @@
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
              applyAnimated:YES]];
-    //if (![self loadDefaults]) {
+    if (![self loadDefaults]) {
         TSAlertView *alert = [[TSAlertView alloc]
                 initWithTitle:kRegistrationTitle message:nil delegate:self
                     cancelButtonTitle:nil otherButtonTitles:kRegsitrationButton,
@@ -331,7 +334,7 @@
         [[alert textFieldAtIndex:2] setAutocapitalizationType:
                 UITextAutocapitalizationTypeNone];
         [alert show];
-    //}
+    }
     [_window makeKeyAndVisible];
     return YES;
 }

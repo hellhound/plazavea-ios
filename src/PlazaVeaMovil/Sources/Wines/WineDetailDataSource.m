@@ -57,13 +57,17 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = [[[UIImageView alloc]
+    /*UIImageView *imageView = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
     
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
-    [imageView setBackgroundColor:[UIColor clearColor]];
+    [imageView setBackgroundColor:[UIColor clearColor]];*/
+    UIButton *imageView = [[[UIButton alloc] initWithFrame:CGRectMake(.0, .0, 320., 140.)] autorelease];
+    
+    [imageView setImage:TTIMAGE(kWineBannerImage) forState:UIControlStateNormal];
+    [imageView addTarget:_delegate action:@selector(showBigPicture) forControlEvents:UIControlEventTouchUpInside];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
