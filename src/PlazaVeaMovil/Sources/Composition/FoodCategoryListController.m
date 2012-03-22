@@ -161,6 +161,7 @@ static CGFloat indexWitdh = 50.;
     
     CGRect imageFrame = [imageView frame];
     imageFrame.origin.y += titleHeight + (margin * 2.);
+    
     [imageView setFrame:imageFrame];
     
     CGRect searchFrame = [searchBar frame];
