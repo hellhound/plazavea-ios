@@ -6,6 +6,7 @@
 #import "Application/Constants.h"
 #import "Application/StyleSheet.h"
 
+/*// Plaza Vea Movil style
 // default status bar style
 #define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
 
@@ -76,6 +77,85 @@
 #define MEATS_SECTION_HEADER TTIMAGE(@"bundle://meats-section-header.png")
 #define RECIPE_DETAIL_BACKGROUND \
         TTIMAGE(@"bundle://recipes-picture-background.png")
+
+// wines
+#define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")
+#define WINE_SECTION_HEADER TTIMAGE(@"bundle://wine-section-header.png")
+
+// body meter
+#define FOOTER_FONT_COLOR RGBCOLOR(60., 69., 87.)*/
+
+// Vivanda Movil style
+// default status bar style
+#define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
+
+// color for navigation bar
+#define BAR_TINT_COLOR RGBCOLOR(255., 208., .0)
+
+// color for texts in tables
+#define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
+#define CAPTION_ALT_COLOR RGBCOLOR(227., 13., 23.)
+#define DETAIL_ALT_COLOR RGBCOLOR(.0, .0, .0)
+
+// color for Headers
+#define HEADER_COLOR_YELLOW RGBCOLOR(255., 255., .0)
+#define HEADER_COLOR_WHITE [UIColor whiteColor]
+
+// size for text in tables
+#define TABLE_TEXT_HEADER_SIZE 16.
+#define TABLE_SECTION_HEADER_HEIGHT 24.
+#define PICTURE_HEADER_SIZE 14.
+#define TABLE_TEXT_SIZE 13.
+
+// launcher
+#define LAUNCHER_BACKGROUND TTIMAGE(@"bundle://launcher-background.png")
+#define NAVIGATION_BAR_LOGO TTIMAGE(@"bundle://general-customer-logo.png")
+#define NAVIGATION_BAR_COLOR RGBCOLOR(255., 208., .0)
+#define LAUNCHER_FONT_COLOR RGBCOLOR(57., 45., 27.)
+#define LAUNCHER_FONT_SHADOW RGBCOLOR(255., 255., 255.)
+
+// shopping list
+#define SHOPPING_LIST_BACKGROUND \
+TTIMAGE(@"bundle://shopping-list-background.png")
+#define SHOPPING_LIST_ICON_ADD \
+TTIMAGE(@"bundle://shopping-list-add.png")
+
+#define TOOLBAR_PREVIOUS_ICON TTIMAGE(@"bundle://toolbar-previous-icon.png") 
+#define TOOLBAR_NEXT_ICON TTIMAGE(@"bundle://toolbar-next-icon.png") 
+#define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://shopping-list-add.png") 
+#define TOOLBAR_ACTION_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
+#define TOOLBAR_TRASH_ICON TTIMAGE(@"bundle://toolbar-trash-icon.png") 
+#define SHOPPINGLISTS_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
+
+// nutritional composition
+#define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
+#define COMPOSITION_PICTURE_BACKGROUND \
+TTIMAGE(@"bundle://composition-picture-background.png")
+#define COMPOSITION_SECTION_HEADER_BACKGROUND \
+TTIMAGE(@"bundle://composition-section-header.png")
+#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247., 128., 31.)
+#define CORDON_BLEU_LOGO TTIMAGE(@"bundle://logo-cordon-bleu.png")
+
+// emergency phones
+#define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
+#define EMERGENCY_SECTION_HEADER \
+TTIMAGE(@"bundle://emergency-section-header.png")
+#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
+
+// stores
+#define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
+#define STORES_SECTION_HEADER TTIMAGE(@"bundle://stores-section-header.png")
+
+// offers
+#define OFFER_BACKGROUND TTIMAGE(@"bundle://offer-background.png")
+
+// recipes
+#define RECIPES_BACKGROUND TTIMAGE(@"bundle://recipes-background.png")
+#define MEATS_BACKGROUND TTIMAGE(@"bundle://meats-background.png")
+#define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
+#define MEATS_SECTION_HEADER TTIMAGE(@"bundle://meats-section-header.png")
+#define RECIPE_DETAIL_BACKGROUND \
+TTIMAGE(@"bundle://recipes-picture-background.png")
 
 // wines
 #define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")

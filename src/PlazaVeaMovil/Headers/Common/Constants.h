@@ -6,12 +6,12 @@
 
 // Define HOST_NAME and ENDPOINT_BASE_URL
 #ifdef DEBUG
-#define HOST_NAME @"demos.bitzeppelin.com"
+//#define HOST_NAME @"demos.bitzeppelin.com"
 //#define HOST_NAME @"restmocker.bitzeppelin.com"
-//#define HOST_NAME @"192.168.1.23:8000" // Mac de Hansy
-#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
+#define HOST_NAME @"192.168.1.47:8000" // Mac de Hansy
+//#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
 //#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api/spsa"
-//#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api" // Mac de Hansy
+#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api" // Mac de Hansy
 #else
 //#define HOST_NAME @"demos.bitzeppelin.com"
 #define HOST_NAME @"restmocker.bitzeppelin.com"

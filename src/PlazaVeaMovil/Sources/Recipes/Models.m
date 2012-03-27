@@ -628,7 +628,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
 
     NSString *code;
-    NSNumber *price, *rations;
+    NSNumber /**price,*/ *rations;
     NSDictionary *rawStrains;
     StrainCollection *strains;
     NSDictionary *rawCategory;
@@ -652,13 +652,13 @@ static NSString *const kRecipeMiscYes = @"YES";
     if ((extraPictureURLs =
             [rawRecipe objectForKey:kRecipeExtraPictureURLsKey]) == nil)
         return nil;
-    if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
+    /*if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
         return nil;
-    if (![price isKindOfClass:[NSNumber class]]){
+    if (![price isKindOfClass:[NSNumber class]]) {
         if (![price isKindOfClass:[NSNull class]])
             return nil;
-        price=nil;
-    }
+        price = nil;
+    }*/
     if ((ingredients = [rawRecipe objectForKey:kRecipeIngredientsKey]) == nil)
         return nil;
     if (![ingredients isKindOfClass:[NSArray class]])
@@ -689,7 +689,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     rawCategory = [rawRecipe objectForKey:kRecipeCategoryKey];
     category = [RecipeCategory shortRecipeCategoryFromDictionary:rawCategory];
     [recipe setCode:code];
-    [recipe setPrice:price];
+    //[recipe setPrice:price];
     [recipe setRations:rations];
     [recipe setStrains:strains];
     [recipe setCategory:category];
@@ -748,7 +748,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [self setCode:[[recipe code] copy]];
     [self setName:[[recipe name] copy]];
     [self setPictureURL:[recipe pictureURL]];
-    [self setPrice:[recipe price]];
+    //[self setPrice:[recipe price]];
     [self setRations:[recipe rations]];
     [self setStrains:[recipe strains]];
     [self setCategory:[recipe category]];
@@ -1109,7 +1109,7 @@ static NSString *const kRecipeMiscYes = @"YES";
 
             TableImageSubtitleItem *item = 
                     [TableImageSubtitleItem itemWithText:[recipe name]
-                        subtitle:nil imageURL:[pictureURL absoluteString]
+                        subtitle:nil imageURL:/*[pictureURL absoluteString]*/nil
                         defaultImage:TTIMAGE(kRecipeListDefaultImage)
                         URL:controllerURL];
 
