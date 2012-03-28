@@ -457,11 +457,13 @@ static NSString *const kRecipeMiscYes = @"YES";
 @synthesize calories = _calories, carbohydrates = _carbohydrates, fats = _fats,
         fiber = _fiber, proteins = _proteins;
 
-+ (id)contributionFromDictionary:(NSDictionary *)rawContribution
++ (id)contributionFromDictionary:(NSDictionary *)rawDictionary
 {    
-    if (![rawContribution isKindOfClass:[NSDictionary class]])
+    if (![rawDictionary isKindOfClass:[NSDictionary class]])
         return nil;
     
+    NSDictionary *rawContribution = 
+            [rawDictionary objectForKey:@"contribution"];
     NSNumber *calories = [rawContribution objectForKey:@"calories"];
     
     if (![calories isKindOfClass:[NSNumber class]]) {
