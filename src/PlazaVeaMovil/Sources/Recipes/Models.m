@@ -408,14 +408,14 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if ((quantity = [rawIngredient objectForKey:kIngredientQuantityKey]) == nil)
         return nil;
-    if (![quantity isKindOfClass:[NSString class]]){
+    if (![quantity isKindOfClass:[NSString class]]) {
         if (![quantity isKindOfClass:[NSNull class]])
             return nil;
         quantity = @"";
     }
     if ((comment = [rawIngredient objectForKey:kIngredientCommentKey]) == nil)
         return nil;
-    if (![comment isKindOfClass:[NSString class]]){
+    if (![comment isKindOfClass:[NSString class]]) {
         if (![comment isKindOfClass:[NSNull class]])
             return nil;
         comment = @"";
@@ -433,6 +433,83 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     return [NSString stringWithFormat:@"%@ %@ %@", _quantity, _name, 
             _comment];
+}
+@end
+
+@implementation Contribution
+
+#pragma mark -
+#pragma NSObject
+
+- (void)dealloc
+{
+    [_calories release];
+    [_carbohydrates release];
+    [_fats release];
+    [_fiber release];
+    [_proteins release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma Contribution
+
+@synthesize calories = _calories, carbohydrates = _carbohydrates, fats = _fats,
+        fiber = _fiber, proteins = _proteins;
+
++ (id)contributionFromDictionary:(NSDictionary *)rawDictionary
+{    
+    if (![rawDictionary isKindOfClass:[NSDictionary class]])
+        return nil;
+    
+    NSDictionary *rawContribution = 
+            [rawDictionary objectForKey:kRecipeContributionKey];
+    NSNumber *calories = [rawContribution
+            objectForKey:kContributionCaloriesKey];
+    
+    if (![calories isKindOfClass:[NSNumber class]]) {
+        if (![calories isKindOfClass:[NSNull class]]) {
+            return nil;
+        }
+    }
+    NSNumber *carbohydrates = [rawContribution
+            objectForKey:kContributionCarbohydratesKey];
+    
+    if (![carbohydrates isKindOfClass:[NSNumber class]]) {
+        if (![carbohydrates isKindOfClass:[NSNull class]]) {
+            return nil;
+        }
+    }
+    NSNumber *fats = [rawContribution objectForKey:kContributionFatsKey];
+    
+    if (![fats isKindOfClass:[NSNumber class]]) {
+        if (![fats isKindOfClass:[NSNull class]]) {
+            return nil;
+        }
+    }
+    NSNumber *fiber = [rawContribution objectForKey:kContributionFiberKey];
+    
+    if (![fiber isKindOfClass:[NSNumber class]]) {
+        if (![fiber isKindOfClass:[NSNull class]]) {
+            return nil;
+        }
+    }
+    NSNumber *proteins = [rawContribution
+            objectForKey:kContributionProteinsKey];
+    
+    if (![proteins isKindOfClass:[NSNumber class]]) {
+        if (![proteins isKindOfClass:[NSNull class]]) {
+            return nil;
+        }
+    }
+    Contribution *contribution = [[[Contribution alloc] init] autorelease];
+    
+    [contribution setCalories:calories];
+    [contribution setCarbohydrates:carbohydrates];
+    [contribution setFats:fats];
+    [contribution setFiber:fiber];
+    [contribution setProteins:proteins];
+    return contribution;
 }
 @end
 
@@ -461,11 +538,12 @@ static NSString *const kRecipeMiscYes = @"YES";
     [_name release];
     [_pictureURL release];
     [_extraPictureURLs release];
-    [_price release];
+    //[_price release];
     [_ingredients release];
     [_procedures release];
     [_features release];
     [_tips release];
+    [_contribution release];
     [_rations release];
     [_strains release];
     [super dealloc];
@@ -476,7 +554,7 @@ static NSString *const kRecipeMiscYes = @"YES";
 
 // KVC compliance for indexed to-many collections
 @synthesize extraPictureURLs = _extraPictureURLs, ingredients = _ingredients,
-    procedures = _procedures, features = _features, tips = _tips;
+        procedures = _procedures, features = _features, tips = _tips;
 
 - (void)        insertObject:(NSURL *)extraURL
    inExtraPictureURLsAtIndex:(NSUInteger)index
@@ -585,8 +663,9 @@ static NSString *const kRecipeMiscYes = @"YES";
 #pragma mark Recipe (Public)
 
 @synthesize recipeId = _recipeId, code = _code, name = _name,
-        pictureURL = _pictureURL, price = _price, rations = _rations,
-            strains = _strains, category = _category;
+        pictureURL = _pictureURL, /*price = _price,*/ rations = _rations,
+            strains = _strains, category = _category,
+            contribution = _contribution;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe
 {
@@ -631,8 +710,9 @@ static NSString *const kRecipeMiscYes = @"YES";
     NSNumber /**price,*/ *rations;
     NSDictionary *rawStrains;
     StrainCollection *strains;
-    NSDictionary *rawCategory;
+    NSDictionary *rawCategory, *rawContribution;
     RecipeCategory *category;
+    Contribution *contribution;
     NSArray *extraPictureURLs, *ingredients, *procedures, *features, *tips;
     NSMutableArray *mutableExtraPictureURLs =
             [recipe mutableArrayValueForKey:kMutableExtraPictureURLsKey]; 
@@ -686,10 +766,15 @@ static NSString *const kRecipeMiscYes = @"YES";
     strains = [StrainCollection strainCollectionFromDictionary:rawStrains];
     //if (strains == nil)
     //    return nil;
+    rawContribution = [NSDictionary dictionaryWithObjectsAndKeys:
+            [rawRecipe objectForKey:kRecipeContributionKey],
+                kRecipeContributionKey, nil];
+    contribution = [Contribution contributionFromDictionary:rawContribution];
     rawCategory = [rawRecipe objectForKey:kRecipeCategoryKey];
     category = [RecipeCategory shortRecipeCategoryFromDictionary:rawCategory];
     [recipe setCode:code];
     //[recipe setPrice:price];
+    [recipe setContribution:contribution];
     [recipe setRations:rations];
     [recipe setStrains:strains];
     [recipe setCategory:category];
@@ -748,6 +833,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [self setCode:[[recipe code] copy]];
     [self setName:[[recipe name] copy]];
     [self setPictureURL:[recipe pictureURL]];
+    [self setContribution:[recipe contribution]];
     //[self setPrice:[recipe price]];
     [self setRations:[recipe rations]];
     [self setStrains:[recipe strains]];
@@ -831,9 +917,9 @@ static NSString *const kRecipeMiscYes = @"YES";
     return shoppingList;
 }
 
-- (void)confirmFinishLoad{
+- (void)confirmFinishLoad {
     _didFinishCount += 1;
-    if (_didFinishCount == 2){
+    if (_didFinishCount == 2) {
     }
 }
 

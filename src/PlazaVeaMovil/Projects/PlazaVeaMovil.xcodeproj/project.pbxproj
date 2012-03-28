@@ -226,6 +226,7 @@
 		2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0F79147AC25B0047901D /* FoodDetailController.m */; };
 		2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */; };
 		2F9E1037147AF4770047901D /* default-food-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E1036147AF4770047901D /* default-food-detail.png */; };
+		2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */; };
 		2FA4E2D214EAFB5B00B5F303 /* wine-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */; };
 		2FA4E2D314EAFB5B00B5F303 /* wine-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
@@ -912,6 +913,25 @@
 		2F142221146D4D7000CB10A9 /* default-wine-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-wine-detail.png"; sourceTree = "<group>"; };
 		2F14234C146D615700CB10A9 /* TableCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItem.m; sourceTree = "<group>"; };
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
+		2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlphabeticalRecipesDataSource.h; path = ../../Headers/Recipes/AlphabeticalRecipesDataSource.h; sourceTree = "<group>"; };
+		2F16EA1115226AF300766D83 /* BaseMeatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseMeatController.h; path = ../../Headers/Recipes/BaseMeatController.h; sourceTree = "<group>"; };
+		2F16EA1215226AF300766D83 /* BaseRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeController.h; path = ../../Headers/Recipes/BaseRecipeController.h; sourceTree = "<group>"; };
+		2F16EA1315226AF300766D83 /* BaseRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeDetailController.h; path = ../../Headers/Recipes/BaseRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1415226AF300766D83 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Recipes/Constants.h; sourceTree = "<group>"; };
+		2F16EA1515226AF300766D83 /* IngredientRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IngredientRecipeDetailController.h; path = ../../Headers/Recipes/IngredientRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1615226AF300766D83 /* MeatListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatListController.h; path = ../../Headers/Recipes/MeatListController.h; sourceTree = "<group>"; };
+		2F16EA1715226AF300766D83 /* MeatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatListDataSource.h; path = ../../Headers/Recipes/MeatListDataSource.h; sourceTree = "<group>"; };
+		2F16EA1815226AF300766D83 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Recipes/Models.h; sourceTree = "<group>"; };
+		2F16EA1915226AF300766D83 /* ProcedureRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcedureRecipeDetailController.h; path = ../../Headers/Recipes/ProcedureRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1A15226AF300766D83 /* RecipeCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCategoryController.h; path = ../../Headers/Recipes/RecipeCategoryController.h; sourceTree = "<group>"; };
+		2F16EA1B15226AF300766D83 /* RecipeCategoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCategoryDataSource.h; path = ../../Headers/Recipes/RecipeCategoryDataSource.h; sourceTree = "<group>"; };
+		2F16EA1C15226AF300766D83 /* RecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailController.h; path = ../../Headers/Recipes/RecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1D15226AF300766D83 /* RecipeDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailDataSource.h; path = ../../Headers/Recipes/RecipeDetailDataSource.h; sourceTree = "<group>"; };
+		2F16EA1E15226AF300766D83 /* RecipeDrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDrillDownController.h; path = ../../Headers/Recipes/RecipeDrillDownController.h; sourceTree = "<group>"; };
+		2F16EA1F15226AF300766D83 /* RecipeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeHeaderView.h; path = ../../Headers/Recipes/RecipeHeaderView.h; sourceTree = "<group>"; };
+		2F16EA2015226AF300766D83 /* RecipeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeListController.h; path = ../../Headers/Recipes/RecipeListController.h; sourceTree = "<group>"; };
+		2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipesTableViewDelegate.h; path = ../../Headers/Recipes/RecipesTableViewDelegate.h; sourceTree = "<group>"; };
+		2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TipsRecipeDetailController.h; path = ../../Headers/Recipes/TipsRecipeDetailController.h; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
 		2F19F88915123C6200C97A29 /* WinePictureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinePictureController.m; sourceTree = "<group>"; };
@@ -1083,6 +1103,8 @@
 		2F9E0F79147AC25B0047901D /* FoodDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailController.m; sourceTree = "<group>"; };
 		2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailDataSource.m; sourceTree = "<group>"; };
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
+		2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContributionRecipeDetailController.h; path = ../../Headers/Recipes/ContributionRecipeDetailController.h; sourceTree = "<group>"; };
+		2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributionRecipeDetailController.m; sourceTree = "<group>"; };
 		2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header.png"; sourceTree = "<group>"; };
 		2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header@2x.png"; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -1670,6 +1692,27 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */,
+				2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */,
+				2F16EA1115226AF300766D83 /* BaseMeatController.h */,
+				2F16EA1215226AF300766D83 /* BaseRecipeController.h */,
+				2F16EA1315226AF300766D83 /* BaseRecipeDetailController.h */,
+				2F16EA1415226AF300766D83 /* Constants.h */,
+				2F16EA1515226AF300766D83 /* IngredientRecipeDetailController.h */,
+				2F16EA1615226AF300766D83 /* MeatListController.h */,
+				2F16EA1715226AF300766D83 /* MeatListDataSource.h */,
+				2F16EA1815226AF300766D83 /* Models.h */,
+				2F16EA1915226AF300766D83 /* ProcedureRecipeDetailController.h */,
+				2F16EA1A15226AF300766D83 /* RecipeCategoryController.h */,
+				2F16EA1B15226AF300766D83 /* RecipeCategoryDataSource.h */,
+				2F16EA1C15226AF300766D83 /* RecipeDetailController.h */,
+				2F16EA1D15226AF300766D83 /* RecipeDetailDataSource.h */,
+				2F16EA1E15226AF300766D83 /* RecipeDrillDownController.h */,
+				2F16EA1F15226AF300766D83 /* RecipeHeaderView.h */,
+				2F16EA2015226AF300766D83 /* RecipeListController.h */,
+				2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */,
+				2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */,
+				2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */,
 				2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */,
 				2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */,
 				2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */,
@@ -2974,6 +3017,7 @@
 				2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */,
 				2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */,
 				2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */,
+				2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
