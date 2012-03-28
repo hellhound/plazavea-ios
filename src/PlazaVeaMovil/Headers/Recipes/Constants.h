@@ -45,6 +45,7 @@ extern NSString *const kRecipeFeaturesKey;
 extern NSString *const kRecipeTipsKey;
 extern NSString *const kRecipeRationsKey;
 extern NSString *const kRecipeStrainsKey;
+extern NSString *const kRecipeContributionKey;
 
 // Ingredient model's constants
 
@@ -53,6 +54,14 @@ extern NSString *const kIngredientQuantityKey;
 extern NSString *const kIngredientNameKey;
 extern NSString *const kIngredientCommentKey;
 
+// Contribution model's constants
+
+// JSON keys
+extern NSString *const kContributionCaloriesKey;
+extern NSString *const kContributionCarbohydratesKey;
+extern NSString *const kContributionFatsKey;
+extern NSString *const kContributionFiberKey;
+extern NSString *const kContributionProteinsKey;
 
 // MeatListDataSource's constants
 
@@ -100,6 +109,7 @@ typedef enum {
     kRecipeDetailIngredientsView,
     kRecipeDetailProceduresView,
     kRecipeDetailTipsView,
+    kRecipeDetailContributionView,
 }RecipeDetailViewType;
 
 extern NSString *const kRecipeDetailTitleForLoading;
@@ -113,6 +123,14 @@ extern NSString *const kRecipeDetailSectionIngredients;
 extern NSString *const kRecipeDetailSectionProcedures;
 extern NSString *const kRecipeDetailSectionTips;
 extern NSString *const kRecipeDetailSectionStrains;
+extern NSString *const kRecipeDetailSectionContribution;
+extern NSString *const kRecipeDetailCalories;
+extern NSString *const kRecipeDetailCarbohydrates;
+extern NSString *const kRecipeDetailFats;
+extern NSString *const kRecipeDetailFiber;
+extern NSString *const kRecipeDetailProteins;
+extern NSString *const kRecipeDetailKCalSufix;
+extern NSString *const kRecipeDetailGramsSufix;
 
 // RecipeDrillDownController's constants
 
@@ -166,6 +184,7 @@ extern NSString *const kURLRecipeMeatsDetail;
 extern NSString *const kURLIngredientRecipeDetail;
 extern NSString *const kURLProceduresRecipeDetail;
 extern NSString *const kURLTipsRecipeDetail;
+extern NSString *const kURLContributionRecipeDetail;
 extern NSString *const kURLIngredientRecipeMeatsDetail;
 extern NSString *const kURLProceduresRecipeMeatsDetail;
 extern NSString *const kURLTipsRecipeMeatsDetail;
@@ -182,6 +201,7 @@ extern NSString *const kURLRecipeMeatsDetailCall;
 extern NSString *const kURLIngredientRecipeDetailCall;
 extern NSString *const kURLProceduresRecipeDetailCall;
 extern NSString *const kURLTipsRecipeDetailCall;
+extern NSString *const kURLContributionRecipeDetailCall;
 extern NSString *const kURLIngredientRecipeMeatsDetailCall;
 extern NSString *const kURLProceduresRecipeMeatsDetailCall;
 extern NSString *const kURLTipsRecipeMeatsDetailCall;

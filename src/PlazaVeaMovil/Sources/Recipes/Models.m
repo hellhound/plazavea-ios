@@ -463,36 +463,39 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     
     NSDictionary *rawContribution = 
-            [rawDictionary objectForKey:@"contribution"];
-    NSNumber *calories = [rawContribution objectForKey:@"calories"];
+            [rawDictionary objectForKey:kRecipeContributionKey];
+    NSNumber *calories = [rawContribution
+            objectForKey:kContributionCaloriesKey];
     
     if (![calories isKindOfClass:[NSNumber class]]) {
         if (![calories isKindOfClass:[NSNull class]]) {
             return nil;
         }
     }
-    NSNumber *carbohydrates = [rawContribution objectForKey:@"carbohydrates"];
+    NSNumber *carbohydrates = [rawContribution
+            objectForKey:kContributionCarbohydratesKey];
     
     if (![carbohydrates isKindOfClass:[NSNumber class]]) {
         if (![carbohydrates isKindOfClass:[NSNull class]]) {
             return nil;
         }
     }
-    NSNumber *fats = [rawContribution objectForKey:@"fats"];
+    NSNumber *fats = [rawContribution objectForKey:kContributionFatsKey];
     
     if (![fats isKindOfClass:[NSNumber class]]) {
         if (![fats isKindOfClass:[NSNull class]]) {
             return nil;
         }
     }
-    NSNumber *fiber = [rawContribution objectForKey:@"fiber"];
+    NSNumber *fiber = [rawContribution objectForKey:kContributionFiberKey];
     
     if (![fiber isKindOfClass:[NSNumber class]]) {
         if (![fiber isKindOfClass:[NSNull class]]) {
             return nil;
         }
     }
-    NSNumber *proteins = [rawContribution objectForKey:@"proteins"];
+    NSNumber *proteins = [rawContribution
+            objectForKey:kContributionProteinsKey];
     
     if (![proteins isKindOfClass:[NSNumber class]]) {
         if (![proteins isKindOfClass:[NSNull class]]) {
@@ -764,7 +767,8 @@ static NSString *const kRecipeMiscYes = @"YES";
     //if (strains == nil)
     //    return nil;
     rawContribution = [NSDictionary dictionaryWithObjectsAndKeys:
-            [rawRecipe objectForKey:@"contribution"], @"contribution", nil];
+            [rawRecipe objectForKey:kRecipeContributionKey],
+                kRecipeContributionKey, nil];
     contribution = [Contribution contributionFromDictionary:rawContribution];
     rawCategory = [rawRecipe objectForKey:kRecipeCategoryKey];
     category = [RecipeCategory shortRecipeCategoryFromDictionary:rawCategory];

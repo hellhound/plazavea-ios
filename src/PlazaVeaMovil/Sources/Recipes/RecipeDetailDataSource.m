@@ -7,6 +7,8 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
+#import "Common/Views/TableCaptionItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
 #import "Recipes/Constants.h"
@@ -276,7 +278,12 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:strains];
                 }
-
+                TTTableTextItem *contribution = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionContribution
+                            URL:URL(kURLContributionRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:contribution];
                 break;
             case kRecipeDetailIngredientsView:
                 if ([[recipe ingredients] count] > 0) {
@@ -308,6 +315,60 @@ static CGFloat titleWidth = 320.;
                     }
                 }
                 break;
+            case kRecipeDetailContributionView:
+            {
+                 NSString *valueString;
+                if ([[recipe contribution] calories]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailKCalSufix, [[[recipe contribution]
+                                calories] floatValue]];
+                    TableCaptionItem *calories = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCalories];
+                    
+                    [items addObject:calories];
+                }
+                if ([[recipe contribution] carbohydrates]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                carbohydrates] floatValue]];
+                    TableCaptionItem *carbohydrates = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCarbohydrates];
+                    
+                    [items addObject:carbohydrates];
+                }
+                if ([[recipe contribution] fats]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fats] floatValue]];
+                    TableCaptionItem *fats = [TableCaptionItem
+                            itemWithText:valueString caption:kRecipeDetailFats];
+                    
+                    [items addObject:fats];
+                }
+                if ([[recipe contribution] fiber]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fiber] floatValue]];
+                    TableCaptionItem *fiber = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailFiber];
+                    
+                    [items addObject:fiber];
+                }
+                if ([[recipe contribution] proteins]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                proteins] floatValue]];
+                    TableCaptionItem *proteins = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailProteins];
+                    
+                    [items addObject:proteins];
+                }
+                break;
+            }
         }
     }
     [self setItems:items];
@@ -317,6 +378,8 @@ static CGFloat titleWidth = 320.;
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[TableCaptionItem class]]) {
+        return [TableCaptionItemCell class];
     }
     return [super tableView:tableView cellClassForObject:object];
 }

@@ -9,9 +9,9 @@
 #import "Recipes/Models.h"
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
-#import "Recipes/IngredientRecipeDetailController.h"
+#import "Recipes/ContributionRecipeDetailController.h"
 
-@implementation IngredientRecipeDetailController
+@implementation ContributionRecipeDetailController
 
 #pragma mark -
 #pragma mark UIViewController
@@ -29,18 +29,7 @@
 {
     [self setDataSource:[[[RecipeDetailDataSource alloc]
             initWithRecipeId:_recipeId delegate:self
-                section:kRecipeDetailIngredientsView from:_from] autorelease]];
-}
-
-#pragma mark -
-#pragma mark BaseRecipeDetailController
-
-- (id)initWithRecipeId:(NSString *)recipeId from:(NSString *)from
-{
-    if ((self = [super initWithRecipeId:recipeId from:from]) != nil) {
-        [[self tableView] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    }
-    return self;
+                section:kRecipeDetailContributionView from:_from] autorelease]];
 }
 
 - (void)createShoppingListFormRecipe
