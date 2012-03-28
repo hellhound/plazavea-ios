@@ -90,7 +90,7 @@
 #define STATUS_BAR_STYLE UIStatusBarStyleBlackOpaque
 
 // color for navigation bar
-#define BAR_TINT_COLOR RGBCOLOR(255., 208., .0)
+#define BAR_TINT_COLOR RGBCOLOR(237., 227., 187.)
 
 // color for texts in tables
 #define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
