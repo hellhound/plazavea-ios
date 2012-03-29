@@ -278,12 +278,20 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
         [nameLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [nameLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [nameLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(tableTextFont)])
         [dateLabel setFont:(UIFont *)TTSTYLE(tableTextFont)];
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [dateLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [dateLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [dateLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
 
     //conent sizes
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);

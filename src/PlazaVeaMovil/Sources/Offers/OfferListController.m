@@ -50,7 +50,10 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     }
-    
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     NSString *title = [self title];
     UIFont *font = [titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);

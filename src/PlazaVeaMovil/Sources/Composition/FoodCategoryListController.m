@@ -123,6 +123,10 @@ static CGFloat indexWitdh = 50.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
         [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [_titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [_titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     
     NSString *title = kFoodCategoryHeader;
     UIFont *font = [_titleLabel font];
@@ -390,6 +394,10 @@ titleForHeaderInSection:(NSInteger)section
     }
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
         [title setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [title setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [title setShadowOffset:CGSizeMake(.0, -1.)];
     }
     
     UIFont *font = [title font];

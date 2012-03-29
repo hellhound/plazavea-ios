@@ -72,6 +72,10 @@ static CGFloat headerMinHeight = 40.;
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)]) {
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
     }
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     
     NSString *title = [_food name];
     UIFont *font = [titleLabel font];

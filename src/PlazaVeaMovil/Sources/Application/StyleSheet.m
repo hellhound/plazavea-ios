@@ -91,6 +91,7 @@
 
 // color for navigation bar
 #define BAR_TINT_COLOR RGBCOLOR(237., 227., 187.)
+#define TOOLBAR_TINT_COLOR RGBCOLOR(154., 117., 54.)
 
 // color for texts in tables
 #define TABLE_TEXT_COLOR RGBCOLOR(.0, .0, .0)
@@ -98,8 +99,9 @@
 #define DETAIL_ALT_COLOR RGBCOLOR(.0, .0, .0)
 
 // color for Headers
-#define HEADER_COLOR_YELLOW RGBCOLOR(255., 255., .0)
+#define HEADER_COLOR_YELLOW [UIColor whiteColor]
 #define HEADER_COLOR_WHITE [UIColor whiteColor]
+#define HEADER_SHADOW_COLOR RGBCOLOR(57., 45., 27.)
 
 // size for text in tables
 #define TABLE_TEXT_HEADER_SIZE 16.
@@ -116,31 +118,31 @@
 
 // shopping list
 #define SHOPPING_LIST_BACKGROUND \
-TTIMAGE(@"bundle://shopping-list-background.png")
+        TTIMAGE(@"bundle://shopping-list-background.png")
 #define SHOPPING_LIST_ICON_ADD \
-TTIMAGE(@"bundle://shopping-list-add.png")
+        TTIMAGE(@"bundle://shopping-list-add.png")
 
 #define TOOLBAR_PREVIOUS_ICON TTIMAGE(@"bundle://toolbar-previous-icon.png") 
 #define TOOLBAR_NEXT_ICON TTIMAGE(@"bundle://toolbar-next-icon.png") 
 #define TOOLBAR_ADD_ICON TTIMAGE(@"bundle://shopping-list-add.png") 
 #define TOOLBAR_ACTION_ICON TTIMAGE(@"bundle://toolbar-action-icon.png") 
 #define TOOLBAR_TRASH_ICON TTIMAGE(@"bundle://toolbar-trash-icon.png") 
-#define SHOPPINGLISTS_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
+#define SHOPPINGLISTS_SEARCHBAR_COLOR RGBCOLOR(154., 117., 54.)
 
 // nutritional composition
 #define COMPOSITION_BACKGROUND TTIMAGE(@"bundle://composition-background.png")
 #define COMPOSITION_PICTURE_BACKGROUND \
-TTIMAGE(@"bundle://composition-picture-background.png")
+        TTIMAGE(@"bundle://composition-picture-background.png")
 #define COMPOSITION_SECTION_HEADER_BACKGROUND \
-TTIMAGE(@"bundle://composition-section-header.png")
-#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(247., 128., 31.)
+        TTIMAGE(@"bundle://composition-section-header.png")
+#define COMPOSITION_SEARCHBAR_COLOR RGBCOLOR(154., 117., 54.)
 #define CORDON_BLEU_LOGO TTIMAGE(@"bundle://logo-cordon-bleu.png")
 
 // emergency phones
 #define EMERGENCY_BACKGROUND TTIMAGE(@"bundle://emergency-background.png")
 #define EMERGENCY_SECTION_HEADER \
-TTIMAGE(@"bundle://emergency-section-header.png")
-#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(227., 13., 23.)
+        TTIMAGE(@"bundle://emergency-section-header.png")
+#define EMERGENCY_SEARCHBAR_COLOR RGBCOLOR(154., 117., 54.)
 
 // stores
 #define STORES_BACKGROUND TTIMAGE(@"bundle://stores-background.png")
@@ -155,7 +157,7 @@ TTIMAGE(@"bundle://emergency-section-header.png")
 #define RECIPES_SECTION_HEADER TTIMAGE(@"bundle://recipes-section-header.png")
 #define MEATS_SECTION_HEADER TTIMAGE(@"bundle://meats-section-header.png")
 #define RECIPE_DETAIL_BACKGROUND \
-TTIMAGE(@"bundle://recipes-picture-background.png")
+        TTIMAGE(@"bundle://recipes-picture-background.png")
 
 // wines
 #define WINE_BACKGROUND TTIMAGE(@"bundle://wine-background.png")
@@ -181,7 +183,7 @@ TTIMAGE(@"bundle://recipes-picture-background.png")
 
 - (UIColor *)toolbarTintColor
 {
-    return BAR_TINT_COLOR;
+    return TOOLBAR_TINT_COLOR;
 }
 
 - (UIColor *)captionAltColor
@@ -197,6 +199,11 @@ TTIMAGE(@"bundle://recipes-picture-background.png")
 - (UIColor *)headerColorWhite
 {
     return HEADER_COLOR_WHITE;
+}
+
+- (UIColor *)headerShadowColor
+{
+    return HEADER_SHADOW_COLOR;
 }
 
 - (UIFont *)tableTextHeaderFont

@@ -83,7 +83,7 @@ static CGFloat headerHeight = 40.;
         [[self readonlyToolbarItems] addObjectsFromArray:toolbarItems];
         [[self editingToolbarItems] addObjectsFromArray:toolbarItems];
         [self setToolbarItems:[self readonlyToolbarItems]];
-        [[self navigationController] setToolbarHidden:NO];
+        [[self navigationController] setToolbarHidden:NO animated:YES];
     }
     return navItem;
 }
@@ -133,15 +133,23 @@ static CGFloat headerHeight = 40.;
     if ([TTStyleSheet 
             hasStyleSheetForSelector:@selector(headerColorYellow)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
-
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
     [[self tableView] setTableHeaderView:headerView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewDidAppear:animated];
+    [super viewDidLoad];
+    if ([TTStyleSheet 
+         hasStyleSheetForSelector:@selector(toolbarTintColor)]) {
+        [[[self navigationController] toolbar] setTintColor:
+         (UIColor *)TTSTYLE(toolbarTintColor)];
+    }
 }
 
 #pragma mark -

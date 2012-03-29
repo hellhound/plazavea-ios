@@ -104,6 +104,10 @@ static CGFloat headerMinHeight = 40.;
         [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     
     NSString *title = kBodyMeterTitle;
     UIFont *font = [titleLabel font];

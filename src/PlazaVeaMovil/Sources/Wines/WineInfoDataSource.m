@@ -76,7 +76,10 @@ static CGFloat titleWidth = 320.;
         [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorWhite)])
         [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorWhite)];
-    
+    if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerShadowColor)]) {
+        [titleLabel setShadowColor:(UIColor *)TTSTYLE(headerShadowColor)];
+        [titleLabel setShadowOffset:CGSizeMake(.0, -1.)];
+    }
     UIFont *font = [titleLabel font];
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
     CGFloat titleHeight = [title sizeWithFont:font
