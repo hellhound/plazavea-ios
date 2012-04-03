@@ -142,16 +142,6 @@ static CGFloat headerHeight = 40.;
     [[self tableView] setTableHeaderView:headerView];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    if ([TTStyleSheet 
-         hasStyleSheetForSelector:@selector(toolbarTintColor)]) {
-        [[[self navigationController] toolbar] setTintColor:
-         (UIColor *)TTSTYLE(toolbarTintColor)];
-    }
-}
-
 #pragma mark -
 #pragma mark EditableTableViewController (Overridable)
 

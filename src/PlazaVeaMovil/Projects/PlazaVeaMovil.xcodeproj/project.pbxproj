@@ -1105,6 +1105,17 @@
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
 		2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContributionRecipeDetailController.h; path = ../../Headers/Recipes/ContributionRecipeDetailController.h; sourceTree = "<group>"; };
 		2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributionRecipeDetailController.m; sourceTree = "<group>"; };
+		2FA33AC61526288600B3B91C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/ShoppingList/Constants.h; sourceTree = "<group>"; };
+		2FA33AC71526288600B3B91C /* HistoryEntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryEntryController.h; path = ../../Headers/ShoppingList/HistoryEntryController.h; sourceTree = "<group>"; };
+		2FA33AC81526288600B3B91C /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/ShoppingList/Models.h; sourceTree = "<group>"; };
+		2FA33AC91526288600B3B91C /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = ../../Headers/ShoppingList/ShoppingListController.h; sourceTree = "<group>"; };
+		2FA33ACA1526288600B3B91C /* ShoppingListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListHeaderView.h; path = ../../Headers/ShoppingList/ShoppingListHeaderView.h; sourceTree = "<group>"; };
+		2FA33ACB1526288600B3B91C /* ShoppingListsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListsController.h; path = ../../Headers/ShoppingList/ShoppingListsController.h; sourceTree = "<group>"; };
+		2FA33ACC1526288600B3B91C /* TSAlertView+ModifyingShoppingItemAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+ModifyingShoppingItemAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+ModifyingShoppingItemAlertView.h"; sourceTree = "<group>"; };
+		2FA33ACD1526288600B3B91C /* TSAlertView+NewShoppingItemAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+NewShoppingItemAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+NewShoppingItemAlertView.h"; sourceTree = "<group>"; };
+		2FA33ACE1526288600B3B91C /* TSAlertView+NewShoppingListAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+NewShoppingListAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+NewShoppingListAlertView.h"; sourceTree = "<group>"; };
+		2FA33ACF1526288600B3B91C /* TSAlertView+ShoppingListDeletionConfirmation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+ShoppingListDeletionConfirmation.h"; path = "../../Headers/ShoppingList/TSAlertView+ShoppingListDeletionConfirmation.h"; sourceTree = "<group>"; };
+		2FA33AD01526288600B3B91C /* UIActionSheet+ShoppingListMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+ShoppingListMenu.h"; path = "../../Headers/ShoppingList/UIActionSheet+ShoppingListMenu.h"; sourceTree = "<group>"; };
 		2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header.png"; sourceTree = "<group>"; };
 		2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header@2x.png"; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -1668,6 +1679,17 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2FA33AC61526288600B3B91C /* Constants.h */,
+				2FA33AC71526288600B3B91C /* HistoryEntryController.h */,
+				2FA33AC81526288600B3B91C /* Models.h */,
+				2FA33AC91526288600B3B91C /* ShoppingListController.h */,
+				2FA33ACA1526288600B3B91C /* ShoppingListHeaderView.h */,
+				2FA33ACB1526288600B3B91C /* ShoppingListsController.h */,
+				2FA33ACC1526288600B3B91C /* TSAlertView+ModifyingShoppingItemAlertView.h */,
+				2FA33ACD1526288600B3B91C /* TSAlertView+NewShoppingItemAlertView.h */,
+				2FA33ACE1526288600B3B91C /* TSAlertView+NewShoppingListAlertView.h */,
+				2FA33ACF1526288600B3B91C /* TSAlertView+ShoppingListDeletionConfirmation.h */,
+				2FA33AD01526288600B3B91C /* UIActionSheet+ShoppingListMenu.h */,
 				2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */,
 				2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */,
 				2C844C0013F95F2F000BE222 /* HistoryEntryController.m */,
