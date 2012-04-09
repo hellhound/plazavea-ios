@@ -13,10 +13,10 @@ static CGFloat margin = 5.;
 static CGFloat categoryWidth = 150.;
 static CGFloat headerMinHeight = 40.;
 
-@interface FoodDetailController ()
+/*@interface FoodDetailController ()
 
 - (UIImage *)banner;
-@end
+@end*/
 
 @implementation FoodDetailController
 
@@ -25,6 +25,7 @@ static CGFloat headerMinHeight = 40.;
 
 - (void) dealloc
 {
+    //[_banner release];
     [_food release];
     [super dealloc];
 }
@@ -174,8 +175,12 @@ static CGFloat headerMinHeight = 40.;
 
 - (UIImage *)banner
 {
-    UIImage *banner;
-    NSString *category = [[_food category] name];
+    if (_banner != nil) {
+        return _banner;
+    }
+    UIImage *banner = [[[UIImage alloc] init] autorelease];
+    NSString *category = [[NSString alloc] initWithString:
+            [[_food category] name]];
     if ([category isEqualToString:kFoodCategoryDrinks]) {
         banner = TTIMAGE(kFoodCategoryDrinksImage);
     } else if ([category isEqualToString:kFoodCategoryMeats]) {
@@ -203,20 +208,22 @@ static CGFloat headerMinHeight = 40.;
     } else {
         banner = TTIMAGE(kFoodCategoryOtherImage);
     }
-    return banner;
+    _banner = banner;
+    [category release];
+    return _banner;
 }
 
 #pragma mark -
 #pragma mark FoodDetailController (Public)
 
-@synthesize food = _food;
+@synthesize food = _food, banner = _banner;
 
 - (id) initWithFood:(Food *)food
 {
     if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
         [self setTableViewStyle:UITableViewStylePlain];
         [self setVariableHeightRows:YES];
-        _food = food;
+        _food = [food retain];
         [self setStatusBarStyle:UIStatusBarStyleBlackOpaque];
         if ([TTStyleSheet hasStyleSheetForSelector:
                 @selector(navigationBarLogo)]) {
