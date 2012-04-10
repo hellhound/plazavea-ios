@@ -65,6 +65,23 @@
 - (NSString *)formattedIngredientString;
 @end
 
+@interface Contribution : NSObject
+{
+    NSNumber *_calories;
+    NSNumber *_carbohydrates;
+    NSNumber *_fats;
+    NSNumber *_fiber;
+    NSNumber *_proteins;
+}
+@property (nonatomic, copy) NSNumber *calories;
+@property (nonatomic, copy) NSNumber *carbohydrates;
+@property (nonatomic, copy) NSNumber *fats;
+@property (nonatomic, copy) NSNumber *fiber;
+@property (nonatomic, copy) NSNumber *proteins;
+
++ (id)contributionFromDictionary:(NSDictionary *)rawContribution;
+@end
+
 @interface Recipe: URLRequestModel
 {
     NSNumber *_recipeId;
@@ -73,12 +90,13 @@
     NSString *_name;
     NSURL *_pictureURL;
     NSMutableArray *_extraPictureURLs;
-    NSNumber *_price;
+    //NSNumber *_price;
     NSMutableArray *_ingredients;
     NSMutableArray *_procedures;
     NSMutableArray *_features;
     NSMutableArray *_tips;
     NSNumber *_rations;
+    Contribution *_contribution;
     NSUInteger _didFinishCount;
     StrainCollection *_strains;
 }
@@ -88,11 +106,12 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSURL *pictureURL;
 @property (nonatomic, readonly) NSArray *extraPictureURLs;
-@property (nonatomic, retain) NSNumber *price;
+//@property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, readonly) NSArray *ingredients;
 @property (nonatomic, readonly) NSArray *procedures;
 @property (nonatomic, readonly) NSArray *features;
 @property (nonatomic, readonly) NSArray *tips;
+@property (nonatomic, retain) Contribution *contribution;
 @property (nonatomic, retain) NSNumber *rations;
 @property (nonatomic, retain) StrainCollection *strains;
 

@@ -9,8 +9,10 @@
 @interface FoodDetailController : ReconnectableTableViewController
 {
     Food *_food;
+    UIImage *_banner;
 }
 @property (nonatomic, retain) Food *food;
+@property (nonatomic, retain) UIImage *banner;
 
 - (id)initWithFood:(Food *)food;
 @end

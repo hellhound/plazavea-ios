@@ -4,6 +4,7 @@
 #import <Three20/Three20.h>
 
 #import "Common/Constants.h"
+#import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
 #import "Common/Views/OnlyImageItemCell.h"
 #import "Common/Views/TableImageSubtitleItem.h"
@@ -14,24 +15,12 @@
 @implementation OfferListDataSource
 
 #pragma mark -
-#pragma mark NSObject
-
-- (void)dealloc
-{
-    [self setDelegate:nil];
-    [super dealloc];
-}
-
-#pragma mark -
 #pragma mark OfferListDataSource (public)
 
-@synthesize delegate = _delegate;
-
-- (id)initWithListDelegate:(id<OfferListDataSourceDelegate>)delegate
+- (id)init
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[OfferCollection alloc] init] autorelease]];
-        [self setDelegate:delegate];
     }
     return self;
 }
@@ -67,24 +56,13 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     OfferCollection *offerCollection = (OfferCollection *)[self model];
     NSArray *offers = [offerCollection offers];
-    Banner *banner = [offerCollection banner];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
-    NSURL *bannerImageURL = [banner pictureURL];
-    NSNumber *bannerId = [banner bannerId];
     
-    [_delegate dataSource:self needsBannerId:bannerId];
-    if (bannerImageURL != nil) {
-        bannerImageURL = IMAGE_URL(bannerImageURL, kBannerImageWidth,
-                kBannerImageHeight);
-        
-        TTTableImageItem *banner = [TTTableImageItem itemWithText:nil imageURL:
-                [bannerImageURL absoluteString] defaultImage:
-                    TTIMAGE(kOfferBannerDefaultImage) URL:nil];
-
-        [items addObject:banner];
-    }
     for (Offer *offer in offers) {
         NSURL *pictureURL = [offer pictureURL];
         
@@ -97,8 +75,8 @@
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:offerText subtitle:nil
-                    imageURL:[pictureURL absoluteString]
-                    defaultImage:TTIMAGE(kOfferListDefaultImage)
+                    /*imageURL:[pictureURL absoluteString]
+                    defaultImage:TTIMAGE(kOfferListDefaultImage)*/
                     URL:URL(kURLOfferDetailCall, [offer offerId])];
         [items addObject:item];
     }

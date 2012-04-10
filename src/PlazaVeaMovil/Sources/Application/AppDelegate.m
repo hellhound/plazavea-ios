@@ -17,6 +17,8 @@
 #import "Recipes/IngredientRecipeDetailController.h"
 #import "Recipes/ProcedureRecipeDetailController.h"
 #import "Recipes/TipsRecipeDetailController.h"
+#import "Recipes/ContributionRecipeDetailController.h"
+#import "Recipes/FeaturesRecipeDetailController.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferListController.h"
 #import "Offers/PromotionListController.h"
@@ -40,6 +42,7 @@
 #import "Wines/WineTipsController.h"
 #import "Wines/WineFilterController.h"
 #import "Wines/FilteringListController.h"
+#import "Wines/WinePictureController.h"
 #import "Composition/Constants.h"
 #import "Composition/FoodCategoryListController.h"
 #import "Composition/FoodDetailController.h"
@@ -54,6 +57,7 @@
 - (void)showWorking;
 - (void)hideWorking;
 - (void)fadeDefault;
+- (BOOL)loadDefaults;
 @end
 
 @implementation AppDelegate
@@ -161,6 +165,20 @@
     [splash removeFromSuperview];
 }
 
+- (BOOL)loadDefaults
+{
+    BOOL registrationIsComplete = YES;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:kDNIDefault] == nil)
+        registrationIsComplete = NO;
+    if ([defaults objectForKey:kPhoneDefault] == nil)
+        registrationIsComplete = NO;
+    if ([defaults objectForKey:kEmailDefault] == nil)
+        registrationIsComplete = NO;
+    return registrationIsComplete;
+}
+
 #pragma mark -
 #pragma mark <UIApplicationDelegate>
 
@@ -238,6 +256,10 @@
             toViewController:[ProcedureRecipeDetailController class]];
     [map from:kURLTipsRecipeMeatsDetail
             toViewController:[TipsRecipeDetailController class]];
+    [map from:kURLContributionRecipeDetail
+            toViewController:[ContributionRecipeDetailController class]];
+    [map from:kURLFeaturesRecipeDetail
+            toViewController:[FeaturesRecipeDetailController class]];
     // Offers
     [map from:kURLOfferList
             toViewController:[OfferListController class]];
@@ -289,6 +311,8 @@
                 selector:@selector(init)];
     [map from:kURLFiltering
             toViewController:[FilteringListController class]];
+    [map from:kURLWinePicture
+            toViewController:[WinePictureController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]
@@ -300,6 +324,23 @@
     [navigator openURLAction:
             [[TTURLAction actionWithURLPath:kURLLauncherCall]
              applyAnimated:YES]];
+    if (![self loadDefaults]) {
+        TSAlertView *alert = [[TSAlertView alloc]
+                initWithTitle:kRegistrationTitle message:nil delegate:self
+                    cancelButtonTitle:nil otherButtonTitles:kRegsitrationButton,
+                    nil];
+        
+        [alert setStyle:TSAlertViewStyleInput];
+        [[alert firstTextField] setPlaceholder:kDNILabel];
+        [alert addTextFieldWithLabel:kPhoneLabel value:nil];
+        [alert addTextFieldWithLabel:kEmailLabel value:nil];
+        [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+        [[alert textFieldAtIndex:1] setKeyboardType:UIKeyboardTypeNumberPad];
+        [[alert textFieldAtIndex:2] setKeyboardType:UIKeyboardTypeEmailAddress];
+        [[alert textFieldAtIndex:2] setAutocapitalizationType:
+                UITextAutocapitalizationTypeNone];
+        [alert show];
+    }
     [_window makeKeyAndVisible];
     return YES;
 }
@@ -384,5 +425,36 @@
 - (NSString *)cachedTwitterOAuthDataForUsername:(NSString *)username
 {    
     return [[NSUserDefaults standardUserDefaults] objectForKey:kOAuthData];
+}
+
+#pragma mark -
+#pragma mark <TSAlertViewDelegate>
+
+- (void)   alertView:(TSAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        if ([[[alertView textFieldAtIndex:0] text] length] == 8) {
+            [defaults setObject:[[alertView textFieldAtIndex:0] text]
+                    forKey:kDNIDefault];
+        } else {
+            [[alertView textFieldAtIndex:0] setText:nil];
+        }
+        if (([[[alertView textFieldAtIndex:1] text] length] == 9) ||
+                ([[[alertView textFieldAtIndex:1] text] length] == 7)) {
+            [defaults setObject:[[alertView textFieldAtIndex:1] text]
+                    forKey:kPhoneDefault];
+        } else {
+            [[alertView textFieldAtIndex:1] setText:nil];
+        }   
+        if ([[[alertView textFieldAtIndex:2] text] length] > 0) {
+            [defaults setObject:[[alertView textFieldAtIndex:2] text]
+                    forKey:kEmailDefault];
+        } else {
+            [[alertView textFieldAtIndex:2] setText:nil];
+        }
+    }
 }
 @end

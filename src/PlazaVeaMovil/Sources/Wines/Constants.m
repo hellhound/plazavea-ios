@@ -265,6 +265,8 @@ NSString *const kURLWineRecipe =
         @"tt://launcher/wines/wine_recipe/(initWithWineId:)/(name:)/";
 NSString *const kURLFiltering =
         @"tt://laucher/wines/filtering/(initWithList:)/";
+NSString *const kURLWinePicture = 
+        @"tt://launcher/wines/picture/(initWithURL:)/(title:)/";
 
 // Controllers' URL calls
 NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
@@ -276,6 +278,7 @@ NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
 NSString *const kURLWineTipsCall = @"tt://launcher/wines/wine_tips/%@/";
 NSString *const kURLWineRecipeCall = @"tt://launcher/wines/wine_recipe/%@/%@";
 NSString *const kURLFilteringCall = @"tt://laucher/wines/filtering/%@/";
+NSString *const kURLWinePictureCall = @"tt://launcher/wines/picture/%@/%@/";
 
 // Endpoint URLs
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");

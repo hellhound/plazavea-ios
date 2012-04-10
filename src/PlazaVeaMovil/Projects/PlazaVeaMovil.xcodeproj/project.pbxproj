@@ -111,6 +111,7 @@
 		2F14234F146D615700CB10A9 /* TableCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */; };
 		2F181D32144C88E100AE93BD /* PromotionDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */; };
 		2F181D34144CB4FE00AE93BD /* PromotionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */; };
+		2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F19F88915123C6200C97A29 /* WinePictureController.m */; };
 		2F2B2B2514B4EA9C000C0F26 /* chicken-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */; };
 		2F2B2B2614B4EA9C000C0F26 /* chicken-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */; };
 		2F2B2B2714B4EA9C000C0F26 /* fish-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */; };
@@ -147,6 +148,7 @@
 		2F2C9D6014FE70EE0024ABAE /* default-banner-sommelier@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */; };
 		2F2C9D6114FE70EE0024ABAE /* default-banner-stores.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */; };
 		2F2C9D6214FE70EE0024ABAE /* default-banner-stores@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */; };
+		2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F304804151A4EEE00A405B3 /* WinePhotoSource.m */; };
 		2F32FF4114B689FD00F8112C /* BaseRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */; };
 		2F32FF4314B6A2CA00F8112C /* IngredientRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */; };
 		2F3B7BF414CDB096004CE20A /* PageCurlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B7BF314CDB096004CE20A /* PageCurlButton.m */; };
@@ -224,6 +226,7 @@
 		2F9E0F7A147AC25B0047901D /* FoodDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0F79147AC25B0047901D /* FoodDetailController.m */; };
 		2F9E0FDF147AEB3E0047901D /* FoodDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */; };
 		2F9E1037147AF4770047901D /* default-food-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E1036147AF4770047901D /* default-food-detail.png */; };
+		2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */; };
 		2FA4E2D214EAFB5B00B5F303 /* wine-section-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */; };
 		2FA4E2D314EAFB5B00B5F303 /* wine-section-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */; };
 		2FA7FB711446204700211215 /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7FB701446204700211215 /* Models.m */; };
@@ -275,6 +278,7 @@
 		2FAFC12C14E30AB100401B02 /* vegetables-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
+		2FB302411533AB100068B4E7 /* FeaturesRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */; };
 		2FBA82DF14EAD0D5005C940E /* WineTasteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA82DD14EAD0D5005C940E /* WineTasteController.m */; };
 		2FBA82E014EAD0D5005C940E /* WineTasteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA82DE14EAD0D5005C940E /* WineTasteDataSource.m */; };
 		2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */; };
@@ -903,8 +907,54 @@
 		2F142221146D4D7000CB10A9 /* default-wine-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-wine-detail.png"; sourceTree = "<group>"; };
 		2F14234C146D615700CB10A9 /* TableCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItem.m; sourceTree = "<group>"; };
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
+		2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlphabeticalRecipesDataSource.h; path = ../../Headers/Recipes/AlphabeticalRecipesDataSource.h; sourceTree = "<group>"; };
+		2F16EA1115226AF300766D83 /* BaseMeatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseMeatController.h; path = ../../Headers/Recipes/BaseMeatController.h; sourceTree = "<group>"; };
+		2F16EA1215226AF300766D83 /* BaseRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeController.h; path = ../../Headers/Recipes/BaseRecipeController.h; sourceTree = "<group>"; };
+		2F16EA1315226AF300766D83 /* BaseRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeDetailController.h; path = ../../Headers/Recipes/BaseRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1415226AF300766D83 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Recipes/Constants.h; sourceTree = "<group>"; };
+		2F16EA1515226AF300766D83 /* IngredientRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IngredientRecipeDetailController.h; path = ../../Headers/Recipes/IngredientRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1615226AF300766D83 /* MeatListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatListController.h; path = ../../Headers/Recipes/MeatListController.h; sourceTree = "<group>"; };
+		2F16EA1715226AF300766D83 /* MeatListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatListDataSource.h; path = ../../Headers/Recipes/MeatListDataSource.h; sourceTree = "<group>"; };
+		2F16EA1815226AF300766D83 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Recipes/Models.h; sourceTree = "<group>"; };
+		2F16EA1915226AF300766D83 /* ProcedureRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcedureRecipeDetailController.h; path = ../../Headers/Recipes/ProcedureRecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1A15226AF300766D83 /* RecipeCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCategoryController.h; path = ../../Headers/Recipes/RecipeCategoryController.h; sourceTree = "<group>"; };
+		2F16EA1B15226AF300766D83 /* RecipeCategoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCategoryDataSource.h; path = ../../Headers/Recipes/RecipeCategoryDataSource.h; sourceTree = "<group>"; };
+		2F16EA1C15226AF300766D83 /* RecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailController.h; path = ../../Headers/Recipes/RecipeDetailController.h; sourceTree = "<group>"; };
+		2F16EA1D15226AF300766D83 /* RecipeDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailDataSource.h; path = ../../Headers/Recipes/RecipeDetailDataSource.h; sourceTree = "<group>"; };
+		2F16EA1E15226AF300766D83 /* RecipeDrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDrillDownController.h; path = ../../Headers/Recipes/RecipeDrillDownController.h; sourceTree = "<group>"; };
+		2F16EA1F15226AF300766D83 /* RecipeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeHeaderView.h; path = ../../Headers/Recipes/RecipeHeaderView.h; sourceTree = "<group>"; };
+		2F16EA2015226AF300766D83 /* RecipeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeListController.h; path = ../../Headers/Recipes/RecipeListController.h; sourceTree = "<group>"; };
+		2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipesTableViewDelegate.h; path = ../../Headers/Recipes/RecipesTableViewDelegate.h; sourceTree = "<group>"; };
+		2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TipsRecipeDetailController.h; path = ../../Headers/Recipes/TipsRecipeDetailController.h; sourceTree = "<group>"; };
 		2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailDataSource.m; sourceTree = "<group>"; };
 		2F181D33144CB4FE00AE93BD /* PromotionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionDetailController.m; sourceTree = "<group>"; };
+		2F19F88915123C6200C97A29 /* WinePictureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinePictureController.m; sourceTree = "<group>"; };
+		2F19F88B15123E4B00C97A29 /* WinePictureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinePictureController.h; path = ../../Headers/Wines/WinePictureController.h; sourceTree = "<group>"; };
+		2F1CCB50151A32C900A26CFE /* BaseOfferController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseOfferController.h; path = ../../Headers/Offers/BaseOfferController.h; sourceTree = "<group>"; };
+		2F1CCB51151A32C900A26CFE /* BasePromotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePromotionController.h; path = ../../Headers/Offers/BasePromotionController.h; sourceTree = "<group>"; };
+		2F1CCB52151A32C900A26CFE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Offers/Constants.h; sourceTree = "<group>"; };
+		2F1CCB53151A32C900A26CFE /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Offers/Models.h; sourceTree = "<group>"; };
+		2F1CCB54151A32C900A26CFE /* OfferDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDetailController.h; path = ../../Headers/Offers/OfferDetailController.h; sourceTree = "<group>"; };
+		2F1CCB55151A32C900A26CFE /* OfferDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDetailDataSource.h; path = ../../Headers/Offers/OfferDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB56151A32C900A26CFE /* OfferDrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferDrillDownController.h; path = ../../Headers/Offers/OfferDrillDownController.h; sourceTree = "<group>"; };
+		2F1CCB57151A32CA00A26CFE /* OfferListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferListController.h; path = ../../Headers/Offers/OfferListController.h; sourceTree = "<group>"; };
+		2F1CCB58151A32CA00A26CFE /* OfferListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferListDataSource.h; path = ../../Headers/Offers/OfferListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB59151A32CA00A26CFE /* PromotionDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionDetailController.h; path = ../../Headers/Offers/PromotionDetailController.h; sourceTree = "<group>"; };
+		2F1CCB5A151A32CA00A26CFE /* PromotionDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionDetailDataSource.h; path = ../../Headers/Offers/PromotionDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB5B151A32CA00A26CFE /* PromotionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionListController.h; path = ../../Headers/Offers/PromotionListController.h; sourceTree = "<group>"; };
+		2F1CCB5C151A32CA00A26CFE /* PromotionListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromotionListDataSource.h; path = ../../Headers/Offers/PromotionListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB5D151A352D00A26CFE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Stores/Constants.h; sourceTree = "<group>"; };
+		2F1CCB5E151A352D00A26CFE /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Stores/Models.h; sourceTree = "<group>"; };
+		2F1CCB5F151A352D00A26CFE /* RegionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegionListController.h; path = ../../Headers/Stores/RegionListController.h; sourceTree = "<group>"; };
+		2F1CCB60151A352D00A26CFE /* RegionListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegionListDataSource.h; path = ../../Headers/Stores/RegionListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB61151A352D00A26CFE /* StoreDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDetailController.h; path = ../../Headers/Stores/StoreDetailController.h; sourceTree = "<group>"; };
+		2F1CCB62151A352D00A26CFE /* StoreDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDetailDataSource.h; path = ../../Headers/Stores/StoreDetailDataSource.h; sourceTree = "<group>"; };
+		2F1CCB63151A352D00A26CFE /* StoreListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreListController.h; path = ../../Headers/Stores/StoreListController.h; sourceTree = "<group>"; };
+		2F1CCB64151A352D00A26CFE /* StoreListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreListDataSource.h; path = ../../Headers/Stores/StoreListDataSource.h; sourceTree = "<group>"; };
+		2F1CCB65151A352D00A26CFE /* StoreMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreMapController.h; path = ../../Headers/Stores/StoreMapController.h; sourceTree = "<group>"; };
+		2F1CCB66151A352D00A26CFE /* StoreMapTogglingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreMapTogglingController.h; path = ../../Headers/Stores/StoreMapTogglingController.h; sourceTree = "<group>"; };
+		2F1CCB67151A352D00A26CFE /* StoresTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoresTableViewDelegate.h; path = ../../Headers/Stores/StoresTableViewDelegate.h; sourceTree = "<group>"; };
+		2F1CCB68151A352D00A26CFE /* SubregionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubregionDataSource.h; path = ../../Headers/Stores/SubregionDataSource.h; sourceTree = "<group>"; };
 		2F2B2B1114B4EA9C000C0F26 /* chicken-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon.png"; sourceTree = "<group>"; };
 		2F2B2B1214B4EA9C000C0F26 /* chicken-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken-icon@2x.png"; sourceTree = "<group>"; };
 		2F2B2B1314B4EA9C000C0F26 /* fish-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fish-icon.png"; sourceTree = "<group>"; };
@@ -941,6 +991,8 @@
 		2F2C9D5114FE70EE0024ABAE /* default-banner-sommelier@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-sommelier@2x.jpg"; sourceTree = "<group>"; };
 		2F2C9D5214FE70EE0024ABAE /* default-banner-stores.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores.jpg"; sourceTree = "<group>"; };
 		2F2C9D5314FE70EE0024ABAE /* default-banner-stores@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-stores@2x.jpg"; sourceTree = "<group>"; };
+		2F304803151A4EDC00A405B3 /* WinePhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinePhotoSource.h; path = ../../Headers/Wines/WinePhotoSource.h; sourceTree = "<group>"; };
+		2F304804151A4EEE00A405B3 /* WinePhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinePhotoSource.m; sourceTree = "<group>"; };
 		2F32FF4014B689FC00F8112C /* BaseRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRecipeDetailController.m; sourceTree = "<group>"; };
 		2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientRecipeDetailController.m; sourceTree = "<group>"; };
 		2F3B7BF314CDB096004CE20A /* PageCurlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCurlButton.m; sourceTree = "<group>"; };
@@ -1034,6 +1086,12 @@
 		2F7A62CE14D1FD4800303150 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
 		2F7AB0EF150567F0007BBF24 /* default-banner-meats.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-meats.jpg"; sourceTree = "<group>"; };
 		2F7AB0F0150567F0007BBF24 /* default-banner-meats@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-banner-meats@2x.jpg"; sourceTree = "<group>"; };
+		2F7DFE46152D0640008DA177 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Composition/Constants.h; sourceTree = "<group>"; };
+		2F7DFE47152D0640008DA177 /* FoodCategoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodCategoryListController.h; path = ../../Headers/Composition/FoodCategoryListController.h; sourceTree = "<group>"; };
+		2F7DFE48152D0640008DA177 /* FoodDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodDetailController.h; path = ../../Headers/Composition/FoodDetailController.h; sourceTree = "<group>"; };
+		2F7DFE49152D0640008DA177 /* FoodDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodDetailDataSource.h; path = ../../Headers/Composition/FoodDetailDataSource.h; sourceTree = "<group>"; };
+		2F7DFE4A152D0640008DA177 /* FoodListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodListController.h; path = ../../Headers/Composition/FoodListController.h; sourceTree = "<group>"; };
+		2F7DFE4B152D0640008DA177 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Composition/Models.h; sourceTree = "<group>"; };
 		2F84395A14EEECE90068B13F /* FilteringListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteringListController.m; sourceTree = "<group>"; };
 		2F84395B14EEECE90068B13F /* FilteringListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteringListDataSource.m; sourceTree = "<group>"; };
 		2F87657B14A8D95F0032ADB9 /* offer-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offer-background.png"; sourceTree = "<group>"; };
@@ -1052,6 +1110,8 @@
 		2F9E0F79147AC25B0047901D /* FoodDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailController.m; sourceTree = "<group>"; };
 		2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailDataSource.m; sourceTree = "<group>"; };
 		2F9E1036147AF4770047901D /* default-food-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-food-detail.png"; sourceTree = "<group>"; };
+		2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContributionRecipeDetailController.h; path = ../../Headers/Recipes/ContributionRecipeDetailController.h; sourceTree = "<group>"; };
+		2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributionRecipeDetailController.m; sourceTree = "<group>"; };
 		2FA4E2D014EAFB5B00B5F303 /* wine-section-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header.png"; sourceTree = "<group>"; };
 		2FA4E2D114EAFB5B00B5F303 /* wine-section-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wine-section-header@2x.png"; sourceTree = "<group>"; };
 		2FA7FB701446204700211215 /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
@@ -1103,6 +1163,8 @@
 		2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vegetables-banner@2x.jpg"; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2FB3023F1533AB020068B4E7 /* FeaturesRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeaturesRecipeDetailController.h; path = ../../Headers/Recipes/FeaturesRecipeDetailController.h; sourceTree = "<group>"; };
+		2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturesRecipeDetailController.m; sourceTree = "<group>"; };
 		2FBA82DD14EAD0D5005C940E /* WineTasteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTasteController.m; sourceTree = "<group>"; };
 		2FBA82DE14EAD0D5005C940E /* WineTasteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTasteDataSource.m; sourceTree = "<group>"; };
 		2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-shopping-list.png"; sourceTree = "<group>"; };
@@ -1182,6 +1244,12 @@
 		2FE27E721446558F00EE4EB3 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2FE363F41443C489003B233E /* MeatListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListDataSource.m; sourceTree = "<group>"; };
 		2FE363F61443DE38003B233E /* MeatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeatListController.m; sourceTree = "<group>"; };
+		2FEA67FB1510EEEF00CB3DD2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../Headers/Application/AppDelegate.h; sourceTree = "<group>"; };
+		2FEA67FC1510EEEF00CB3DD2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Application/Constants.h; sourceTree = "<group>"; };
+		2FEA67FD1510EEEF00CB3DD2 /* StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleSheet.h; path = ../../Headers/Application/StyleSheet.h; sourceTree = "<group>"; };
+		2FEA67FE1510EEEF00CB3DD2 /* TTBaseViewController+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TTBaseViewController+Style.h"; path = "../../Headers/Application/TTBaseViewController+Style.h"; sourceTree = "<group>"; };
+		2FEA67FF1510EEEF00CB3DD2 /* UIToolbar+Styles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+Styles.h"; path = "../../Headers/Application/UIToolbar+Styles.h"; sourceTree = "<group>"; };
+		2FEA68001510F4A100CB3DD2 /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAlertView.h; sourceTree = "<group>"; };
 		2FECB2281447761600797365 /* default-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner.png"; sourceTree = "<group>"; };
 		2FEE40181452238A00D516E8 /* StoreListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListController.m; sourceTree = "<group>"; };
 		2FEE40191452238A00D516E8 /* StoreListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListDataSource.m; sourceTree = "<group>"; };
@@ -1599,6 +1667,7 @@
 		2C691ED713F04C4E00E1EFA5 /* TSAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				2FEA68001510F4A100CB3DD2 /* TSAlertView.h */,
 				2C691ED913F04C4E00E1EFA5 /* TSAlertView.m */,
 			);
 			name = TSAlertView;
@@ -1632,6 +1701,29 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2FB3023F1533AB020068B4E7 /* FeaturesRecipeDetailController.h */,
+				2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */,
+				2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */,
+				2F16EA1115226AF300766D83 /* BaseMeatController.h */,
+				2F16EA1215226AF300766D83 /* BaseRecipeController.h */,
+				2F16EA1315226AF300766D83 /* BaseRecipeDetailController.h */,
+				2F16EA1415226AF300766D83 /* Constants.h */,
+				2F16EA1515226AF300766D83 /* IngredientRecipeDetailController.h */,
+				2F16EA1615226AF300766D83 /* MeatListController.h */,
+				2F16EA1715226AF300766D83 /* MeatListDataSource.h */,
+				2F16EA1815226AF300766D83 /* Models.h */,
+				2F16EA1915226AF300766D83 /* ProcedureRecipeDetailController.h */,
+				2F16EA1A15226AF300766D83 /* RecipeCategoryController.h */,
+				2F16EA1B15226AF300766D83 /* RecipeCategoryDataSource.h */,
+				2F16EA1C15226AF300766D83 /* RecipeDetailController.h */,
+				2F16EA1D15226AF300766D83 /* RecipeDetailDataSource.h */,
+				2F16EA1E15226AF300766D83 /* RecipeDrillDownController.h */,
+				2F16EA1F15226AF300766D83 /* RecipeHeaderView.h */,
+				2F16EA2015226AF300766D83 /* RecipeListController.h */,
+				2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */,
+				2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */,
+				2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */,
+				2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */,
 				2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */,
 				2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */,
 				2F32FF4214B6A2C900F8112C /* IngredientRecipeDetailController.m */,
@@ -1735,6 +1827,11 @@
 		2CE7045913DE6B4500BB2279 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2FEA67FB1510EEEF00CB3DD2 /* AppDelegate.h */,
+				2FEA67FC1510EEEF00CB3DD2 /* Constants.h */,
+				2FEA67FD1510EEEF00CB3DD2 /* StyleSheet.h */,
+				2FEA67FE1510EEEF00CB3DD2 /* TTBaseViewController+Style.h */,
+				2FEA67FF1510EEEF00CB3DD2 /* UIToolbar+Styles.h */,
 				CC4B72A0148EE9640053E1E3 /* UIToolbar+Styles.m */,
 				2CED1012148D772C002BEBDF /* TTBaseViewController+Style.m */,
 				2FCBD0E414881D9F004ECB66 /* StyleSheet.m */,
@@ -1750,6 +1847,12 @@
 		2F13CBFA1475726600A1A95F /* Composition */ = {
 			isa = PBXGroup;
 			children = (
+				2F7DFE46152D0640008DA177 /* Constants.h */,
+				2F7DFE47152D0640008DA177 /* FoodCategoryListController.h */,
+				2F7DFE48152D0640008DA177 /* FoodDetailController.h */,
+				2F7DFE49152D0640008DA177 /* FoodDetailDataSource.h */,
+				2F7DFE4A152D0640008DA177 /* FoodListController.h */,
+				2F7DFE4B152D0640008DA177 /* Models.h */,
 				2F9E0FDE147AEB3E0047901D /* FoodDetailDataSource.m */,
 				2F9E0F79147AC25B0047901D /* FoodDetailController.m */,
 				2F13CC011475D2CC00A1A95F /* FoodListController.m */,
@@ -1777,6 +1880,9 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
+				2F304804151A4EEE00A405B3 /* WinePhotoSource.m */,
+				2F304803151A4EDC00A405B3 /* WinePhotoSource.h */,
+				2F19F88B15123E4B00C97A29 /* WinePictureController.h */,
 				2F47C7AB15054D4800004A15 /* Constants.h */,
 				2F47C7AC15054D4800004A15 /* FilteringListController.h */,
 				2F47C7AD15054D4800004A15 /* FilteringListDataSource.h */,
@@ -1815,6 +1921,7 @@
 				2F012A08146B1F11006098EB /* StrainListController.m */,
 				2F5B2A4714699ED3008CFB6A /* Constants.m */,
 				2F5B2A4514699E38008CFB6A /* Models.m */,
+				2F19F88915123C6200C97A29 /* WinePictureController.m */,
 			);
 			path = Wines;
 			sourceTree = "<group>";
@@ -1822,6 +1929,18 @@
 		2F78FF99144F2F91007F9ACD /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CCB5D151A352D00A26CFE /* Constants.h */,
+				2F1CCB5E151A352D00A26CFE /* Models.h */,
+				2F1CCB5F151A352D00A26CFE /* RegionListController.h */,
+				2F1CCB60151A352D00A26CFE /* RegionListDataSource.h */,
+				2F1CCB61151A352D00A26CFE /* StoreDetailController.h */,
+				2F1CCB62151A352D00A26CFE /* StoreDetailDataSource.h */,
+				2F1CCB63151A352D00A26CFE /* StoreListController.h */,
+				2F1CCB64151A352D00A26CFE /* StoreListDataSource.h */,
+				2F1CCB65151A352D00A26CFE /* StoreMapController.h */,
+				2F1CCB66151A352D00A26CFE /* StoreMapTogglingController.h */,
+				2F1CCB67151A352D00A26CFE /* StoresTableViewDelegate.h */,
+				2F1CCB68151A352D00A26CFE /* SubregionDataSource.h */,
 				2F8FA1601492746500780AB9 /* StoresTableViewDelegate.m */,
 				2F79C979145F11D9002161B2 /* StoreMapController.m */,
 				2F79C977145F041B002161B2 /* StoreMapTogglingController.m */,
@@ -1859,6 +1978,19 @@
 		2FA7FB6F1446204700211215 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CCB50151A32C900A26CFE /* BaseOfferController.h */,
+				2F1CCB51151A32C900A26CFE /* BasePromotionController.h */,
+				2F1CCB52151A32C900A26CFE /* Constants.h */,
+				2F1CCB53151A32C900A26CFE /* Models.h */,
+				2F1CCB54151A32C900A26CFE /* OfferDetailController.h */,
+				2F1CCB55151A32C900A26CFE /* OfferDetailDataSource.h */,
+				2F1CCB56151A32C900A26CFE /* OfferDrillDownController.h */,
+				2F1CCB57151A32CA00A26CFE /* OfferListController.h */,
+				2F1CCB58151A32CA00A26CFE /* OfferListDataSource.h */,
+				2F1CCB59151A32CA00A26CFE /* PromotionDetailController.h */,
+				2F1CCB5A151A32CA00A26CFE /* PromotionDetailDataSource.h */,
+				2F1CCB5B151A32CA00A26CFE /* PromotionListController.h */,
+				2F1CCB5C151A32CA00A26CFE /* PromotionListDataSource.h */,
 				2F181D31144C88E100AE93BD /* PromotionDetailDataSource.m */,
 				2FADB6FD1448DAC400C9AB88 /* OfferDetailDataSource.m */,
 				2C858E31144784020020A302 /* PromotionListDataSource.m */,
@@ -2900,6 +3032,10 @@
 				2F84395C14EEECE90068B13F /* FilteringListController.m in Sources */,
 				2F84395D14EEECE90068B13F /* FilteringListDataSource.m in Sources */,
 				2F47C7AA15054CF400004A15 /* LocalFilteringListController.m in Sources */,
+				2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */,
+				2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */,
+				2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */,
+				2FB302411533AB100068B4E7 /* FeaturesRecipeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

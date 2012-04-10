@@ -9,9 +9,9 @@
 #import "Recipes/Models.h"
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
-#import "Recipes/IngredientRecipeDetailController.h"
+#import "Recipes/FeaturesRecipeDetailController.h"
 
-@implementation IngredientRecipeDetailController
+@implementation FeaturesRecipeDetailController
 
 #pragma mark -
 #pragma mark UIViewController
@@ -29,7 +29,7 @@
 {
     [self setDataSource:[[[RecipeDetailDataSource alloc]
             initWithRecipeId:_recipeId delegate:self
-                section:kRecipeDetailIngredientsView from:_from] autorelease]];
+                section:kRecipeDetailFeatureView from:_from] autorelease]];
 }
 
 #pragma mark -

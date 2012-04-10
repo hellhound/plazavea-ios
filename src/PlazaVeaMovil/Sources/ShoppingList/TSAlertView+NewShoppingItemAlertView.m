@@ -39,6 +39,7 @@
             historyEntry != nil ? [historyEntry name] :
             text != nil ? text : @""];
     [quantityTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [quantityTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [alertView setShouldNotAdmitBlanks:kShoppingItemNewBlankCheckingFlags];
     return alertView;
 }

@@ -9,25 +9,7 @@
 static CGFloat margin = 5.;
 static CGFloat headerMinHeight = 40.;
 
-@interface OfferListController ()
-
-@property (nonatomic, retain) NSNumber *bannerId;
-@property (nonatomic, retain) UIView *headerView;
-@property (nonatomic, retain) UILabel *titleLabel;
-@end
-
 @implementation OfferListController
-
-#pragma mark -
-#pragma mark NSObject
-
-- (void)dealloc
-{
-    [_headerView release];
-    [_titleLabel release];
-    [_bannerId release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark UIViewController
@@ -44,25 +26,33 @@ static CGFloat headerMinHeight = 40.;
     }
     UITableView *tableView = [self tableView];
     // Configuring the header view
-    [self setHeaderView:[[[UIView alloc] initWithFrame:CGRectZero]
-                         autorelease]];
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectZero]
+            autorelease];
+    // Conf the banner
+    UIImageView *imageView = [[[UIImageView alloc]
+            initWithImage:TTIMAGE(kOfferBannerDefaultImage)] autorelease];
+    
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Configuring the label
-    [self setTitleLabel:[[[UILabel alloc] initWithFrame:CGRectZero]
-                         autorelease]];
-    [_titleLabel setNumberOfLines:0];
-    [_titleLabel setLineBreakMode:UILineBreakModeWordWrap];
-    [_titleLabel setTextAlignment:UITextAlignmentCenter];
-    [_titleLabel setBackgroundColor:[UIColor clearColor]];
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
+            autorelease];
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
     if ([TTStyleSheet
             hasStyleSheetForSelector:@selector(tableTextHeaderFont)]) {
-        [_titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
+        [titleLabel setFont:(UIFont *)TTSTYLE(tableTextHeaderFont)];
     }
     if ([TTStyleSheet hasStyleSheetForSelector:@selector(headerColorYellow)]) {
-        [_titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
+        [titleLabel setTextColor:(UIColor *)TTSTYLE(headerColorYellow)];
     }
     
     NSString *title = [self title];
-    UIFont *font = [_titleLabel font];
+    UIFont *font = [titleLabel font];
     CGFloat titleWidth = CGRectGetWidth([tableView bounds]);
     CGSize constrainedTitleSize = CGSizeMake(titleWidth, MAXFLOAT);
     CGFloat titleHeight = [title sizeWithFont:font
@@ -77,23 +67,29 @@ static CGFloat headerMinHeight = 40.;
         titleFrame.origin.y += margin;
     }
     
-    [_titleLabel setText:title];
-    [_titleLabel setFrame:titleFrame];
+    [titleLabel setText:title];
+    [titleLabel setFrame:titleFrame];
+    
+    CGRect imageFrame = [imageView frame];
+    imageFrame.origin.y += titleHeight + (margin * 2.);
+    
+    [imageView setFrame:imageFrame];
     
     CGFloat boundsWidth = CGRectGetWidth([tableView frame]);
     CGRect headerFrame = CGRectMake(.0, .0, boundsWidth,
-                                    titleHeight + (2 * margin));
+            titleHeight + imageFrame.size.height + (2 * margin));
     // Adding the subviews to the header view
     if ([TTStyleSheet hasStyleSheetForSelector:
             @selector(offerBackgroundHeader)]) {
         UIImageView *back = [[[UIImageView alloc] initWithImage:
                 (UIImage *)TTSTYLE(offerBackgroundHeader)] autorelease];
-        [_headerView insertSubview:back atIndex:0];
+        [headerView insertSubview:back atIndex:0];
     }
-    [_headerView addSubview:_titleLabel];
-    [_headerView setFrame:headerFrame];
-    [_headerView setClipsToBounds:YES];
-    [tableView setTableHeaderView:_headerView];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:imageView];
+    [headerView setFrame:headerFrame];
+    [headerView setClipsToBounds:YES];
+    [tableView setTableHeaderView:headerView];
 }
 
 #pragma mark -
@@ -113,30 +109,6 @@ static CGFloat headerMinHeight = 40.;
 
 - (void)createModel
 {
-    [self setDataSource:[[[OfferListDataSource alloc] initWithListDelegate:self]
-            autorelease]];
-}
-
-- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        [[TTNavigator navigator] openURLAction: [[TTURLAction actionWithURLPath:
-                URL(kURLOfferDetailCall, _bannerId)] applyAnimated:YES]];
-    }
-}
-
-#pragma mark -
-#pragma mark OfferListController (Private)
-
-@synthesize bannerId = _bannerId, titleLabel = _titleLabel,
-        headerView = _headerView;
-
-#pragma mark -
-#pragma mark <OfferListDataSourceDelegate>
-
-- (void)    dataSource:(OfferListDataSource *)dataSource
-         needsBannerId:(NSNumber *)bannerId
-{
-    [self setBannerId:bannerId];
+    [self setDataSource:[[[OfferListDataSource alloc] init] autorelease]];
 }
 @end

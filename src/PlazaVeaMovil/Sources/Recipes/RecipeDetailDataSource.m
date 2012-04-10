@@ -7,6 +7,8 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Views/TableImageSubtitleItem.h"
 #import "Common/Views/TableImageSubtitleItemCell.h"
+#import "Common/Views/TableCaptionItem.h"
+#import "Common/Views/TableCaptionItemCell.h"
 #import "Wines/Models.h"
 #import "Wines/Constants.h"
 #import "Recipes/Constants.h"
@@ -219,6 +221,9 @@ static CGFloat titleWidth = 320.;
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSString *recipeName = [recipe name];
@@ -232,16 +237,63 @@ static CGFloat titleWidth = 320.;
     }
     [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
             [pictureURL absoluteString] title:recipeName detail:rations]];
+    
+    NSString *fromString = [NSString stringWithFormat:@"%i", _from];
+    
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0) {
-        for (NSString *feature in [recipe features]) {
+        /*for (NSString *feature in [recipe features]) {
             TTTableTextItem *item = [TTTableTextItem itemWithText:feature];
 
             [items addObject:item];
+        }*/
+        switch (_section) {
+            case kRecipeDetailMainView:
+                if ([[recipe features] count] > 0) {
+                    TTTableTextItem *features = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionFeatures
+                                URL:URL(kURLFeaturesRecipeDetailCall,
+                                [recipe recipeId], fromString)];
+                    
+                    [items addObject:features];
+                }
+                if ([[recipe tips] count] > 0) {
+                    TTTableTextItem *tips = [TTTableTextItem
+                            itemWithText:kRecipeDetailSectionTips
+                                URL:URL(kURLTipsRecipeDetailCall,
+                                [recipe recipeId], fromString)];
+                    
+                    [items addObject:tips];
+                }
+                break;
+            case kRecipeDetailFeatureView:
+                if ([[recipe tips] count] > 0) {
+                    for (NSString *feature in [recipe features]) {
+                        TTTableTextItem *item = [TTTableTextItem
+                                itemWithText:feature];
+                        
+                        [items addObject:item];
+                    }
+                }
+                break;
+            case kRecipeDetailTipsView:
+                if ([[recipe tips] count] > 0) {
+                    for (NSString *tip in [recipe tips]) {
+                        TTTableTextItem *item = [TTTableTextItem
+                                itemWithText:tip];
+                        
+                        [items addObject:item];
+                    }
+                }
+                break;
+            case kRecipeDetailProceduresView:
+            case kRecipeDetailIngredientsView:
+            case kRecipeDetailContributionView:
+            default:
+                break;
         }
-    } else {
-        NSString *fromString = [NSString stringWithFormat:@"%i", _from];
+    } else {        
         switch (_section) {
             case kRecipeDetailMainView:
                 if ([[recipe ingredients] count] > 0) {
@@ -276,7 +328,12 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:strains];
                 }
-
+                TTTableTextItem *contribution = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionContribution
+                            URL:URL(kURLContributionRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:contribution];
                 break;
             case kRecipeDetailIngredientsView:
                 if ([[recipe ingredients] count] > 0) {
@@ -308,6 +365,63 @@ static CGFloat titleWidth = 320.;
                     }
                 }
                 break;
+            case kRecipeDetailContributionView:
+            {
+                 NSString *valueString;
+                if ([[recipe contribution] calories]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailKCalSufix, [[[recipe contribution]
+                                calories] floatValue]];
+                    TableCaptionItem *calories = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCalories];
+                    
+                    [items addObject:calories];
+                }
+                if ([[recipe contribution] carbohydrates]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                carbohydrates] floatValue]];
+                    TableCaptionItem *carbohydrates = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCarbohydrates];
+                    
+                    [items addObject:carbohydrates];
+                }
+                if ([[recipe contribution] fats]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fats] floatValue]];
+                    TableCaptionItem *fats = [TableCaptionItem
+                            itemWithText:valueString caption:kRecipeDetailFats];
+                    
+                    [items addObject:fats];
+                }
+                if ([[recipe contribution] fiber]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fiber] floatValue]];
+                    TableCaptionItem *fiber = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailFiber];
+                    
+                    [items addObject:fiber];
+                }
+                if ([[recipe contribution] proteins]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                proteins] floatValue]];
+                    TableCaptionItem *proteins = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailProteins];
+                    
+                    [items addObject:proteins];
+                }
+                break;
+            case kRecipeDetailFeatureView:
+            default:
+                break;
+            }
         }
     }
     [self setItems:items];
@@ -317,6 +431,8 @@ static CGFloat titleWidth = 320.;
 {
     if ([object isKindOfClass:[TableImageSubtitleItem class]]) {
         return [TableImageSubtitleItemCell class];
+    } else if ([object isKindOfClass:[TableCaptionItem class]]) {
+        return [TableCaptionItemCell class];
     }
     return [super tableView:tableView cellClassForObject:object];
 }

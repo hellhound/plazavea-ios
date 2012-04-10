@@ -161,6 +161,7 @@ static CGFloat indexWitdh = 50.;
     
     CGRect imageFrame = [imageView frame];
     imageFrame.origin.y += titleHeight + (margin * 2.);
+    
     [imageView setFrame:imageFrame];
     
     CGRect searchFrame = [searchBar frame];
@@ -305,7 +306,7 @@ titleForHeaderInSection:(NSInteger)section
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     } else {
         NSManagedObject *object =

@@ -57,13 +57,17 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = [[[UIImageView alloc]
+    /*UIImageView *imageView = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
     
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
-    [imageView setBackgroundColor:[UIColor clearColor]];
+    [imageView setBackgroundColor:[UIColor clearColor]];*/
+    UIButton *imageView = [[[UIButton alloc] initWithFrame:CGRectMake(.0, .0, 320., 140.)] autorelease];
+    
+    [imageView setImage:TTIMAGE(kWineBannerImage) forState:UIControlStateNormal];
+    [imageView addTarget:_delegate action:@selector(showBigPicture) forControlEvents:UIControlEventTouchUpInside];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];
@@ -140,11 +144,16 @@ static CGFloat titleWidth = 320.;
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
 
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
+    [_delegate dataSource:self wineName:[wine name]];
+    [_delegate dataSource:self wineImageURL:@"http:--restmocker.bitzeppelin.com-media-attachments-IMG_2501.jpg"];
     
     TTTableTextItem *info = [TTTableTextItem itemWithText:kWineInfoLabel
             URL:URL(kURLWineInfoCall, [wine wineId])];
