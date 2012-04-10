@@ -55,6 +55,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     NSArray *promotions = [(PromotionCollection *)[self model] promotions];
     NSUInteger promotionCount = [promotions count];
 

@@ -310,7 +310,7 @@ titleForHeaderInSection:(NSInteger)section
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     } else {
         NSManagedObject *object =

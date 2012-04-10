@@ -52,6 +52,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     NSArray *categories = [(RecipeCategoryCollection *)[self model] categories];
     NSUInteger categoryCount = [categories count];
 

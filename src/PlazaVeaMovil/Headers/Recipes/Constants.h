@@ -110,6 +110,7 @@ typedef enum {
     kRecipeDetailProceduresView,
     kRecipeDetailTipsView,
     kRecipeDetailContributionView,
+    kRecipeDetailFeatureView
 }RecipeDetailViewType;
 
 extern NSString *const kRecipeDetailTitleForLoading;
@@ -185,6 +186,7 @@ extern NSString *const kURLIngredientRecipeDetail;
 extern NSString *const kURLProceduresRecipeDetail;
 extern NSString *const kURLTipsRecipeDetail;
 extern NSString *const kURLContributionRecipeDetail;
+extern NSString *const kURLFeaturesRecipeDetail;
 extern NSString *const kURLIngredientRecipeMeatsDetail;
 extern NSString *const kURLProceduresRecipeMeatsDetail;
 extern NSString *const kURLTipsRecipeMeatsDetail;
@@ -202,6 +204,7 @@ extern NSString *const kURLIngredientRecipeDetailCall;
 extern NSString *const kURLProceduresRecipeDetailCall;
 extern NSString *const kURLTipsRecipeDetailCall;
 extern NSString *const kURLContributionRecipeDetailCall;
+extern NSString *const kURLFeaturesRecipeDetailCall;
 extern NSString *const kURLIngredientRecipeMeatsDetailCall;
 extern NSString *const kURLProceduresRecipeMeatsDetailCall;
 extern NSString *const kURLTipsRecipeMeatsDetailCall;

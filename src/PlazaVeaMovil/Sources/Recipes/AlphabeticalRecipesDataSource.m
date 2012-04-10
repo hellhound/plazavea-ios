@@ -86,6 +86,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     RecipeCollection *collection = (RecipeCollection *)[self model];
     NSArray *sections = [collection sections];
     NSUInteger sectionCount = [sections count], i;

@@ -18,6 +18,7 @@
 #import "Recipes/ProcedureRecipeDetailController.h"
 #import "Recipes/TipsRecipeDetailController.h"
 #import "Recipes/ContributionRecipeDetailController.h"
+#import "Recipes/FeaturesRecipeDetailController.h"
 #import "Offers/Constants.h"
 #import "Offers/OfferListController.h"
 #import "Offers/PromotionListController.h"
@@ -257,6 +258,8 @@
             toViewController:[TipsRecipeDetailController class]];
     [map from:kURLContributionRecipeDetail
             toViewController:[ContributionRecipeDetailController class]];
+    [map from:kURLFeaturesRecipeDetail
+            toViewController:[FeaturesRecipeDetailController class]];
     // Offers
     [map from:kURLOfferList
             toViewController:[OfferListController class]];

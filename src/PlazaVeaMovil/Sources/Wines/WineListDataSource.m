@@ -156,6 +156,9 @@ static CGFloat titleWidth = 320.;
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     WineCollection *collection = (WineCollection *)[self model];
     NSArray *sections = [collection sections];
     

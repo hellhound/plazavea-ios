@@ -62,7 +62,7 @@ static CGFloat indexWitdh = 50.;
 
 - (UINavigationItem *)navigationItem
 {
-    if (_navItem == nil){
+    if (_navItem == nil) {
         _navItem = [super navigationItem];
         [_navItem setRightBarButtonItem:nil];
     }
@@ -301,20 +301,20 @@ titleForHeaderInSection:(NSInteger)section
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         NSManagedObject *object =
-        [_filteredController objectAtIndexPath:indexPath];
+                [_filteredController objectAtIndexPath:indexPath];
         Class cellClass =
-        [self cellClassForObject:object atIndexPath:indexPath];
+                [self cellClassForObject:object atIndexPath:indexPath];
         NSString *reuseIdentifier = NSStringFromClass(cellClass);
         
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         cell = [self cellForObject:object withCellClass:cellClass
-                         reuseCell:cell reuseIdentifier:reuseIdentifier
-                       atIndexPath:indexPath];
+                reuseCell:cell reuseIdentifier:reuseIdentifier
+                    atIndexPath:indexPath];
         [self didCreateCell:cell forObject:object atIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell textLabel] setNumberOfLines:0];

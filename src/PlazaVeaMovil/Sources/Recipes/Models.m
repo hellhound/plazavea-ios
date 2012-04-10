@@ -1196,8 +1196,11 @@ static NSString *const kRecipeMiscYes = @"YES";
             TableImageSubtitleItem *item = 
                     [TableImageSubtitleItem itemWithText:[recipe name]
                         subtitle:nil imageURL:/*[pictureURL absoluteString]*/nil
-                        defaultImage:TTIMAGE(kRecipeListDefaultImage)
                         URL:controllerURL];
+                    /*[TableImageSubtitleItem itemWithText:[recipe name]
+                        subtitle:nil imageURL:[pictureURL absoluteString]
+                        defaultImage:TTIMAGE(kRecipeListDefaultImage)
+                        URL:controllerURL];*/
 
             [recipesInSection addObject:item];
         }

@@ -225,6 +225,9 @@ willAppearAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     Offer *offer = (Offer *)[self model];
     NSURL *pictureURL = [offer pictureURL];
     
