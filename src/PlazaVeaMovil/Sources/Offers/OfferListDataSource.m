@@ -75,8 +75,8 @@
         
         TableImageSubtitleItem *item = [TableImageSubtitleItem
                 itemWithText:offerText subtitle:nil
-                    imageURL:[pictureURL absoluteString]
-                    defaultImage:TTIMAGE(kOfferListDefaultImage)
+                    /*imageURL:[pictureURL absoluteString]
+                    defaultImage:TTIMAGE(kOfferListDefaultImage)*/
                     URL:URL(kURLOfferDetailCall, [offer offerId])];
         [items addObject:item];
     }
