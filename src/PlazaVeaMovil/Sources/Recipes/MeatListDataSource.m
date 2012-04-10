@@ -56,6 +56,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     NSArray *meats = [(MeatCollection *)[self model] meats];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[meats count]];
     

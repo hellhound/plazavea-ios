@@ -60,6 +60,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     NSMutableArray *items = [NSMutableArray array];
     FilterCollection *collection = (FilterCollection *)[self model];
     

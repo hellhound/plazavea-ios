@@ -210,6 +210,9 @@ static CGFloat titleWidth = 320.;
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     Promotion *promotion = (Promotion *)[self model];
     NSString *longDescription = [promotion longDescription];
     NSString *legalese = [promotion legalese];

@@ -221,6 +221,9 @@ static CGFloat titleWidth = 320.;
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSString *recipeName = [recipe name];

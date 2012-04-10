@@ -65,6 +65,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     StoreCollection *collection = (StoreCollection *)[self model];
     NSArray *sections = [collection stores];
         

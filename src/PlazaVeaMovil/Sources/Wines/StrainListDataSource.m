@@ -66,6 +66,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     StrainCollection *collection = (StrainCollection *)[self model];
     NSArray *strains = [collection strains];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[strains count]];

@@ -44,6 +44,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     SubregionCollection *regionCollection = (SubregionCollection *)[self model];
     NSArray *subregions = [regionCollection subregions];
     NSMutableArray *items =

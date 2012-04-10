@@ -56,6 +56,9 @@
 
 - (void)tableViewDidLoadModel:(UITableView *)tableView
 {
+    if ([[self items] count] > 0) {
+        return;
+    }
     OfferCollection *offerCollection = (OfferCollection *)[self model];
     NSArray *offers = [offerCollection offers];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:[offers count]];
