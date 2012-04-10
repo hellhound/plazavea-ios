@@ -267,6 +267,7 @@
 		2FAFC12C14E30AB100401B02 /* vegetables-banner@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */; };
 		2FB06145145F3C8F0052DCD9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */; };
 		2FB06147145F3C980052DCD9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB06146145F3C980052DCD9 /* MapKit.framework */; };
+		2FB302411533AB100068B4E7 /* FeaturesRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */; };
 		2FBA82DF14EAD0D5005C940E /* WineTasteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA82DD14EAD0D5005C940E /* WineTasteController.m */; };
 		2FBA82E014EAD0D5005C940E /* WineTasteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA82DE14EAD0D5005C940E /* WineTasteDataSource.m */; };
 		2FC0930A14C9BC7A003D77B7 /* default-banner-shopping-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */; };
@@ -1140,6 +1141,8 @@
 		2FAFC10C14E30AB100401B02 /* vegetables-banner@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vegetables-banner@2x.jpg"; sourceTree = "<group>"; };
 		2FB06144145F3C8F0052DCD9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2FB06146145F3C980052DCD9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2FB3023F1533AB020068B4E7 /* FeaturesRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeaturesRecipeDetailController.h; path = ../../Headers/Recipes/FeaturesRecipeDetailController.h; sourceTree = "<group>"; };
+		2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturesRecipeDetailController.m; sourceTree = "<group>"; };
 		2FBA82DD14EAD0D5005C940E /* WineTasteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTasteController.m; sourceTree = "<group>"; };
 		2FBA82DE14EAD0D5005C940E /* WineTasteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTasteDataSource.m; sourceTree = "<group>"; };
 		2FC0930914C9BC7A003D77B7 /* default-banner-shopping-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-shopping-list.png"; sourceTree = "<group>"; };
@@ -1665,6 +1668,7 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2FB3023F1533AB020068B4E7 /* FeaturesRecipeDetailController.h */,
 				2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */,
 				2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */,
 				2F16EA1115226AF300766D83 /* BaseMeatController.h */,
@@ -1685,6 +1689,7 @@
 				2F16EA2015226AF300766D83 /* RecipeListController.h */,
 				2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */,
 				2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */,
+				2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */,
 				2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */,
 				2FC9A91E14B758E300B7747F /* TipsRecipeDetailController.m */,
 				2FC9A91C14B7519C00B7747F /* ProcedureRecipeDetailController.m */,
@@ -2986,6 +2991,7 @@
 				2F19F88A15123C6200C97A29 /* WinePictureController.m in Sources */,
 				2F304805151A4EEE00A405B3 /* WinePhotoSource.m in Sources */,
 				2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */,
+				2FB302411533AB100068B4E7 /* FeaturesRecipeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
