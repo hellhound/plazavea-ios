@@ -13,11 +13,6 @@ static CGFloat margin = 5.;
 static CGFloat categoryWidth = 150.;
 static CGFloat headerMinHeight = 40.;
 
-/*@interface FoodDetailController ()
-
-- (UIImage *)banner;
-@end*/
-
 @implementation FoodDetailController
 
 #pragma mark -

@@ -887,6 +887,17 @@
 		2CFE570913F3691F003F9601 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2F012A06146B1A8C006098EB /* StrainListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrainListDataSource.m; sourceTree = "<group>"; };
 		2F012A08146B1F11006098EB /* StrainListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrainListController.m; sourceTree = "<group>"; };
+		2F04A3391534F56B00FCB527 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/BodyMeter/Constants.h; sourceTree = "<group>"; };
+		2F04A33A1534F56B00FCB527 /* ConsumptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsumptionController.h; path = ../../Headers/BodyMeter/ConsumptionController.h; sourceTree = "<group>"; };
+		2F04A33B1534F56B00FCB527 /* DiagnosisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiagnosisController.h; path = ../../Headers/BodyMeter/DiagnosisController.h; sourceTree = "<group>"; };
+		2F04A33C1534F56B00FCB527 /* MealsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MealsController.h; path = ../../Headers/BodyMeter/MealsController.h; sourceTree = "<group>"; };
+		2F04A33D1534F56B00FCB527 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/BodyMeter/Models.h; sourceTree = "<group>"; };
+		2F04A33E1534F56B00FCB527 /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileController.h; path = ../../Headers/BodyMeter/ProfileController.h; sourceTree = "<group>"; };
+		2F04A33F1534F56B00FCB527 /* RecomendationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecomendationsController.h; path = ../../Headers/BodyMeter/RecomendationsController.h; sourceTree = "<group>"; };
+		2F04A3401534F73100FCB527 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/Emergency/Constants.h; sourceTree = "<group>"; };
+		2F04A3411534F73100FCB527 /* EmergencyCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmergencyCategoryController.h; path = ../../Headers/Emergency/EmergencyCategoryController.h; sourceTree = "<group>"; };
+		2F04A3421534F73100FCB527 /* EmergencyNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmergencyNumberController.h; path = ../../Headers/Emergency/EmergencyNumberController.h; sourceTree = "<group>"; };
+		2F04A3431534F73100FCB527 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/Emergency/Models.h; sourceTree = "<group>"; };
 		2F0A6877146B38F900380798 /* WineListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListDataSource.m; sourceTree = "<group>"; };
 		2F0A6879146B3E8100380798 /* WineListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListController.m; sourceTree = "<group>"; };
 		2F13CBFB1475726600A1A95F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -1359,6 +1370,10 @@
 		2C291C10145CD08B002B7F78 /* Emergency */ = {
 			isa = PBXGroup;
 			children = (
+				2F04A3401534F73100FCB527 /* Constants.h */,
+				2F04A3411534F73100FCB527 /* EmergencyCategoryController.h */,
+				2F04A3421534F73100FCB527 /* EmergencyNumberController.h */,
+				2F04A3431534F73100FCB527 /* Models.h */,
 				CC10ED82146A270C0004CA1B /* EmergencyNumberController.m */,
 				CC20837F1469A32E00F81BE1 /* EmergencyCategoryController.m */,
 				2C291C11145CD08B002B7F78 /* Constants.m */,
@@ -1833,6 +1848,13 @@
 		2F3FF92014D74CAD0039D1F6 /* BodyMeter */ = {
 			isa = PBXGroup;
 			children = (
+				2F04A3391534F56B00FCB527 /* Constants.h */,
+				2F04A33A1534F56B00FCB527 /* ConsumptionController.h */,
+				2F04A33B1534F56B00FCB527 /* DiagnosisController.h */,
+				2F04A33C1534F56B00FCB527 /* MealsController.h */,
+				2F04A33D1534F56B00FCB527 /* Models.h */,
+				2F04A33E1534F56B00FCB527 /* ProfileController.h */,
+				2F04A33F1534F56B00FCB527 /* RecomendationsController.h */,
 				2F3FF92514D74F900039D1F6 /* ConsumptionController.m */,
 				2F3FF92614D74F900039D1F6 /* DiagnosisController.m */,
 				2F3FF92714D74F900039D1F6 /* MealsController.m */,
@@ -1847,7 +1869,6 @@
 		2F5B2A4414699E38008CFB6A /* Wines */ = {
 			isa = PBXGroup;
 			children = (
-				2F304804151A4EEE00A405B3 /* WinePhotoSource.m */,
 				2F304803151A4EDC00A405B3 /* WinePhotoSource.h */,
 				2F19F88B15123E4B00C97A29 /* WinePictureController.h */,
 				2F47C7AB15054D4800004A15 /* Constants.h */,
@@ -1869,6 +1890,7 @@
 				2F47C7BB15054D4800004A15 /* WineTasteDataSource.h */,
 				2F47C7BC15054D4800004A15 /* WineTipsController.h */,
 				2F47C7BD15054D4800004A15 /* WineTipsDataSource.h */,
+				2F304804151A4EEE00A405B3 /* WinePhotoSource.m */,
 				2F47C7A915054CF400004A15 /* LocalFilteringListController.m */,
 				2F60688D14EAFD6400493E3B /* WineTableViewDelegate.m */,
 				2FAEB17E14EAEC0F003E96E8 /* WineTipsDataSource.m */,

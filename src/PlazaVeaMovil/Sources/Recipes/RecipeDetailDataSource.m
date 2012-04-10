@@ -243,11 +243,6 @@ static CGFloat titleWidth = 320.;
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0) {
-        /*for (NSString *feature in [recipe features]) {
-            TTTableTextItem *item = [TTTableTextItem itemWithText:feature];
-
-            [items addObject:item];
-        }*/
         switch (_section) {
             case kRecipeDetailMainView:
                 if ([[recipe features] count] > 0) {
