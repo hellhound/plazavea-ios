@@ -71,11 +71,12 @@ NSString *const kStrainListSubtitleForError = @"Por favor intente de nuevo "
         @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
+
 // StrainListController's constants
 
 // Messages
 NSString *const kStrainListTitle = @"Cepas";
-// NSLocalizedString(@""Cepas", nil) 
+// NSLocalizedString(@"Cepas", nil) 
 
 // WineListDataSource's constants
 
@@ -241,6 +242,7 @@ const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
 NSString *const kWineBannerImage = @"bundle://default-banner-sommelier.jpg";
 NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
+NSString *const kRecipesBackgroundImage = @"bundle://recipes-background.png";
 NSString *const kWineCategoryLabel = @"Categoría";
 NSString *const kWineStrainLabel = @"Cepa";
 NSString *const kWineGoLabel = @"Buscar vinos";

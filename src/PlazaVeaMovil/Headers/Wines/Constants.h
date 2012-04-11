@@ -189,6 +189,7 @@ extern const CGFloat kWineDetailLabelWidth;
 extern NSString *const kWineDetailDefaultImage;
 extern NSString *const kWineBannerImage;
 extern NSString *const kWineBackgroundImage;
+extern NSString *const kRecipesBackgroundImage;
 
 // Launcher
 extern NSString *const kSomelierTitle;

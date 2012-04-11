@@ -56,7 +56,7 @@
         _categoryId = [categoryId copy];
         // Conf nav bar
         if ([TTStyleSheet
-             hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+                hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
             [[self navigationItem] setTitleView:[[[UIImageView alloc]
                     initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                         autorelease]];
