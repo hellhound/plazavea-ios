@@ -91,6 +91,10 @@ extern NSString *const kFilteringListSubtitleForError;
 extern NSString *const kWineListTitle;
 
 // WineDetailDataSource's constants
+typedef enum {
+    kWineFromSommelier,
+    kWineFromRecipes
+} WineDetailFromType;
 
 // Messages
 extern NSString *const kWineDetailTitleForLoading;

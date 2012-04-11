@@ -19,19 +19,24 @@
 
 - (id)init
 {
-    if ((self = [super init]) != nil)
+    if ((self = [super init]) != nil) {
         [self setModel:[[[StrainCollection alloc] init] autorelease]];
+        _from = @"0";
+    }
     return self;
 }
 
 #pragma mark -
 #pragma mark StrainListDataSource
 
+@synthesize from = _from;
+
 - (id)initWithRecipeId:(NSString *)recipeId
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[StrainCollection alloc] initWithRecipeId:recipeId]
                 autorelease]];
+        _from = @"1";
     }
     return self;
 }
@@ -77,7 +82,8 @@
     for (Strain *strain in strains) {
         NSString *name = [strain name];
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil URL:URL(kURLWineListCall, [strain strainId])];
+                subtitle:nil
+                    URL:URL(kURLWineListCall, [strain strainId], _from)];
         
         [items addObject:item];
     }

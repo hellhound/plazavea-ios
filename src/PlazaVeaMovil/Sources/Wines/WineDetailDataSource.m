@@ -32,7 +32,7 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark StoreDetailDataSource (public)
 
-@synthesize  delegate = _delegate;
+@synthesize  delegate = _delegate, from = _from;
 
 
 - (id)initWithWineId:(NSString *)wineId
@@ -42,12 +42,23 @@ static CGFloat titleWidth = 320.;
     }
     return self;
 }
+
 - (id)initWithWineId:(NSString *)wineId
             delegate:(id<WineDetailDataSourceDelegate>)delegate
 {
     if ((self = [super init]) != nil) {
         [self setModel:[[[Wine alloc] initWithWineId:wineId] autorelease]];
         [self setDelegate:delegate];
+    }
+    return self;
+}
+
+- (id)initWithWineId:(NSString *)wineId
+            delegate:(id<WineDetailDataSourceDelegate>)delegate
+                from:(WineDetailFromType)from
+{
+    if ((self = [self initWithWineId:wineId delegate:delegate]) != nil) {
+        _from = from;
     }
     return self;
 }
@@ -175,10 +186,14 @@ static CGFloat titleWidth = 320.;
     
     NSString *title = [kWineRecommendedLabel
             stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    TTTableTextItem *marriage = [TTTableTextItem itemWithText:kWineMarriageLabel
-            URL:URL(kURLWineRecipeCall, [wine wineId], title)];
     
-    [items addObject:marriage];
+    if (_from == kWineFromSommelier) {
+        TTTableTextItem *marriage = [TTTableTextItem
+                itemWithText:kWineMarriageLabel
+                    URL:URL(kURLWineRecipeCall, [wine wineId], title)];
+    
+        [items addObject:marriage];
+    }
     [self setItems:items];
 }
 
