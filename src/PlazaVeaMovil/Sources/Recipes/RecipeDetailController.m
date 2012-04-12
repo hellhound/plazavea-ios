@@ -54,7 +54,7 @@
 {
     if ((self = [self initWithRecipeId:recipeId]) != nil) {
         _hasMeat = [hasMeat boolValue];
-        if ([hasMeat boolValue]){
+        if ([hasMeat boolValue]) {
             [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
         } else {
             [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];

@@ -57,7 +57,7 @@ static CGFloat phoneHeight = 10.;
 
 - (UINavigationItem *)navigationItem
 {
-    if (_navItem == nil){
+    if (_navItem == nil) {
         _navItem = [super navigationItem];
         [_navItem setRightBarButtonItem:nil];
     }
@@ -253,7 +253,7 @@ static CGFloat phoneHeight = 10.;
 - (void)didSelectRowForObject:(EmergencyNumber *)emergencyNumber
                   atIndexPath:(NSIndexPath *)indexPath
 {
-    if (![self isEditing]){
+    if (![self isEditing]) {
         NSCharacterSet *characterSet = 
             [NSCharacterSet characterSetWithCharactersInString:@" -"];
         NSString *phoneNumber = [[[emergencyNumber phone]
@@ -272,7 +272,7 @@ static CGFloat phoneHeight = 10.;
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         id <NSFetchedResultsSectionInfo> sectionInfo = 
             [[_resultsController sections] objectAtIndex:section];
                 return [sectionInfo numberOfObjects];
@@ -317,7 +317,7 @@ static CGFloat phoneHeight = 10.;
 titleForHeaderInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         sectionInfo = 
                 [[_resultsController sections] objectAtIndex:section];
     } else {
@@ -395,7 +395,7 @@ titleForHeaderInSection:(NSInteger)section
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     } else {
         if ((_allowsRowDeselection && ![self isEditing]) ||
-                (_allowsRowDeselectionOnEditing && [self isEditing])){
+                (_allowsRowDeselectionOnEditing && [self isEditing])) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
         if (_performsSelectionAction)

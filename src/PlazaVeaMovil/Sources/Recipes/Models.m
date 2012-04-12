@@ -350,13 +350,13 @@ static NSString *const kRecipeMiscYes = @"YES";
     NSMutableArray *mutableCategories =
             [self mutableArrayValueForKey:kMutableCategoriesKey];
 
-    if (![rootObject isKindOfClass:[NSDictionary class]]){
+    if (![rootObject isKindOfClass:[NSDictionary class]]) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
         return;
     }
     if ((rawCategories = [rootObject objectForKey:
-            kRecipeCategoryCollectionCategoriesKey]) == nil){
+            kRecipeCategoryCollectionCategoriesKey]) == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
         return;
@@ -365,7 +365,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         RecipeCategory *recipeCategory =
                 [RecipeCategory recipeCategoryFromDictionary:rawRecipeCategory];
 
-        if (recipeCategory == nil){
+        if (recipeCategory == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
             return;
@@ -734,7 +734,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     /*if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
         return nil;
-    if (![price isKindOfClass:[NSNumber class]]){
+    if (![price isKindOfClass:[NSNumber class]]) {
         if (![price isKindOfClass:[NSNull class]])
             return nil;
         price = nil;
@@ -1118,7 +1118,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         NSArray *rawRecipesInSection;
         NSString *sectionName;
 
-        if (![recipeCluster isKindOfClass:[NSDictionary class]]){
+        if (![recipeCluster isKindOfClass:[NSDictionary class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
@@ -1126,26 +1126,26 @@ static NSString *const kRecipeMiscYes = @"YES";
         }
         if ((sectionName =
                 [recipeCluster objectForKey:kRecipeCollectionLetterKey]) 
-                    == nil){
+                    == nil) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
-        if (![sectionName isKindOfClass:[NSString class]]){
+        if (![sectionName isKindOfClass:[NSString class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if ((rawRecipesInSection = [recipeCluster objectForKey:
-                kRecipeCollectionRecipesKey]) == nil){
+                kRecipeCollectionRecipesKey]) == nil) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
-        if (![rawRecipesInSection isKindOfClass:[NSArray class]]){
+        if (![rawRecipesInSection isKindOfClass:[NSArray class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
@@ -1161,7 +1161,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         for (NSDictionary *rawRecipe in rawRecipesInSection) {
             Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
 
-            if (recipe == nil){
+            if (recipe == nil) {
                 [self didFailLoadWithError:
                         BACKEND_ERROR([request urlPath], rootObject)
                     tryAgain:NO];
