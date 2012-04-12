@@ -23,14 +23,14 @@ static CGFloat titleWidth = 320.;
 - (void)dealloc
 {
     [self setDelegate:nil];
+    [_from release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark WineListDataSource (public)
 
-@synthesize  delegate = _delegate;
-
+@synthesize  delegate = _delegate, from = _from;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
@@ -46,6 +46,17 @@ static CGFloat titleWidth = 320.;
 {
     if ((self = [self initWithCategoryId:categoryId]) != nil) {
         [self setDelegate:delegate];
+    }
+    return self;
+}
+
+- (id)initWithCategoryId:(NSString *)categoryId
+                delegate:(id<WineListDataSourceDelegate>)delegate
+                    from:(WineDetailFromType)from
+{
+    if ((self =
+            [self initWithCategoryId:categoryId delegate:delegate]) != nil) {
+        _from = [[NSString alloc] initWithFormat:@"%i",from];
     }
     return self;
 }
@@ -173,7 +184,7 @@ static CGFloat titleWidth = 320.;
             for (Wine *wine in section) {
                 TableImageSubtitleItem *item = [TableImageSubtitleItem
                         itemWithText:[wine name] subtitle:nil
-                            URL:URL(kURLWineDetailCall, [wine wineId])];
+                            URL:URL(kURLWineDetailCall, [wine wineId], _from)];
                 
                 [sectionItems addObject:item];
             }

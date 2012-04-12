@@ -1170,20 +1170,6 @@ static NSString *const kRecipeMiscYes = @"YES";
 
             NSURL *pictureURL = [recipe pictureURL];
             NSString *controllerURL;
-            
-            /*switch (_from) {
-                case kRecipeFromCategory:
-                    controllerURL = URL(kURLRecipeMeatsDetailCall,
-                            [recipe recipeId], kRecipeMiscYes);
-                    break;
-                case kRecipeFromMeat:
-                case kRecipeFromWine:
-                    controllerURL = URL(kURLRecipeDetailCall,
-                            [recipe recipeId]);
-                    break;
-                default:
-                    break;
-            }*/
             NSString *fromString = [NSString stringWithFormat:@"%i", _from];
             controllerURL = URL(kURLRecipeDetailCall, [recipe recipeId],
                     fromString);
@@ -1195,11 +1181,9 @@ static NSString *const kRecipeMiscYes = @"YES";
 
             TableImageSubtitleItem *item = 
                     [TableImageSubtitleItem itemWithText:[recipe name]
+                        /*subtitle:nil imageURL:[pictureURL absoluteString]
+                        defaultImage:TTIMAGE(kRecipeListDefaultImage)*/
                         URL:controllerURL];
-                    /*[TableImageSubtitleItem itemWithText:[recipe name]
-                        subtitle:nil imageURL:[pictureURL absoluteString]
-                        defaultImage:TTIMAGE(kRecipeListDefaultImage)
-                        URL:controllerURL];*/
 
             [recipesInSection addObject:item];
         }

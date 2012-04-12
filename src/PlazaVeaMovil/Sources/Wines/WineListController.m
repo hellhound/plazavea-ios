@@ -35,8 +35,8 @@
 
 - (void)createModel
 {
-    [self setDataSource:[[[WineListDataSource alloc]
-            initWithCategoryId:_categoryId delegate:self] autorelease]];
+    [self setDataSource:[[[WineListDataSource alloc] initWithCategoryId:
+            _categoryId delegate:self from:_from] autorelease]];
 }
 
 - (id<UITableViewDelegate>)createDelegate
@@ -48,7 +48,7 @@
 #pragma mark -
 #pragma mark StoreListController (Public)
 
-@synthesize categoryId = _categoryId;
+@synthesize categoryId = _categoryId, from = _from;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
@@ -56,11 +56,19 @@
         _categoryId = [categoryId copy];
         // Conf nav bar
         if ([TTStyleSheet
-             hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
+                hasStyleSheetForSelector:@selector(navigationBarLogo)]) {
             [[self navigationItem] setTitleView:[[[UIImageView alloc]
                     initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                         autorelease]];
         }
+    }
+    return self;
+}
+
+- (id)initWithCategoryId:(NSString *)categoryId from:(NSString *)from
+{
+    if ((self = [self initWithCategoryId:categoryId]) != nil) {
+        _from = [from intValue];
     }
     return self;
 }

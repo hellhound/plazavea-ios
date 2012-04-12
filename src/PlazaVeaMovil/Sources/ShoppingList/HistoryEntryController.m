@@ -270,29 +270,6 @@ static NSString *kNameVariableKey = @"NAME";
 }
 
 #pragma mark -
-#pragma mark <UITableViewDataSource>
-
-/*- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger numberOfRows =
-            [super tableView:tableView numberOfRowsInSection:section];
-    
-    if (numberOfRows == 0 && noLists) {
-        UIAlertView *alertView = [[[UIAlertView alloc]
-                initWithTitle:kHistoryEntryAlertTitle
-                    message:kHistoryEntryAlertMessage delegate:self
-                    cancelButtonTitle:kHistoryEntryAlertCancel
-                    otherButtonTitles:kHistoryEntryAlertCreate, nil]
-                    autorelease];
-        
-        [alertView show];
-        noLists = NO;
-    }
-    return numberOfRows;
-}*/
-
-#pragma mark -
 #pragma mark <UIAlertViewDelegate>
 
 - (void)        alertView:(UIAlertView *)alertView

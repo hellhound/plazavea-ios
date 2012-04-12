@@ -2,7 +2,12 @@
 
 #import <Three20/Three20.h>
 
-@interface StrainListDataSource: TTListDataSource
+#import "Wines/Constants.h"
 
+@interface StrainListDataSource: TTListDataSource
+{
+    NSString *_from;
+}
+@property (nonatomic, retain) NSString *from;
 - (id)initWithRecipeId:(NSString *)recipeId;
 @end

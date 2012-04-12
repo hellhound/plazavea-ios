@@ -58,10 +58,6 @@ static CGFloat headerMinHeight = 40.;
 {
     [super viewDidLoad];
     [self setTitle:kBodyMeterDiagnosisBackButton];
-    /*[[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] 
-            initWithTitle:kBodyMeterProfileBackButton
-                style:UIBarButtonItemStyleBordered target:self 
-                action:@selector(showProfile)]];*/
     // Load profile
     if (_defaults == nil)
         _defaults = [NSUserDefaults standardUserDefaults];

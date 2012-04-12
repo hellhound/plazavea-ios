@@ -11,7 +11,7 @@
 
 @implementation WineDetailController
 
-@synthesize wineId = _wineId, name = _name, imageURL = _imageURL;
+@synthesize wineId = _wineId, name = _name, imageURL = _imageURL, from = _from;
 
 #pragma mark -
 #pragma mark NSObject
@@ -29,7 +29,7 @@
 - (void)createModel
 {
     [self setDataSource:[[[WineDetailDataSource alloc] initWithWineId:_wineId
-            delegate:self] autorelease]];
+            delegate:self from:_from] autorelease]];
 }
 
 #pragma mark -
@@ -48,6 +48,14 @@
                     initWithImage:(UIImage *)TTSTYLE(navigationBarLogo)]
                         autorelease]];
         }
+    }
+    return self;
+}
+
+- (id)initWithWineId:(NSString *)wineId from:(NSString *)from
+{
+    if ((self = [self initWithWineId:wineId]) != nil) {
+        _from = [from intValue];
     }
     return self;
 }
