@@ -71,11 +71,12 @@ NSString *const kStrainListSubtitleForError = @"Por favor intente de nuevo "
         @"más tarde, aún no existe información disponible";
 // NSLocalizedString(@"Por favor intente de nuevo "
 //      @"más tarde, aún no existe información disponible", nil)
+
 // StrainListController's constants
 
 // Messages
 NSString *const kStrainListTitle = @"Cepas";
-// NSLocalizedString(@""Cepas", nil) 
+// NSLocalizedString(@"Cepas", nil) 
 
 // WineListDataSource's constants
 
@@ -241,6 +242,7 @@ const CGFloat kWineDetailLabelWidth = 320.;
 NSString *const kWineDetailDefaultImage = @"bundle://default-wine-detail.png";
 NSString *const kWineBannerImage = @"bundle://default-banner-sommelier.jpg";
 NSString *const kWineBackgroundImage = @"bundle://wine-background.png";
+NSString *const kRecipesBackgroundImage = @"bundle://recipes-background.png";
 NSString *const kWineCategoryLabel = @"Categoría";
 NSString *const kWineStrainLabel = @"Cepa";
 NSString *const kWineGoLabel = @"Buscar vinos";
@@ -253,8 +255,9 @@ NSString *const kSomelierTitle = @"Sommelier";
 NSString *const kURLWineFilter = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
 NSString *const kURLWineList =
-        @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/";
-NSString *const kURLWineDetail = @"tt://launcher/wines/wine/(initWithWineId:)/";
+        @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/(from:)/";
+NSString *const kURLWineDetail =
+        @"tt://launcher/wines/wine/(initWithWineId:)/(from:)/";
 NSString *const kURLWineInfo =
         @"tt://launcher/wines/wine_info/(initWithWineId:)/";
 NSString *const kURLWineTaste =
@@ -271,8 +274,8 @@ NSString *const kURLWinePicture =
 // Controllers' URL calls
 NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
-NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/";
-NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/";
+NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/%@/";
+NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/%@/";
 NSString *const kURLWineInfoCall = @"tt://launcher/wines/wine_info/%@/";
 NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
 NSString *const kURLWineTipsCall = @"tt://launcher/wines/wine_tips/%@/";

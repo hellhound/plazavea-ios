@@ -79,10 +79,12 @@
 {
     NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
             kMailBanner], kMailBannerWidth, kMailBannerHeight);
+    NSString *offerImageURL = IMAGE_URL([_offer pictureURL],
+            kMailBannerWidth, kMailBannerHeight);
     NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
             bannerURL];
     NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
-            [[_offer pictureURL] absoluteString]];
+            offerImageURL];
     MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     

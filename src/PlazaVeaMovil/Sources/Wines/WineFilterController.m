@@ -243,7 +243,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             switch ([indexPath row]) {
                 case kWineGoRow:
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLWineListCall, @"4")]
+                            actionWithURLPath:URL(kURLWineListCall, @"4", @"0")]
                                 applyAnimated:YES]];
                     break;
                 default:
