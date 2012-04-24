@@ -149,21 +149,10 @@ static CGFloat titleWidth = 320.;
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
             [[wine pictureURL] absoluteString] title:[wine name]]];
     
-    TableCaptionItem *look = [TableCaptionItem
-            itemWithText:[wine look] caption:kWineLookLabel];
+    TableImageSubtitleItem *tasting = [TableImageSubtitleItem
+            itemWithText:[wine tasting]];
     
-    [items addObject:look];
-    
-    TableCaptionItem *taste = [TableCaptionItem
-            itemWithText:[wine taste] caption:kWineTasteLabel];
-    
-    [items addObject:taste];
-    
-    TableCaptionItem *smell = [TableCaptionItem
-            itemWithText:[wine smell] caption:kWineSmellLabel];
-    
-    [items addObject:smell];
-    
+    [items addObject:tasting];
     [self setItems:items];
 }
 

@@ -151,6 +151,8 @@ static CGFloat titleWidth = 320.;
     
     NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
             [[wine price] stringValue]];
+    NSString *oxygenationLabel = [NSString stringWithFormat:
+            @"%@ %@",[[wine oxygenation] value], [[wine oxygenation] unit]];
     TableCaptionItem *country = [TableCaptionItem
             itemWithText:[[wine country] name] caption:kWineCountryLabel];
     
@@ -186,6 +188,11 @@ static CGFloat titleWidth = 320.;
             itemWithText:[wine barrel] caption:kWineBarrelLabel];
     
     [items addObject:barrel];
+    
+    TableCaptionItem *oxygenation = [TableCaptionItem
+            itemWithText:oxygenationLabel caption:kWineOxygenationLabel];
+    
+    [items addObject:oxygenation];
     
     TableCaptionItem *price = [TableCaptionItem
             itemWithText:priceLabel caption:kWinePriceLabel];

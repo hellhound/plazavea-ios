@@ -18,6 +18,7 @@ NSString *const kWineKindKey = @"kind";
 NSString *const kWineWineryKey = @"winery";
 NSString *const kWinePictureURLKey = @"picture";
 NSString *const kWineExtraPicturesKey = @"extra_pictures";
+NSString *const kWineBottlePictureKey = @"bottle";
 NSString *const kWinePriceKey = @"price";
 NSString *const kWineHarvestYearKey = @"harvest_year";
 NSString *const kWineBarrelKey = @"barrel";

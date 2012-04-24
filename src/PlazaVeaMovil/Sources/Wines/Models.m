@@ -35,11 +35,11 @@ static NSString *const kMutableListKey = @"list";
     NSString *unit;
     if (![rawData isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((value = [rawData objectForKey:kWineOxygenationValueKey]) != nil)
+    if ((value = [rawData objectForKey:kWineOxygenationValueKey]) == nil)
         return nil;
     if (![value isKindOfClass:[NSNumber class]])
         return nil;
-    if ((unit = [rawData objectForKey:kWineOxygenationUnitKey]) != nil)
+    if ((unit = [rawData objectForKey:kWineOxygenationUnitKey]) == nil)
         return nil;
     if (![unit isKindOfClass:[NSString class]])
         return nil;
@@ -382,7 +382,7 @@ static NSString *const kMutableListKey = @"list";
             tasting = _tasting, temperature = _temperature,
             cellaring = _cellaring, oxygenation = _oxygenation,
             country = _country, region = _region, brand = _brand, kind = _kind,
-            winery = _winery;
+            winery = _winery, bottleImageURL = _bottleImageURL;
 
 + (id)shortWineFromDictionary:(NSDictionary *)rawWine
 {
@@ -433,10 +433,9 @@ static NSString *const kMutableListKey = @"list";
         return nil;
     
     NSNumber *harvestYear, *temperature, *cellaring;
-    NSString *code, *barrel, *tasting;
-    NSArray *extrasPictureURLs;
+    NSString *code, *barrel, *tasting, *bottleImageURL;
     NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery,
-            *rawOxygenation;
+            *rawOxygenation, *rawBottles;
     Oxygenation *oxygenation;
     Country *country;
     WineRegion *region;
@@ -498,32 +497,31 @@ static NSString *const kMutableListKey = @"list";
     winery = [Country countryFromDictionary:rawWinery];
     if (winery == nil)
         return nil;
-    /*if ((extrasPictureURLs =
-            [rawWine objectForKey:kWineExtraPicturesKey]) == nil)
+    if ((rawBottles = [rawWine objectForKey:kWineExtraPicturesKey]) == nil)
         return nil;
-    if (![extrasPictureURLs isKindOfClass:[NSArray class]])
+    if (![rawBottles isKindOfClass:[NSDictionary class]])
         return nil;
-    
-    NSMutableArray *mutableExtraPicturesURLs =
-            [wine mutableArrayValueForKey:kMutableExtraPictureURLsKey];
-    for (NSString *extraPictureURL in extrasPictureURLs) {
-        if (![extraPictureURL isKindOfClass:[NSString class]])
+    if ((bottleImageURL =
+            [rawBottles objectForKey:kWineBottlePictureKey]) == nil)
+        return nil;
+    if (![bottleImageURL isKindOfClass:[NSString class]]) {
+        if (![bottleImageURL isKindOfClass:[NSNull class]]) {
             return nil;
-        [mutableExtraPicturesURLs addObject:
-                [NSURL URLWithString:extraPictureURL]];
-    }*/
+        }
+    }
     [wine setCode:code];
     [wine setHarvestYear:harvestYear];
     [wine setBarrel:barrel];
     [wine setTasting:tasting];
     [wine setTemperature:temperature];
     [wine setCellaring:cellaring];
-    //[wine setOxygenation:oxygenation];
+    [wine setOxygenation:oxygenation];
     [wine setCountry:country];
     [wine setRegion:region];
     [wine setBrand:brand];
     [wine setKind:kind];
     [wine setWinery:winery];
+    [wine setBottleImageURL:bottleImageURL];
     return wine;
 }
 
@@ -551,18 +549,13 @@ static NSString *const kMutableListKey = @"list";
     [self setTasting:[[wine tasting] copy]];
     [self setTemperature:[wine temperature]];
     [self setCellaring:[wine cellaring]];
-    //[self setOxygenation:[wine oxygenation]];
+    [self setOxygenation:[wine oxygenation]];
     [self setCountry:[wine country]];
     [self setRegion:[wine region]];
     [self setBrand:[wine brand]];
     [self setKind:[wine kind]];
     [self setWinery:[wine winery]];
-    
-    /*NSMutableArray *extraPictureURLs =
-            [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
-    
-    for (NSURL *extraPictureURL in [wine extraPictureURLs])
-        [extraPictureURLs addObject:extraPictureURL];*/
+    [self setBottleImageURL:[wine bottleImageURL]];
 }
 
 #pragma mark -

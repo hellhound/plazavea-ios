@@ -16,6 +16,7 @@ extern NSString *const kWineKindKey;
 extern NSString *const kWineWineryKey;
 extern NSString *const kWinePictureURLKey;
 extern NSString *const kWineExtraPicturesKey;
+extern NSString *const kWineBottlePictureKey;
 extern NSString *const kWinePriceKey;
 extern NSString *const kWineHarvestYearKey;
 extern NSString *const kWineBarrelKey;

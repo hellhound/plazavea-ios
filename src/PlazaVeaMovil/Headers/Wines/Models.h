@@ -99,6 +99,7 @@
     NSString *_tasting;
     NSNumber *_temperature;
     NSNumber *_cellaring;
+    NSString *_bottleImageURL;
     Oxygenation *_oxygenation;
     Country *_country;
     WineRegion *_region;
@@ -118,6 +119,7 @@
 @property (nonatomic, copy) NSString *tasting;
 @property (nonatomic, retain) NSNumber *temperature;
 @property (nonatomic, retain) NSNumber *cellaring;
+@property (nonatomic, retain) NSString *bottleImageURL;
 @property (nonatomic, retain) Oxygenation *oxygenation;
 @property (nonatomic, retain) Country *country;
 @property (nonatomic, retain) WineRegion *region;
