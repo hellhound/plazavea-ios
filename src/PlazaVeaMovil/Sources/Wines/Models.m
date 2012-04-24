@@ -14,6 +14,44 @@ static NSString *const kMutableSectionTitlesKey = @"sectionTitles";
 static NSString *const kMutableStrainsKey = @"strains";
 static NSString *const kMutableListKey = @"list";
 
+@implementation Oxygenation
+
+#pragma mark -
+#pragma mark NSObject
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Oxygenation (Public)
+
+@synthesize unit = _unit, value = _value;
+
++ (id)oxygenationFromDictionary:(NSDictionary *)rawData
+{
+    NSNumber *value;
+    NSString *unit;
+    if (![rawData isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((value = [rawData objectForKey:kWineOxygenationValueKey]) != nil)
+        return nil;
+    if (![value isKindOfClass:[NSNumber class]])
+        return nil;
+    if ((unit = [rawData objectForKey:kWineOxygenationUnitKey]) != nil)
+        return nil;
+    if (![unit isKindOfClass:[NSString class]])
+        return nil;
+    
+    Oxygenation *oxygenation = [[[Oxygenation alloc] init] autorelease];
+    
+    [oxygenation setUnit:unit];
+    [oxygenation setValue:value];
+    return oxygenation;
+}
+@end
+
 @implementation GenericFeature
 
 #pragma mark -
@@ -72,24 +110,33 @@ static NSString *const kMutableListKey = @"list";
 {
     [_countryId release];
     [_name release];
+    [_code release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Region (Public)
 
-@synthesize countryId = _countryId, name = _name;
+@synthesize countryId = _countryId, name = _name, code = _code;
 
 + (id)countryFromDictionary:(NSDictionary *)rawData
 {
     NSNumber *modelId;
-    NSString *name;
+    NSString *name, *code;
     if (![rawData isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((modelId = [rawData objectForKey:kWineIdKey]) == nil)
-        return nil;
-    if (![modelId isKindOfClass:[NSNumber class]])
-        return nil;
+    modelId = [rawData objectForKey:kWineIdKey];
+    if (![modelId isKindOfClass:[NSNumber class]]) {
+        if (![modelId isKindOfClass:[NSNull class]]) {
+            //return nil;
+        }
+    }
+    code = [rawData objectForKey:kWineCountryCodeKey];
+    if (![code isKindOfClass:[NSString class]]) {
+        if (![code isKindOfClass:[NSNull class]]) {
+            //return nil;
+        }
+    }
     if ((name = [rawData objectForKey:kWineNameKey]) == nil)
         return nil;
     if (![name isKindOfClass:[NSString class]])
@@ -99,6 +146,7 @@ static NSString *const kMutableListKey = @"list";
     
     [model setCountryId:modelId];
     [model setName:name];
+    [model setCode:code];
     return model;
 }
 @end
@@ -286,9 +334,7 @@ static NSString *const kMutableListKey = @"list";
     [_price release];
     [_harvestYear release];
     [_barrel release];
-    [_look release];
-    [_taste release];
-    [_smell release];
+    [_tasting release];
     [_temperature release];
     [_cellaring release];
     [_oxygenation release];
@@ -314,7 +360,7 @@ static NSString *const kMutableListKey = @"list";
 - (void)insertExtraPictureURLs:(NSArray *)extraURLs
                      atIndexes:(NSIndexSet *)indexes
 {
-    [_extraPictureURLs removeObjectsAtIndexes:indexes];
+    [_extraPictureURLs insertObjects:extraURLs atIndexes:indexes];
 }
 
 - (void)removeObjectFromExtraPictureURLsAtIndex:(NSUInteger)index
@@ -332,8 +378,8 @@ static NSString *const kMutableListKey = @"list";
 
 @synthesize wineId = _wineId, code = _code, name = _name, 
         milliliters = _milliliters, pictureURL= _pictureURL, price = _price,
-            harvestYear = _harvestYear, barrel = _barrel, look = _look,
-            taste = _taste, smell = _smell, temperature = _temperature,
+            harvestYear = _harvestYear, barrel = _barrel,
+            tasting = _tasting, temperature = _temperature,
             cellaring = _cellaring, oxygenation = _oxygenation,
             country = _country, region = _region, brand = _brand, kind = _kind,
             winery = _winery;
@@ -386,10 +432,12 @@ static NSString *const kMutableListKey = @"list";
     if (wine == nil)
         return nil;
     
-    NSNumber *harvestYear, *temperature, *cellaring, *oxygenation;
-    NSString *code, *barrel, *look, *taste, *smell;
+    NSNumber *harvestYear, *temperature, *cellaring;
+    NSString *code, *barrel, *tasting;
     NSArray *extrasPictureURLs;
-    NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery;
+    NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery,
+            *rawOxygenation;
+    Oxygenation *oxygenation;
     Country *country;
     WineRegion *region;
     Brand *brand;
@@ -408,10 +456,6 @@ static NSString *const kMutableListKey = @"list";
         return nil;
     if (![cellaring isKindOfClass:[NSNumber class]])
         return nil;
-    if ((oxygenation = [rawWine objectForKey:kWineOxygenationKey]) == nil)
-        return nil;
-    if (![oxygenation isKindOfClass:[NSNumber class]])
-        return nil;
     if ((code = [rawWine objectForKey:kWineCodeKey]) == nil)
         return nil;
     if (![code isKindOfClass:[NSString class]])
@@ -420,17 +464,14 @@ static NSString *const kMutableListKey = @"list";
         return nil;
     if (![barrel isKindOfClass:[NSString class]])
         return nil;
-    if ((look = [rawWine objectForKey:kWineLookKey]) == nil)
+    if ((tasting = [rawWine objectForKey:kWineTastingKey]) == nil)
         return nil;
-    if (![look isKindOfClass:[NSString class]])
+    if (![tasting isKindOfClass:[NSString class]])
         return nil;
-    if ((taste = [rawWine objectForKey:kWineTasteKey]) == nil)
+    if ((rawOxygenation = [rawWine objectForKey:kWineOxygenationKey]) == nil)
         return nil;
-    if (![taste isKindOfClass:[NSString class]])
-        return nil;
-    if ((smell = [rawWine objectForKey:kWineSmellKey]) == nil)
-        return nil;
-    if (![smell isKindOfClass:[NSString class]])
+    if ((oxygenation =
+         [Oxygenation oxygenationFromDictionary:rawOxygenation]) == nil)
         return nil;
     if ((rawCountry = [rawWine objectForKey:kWineCountryKey]) == nil)
         return nil;
@@ -445,7 +486,7 @@ static NSString *const kMutableListKey = @"list";
     if ((rawBrand = [rawWine objectForKey:kWineBrandKey]) == nil)
         return nil;
     brand = [Brand brandFromDictionary:rawBrand];
-    if (country == nil)
+    if (brand == nil)
         return nil;
     if ((rawKind = [rawWine objectForKey:kWineKindKey]) == nil)
         return nil;
@@ -457,7 +498,7 @@ static NSString *const kMutableListKey = @"list";
     winery = [Country countryFromDictionary:rawWinery];
     if (winery == nil)
         return nil;
-    if ((extrasPictureURLs =
+    /*if ((extrasPictureURLs =
             [rawWine objectForKey:kWineExtraPicturesKey]) == nil)
         return nil;
     if (![extrasPictureURLs isKindOfClass:[NSArray class]])
@@ -470,16 +511,14 @@ static NSString *const kMutableListKey = @"list";
             return nil;
         [mutableExtraPicturesURLs addObject:
                 [NSURL URLWithString:extraPictureURL]];
-    }
+    }*/
     [wine setCode:code];
     [wine setHarvestYear:harvestYear];
     [wine setBarrel:barrel];
-    [wine setLook:look];
-    [wine setTaste:taste];
-    [wine setSmell:smell];
+    [wine setTasting:tasting];
     [wine setTemperature:temperature];
     [wine setCellaring:cellaring];
-    [wine setOxygenation:oxygenation];
+    //[wine setOxygenation:oxygenation];
     [wine setCountry:country];
     [wine setRegion:region];
     [wine setBrand:brand];
@@ -509,12 +548,10 @@ static NSString *const kMutableListKey = @"list";
     [self setPrice:[wine price]];
     [self setHarvestYear:[wine harvestYear]];
     [self setBarrel:[[wine barrel] copy]];
-    [self setLook:[[wine look] copy]];
-    [self setTaste:[[wine taste] copy]];
-    [self setSmell:[[wine smell] copy]];
+    [self setTasting:[[wine tasting] copy]];
     [self setTemperature:[wine temperature]];
     [self setCellaring:[wine cellaring]];
-    [self setOxygenation:[wine oxygenation]];
+    //[self setOxygenation:[wine oxygenation]];
     [self setCountry:[wine country]];
     [self setRegion:[wine region]];
     [self setBrand:[wine brand]];
@@ -581,6 +618,8 @@ static NSString *const kMutableListKey = @"list";
 {
     [_sections release];
     [_sectionTitles release];
+    [_categoryId release];
+    [_filters release];
     [super dealloc];
 }
 
@@ -632,7 +671,7 @@ static NSString *const kMutableListKey = @"list";
 #pragma mark -
 #pragma mark WineCollection (Public)
 
-@synthesize categoryId = _categoryId;
+@synthesize categoryId = _categoryId, filters = _filters;
 
 + (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection
 {
@@ -647,7 +686,7 @@ static NSString *const kMutableListKey = @"list";
     
     if (![rawCollection isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((wines = [rawCollection objectForKey:kWineCollectionWinesKey]) == nil)
+    if ((wines = [rawCollection objectForKey:@"letters"]) == nil)
         return nil;
     if (![wines isKindOfClass:[NSArray class]])
         return nil;
@@ -694,6 +733,14 @@ static NSString *const kMutableListKey = @"list";
     return self;
 }
 
+- (id)initWithFilters:(NSString *)filters
+{
+    if ((self = [self init]) != nil) {
+        _filters = [filters copy];
+    }
+    return self;
+}
+
 - (void)copyPropertiesFromWineCollection:(WineCollection *)collection
 {
     NSMutableArray *sections =
@@ -718,8 +765,15 @@ static NSString *const kMutableListKey = @"list";
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (![self isLoading]) {
-        TTURLRequest *request = [TTURLRequest requestWithURL:
-                URL(kURLWineCollectionEndPoint, _categoryId) delegate:self];
+        NSString *url;
+        
+        if (_categoryId != nil) {
+            url = URL(kURLWineCollectionEndPoint, _categoryId);
+        } else {
+            url = URL(kURLFilterCollectionEndPoint, _filters);
+        }
+        
+        TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
         
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
@@ -920,7 +974,7 @@ static NSString *const kMutableListKey = @"list";
     
     if (collection == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
-                          tryAgain:NO];
+                tryAgain:NO];
         return;
     }
     [self copyPropertiesFromStrainCollection:collection];
@@ -975,27 +1029,45 @@ static NSString *const kMutableListKey = @"list";
 #pragma mark FilterCollection (Public)
 
 + (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection
+                        collectionId:(WineFilteringListType)collectionId
 {
     FilterCollection *collection = [[[FilterCollection alloc] init]
             autorelease];
     NSArray *list;
     NSMutableArray *mutableList = [collection
             mutableArrayValueForKey:kMutableListKey];
+    NSString *key;
+    
+    switch (collectionId) {
+        case kWineCountryFilter:
+            key = kFilterCollectionCountriesKey;
+            break;
+        case kWineWineryFilter:
+            key = kFilterCollectionWineriesKey;
+            break;
+        case kWineStrainFilter:
+        case kWineSpaklingWineKindFilter:
+            key = kFilterCollectionStrainsKey;
+            break;
+        default:
+            break;
+    }
     
     if (![rawCollection isKindOfClass:[NSDictionary class]])
         return nil;
-    if ((list = [rawCollection objectForKey:kFilterCollectionItemsKey]) == nil)
+    if ((list = [rawCollection objectForKey:key]) == nil)
         return nil;
     if (![list isKindOfClass:[NSArray class]])
         return nil;
     for (NSDictionary *rawItem in list) {
-        Winery *item = [Winery wineryFromDictionary:rawItem];
+        Country *item = [Country countryFromDictionary:rawItem];
         
         if (item == nil)
             return nil;
         [mutableList addObject:item];
     }
     return collection;
+    return nil;
 }
 
 - (id)initWithCollectionId:(WineFilteringListType)collectionId
@@ -1031,6 +1103,10 @@ static NSString *const kMutableListKey = @"list";
                 break;
             case kWineStrainFilter:
                 url = kURLStrainsCollectionEndPoint;
+                break;
+            case kWineSpaklingWineKindFilter:
+                url = kURLSparklingWineKindCollectionEndPoint;
+                break;
             default:
                 break;
         }
@@ -1051,7 +1127,8 @@ static NSString *const kMutableListKey = @"list";
     NSDictionary *rootObject = [(TTURLJSONResponse *)[request response]
             rootObject];
     FilterCollection *collection = [FilterCollection
-            filterCollectionFromDictionary:rootObject];
+            filterCollectionFromDictionary:rootObject
+                collectionId:_collectionId];
     
     if (collection == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)

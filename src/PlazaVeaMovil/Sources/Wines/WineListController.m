@@ -15,6 +15,7 @@
 - (void) dealloc
 {
     [_categoryId release];
+    [_filters release];
     [super dealloc];
 }
 
@@ -35,8 +36,13 @@
 
 - (void)createModel
 {
-    [self setDataSource:[[[WineListDataSource alloc] initWithCategoryId:
-            _categoryId delegate:self from:_from] autorelease]];
+    if (_categoryId != nil) {
+        [self setDataSource:[[[WineListDataSource alloc] initWithCategoryId:
+                _categoryId delegate:self from:_from] autorelease]];
+    } else if (_filters != nil) {
+        [self setDataSource:[[[WineListDataSource alloc]
+                initWithFilters:_filters delegate:self] autorelease]];
+    }
 }
 
 - (id<UITableViewDelegate>)createDelegate
@@ -46,9 +52,9 @@
 }
 
 #pragma mark -
-#pragma mark StoreListController (Public)
+#pragma mark WineListController (Public)
 
-@synthesize categoryId = _categoryId, from = _from;
+@synthesize categoryId = _categoryId, from = _from, filters = _filters;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
@@ -69,6 +75,14 @@
 {
     if ((self = [self initWithCategoryId:categoryId]) != nil) {
         _from = [from intValue];
+    }
+    return self;
+}
+
+- (id)initWithFilters:(NSString *)filters
+{
+    if ((self = [self initWithNibName:nil bundle:nil]) != nil) {
+        _filters = [filters copy];
     }
     return self;
 }

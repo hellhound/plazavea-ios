@@ -21,6 +21,8 @@
 - (id)initWithCategoryId:(NSString *)categoryId
                 delegate:(id<WineListDataSourceDelegate>)delegate
                     from:(WineDetailFromType)from;
+- (id)initWithFilters:(NSString *)filters
+             delegate:(id<WineListDataSourceDelegate>)delegate;
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
 @end
 

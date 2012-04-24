@@ -61,6 +61,16 @@ static CGFloat titleWidth = 320.;
     return self;
 }
 
+- (id)initWithFilters:(NSString *)filters
+             delegate:(id<WineListDataSourceDelegate>)delegate
+{
+    if ((self = [super init]) != nil) {
+        [self setModel:[[[WineCollection alloc] initWithFilters:filters]
+                autorelease]];
+    }
+    return self;
+}
+
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
 {
     UIView *headerView =

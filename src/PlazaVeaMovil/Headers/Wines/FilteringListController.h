@@ -26,5 +26,5 @@
 - (void)controller:(FilteringListController *)controller
             itemId:(NSNumber *)itemId;
 - (void)controller:(FilteringListController *)controller
-            didPickItem:(GenericFeature *)item;
+            didPickItem:(Country *)item;
 @end

@@ -313,6 +313,8 @@
             toViewController:[FilteringListController class]];
     [map from:kURLWinePicture
             toViewController:[WinePictureController class]];
+    [map from:kURLFilteredWineList
+            toViewController:[WineListController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]
