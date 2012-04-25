@@ -7,13 +7,15 @@
 
 @protocol WineDetailDataSourceDelegate;
 
-@interface WineDetailDataSource: TTListDataSource <TTImageViewDelegate>
+@interface WineDetailDataSource: TTListDataSource
 {
     WineDetailFromType _from;
     id<WineDetailDataSourceDelegate> _delegate;
+    UIButton *_imageView;
 }
 @property (nonatomic, assign) WineDetailFromType from;
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) UIButton *imageView;
 
 - (id)initWithWineId:(NSString *)wineId;
 - (id)initWithWineId:(NSString *)wineId
