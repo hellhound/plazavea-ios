@@ -757,8 +757,13 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if ((rations = [rawRecipe objectForKey:kRecipeRationsKey]) == nil)
         return nil;
-    if (![rations isKindOfClass:[NSNumber class]])
-        return nil;
+    if (![rations isKindOfClass:[NSNumber class]]) {
+        if (![rations isKindOfClass:[NSNull class]]) {
+            return nil;
+        } else {
+            rations = [NSNumber numberWithInt:0];
+        }
+    }
     //if ((rawStrains = [rawRecipe objectForKey:kRecipeStrainsKey]) == nil)
     //    return nil;
     rawStrains = [NSDictionary dictionaryWithObjectsAndKeys:

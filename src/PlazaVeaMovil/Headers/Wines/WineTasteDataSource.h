@@ -5,7 +5,7 @@
 
 @protocol WineTasteDataSourceDelegate;
 
-@interface WineTasteDataSource: TTListDataSource <TTImageViewDelegate>
+@interface WineTasteDataSource: TTListDataSource
 {
     id<WineTasteDataSourceDelegate> _delegate;
 }

@@ -167,6 +167,7 @@
 
 - (BOOL)loadDefaults
 {
+    [self getUUID];
     BOOL registrationIsComplete = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     

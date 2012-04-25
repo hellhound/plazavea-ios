@@ -7,7 +7,7 @@
 
 @protocol WineDetailDataSourceDelegate;
 
-@interface WineDetailDataSource: TTListDataSource
+@interface WineDetailDataSource: TTListDataSource <TTImageViewDelegate>
 {
     WineDetailFromType _from;
     id<WineDetailDataSourceDelegate> _delegate;

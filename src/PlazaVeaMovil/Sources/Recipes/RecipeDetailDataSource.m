@@ -227,8 +227,11 @@ static CGFloat titleWidth = 320.;
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
     NSString *recipeName = [recipe name];
-    NSString *rations = [NSString stringWithFormat:kRecipeRations,
-            [[recipe rations] stringValue]];
+    NSString *rations = nil;
+    if ([[recipe rations] intValue] > 0) {
+        rations = [NSString stringWithFormat:kRecipeRations,
+                [[recipe rations] stringValue]];
+    }
     NSURL *pictureURL = [recipe pictureURL];
 
     if (pictureURL != nil) {
@@ -261,6 +264,12 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:tips];
                 }
+                TTTableTextItem *contribution = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionContribution
+                            URL:URL(kURLContributionRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:contribution];
                 break;
             case kRecipeDetailFeatureView:
                 if ([[recipe tips] count] > 0) {
@@ -285,6 +294,59 @@ static CGFloat titleWidth = 320.;
             case kRecipeDetailProceduresView:
             case kRecipeDetailIngredientsView:
             case kRecipeDetailContributionView:
+            {
+                NSString *valueString;
+                if ([[recipe contribution] calories]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailKCalSufix, [[[recipe contribution]
+                                calories] floatValue]];
+                    TableCaptionItem *calories = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCalories];
+                    
+                    [items addObject:calories];
+                }
+                if ([[recipe contribution] carbohydrates]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                carbohydrates] floatValue]];
+                    TableCaptionItem *carbohydrates = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailCarbohydrates];
+                    
+                    [items addObject:carbohydrates];
+                }
+                if ([[recipe contribution] fats]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fats] floatValue]];
+                    TableCaptionItem *fats = [TableCaptionItem
+                            itemWithText:valueString caption:kRecipeDetailFats];
+                    
+                    [items addObject:fats];
+                }
+                if ([[recipe contribution] fiber]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                fiber] floatValue]];
+                    TableCaptionItem *fiber = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailFiber];
+                    
+                    [items addObject:fiber];
+                }
+                if ([[recipe contribution] proteins]) {
+                    valueString = [NSString stringWithFormat:
+                            kRecipeDetailGramsSufix, [[[recipe contribution]
+                                proteins] floatValue]];
+                    TableCaptionItem *proteins = [TableCaptionItem
+                            itemWithText:valueString
+                                caption:kRecipeDetailProteins];
+                    
+                    [items addObject:proteins];
+                }
+                break;
+            }
             default:
                 break;
         }
