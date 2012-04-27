@@ -208,6 +208,11 @@ NSString *const kWineRecommendedLabel = @"Platos Recomendados";
 // WineFilterController's constants
 NSString *const cellId = @"cellId";
 NSString *const kWineUndefinedLabel = @"No hay información";
+NSString *const kWineCountryFilterPrefix = @"country=%@";
+NSString *const kWineCategoryFilterPrefix = @"cat=%i";
+NSString *const kWineKindFilterPrefix = @"kind=%i";
+NSString *const kWinePriceFilterPrefix = @"price=%i";
+NSString *const kWineWineryFilterPrefix = @"winey=%i";
 const CGFloat kWineColor = .85;
 
 //FilteringListController's constants
