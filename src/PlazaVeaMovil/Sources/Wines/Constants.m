@@ -212,7 +212,7 @@ NSString *const kWineCountryFilterPrefix = @"country=%@";
 NSString *const kWineCategoryFilterPrefix = @"cat=%i";
 NSString *const kWineKindFilterPrefix = @"kind=%i";
 NSString *const kWinePriceFilterPrefix = @"price=%i";
-NSString *const kWineWineryFilterPrefix = @"winey=%i";
+NSString *const kWineWineryFilterPrefix = @"winery=%i";
 const CGFloat kWineColor = .85;
 
 //FilteringListController's constants

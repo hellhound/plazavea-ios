@@ -785,7 +785,7 @@ static NSString *const kMutableListKey = @"list";
     
     if (wineCollection == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
-                          tryAgain:NO];
+                tryAgain:NO];
         return;
     }
     [self copyPropertiesFromWineCollection:wineCollection];

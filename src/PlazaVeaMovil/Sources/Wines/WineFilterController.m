@@ -37,8 +37,28 @@ static CGFloat titleWidth = 320.;
                 title:kSomelierTitle]];
         [[self view] setBackgroundColor:[UIColor colorWithWhite:kWineColor
                 alpha:1.]];
+        _clearFilters = YES;
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_clearFilters) {
+        for (int i = 0; i < 5; i ++) {
+            if (_selectedItemsNames)
+                [_selectedItemsNames  replaceObjectAtIndex:i withObject:@""];
+            if (_selectedItemsIds)
+                [_selectedItemsIds replaceObjectAtIndex:i
+                        withObject:[NSNull null]];
+        }
+        [[self tableView] reloadData];
+    }
+    _clearFilters = YES;
 }
 
 #pragma mark -
@@ -46,7 +66,8 @@ static CGFloat titleWidth = 320.;
 
 @synthesize country = _country, winery = _winery, category = _category,
         strain = _strain, price = _price, selectedItemsIds = _selectedItemsIds,
-            selectedItemsNames = _selectedItemsNames;
+            selectedItemsNames = _selectedItemsNames,
+            clearFilters = _clearFilters;
 
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
 {
@@ -213,11 +234,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:URL(kURLFilteringCall, @"0")]
                                 applyAnimated:YES]];
+                    _clearFilters = NO;
                     break;
                 case kWineWineryRow:
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:URL(kURLFilteringCall, @"1")]
                                 applyAnimated:YES]];
+                    _clearFilters = NO;
                     break;
                 case kWineCategoryRow:
                     /*[[TTNavigator navigator] openURLAction:[[TTURLAction
@@ -227,6 +250,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
+                    _clearFilters = NO;
                     break;    
                 case kWineStrainRow: {
                     NSString *url;
@@ -238,6 +262,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     }
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:url] applyAnimated:YES]];
+                    _clearFilters = NO;
                      }
                     break;
                 case kWinePriceRow:
@@ -245,6 +270,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
+                    _clearFilters = NO;
                     break;
                 default:
                     break;
@@ -302,7 +328,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         _selectedItemsNames = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 5; i ++) {
-            [_selectedItemsNames addObject:kWineUndefinedLabel];
+            [_selectedItemsNames addObject:@""];
         }
     }
     if (!_selectedItemsIds) {
@@ -356,7 +382,7 @@ didPickLocalItemId:(int)itemId
         _selectedItemsNames = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 5; i ++) {
-            [_selectedItemsNames addObject:kWineUndefinedLabel];
+            [_selectedItemsNames addObject:@""];
         }
     }
     if (!_selectedItemsIds) {
@@ -412,13 +438,6 @@ didPickLocalItemId:(int)itemId
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
     }
-    [[self tableView] reloadData];
-}
-
-- (void)controller:(FilteringListController *)controller
-            itemId:(NSNumber *)itemId
-{
-    NSLog(@"list: %i, item Id: %i", [controller list], [itemId intValue]); 
     [[self tableView] reloadData];
 }
 @end
