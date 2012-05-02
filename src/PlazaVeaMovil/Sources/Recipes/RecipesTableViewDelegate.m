@@ -39,7 +39,7 @@
             break; 
         case kRecipeFromWine:
         default:
-            height = .0;t
+            height = .0;
             break;
     }
     return height;
