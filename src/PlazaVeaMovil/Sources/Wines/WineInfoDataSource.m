@@ -200,8 +200,26 @@ static CGFloat titleWidth = 320.;
     TableCaptionItem *price = [TableCaptionItem
             itemWithText:priceLabel caption:kWinePriceLabel];
     
-    
     [items addObject:price];
+    
+    TableCaptionItem *cellaring = [TableCaptionItem itemWithText:
+                [NSString stringWithFormat:kWineCellaringUnits,
+                    [[wine cellaring] stringValue]]
+                    caption:kWineCellaringLabel];
+    
+    [items addObject:cellaring];
+    
+    TableCaptionItem *milliliters = [TableCaptionItem itemWithText:
+                [[wine milliliters] stringValue] caption:kWineMillilitersLabel];
+    
+    [items addObject:milliliters];
+    
+    TableCaptionItem *temperature = [TableCaptionItem itemWithText:
+                [NSString stringWithFormat:kWineTemperatureUnits,
+                    [[wine temperature] stringValue]]
+                    caption:kWineTemperatureLabel];
+    
+    [items addObject:temperature];
     
     [self setItems:items];
 }

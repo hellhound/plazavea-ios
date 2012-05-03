@@ -198,8 +198,8 @@ NSString *const kWinePriceUnits = @"S/. %@";
 // NSLocalizedString(@"S/. %@", nil)
 NSString *const kWineTemperatureUnits = @"%@ ºC";
 // NSLocalizedString(@"%@ ºC", nil)
-NSString *const kWineCellaringUnits = @"%@ meses";
-// NSLocalizedString(@"%@ meses", nil)
+NSString *const kWineCellaringUnits = @"%@ años";
+// NSLocalizedString(@"%@ años", nil)
 NSString *const kWineOxygenationUnits = @"%@ minutos";
 // NSLocalizedString(@"%@ minutos", nil)
 NSString *const kWineRecommendedLabel = @"Platos Recomendados";
