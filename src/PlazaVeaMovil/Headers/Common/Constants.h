@@ -15,10 +15,10 @@
 //#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api" // Mac de Hansy
 
 #else
-//#define HOST_NAME @"demos.bitzeppelin.com"
-#define HOST_NAME @"restmocker.bitzeppelin.com"
-//#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
-#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api/spsa"
+#define HOST_NAME @"demos.bitzeppelin.com"
+//#define HOST_NAME @"restmocker.bitzeppelin.com"
+#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/spsa/api"
+//#define ENDPOINT_BASE_URL @"http://" HOST_NAME @"/api/spsa"
 #endif
 
 // CoreData constants

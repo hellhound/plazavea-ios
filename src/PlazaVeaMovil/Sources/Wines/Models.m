@@ -612,7 +612,7 @@ static NSString *const kMutableListKey = @"list";
     [_sections release];
     [_sectionTitles release];
     [_categoryId release];
-    [_recipeId release];
+    //[_recipeId release];
     [_filters release];
     [super dealloc];
 }
