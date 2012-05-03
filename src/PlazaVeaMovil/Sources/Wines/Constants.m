@@ -272,6 +272,8 @@ NSString *const kURLWineFilter = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainList = @"tt://launcher/wines/strains/";
 NSString *const kURLWineList =
         @"tt://launcher/wines/alphapetic/(initWithCategoryId:)/(from:)/";
+NSString *const kURLWinesForRecipeList = 
+        @"tt://launcher/wines/recipe/(initWithRecipeId:)/(categoryId:)/";
 NSString *const kURLWineDetail =
         @"tt://launcher/wines/wine/(initWithWineId:)/(from:)/";
 NSString *const kURLWineInfo =
@@ -293,6 +295,8 @@ NSString *const kURLFilteredWineList =
 NSString *const kURLWineFilterCall = @"tt://launcher/wines/filter/";
 NSString *const kURLStrainListCall = @"tt://launcher/wines/strains/";
 NSString *const kURLWineListCall = @"tt://launcher/wines/alphapetic/%@/%@/";
+NSString *const kURLWinesForRecipeListCall = 
+        @"tt://launcher/wines/recipe/%@/%@/";
 NSString *const kURLWineDetailCall = @"tt://launcher/wines/wine/%@/%@/";
 NSString *const kURLWineInfoCall = @"tt://launcher/wines/wine_info/%@/";
 NSString *const kURLWineTasteCall = @"tt://launcher/wines/wine_taste/%@/";
@@ -307,6 +311,8 @@ NSString *const kURLFilteredWineListCall =
 NSString *const kURLWineDetailEndPoint = ENDPOINT(@"/wines/%@/details.json");
 NSString *const kURLWineCollectionEndPoint =
         ENDPOINT(@"/wines/%@/alphabetic.json");
+NSString *const kURLWineCollectionForRecipeEndPoint =
+        ENDPOINT(@"/recipes/%@/wines/%@/alphabetic.json");
 NSString *const kURLStrainCollectionEndPoint =
         ENDPOINT(@"/wines/categories.json");
 NSString *const kURLRecipeStrainCollectionEndPoint =

@@ -297,6 +297,8 @@
             toViewController:[StrainListController class]];
     [map from:kURLWineList
             toViewController:[WineListController class]];
+    [map from:kURLWinesForRecipeList
+            toViewController:[WineListController class]];
     [map from:kURLWineDetail
             toViewController:[WineDetailController class]];
     [map from:kURLWineInfo

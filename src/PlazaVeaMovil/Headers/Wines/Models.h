@@ -137,11 +137,13 @@
 @interface WineCollection: URLRequestModel
 {
     NSString *_categoryId;
+    NSString *_recipeId;
     NSString *_filters;
     NSMutableArray *_sections;
     NSMutableArray *_sectionTitles;
 }
 @property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, copy) NSString *recipeId;
 @property (nonatomic, copy) NSString *filters;
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) NSArray *sectionTitles;
@@ -149,6 +151,7 @@
 + (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (id)initWithRecipeId:(NSString *)recipeId categoryId:(NSString *)categoryId;
 - (id)initWithFilters:(NSString *)filters;
 - (void)copyPropertiesFromWineCollection:(WineCollection *)collection;
 - (NSArray *)sectionIndexTitles;

@@ -10,13 +10,16 @@
 {
     WineDetailFromType _from;
     NSString *_categoryId;
+    NSString *_recipeId;
     NSString *_filters;
 }
 @property (nonatomic, assign) WineDetailFromType from;
 @property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, copy) NSString *recipeId;
 @property (nonatomic, copy) NSString *filters;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
 - (id)initWithCategoryId:(NSString *)categoryId from:(NSString *)from;
+- (id)initWithRecipeId:(NSString *)recipeId categoryId:(NSString *)categoryId;
 - (id)initWithFilters:(NSString *)filters;
 @end

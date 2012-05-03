@@ -386,7 +386,7 @@ static NSString *const kMutableListKey = @"list";
 
 + (id)shortWineFromDictionary:(NSDictionary *)rawWine
 {
-    NSNumber *wineId, *milliliters, *price;
+    NSNumber *wineId, *price;
     NSString *name, *pictureURL;
     
     if (![rawWine isKindOfClass:[NSDictionary class]])
@@ -394,10 +394,6 @@ static NSString *const kMutableListKey = @"list";
     if ((wineId = [rawWine objectForKey:kWineIdKey]) == nil)
         return nil;
     if (![wineId isKindOfClass:[NSNumber class]])
-        return nil;
-    if ((milliliters = [rawWine objectForKey:kWineMillilitersKey]) == nil)
-        return nil;
-    if (![milliliters isKindOfClass:[NSNumber class]])
         return nil;
     if ((price = [rawWine objectForKey:kWinePriceKey]) == nil)
         return nil;
@@ -417,7 +413,6 @@ static NSString *const kMutableListKey = @"list";
     Wine *wine = [[[Wine alloc] init] autorelease];
     
     [wine setWineId:wineId];
-    [wine setMilliliters:milliliters];
     [wine setPrice:price];
     [wine setName:name];
     if (pictureURL)
@@ -432,7 +427,7 @@ static NSString *const kMutableListKey = @"list";
     if (wine == nil)
         return nil;
     
-    NSNumber *harvestYear, *temperature, *cellaring;
+    NSNumber *harvestYear, *temperature, *cellaring, *milliliters;
     NSString *code, *barrel, *tasting, *bottleImageURL;
     NSDictionary *rawCountry, *rawRegion, *rawBrand, *rawKind, *rawWinery,
             *rawOxygenation, *rawBottles;
@@ -443,6 +438,10 @@ static NSString *const kMutableListKey = @"list";
     Kind *kind;
     Winery *winery;
     
+    if ((milliliters = [rawWine objectForKey:kWineMillilitersKey]) == nil)
+        return nil;
+    if (![milliliters isKindOfClass:[NSNumber class]])
+        return nil;
     if ((harvestYear = [rawWine objectForKey:kWineHarvestYearKey]) == nil)
         return nil;
     if (![harvestYear isKindOfClass:[NSNumber class]])
@@ -509,6 +508,7 @@ static NSString *const kMutableListKey = @"list";
             return nil;
         }
     }
+    [wine setMilliliters:milliliters];
     [wine setCode:code];
     [wine setHarvestYear:harvestYear];
     [wine setBarrel:barrel];
@@ -612,6 +612,7 @@ static NSString *const kMutableListKey = @"list";
     [_sections release];
     [_sectionTitles release];
     [_categoryId release];
+    [_recipeId release];
     [_filters release];
     [super dealloc];
 }
@@ -664,7 +665,7 @@ static NSString *const kMutableListKey = @"list";
 #pragma mark -
 #pragma mark WineCollection (Public)
 
-@synthesize categoryId = _categoryId, filters = _filters;
+@synthesize categoryId = _categoryId, filters = _filters, recipeId = _recipeId;
 
 + (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection
 {
@@ -726,6 +727,14 @@ static NSString *const kMutableListKey = @"list";
     return self;
 }
 
+- (id)initWithRecipeId:(NSString *)recipeId categoryId:(NSString *)categoryId
+{
+    if ((self = [self initWithCategoryId:categoryId]) != nil) {
+        _recipeId = [recipeId copy];
+    }
+    return self;
+}
+
 - (id)initWithFilters:(NSString *)filters
 {
     if ((self = [self init]) != nil) {
@@ -761,7 +770,12 @@ static NSString *const kMutableListKey = @"list";
         NSString *url;
         
         if (_categoryId != nil) {
-            url = URL(kURLWineCollectionEndPoint, _categoryId);
+            if (_recipeId != nil) {
+                url = URL(kURLWineCollectionForRecipeEndPoint, _recipeId,
+                        _categoryId);
+            } else {
+                url = URL(kURLWineCollectionEndPoint, _categoryId);
+            }
         } else {
             url = URL(kURLFilterCollectionEndPoint, _filters);
         }

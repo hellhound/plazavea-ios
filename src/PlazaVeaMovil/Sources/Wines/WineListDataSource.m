@@ -56,7 +56,22 @@ static CGFloat titleWidth = 320.;
 {
     if ((self =
             [self initWithCategoryId:categoryId delegate:delegate]) != nil) {
-        _from = [[NSString alloc] initWithFormat:@"%i",from];
+        _from = [[NSString alloc] initWithFormat:@"%i", from];
+    }
+    return self;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId
+            categoryId:(NSString *)categoryId
+              delegate:(id<WineListDataSourceDelegate>)delegate
+{
+    if ((self = [super init]) != nil) {
+        [self setDelegate:delegate];
+        
+        _from = [[NSString alloc] initWithFormat:@"%i", kWineFromRecipes];
+        
+        [self setModel:[[[WineCollection alloc] initWithRecipeId:recipeId
+                    categoryId:categoryId] autorelease]];
     }
     return self;
 }

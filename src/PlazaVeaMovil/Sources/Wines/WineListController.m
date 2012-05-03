@@ -15,6 +15,7 @@
 - (void) dealloc
 {
     [_categoryId release];
+    [_recipeId release];
     [_filters release];
     [super dealloc];
 }
@@ -37,8 +38,14 @@
 - (void)createModel
 {
     if (_categoryId != nil) {
-        [self setDataSource:[[[WineListDataSource alloc] initWithCategoryId:
-                _categoryId delegate:self from:_from] autorelease]];
+        if (_recipeId != nil) {
+            [self setDataSource:[[[WineListDataSource alloc]
+                    initWithRecipeId:_recipeId categoryId:_categoryId
+                        delegate:self] autorelease]];
+        } else {
+            [self setDataSource:[[[WineListDataSource alloc] initWithCategoryId:
+                    _categoryId delegate:self from:_from] autorelease]];
+        }
     } else if (_filters != nil) {
         [self setDataSource:[[[WineListDataSource alloc]
                 initWithFilters:_filters delegate:self] autorelease]];
@@ -54,7 +61,8 @@
 #pragma mark -
 #pragma mark WineListController (Public)
 
-@synthesize categoryId = _categoryId, from = _from, filters = _filters;
+@synthesize categoryId = _categoryId, from = _from, filters = _filters,
+        recipeId = _recipeId;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
@@ -75,6 +83,14 @@
 {
     if ((self = [self initWithCategoryId:categoryId]) != nil) {
         _from = [from intValue];
+    }
+    return self;
+}
+
+- (id)initWithRecipeId:(NSString *)recipeId categoryId:(NSString *)categoryId
+{
+    if ((self = [self initWithCategoryId:categoryId from:@"1"]) != nil) {
+        _recipeId = recipeId;
     }
     return self;
 }

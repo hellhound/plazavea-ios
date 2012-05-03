@@ -29,7 +29,7 @@
 #pragma mark -
 #pragma mark StrainListDataSource
 
-@synthesize from = _from;
+@synthesize from = _from, recipeId = _recipeId;
 
 - (id)initWithRecipeId:(NSString *)recipeId
 {
@@ -37,6 +37,7 @@
         [self setModel:[[[StrainCollection alloc] initWithRecipeId:recipeId]
                 autorelease]];
         _from = @"1";
+        _recipeId = recipeId;
     }
     return self;
 }
@@ -82,8 +83,8 @@
     for (Strain *strain in strains) {
         NSString *name = [strain name];
         TableImageSubtitleItem *item = [TableImageSubtitleItem itemWithText:name
-                subtitle:nil
-                    URL:URL(kURLWineListCall, [strain strainId], _from)];
+                subtitle:nil URL:URL(kURLWinesForRecipeListCall, _recipeId,
+                    [strain strainId])];
         
         [items addObject:item];
     }
