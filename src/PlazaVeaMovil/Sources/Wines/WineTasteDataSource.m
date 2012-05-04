@@ -57,9 +57,11 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = [[[UIImageView alloc]
-            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    TTImageView *imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+                              autorelease];
     
+    [imageView setDefaultImage:TTIMAGE(kWineDetailDefaultImage)];
+    [imageView setUrlPath:imageURL];
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
@@ -150,23 +152,13 @@ static CGFloat titleWidth = 320.;
     NSMutableArray *items = [NSMutableArray array];
     
     [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
-            [[wine pictureURL] absoluteString] title:[wine name]]];
+            [IMAGE_URL([wine pictureURL], 320., 140.)  absoluteString]
+                title:[wine name]]];
     
-    TableCaptionItem *look = [TableCaptionItem
-            itemWithText:[wine look] caption:kWineLookLabel];
+    TableImageSubtitleItem *tasting = [TableImageSubtitleItem
+            itemWithText:[wine tasting]];
     
-    [items addObject:look];
-    
-    TableCaptionItem *taste = [TableCaptionItem
-            itemWithText:[wine taste] caption:kWineTasteLabel];
-    
-    [items addObject:taste];
-    
-    TableCaptionItem *smell = [TableCaptionItem
-            itemWithText:[wine smell] caption:kWineSmellLabel];
-    
-    [items addObject:smell];
-    
+    [items addObject:tasting];
     [self setItems:items];
 }
 

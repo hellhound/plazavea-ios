@@ -5,6 +5,17 @@
 #import "Wines/Constants.h"
 #import "Common/Models/URLRequestModel.h"
 
+@interface Oxygenation: NSObject
+{
+    NSNumber *_value;
+    NSString *_unit;
+}
+@property (nonatomic, retain) NSNumber *value;
+@property (nonatomic, copy) NSString *unit;
+
++ (id)oxygenationFromDictionary:(NSDictionary *)rawData;
+@end
+
 @interface GenericFeature: NSObject
 {
     NSNumber *_featureId;
@@ -20,9 +31,11 @@
 @interface Country: NSObject
 {
     NSNumber *_countryId;
+    NSString *_code;
     NSString *_name;
 }
 @property (nonatomic, retain) NSNumber *countryId;
+@property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
 
 + (id)countryFromDictionary:(NSDictionary *)rawData;
@@ -83,12 +96,11 @@
     NSNumber *_price;
     NSNumber *_harvestYear;
     NSString *_barrel;
-    NSString *_look;
-    NSString *_taste;
-    NSString *_smell;
+    NSString *_tasting;
     NSNumber *_temperature;
     NSNumber *_cellaring;
-    NSNumber *_oxygenation;
+    NSString *_bottleImageURL;
+    Oxygenation *_oxygenation;
     Country *_country;
     WineRegion *_region;
     Brand *_brand;
@@ -104,12 +116,11 @@
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSNumber *harvestYear;
 @property (nonatomic, copy) NSString *barrel;
-@property (nonatomic, copy) NSString *look;
-@property (nonatomic, copy) NSString *taste;
-@property (nonatomic, copy) NSString *smell;
+@property (nonatomic, copy) NSString *tasting;
 @property (nonatomic, retain) NSNumber *temperature;
 @property (nonatomic, retain) NSNumber *cellaring;
-@property (nonatomic, retain) NSNumber *oxygenation;
+@property (nonatomic, retain) NSString *bottleImageURL;
+@property (nonatomic, retain) Oxygenation *oxygenation;
 @property (nonatomic, retain) Country *country;
 @property (nonatomic, retain) WineRegion *region;
 @property (nonatomic, retain) Brand *brand;
@@ -126,16 +137,22 @@
 @interface WineCollection: URLRequestModel
 {
     NSString *_categoryId;
+    NSString *_recipeId;
+    NSString *_filters;
     NSMutableArray *_sections;
     NSMutableArray *_sectionTitles;
 }
 @property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, copy) NSString *recipeId;
+@property (nonatomic, copy) NSString *filters;
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) NSArray *sectionTitles;
 
 + (id)wineCollectionFromDictionary:(NSDictionary *)rawCollection;
 
 - (id)initWithCategoryId:(NSString *)categoryId;
+- (id)initWithRecipeId:(NSString *)recipeId categoryId:(NSString *)categoryId;
+- (id)initWithFilters:(NSString *)filters;
 - (void)copyPropertiesFromWineCollection:(WineCollection *)collection;
 - (NSArray *)sectionIndexTitles;
 @end
@@ -176,10 +193,14 @@
 @property (nonatomic, readonly) NSArray *list;
 @property (nonatomic, assign) WineFilteringListType collectionId;
 
-+ (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection;
++ (id)filterCollectionFromDictionary:(NSDictionary *)rawCollection
+                        collectionId:(WineFilteringListType)collectionId;
 
 - (id)initWithCollectionId:(WineFilteringListType)collectionId;
 - (void)copyPropertiesFromFilterCollection:(FilterCollection *)collection;
+@end
+
+@interface CountryCollection: URLRequestModel
 @end
 
 @interface WineLargeImage: NSObject <TTPhoto>

@@ -78,7 +78,7 @@ static NSTimeInterval const kshowFlashScrollIndicatorsDelay = .15;
         [[self editingToolbarItems] addObjectsFromArray:
                 [NSArray arrayWithObjects:_undoItem, _redoItem, nil]];
     //Conf the color
-    if ([navItem titleView] == nil){
+    if ([navItem titleView] == nil) {
         if ([TTStyleSheet
                 hasStyleSheetForSelector:@selector(navigationBarLogo)])
             [navItem setTitleView:[[[UIImageView alloc]

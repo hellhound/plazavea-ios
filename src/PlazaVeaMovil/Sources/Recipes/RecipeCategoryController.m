@@ -141,7 +141,7 @@ static CGFloat headerMinHeight = 40.;
 
 - (id)initWithCategoryId:(NSString *)categoryId
 {
-    if ((self = [super initWithNibName:nil bundle:nil]) != nil){
+    if ((self = [super initWithNibName:nil bundle:nil]) != nil) {
         _categoryId = [categoryId copy];
         [self setTitle:NSLocalizedString(kRecipeSubcategoryTitle, nil)];
     }

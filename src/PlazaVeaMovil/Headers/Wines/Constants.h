@@ -16,12 +16,11 @@ extern NSString *const kWineKindKey;
 extern NSString *const kWineWineryKey;
 extern NSString *const kWinePictureURLKey;
 extern NSString *const kWineExtraPicturesKey;
+extern NSString *const kWineBottlePictureKey;
 extern NSString *const kWinePriceKey;
 extern NSString *const kWineHarvestYearKey;
 extern NSString *const kWineBarrelKey;
-extern NSString *const kWineLookKey;
-extern NSString *const kWineTasteKey;
-extern NSString *const kWineSmellKey;
+extern NSString *const kWineTastingKey;
 extern NSString *const kWineTemperatureKey;
 extern NSString *const kWineCellaringKey;
 extern NSString *const kWineOxygenationKey;
@@ -45,10 +44,19 @@ extern NSString *const kStrainWines;
 // JSON keys
 extern NSString *const kStrainCollectionCategoriesKey;
 
-// FilterCollection's constants
+// FilterCollection model's constants
 
 // JSON keys
 extern NSString *const kFilterCollectionItemsKey;
+extern NSString *const kFilterCollectionCountriesKey;
+extern NSString *const kFilterCollectionWineriesKey;
+extern NSString *const kFilterCollectionStrainsKey;
+
+// Oxygenation model's constants
+
+// JSON keys
+extern NSString *const kWineOxygenationValueKey;
+extern NSString *const kWineOxygenationUnitKey;
 
 // StrainListDataSource's constants
 
@@ -64,6 +72,11 @@ extern NSString *const kStrainListSubtitleForError;
 
 //messages
 extern NSString *const kStrainListTitle;
+
+// Country model's constants
+
+// JSON keys
+extern NSString *const kWineCountryCodeKey;
 
 // WineListDataSource's constants
 
@@ -151,6 +164,11 @@ extern NSString *const kWineUndefinedLabel;
 extern NSString *const kWineCategoryLabel;
 extern NSString *const kWineStrainLabel;
 extern NSString *const kWineGoLabel;
+extern NSString *const kWineCountryFilterPrefix;
+extern NSString *const kWineCategoryFilterPrefix;
+extern NSString *const kWineKindFilterPrefix;
+extern NSString *const kWinePriceFilterPrefix;
+extern NSString *const kWineWineryFilterPrefix;
 extern const CGFloat kWineColor;
 
 // FilteringListController's constants
@@ -158,7 +176,8 @@ typedef enum {
     kWineCountryFilter,
     kWineWineryFilter,
     kWineCategoryFilter,
-    kWineStrainFilter
+    kWineStrainFilter,
+    kWineSpaklingWineKindFilter
 } WineFilteringListType;
 
 extern NSString *const kWineCountriesLabel;
@@ -202,6 +221,7 @@ extern NSString *const kSomelierTitle;
 extern NSString *const kURLWineFilter;
 extern NSString *const kURLStrainList;
 extern NSString *const kURLWineList;
+extern NSString *const kURLWinesForRecipeList;
 extern NSString *const kURLWineDetail;
 extern NSString *const kURLWineInfo;
 extern NSString *const kURLWineTaste;
@@ -209,11 +229,13 @@ extern NSString *const kURLWineTips;
 extern NSString *const kURLWineRecipe;
 extern NSString *const kURLFiltering;
 extern NSString *const kURLWinePicture;
+extern NSString *const kURLFilteredWineList;
 
 // Controllers' URL calls
 extern NSString *const kURLWineFilterCall;
 extern NSString *const kURLStrainListCall;
 extern NSString *const kURLWineListCall;
+extern NSString *const kURLWinesForRecipeListCall;
 extern NSString *const kURLWineDetailCall;
 extern NSString *const kURLWineInfoCall;
 extern NSString *const kURLWineTasteCall;
@@ -221,13 +243,16 @@ extern NSString *const kURLWineTipsCall;
 extern NSString *const kURLWineRecipeCall;
 extern NSString *const kURLFilteringCall;
 extern NSString *const kURLWinePictureCall;
+extern NSString *const kURLFilteredWineListCall;
 
 // Endpoint URLs
 extern NSString *const kURLWineDetailEndPoint;
 extern NSString *const kURLWineCollectionEndPoint;
+extern NSString *const kURLWineCollectionForRecipeEndPoint;
 extern NSString *const kURLStrainCollectionEndPoint;
 extern NSString *const kURLRecipeStrainCollectionEndPoint;
 extern NSString *const kURLFilterCollectionEndPoint;
 extern NSString *const kURLCountriesCollectionEndPoint;
 extern NSString *const kURLWineriesCollectionEndPoint;
 extern NSString *const kURLStrainsCollectionEndPoint;
+extern NSString *const kURLSparklingWineKindCollectionEndPoint;

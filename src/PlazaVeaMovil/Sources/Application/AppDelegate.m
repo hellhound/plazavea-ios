@@ -167,6 +167,7 @@
 
 - (BOOL)loadDefaults
 {
+    [self getUUID];
     BOOL registrationIsComplete = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -296,6 +297,8 @@
             toViewController:[StrainListController class]];
     [map from:kURLWineList
             toViewController:[WineListController class]];
+    [map from:kURLWinesForRecipeList
+            toViewController:[WineListController class]];
     [map from:kURLWineDetail
             toViewController:[WineDetailController class]];
     [map from:kURLWineInfo
@@ -313,6 +316,8 @@
             toViewController:[FilteringListController class]];
     [map from:kURLWinePicture
             toViewController:[WinePictureController class]];
+    [map from:kURLFilteredWineList
+            toViewController:[WineListController class]];
     // Nutritional composition
     [map from:kURLFoodCategory
             toViewController:[FoodCategoryListController class]

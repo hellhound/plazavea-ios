@@ -88,7 +88,7 @@ static CGFloat phoneHeight = 10.;
 
 - (UINavigationItem *)navigationItem
 {
-    if (_navItem == nil){
+    if (_navItem == nil) {
         _navItem = [super navigationItem];
         [_navItem setRightBarButtonItem:nil];
     }
@@ -321,7 +321,7 @@ static CGFloat phoneHeight = 10.;
   titleForHeaderInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         sectionInfo = 
                 [[_resultsController sections] objectAtIndex:section];
     } else {
@@ -335,7 +335,7 @@ static CGFloat phoneHeight = 10.;
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (tableView == [self tableView]){
+    if (tableView == [self tableView]) {
         cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     } else {
         NSManagedObject *object =
@@ -406,7 +406,7 @@ static CGFloat phoneHeight = 10.;
         [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     } else {
         if ((_allowsRowDeselection && ![self isEditing]) ||
-                (_allowsRowDeselectionOnEditing && [self isEditing])){
+                (_allowsRowDeselectionOnEditing && [self isEditing])) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
         if (_performsSelectionAction)

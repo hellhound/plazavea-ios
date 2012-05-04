@@ -417,7 +417,7 @@ static NSRelationshipDescription *kCategoryRelationship;
     } else {
         foodFile = [[resultsController fetchedObjects] objectAtIndex:0];
     }
-    if (![[foodFile name] isEqualToString:csvFilePath]){
+    if (![[foodFile name] isEqualToString:csvFilePath]) {
         [foodFile setName:csvFilePath];
     } else if(!firstUpdate) {
         [[NSNotificationCenter defaultCenter]
@@ -511,7 +511,7 @@ static NSRelationshipDescription *kCategoryRelationship;
         NSMutableArray *parsedCollectionFoods =
                 [foodThree objectForKey:parsedRowCategory];
         
-        if (parsedCollectionFoods == nil){
+        if (parsedCollectionFoods == nil) {
             parsedCollectionFoods = [NSMutableArray array];
             [foodThree setObject: parsedCollectionFoods
                     forKey:parsedRowCategory];
@@ -532,12 +532,12 @@ static NSRelationshipDescription *kCategoryRelationship;
                     parsedIron, kFoodIron,
                     nil]];
     }
-    for (NSString *categoryname in [foodThree allKeys]){
+    for (NSString *categoryname in [foodThree allKeys]) {
         FoodCategory *foodCategory =
                 [FoodCategory categoryWithName:categoryname context:context];
         NSArray *foodCollection = [foodThree objectForKey:categoryname];
         
-        for (NSDictionary *food in foodCollection){
+        for (NSDictionary *food in foodCollection) {
             NSString *name = [food objectForKey:kFoodName];
             NSString *calories = [food objectForKey:kFoodCalories];
             NSString *carbohidrates = [food objectForKey:kFoodCarbohidrates];

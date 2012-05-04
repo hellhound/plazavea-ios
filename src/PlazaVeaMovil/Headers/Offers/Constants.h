@@ -154,6 +154,18 @@ extern NSString *const kFBFeedDialog;
 extern NSString *const kMailBanner;
 extern const CGFloat kMailBannerWidth;
 extern const CGFloat kMailBannerHeight;
+extern const CGFloat kMailImageHeight;
+extern NSString *const kOfferMailSubject;
+extern NSString *const kPromotionMailSubject;
+extern NSString *const kDivTag;
+extern NSString *const kTitleTag;
+extern NSString *const kImageTag;
+extern NSString *const kOfferPriceTag;
+extern NSString *const kOldPriceTag;
+extern NSString *const kValidTag;
+extern NSString *const kDescriptionTag;
+extern NSString *const kLegaleseTag;
+extern NSString *const kMailFooterTag;
 
 // PromotionListController's constants
 

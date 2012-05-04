@@ -211,9 +211,9 @@ NSString *const kURLStoreMapCall = @"tt://launcher/stores/map/%@/%@/%@/";
 NSString *const kURLStoreDetailMapCall = @"tt://launcher/store/map/%@/%@/";
 
 // Endpoint URLs
-NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json/");
+NSString *const kRegionListEndPoint = ENDPOINT(@"/regions/listing.json");
 NSString *const kSubregionListEndPoint =
-        ENDPOINT(@"/regions/%@/subregions/listing.json/");
+        ENDPOINT(@"/regions/%@/subregions/listing.json");
 NSString *const kStoreListEndPoint =
-        ENDPOINT(@"/regions/%@/subregions/%@/stores/listing.json/");
-NSString *const kStoreDetailEndPoint = ENDPOINT(@"/stores/%@/details.json/");
+        ENDPOINT(@"/regions/%@/subregions/%@/stores/listing.json");
+NSString *const kStoreDetailEndPoint = ENDPOINT(@"/stores/%@/details.json");

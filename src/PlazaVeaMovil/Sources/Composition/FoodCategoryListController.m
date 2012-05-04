@@ -86,7 +86,7 @@ static CGFloat indexWitdh = 50.;
 
 - (UINavigationItem *)navigationItem
 {
-    if (_navItem == nil){
+    if (_navItem == nil) {
         _navItem = [super navigationItem];
         [_navItem setRightBarButtonItem:nil];
     }

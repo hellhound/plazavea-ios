@@ -32,7 +32,7 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark StoreDetailDataSource (public)
 
-@synthesize  delegate = _delegate, from = _from;
+@synthesize  delegate = _delegate, from = _from, imageView = _imageView;
 
 
 - (id)initWithWineId:(NSString *)wineId
@@ -68,19 +68,20 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    /*UIImageView *imageView = [[[UIImageView alloc]
-            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
-    
-    [imageView setAutoresizingMask:UIViewAutoresizingNone];
-    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+    TTImageView *image = [[[TTImageView alloc] initWithFrame:CGRectZero]
+            autorelease];
+    [image setDefaultImage:TTIMAGE(kWineDetailDefaultImage)];
+    [image setUrlPath:imageURL];
+    [image setAutoresizingMask:UIViewAutoresizingNone];
+    [image setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
-    [imageView setBackgroundColor:[UIColor clearColor]];*/
-    UIButton *imageView = [[[UIButton alloc]
-            initWithFrame:CGRectMake(.0, .0, 320., 140.)] autorelease];
+    [image setBackgroundColor:[UIColor clearColor]];
+    //[image setDelegate:self];
     
-    [imageView setImage:TTIMAGE(kWineBannerImage)
-            forState:UIControlStateNormal];
-    [imageView addTarget:_delegate action:@selector(showBigPicture)
+    _imageView = [[[UIButton alloc]
+            initWithFrame:CGRectMake(.0, .0, 320., 140.)] autorelease];
+    [_imageView setImage:nil forState:UIControlStateNormal];
+    [_imageView addTarget:_delegate action:@selector(showBigPicture)
             forControlEvents:UIControlEventTouchUpInside];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
@@ -118,10 +119,12 @@ static CGFloat titleWidth = 320.;
             titleHeight + (margin * 2.));
     
     [headerView setFrame:headerFrame];
-    [imageView setFrame:CGRectOffset([imageView frame], .0,
+    [_imageView setFrame:CGRectOffset([_imageView frame], .0,
             titleHeight + (margin * 2.))];
+    [image setFrame:[_imageView frame]];
     [headerView addSubview:titleLabel];
-    [headerView addSubview:imageView];
+    [headerView addSubview:image];
+    [headerView addSubview:_imageView];
     
     UIImageView *background = [[[UIImageView alloc]
             initWithImage:TTIMAGE(kWineBackgroundImage)] autorelease];
@@ -167,10 +170,16 @@ static CGFloat titleWidth = 320.;
     Wine *wine = (Wine *)[self model];
     NSMutableArray *items = [NSMutableArray array];
 
-    [_delegate dataSource:self viewForHeader: [self viewWithImageURL:
-            [[wine pictureURL] absoluteString] title:[wine name]]];
+    [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
+            [IMAGE_URL([wine pictureURL], 320., 140.)  absoluteString]
+                title:[wine name]]];
     [_delegate dataSource:self wineName:[wine name]];
-    [_delegate dataSource:self wineImageURL:@"http:--restmocker.bitzeppelin.com-media-attachments-IMG_2501.jpg"];
+    
+    NSString *bottleImage = [[wine bottleImageURL]
+            stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+    
+    if ([wine bottleImageURL] != nil)
+        [_delegate dataSource:self wineImageURL:bottleImage];
     
     TTTableTextItem *info = [TTTableTextItem itemWithText:kWineInfoLabel
             URL:URL(kURLWineInfoCall, [wine wineId])];
@@ -182,10 +191,10 @@ static CGFloat titleWidth = 320.;
     
     [items addObject:taste];
     
-    TTTableTextItem *tips = [TTTableTextItem itemWithText:kWineTipsLabel
+    /*TTTableTextItem *tips = [TTTableTextItem itemWithText:kWineTipsLabel
             URL:URL(kURLWineTipsCall, [wine wineId])];
     
-    [items addObject:tips];
+    [items addObject:tips];*/
     
     NSString *title = [kWineRecommendedLabel
             stringByReplacingOccurrencesOfString:@" " withString:@"_"];

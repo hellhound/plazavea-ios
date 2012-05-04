@@ -15,6 +15,7 @@
     NSNumber *_price;
     NSMutableArray *_selectedItemsNames;
     NSMutableArray *_selectedItemsIds;
+    BOOL _clearFilters;
 }
 @property (nonatomic, retain) NSNumber *country;
 @property (nonatomic, retain) NSNumber *winery;
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSMutableArray *selectedItemsNames;
 @property (nonatomic, retain) NSMutableArray *selectedItemsIds;
+@property (nonatomic, assign) BOOL clearFilters;
 
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title;
 @end

@@ -7,7 +7,9 @@
 @interface StrainListDataSource: TTListDataSource
 {
     NSString *_from;
+    NSString *_recipeId;
 }
 @property (nonatomic, retain) NSString *from;
+@property (nonatomic, retain) NSString *recipeId;
 - (id)initWithRecipeId:(NSString *)recipeId;
 @end
