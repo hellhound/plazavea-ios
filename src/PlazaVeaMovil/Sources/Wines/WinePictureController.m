@@ -29,6 +29,7 @@
             withString:@" "];
     NSString *url = [pictureURL stringByReplacingOccurrencesOfString:@"-"
             withString:@"/"];
+    url = [url stringByAppendingFormat:@"?width=320&height=480"];
     WineLargeImage *photo = [[WineLargeImage alloc] initWithPictureURL:url];
     WinePhotoSource *photoSource = [[WinePhotoSource alloc]
             initWithTitle:caption photos:[NSArray arrayWithObjects:photo, nil]];

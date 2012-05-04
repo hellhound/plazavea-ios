@@ -219,9 +219,33 @@ NSString *const kFBDescription = @"description";
 // NSLocalizedString(@"description", nil)
 NSString *const kFBFeedDialog = @"feed";
 // NSLocalizedString(@"feed", nil)
-NSString *const kMailBanner = @"";
+NSString *const kMailBanner =
+@"http://demos.bitzeppelin.com/spsa/assets/mailing/offers/plazavea-logo.jpg";
 const CGFloat kMailBannerWidth = 300.;
-const CGFloat kMailBannerHeight = 140.;
+const CGFloat kMailBannerHeight = 208.;
+const CGFloat kMailImageHeight = 131.;
+NSString *const kOfferMailSubject =
+        @"Plaza Vea te envía la siguiente oferta: %@";
+NSString *const kPromotionMailSubject =
+        @"Plaza Vea te envía la siguiente promoción: %@";
+NSString *const kDivTag = @"<div style=\"width:%.0fpx\">";
+NSString *const kTitleTag = @"<p><h1 style=\"font-family:sans-serif;\
+        font-size:16pt; text-align:center\">%@</h1></p>";
+NSString *const kImageTag = @"<img src= \"%@?width=%.0f&height=%.0f\"\
+        width=\"%.0f\" height=\"%.0f\" />";
+NSString *const kOfferPriceTag = @"<p style=\"font-family:sans-serif;\
+        font-size:12pt; text-align:center; color:red\">%@</p>";
+NSString *const kOldPriceTag = @"<p style=\"font-family:sans-serif;\
+        font-size:12pt; text-align:center\">%@</p>";
+NSString *const kValidTag = @"<p style=\"font-family:sans-serif;\
+        font-size:12pt; text-align:center\">%@</p>";
+NSString *const kDescriptionTag = @"<p style=\"font-family:sans-serif;\
+        font-size:12pt\">%@</p>";
+NSString *const kLegaleseTag = @"<p style=\"font-family:sans-serif;\
+        font-size:8pt\">%@</p>";
+NSString *const kMailFooterTag = @"<p style=\"font-family:sans-serif;\
+        font-size:13pt\">Encuentra más ofertas y promociones en Plaza Vea\
+            Móvil. Ingresa aquí.</p>";
 
 
 // PromotionDetailController's constants

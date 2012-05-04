@@ -40,7 +40,7 @@
 - (id)initWithWineId:(NSString *)wineId
 {
     if ((self = [super init]) != nil) {
-        [self setModel:[[[RecipeCollection alloc]
+        [self setModel:[[[RecipeCollectionFromWine alloc]
                 initWithWineId:wineId] autorelease]];
         _from = kRecipeFromWine;
     }

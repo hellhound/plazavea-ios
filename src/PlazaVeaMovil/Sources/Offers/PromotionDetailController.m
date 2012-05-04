@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
+- (NSString *)composeMail;
 - (void)showTwitterAlert;
 - (void)mailPromotion;
 - (void)likePromotion;
@@ -48,6 +49,42 @@
 
 @synthesize facebook = _facebook, twitter = _twitter;
 
+- (NSString *)composeMail
+{
+    NSString *html = [[[NSString alloc] initWithFormat:kDivTag,
+            kMailBannerWidth] autorelease];
+    html = [html stringByAppendingFormat:kImageTag, kMailBanner,
+            kMailBannerWidth, kMailBannerHeight, kMailBannerWidth,
+                kMailBannerHeight];
+    html = [html stringByAppendingFormat:kTitleTag, [_promotion name]];
+    html = [html stringByAppendingFormat:kImageTag, [_promotion bannerURL],
+            kMailBannerWidth, kMailImageHeight, kMailBannerWidth,
+                kMailImageHeight];
+    NSDateFormatter *dateFormatter =
+            [[[NSDateFormatter alloc] init] autorelease];
+    
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString *validString = [NSString stringWithFormat:
+            kOfferDetailValidPrefix,
+                [dateFormatter stringFromDate:[_promotion validFrom]],
+                [dateFormatter stringFromDate:[_promotion validTo]]];
+    html = [html stringByAppendingFormat:kValidTag,
+            [NSString stringWithFormat:@"%@: %@", kOfferDetailValidCaption,
+                validString]];
+    html = [html stringByAppendingFormat:kDescriptionTag, [[_promotion
+            longDescription] stringByReplacingOccurrencesOfString:@"\n"
+                withString:@"<br />"]];
+    html = [html stringByAppendingFormat:kLegaleseTag,
+            [[_promotion legalese] stringByReplacingOccurrencesOfString:@"\n"
+                withString:@"<br />"]];
+    html = [html stringByAppendingString:kMailFooterTag];
+    html = [html stringByAppendingString:@"</div>"];
+    
+    return html;
+}
+
 - (void) showTwitterAlert
 {
     _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
@@ -73,23 +110,13 @@
 
 - (void)mailPromotion
 {
-    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
-            kMailBanner], kMailBannerWidth, kMailBannerHeight);
-    NSString *promotionImageURL = IMAGE_URL([_promotion bannerURL],
-            kMailBannerWidth, kMailBannerHeight);
-    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
-            bannerURL];
-    NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
-            promotionImageURL];
     MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
-    [controller setSubject:[_promotion name]];
-    [controller setMessageBody:[NSString stringWithFormat:
-            @"%@<br /><b>%@</b><br />%@<br />%@<br />%@", imageHTML,
-                [_promotion name], offerImageHTML, [_promotion longDescription],
-                [_promotion legalese]] isHTML:YES];
+    [controller setSubject:[NSString stringWithFormat:kPromotionMailSubject,
+            [_promotion name]]];
+    [controller setMessageBody:[self composeMail] isHTML:YES];
     [self presentModalViewController:controller animated:YES];
 }
 

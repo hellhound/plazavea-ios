@@ -144,3 +144,17 @@
 - (id)initWithWineId:(NSString *)wineId;
 - (NSArray *)sectionIndexTitles;
 @end
+
+@interface RecipeCollectionFromWine: URLRequestModel
+{
+    NSString *_collectionId;
+    NSMutableArray *_sections;
+}
+@property (nonatomic, readonly) NSString *collectionId;
+@property (nonatomic, readonly) NSArray *sections;
+
++ (id)recipeCollectionFromDictionary:(NSDictionary *)rawCollection;
+
+- (id)initWithWineId:(NSString *)wineId;
+- (void)copyPropertiesFromCollection:(RecipeCollectionFromWine *)collection;
+@end

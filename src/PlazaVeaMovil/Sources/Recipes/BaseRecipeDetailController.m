@@ -82,7 +82,7 @@
 - (id)initWithRecipeId:(NSString *)recipeId hasMeat:(NSString *)hasMeat
 {
     if ((self = [self initWithRecipeId:recipeId]) != nil) {
-        if ([hasMeat boolValue]){
+        if ([hasMeat boolValue]) {
             [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
         } else {
             [self setSegmentIndex:kRecipesSegmentedControlIndexFoodButton];

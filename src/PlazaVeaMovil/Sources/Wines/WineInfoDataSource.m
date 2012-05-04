@@ -57,9 +57,11 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
             [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    UIImageView *imageView = [[[UIImageView alloc]
-            initWithImage:TTIMAGE(kWineBannerImage)] autorelease];
+    TTImageView *imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+            autorelease];
     
+    [imageView setDefaultImage:TTIMAGE(kWineDetailDefaultImage)];
+    [imageView setUrlPath:imageURL];
     [imageView setAutoresizingMask:UIViewAutoresizingNone];
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
             UIViewAutoresizingFlexibleRightMargin];
@@ -147,10 +149,13 @@ static CGFloat titleWidth = 320.;
     NSMutableArray *items = [NSMutableArray array];
     
     [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
-            [[wine pictureURL] absoluteString] title:[wine name]]];
+            [IMAGE_URL([wine pictureURL], 320., 140.)  absoluteString]
+                title:[wine name]]];
     
     NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
             [[wine price] stringValue]];
+    NSString *oxygenationLabel = [NSString stringWithFormat:
+            @"%@ %@",[[wine oxygenation] value], [[wine oxygenation] unit]];
     TableCaptionItem *country = [TableCaptionItem
             itemWithText:[[wine country] name] caption:kWineCountryLabel];
     
@@ -187,11 +192,32 @@ static CGFloat titleWidth = 320.;
     
     [items addObject:barrel];
     
+    TableCaptionItem *oxygenation = [TableCaptionItem
+            itemWithText:oxygenationLabel caption:kWineOxygenationLabel];
+    
+    [items addObject:oxygenation];
+    
     TableCaptionItem *price = [TableCaptionItem
             itemWithText:priceLabel caption:kWinePriceLabel];
     
-    
     [items addObject:price];
+    
+    TableCaptionItem *cellaring = [TableCaptionItem itemWithText:
+            [NSString stringWithFormat:kWineCellaringUnits,
+                [[wine cellaring] stringValue]] caption:kWineCellaringLabel];
+    
+    [items addObject:cellaring];
+    
+    TableCaptionItem *milliliters = [TableCaptionItem itemWithText:
+            [[wine milliliters] stringValue] caption:kWineMillilitersLabel];
+    
+    [items addObject:milliliters];
+    
+    TableCaptionItem *temperature = [TableCaptionItem itemWithText:
+            [NSString stringWithFormat:kWineTemperatureUnits, [[wine
+                temperature] stringValue]] caption:kWineTemperatureLabel];
+    
+    [items addObject:temperature];
     
     [self setItems:items];
 }

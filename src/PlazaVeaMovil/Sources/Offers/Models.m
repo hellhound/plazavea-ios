@@ -245,7 +245,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             [[[NSDateFormatter alloc] init] autorelease];
     
     //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [offer setLongDescription:longDescription];
     [offer setLegalese:legalese];
     [offer setOldPrice:oldPrice];
@@ -593,8 +594,8 @@ static NSString *const kMutablePromotionsKey = @"promotions";
             [[[NSDateFormatter alloc] init] autorelease];
     
     //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
-    
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [promotion setLongDescription:description];
     [promotion setLegalese:legalese];
     [promotion setValidFrom:[dateFormatter dateFromString:validFrom]];

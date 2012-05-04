@@ -6,6 +6,7 @@
 #import "Recipes/Constants.h"
 #import "Recipes/RecipesTableViewDelegate.h"
 #import "Recipes/AlphabeticalRecipesDataSource.h"
+#import "Recipes/RecipeCollectionDataSource.h"
 #import "Recipes/RecipeListController.h"
 
 static CGFloat margin = 5.;
@@ -139,7 +140,7 @@ static CGFloat headerMinHeight = 40.;
                     initWithMeatId:_collectionId] autorelease]];
             break;
         case kRecipeFromWine:
-            [self setDataSource:[[[AlphabeticalRecipesDataSource alloc]
+            [self setDataSource:[[[RecipeCollectionDataSource alloc]
                     initWithWineId:_collectionId] autorelease]];
             break;
         default:

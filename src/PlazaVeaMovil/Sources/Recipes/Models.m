@@ -350,13 +350,13 @@ static NSString *const kRecipeMiscYes = @"YES";
     NSMutableArray *mutableCategories =
             [self mutableArrayValueForKey:kMutableCategoriesKey];
 
-    if (![rootObject isKindOfClass:[NSDictionary class]]){
+    if (![rootObject isKindOfClass:[NSDictionary class]]) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
         return;
     }
     if ((rawCategories = [rootObject objectForKey:
-            kRecipeCategoryCollectionCategoriesKey]) == nil){
+            kRecipeCategoryCollectionCategoriesKey]) == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
         return;
@@ -365,7 +365,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         RecipeCategory *recipeCategory =
                 [RecipeCategory recipeCategoryFromDictionary:rawRecipeCategory];
 
-        if (recipeCategory == nil){
+        if (recipeCategory == nil) {
         [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
             tryAgain:NO];
             return;
@@ -734,7 +734,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     /*if ((price = [rawRecipe objectForKey:kRecipePriceKey]) == nil)
         return nil;
-    if (![price isKindOfClass:[NSNumber class]]){
+    if (![price isKindOfClass:[NSNumber class]]) {
         if (![price isKindOfClass:[NSNull class]])
             return nil;
         price = nil;
@@ -757,8 +757,13 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if ((rations = [rawRecipe objectForKey:kRecipeRationsKey]) == nil)
         return nil;
-    if (![rations isKindOfClass:[NSNumber class]])
-        return nil;
+    if (![rations isKindOfClass:[NSNumber class]]) {
+        if (![rations isKindOfClass:[NSNull class]]) {
+            return nil;
+        } else {
+            rations = [NSNumber numberWithInt:0];
+        }
+    }
     //if ((rawStrains = [rawRecipe objectForKey:kRecipeStrainsKey]) == nil)
     //    return nil;
     rawStrains = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1084,7 +1089,7 @@ static NSString *const kRecipeMiscYes = @"YES";
                 break;
         }
         TTURLRequest *request =
-                [TTURLRequest requestWithURL: _collectionEndpointURL 
+                [TTURLRequest requestWithURL:_collectionEndpointURL 
                     delegate:self];
 
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
@@ -1118,7 +1123,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         NSArray *rawRecipesInSection;
         NSString *sectionName;
 
-        if (![recipeCluster isKindOfClass:[NSDictionary class]]){
+        if (![recipeCluster isKindOfClass:[NSDictionary class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
@@ -1126,26 +1131,26 @@ static NSString *const kRecipeMiscYes = @"YES";
         }
         if ((sectionName =
                 [recipeCluster objectForKey:kRecipeCollectionLetterKey]) 
-                    == nil){
+                    == nil) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
-        if (![sectionName isKindOfClass:[NSString class]]){
+        if (![sectionName isKindOfClass:[NSString class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
         if ((rawRecipesInSection = [recipeCluster objectForKey:
-                kRecipeCollectionRecipesKey]) == nil){
+                kRecipeCollectionRecipesKey]) == nil) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
             return;
         }
-        if (![rawRecipesInSection isKindOfClass:[NSArray class]]){
+        if (![rawRecipesInSection isKindOfClass:[NSArray class]]) {
             [self didFailLoadWithError:
                     BACKEND_ERROR([request urlPath], rootObject)
                 tryAgain:NO];
@@ -1161,7 +1166,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         for (NSDictionary *rawRecipe in rawRecipesInSection) {
             Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
 
-            if (recipe == nil){
+            if (recipe == nil) {
                 [self didFailLoadWithError:
                         BACKEND_ERROR([request urlPath], rootObject)
                     tryAgain:NO];
@@ -1189,6 +1194,129 @@ static NSString *const kRecipeMiscYes = @"YES";
         }
         [mutableSections addObject:recipesInSection];
     }
+    [super requestDidFinishLoad:request];
+}
+@end
+
+@implementation RecipeCollectionFromWine
+
+#pragma mark -
+#pragma mark NSObject
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        _sections = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_sections release];
+    [_collectionId release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark NSObject (NSKeyValueCoding)
+
+- (void)insertObject:(Recipe *)recipe inSectionsAtIndex:(NSUInteger)index
+{
+    [_sections insertObject:recipe atIndex:index];
+}
+
+- (void)insertSections:(NSArray *)array atIndexes:(NSIndexSet *)indexes
+{
+    [_sections insertObjects:array atIndexes:indexes];
+}
+
+- (void)removeObjectFromSectionsAtIndex:(NSUInteger)index
+{
+    [_sections removeObjectAtIndex:index];
+}
+
+- (void)removeSectionsAtIndexes:(NSIndexSet *)indexes
+{
+    [_sections removeObjectsAtIndexes:indexes];
+}
+
+#pragma mark -
+#pragma mark RecipeCollectionFromWine (Public)
+
+@synthesize sections = _sections, collectionId = _collectionId;
+
++ (id)recipeCollectionFromDictionary:(NSDictionary *)rawCollection
+{
+    RecipeCollectionFromWine *collection =
+            [[[RecipeCollectionFromWine alloc] init] autorelease];
+    NSArray *rawRecipes;
+    
+    if (![rawCollection isKindOfClass:[NSDictionary class]])
+        return nil;
+    if ((rawRecipes = [rawCollection objectForKey:@"recipes"]) == nil)
+        return nil;
+    
+    NSMutableArray *recipes =
+            [collection mutableArrayValueForKey:@"sections"];
+
+    for (NSDictionary *rawRecipe in rawRecipes) {
+        Recipe *recipe = [Recipe shortRecipeFromDictionary:rawRecipe];
+        
+        if (recipe == nil)
+            return nil;
+        [recipes addObject:recipe];
+    }
+    return collection;
+}
+
+- (id)initWithWineId:(NSString *)wineId
+{
+    if ((self = [self init]) != nil) {
+        _collectionId = [wineId copy];
+    }
+    return self;
+}
+
+- (void)copyPropertiesFromCollection:(RecipeCollectionFromWine *)collection
+{
+    NSMutableArray *mutableSections =
+            [self mutableArrayValueForKey:@"sections"];
+    
+    [mutableSections addObjectsFromArray:[collection sections]];
+}
+
+#pragma mark -
+#pragma mark <TTModel>
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
+    if (![self isLoading]) {
+        TTURLRequest *request = [TTURLRequest requestWithURL:URL
+                (kURLRecipeAlphabeticWineEndpoint,_collectionId) delegate:self];
+        
+        ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
+        [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
+        [request send];
+    }
+}
+
+#pragma mark -
+#pragma mark <TTURLRequestDelegate>
+
+- (void)requestDidFinishLoad:(TTURLRequest *)request
+{
+    NSDictionary *rootObject =
+            [(TTURLJSONResponse *)[request response] rootObject];
+    RecipeCollectionFromWine *collection = [RecipeCollectionFromWine
+            recipeCollectionFromDictionary:rootObject];
+    
+    if (collection == nil) {
+        [self didFailLoadWithError:BACKEND_ERROR([request urlPath], rootObject)
+                    tryAgain:NO];
+        return;
+    }
+    [self copyPropertiesFromCollection:collection];
     [super requestDidFinishLoad:request];
 }
 @end

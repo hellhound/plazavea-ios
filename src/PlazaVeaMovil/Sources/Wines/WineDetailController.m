@@ -20,6 +20,7 @@
 {
     [_wineId release];
     [_name release];
+    [_imageURL release];
     [super dealloc];
 }
 
@@ -79,7 +80,7 @@
 - (void)dataSource:(WineDetailDataSource *)dataSource
       wineImageURL:(NSString *)imageURL
 {
-    _imageURL = imageURL;
+    _imageURL = [imageURL retain];
 }
 
 - (void)dataSource:(WineDetailDataSource *)dataSource wineName:(NSString *)name

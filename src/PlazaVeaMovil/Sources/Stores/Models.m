@@ -589,21 +589,21 @@ static NSString *const kMutableServicesKey = @"services";
 
     if ((code = [rawStore objectForKey:kStoreCodeKey]) == nil)
         return nil;
-    if (![code isKindOfClass:[NSString class]]){
+    if (![code isKindOfClass:[NSString class]]) {
         if (![code isKindOfClass:[NSNull class]])
             return nil;
         code = nil;
     }
     if ((attendance = [rawStore objectForKey:kStoreAttendanceKey]) == nil)
         return nil;
-    if (![attendance isKindOfClass:[NSString class]]){
+    if (![attendance isKindOfClass:[NSString class]]) {
         if (![attendance isKindOfClass:[NSNull class]])
             return nil;
         attendance = nil;
     }
     if ((rawLocation = [rawStore objectForKey:kStoreLocationKey]) == nil)
         return nil;
-    if (![rawLocation isKindOfClass:[NSDictionary class]]){
+    if (![rawLocation isKindOfClass:[NSDictionary class]]) {
         if (![rawLocation isKindOfClass:[NSNull class]])
             return nil;
     } else {
@@ -639,7 +639,7 @@ static NSString *const kMutableServicesKey = @"services";
     }
     if ((phones = [rawStore objectForKey:kStorePhonesKey]) == nil)
         return nil;
-    if (![phones isKindOfClass:[NSString class]]){
+    if (![phones isKindOfClass:[NSString class]]) {
         if (![phones isKindOfClass:[NSNull class]])
             return nil;
         phones = nil;

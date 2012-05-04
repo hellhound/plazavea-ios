@@ -72,11 +72,13 @@ static CGFloat titleWidth = 320.;
             case kWineStrainFilter:
                 title = kWineStrainsLabel;
                 break;
+            case kWineSpaklingWineKindFilter:
+                title = @"Tipos de espumante";
             default:
                 break;
         }
         [[self tableView] setTableHeaderView:[self viewWithImageURL:nil
-                    title:title]];
+                title:title]];
     }
     return self;
 }

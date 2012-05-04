@@ -28,9 +28,21 @@
 - (CGFloat)     tableView:(UITableView *)tableView
  heightForHeaderInSection:(NSInteger)section
 {
-    return [TTStyleSheet hasStyleSheetForSelector:
-            @selector(heightForTableSectionHeaderView)] ?
-                TTSTYLEVAR(heightForTableSectionHeaderView) : .0;
+    CGFloat height;
+    
+    switch (_from) {
+        case kRecipeFromCategory:
+        case kRecipeFromMeat:
+            height = [TTStyleSheet hasStyleSheetForSelector:
+                    @selector(heightForTableSectionHeaderView)] ?
+                        TTSTYLEVAR(heightForTableSectionHeaderView) : .0;
+            break; 
+        case kRecipeFromWine:
+        default:
+            height = .0;
+            break;
+    }
+    return height;
 }
 
 - (UIView *)    tableView:(UITableView *)tableView

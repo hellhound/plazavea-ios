@@ -16,7 +16,14 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark NSObject
 
-- (id) init
+- (void)dealloc
+{
+    [_selectedItemsIds release];
+    [_selectedItemsNames release];
+    [super dealloc];
+}
+
+- (id)init
 {
     if ((self = [super initWithStyle:UITableViewStyleGrouped]) != nil) {
         // Conf nav bar
@@ -30,8 +37,28 @@ static CGFloat titleWidth = 320.;
                 title:kSomelierTitle]];
         [[self view] setBackgroundColor:[UIColor colorWithWhite:kWineColor
                 alpha:1.]];
+        _clearFilters = YES;
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark UIViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_clearFilters) {
+        for (int i = 0; i < 5; i ++) {
+            if (_selectedItemsNames)
+                [_selectedItemsNames  replaceObjectAtIndex:i withObject:@""];
+            if (_selectedItemsIds)
+                [_selectedItemsIds replaceObjectAtIndex:i
+                        withObject:[NSNull null]];
+        }
+        [[self tableView] reloadData];
+    }
+    _clearFilters = YES;
 }
 
 #pragma mark -
@@ -39,7 +66,8 @@ static CGFloat titleWidth = 320.;
 
 @synthesize country = _country, winery = _winery, category = _category,
         strain = _strain, price = _price, selectedItemsIds = _selectedItemsIds,
-            selectedItemsNames = _selectedItemsNames;
+            selectedItemsNames = _selectedItemsNames,
+            clearFilters = _clearFilters;
 
 - (UIView *)viewWithImageURL:(NSString *)imageURL title:(NSString *)title
 {
@@ -206,11 +234,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:URL(kURLFilteringCall, @"0")]
                                 applyAnimated:YES]];
+                    _clearFilters = NO;
                     break;
                 case kWineWineryRow:
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
                             actionWithURLPath:URL(kURLFilteringCall, @"1")]
                                 applyAnimated:YES]];
+                    _clearFilters = NO;
                     break;
                 case kWineCategoryRow:
                     /*[[TTNavigator navigator] openURLAction:[[TTURLAction
@@ -220,17 +250,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
+                    _clearFilters = NO;
                     break;    
-                case kWineStrainRow:
+                case kWineStrainRow: {
+                    NSString *url;
+                    if ([_selectedItemsNames objectAtIndex:
+                            ([indexPath row] - 1)] == kWineSparklingLabel) {
+                        url = URL(kURLFilteringCall, @"4");
+                    } else {
+                        url = URL(kURLFilteringCall, @"3");
+                    }
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLFilteringCall, @"3")]
-                                applyAnimated:YES]];
+                            actionWithURLPath:url] applyAnimated:YES]];
+                    _clearFilters = NO;
+                     }
                     break;
                 case kWinePriceRow:
                     [controller setList:kWinePriceLocalFilter];
                     [controller setDelegate:self];
                     [[self navigationController] pushViewController:controller
                             animated:YES];
+                    _clearFilters = NO;
                     break;
                 default:
                     break;
@@ -239,10 +279,36 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         case kWineGoSection:
             switch ([indexPath row]) {
                 case kWineGoRow:
+                {
+                    NSString *filters = [[[NSString alloc] initWithString:@""]
+                            autorelease];
+                    
+                    /*for (NSString *filter in _selectedItemsIds) {
+                        if (![filter isKindOfClass:[NSNull class]]) {
+                            filters = [filters stringByAppendingString:filter];
+                        }
+                    }*/
+                    for (int index = 0; index < [_selectedItemsIds count];
+                            index++) {
+                        NSString *filter =
+                                [_selectedItemsIds objectAtIndex:index];
+                        if (index == 0) {
+                            if (![filter isKindOfClass:[NSNull class]]) {
+                                filters = [filters
+                                        stringByAppendingString:filter];
+                            }
+                        } else {
+                            if (![filter isKindOfClass:[NSNull class]]) {
+                                filters = [filters stringByAppendingFormat:
+                                        @"&%@", filter];
+                            }
+                        }
+                    }
                     [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLWineListCall, @"4", @"0")]
-                                applyAnimated:YES]];
+                            actionWithURLPath:URL(kURLFilteredWineListCall,
+                                filters)] applyAnimated:YES]];
                     break;
+                }
                 default:
                     break;
             }
@@ -256,13 +322,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark <FilteringListControllerDelegate>
 
 - (void)controller:(FilteringListController *)controller
-       didPickItem:(GenericFeature *)item
+       didPickItem:(Country *)item
 {
     if (!_selectedItemsNames) {
         _selectedItemsNames = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 5; i ++) {
-            [_selectedItemsNames addObject:kWineUndefinedLabel];
+            [_selectedItemsNames addObject:@""];
+        }
+    }
+    if (!_selectedItemsIds) {
+        _selectedItemsIds = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 5; i ++) {
+            [_selectedItemsIds addObject:[NSNull null]];
         }
     }
     int index;
@@ -276,11 +349,29 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         case 1:
             index = 4;
             break;
+        case 4:
+            index = 2;
+            break;
         default:
             index = 0;
             break;
     }
     [_selectedItemsNames replaceObjectAtIndex:index withObject:[item name]];
+    if ([item countryId] != nil) {
+        if (index == 2) {
+            [_selectedItemsIds replaceObjectAtIndex:index withObject:
+                    [NSString stringWithFormat:kWineKindFilterPrefix,
+                        [[item countryId] intValue]]];
+        } else if (index == 4) {
+            [_selectedItemsIds replaceObjectAtIndex:index withObject:
+                    [NSString stringWithFormat:kWineWineryFilterPrefix,
+                        [[item countryId] intValue]]];
+        }
+    } else {
+        [_selectedItemsIds replaceObjectAtIndex:index withObject:
+                [NSString stringWithFormat:kWineCountryFilterPrefix,
+                    [item code]]];
+    }
     [[self tableView] reloadData];
 }
 
@@ -291,13 +382,21 @@ didPickLocalItemId:(int)itemId
         _selectedItemsNames = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 5; i ++) {
-            [_selectedItemsNames addObject:kWineUndefinedLabel];
+            [_selectedItemsNames addObject:@""];
+        }
+    }
+    if (!_selectedItemsIds) {
+        _selectedItemsIds = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 5; i ++) {
+            [_selectedItemsIds addObject:[NSNull null]];
         }
     }
     NSString *label = [[NSString alloc] init];
     
     if ([controller list] == kWineCategoryLocalFilter) {
         label = kWineSparklingLabel;
+        
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
     } else if ([controller list] == kWinePriceLocalFilter) {
@@ -316,6 +415,9 @@ didPickLocalItemId:(int)itemId
         }
         [_selectedItemsNames replaceObjectAtIndex:kWinePriceRow
                 withObject:label];
+        [_selectedItemsIds replaceObjectAtIndex:kWinePriceRow withObject:
+                [NSString stringWithFormat:kWinePriceFilterPrefix,
+                    (itemId + 1)]];
     } else if ([controller list] == kWineWinesLocalFilter) {
         switch (itemId) {
             case 0:
@@ -336,13 +438,6 @@ didPickLocalItemId:(int)itemId
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
     }
-    [[self tableView] reloadData];
-}
-
-- (void)controller:(FilteringListController *)controller
-            itemId:(NSNumber *)itemId
-{
-    NSLog(@"list: %i, item Id: %i", [controller list], [itemId intValue]); 
     [[self tableView] reloadData];
 }
 @end
