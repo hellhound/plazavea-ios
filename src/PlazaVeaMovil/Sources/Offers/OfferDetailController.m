@@ -21,6 +21,7 @@
 
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
+- (NSString *)composeMail;
 - (void)showTwitterAlert;
 - (void)mailOffer;
 - (void)likeOffer;
@@ -52,6 +53,49 @@
 
 @synthesize facebook = _facebook, twitter = _twitter;
 
+- (NSString *)composeMail
+{
+    NSString *html = [[[NSString alloc] initWithFormat:kDivTag,
+            kMailBannerWidth] autorelease];
+    html = [html stringByAppendingFormat:kImageTag, kMailBanner,
+            kMailBannerWidth, kMailBannerHeight, kMailBannerWidth,
+            kMailBannerHeight];
+    html = [html stringByAppendingFormat:kTitleTag, [NSString
+            stringWithFormat:@"%@ a %@", [_offer name],
+                [NSString stringWithFormat:kOfferDetailPricePrefix,
+                [[_offer price] floatValue]]]];
+    html = [html stringByAppendingFormat:kImageTag, [_offer pictureURL],
+            kMailBannerWidth, kMailImageHeight, kMailBannerWidth,
+            kMailImageHeight];
+    html = [html stringByAppendingFormat:kOldPriceTag,
+            [NSString stringWithFormat:@"%@: %@", kOfferDetailOldPriceCaption,
+                [NSString stringWithFormat:kOfferDetailPricePrefix,
+                [[_offer oldPrice] floatValue]]]];
+    NSDateFormatter *dateFormatter =
+            [[[NSDateFormatter alloc] init] autorelease];
+    
+    //[dateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString *validString = [NSString stringWithFormat:
+            kOfferDetailValidPrefix,
+                [dateFormatter stringFromDate:[_offer validFrom]],
+                [dateFormatter stringFromDate:[_offer validTo]]];
+    html = [html stringByAppendingFormat:kValidTag,
+            [NSString stringWithFormat:@"%@: %@", kOfferDetailValidCaption,
+                validString]];
+    html = [html stringByAppendingFormat:kDescriptionTag,
+            [[_offer longDescription] stringByReplacingOccurrencesOfString:@"\n"
+                withString:@"<br />"]];
+    html = [html stringByAppendingFormat:kLegaleseTag,
+            [[_offer legalese] stringByReplacingOccurrencesOfString:@"\n"
+                withString:@"<br />"]];
+    html = [html stringByAppendingString:kMailFooterTag];
+    html = [html stringByAppendingString:@"</div>"];
+    
+    return html;
+}
+
 - (void) showTwitterAlert
 {
     _twitter = [(AppDelegate *)[[UIApplication sharedApplication] delegate]
@@ -77,23 +121,13 @@
 
 - (void)mailOffer
 {
-    NSString *bannerURL = IMAGE_URL([NSURL URLWithString:
-            kMailBanner], kMailBannerWidth, kMailBannerHeight);
-    NSString *offerImageURL = IMAGE_URL([_offer pictureURL],
-            kMailBannerWidth, kMailBannerHeight);
-    NSString *imageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
-            bannerURL];
-    NSString *offerImageHTML = [NSString stringWithFormat:@"<img src=\'%@\' />",
-            offerImageURL];
     MFMailComposeViewController *controller = 
             [[[MFMailComposeViewController alloc] init] autorelease];
     
     [controller setMailComposeDelegate:self];
-    [controller setSubject:[_offer name]];
-    [controller setMessageBody:[NSString stringWithFormat:
-            @"%@<br /><b>%@</b><br />%@<br />%@<br />%@", imageHTML,
-                [_offer name], offerImageHTML, [_offer longDescription],
-                [_offer legalese]] isHTML:YES];
+    [controller setSubject:[NSString stringWithFormat:
+            kOfferMailSubject, [_offer name]]];
+    [controller setMessageBody:[self composeMail] isHTML:YES];
     [self presentModalViewController:controller animated:YES];
 }
 
