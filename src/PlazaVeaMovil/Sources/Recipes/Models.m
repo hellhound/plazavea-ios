@@ -39,19 +39,18 @@ static NSString *const kRecipeMiscYes = @"YES";
 {
     [_meatId release];
     [_name release];
-    [_pictureURL release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Meat (Public)
 
-@synthesize meatId = _meatId, name = _name, pictureURL = _pictureURL;
+@synthesize meatId = _meatId, name = _name;
 
 + (id)shortMeatFromDictionary:(NSDictionary *)rawMeat
 {
     NSNumber *meatId;
-    NSString *name, *pictureURL;
+    NSString *name;
     
     if (![rawMeat isKindOfClass:[NSDictionary class]])
         return nil;
@@ -63,20 +62,11 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
     if (![name isKindOfClass:[NSString class]])
         return nil;
-    if ((pictureURL = [rawMeat objectForKey:kMeatPictureURLKey]) == nil)
-        return nil;
-    if (![pictureURL isKindOfClass:[NSString class]]) {
-        if (![pictureURL isKindOfClass:[NSNull class]])
-            return nil;
-        pictureURL = nil;
-    }
     
     Meat *meat = [[[Meat alloc] init] autorelease];
     
     [meat setMeatId:meatId];
     [meat setName:name];
-    if (pictureURL != nil)
-        [meat setPictureURL:[NSURL URLWithString:pictureURL]];
     return meat;
 }
 @end
@@ -135,7 +125,6 @@ static NSString *const kRecipeMiscYes = @"YES";
         
         ADD_DEFAULT_CACHE_POLICY_TO_REQUEST(request, cachePolicy);
         [request setResponse:[[[TTURLJSONResponse alloc] init] autorelease]];
-        [request setCachePolicy:cachePolicy];
         [request send];
     }
 }
@@ -683,10 +672,10 @@ static NSString *const kRecipeMiscYes = @"YES";
     if (![name isKindOfClass:[NSString class]])
         return nil;
     if ((pictureURL = [rawRecipe objectForKey:kRecipePictureURLKey]) == nil)
-        return nil;
+       // return nil;
     if (![pictureURL isKindOfClass:[NSString class]]) {
-        if (![pictureURL isKindOfClass:[NSNull class]])
-            return nil;
+        /*if (![pictureURL isKindOfClass:[NSNull class]])
+            return nil;*/
         pictureURL = nil;
     }
 
