@@ -110,14 +110,16 @@
 
 - (void)mailPromotion
 {
-    MFMailComposeViewController *controller = 
-            [[[MFMailComposeViewController alloc] init] autorelease];
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *controller = 
+                [[[MFMailComposeViewController alloc] init] autorelease];
     
-    [controller setMailComposeDelegate:self];
-    [controller setSubject:[NSString stringWithFormat:kPromotionMailSubject,
-            [_promotion name]]];
-    [controller setMessageBody:[self composeMail] isHTML:YES];
-    [self presentModalViewController:controller animated:YES];
+        [controller setMailComposeDelegate:self];
+        [controller setSubject:[NSString stringWithFormat:kPromotionMailSubject,
+                [_promotion name]]];
+        [controller setMessageBody:[self composeMail] isHTML:YES];
+        [self presentModalViewController:controller animated:YES];
+    }
 }
 
 - (void)likePromotion
