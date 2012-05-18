@@ -236,11 +236,11 @@ NSString *const kWineWineLabel = @"Vino";
 // NSLocalizedString(@"Vino", nil)
 NSString *const kWineSparklingLabel = @"Espumante";
 // NSLocalizedString(@"Espumante", nil)
-NSString *const kWineWhiteLabel = @"Blanco";
+NSString *const kWineWhiteLabel = @"Vino blanco";
 // NSLocalizedString(@"Blanco", nil)
-NSString *const kWineRoseLabel = @"Rosado";
+NSString *const kWineRoseLabel = @"Vino rosado";
 // NSLocalizedString(@"Rosado", nil)
-NSString *const kWineRedLabel = @"Tinto";
+NSString *const kWineRedLabel = @"Vino tinto";
 // NSLocalizedString(@"Tinto", nil)
 NSString *const kWineAllLabel = @"Todos";
 // NSLocalizedString(@"Todos", nil)

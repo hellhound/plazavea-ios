@@ -908,6 +908,10 @@
 		2F142221146D4D7000CB10A9 /* default-wine-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-wine-detail.png"; sourceTree = "<group>"; };
 		2F14234C146D615700CB10A9 /* TableCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItem.m; sourceTree = "<group>"; };
 		2F14234D146D615700CB10A9 /* TableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCaptionItemCell.m; sourceTree = "<group>"; };
+		2F162BB71566AA62006A92BC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../../Headers/Common/Models/Constants.h; sourceTree = "<group>"; };
+		2F162BB91566AA62006A92BC /* ManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObject.h; path = ../../../Headers/Common/Models/ManagedObject.h; sourceTree = "<group>"; };
+		2F162BBA1566AA62006A92BC /* ReorderingManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReorderingManagedObject.h; path = ../../../Headers/Common/Models/ReorderingManagedObject.h; sourceTree = "<group>"; };
+		2F162BBB1566AA62006A92BC /* URLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URLRequestModel.h; path = ../../../Headers/Common/Models/URLRequestModel.h; sourceTree = "<group>"; };
 		2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlphabeticalRecipesDataSource.h; path = ../../Headers/Recipes/AlphabeticalRecipesDataSource.h; sourceTree = "<group>"; };
 		2F16EA1115226AF300766D83 /* BaseMeatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseMeatController.h; path = ../../Headers/Recipes/BaseMeatController.h; sourceTree = "<group>"; };
 		2F16EA1215226AF300766D83 /* BaseRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeController.h; path = ../../Headers/Recipes/BaseRecipeController.h; sourceTree = "<group>"; };
@@ -1630,6 +1634,10 @@
 		2C4F5BDF13F2E616007B3ADE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F162BB71566AA62006A92BC /* Constants.h */,
+				2F162BB91566AA62006A92BC /* ManagedObject.h */,
+				2F162BBA1566AA62006A92BC /* ReorderingManagedObject.h */,
+				2F162BBB1566AA62006A92BC /* URLRequestModel.h */,
 				2C18B8BC14043705008AEC52 /* URLRequestModel.m */,
 				2CFE570913F3691F003F9601 /* Constants.m */,
 				2C4F5BE013F2E616007B3ADE /* ManagedObject.m */,

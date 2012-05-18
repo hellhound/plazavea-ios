@@ -8,7 +8,8 @@
 #import "SA_OAuthTwitterEngine.h"
 
 @interface AppDelegate: NSObject <UIApplicationDelegate, TTNavigatorDelegate,
-        SA_OAuthTwitterEngineDelegate, FBSessionDelegate, TSAlertViewDelegate>
+        SA_OAuthTwitterEngineDelegate, FBSessionDelegate, TSAlertViewDelegate,
+            NSURLConnectionDelegate>
 {
     UIWindow *_window;
     UIWindow *_overlay;
@@ -20,6 +21,7 @@
     NSDateFormatter *_dateFormatter;
     Facebook *_facebook;
     SA_OAuthTwitterEngine *_twitter;
+    NSMutableData *_receivedData;
 }
 // Unfortunately we have to declare the property window to work on pre-iOS 5
 // devices because theres a new property window on <UIApplicationDelegate> in
@@ -27,6 +29,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) SA_OAuthTwitterEngine *twitter;
+@property (nonatomic, retain) NSMutableData *receivedData;
 - (NSString *)getUUID;
 @end
 
