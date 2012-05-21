@@ -8,8 +8,12 @@
 #import "ShoppingList/ShoppingListController.h"
 
 @interface ShoppingListsController: EditableCellTableViewController
-    <TSAlertViewDelegate, ShoppingListControllerDelegate>
-
+        <TSAlertViewDelegate, ShoppingListControllerDelegate,
+            NSURLConnectionDelegate>
+{
+    NSMutableData *_receivedData;
+}
+@property (nonatomic, retain) NSMutableData *receivedData;
 - (void)addShoppingList:(NSString *)name;
 @end
 

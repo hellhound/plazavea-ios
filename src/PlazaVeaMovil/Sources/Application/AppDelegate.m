@@ -469,15 +469,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                         cachePolicy:NSURLRequestUseProtocolCachePolicy
                         timeoutInterval:60.];
             
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json"
-                    forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPMethod:kPostHTTPMethod];
+            [request setValue:kContentHTTPHeaderValue
+                    forHTTPHeaderField:kContentHTTPHeaderKey];
             
             NSString *postString = [NSString stringWithFormat:
-                        @"%@=%@&%@=%@&%@=%@",
-                        @"dni", [defaults objectForKey:kDNIDefault],
-                        @"phone", [defaults objectForKey:kPhoneDefault],
-                        @"email", [defaults objectForKey:kEmailDefault]];
+                    kRegisterRequestString,
+                    kDNIResquestKey, [defaults objectForKey:kDNIDefault],
+                    kPhoneRequestKey, [defaults objectForKey:kPhoneDefault],
+                    kEmailRequestKey, [defaults objectForKey:kEmailDefault]];
             
             [request setHTTPBody:[postString dataUsingEncoding:
                     NSUTF8StringEncoding]];

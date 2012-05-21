@@ -29,3 +29,12 @@ extern NSString *const kRegsitrationButton;
 extern NSString *const kDNILabel;
 extern NSString *const kPhoneLabel;
 extern NSString *const kEmailLabel;
+
+extern NSString *const kRegisterEndpointURL;
+extern NSString *const kPostHTTPMethod;
+extern NSString *const kContentHTTPHeaderValue;
+extern NSString *const kContentHTTPHeaderKey;
+extern NSString *const kRegisterRequestString;
+extern NSString *const kDNIResquestKey;
+extern NSString *const kPhoneRequestKey;
+extern NSString *const kEmailRequestKey;

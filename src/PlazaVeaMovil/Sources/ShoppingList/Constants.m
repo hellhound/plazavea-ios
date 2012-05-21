@@ -171,3 +171,12 @@ NSString *const kURLShoppingLists = @"tt://launcher/shoppinglists/";
 // Controller URL's calls
 
 NSString *const kURLShoppingListsCall = @"tt://launcher/shoppinglists/";
+
+// Events
+
+NSString *const kAppEventsEndpointURL = @"/appevents/";
+NSString *const kAppEventRequestString = @"%@=%@&%@=%@&%@=%@";
+NSString *const kTypeResquestKey = @"type";
+NSString *const kDeviceIdRequestKey = @"device_id";
+NSString *const kMetadataRequestKey = @"metadata";
+

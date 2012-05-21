@@ -21,8 +21,8 @@
 
 @protocol LocalFilteringListControllerDelegate <NSObject>
 
-- (void)controller:(LocalFilteringListController *)controller
-            itemId:(NSNumber *)itemId;
+/*- (void)controller:(LocalFilteringListController *)controller
+            itemId:(NSNumber *)itemId;*/
 - (void)controller:(LocalFilteringListController *)controller
 didPickLocalItemId:(int)itemId;
 @end

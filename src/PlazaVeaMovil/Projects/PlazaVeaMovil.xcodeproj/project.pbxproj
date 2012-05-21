@@ -912,6 +912,17 @@
 		2F162BB91566AA62006A92BC /* ManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObject.h; path = ../../../Headers/Common/Models/ManagedObject.h; sourceTree = "<group>"; };
 		2F162BBA1566AA62006A92BC /* ReorderingManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReorderingManagedObject.h; path = ../../../Headers/Common/Models/ReorderingManagedObject.h; sourceTree = "<group>"; };
 		2F162BBB1566AA62006A92BC /* URLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URLRequestModel.h; path = ../../../Headers/Common/Models/URLRequestModel.h; sourceTree = "<group>"; };
+		2F162BBC1566E1F4006A92BC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Headers/ShoppingList/Constants.h; sourceTree = "<group>"; };
+		2F162BBD1566E1F4006A92BC /* HistoryEntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryEntryController.h; path = ../../Headers/ShoppingList/HistoryEntryController.h; sourceTree = "<group>"; };
+		2F162BBE1566E1F4006A92BC /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Models.h; path = ../../Headers/ShoppingList/Models.h; sourceTree = "<group>"; };
+		2F162BBF1566E1F4006A92BC /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = ../../Headers/ShoppingList/ShoppingListController.h; sourceTree = "<group>"; };
+		2F162BC01566E1F4006A92BC /* ShoppingListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListHeaderView.h; path = ../../Headers/ShoppingList/ShoppingListHeaderView.h; sourceTree = "<group>"; };
+		2F162BC11566E1F4006A92BC /* ShoppingListsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListsController.h; path = ../../Headers/ShoppingList/ShoppingListsController.h; sourceTree = "<group>"; };
+		2F162BC21566E1F4006A92BC /* TSAlertView+ModifyingShoppingItemAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+ModifyingShoppingItemAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+ModifyingShoppingItemAlertView.h"; sourceTree = "<group>"; };
+		2F162BC31566E1F4006A92BC /* TSAlertView+NewShoppingItemAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+NewShoppingItemAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+NewShoppingItemAlertView.h"; sourceTree = "<group>"; };
+		2F162BC41566E1F4006A92BC /* TSAlertView+NewShoppingListAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+NewShoppingListAlertView.h"; path = "../../Headers/ShoppingList/TSAlertView+NewShoppingListAlertView.h"; sourceTree = "<group>"; };
+		2F162BC51566E1F4006A92BC /* TSAlertView+ShoppingListDeletionConfirmation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TSAlertView+ShoppingListDeletionConfirmation.h"; path = "../../Headers/ShoppingList/TSAlertView+ShoppingListDeletionConfirmation.h"; sourceTree = "<group>"; };
+		2F162BC61566E1F4006A92BC /* UIActionSheet+ShoppingListMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+ShoppingListMenu.h"; path = "../../Headers/ShoppingList/UIActionSheet+ShoppingListMenu.h"; sourceTree = "<group>"; };
 		2F16EA1015226AF300766D83 /* AlphabeticalRecipesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlphabeticalRecipesDataSource.h; path = ../../Headers/Recipes/AlphabeticalRecipesDataSource.h; sourceTree = "<group>"; };
 		2F16EA1115226AF300766D83 /* BaseMeatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseMeatController.h; path = ../../Headers/Recipes/BaseMeatController.h; sourceTree = "<group>"; };
 		2F16EA1215226AF300766D83 /* BaseRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseRecipeController.h; path = ../../Headers/Recipes/BaseRecipeController.h; sourceTree = "<group>"; };
@@ -1670,6 +1681,17 @@
 		2C864B1E13E729BF00D46066 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				2F162BBC1566E1F4006A92BC /* Constants.h */,
+				2F162BBD1566E1F4006A92BC /* HistoryEntryController.h */,
+				2F162BBE1566E1F4006A92BC /* Models.h */,
+				2F162BBF1566E1F4006A92BC /* ShoppingListController.h */,
+				2F162BC01566E1F4006A92BC /* ShoppingListHeaderView.h */,
+				2F162BC11566E1F4006A92BC /* ShoppingListsController.h */,
+				2F162BC21566E1F4006A92BC /* TSAlertView+ModifyingShoppingItemAlertView.h */,
+				2F162BC31566E1F4006A92BC /* TSAlertView+NewShoppingItemAlertView.h */,
+				2F162BC41566E1F4006A92BC /* TSAlertView+NewShoppingListAlertView.h */,
+				2F162BC51566E1F4006A92BC /* TSAlertView+ShoppingListDeletionConfirmation.h */,
+				2F162BC61566E1F4006A92BC /* UIActionSheet+ShoppingListMenu.h */,
 				2C75709413FEBA5700D23659 /* HistoryEntryController+UITableViewDataSource.m */,
 				2C75709513FEBA5700D23659 /* HistoryEntryController+UITableViewDelegate.m */,
 				2C844C0013F95F2F000BE222 /* HistoryEntryController.m */,
