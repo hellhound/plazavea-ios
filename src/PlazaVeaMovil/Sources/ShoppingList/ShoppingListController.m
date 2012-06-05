@@ -430,6 +430,11 @@ static CGFloat headerMinHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didModifyShoppingList:)]) {
+        [_delegate shoppingListController:self
+                didModifyShoppingList:_shoppingList];
+    }
 }
 
 - (void)modifyShoppingItem:(ShoppingItem *)shoppingItem
@@ -443,6 +448,11 @@ static CGFloat headerMinHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didModifyShoppingList:)]) {
+        [_delegate shoppingListController:self
+                didModifyShoppingList:_shoppingList];
+    }
 }
 
 - (void)deleteShoppingList

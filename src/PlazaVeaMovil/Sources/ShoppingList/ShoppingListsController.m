@@ -267,7 +267,7 @@ static CGFloat headerHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
-    [self postEventWithType:@"add"];
+    [self postEventWithType:@"1"];
     return list;
 }
 
@@ -275,7 +275,7 @@ static CGFloat headerHeight = 40.;
          didDeleteShoppingList:(ShoppingList *)shoppingList
 {
     [self fetchUpdateAndReload];
-    [self postEventWithType:@"delete"];
+    [self postEventWithType:@"2"];
 }
 
 - (void)shoppingListController:(ShoppingListController *)shoppingListController
@@ -284,7 +284,13 @@ static CGFloat headerHeight = 40.;
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
             shoppingList name]]];
     [self fetchUpdateAndReload];
-    [self postEventWithType:@"add"];
+    [self postEventWithType:@"1"];
+}
+
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+         didModifyShoppingList:(ShoppingList *)shoppingList
+{
+    [self postEventWithType:@"3"];
 }
 
 #pragma mark -
