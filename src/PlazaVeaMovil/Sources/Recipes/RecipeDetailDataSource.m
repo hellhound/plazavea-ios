@@ -377,7 +377,8 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:tips];
                 }
-                if (_from != kRecipeFromWine) {
+                if ((_from != kRecipeFromWine) &&
+                        ([[recipe wines] intValue] > 0)) {
                     TTTableTextItem *strains = [TTTableTextItem
                             itemWithText:kRecipeDetailSectionStrains
                                 URL:URL(kURLRecipeStrainListCall,

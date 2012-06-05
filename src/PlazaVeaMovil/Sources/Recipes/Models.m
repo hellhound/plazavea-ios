@@ -543,7 +543,8 @@ static NSString *const kRecipeMiscYes = @"YES";
 
 // KVC compliance for indexed to-many collections
 @synthesize extraPictureURLs = _extraPictureURLs, ingredients = _ingredients,
-        procedures = _procedures, features = _features, tips = _tips;
+        procedures = _procedures, features = _features, tips = _tips,
+            wines = _wines;
 
 - (void)        insertObject:(NSURL *)extraURL
    inExtraPictureURLsAtIndex:(NSUInteger)index
@@ -696,7 +697,7 @@ static NSString *const kRecipeMiscYes = @"YES";
         return nil;
 
     NSString *code;
-    NSNumber /**price,*/ *rations;
+    NSNumber /**price,*/ *rations, *wines;
     NSDictionary *rawStrains;
     StrainCollection *strains;
     NSDictionary *rawCategory, *rawContribution;
@@ -728,6 +729,13 @@ static NSString *const kRecipeMiscYes = @"YES";
             return nil;
         price = nil;
     }*/
+    if ((wines = [rawRecipe objectForKey:@"wines"]) == nil)
+        return nil;
+    if (![wines isKindOfClass:[NSNumber class]]) {
+        if (![wines isKindOfClass:[NSNull class]])
+            return nil;
+        wines = [NSNumber numberWithInt:0];
+    }
     if ((ingredients = [rawRecipe objectForKey:kRecipeIngredientsKey]) == nil)
         return nil;
     if (![ingredients isKindOfClass:[NSArray class]])
@@ -771,6 +779,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [recipe setContribution:contribution];
     [recipe setRations:rations];
     [recipe setStrains:strains];
+    [recipe setWines:wines];
     [recipe setCategory:category];
     for (NSString *extraPictureURL in extraPictureURLs) {
         if (!([extraPictureURL isKindOfClass:[NSString class]] &&
@@ -832,6 +841,7 @@ static NSString *const kRecipeMiscYes = @"YES";
     [self setRations:[recipe rations]];
     [self setStrains:[recipe strains]];
     [self setCategory:[recipe category]];
+    [self setWines:[recipe wines]];
 
     NSMutableArray *extraPictureURLs =
             [self mutableArrayValueForKey:kMutableExtraPictureURLsKey];
