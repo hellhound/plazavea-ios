@@ -144,9 +144,10 @@ NSString *const kShoppingListMailFooter = @"Tú también puedes crear tu " \
         "propia lista en Plaza Vea móvil ingresa aquí.";
 // NSLocalizedString(@"Tú también puedes crear tu " \
 //      "propia lista en Plaza Vea móvil ingresa aquí.", nil)
-NSString *const kShoppingListMailBanner = @"";
+NSString *const kShoppingListMailBanner =
+@"http://demos.bitzeppelin.com/spsa/assets/mailing/offers/plazavea-logo.jpg";
 const CGFloat kShoppingListMailBannerWidth = 300.;
-const CGFloat kShoppingListMailBannerHeight = 140.;
+const CGFloat kShoppingListMailBannerHeight = 208.;
 
 // HistoryEntryControlller's contstants
 NSString *const kHistoryEntryAlertTitle = @"Lista vacía";
