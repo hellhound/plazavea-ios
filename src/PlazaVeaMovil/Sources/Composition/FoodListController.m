@@ -238,7 +238,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
 }
-
+/*
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView == [self tableView]) &&
@@ -261,7 +261,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
                 atIndex:index];
     return [_filteredController sectionForSectionIndexTitle:title
             atIndex:index];
-}
+}*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
