@@ -42,6 +42,7 @@ NSString *const kRecipeTipsKey = @"tips";
 NSString *const kRecipeRationsKey = @"rations";
 NSString *const kRecipeStrainsKey = @"categories";
 NSString *const kRecipeContributionKey = @"contribution";
+NSString *const kRecipeWinesKey = @"wines";
 
 // Ingredient model's constants
 

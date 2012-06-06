@@ -729,7 +729,7 @@ static NSString *const kRecipeMiscYes = @"YES";
             return nil;
         price = nil;
     }*/
-    if ((wines = [rawRecipe objectForKey:@"wines"]) == nil)
+    if ((wines = [rawRecipe objectForKey:kRecipeWinesKey]) == nil)
         return nil;
     if (![wines isKindOfClass:[NSNumber class]]) {
         if (![wines isKindOfClass:[NSNull class]])

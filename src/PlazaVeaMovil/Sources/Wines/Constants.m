@@ -213,6 +213,14 @@ NSString *const kWineCategoryFilterPrefix = @"cat=%i";
 NSString *const kWineKindFilterPrefix = @"kind=%i";
 NSString *const kWinePriceFilterPrefix = @"price=%i";
 NSString *const kWineWineryFilterPrefix = @"winery=%i";
+NSString *const kWineNoFilterTitle = @"No ha escogido ningún filtro";
+// NSLocalizedString(@"No ha escogido ningún filtro", nil);
+NSString *const kWineNoFilterMessage = @"Para realizar la búsqueda primero "
+        @"debe elegir al menos una opción para filtrar";
+// NSLocalizedString(@"Para realizar la búsqueda primero "
+//        @"debe elegir al menos una opción para filtrar", nil);
+NSString *const kWineNoFilterButton = @"OK";
+//NSLocalizedString(@"OK", nil);
 const CGFloat kWineColor = .85;
 
 //FilteringListController's constants

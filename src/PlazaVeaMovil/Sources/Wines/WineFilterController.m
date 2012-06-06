@@ -304,9 +304,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                             }
                         }
                     }
-                    [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLFilteredWineListCall,
-                                filters)] applyAnimated:YES]];
+                    if ([filters isEqualToString:@""]) {
+                        UIAlertView *alert = [[[UIAlertView alloc]
+                                initWithTitle:kWineNoFilterTitle
+                                    message:kWineNoFilterMessage delegate:nil
+                                    cancelButtonTitle:kWineNoFilterButton
+                                    otherButtonTitles:nil] autorelease];
+                        
+                        [alert show];
+                    } else {
+                        [[TTNavigator navigator] openURLAction:[[TTURLAction
+                                actionWithURLPath:URL(kURLFilteredWineListCall,
+                                    filters)] applyAnimated:YES]];
+                        }
                     break;
                 }
                 default:
@@ -395,6 +405,12 @@ didPickLocalItemId:(int)itemId
     NSString *label = [[NSString alloc] init];
     
     if ([controller list] == kWineCategoryLocalFilter) {
+        // reset wine type
+        [_selectedItemsIds replaceObjectAtIndex:kWineStrainRow
+                    withObject:[NSNull null]];
+        [_selectedItemsNames replaceObjectAtIndex:kWineStrainRow
+                    withObject:@""];
+        
         label = kWineSparklingLabel;
         
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
@@ -419,6 +435,12 @@ didPickLocalItemId:(int)itemId
                 [NSString stringWithFormat:kWinePriceFilterPrefix,
                     (itemId + 1)]];
     } else if ([controller list] == kWineWinesLocalFilter) {
+        // reset wine type
+        [_selectedItemsIds replaceObjectAtIndex:kWineStrainRow
+                withObject:[NSNull null]];
+        [_selectedItemsNames replaceObjectAtIndex:kWineStrainRow
+                withObject:@""];
+        
         switch (itemId) {
             case 0:
                 label = kWineWhiteLabel;
