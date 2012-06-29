@@ -63,19 +63,24 @@
                 [NSMutableArray arrayWithCapacity:categoryCount];
 
         for (RecipeCategory *category in categories) {
+            BOOL flag = NO;
             TTTableTextItem *item;
             NSString *name = [[category name]
                     stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-            if ([[category subcategoriesCount] integerValue] == 0) {
+            if (([[category subcategoriesCount] integerValue] == 0) &&
+                        ([[category recipeCount] integerValue] > 0)) {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeListCall, [category categoryId],
                             name)];
-            } else {
+                flag = YES;
+            } else if ([[category subcategoriesCount] integerValue] > 0) {
                 item = [TTTableTextItem itemWithText:[category name]
                         URL:URL(kURLRecipeSubCategoriesCall, 
                             [category categoryId])];
+                flag = YES;
             }
-            [items addObject:item];
+            if (flag) 
+                [items addObject:item];
         }
         [self setItems:items];
     }
