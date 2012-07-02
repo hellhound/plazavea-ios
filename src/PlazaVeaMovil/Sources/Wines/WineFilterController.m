@@ -416,7 +416,7 @@ didPickLocalItemId:(int)itemId
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
         [_selectedItemsIds replaceObjectAtIndex:kWineCategoryRow withObject:
-                [NSString stringWithFormat:@"cat=%i", (itemId + 1)]];
+                [NSString stringWithFormat:@"cat=2"]];
     } else if ([controller list] == kWinePriceLocalFilter) {
         switch (itemId) {
             case 0:
@@ -443,18 +443,23 @@ didPickLocalItemId:(int)itemId
         [_selectedItemsNames replaceObjectAtIndex:kWineStrainRow
                 withObject:@""];
         
+        int catId = 0;
         switch (itemId) {
             case 0:
                 label = kWineWhiteLabel;
+                catId = 4;
                 break;
             case 1:
                 label = kWineRoseLabel;
+                catId = 5;
                 break;
             case 2:
                 label = kWineRedLabel;
+                catId = 3;
                 break;
             case 3:
                 label = kWineAllLabel;
+                catId = 1;
                 break;
             default:
                 break;
@@ -462,7 +467,7 @@ didPickLocalItemId:(int)itemId
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
         [_selectedItemsIds replaceObjectAtIndex:kWineCategoryRow withObject:
-                [NSString stringWithFormat:@"cat=%i", (itemId + 1)]];
+                [NSString stringWithFormat:@"cat=%i", catId]];
     }
     [[self tableView] reloadData];
 }

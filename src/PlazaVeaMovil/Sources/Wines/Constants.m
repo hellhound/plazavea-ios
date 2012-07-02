@@ -250,8 +250,8 @@ NSString *const kWineRoseLabel = @"Vino rosado";
 // NSLocalizedString(@"Rosado", nil)
 NSString *const kWineRedLabel = @"Vino tinto";
 // NSLocalizedString(@"Tinto", nil)
-NSString *const kWineAllLabel = @"Todos";
-// NSLocalizedString(@"Todos", nil)
+NSString *const kWineAllLabel = @"Todos los vinos";
+// NSLocalizedString(@"Todos los vinos", nil)
 NSString *const kWineLessThanLabel = @"Menos de S/. 50";
 // NSLocalizedString(@"Menos de S/. 50", nil)
 NSString *const kWineBetweenLabel = @"Entre S/. 50 y S/. 100";
