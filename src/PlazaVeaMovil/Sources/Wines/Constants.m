@@ -98,12 +98,12 @@ NSString *const kWineListTitleForLoading = @"Obteniendo la lista";
 // NSLocalizedString(@"Obteniendo la lista", nil)
 NSString *const kWineListTitleForReloading = @"Actualizando la lista";
 // NSLocalizedString(@"Actualizando la lista", nil)
-NSString *const kWineListTitleForEmpty = @"Sin información";
-// NSLocalizedString(@"@"Sin información", nil)
-NSString *const kWineListSubtitleForEmpty = @"Para criterio seleccionado, "
-        @"por favor seleccione una nueva búsqueda";
-// NSLocalizedString(@"Para criterio seleccionado, por favor seleccione "
-//      @"una nueva búsqueda", nil)
+NSString *const kWineListTitleForEmpty = @"Sin resultados";
+// NSLocalizedString(@"@"Sin resultados", nil)
+NSString *const kWineListSubtitleForEmpty = @"Sin información para criterio "\
+        "seleccionado, por favor seleccione una nueva búsqueda";
+// NSLocalizedString(@"Sin información para criterio seleccionado, por favor "\
+        "seleccione una nueva búsqueda", nil)
 NSString *const kWineListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
