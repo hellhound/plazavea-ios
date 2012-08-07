@@ -459,7 +459,7 @@ didPickLocalItemId:(int)itemId
                 break;
             case 3:
                 label = kWineAllLabel;
-                catId = 1;
+                catId = 0;
                 break;
             default:
                 break;

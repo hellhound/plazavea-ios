@@ -202,7 +202,7 @@
 }
 
 #pragma mark -
-#pragma <FBSessionDelegate>
+#pragma mark <FBSessionDelegate>
 
 - (void)fbDidLogin
 {

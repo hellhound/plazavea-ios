@@ -114,4 +114,4 @@
             [request setCachePolicy:cachePolicy | \
                 TTURLRequestCachePolicyEtag]; \
         } \
-        [request setCacheExpirationAge:TT_DEFAULT_CACHE_EXPIRATION_AGE]
+        [request setCacheExpirationAge:1]
