@@ -137,8 +137,9 @@ NSString *const kShoppingListAlertCancel = @"OK";
 // NSLocalizedString(@"OK", nil)
 NSString *const kShoppingListAlertCreate = @"Agregar ítems";
 // NSLocalizedString(@"Agregar ítems", nil)
-NSString *const kShoppingListMailSubject = @"Plaza Vea te envía la lista: %@";
-// NSLocalizedString(@"Plaza Vea te envía esta lista: %@", nil)
+NSString *const kShoppingListMailSubject = @"Plaza Vea te envía tu lista " \
+        "de compras";
+// NSLocalizedString(@"Plaza Vea te envía tu lista de compras", nil)
 NSString *const kShoppingListMailHeader = @"default-store-detail.png";
 NSString *const kShoppingListMailFooter = @"Tú también puedes crear tu " \
         "propia lista en Plaza Vea móvil ingresa aquí.";

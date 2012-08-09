@@ -605,8 +605,7 @@ static CGFloat headerMinHeight = 40.;
             bannerURL];
     
     [picker setMailComposeDelegate:self];
-    [picker setSubject:[NSString stringWithFormat:kShoppingListMailSubject,
-            [_shoppingList name]]];
+    [picker setSubject:kShoppingListMailSubject];
     [picker setMessageBody:[NSString stringWithFormat:
             @"%@<br /><b>%@</b><br />%@<br />%@",imageHTML,
                 [_shoppingList name], [_shoppingList serializeHTML],
