@@ -71,9 +71,12 @@
             }
             break;
         default:
+            if ([TTStyleSheet hasStyleSheetForSelector:
+                    @selector(recipesSectionHeader)]) {
+                [header setStyle:TTSTYLE(recipesSectionHeader)];
+            }
             break;
     }
-    
     return header;
 }
 @end

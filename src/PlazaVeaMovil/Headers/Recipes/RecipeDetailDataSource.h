@@ -7,7 +7,7 @@
 
 @protocol RecipeDetailDataSourceDelegate;
 
-@interface RecipeDetailDataSource: TTListDataSource
+@interface RecipeDetailDataSource: TTSectionedDataSource
 {
     id<RecipeDetailDataSourceDelegate> _delegate;
     BOOL _hasMeat;
