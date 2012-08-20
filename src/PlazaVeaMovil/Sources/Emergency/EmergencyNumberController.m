@@ -289,7 +289,7 @@ static CGFloat phoneHeight = 10.;
     return [[_filteredController sections] count];
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+/*- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView == [self tableView]) &&
             ([[_resultsController sections] count] > 4)) {
@@ -300,7 +300,7 @@ static CGFloat phoneHeight = 10.;
         return [_filteredController sectionIndexTitles];
     }
     return nil;
-}
+}*/
 
 - (NSInteger)      tableView:(UITableView *)tableView 
  sectionForSectionIndexTitle:(NSString *)title 

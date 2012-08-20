@@ -55,19 +55,15 @@ static CGFloat titleWidth = 320.;
     UIView *headerView =
     [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
     // Conf the image
-    TTImageView *imageView = nil;
-    
-    if (imageURL != nil) {
-        imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
+    TTImageView *imageView = [[[TTImageView alloc] initWithFrame:CGRectZero]
                 autorelease];
         
-        [imageView setDefaultImage:TTIMAGE(kRegionListDefaultImage)];
-        //[imageView setUrlPath:imageURL];
-        [imageView setAutoresizingMask:UIViewAutoresizingNone];
-        [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
-                UIViewAutoresizingFlexibleRightMargin];
-        [imageView setBackgroundColor:[UIColor clearColor]];
-    }
+    [imageView setDefaultImage:TTIMAGE(kRegionListDefaultImage)];
+    //[imageView setUrlPath:imageURL];
+    [imageView setAutoresizingMask:UIViewAutoresizingNone];
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin];
+    [imageView setBackgroundColor:[UIColor clearColor]];
     // Conf the label
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]
             autorelease];

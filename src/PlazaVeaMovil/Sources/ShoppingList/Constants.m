@@ -140,16 +140,18 @@ NSString *const kShoppingListAlertCancel = @"OK";
 // NSLocalizedString(@"OK", nil)
 NSString *const kShoppingListAlertCreate = @"Agregar ítems";
 // NSLocalizedString(@"Agregar ítems", nil)
-NSString *const kShoppingListMailSubject = @"Plaza Vea te envía la lista: %@";
-// NSLocalizedString(@"Plaza Vea te envía esta lista: %@", nil)
+NSString *const kShoppingListMailSubject = @"Plaza Vea te envía tu lista " \
+        "de compras";
+// NSLocalizedString(@"Plaza Vea te envía tu lista de compras", nil)
 NSString *const kShoppingListMailHeader = @"default-store-detail.png";
 NSString *const kShoppingListMailFooter = @"Tú también puedes crear tu " \
         "propia lista en Plaza Vea móvil ingresa aquí.";
 // NSLocalizedString(@"Tú también puedes crear tu " \
 //      "propia lista en Plaza Vea móvil ingresa aquí.", nil)
-NSString *const kShoppingListMailBanner = @"";
+NSString *const kShoppingListMailBanner =
+@"http://demos.bitzeppelin.com/spsa/assets/mailing/offers/plazavea-logo.jpg";
 const CGFloat kShoppingListMailBannerWidth = 300.;
-const CGFloat kShoppingListMailBannerHeight = 140.;
+const CGFloat kShoppingListMailBannerHeight = 208.;
 
 // HistoryEntryControlller's contstants
 NSString *const kHistoryEntryAlertTitle = @"Lista vacía";
@@ -174,3 +176,12 @@ NSString *const kURLShoppingLists = @"tt://launcher/shoppinglists/";
 // Controller URL's calls
 
 NSString *const kURLShoppingListsCall = @"tt://launcher/shoppinglists/";
+
+// Events
+
+NSString *const kAppEventsEndpointURL = @"/appevents/";
+NSString *const kAppEventRequestString = @"%@=%@&%@=%@&%@=%@";
+NSString *const kTypeResquestKey = @"type";
+NSString *const kDeviceIdRequestKey = @"device_id";
+NSString *const kMetadataRequestKey = @"metadata";
+

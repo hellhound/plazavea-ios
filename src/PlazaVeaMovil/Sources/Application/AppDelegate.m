@@ -4,6 +4,8 @@
 
 #import <Three20/Three20.h>
 
+#import <extThree20JSON/extThree20JSON.h>
+
 #import "Common/Constants.h"
 #import "Launcher/Constants.h"
 #import "Launcher/LauncherViewController.h"
@@ -82,7 +84,7 @@
 #pragma mark AppDelegate (Public)
 
 @synthesize window = _window, facebook = _facebook, twitter = _twitter,
-        overlay = _overlay;
+        overlay = _overlay, receivedData = _receivedData;
 
 - (NSString *)getUUID {
     //get a UUID value from UserDefaults
@@ -384,7 +386,7 @@
 }
 
 #pragma mark -
-#pragma <FBSessionDelegate>
+#pragma mark <FBSessionDelegate>
 
 - (void)fbDidLogin
 {
@@ -460,6 +462,56 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         } else {
             [[alertView textFieldAtIndex:2] setText:nil];
         }
+        if ([self loadDefaults]) {
+            NSURL *url = [NSURL URLWithString:ENDPOINT(@"/register/")];
+            NSMutableURLRequest *request = [NSMutableURLRequest
+                    requestWithURL:url
+                        cachePolicy:NSURLRequestUseProtocolCachePolicy
+                        timeoutInterval:60.];
+            
+            [request setHTTPMethod:kPostHTTPMethod];
+            [request setValue:kContentHTTPHeaderValue
+                    forHTTPHeaderField:kContentHTTPHeaderKey];
+            
+            NSString *postString = [NSString stringWithFormat:
+                    kRegisterRequestString,
+                    kDNIResquestKey, [defaults objectForKey:kDNIDefault],
+                    kPhoneRequestKey, [defaults objectForKey:kPhoneDefault],
+                    kEmailRequestKey, [defaults objectForKey:kEmailDefault]];
+            
+            [request setHTTPBody:[postString dataUsingEncoding:
+                    NSUTF8StringEncoding]];
+                        
+            NSURLConnection *connection = [[[NSURLConnection alloc]
+                    initWithRequest:request delegate:self] autorelease];
+            
+            if (connection) {
+                _receivedData = [[NSMutableData data] retain];
+            }
+        }
     }
+}
+
+#pragma mark -
+#pragma mark <NSURLConnectionDelegate>
+
+- (void)connection:(NSURLConnection *)connection
+didReceiveResponse:(NSURLResponse *)response
+{
+    [_receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_receivedData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *response = [[[NSString alloc] initWithData:_receivedData
+                encoding:NSUTF8StringEncoding] autorelease];
+    
+    NSLog(@"%@", response);
+    [_receivedData release];
 }
 @end

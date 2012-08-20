@@ -21,6 +21,8 @@
          didDeleteShoppingList:(ShoppingList *)shoppingList;
 - (void)shoppingListController:(ShoppingListController *)shoppingListController
           didCloneShoppingList:(ShoppingList *)shoppingList;
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+         didModifyShoppingList:(ShoppingList *)shoppingList;
 @end
 
 @interface ShoppingListController: EditableTableViewController

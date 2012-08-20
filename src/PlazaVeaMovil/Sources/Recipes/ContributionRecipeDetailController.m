@@ -10,6 +10,7 @@
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/ContributionRecipeDetailController.h"
+#import "Recipes/RecipesTableViewDelegate.h"
 
 @implementation ContributionRecipeDetailController
 
@@ -30,6 +31,11 @@
     [self setDataSource:[[[RecipeDetailDataSource alloc]
             initWithRecipeId:_recipeId delegate:self
                 section:kRecipeDetailContributionView from:_from] autorelease]];
+}
+
+- (id<UITableViewDelegate>)createDelegate {
+    return [[[RecipesTableViewDelegate alloc] initWithController:self
+            from:_from] autorelease];
 }
 
 - (void)createShoppingListFormRecipe

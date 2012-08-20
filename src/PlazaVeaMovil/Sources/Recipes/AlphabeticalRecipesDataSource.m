@@ -50,10 +50,10 @@
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+/*- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return [(RecipeCollection *)[self model] sectionIndexTitles];
-}
+}*/
 
 #pragma mark -
 #pragma mark <TTTableViewDataSource>

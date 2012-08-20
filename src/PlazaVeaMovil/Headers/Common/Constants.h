@@ -36,6 +36,8 @@
 #define N(x) [NSNumber numberWithInteger:x]
 // Endpoint-construction helper
 #define ENDPOINT(x) ENDPOINT_BASE_URL x
+// Endpoint-construction helper for events
+#define EVENTENDPOINT(x) @"http://" HOST_NAME @"/spsa" x
 // Helper for forming URL calls
 #define URL(...) [NSString stringWithFormat:__VA_ARGS__]
 // Image query string
@@ -112,4 +114,4 @@
             [request setCachePolicy:cachePolicy | \
                 TTURLRequestCachePolicyEtag]; \
         } \
-        [request setCacheExpirationAge:TT_DEFAULT_CACHE_EXPIRATION_AGE]
+        [request setCacheExpirationAge:1]

@@ -9,6 +9,7 @@
 #import "Common/Additions/TTStyleSheet+Additions.h"
 #import "Common/Controllers/EditableCellTableViewController.h"
 #import "Common/Views/EditableTableViewCell.h"
+#import "Application/Constants.h"
 #import "Application/AppDelegate.h"
 #import "ShoppingList/Constants.h"
 #import "ShoppingList/Models.h"
@@ -23,6 +24,7 @@ static CGFloat headerHeight = 40.;
 @interface ShoppingListsController ()
 
 @property (nonatomic, assign) BOOL noLists;
+- (void)postEventWithType:(NSString *)type;
 @end
 
 @implementation ShoppingListsController
@@ -190,12 +192,48 @@ static CGFloat headerHeight = 40.;
 #pragma mark -
 #pragma mark ShoppingListsController (Public)
 
+@synthesize receivedData = _receivedData;
+
 - (void)addShoppingList:(NSString *)name
 {
     [ShoppingList shoppingListWithName:name
             resultsController:[self resultsController]];
     [self fetchUpdateAndReload];
     [self scrollToTop];
+}
+
+#pragma mark -
+#pragma mark ShoppingListsController (Private)
+
+- (void)postEventWithType:(NSString *)type
+{
+    NSURL *url = [NSURL URLWithString:EVENTENDPOINT(@"/appevents/")];
+    NSMutableURLRequest *request = [NSMutableURLRequest
+            requestWithURL:url
+                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                timeoutInterval:60.];
+    
+    [request setHTTPMethod:kPostHTTPMethod];
+    [request setValue:kContentHTTPHeaderValue
+            forHTTPHeaderField:kContentHTTPHeaderKey];
+    
+    NSString *UUID = [(AppDelegate *)[[UIApplication sharedApplication]
+            delegate] getUUID];
+    NSString *postString = [NSString stringWithFormat:
+            kAppEventRequestString,
+                kTypeResquestKey, type,
+                kDeviceIdRequestKey, UUID,
+                kMetadataRequestKey, nil];
+    
+    [request setHTTPBody:[postString dataUsingEncoding:
+            NSUTF8StringEncoding]];
+    
+    NSURLConnection *connection = [[[NSURLConnection alloc]
+            initWithRequest:request delegate:self] autorelease];
+    
+    if (connection) {
+        _receivedData = [[NSMutableData data] retain];
+    }
 }
 
 #pragma mark -
@@ -229,6 +267,7 @@ static CGFloat headerHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
+    [self postEventWithType:@"1"];
     return list;
 }
 
@@ -236,6 +275,7 @@ static CGFloat headerHeight = 40.;
          didDeleteShoppingList:(ShoppingList *)shoppingList
 {
     [self fetchUpdateAndReload];
+    [self postEventWithType:@"2"];
 }
 
 - (void)shoppingListController:(ShoppingListController *)shoppingListController
@@ -244,6 +284,13 @@ static CGFloat headerHeight = 40.;
     [shoppingList setName:[ShoppingList resolveNewNameFromName:[
             shoppingList name]]];
     [self fetchUpdateAndReload];
+    [self postEventWithType:@"1"];
+}
+
+- (void)shoppingListController:(ShoppingListController *)shoppingListController
+         didModifyShoppingList:(ShoppingList *)shoppingList
+{
+    [self postEventWithType:@"3"];
 }
 
 #pragma mark -
@@ -285,5 +332,29 @@ static CGFloat headerHeight = 40.;
                 lineBreakMode:UILineBreakModeWordWrap].height + (margin * 4);
     
     return cellHeight;
+}
+
+
+#pragma mark -
+#pragma mark <NSURLConnectionDelegate>
+
+- (void)connection:(NSURLConnection *)connection
+didReceiveResponse:(NSURLResponse *)response
+{
+    [_receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_receivedData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *response = [[[NSString alloc] initWithData:_receivedData
+            encoding:NSUTF8StringEncoding] autorelease];
+    
+    NSLog(@"%@", response);
+    [_receivedData release];
 }
 @end

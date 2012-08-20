@@ -169,6 +169,9 @@ extern NSString *const kWineCategoryFilterPrefix;
 extern NSString *const kWineKindFilterPrefix;
 extern NSString *const kWinePriceFilterPrefix;
 extern NSString *const kWineWineryFilterPrefix;
+extern NSString *const kWineNoFilterTitle;
+extern NSString *const kWineNoFilterMessage;
+extern NSString *const kWineNoFilterButton;
 extern const CGFloat kWineColor;
 
 // FilteringListController's constants

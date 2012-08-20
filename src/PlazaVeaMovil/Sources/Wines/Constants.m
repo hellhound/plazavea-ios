@@ -98,12 +98,12 @@ NSString *const kWineListTitleForLoading = @"Obteniendo la lista";
 // NSLocalizedString(@"Obteniendo la lista", nil)
 NSString *const kWineListTitleForReloading = @"Actualizando la lista";
 // NSLocalizedString(@"Actualizando la lista", nil)
-NSString *const kWineListTitleForEmpty = @"Sin información";
-// NSLocalizedString(@"@"Sin información", nil)
-NSString *const kWineListSubtitleForEmpty = @"Por favor intente de nuevo "
-@"más tarde, aún no existe información disponible";
-// NSLocalizedString(@"Por favor intente de nuevo "
-//      @"más tarde, aún no existe información disponible", nil)
+NSString *const kWineListTitleForEmpty = @"Sin resultados";
+// NSLocalizedString(@"@"Sin resultados", nil)
+NSString *const kWineListSubtitleForEmpty = @"Sin información para criterio "\
+        "seleccionado, por favor seleccione una nueva búsqueda";
+// NSLocalizedString(@"Sin información para criterio seleccionado, por favor "\
+        "seleccione una nueva búsqueda", nil)
 NSString *const kWineListTitleForError = @"Error";
 // NSLocalizedString(@"Error", nil)
 NSString *const kWineListSubtitleForError = @"Por favor intente de nuevo "
@@ -213,6 +213,14 @@ NSString *const kWineCategoryFilterPrefix = @"cat=%i";
 NSString *const kWineKindFilterPrefix = @"kind=%i";
 NSString *const kWinePriceFilterPrefix = @"price=%i";
 NSString *const kWineWineryFilterPrefix = @"winery=%i";
+NSString *const kWineNoFilterTitle = @"No ha escogido ningún filtro";
+// NSLocalizedString(@"No ha escogido ningún filtro", nil);
+NSString *const kWineNoFilterMessage = @"Para realizar la búsqueda primero "
+        @"debe elegir al menos una opción para filtrar";
+// NSLocalizedString(@"Para realizar la búsqueda primero "
+//        @"debe elegir al menos una opción para filtrar", nil);
+NSString *const kWineNoFilterButton = @"OK";
+//NSLocalizedString(@"OK", nil);
 const CGFloat kWineColor = .85;
 
 //FilteringListController's constants
@@ -236,14 +244,14 @@ NSString *const kWineWineLabel = @"Vino";
 // NSLocalizedString(@"Vino", nil)
 NSString *const kWineSparklingLabel = @"Espumante";
 // NSLocalizedString(@"Espumante", nil)
-NSString *const kWineWhiteLabel = @"Blanco";
+NSString *const kWineWhiteLabel = @"Vino blanco";
 // NSLocalizedString(@"Blanco", nil)
-NSString *const kWineRoseLabel = @"Rosado";
+NSString *const kWineRoseLabel = @"Vino rosado";
 // NSLocalizedString(@"Rosado", nil)
-NSString *const kWineRedLabel = @"Tinto";
+NSString *const kWineRedLabel = @"Vino tinto";
 // NSLocalizedString(@"Tinto", nil)
-NSString *const kWineAllLabel = @"Todos";
-// NSLocalizedString(@"Todos", nil)
+NSString *const kWineAllLabel = @"Todos los vinos";
+// NSLocalizedString(@"Todos los vinos", nil)
 NSString *const kWineLessThanLabel = @"Menos de S/. 50";
 // NSLocalizedString(@"Menos de S/. 50", nil)
 NSString *const kWineBetweenLabel = @"Entre S/. 50 y S/. 100";
