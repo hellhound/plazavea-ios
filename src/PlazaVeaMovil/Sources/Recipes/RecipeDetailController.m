@@ -38,11 +38,12 @@
 - (void)createShoppingListFormRecipe
 {
     ShoppingList *shopingList = [(Recipe *)[self model] createShoppingList];
-    UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil 
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
             message:[NSString stringWithFormat:kRecipeDetailCreateMessage,
                 [shopingList name]] delegate:self
                 cancelButtonTitle:kRecipeDetailCreateButton
                 otherButtonTitles:nil];
+    
     [alertView show];
     [alertView release];
 }
@@ -54,6 +55,7 @@
 {
     if ((self = [self initWithRecipeId:recipeId]) != nil) {
         _hasMeat = [hasMeat boolValue];
+        
         if ([hasMeat boolValue]) {
             [self setSegmentIndex:kRecipesSegmentedControlIndexMeatButton];
         } else {

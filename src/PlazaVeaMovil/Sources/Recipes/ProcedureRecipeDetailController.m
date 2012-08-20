@@ -10,6 +10,7 @@
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/ProcedureRecipeDetailController.h"
+#import "Recipes/RecipesTableViewDelegate.h"
 
 @implementation ProcedureRecipeDetailController
 
@@ -30,6 +31,11 @@
     [self setDataSource:[[[RecipeDetailDataSource alloc]
             initWithRecipeId:_recipeId delegate:self
                 section:kRecipeDetailProceduresView from:_from] autorelease]];
+}
+
+- (id<UITableViewDelegate>)createDelegate {
+    return [[[RecipesTableViewDelegate alloc] initWithController:self
+            from:_from] autorelease];
 }
 
 #pragma mark -

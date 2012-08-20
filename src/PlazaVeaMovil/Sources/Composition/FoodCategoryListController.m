@@ -267,14 +267,14 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
     return [sectionInfo numberOfObjects];
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+/*- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if ((tableView != [self tableView]) &&
             ([[_filteredController sections] count] > 4)) {
         return [_filteredController sectionIndexTitles];
     }
     return nil;
-}
+}*/
 
 -       (NSInteger)tableView:(UITableView *)tableView 
  sectionForSectionIndexTitle:(NSString *)title

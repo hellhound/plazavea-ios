@@ -200,10 +200,10 @@ static CGFloat titleWidth = 320.;
     
     [items addObject:oxygenation];
     
-    TableCaptionItem *price = [TableCaptionItem
+    /*TableCaptionItem *price = [TableCaptionItem
             itemWithText:priceLabel caption:kWinePriceLabel];
     
-    [items addObject:price];
+    [items addObject:price];*/
     
     TableCaptionItem *cellaring = [TableCaptionItem itemWithText:
             [NSString stringWithFormat:kWineCellaringUnits,

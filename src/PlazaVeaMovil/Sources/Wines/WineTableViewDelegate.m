@@ -25,6 +25,7 @@
 {
     TTView *header = (TTView *)[super tableView:tableView
             viewForHeaderInSection:section];
+    
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(storesSectionHeader)]) {
         [header setStyle:TTSTYLE(wineSectionHeader)];

@@ -541,10 +541,10 @@ static NSString *const kMutableServicesKey = @"services";
         return nil;
     if (![address isKindOfClass:[NSString class]])
         return nil;
-    if ((pictureURL = [rawStore objectForKey:kStorePictureURLKey]) == nil)
+    /*if ((pictureURL = [rawStore objectForKey:kStorePictureURLKey]) == nil)
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]])
-        return nil;
+        return nil;*/
     if (latitudeInLocation) {
         //TODO:Implement
         latitude = nil;
@@ -563,8 +563,8 @@ static NSString *const kMutableServicesKey = @"services";
     [store setStoreId:storeId];
     [store setName:name];
     [store setStoreAddress:address];
-    if (pictureURL)
-        [store setPictureURL:[NSURL URLWithString:pictureURL]];
+    /*if (pictureURL)
+        [store setPictureURL:[NSURL URLWithString:pictureURL]];*/
     [store setLatitude:latitude];
     [store setLongitude:longitude];
     return store;
@@ -624,10 +624,10 @@ static NSString *const kMutableServicesKey = @"services";
         district = [Subregion subregionFromDictionary:rawDistrict];
         if (district == nil)
             return nil;
-        if ((ubigeo = [rawLocation objectForKey:kStoreUbigeoKey]) == nil)
+        /*if ((ubigeo = [rawLocation objectForKey:kStoreUbigeoKey]) == nil)
             return nil;
         if (![ubigeo isKindOfClass:[NSString class]])
-            return nil;
+            return nil;*/
         if ((latitude = [rawLocation objectForKey:kStoreLatitudeKey]) == nil)
             return nil;
         if (![latitude isKindOfClass:[NSNumber class]])
@@ -652,7 +652,7 @@ static NSString *const kMutableServicesKey = @"services";
     [store setAttendance:attendance];
     [store setRegion:region];
     [store setSubregion:subregion];
-    [store setUbigeo:ubigeo];
+    //[store setUbigeo:ubigeo];
     [store setLatitude:latitude];
     [store setLongitude:longitude];
     [store setDistrict:district];
@@ -689,7 +689,7 @@ static NSString *const kMutableServicesKey = @"services";
     [self setRegion:[store region]];
     [self setSubregion:[store subregion]];
     [self setDistrict:[store district]];
-    [self setUbigeo:[[store ubigeo] copy]];
+    //[self setUbigeo:[[store ubigeo] copy]];
     [self setLatitude:[store latitude]];
     [self setLongitude:[store longitude]];
 

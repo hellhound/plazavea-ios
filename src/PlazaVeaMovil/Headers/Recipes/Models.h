@@ -97,6 +97,7 @@
     Contribution *_contribution;
     NSUInteger _didFinishCount;
     StrainCollection *_strains;
+    NSNumber *_wines;
 }
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, copy) NSString *code;
@@ -112,6 +113,7 @@
 @property (nonatomic, retain) Contribution *contribution;
 @property (nonatomic, retain) NSNumber *rations;
 @property (nonatomic, retain) StrainCollection *strains;
+@property (nonatomic, retain) NSNumber *wines;
 
 + (id)shortRecipeFromDictionary:(NSDictionary *)rawRecipe;
 + (id)recipeFromDictionary:(NSDictionary *)rawRecipe;

@@ -32,3 +32,12 @@ NSString *const kRegsitrationButton = @"Enviar";
 NSString *const kDNILabel = @"D.N.I.";
 NSString *const kPhoneLabel = @"Teléfono";
 NSString *const kEmailLabel = @"Email";
+
+NSString *const kRegisterEndpointURL = @"/register/";
+NSString *const kPostHTTPMethod = @"POST";
+NSString *const kContentHTTPHeaderValue = @"application/json";
+NSString *const kContentHTTPHeaderKey = @"Content-Type";
+NSString *const kRegisterRequestString = @"%@=%@&%@=%@&%@=%@";
+NSString *const kDNIResquestKey = @"dni";
+NSString *const kPhoneRequestKey = @"phone";
+NSString *const kEmailRequestKey = @"email";

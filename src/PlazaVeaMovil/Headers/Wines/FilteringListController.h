@@ -23,8 +23,8 @@
 
 @protocol FilteringListControllerDelegate <NSObject>
 
-- (void)controller:(FilteringListController *)controller
-            itemId:(NSNumber *)itemId;
+/*- (void)controller:(FilteringListController *)controller
+            itemId:(NSNumber *)itemId;*/
 - (void)controller:(FilteringListController *)controller
             didPickItem:(Country *)item;
 @end

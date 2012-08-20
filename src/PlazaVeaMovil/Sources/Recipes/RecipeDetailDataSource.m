@@ -229,7 +229,6 @@ static CGFloat titleWidth = 320.;
     }
     Recipe *recipe = (Recipe *)[self model];
     NSMutableArray *items = [NSMutableArray array];
-    NSString *recipeName = [recipe name];
     NSString *rations = nil;
     if ([[recipe rations] intValue] > 0) {
         rations = [NSString stringWithFormat:kRecipeRations,
@@ -241,17 +240,18 @@ static CGFloat titleWidth = 320.;
         pictureURL = IMAGE_URL(pictureURL, kRecipeDetailImageWidth,
                 kRecipeDetailImageHeigth);
     }
-    [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
-            [pictureURL absoluteString] title:recipeName detail:rations]];
     
     NSString *fromString = [NSString stringWithFormat:@"%i", _from];
-    
+    NSString *section = @"";
+
+    [_delegate dataSource:self viewForHeader:[self viewWithImageURL:
+            [pictureURL absoluteString] title:[recipe name] detail:rations]];
     //if the features list have items doesnt show the ingredients n'
     //procedures
     if ([[recipe features] count] > 0) {
         switch (_section) {
             case kRecipeDetailMainView:
-                if ([[recipe features] count] > 0) {
+                if ([[recipe features] count] > 0) {                    
                     TTTableTextItem *features = [TTTableTextItem
                             itemWithText:kRecipeDetailSectionFeatures
                                 URL:URL(kURLFeaturesRecipeDetailCall,
@@ -259,7 +259,7 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:features];
                 }
-                if ([[recipe tips] count] > 0) {
+                if ([[recipe tips] count] > 0) {                    
                     TTTableTextItem *tips = [TTTableTextItem
                             itemWithText:kRecipeDetailSectionTips
                                 URL:URL(kURLTipsRecipeDetailCall,
@@ -275,6 +275,8 @@ static CGFloat titleWidth = 320.;
                 [items addObject:contribution];
                 break;
             case kRecipeDetailFeatureView:
+                section = kRecipeDetailSectionFeatures;
+                
                 if ([[recipe tips] count] > 0) {
                     for (NSString *feature in [recipe features]) {
                         TTTableTextItem *item = [TTTableTextItem
@@ -285,6 +287,8 @@ static CGFloat titleWidth = 320.;
                 }
                 break;
             case kRecipeDetailTipsView:
+                section = kRecipeDetailSectionTips;
+                
                 if ([[recipe tips] count] > 0) {
                     for (NSString *tip in [recipe tips]) {
                         TTTableTextItem *item = [TTTableTextItem
@@ -298,7 +302,9 @@ static CGFloat titleWidth = 320.;
             case kRecipeDetailIngredientsView:
             case kRecipeDetailContributionView:
             {
+                section = kRecipeDetailSectionContribution;
                 NSString *valueString;
+                
                 if ([[recipe contribution] calories]) {
                     valueString = [NSString stringWithFormat:
                             kRecipeDetailKCalSufix, [[[recipe contribution]
@@ -380,7 +386,14 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:tips];
                 }
-                if (_from != kRecipeFromWine) {
+                TTTableTextItem *contribution = [TTTableTextItem
+                        itemWithText:kRecipeDetailSectionContribution
+                            URL:URL(kURLContributionRecipeDetailCall,
+                            [recipe recipeId])];
+                
+                [items addObject:contribution];
+                if ((_from != kRecipeFromWine) &&
+                        ([[recipe wines] intValue] > 0)) {
                     TTTableTextItem *strains = [TTTableTextItem
                             itemWithText:kRecipeDetailSectionStrains
                                 URL:URL(kURLRecipeStrainListCall,
@@ -388,14 +401,10 @@ static CGFloat titleWidth = 320.;
                     
                     [items addObject:strains];
                 }
-                TTTableTextItem *contribution = [TTTableTextItem
-                        itemWithText:kRecipeDetailSectionContribution
-                            URL:URL(kURLContributionRecipeDetailCall,
-                            [recipe recipeId])];
-                
-                [items addObject:contribution];
                 break;
             case kRecipeDetailIngredientsView:
+                section = kRecipeDetailSectionIngredients;
+                
                 if ([[recipe ingredients] count] > 0) {
                     for (Ingredient *ingredient in [recipe ingredients]) {
                         TTTableTextItem *item = [TTTableTextItem itemWithText:
@@ -406,6 +415,8 @@ static CGFloat titleWidth = 320.;
                 }
                 break;
             case kRecipeDetailProceduresView:
+                section = kRecipeDetailSectionProcedures;
+                
                 if ([[recipe procedures] count] > 0) {
                     for (NSString *procedure in [recipe procedures]) {
                         TTTableTextItem *item =
@@ -416,6 +427,8 @@ static CGFloat titleWidth = 320.;
                 }
                 break;
             case kRecipeDetailTipsView:
+                section = kRecipeDetailSectionTips;
+                
                 if ([[recipe tips] count] > 0) {
                     for (NSString *tip in [recipe tips]) {
                         TTTableTextItem *item = [TTTableTextItem
@@ -427,7 +440,9 @@ static CGFloat titleWidth = 320.;
                 break;
             case kRecipeDetailContributionView:
             {
-                 NSString *valueString;
+                section = kRecipeDetailSectionContribution;
+                NSString *valueString;
+                
                 if ([[recipe contribution] calories]) {
                     valueString = [NSString stringWithFormat:
                             kRecipeDetailKCalSufix, [[[recipe contribution]
@@ -484,7 +499,8 @@ static CGFloat titleWidth = 320.;
             }
         }
     }
-    [self setItems:items];
+    [self setItems:[NSArray arrayWithObject:items]];
+    [self setSections:[NSArray arrayWithObject:section]];
 }
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object

@@ -128,3 +128,11 @@ extern NSString *const kURLShoppingLists;
 // Controller URL's calls
 
 extern NSString *const kURLShoppingListsCall;
+
+// Events
+
+extern NSString *const kAppEventsEndpointURL;
+extern NSString *const kAppEventRequestString;
+extern NSString *const kTypeResquestKey;
+extern NSString *const kDeviceIdRequestKey;
+extern NSString *const kMetadataRequestKey;

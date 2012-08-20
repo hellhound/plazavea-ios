@@ -138,7 +138,7 @@ static CGFloat headerMinHeight = 40.;
     // Adding the subviews to the header view
     [headerView addSubview:titleLabel];
     [headerView addSubview:imageView];
-    [headerView addSubview:logoView];
+    //[headerView addSubview:logoView];
     //[headerView addSubview:_categoryLabel];
     if ([TTStyleSheet hasStyleSheetForSelector:
          @selector(compositionBackgroundHeader)]) {

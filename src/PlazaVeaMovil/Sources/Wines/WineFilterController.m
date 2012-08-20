@@ -307,9 +307,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                             }
                         }
                     }
-                    [[TTNavigator navigator] openURLAction:[[TTURLAction
-                            actionWithURLPath:URL(kURLFilteredWineListCall,
-                                filters)] applyAnimated:YES]];
+                    if ([filters isEqualToString:@""]) {
+                        UIAlertView *alert = [[[UIAlertView alloc]
+                                initWithTitle:kWineNoFilterTitle
+                                    message:kWineNoFilterMessage delegate:nil
+                                    cancelButtonTitle:kWineNoFilterButton
+                                    otherButtonTitles:nil] autorelease];
+                        
+                        [alert show];
+                    } else {
+                        [[TTNavigator navigator] openURLAction:[[TTURLAction
+                                actionWithURLPath:URL(kURLFilteredWineListCall,
+                                    filters)] applyAnimated:YES]];
+                        }
                     break;
                 }
                 default:
@@ -398,10 +408,18 @@ didPickLocalItemId:(int)itemId
     NSString *label = [[NSString alloc] init];
     
     if ([controller list] == kWineCategoryLocalFilter) {
+        // reset wine type
+        [_selectedItemsIds replaceObjectAtIndex:kWineStrainRow
+                    withObject:[NSNull null]];
+        [_selectedItemsNames replaceObjectAtIndex:kWineStrainRow
+                    withObject:@""];
+        
         label = kWineSparklingLabel;
         
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
+        [_selectedItemsIds replaceObjectAtIndex:kWineCategoryRow withObject:
+                [NSString stringWithFormat:@"cat=2"]];
     } else if ([controller list] == kWinePriceLocalFilter) {
         switch (itemId) {
             case 0:
@@ -422,24 +440,37 @@ didPickLocalItemId:(int)itemId
                 [NSString stringWithFormat:kWinePriceFilterPrefix,
                     (itemId + 1)]];
     } else if ([controller list] == kWineWinesLocalFilter) {
+        // reset wine type
+        [_selectedItemsIds replaceObjectAtIndex:kWineStrainRow
+                withObject:[NSNull null]];
+        [_selectedItemsNames replaceObjectAtIndex:kWineStrainRow
+                withObject:@""];
+        
+        int catId = 0;
         switch (itemId) {
             case 0:
                 label = kWineWhiteLabel;
+                catId = 4;
                 break;
             case 1:
                 label = kWineRoseLabel;
+                catId = 5;
                 break;
             case 2:
                 label = kWineRedLabel;
+                catId = 3;
                 break;
             case 3:
                 label = kWineAllLabel;
+                catId = 0;
                 break;
             default:
                 break;
         }
         [_selectedItemsNames replaceObjectAtIndex:kWineCategoryRow
                 withObject:label];
+        [_selectedItemsIds replaceObjectAtIndex:kWineCategoryRow withObject:
+                [NSString stringWithFormat:@"cat=%i", catId]];
     }
     [[self tableView] reloadData];
 }

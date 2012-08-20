@@ -407,8 +407,8 @@ static CGFloat headerMinHeight = 40.;
             switch ([indexPath row]) {
                 case kBodyMeterIdealWeightRow:
                     textLabel = kBodyMeterIdealWeightLabel;
-                    detailTextLabel = [_profile idealWeight] ? [NSString
-                            stringWithFormat:kBodyMeterWeightSufix,
+                    detailTextLabel = [[_profile idealWeight] intValue] > 0 ?
+                            [NSString stringWithFormat:kBodyMeterWeightSufix,
                                 [[_profile idealWeight] intValue]] :
                                 kBodyMeterUndefinedLabel;
                     break;

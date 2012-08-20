@@ -438,6 +438,11 @@ static CGFloat headerMinHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didModifyShoppingList:)]) {
+        [_delegate shoppingListController:self
+                didModifyShoppingList:_shoppingList];
+    }
 }
 
 - (void)modifyShoppingItem:(ShoppingItem *)shoppingItem
@@ -451,6 +456,11 @@ static CGFloat headerMinHeight = 40.;
     // First, save the context
     [self saveContext];
     [self fetchUpdateAndReload];
+    if ([_delegate respondsToSelector:
+            @selector(shoppingListController:didModifyShoppingList:)]) {
+        [_delegate shoppingListController:self
+                didModifyShoppingList:_shoppingList];
+    }
 }
 
 - (void)deleteShoppingList
@@ -603,8 +613,7 @@ static CGFloat headerMinHeight = 40.;
             bannerURL];
     
     [picker setMailComposeDelegate:self];
-    [picker setSubject:[NSString stringWithFormat:kShoppingListMailSubject,
-            [_shoppingList name]]];
+    [picker setSubject:kShoppingListMailSubject];
     [picker setMessageBody:[NSString stringWithFormat:
             @"%@<br /><b>%@</b><br />%@<br />%@",imageHTML,
                 [_shoppingList name], [_shoppingList serializeHTML],

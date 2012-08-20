@@ -156,8 +156,11 @@ static NSString *const kMutablePromotionsKey = @"promotions";
         return nil;
     if ((price = [rawOffer objectForKey:kOfferPriceKey]) == nil)
         return nil;
-    if (![price isKindOfClass:[NSNumber class]])
-        return nil;
+    if (![price isKindOfClass:[NSNumber class]]) {
+        if (![price isKindOfClass:[NSNull class]])
+            return nil;
+        price = nil;
+    }
     if ((pictureURL = [rawOffer objectForKey:kOfferPictureURLKey]) == nil)
         return nil;
     if (![pictureURL isKindOfClass:[NSString class]]) {

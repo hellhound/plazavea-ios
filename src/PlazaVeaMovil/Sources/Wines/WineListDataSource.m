@@ -156,10 +156,10 @@ static CGFloat titleWidth = 320.;
 #pragma mark -
 #pragma mark <UITableViewDataSource>
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+/*- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return [(WineCollection *)[self model] sectionIndexTitles];
-}
+}*/
 
 #pragma mark -
 #pragma mark <TTTableViewDataSource>

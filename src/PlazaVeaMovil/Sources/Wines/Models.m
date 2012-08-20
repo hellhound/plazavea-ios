@@ -504,7 +504,9 @@ static NSString *const kMutableListKey = @"list";
             [rawBottles objectForKey:kWineBottlePictureKey]) == nil)
         return nil;
     if (![bottleImageURL isKindOfClass:[NSString class]]) {
-        if (![bottleImageURL isKindOfClass:[NSNull class]]) {
+        if ([bottleImageURL isKindOfClass:[NSNull class]]) {
+            bottleImageURL = @"";
+        } else {
             return nil;
         }
     }

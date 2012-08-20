@@ -247,6 +247,8 @@ static CGFloat headerMinHeight = 40.;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (![_profile idealWeight] || [[_profile idealWeight] intValue] == 0)
+        return 2;
     return 3;
 }
 

@@ -46,6 +46,7 @@ extern NSString *const kRecipeTipsKey;
 extern NSString *const kRecipeRationsKey;
 extern NSString *const kRecipeStrainsKey;
 extern NSString *const kRecipeContributionKey;
+extern NSString *const kRecipeWinesKey;
 
 // Ingredient model's constants
 
