@@ -176,7 +176,8 @@ static CGFloat titleWidth = 320.;
     
     [items addObject:oxygenation];
     
-    [self setItems:items];
+    [self setItems:[NSArray arrayWithObject:items]];
+    [self setSections:[NSArray arrayWithObject:kWineTipsLabel]];
 }
 
 

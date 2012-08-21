@@ -156,7 +156,8 @@ static CGFloat titleWidth = 320.;
             itemWithText:[wine tasting]];
     
     [items addObject:tasting];
-    [self setItems:items];
+    [self setItems:[NSArray arrayWithObject:items]];
+    [self setSections:[NSArray arrayWithObject:kWineTastingLabel]];
 }
 
 

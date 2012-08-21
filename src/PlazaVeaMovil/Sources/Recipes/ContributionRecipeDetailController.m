@@ -10,7 +10,7 @@
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/ContributionRecipeDetailController.h"
-#import "Recipes/RecipesTableViewDelegate.h"
+#import "Recipes/RecipeDetailTableViewDelegate.h"
 
 @implementation ContributionRecipeDetailController
 
@@ -34,8 +34,8 @@
 }
 
 - (id<UITableViewDelegate>)createDelegate {
-    return [[[RecipesTableViewDelegate alloc] initWithController:self
-            from:_from] autorelease];
+    return [[[RecipeDetailTableViewDelegate alloc] initWithController:self]
+            autorelease];
 }
 
 - (void)createShoppingListFormRecipe

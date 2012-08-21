@@ -5,7 +5,7 @@
 
 @protocol WineTipsDataSourceDelegate;
 
-@interface WineTipsDataSource: TTListDataSource
+@interface WineTipsDataSource: TTSectionedDataSource
 {
     id<WineTipsDataSourceDelegate> _delegate;
 }

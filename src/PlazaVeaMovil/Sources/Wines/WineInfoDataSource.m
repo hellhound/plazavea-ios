@@ -152,8 +152,8 @@ static CGFloat titleWidth = 320.;
             [IMAGE_URL([wine pictureURL], 320., 140.)  absoluteString]
                 title:[wine name]]];
     
-    NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
-            [[wine price] stringValue]];
+    /*NSString *priceLabel = [NSString stringWithFormat:kWinePriceUnits,
+            [[wine price] stringValue]];*/
     NSString *oxygenationLabel = [NSString stringWithFormat:
             @"%@ %@",[[wine oxygenation] value], [[wine oxygenation] unit]];
     TableCaptionItem *country = [TableCaptionItem
@@ -219,7 +219,8 @@ static CGFloat titleWidth = 320.;
     
     [items addObject:temperature];
     
-    [self setItems:items];
+    [self setItems:[NSArray arrayWithObject:items]];
+    [self setSections:[NSArray arrayWithObject:kWineInfoLabel]];
 }
 
 
