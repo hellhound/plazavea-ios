@@ -8,6 +8,7 @@
 #import "Wines/Constants.h"
 #import "Wines/WineTipsDataSource.h"
 #import "Wines/WineTipsController.h"
+#import "Wines/WineTableViewDelegate.h"
 
 @implementation WineTipsController
 
@@ -27,6 +28,12 @@
 {
     [self setDataSource:[[[WineTipsDataSource alloc] initWithWineId:_wineId
             delegate:self] autorelease]];
+}
+
+- (id<UITableViewDelegate>)createDelegate
+{
+    return [[[WineTableViewDelegate alloc] initWithController:self]
+            autorelease];
 }
 
 #pragma mark -

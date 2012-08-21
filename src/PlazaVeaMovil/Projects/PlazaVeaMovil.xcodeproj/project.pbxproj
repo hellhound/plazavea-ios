@@ -318,6 +318,7 @@
 		2FCF7C1514D359EC007C083B /* SA_OAuthTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCF7C0114D359EB007C083B /* SA_OAuthTwitterEngine.m */; };
 		2FCF7C1614D359EC007C083B /* twitter_load.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCF7C0214D359EB007C083B /* twitter_load.png */; };
 		2FCF7C1814D35A37007C083B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCF7C1714D35A37007C083B /* libxml2.dylib */; };
+		2FD3138315E3EC7C00054354 /* RecipeDetailTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3138215E3EC7C00054354 /* RecipeDetailTableViewDelegate.m */; };
 		2FD3516D14E18ABF004903B2 /* bodymeter-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516B14E18ABF004903B2 /* bodymeter-background.png */; };
 		2FD3516E14E18ABF004903B2 /* bodymeter-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516C14E18ABF004903B2 /* bodymeter-background@2x.png */; };
 		2FD3517114E18F60004903B2 /* default-banner-bodymeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */; };
@@ -1278,6 +1279,8 @@
 		2FCF7C0114D359EB007C083B /* SA_OAuthTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SA_OAuthTwitterEngine.m; sourceTree = "<group>"; };
 		2FCF7C0214D359EB007C083B /* twitter_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_load.png; sourceTree = "<group>"; };
 		2FCF7C1714D35A37007C083B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		2FD3138215E3EC7C00054354 /* RecipeDetailTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailTableViewDelegate.m; sourceTree = "<group>"; };
+		2FD3138415E3EC9C00054354 /* RecipeDetailTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailTableViewDelegate.h; path = ../../Headers/Recipes/RecipeDetailTableViewDelegate.h; sourceTree = "<group>"; };
 		2FD3516B14E18ABF004903B2 /* bodymeter-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bodymeter-background.png"; sourceTree = "<group>"; };
 		2FD3516C14E18ABF004903B2 /* bodymeter-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bodymeter-background@2x.png"; sourceTree = "<group>"; };
 		2FD3516F14E18F60004903B2 /* default-banner-bodymeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-banner-bodymeter.png"; sourceTree = "<group>"; };
@@ -1771,6 +1774,7 @@
 		2CAF05CB1403FC8B003C2A2C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				2FD3138415E3EC9C00054354 /* RecipeDetailTableViewDelegate.h */,
 				2F5074991551A8BC001A383F /* RecipeCollectionDataSource.h */,
 				2FB3023F1533AB020068B4E7 /* FeaturesRecipeDetailController.h */,
 				2FA05F331523822200D12517 /* ContributionRecipeDetailController.h */,
@@ -1793,6 +1797,7 @@
 				2F16EA2015226AF300766D83 /* RecipeListController.h */,
 				2F16EA2115226AF300766D83 /* RecipesTableViewDelegate.h */,
 				2F16EA2215226AF300766D83 /* TipsRecipeDetailController.h */,
+				2FD3138215E3EC7C00054354 /* RecipeDetailTableViewDelegate.m */,
 				2F50749A1551A8CC001A383F /* RecipeCollectionDataSource.m */,
 				2FB302401533AB100068B4E7 /* FeaturesRecipeDetailController.m */,
 				2FA05F341523823600D12517 /* ContributionRecipeDetailController.m */,
@@ -3116,6 +3121,7 @@
 				2FA05F351523823600D12517 /* ContributionRecipeDetailController.m in Sources */,
 				2FB302411533AB100068B4E7 /* FeaturesRecipeDetailController.m in Sources */,
 				2F50749B1551A8CC001A383F /* RecipeCollectionDataSource.m in Sources */,
+				2FD3138315E3EC7C00054354 /* RecipeDetailTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

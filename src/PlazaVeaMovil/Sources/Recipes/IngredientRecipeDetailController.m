@@ -10,7 +10,7 @@
 #import "ShoppingList/Models.h"
 #import "Recipes/RecipeDetailDataSource.h"
 #import "Recipes/IngredientRecipeDetailController.h"
-#import "Recipes/RecipesTableViewDelegate.h"
+#import "Recipes/RecipeDetailTableViewDelegate.h"
 
 @implementation IngredientRecipeDetailController
 
@@ -33,9 +33,10 @@
                 section:kRecipeDetailIngredientsView from:_from] autorelease]];
 }
 
-- (id<UITableViewDelegate>)createDelegate {
-    return [[[RecipesTableViewDelegate alloc] initWithController:self
-        from:_from] autorelease];
+- (id<UITableViewDelegate>)createDelegate
+{
+    return [[[RecipeDetailTableViewDelegate alloc] initWithController:self]
+            autorelease];
 }
 
 #pragma mark -
