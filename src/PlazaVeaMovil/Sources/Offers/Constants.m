@@ -189,12 +189,10 @@ NSString *const kOfferDetailDefaultImage =
 NSString *const kOfferDetailShare = @"Compartir vía";
 // NSLocalizedString(@"Compartir vía", nil)
 NSString *const kOfferDetailMailImage = @"bundle://mail-icon.png";
-NSString *const kOfferDetailFacebookImage = 
-        @"bundle://facebook-icon.png";
+NSString *const kOfferDetailFacebookImage = @"bundle://facebook-icon.png";
 NSString *const kOfferDetailTwitterImage = @"bundle://twitter-icon.png";
 
-NSString *const kBannerDefaultImage =
-        @"bundle://default-banner-offers-list.png";
+NSString *const kBannerDefaultImage = @"bundle://default-banner.png";
 NSString *const kOfferBannerDefaultImage =
         @"bundle://default-banner-offers.jpg";
 const CGFloat kBannerImageWidth = 320.;
