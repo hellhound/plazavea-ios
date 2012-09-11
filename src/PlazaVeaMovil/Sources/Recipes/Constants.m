@@ -199,8 +199,7 @@ NSString *const kRecipeDetailTitle = @"Receta";
 // NSLocalizedString(@"Receta", nil);
 NSString *const kRecipeRations = @"(%@ personas)";
 // NSLocalizedString(@"%@ personas", nil);
-NSString *const kRecipeDetailDefaultImage =
-        @"bundle://default-recipe-detail.png";
+NSString *const kRecipeDetailDefaultImage = @"bundle://default-banner.png";
 const CGFloat kRecipeDetailImageWidth = 320.;
 const CGFloat kRecipeDetailImageHeigth = 140.;
 NSString *const kRecipeDetailCreateMessage = @"Lista %@ creada";
